@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/static/img/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Ứng dụng web NutriCheck là một trợ lý dinh dưỡng để kiểm soát chế độ ăn uống, quản lý thói quen ăn uống và duy trì sức khỏe tốt :)"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json cung cấp metadata được sử dụng khi ứng dụng web của bạn được cài đặt
+      trên thiết bị di động hoặc máy tính để bàn của người dùng. Xem thêm tại https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>Trợ lý dinh dưỡng</title>
+  </head>
+
+  <!-- âm thanh nè -->
+  <style>
+    audio {
+      display: block; 
+      margin: 20px auto 0; 
+      top: 800%; /* Căn giữa dọc (50% từ trên xuống) */
+      left: 220%; /* Căn giữa ngang (50% từ trái sang) */
+      transform: translate(-10%, -30%); 
+    }
+  </style>
+  <body>
+    <audio id ="audio" autoplay loop muted>
+      <source src="dolia.mp3" type="audio/mpeg">
+      
+    </audio>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+          const audio = document.getElementById('audio');
+          audio.muted = false; // Bỏ tắt tiếng nếu cần
+          audio.volume = 0.5;
+      });
+  </script>
+  </body>
+
+  <body>
+    <noscript>.</noscript>
+    <div id="root"></div>
+  </body>
+</html>

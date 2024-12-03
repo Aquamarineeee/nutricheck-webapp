@@ -1,0 +1,28 @@
+# Node.js dependencies
+/node_modules
+/frontend/node_modules
+
+# Python
+/backend/venv/
+**/venv/
+*.py[cod]
+__pycache__/
+
+# Build outputs
+/frontend/build
+*.cache
+*.coverage
+.pytest_cache/
+
+# Sensitive files
+*.env
+**/serviceAccount.json
+/backend/db.json
+/ai-food-detection/object-storage-keys.json
+/ai-food-detection/serviceAccount.json
+
+# IDE and OS-specific files
+.vscode/
+Thumbs.db
+Desktop.ini
+.DS_Store
