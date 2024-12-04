@@ -263,7 +263,7 @@ const Blog16 = () => {
                 }}
               >
                 <motion.img
-                  src={egg}
+                  src={"https://i.pinimg.com/originals/49/01/07/490107f9be6c34d9e2f12010f3b15f27.gif"}
                   alt="nature"
                   className={styles.imgTips1}
                   variants={photoAnim}
