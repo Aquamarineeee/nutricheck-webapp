@@ -443,69 +443,6 @@ Phụ nữ trên 50 tuổi và nam trên 70 tuổi cần khoảng 1.200mg canxi 
               </Grid>
             </Grid>
           </motion.div>
-
-          {/* mobile container */}
-          <motion.div
-            className={styles.container3}
-            exit="exit"
-            variants={pageAnimation}
-            initial="hidden"
-            animate="show"
-          >
-            <Grid container spacing={5}>
-              <Grid
-                item
-                md={6}
-                xs={12}
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-              >
-                <motion.img
-                  src={egg}
-                  alt="nature"
-                  className={styles.imgTips1}
-                  variants={photoAnim}
-                />
-              </Grid>
-              <Grid
-                item
-                md={6}
-                xs={12}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  textAlign: "justify",
-                }}
-              >
-                <motion.div>
-                  <motion.h3 variants={fade} className={styles.title}>
-                    Thực phẩm nên ăn vào buổi sáng
-                  </motion.h3>
-                  <motion.p variants={fade}>
-                    <b>Trứng </b>: Trứng là một lựa chọn bữa sáng đơn giản và bổ
-                    dưỡng. Chúng là nguồn cung cấp protein tuyệt vời, giúp hỗ
-                    trợ sự tổng hợp cơ bắp. Vì protein mất một thời gian để tiêu
-                    hóa, nên nó cũng giúp bạn cảm thấy no lâu hơn.
-                    <br />
-                    <br />
-                    <b>Cháo yến mạch </b>: Cháo yến mạch là một lựa chọn bữa
-                    sáng cổ điển và bổ dưỡng. Hơn nữa, yến mạch là một nguồn tốt
-                    cung cấp sắt, vitamin B, mangan, magiê, kẽm và selenium.
-                    <br />
-                    <br />
-                    <b>Cà phê </b>: Cà phê chứa nhiều caffeine, một phân tử giúp
-                    tăng cường sự tỉnh táo, cải thiện tâm trạng và nâng cao hiệu
-                    suất thể chất và tinh thần. Đặc biệt, nhiều vận động viên
-                    uống cà phê như một thức uống trước khi tập luyện để hỗ trợ
-                    hiệu suất thể thao.
-                  </motion.p>
-                </motion.div>
-              </Grid>
-              
-            </Grid>
-          </motion.div>
         </Box>
       </Container>
     </div>
