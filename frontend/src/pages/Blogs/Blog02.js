@@ -324,6 +324,111 @@ const Blog02 = () => {
                     hiệu suất thể thao.
                   </motion.p>
                 </motion.div>
+                <Grid
+                item
+                md={6}
+                xs={12}
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  textAlign: "justify",
+                }}
+              >
+                <motion.div>
+                  <motion.h3 className={styles.title} variants={fade}>
+                    Thực phẩm nên ăn vào buổi chiều
+                  </motion.h3>
+                  <motion.p className={styles.para} variants={fade}>
+                    <b>Bánh mì nguyên cám </b>: Glucose là nguồn năng lượng tốt
+                    nhất cho não và hệ thần kinh trung ương. Bạn có thể tìm thấy
+                    glucose trong các loại carbohydrate như bánh mì nguyên cám
+                    và các loại ngũ cốc khác.
+                    <br />
+                    <br />
+                    <b>Chuối</b>: Hầu hết các loại trái cây chứa nhiều loại
+                    đường (glucose, fructose và sucrose) và chất xơ – một sự kết
+                    hợp tốt để cung cấp năng lượng. Hãy mang theo một quả chuối
+                    trong bữa trưa của bạn và ăn khi cảm thấy mệt mỏi vào cuối
+                    ngày.
+                    <br />
+                    <br />
+                    <b>Cam</b>: Một loại trái cây khác có tác dụng làm tươi tỉnh
+                    là cam. Đây là một món ăn vặt giàu vitamin C, cũng chứa
+                    kali, folate và chất xơ. Hơn nữa, mùi của nó thật tuyệt vời!
+                  </motion.p>
+                </motion.div>
+              </Grid>
+              <Grid
+                item
+                md={6}
+                xs={12}
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <motion.img
+                  src={banana}
+                  alt="nature"
+                  className={styles.imgTips1}
+                  variants={photoAnim}
+                />
+              </Grid>
+              <Grid
+                item
+                md={6}
+                xs={12}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <motion.img
+                  src={sweetpotato}
+                  alt="nature"
+                  className={styles.imgTips1}
+                  variants={photoAnim}
+                />
+              </Grid>
+              <Grid
+                item
+                md={6}
+                xs={12}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  textAlign: "justify",
+                }}
+              >
+                <motion.div>
+                  <motion.h3 className={styles.title} variants={fade}>
+                    Thực phẩm nên ăn vào buổi tối
+                  </motion.h3>
+                  <motion.p className={styles.para} variants={fade}>
+                    <b>Khoai lang nhồi </b>: Khoai lang chứa nhiều chất dinh
+                    dưỡng có lợi như beta carotene, vitamin C, kali và chất xơ.
+                    Thêm vào đó, chúng rất ngon và dễ dàng kết hợp với hầu hết
+                    các món ăn khác. Đây là món ăn lý tưởng để xây dựng một bữa
+                    ăn no nê.
+                    <br />
+                    <br />
+                    <b>Chén ngũ cốc </b>: Ngũ cốc cung cấp một nguồn chất xơ
+                    quan trọng và các dưỡng chất khác như magiê. Các nghiên cứu
+                    đã chỉ ra rằng chế độ ăn giàu ngũ cốc có liên quan đến việc
+                    giảm nguy cơ mắc một số bệnh lý, bao gồm ung thư đại tràng,
+                    bệnh tim và tiểu đường loại 2.
+                    <br />
+                    <br />
+                    <b>Chapati </b>: Chapati giàu chất xơ và chứa một lượng lớn
+                    protein và chất béo lành mạnh. Hơn nữa, chapati giúp bạn cảm
+                    thấy no lâu hơn. Nó còn cung cấp một lượng calcium, magiê,
+                    phốt pho và natri tốt mà không làm tăng mức đường huyết
+                    nhanh như cơm.
+                  </motion.p>
+                </motion.div>
+              </Grid>
               </Grid>
             </Grid>
           </motion.div>

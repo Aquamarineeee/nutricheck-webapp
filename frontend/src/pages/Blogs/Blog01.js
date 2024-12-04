@@ -298,17 +298,6 @@ const Blog01 = () => {
                 style={{
                   display: "flex",
                   justifyContent: "center",
-                }}
-              >
-                <img src={blog2} alt="nature" className={styles.imgTips} />
-              </Grid>
-              <Grid
-                item
-                md={6}
-                xs={12}
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
                   alignItems: "center",
                   textAlign: "center",
                 }}
@@ -322,7 +311,150 @@ const Blog01 = () => {
                   </p>
                 </div>
               </Grid>
-            </Grid>
+              <Grid
+                item
+                md={6}
+                xs={12}
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <img src={blog2} alt="nature" className={styles.imgTips} />
+              </Grid>
+              <Grid
+                item
+                md={6}
+                xs={12}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <img src={blog3} alt="nature" className={styles.imgTips} />
+              </Grid>
+              <Grid
+                item
+                md={6}
+                xs={12}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  textAlign: "center",
+                }}
+              >
+                <div>
+                  <h3 className={styles.title}>
+                    3. Giảm lượng chất béo tiêu thụ
+                  </h3>
+                  <p className={styles.para}>
+                    Ăn chế độ ăn nhiều chất béo có thể góp phần vào bệnh tim và
+                    thừa cân. Một chế độ ăn ít béo quan trọng để duy trì trọng
+                    lượng cơ thể khỏe mạnh và ngăn ngừa bệnh tim. Lượng chất béo
+                    nên chiếm từ 25 đến 35 phần trăm tổng lượng calo từ chất
+                    béo.
+                  </p>
+                </div>
+              </Grid>
+              <Grid
+                item
+                md={6}
+                xs={12}
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <img src={blog4} alt="nature" className={styles.imgTips} />
+              </Grid>
+              <Grid
+                item
+                md={6}
+                xs={12}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  textAlign: "center",
+                }}
+              >
+                <div>
+                  <h3 className={styles.title}>4. Tiêu thụ ít muối và đường</h3>
+                  <p className={styles.para}>
+                    Hầu hết mọi người nhận được natri từ muối. Hạn chế lượng
+                    muối của bạn xuống còn 5g mỗi ngày, tương đương với khoảng
+                    một muỗng cà phê. Ngược lại, tiêu thụ quá nhiều đường làm
+                    tăng nguy cơ sâu răng và tăng cân không lành mạnh. Giảm
+                    lượng đường của bạn xuống còn 50g hoặc khoảng 12 muỗng cà
+                    phê.
+                  </p>
+                </div>
+              </Grid>
+              <Grid
+                item
+                md={6}
+                xs={12}
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <img src={blog5} alt="nature" className={styles.imgTips} />
+              </Grid>
+              <Grid
+                item
+                md={6}
+                xs={12}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  textAlign: "center",
+                }}
+              >
+                <div>
+                  <h3 className={styles.title}>
+                    5. Tránh hút thuốc và uống rượu có hại
+                  </h3>
+                  <p className={styles.para}>
+                    Nếu bạn làm những điều này, hãy xem xét giảm bớt hoặc bỏ hẳn
+                    để giảm nguy cơ mắc các bệnh mạn tính. Hút thuốc lá gây ra
+                    các bệnh không lây nhiễm như bệnh phổi, bệnh tim và đột quỵ.
+                  </p>
+                </div>
+              </Grid>
+              <Grid
+                item
+                md={6}
+                xs={12}
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <img src={blog6} alt="nature" className={styles.imgTips} />
+              </Grid>
+              <Grid
+                item
+                md={6}
+                xs={12}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  textAlign: "center",
+                }}
+              >
+                <div>
+                  <h3 className={styles.title}>6. Tập thể dục thường xuyên</h3>
+                  <p className={styles.para}>
+                    Dù bạn ở độ tuổi nào, có bằng chứng khoa học vững chắc cho
+                    thấy việc hoạt động thể chất thường xuyên giúp bạn sống khỏe
+                    mạnh và hạnh phúc hơn. Những người tập thể dục thường xuyên
+                    có nguy cơ thấp mắc phải nhiều bệnh lý mãn tính như bệnh
+                    tim, tiểu đường loại 2, đột quỵ và một số bệnh ung thư.
+                  </p>
+                </div>
+              </Grid>
+              </Grid>
           </div>
         </Box>
       </Container>
