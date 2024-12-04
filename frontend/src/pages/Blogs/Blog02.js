@@ -324,7 +324,8 @@ const Blog02 = () => {
                     hiệu suất thể thao.
                   </motion.p>
                 </motion.div>
-                <Grid
+              </Grid>
+              <Grid
                 item
                 md={6}
                 xs={12}
@@ -428,7 +429,6 @@ const Blog02 = () => {
                     nhanh như cơm.
                   </motion.p>
                 </motion.div>
-              </Grid>
               </Grid>
             </Grid>
           </motion.div>
