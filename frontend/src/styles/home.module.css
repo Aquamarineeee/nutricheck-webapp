@@ -26,6 +26,17 @@
   height: 80px;
   margin: 20px 0 0 20px;
 }
+/* styles.module.css */
+.titletest {
+  width: 500px;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .titletest {
+    width: 320px; /* Kích thước riêng cho điện thoại */
+  }
+}
 
 .titleWrapper {
   display: flex;
