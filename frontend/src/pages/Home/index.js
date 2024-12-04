@@ -15,7 +15,7 @@ export default function Home() {
             className={styles.title}
             src="/static/img/brandname.png"
             alt="Brandname"
-            style={{ width: "400px", height: "auto" }}
+            style={{ width: "380px", height: "auto" }}
           />
           <p className={styles.subtitle}>
             Trợ lý dinh dưỡng để kiểm soát chế độ ăn uống, quản lý thói quen ăn
