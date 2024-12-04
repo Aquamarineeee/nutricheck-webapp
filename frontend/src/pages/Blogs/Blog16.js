@@ -7,7 +7,7 @@ import banana from "../../images/bananas.png";
 import sweetpotato from "../../images/sweetpotato.png";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { useNavigate } from "react-router-dom";
-
+//baseon blog 2
 const Blog16 = () => {
   const navigate = useNavigate();
   const pageAnimation = {
@@ -280,31 +280,113 @@ const Blog16 = () => {
                 }}
               >
                 <motion.div>
-                  <motion.h3 variants={fade} className={styles.title}>
-                    Thực phẩm nên ăn vào buổi sáng
+                <motion.h3 variants={fade} className={styles.title}>
+                    1. Bài tập Tim mạch (Cardio)
                   </motion.h3>
                   <motion.p variants={fade}>
-                    <b>Trứng </b>: Trứng là một lựa chọn bữa sáng đơn giản và bổ
-                    dưỡng. Chúng là nguồn cung cấp protein tuyệt vời, giúp hỗ
-                    trợ sự tổng hợp cơ bắp. Vì protein mất một thời gian để tiêu
-                    hóa, nên nó cũng giúp bạn cảm thấy no lâu hơn.
+                    <b>Chạy bộ </b>: Chạy bộ ngoài trời hoặc trên máy chạy đều giúp tăng cường sức khỏe tim mạch và tăng cường sức bền. Bạn có thể thử chạy tốc độ nhẹ, chạy interval (chạy nhanh rồi đi bộ nhanh) để đẩy mạnh sự luyện tập.
                     <br />
                     <br />
-                    <b>Cháo yến mạch </b>: Cháo yến mạch là một lựa chọn bữa
-                    sáng cổ điển và bổ dưỡng. Hơn nữa, yến mạch là một nguồn tốt
-                    cung cấp sắt, vitamin B, mangan, magiê, kẽm và selenium.
+                    <b>Đạp xe </b>: Đạp xe ngoài trời hoặc trên xe đạp tĩnh là một bài tập tốt cho sức khỏe tim mạch và giúp tăng cường sức mạnh cho cơ bắp chân.
                     <br />
                     <br />
-                    <b>Cà phê </b>: Cà phê chứa nhiều caffeine, một phân tử giúp
-                    tăng cường sự tỉnh táo, cải thiện tâm trạng và nâng cao hiệu
-                    suất thể chất và tinh thần. Đặc biệt, nhiều vận động viên
-                    uống cà phê như một thức uống trước khi tập luyện để hỗ trợ
-                    hiệu suất thể thao.
+                    <b>Bơi lội </b>: Bơi là một bài tập toàn thân tuyệt vời, giúp tăng cường sự linh hoạt, sức mạnh cơ bắp, và sức bền.
+                    <br />
+                    <br />
+                    <b>Nhảy dây </b>: Nhảy dây không chỉ giúp cải thiện sức khỏe tim mạch mà còn giúp giảm mỡ, tăng cường sự linh hoạt.
+                  </motion.p>
+                </motion.div>
+              </Grid>
+              <Grid
+                item
+                md={6}
+                xs={12}
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  textAlign: "justify",
+                  
+                }}
+              >
+                <motion.div>
+                  <motion.h3 className={styles.title} variants={fade}>
+                  2. Bài tập Linh hoạt (Flexibility and Mobility)
+                  </motion.h3>
+                  <motion.p className={styles.para} variants={fade}>
+                    <b>Yoga </b>: Yoga giúp tăng cường sự linh hoạt, giảm căng thẳng và cải thiện tâm trí.
+                    <br />
+                    <br />
+                    <b>Pilates</b>: Pilates giúp tăng cường cơ bụng, cải thiện sức mạnh cơ thể và sự linh hoạt.
+                    <br />
+                    <br />
+                    <b>Kéo giãn cơ (Stretching)</b>: Các bài tập kéo giãn cơ có thể giúp cải thiện sự linh hoạt, giảm nguy cơ chấn thương, và phục hồi cơ bắp sau khi tập luyện.
+                  </motion.p>
+                </motion.div>
+              </Grid>
+              <Grid
+                item
+                md={6}
+                xs={12}
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <motion.img
+                  src={"https://i.pinimg.com/originals/a8/a9/ba/a8a9ba4d3ec0b6e7cdd30918fbbcdd92.gif"}
+                  alt="yoga"
+                  className={styles.imgTips1}
+                  variants={photoAnim}
+                  style={{ width: "400px", height: "auto" }}
+                />
+              </Grid>
+              <Grid
+                item
+                md={6}
+                xs={12}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <motion.img
+                  src={"https://i.pinimg.com/originals/82/b9/84/82b984c7f4850eaf61d2327e880a20ad.gif"}
+                  alt="deadlift"
+                  className={styles.imgTips1}
+                  variants={photoAnim}
+                  style={{ width: "400px", height: "auto" }}
+                />
+              </Grid>
+              <Grid
+                item
+                md={6}
+                xs={12}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  textAlign: "justify",
+                }}
+              >
+                <motion.div>
+                  <motion.h3 className={styles.title} variants={fade}>
+                  3. Bài tập Sức mạnh (Strength Training)
+                  </motion.h3>
+                  <motion.p className={styles.para} variants={fade}>
+                    <b>Chống đẩy </b>: Bài tập này giúp tăng cường cơ ngực, vai và cơ tay. Bạn có thể thử nhiều biến thể như chống đẩy chuẩn, chống đẩy hẹp, chống đẩy rộng, hay chống đẩy với chân cao
+                    <br />
+                    <br />
+                    <b>Squats </b>: Đây là bài tập tuyệt vời để phát triển cơ đùi, cơ mông và cơ chân. Squats có thể thực hiện với hoặc không có tạ, hoặc dùng tạ đôi để tăng cường mức độ khó.
+                    <br />
+                    <br />
+                    <b>Deadlift (Kéo tạ) </b>: Đây là bài tập sức mạnh giúp phát triển cơ lưng, cơ mông và cơ đùi. Nếu bạn không có tạ, bạn có thể sử dụng vật nặng khác để thực hiện bài tập này.
                   </motion.p>
                 </motion.div>
               </Grid>
             </Grid>
           </motion.div>
+
         </Box>
       </Container>
     </div>
