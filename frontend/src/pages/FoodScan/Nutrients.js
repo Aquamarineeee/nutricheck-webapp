@@ -53,8 +53,8 @@ const Nutrients = ({
   };
   const getNutrientTitle = (title) => {
     switch (title) {
-      case "Calorie":
-        return "Năng lượng";
+      case "Calories":
+        return "Calories";
       case "Carbohydrates":
         return "Tinh bột";
       case "Proteins":
@@ -162,7 +162,7 @@ const Nutrients = ({
                 color: "var(--onOrange)",
               }}
             >
-              năng lượng
+              Calories
             </span>
           </div>
         </div>

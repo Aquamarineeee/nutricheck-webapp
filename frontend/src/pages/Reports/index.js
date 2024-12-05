@@ -15,16 +15,24 @@ const Reports = () => {
   const [foodItems, setfoodItems] = useState(null);
   const [selectedDate, setselectedDate] = useState(null);
   // sua tu day
-  const getDaysSinceRegistration = () => {
-    const registrationDate = localStorage.getItem("registrationDate");
-    if (!registrationDate) return 0; // Nếu không có ngày đăng ký, trả về 0
+  const UserProfile = () => {
+    const [daysSinceRegistration, setDaysSinceRegistration] = useState(0);
   
-    const today = new Date();
-    const regDate = new Date(registrationDate);
-    
-    const diffTime = today - regDate; // Tính sự khác biệt về thời gian (ms)
-    return Math.floor(diffTime / (1000 * 60 * 60 * 24)); // Chuyển đổi từ milliseconds sang ngày
-  };
+    useEffect(() => {
+      const getDaysSinceRegistration = () => {
+        const registrationDate = localStorage.getItem("registrationDate");
+        if (!registrationDate) return 0;
+  
+        const today = new Date();
+        const regDate = new Date(registrationDate);
+  
+        const diffTime = today - regDate;
+        return Math.floor(diffTime / (1000 * 60 * 60 * 24));
+      };
+  
+      const days = getDaysSinceRegistration();
+      setDaysSinceRegistration(days);
+    }, []);
 
   const getDate = async (idx) => {
     const selectDate = weekData.find((week) => week.DAY === categories[idx]);
@@ -137,6 +145,7 @@ const Reports = () => {
       </Container>
     </div>
   );
+};
 };
 
 export default Reports;
