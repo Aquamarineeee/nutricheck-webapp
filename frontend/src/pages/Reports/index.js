@@ -6,7 +6,7 @@ import DailyReport from "../../Components/DailyReport";
 import { AppContext } from "../../Context/AppContext";
 import { API } from "../../services/apis";
 import { getChartData } from "../../utils/utils";
-import { getDaysSinceRegistration } from './utils';
+import { getDaysSinceRegistration } from "../../utils/utils";
 const Reports = () => {
   const { enqueueSnackbar } = useSnackbar();
 
@@ -16,7 +16,7 @@ const Reports = () => {
   const [selectedDate, setselectedDate] = useState(null);
   // sua tu day
   const daysSinceRegistration = getDaysSinceRegistration();
-  
+
   const getDate = async (idx) => {
     const selectDate = weekData.find((week) => week.DAY === categories[idx]);
     if (!selectDate) {

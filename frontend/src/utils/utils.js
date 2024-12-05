@@ -28,8 +28,8 @@ const WEEKS_EN = [
   "Friday",
   "Saturday",
 ];
-const handleApiRequest = async () => {
-  const getDaysSinceRegistration = () => {
+export const handleApiRequest = async () => {
+  const getDaysSinceRegistration = async () => {
     const registrationDate = localStorage.getItem("registrationDate");
     if (!registrationDate) return 0;
 
