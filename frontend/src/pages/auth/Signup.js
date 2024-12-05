@@ -64,8 +64,10 @@ const Signup = () => {
       });
       localStorage.setItem("token", res.token);
       localStorage.setItem("userInfo", JSON.stringify(res.user));
+      localStorage.setItem("registrationDate", currentDate.toISOString().split("T")[0]);
       navigate("/userInitialForm");
-    } catch (err) {
+    } 
+    catch (err) {
       if (err.response && err.response.status === 400) { // 409: Conflict (trùng tài khoản)
         enqueueSnackbar("Tài khoản đã tồn tại", { variant: "error" });
       } else {

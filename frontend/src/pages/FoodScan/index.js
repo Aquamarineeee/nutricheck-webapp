@@ -66,8 +66,8 @@ const ScannedImg = () => {
                 selectedItems.filter((item) => item.id !== foodItem.id)
             );
         } else {
-            if (selectedItems.length === 3) {
-                enqueueSnackbar('Chỉ lựa chọn 3 thành phần', { variant: 'error' });
+            if (selectedItems.length === 10) {
+                enqueueSnackbar('Chỉ lựa chọn dưới 10 thành phần', { variant: 'error' });
                 return;
             }
     

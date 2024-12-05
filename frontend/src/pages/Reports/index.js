@@ -14,6 +14,18 @@ const Reports = () => {
   const [categories, weekCalories] = getChartData(weekData);
   const [foodItems, setfoodItems] = useState(null);
   const [selectedDate, setselectedDate] = useState(null);
+  // sua tu day
+  const getDaysSinceRegistration = () => {
+    const registrationDate = localStorage.getItem("registrationDate");
+    if (!registrationDate) return 0; // Nếu không có ngày đăng ký, trả về 0
+  
+    const today = new Date();
+    const regDate = new Date(registrationDate);
+    
+    const diffTime = today - regDate; // Tính sự khác biệt về thời gian (ms)
+    return Math.floor(diffTime / (1000 * 60 * 60 * 24)); // Chuyển đổi từ milliseconds sang ngày
+  };
+
   const getDate = async (idx) => {
     const selectDate = weekData.find((week) => week.DAY === categories[idx]);
     if (!selectDate) {
@@ -57,7 +69,7 @@ const Reports = () => {
             padding: "0.8rem",
           }}
         >
-          Sức khỏe hàng tuần
+          Lượng Calo hàng tuần
         </h1>
       </div>
       <Container maxWidth="md">
@@ -66,7 +78,7 @@ const Reports = () => {
             type="bar"
             series={[
               {
-                name: "năng lượng",
+                name: "Calo",
                 color: "#F0A500",
                 data: weekCalories,
               },
@@ -78,7 +90,7 @@ const Reports = () => {
               },
               yaxis: {
                 title: {
-                  text: "năng lượng",
+                  text: "Calo",
                 },
               },
               grid: {
@@ -117,6 +129,10 @@ const Reports = () => {
               thể
             </Alert>
           )}
+          <div>
+      <h2>Thông tin người dùng</h2>
+      <p>Số ngày kể từ khi đăng ký: {daysSinceRegistration} ngày</p>
+    </div>
         </div>
       </Container>
     </div>

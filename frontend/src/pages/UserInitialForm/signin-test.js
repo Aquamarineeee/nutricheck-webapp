@@ -32,7 +32,6 @@ const UserSignup = () => {
   const handleSubmit = async () => {
     if (
       !state.age ||
-      !state.gender ||
       !state.weight ||
       !state.height ||
       !state.activity
@@ -65,7 +64,7 @@ const UserSignup = () => {
       <img className="logo" src="/static/img/logo.png" alt="Logo" />
       <Container maxWidth="sm" className="form-container">
         <Box className="form-box">
-          <h1 className="form-title"> Nhập lại chỉnh sửa nếu có thay đổi</h1>
+          <h1 className="form-title"> Nhập lại thông tin</h1>
           <div className="form-content">
             <form>
               <label className="form-label">Tuổi</label>
