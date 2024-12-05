@@ -47,6 +47,7 @@ const Signup = () => {
   
 
   const handleSignup = async () => {
+    const currentDate = new Date();
     if (state.username === "" || state.email === "" || state.password === "") {
       enqueueSnackbar("Vui lòng điền thông tin chi tiết", { variant: "error" });
       return;
@@ -77,6 +78,27 @@ const Signup = () => {
       
     }
     setisLoading(false);
+  };
+  const calculateTotalCalories = (dailyCalories) => {
+    const registrationDate = localStorage.getItem("registrationDate");
+    if (!registrationDate) return 0;
+  
+    const today = new Date();
+    const regDate = new Date(registrationDate);
+  
+    const totalDays = Math.floor((today - regDate) / (1000 * 60 * 60 * 24)) + 1;
+    let totalCalories = 0;
+  
+    for (let i = 0; i < totalDays; i++) {
+      const date = new Date(regDate);
+      date.setDate(date.getDate() + i);
+  
+      // Lấy lượng calo cho ngày đó từ dữ liệu dailyCalories
+      const dateKey = date.toISOString().split("T")[0];
+      totalCalories += dailyCalories[dateKey] || 0; // Nếu không có dữ liệu thì cộng 0
+    }
+  
+    return totalCalories;
   };
 
   return (

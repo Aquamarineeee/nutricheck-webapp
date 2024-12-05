@@ -7,6 +7,7 @@ import { AppContext } from "../../Context/AppContext";
 import { API } from "../../services/apis";
 import { getChartData } from "../../utils/utils";
 import { getDaysSinceRegistration } from "../../utils/utils";
+import {calculateTotalCalories} from "../auth/Signup"
 const Reports = () => {
   const { enqueueSnackbar } = useSnackbar();
 
@@ -122,7 +123,7 @@ const Reports = () => {
           )}
           <div>
       <h2>Thông tin người dùng</h2>
-      <p>Số ngày kể từ khi đăng ký: {daysSinceRegistration} ngày</p>
+      <p>Số ngày kể từ khi đăng ký: {daysSinceRegistration} / {calculateTotalCalories} ngày</p>
     </div>
         </div>
       </Container>
