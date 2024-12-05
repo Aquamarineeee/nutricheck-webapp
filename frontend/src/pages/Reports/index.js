@@ -7,7 +7,7 @@ import { AppContext } from "../../Context/AppContext";
 import { API } from "../../services/apis";
 import { getChartData } from "../../utils/utils";
 import { getDaysSinceRegistration } from "../../utils/utils";
-import {calculateTotalCalories} from "../auth/Signup"
+import {calculateTotalCalories} from "../../utils/utils";
 const Reports = () => {
   const { enqueueSnackbar } = useSnackbar();
 

@@ -29,9 +29,6 @@ const Signup = () => {
       const res = await API.signInWithGoogle({ accessToken });
       localStorage.setItem("token", res.token);
       localStorage.setItem("userInfo", JSON.stringify(res.user));
-      const dailyCalories = await API.getDailyCalories();
-      const total = calculateTotalCalories(dailyCalories.data);
-      setTotalCalories(total); // Lưu tổng lượng calo vào state
       if (res.user.IS_LOGIN_PROCESS_COMPLETE) {
         setmaxCalories(res.maxCalories);
         setuserInfo(res.user);
@@ -47,26 +44,7 @@ const Signup = () => {
     setisLoading(false);
   };
   
-  const calculateTotalCalories = (dailyCalories) => {
-    const registrationDate = localStorage.getItem("registrationDate");
-    if (!registrationDate) return 0;
-  
-    const today = new Date();
-    const regDate = new Date(registrationDate);
-  
-    const totalDays = Math.floor((today - regDate) / (1000 * 60 * 60 * 24)) + 1;
-    let totalCalories = 0;
-  
-    for (let i = 0; i < totalDays; i++) {
-      const date = new Date(regDate);
-      date.setDate(date.getDate() + i);
-  
-      const dateKey = date.toISOString().split("T")[0];
-      totalCalories += dailyCalories[dateKey] || 0;
-    }
-  
-    return totalCalories;
-  };
+ 
   const handleSignup = async () => {
     const currentDate = new Date();
     if (state.username === "" || state.email === "" || state.password === "") {

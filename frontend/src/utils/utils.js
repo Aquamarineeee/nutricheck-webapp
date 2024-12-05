@@ -39,7 +39,26 @@ export const getDaysSinceRegistration = () => {
   const diffTime = today - regDate;
   return Math.floor(diffTime / (1000 * 60 * 60 * 24));
 };
+export const calculateTotalCalories = (dailyCalories) => {
+  const registrationDate = localStorage.getItem("registrationDate");
+  if (!registrationDate) return 0;
 
+  const today = new Date();
+  const regDate = new Date(registrationDate);
+
+  const totalDays = Math.floor((today - regDate) / (1000 * 60 * 60 * 24)) + 1;
+  let totalCalories = 0;
+
+  for (let i = 0; i < totalDays; i++) {
+    const date = new Date(regDate);
+    date.setDate(date.getDate() + i);
+
+    const dateKey = date.toISOString().split("T")[0];
+    totalCalories += dailyCalories[dateKey] || 0;
+  }
+
+  return totalCalories;
+};
 export const getChartData = (weekData) => {
   const categories = [];
   const values = [];
