@@ -19,6 +19,36 @@ const Signin = () => {
   });
 
   const [isLoading, setisLoading] = useState(false);
+
+  // const handleSignIn = async () => {
+  //   if (state.email.trim() === "" || state.password.trim() === "") {
+  //     enqueueSnackbar("Vui lòng điền thông tin chi tiết", { variant: "error" });
+  //     return;
+  //   }
+  //   setisLoading(true);
+  //   try {
+  //     const res = await API.login({
+  //       email: state.email,
+  //       password: state.password,
+  //     });
+  //     localStorage.setItem("token", res.token);
+  //     localStorage.setItem("userInfo", JSON.stringify(res.user));
+  //     if (res.user.IS_LOGIN_PROCESS_COMPLETE) {
+  //       setuserInfo(res.user);
+  //       setmaxCalories(res.maxCalories);
+  //       navigate("/dashboard");
+  //       fetchTodaysConsumption();
+  //       fetchWeekData();
+  //     } else {
+  //       navigate("/userInitialForm");
+  //     }
+  //   } catch (err) {
+  //     enqueueSnackbar(err.response.data.msg, {
+  //       variant: "error",
+  //     });
+  //   }
+  //   setisLoading(false);
+  // };
   const handleSignIn = async () => {
     if (state.email.trim() === "" || state.password.trim() === "") {
       enqueueSnackbar("Vui lòng điền thông tin chi tiết", { variant: "error" });
@@ -32,21 +62,17 @@ const Signin = () => {
       });
       localStorage.setItem("token", res.token);
       localStorage.setItem("userInfo", JSON.stringify(res.user));
-      if (res.user.IS_LOGIN_PROCESS_COMPLETE) {
-        setuserInfo(res.user);
-        setmaxCalories(res.maxCalories);
-        navigate("/dashboard");
-        fetchTodaysConsumption();
-        fetchWeekData();
-      } else {
-        navigate("/userInitialForm");
-      }
+      
+      // Điều hướng tới UserSignup
+      navigate("/UserSignup");
+      
+      setisLoading(false);
     } catch (err) {
-      enqueueSnackbar(err.response.data.msg, {
+      enqueueSnackbar(err.response?.data?.msg || "Đã xảy ra lỗi", {
         variant: "error",
       });
+      setisLoading(false);
     }
-    setisLoading(false);
   };
 
   const handleGoogleOauth = async () => {

@@ -78,7 +78,7 @@ const About = () => {
         </motion.div>
         <motion.div className={styles.text}>
           Chúng tôi cho phép bạn theo dõi và so sánh chế độ ăn uống của bạn
-          trong tuần qua một cách trơn tru phân tích
+          trong tuần qua qua cách phân tích thật trơn tru
         </motion.div>
       </div>
     </div>
