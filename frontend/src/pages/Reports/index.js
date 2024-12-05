@@ -123,7 +123,7 @@ const Reports = () => {
           )}
           <div>
       <h2>Thông tin người dùng</h2>
-      <p>Số ngày kể từ khi đăng ký: {daysSinceRegistration} / {calculateTotalCalories} ngày</p>
+      <p>Tổng lượng calo tiêu thụ trong 1 tháng : {calculateTotalCalories} calo</p>
     </div>
         </div>
       </Container>
