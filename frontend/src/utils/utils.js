@@ -39,25 +39,35 @@ export const getDaysSinceRegistration = () => {
   const diffTime = today - regDate;
   return Math.floor(diffTime / (1000 * 60 * 60 * 24));
 };
-export const calculateTotalCalories = (dailyCalories) => {
-  const registrationDate = localStorage.getItem("registrationDate");
-  if (!registrationDate) return 0;
 
+export const calculateTotalCalories = (dailyCalories) => {
+  // Lấy ngày đăng ký từ localStorage
+  const registrationDate = localStorage.getItem("registrationDate");
+  if (!registrationDate) {
+    console.warn("Không tìm thấy ngày đăng ký trong localStorage");
+    return 0; // Nếu không có ngày đăng ký, trả về 0
+  }
+
+  // Chuyển đổi ngày đăng ký và ngày hiện tại thành đối tượng Date
   const today = new Date();
   const regDate = new Date(registrationDate);
 
-  const totalDays = Math.floor((today - regDate) / (1000 * 60 * 60 * 24)) + 1;
+  // Tính số ngày từ ngày đăng ký đến hiện tại
+  const totalDays = Math.floor((today - regDate) / (1000 * 60 * 60 * 24)) + 1; // +1 vì tính cả ngày đầu tiên
   let totalCalories = 0;
 
+  // Lặp qua từng ngày từ ngày đăng ký đến hôm nay
   for (let i = 0; i < totalDays; i++) {
-    const date = new Date(regDate);
-    date.setDate(date.getDate() + i);
+    const date = new Date(regDate); // Khởi tạo ngày gốc
+    date.setDate(regDate.getDate() + i); // Cộng thêm số ngày
 
-    const dateKey = date.toISOString().split("T")[0];
-    totalCalories += dailyCalories[dateKey] || 0;
+    const dateKey = date.toISOString().split("T")[0]; // Định dạng ngày (YYYY-MM-DD)
+
+    // Cộng lượng calo tiêu thụ trong ngày đó (nếu có)
+    totalCalories += dailyCalories[dateKey] || 0; // Nếu không có dữ liệu thì cộng 0
   }
 
-  return totalCalories;
+  return totalCalories; // Trả về tổng lượng calo
 };
 export const getChartData = (weekData) => {
   const categories = [];
