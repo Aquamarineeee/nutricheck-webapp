@@ -61,9 +61,8 @@ const Signup = () => {
       const date = new Date(regDate);
       date.setDate(date.getDate() + i);
   
-      // Lấy lượng calo cho ngày đó từ dữ liệu dailyCalories
       const dateKey = date.toISOString().split("T")[0];
-      totalCalories += dailyCalories[dateKey] || 0; // Nếu không có dữ liệu thì cộng 0
+      totalCalories += dailyCalories[dateKey] || 0;
     }
   
     return totalCalories;
