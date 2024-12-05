@@ -9,7 +9,7 @@ import Dashboard from "./pages/Dashboard";
 import BottomNavBar from "./Components/BottomNavBar";
 import FoodScan from "./pages/FoodScan";
 import UserInitialForm from "./pages/UserInitialForm";
-import UserSignup  from "./pages/UserInitialForm"
+import UserSignup  from "./pages/UserInitialForm/signin-test"
 import Profile from "./pages/profile/Profile";
 import Blog02 from "./pages/Blogs/Blog02";
 import Blog01 from "./pages/Blogs/Blog01";
@@ -43,7 +43,7 @@ function App() {
         <Route path="/blog/quest" element={<Blog10 />} />
         <Route path="/blog/excercise" element={<Blog16 />} />
 
-        <Route path="/usersignup" element={<UserSignup />} />
+        <Route path="/UserSignup" element={<UserSignup />} />
         <Route path="/userInitialForm" element={<UserInitialForm />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/reports" element={<Reports />} />
