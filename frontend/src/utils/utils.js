@@ -28,6 +28,26 @@ const WEEKS_EN = [
   "Friday",
   "Saturday",
 ];
+const handleApiRequest = async () => {
+  const getDaysSinceRegistration = () => {
+    const registrationDate = localStorage.getItem("registrationDate");
+    if (!registrationDate) return 0;
+
+    const today = new Date();
+    const regDate = new Date(registrationDate);
+
+    const diffTime = today - regDate;
+    return Math.floor(diffTime / (1000 * 60 * 60 * 24));
+  };
+
+  const daysSinceRegistration = getDaysSinceRegistration(); // Khai báo ở đây
+  try {
+    const response = await API.submitData({ daysSinceRegistration });
+    console.log("API Response:", response);
+  } catch (error) {
+    console.error("Lỗi API:", error);
+  }
+};
 
 export const getChartData = (weekData) => {
   const categories = [];
