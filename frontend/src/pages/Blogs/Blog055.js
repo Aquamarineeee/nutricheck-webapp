@@ -1,11 +1,11 @@
 import React from "react";
-import { Grid, Container, Box } from "@mui/material";
+import { Grid, Container, Box, imageListClasses } from "@mui/material";
 import styles from "../../styles/blog.module.css";
 import { motion } from "framer-motion";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { useNavigate } from "react-router-dom";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Container } from "@mui/material";
-
+import image from "../../images/image.png";
 
 //base on blog 2
 const Blog055 = () => {
@@ -170,6 +170,25 @@ Phụ nữ trên 50 tuổi và nam trên 70 tuổi cần khoảng 1.200mg canxi 
                   </motion.p>
                 </motion.div>
               </Grid>
+              <Grid
+                item
+                md={6}
+                xs={12}
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <motion.img
+                  src={image}
+                  alt="nature"
+                  className={styles.imgTips1}
+                  variants={photoAnim}
+                  style={{ width: "400px", height: "auto" }}
+                />
+              </Grid>
+    
+
               <Grid
                 item
                 md={6}
