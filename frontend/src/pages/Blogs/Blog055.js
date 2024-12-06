@@ -142,8 +142,8 @@ const Blog055 = () => {
                   </motion.h3>
                   <motion.p variants={fade}>
                     <br />
-                    <b> Calories </b>: Đối với nam: Khoảng 2.000 - 2.500 kcal mỗi ngày.
-                    Đối với nữ: Khoảng 1.800 - 2.200 kcal mỗi ngày. <br/>
+                    <b> Calories </b>: Đối với nam: Khoảng 2.000 - 2.500 calo mỗi ngày.
+                    Đối với nữ: Khoảng 1.800 - 2.200 calo mỗi ngày. <br/>
                     <b> Lưu ý: </b> Nếu bạn có mức độ hoạt động cao (tập thể dục thường xuyên), nhu cầu calo sẽ tăng lên.
                     <br />
                     <br />
@@ -155,13 +155,13 @@ Nếu bạn là người tập thể dục hoặc vận động viên, nhu cầu
                     <br />
                     <b> Tinh bột </b>: Tinh bột là nguồn cung cấp năng lượng chính của cơ thể.<br />
 Khoảng 45-65% tổng lượng calo hàng ngày nên đến từ tinh bột. <br />
-Nếu bạn tiêu thụ 2.000 kcal mỗi ngày, bạn cần khoảng 225-325g tinh bột. <br />
+Nếu bạn tiêu thụ 2.000 calo mỗi ngày, bạn cần khoảng 225-325g tinh bột. <br />
 
 <h3>&bull;                    <b> Chất béo : </b> </h3> Chất béo giúp cơ thể hấp thụ vitamin và cung cấp năng lượng dài hạn.
 Khoảng 20-35% tổng lượng calo hàng ngày nên đến từ chất béo. Trong đó:
 Chất béo không bão hòa (từ dầu thực vật, cá, quả hạch) là lựa chọn tốt.
 Chất béo bão hòa (từ mỡ động vật) cần được hạn chế.
-Ví dụ: Nếu bạn tiêu thụ 2.000 kcal mỗi ngày, khoảng 44-78g chất béo là cần thiết. <br />
+Ví dụ: Nếu bạn tiêu thụ 2.000 calo mỗi ngày, khoảng 44-78g chất béo là cần thiết. <br />
 
 <h3>&bull;  <b> Canxi </b>:  </h3> Canxi rất quan trọng cho sức khỏe xương và răng. 
 
@@ -314,8 +314,8 @@ Phụ nữ trên 50 tuổi và nam trên 70 tuổi cần khoảng 1.200mg canxi 
                   </motion.h3>
                   <motion.p variants={fade}>
                     <br />
-                    <b> Calories </b>: Đối với nam: Khoảng 2.000 - 2.500 kcal mỗi ngày.
-                    Đối với nữ: Khoảng 1.800 - 2.200 kcal mỗi ngày. <br/>
+                    <b> Calories </b>: Đối với nam: Khoảng 2.000 - 2.500 calo mỗi ngày.
+                    Đối với nữ: Khoảng 1.800 - 2.200 calo mỗi ngày. <br/>
                     <b> Lưu ý: </b> Nếu bạn có mức độ hoạt động cao (tập thể dục thường xuyên), nhu cầu calo sẽ tăng lên.
                     <br />
                     <br />
@@ -327,13 +327,13 @@ Nếu bạn là người tập thể dục hoặc vận động viên, nhu cầu
                     <br />
                     <b> Tinh bột </b>: Tinh bột là nguồn cung cấp năng lượng chính của cơ thể.<br />
 Khoảng 45-65% tổng lượng calo hàng ngày nên đến từ tinh bột. <br />
-Nếu bạn tiêu thụ 2.000 kcal mỗi ngày, bạn cần khoảng 225-325g tinh bột. <br />
+Nếu bạn tiêu thụ 2.000 calo mỗi ngày, bạn cần khoảng 225-325g tinh bột. <br />
 
 <h3>&bull;                    <b> Chất béo : </b> </h3> Chất béo giúp cơ thể hấp thụ vitamin và cung cấp năng lượng dài hạn.
 Khoảng 20-35% tổng lượng calo hàng ngày nên đến từ chất béo. Trong đó:
 Chất béo không bão hòa (từ dầu thực vật, cá, quả hạch) là lựa chọn tốt.
 Chất béo bão hòa (từ mỡ động vật) cần được hạn chế.
-Ví dụ: Nếu bạn tiêu thụ 2.000 kcal mỗi ngày, khoảng 44-78g chất béo là cần thiết. <br />
+Ví dụ: Nếu bạn tiêu thụ 2.000 calo mỗi ngày, khoảng 44-78g chất béo là cần thiết. <br />
 
 <h3>&bull;  <b> Canxi </b>:  </h3> Canxi rất quan trọng cho sức khỏe xương và răng. 
 
@@ -439,25 +439,28 @@ Phụ nữ trên 50 tuổi và nam trên 70 tuổi cần khoảng 1.200mg canxi 
                     <b>Sữa chua không đường </b>: Một hũ sữa chua không đường hoặc một ly nước ép rau củ giúp cơ thể tiếp tục tiêu hóa tốt trong khi ngủ.
                   </motion.p>
                 </motion.div>
-                <Grid
+              </Grid>
+
+              <Grid container spacing={5}>
+              <Grid
                 item
                 md={6}
                 xs={12}
                 style={{
                   display: "flex",
-                  alignItems: "center",
                   justifyContent: "center",
                 }}
               >
                 <motion.img
-                  src={"https://i.pinimg.com/originals/1c/ab/85/1cab8527ea8cc3f3899c5ac2557d5131.gif"}
-                  alt="giamcan"
+                  src={"https://i.pinimg.com/originals/42/80/a8/4280a8e5e9f0b3d7b0e9e94c32244644.gif"}
+                  alt="nature"
                   className={styles.imgTips1}
                   variants={photoAnim}
-                  style={{ width: "580px", height: "auto" }}
+                  style={{ width: "400px", height: "auto" }}
                 />
               </Grid>
               </Grid>
+              
             </Grid>
           </motion.div>
         </Box>
