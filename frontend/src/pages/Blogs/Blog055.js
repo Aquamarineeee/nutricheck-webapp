@@ -2,12 +2,17 @@ import React from "react";
 import { Grid, Container, Box } from "@mui/material";
 import styles from "../../styles/blog.module.css";
 import { motion } from "framer-motion";
-import egg from "../../images/eggs.png";
-import banana from "../../images/bananas.png";
-import sweetpotato from "../../images/sweetpotato.png";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { useNavigate } from "react-router-dom";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Container } from "@mui/material";
 
+const nutritionData = [
+  { nutrient: "Calories", men: "2.000 - 2.500 calo", women: "1.800 - 2.200 calo", note: "Tăng nếu vận động nhiều" },
+  { nutrient: "Protein", men: "56 - 70g (70kg)", women: "Tương tự", note: "1.2 - 2g/kg cho người tập luyện" },
+  { nutrient: "Carbs", men: "225 - 325g", women: "Tương tự", note: "45-65% tổng calo hàng ngày" },
+  { nutrient: "Fat", men: "44 - 78g", women: "Tương tự", note: "20-35% tổng calo" },
+  { nutrient: "Canxi", men: "1.000 - 1.200 mg", women: "1.000 - 1.200 mg", note: "Cần nhiều hơn ở người già" },
+];
 //base on blog 2
 const Blog055 = () => {
   const navigate = useNavigate();
@@ -443,7 +448,34 @@ Phụ nữ trên 50 tuổi và nam trên 70 tuổi cần khoảng 1.200mg canxi 
               </Grid>
             </Grid>
           </motion.div>
+
+
         </Box>
+        <Container maxWidth="lg" sx={{ mt: 4, pb: 5 }}>
+      <h3 style={{ textAlign: "center", marginBottom: "20px" }}>Bảng Dinh Dưỡng</h3>
+      <TableContainer component={Paper}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell style={{ fontWeight: "bold" }}>Chất Dinh Dưỡng</TableCell>
+              <TableCell style={{ fontWeight: "bold" }}>Nam</TableCell>
+              <TableCell style={{ fontWeight: "bold" }}>Nữ</TableCell>
+              <TableCell style={{ fontWeight: "bold" }}>Ghi Chú</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {nutritionData.map((row, index) => (
+              <TableRow key={index}>
+                <TableCell>{row.nutrient}</TableCell>
+                <TableCell>{row.men}</TableCell>
+                <TableCell>{row.women}</TableCell>
+                <TableCell>{row.note}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Container>
       </Container>
     </div>
   );
