@@ -16,6 +16,17 @@
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>Trợ lý dinh dưỡng</title>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
+    <script>
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+          pageLanguage: 'vi', // Ngôn ngữ mặc định của trang là tiếng Việt
+          includedLanguages: 'vi,en,es,fr,de,ja', // Các ngôn ngữ hỗ trợ
+          layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'google_translate_element');
+      }
+    </script>
   </head>
 
   <!-- âm thanh nè -->
@@ -29,6 +40,7 @@
     }
   </style>
   <body>
+    <div id="google_translate_element"></div>
     <audio id ="audio" autoplay loop muted>
       <source src="dolia.mp3" type="audio/mpeg">
       
