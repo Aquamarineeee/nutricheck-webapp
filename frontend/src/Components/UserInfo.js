@@ -27,7 +27,7 @@ const UserInfo = () => {
       <h2>Thông tin người dùng</h2>
       <p>Người dùng có thể đọc thêm các khuyến nghị về lượng calo tiêu thụ đối với từng thể trạng khác nhau ở: </p>
       <button
-              onClick={() => navigate("/blog055")}
+              onClick={() => navigate("/blog/suggest")}
               className="switch-to-signup"
             >
               Đánh giá mức độ tiêu thụ khuyến cáo
