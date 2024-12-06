@@ -2,6 +2,9 @@ import React from "react";
 import { Grid, Container, Box } from "@mui/material";
 import styles from "../../styles/blog.module.css";
 import { motion } from "framer-motion";
+import egg from "../../images/eggs.png";
+import banana from "../../images/bananas.png";
+import sweetpotato from "../../images/sweetpotato.png";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { useNavigate } from "react-router-dom";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Container } from "@mui/material";
@@ -448,10 +451,6 @@ Phụ nữ trên 50 tuổi và nam trên 70 tuổi cần khoảng 1.200mg canxi 
               </Grid>
             </Grid>
           </motion.div>
-
-
-        </Box>
-        <Container maxWidth="lg" sx={{ mt: 4, pb: 5 }}>
       <h3 style={{ textAlign: "center", marginBottom: "20px" }}>Bảng Dinh Dưỡng</h3>
       <TableContainer component={Paper}>
         <Table>
@@ -475,7 +474,7 @@ Phụ nữ trên 50 tuổi và nam trên 70 tuổi cần khoảng 1.200mg canxi 
           </TableBody>
         </Table>
       </TableContainer>
-    </Container>
+        </Box>
       </Container>
     </div>
   );
