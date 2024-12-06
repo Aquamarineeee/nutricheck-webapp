@@ -1,11 +1,11 @@
 import React from "react";
-import { Grid, Container, Box, imageListClasses } from "@mui/material";
+import { Grid, Container, Box } from "@mui/material";
 import styles from "../../styles/blog.module.css";
 import { motion } from "framer-motion";
+
+import image from "../../images/image.png";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { useNavigate } from "react-router-dom";
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Container } from "@mui/material";
-import image from "../../images/image.png";
 
 //base on blog 2
 const Blog055 = () => {
@@ -142,8 +142,8 @@ const Blog055 = () => {
                   </motion.h3>
                   <motion.p variants={fade}>
                     <br />
-                    <b> Calories </b>: Đối với nam: Khoảng 2.000 - 2.500 calo mỗi ngày.
-                    Đối với nữ: Khoảng 1.800 - 2.200 calo mỗi ngày. <br/>
+                    <b> Calories </b>: Đối với nam: Khoảng 2.000 - 2.500 kcal mỗi ngày.
+                    Đối với nữ: Khoảng 1.800 - 2.200 kcal mỗi ngày. <br/>
                     <b> Lưu ý: </b> Nếu bạn có mức độ hoạt động cao (tập thể dục thường xuyên), nhu cầu calo sẽ tăng lên.
                     <br />
                     <br />
@@ -155,13 +155,13 @@ Nếu bạn là người tập thể dục hoặc vận động viên, nhu cầu
                     <br />
                     <b> Tinh bột </b>: Tinh bột là nguồn cung cấp năng lượng chính của cơ thể.<br />
 Khoảng 45-65% tổng lượng calo hàng ngày nên đến từ tinh bột. <br />
-Nếu bạn tiêu thụ 2.000 calo mỗi ngày, bạn cần khoảng 225-325g tinh bột. <br />
+Nếu bạn tiêu thụ 2.000 kcal mỗi ngày, bạn cần khoảng 225-325g tinh bột. <br />
 
 <h3>&bull;                    <b> Chất béo : </b> </h3> Chất béo giúp cơ thể hấp thụ vitamin và cung cấp năng lượng dài hạn.
 Khoảng 20-35% tổng lượng calo hàng ngày nên đến từ chất béo. Trong đó:
 Chất béo không bão hòa (từ dầu thực vật, cá, quả hạch) là lựa chọn tốt.
 Chất béo bão hòa (từ mỡ động vật) cần được hạn chế.
-Ví dụ: Nếu bạn tiêu thụ 2.000 calo mỗi ngày, khoảng 44-78g chất béo là cần thiết. <br />
+Ví dụ: Nếu bạn tiêu thụ 2.000 kcal mỗi ngày, khoảng 44-78g chất béo là cần thiết. <br />
 
 <h3>&bull;  <b> Canxi </b>:  </h3> Canxi rất quan trọng cho sức khỏe xương và răng. 
 
@@ -187,8 +187,6 @@ Phụ nữ trên 50 tuổi và nam trên 70 tuổi cần khoảng 1.200mg canxi 
                   style={{ width: "400px", height: "auto" }}
                 />
               </Grid>
-    
-
               <Grid
                 item
                 md={6}
@@ -333,8 +331,8 @@ Phụ nữ trên 50 tuổi và nam trên 70 tuổi cần khoảng 1.200mg canxi 
                   </motion.h3>
                   <motion.p variants={fade}>
                     <br />
-                    <b> Calories </b>: Đối với nam: Khoảng 2.000 - 2.500 calo mỗi ngày.
-                    Đối với nữ: Khoảng 1.800 - 2.200 calo mỗi ngày. <br/>
+                    <b> Calories </b>: Đối với nam: Khoảng 2.000 - 2.500 kcal mỗi ngày.
+                    Đối với nữ: Khoảng 1.800 - 2.200 kcal mỗi ngày. <br/>
                     <b> Lưu ý: </b> Nếu bạn có mức độ hoạt động cao (tập thể dục thường xuyên), nhu cầu calo sẽ tăng lên.
                     <br />
                     <br />
@@ -346,13 +344,13 @@ Nếu bạn là người tập thể dục hoặc vận động viên, nhu cầu
                     <br />
                     <b> Tinh bột </b>: Tinh bột là nguồn cung cấp năng lượng chính của cơ thể.<br />
 Khoảng 45-65% tổng lượng calo hàng ngày nên đến từ tinh bột. <br />
-Nếu bạn tiêu thụ 2.000 calo mỗi ngày, bạn cần khoảng 225-325g tinh bột. <br />
+Nếu bạn tiêu thụ 2.000 kcal mỗi ngày, bạn cần khoảng 225-325g tinh bột. <br />
 
 <h3>&bull;                    <b> Chất béo : </b> </h3> Chất béo giúp cơ thể hấp thụ vitamin và cung cấp năng lượng dài hạn.
 Khoảng 20-35% tổng lượng calo hàng ngày nên đến từ chất béo. Trong đó:
 Chất béo không bão hòa (từ dầu thực vật, cá, quả hạch) là lựa chọn tốt.
 Chất béo bão hòa (từ mỡ động vật) cần được hạn chế.
-Ví dụ: Nếu bạn tiêu thụ 2.000 calo mỗi ngày, khoảng 44-78g chất béo là cần thiết. <br />
+Ví dụ: Nếu bạn tiêu thụ 2.000 kcal mỗi ngày, khoảng 44-78g chất béo là cần thiết. <br />
 
 <h3>&bull;  <b> Canxi </b>:  </h3> Canxi rất quan trọng cho sức khỏe xương và răng. 
 
@@ -459,7 +457,6 @@ Phụ nữ trên 50 tuổi và nam trên 70 tuổi cần khoảng 1.200mg canxi 
                   </motion.p>
                 </motion.div>
               </Grid>
-                            
             </Grid>
           </motion.div>
         </Box>
