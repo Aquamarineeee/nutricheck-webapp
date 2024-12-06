@@ -440,8 +440,6 @@ Phụ nữ trên 50 tuổi và nam trên 70 tuổi cần khoảng 1.200mg canxi 
                   </motion.p>
                 </motion.div>
               </Grid>
-
-              <Grid container spacing={5}>
               <Grid
                 item
                 md={6}
@@ -458,9 +456,7 @@ Phụ nữ trên 50 tuổi và nam trên 70 tuổi cần khoảng 1.200mg canxi 
                   variants={photoAnim}
                   style={{ width: "400px", height: "auto" }}
                 />
-              </Grid>
-              </Grid>
-              
+              </Grid>              
             </Grid>
           </motion.div>
         </Box>
