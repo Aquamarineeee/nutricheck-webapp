@@ -1,13 +1,15 @@
 import { Alert, Container } from "@mui/material";
 import { useSnackbar } from "notistack";
-import React, { useContext, useState } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import Chart from "react-apexcharts";
 import DailyReport from "../../Components/DailyReport";
 import { AppContext } from "../../Context/AppContext";
 import { API } from "../../services/apis";
 import { getChartData } from "../../utils/utils";
 import { getDaysSinceRegistration } from "../../utils/utils";
-import {calculateTotalCalories} from "../../utils/utils";
+import UserInfo from "../../Reports/UserInfo";
+
+
 const Reports = () => {
   const { enqueueSnackbar } = useSnackbar();
 
@@ -121,10 +123,7 @@ const Reports = () => {
               thể
             </Alert>
           )}
-          <div>
-      <h2>Thông tin người dùng</h2>
-      <p>Tổng lượng calo tiêu thụ trong 1 tháng : {calculateTotalCalories} calo</p>
-    </div>
+          <UserInfo /> {/* Chèn UserInfo tại đây */}
         </div>
       </Container>
     </div>
