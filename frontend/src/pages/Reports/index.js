@@ -7,7 +7,7 @@ import { AppContext } from "../../Context/AppContext";
 import { API } from "../../services/apis";
 import { getChartData } from "../../utils/utils";
 import { getDaysSinceRegistration } from "../../utils/utils";
-import {UserInfo} from "../../Reports/UserInfo";
+import UserInfo from "../../../Reports/UserInfo";
 
 
 const Reports = () => {
