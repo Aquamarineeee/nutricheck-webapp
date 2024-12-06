@@ -24,7 +24,14 @@ const UserInfo = () => {
   return (
     <div>
       <h2>Thông tin người dùng</h2>
-      <p>Tổng lượng calo tiêu thụ trong 1 tháng: {calories} calo</p>
+      <p>Người dùng có thể đọc thêm các khuyến nghị về lượng calo tiêu thụ đối với từng thể trạng khác nhau ở: </p>
+      <button
+              disabled={isLoading}
+              onClick={() => navigate("/blog055")}
+              className="switch-to-signup"
+            >
+              Đánh giá mức độ tiêu thụ khuyến cáo
+            </button>
     </div>
   );
 };
