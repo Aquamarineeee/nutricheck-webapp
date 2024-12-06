@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const UserInfo = () => {
   const [calories, setCalories] = useState(0);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchCalories = async () => {
       try {
@@ -26,7 +27,6 @@ const UserInfo = () => {
       <h2>Thông tin người dùng</h2>
       <p>Người dùng có thể đọc thêm các khuyến nghị về lượng calo tiêu thụ đối với từng thể trạng khác nhau ở: </p>
       <button
-              disabled={isLoading}
               onClick={() => navigate("/blog055")}
               className="switch-to-signup"
             >
