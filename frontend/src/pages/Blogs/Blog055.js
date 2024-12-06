@@ -184,7 +184,7 @@ Phụ nữ trên 50 tuổi và nam trên 70 tuổi cần khoảng 1.200mg canxi 
                   alt="nature"
                   className={styles.imgTips1}
                   variants={photoAnim}
-                  style={{ width: "400px", height: "auto" }}
+                  style={{ width: "700px", height: "auto" }}
                 />
               </Grid>
               <Grid
