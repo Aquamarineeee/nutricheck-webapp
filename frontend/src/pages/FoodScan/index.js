@@ -10,7 +10,7 @@ import { Box, Container, Divider } from '@mui/material';
 import { API } from '../../services/apis';
 import { useSnackbar } from 'notistack';
 import { FullPageLoading } from '../../Components/LoadingSpinner';
-import googleTranslate from 'google-translate-api';
+import googleTranslate from '@vitalets/google-translate-api';
 
 const UNITS = ['gam', 'ounce', 'ml', 'miếng', 'lát', 'cốc', 'thìa canh'];
 
