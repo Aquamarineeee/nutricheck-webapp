@@ -10,6 +10,7 @@ import { Box, Container, Divider } from '@mui/material';
 import { API } from '../../services/apis';
 import { useSnackbar } from 'notistack';
 import { FullPageLoading } from '../../Components/LoadingSpinner';
+import googleTranslate from 'google-translate-api';
 
 const UNITS = ['gam', 'ounce', 'ml', 'miếng', 'lát', 'cốc', 'thìa canh'];
 
@@ -60,6 +61,19 @@ const ScannedImg = () => {
     //         ]);
     //     }
     // };
+    const translateFoodItems = (items, targetLanguage) => {
+        const promises = items.map((item) =>
+            googleTranslate(item.name, { to: targetLanguage })
+                .then(res => ({
+                    ...item,
+                    name: res.text,  // Update item name with the translated text
+                }))
+                .catch(err => {
+                    console.error(err);
+                    return item; // If translation fails, return the original item
+                })
+        );
+    }
     const handleSelectItem = (foodItem) => {
         if (selectedItems.find((item) => item.id === foodItem.id)) {
             setselectedItems(
@@ -204,7 +218,10 @@ const ScannedImg = () => {
         
         
         
-    
+        useEffect(() => {
+            translateFoodItems(foodItems, 'vi');  // Translate to Vietnamese
+        }, []);
+
         return (
             <div
                 style={{
@@ -404,7 +421,7 @@ const ScannedImg = () => {
                                     }}
                                 >
                                     <tbody>
-                                        {translated_foodItems.map((item, idx, arr) => {
+                                        {translateFoodItems.map((item, idx, arr) => {
                                             const selectedItem =
                                                 selectedItems.find(
                                                     (x) => x.id === item.id
@@ -536,7 +553,8 @@ const ScannedImg = () => {
                                                                                         key={
                                                                                             unit
                                                                                         }
-                                                                                        style={{backgroundColor:
+                                                                                        style={{
+                                                                                            backgroundColor:
                                                                                                 'var(--backgroundColor)',
                                                                                         }}
                                                                                     >
