@@ -264,3 +264,31 @@ def consumptionOn(current_user):
             'msg': 'Something went wrong',
             'error': str(e)
         }, 500
+
+
+@food.get('/total-calories-since-registration')
+@token_required
+def totalCaloriesSinceRegistration(current_user):
+    try:
+        # Lấy ngày đăng ký của người dùng (giả sử bạn lưu trong `current_user.registration_date`)
+        registration_date = current_user.registration_date
+        if not registration_date:
+            return {'msg': 'Registration date not found for user'}, 400
+
+        # Tính tổng lượng calo từ ngày đăng ký đến hiện tại
+        total_calories = session.query(func.sum(ConsumedFood.calorie)).filter(
+            ConsumedFood.user_id == current_user.id,
+            ConsumedFood.is_intake == True,
+            ConsumedFood.consumed_on >= registration_date
+        ).scalar()
+
+        return {
+            'total_calories': total_calories or 0,  # Nếu không có dữ liệu, trả về 0
+            'registration_date': registration_date
+        }
+    except Exception as e:
+        logging.error(f"Error calculating total calories: {str(e)}", exc_info=True)
+        return {
+            'msg': 'Something went wrong',
+            'error': str(e)
+        }, 500
