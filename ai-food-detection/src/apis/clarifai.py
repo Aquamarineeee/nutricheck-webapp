@@ -3,6 +3,7 @@ import os
 from flask import Blueprint, request, current_app
 import requests
 clarifai = Blueprint('clarifai', __name__, url_prefix='/api/clarifai')
+from googletrans import Translator
 
 
 @clarifai.post('/detect-food')
@@ -32,8 +33,17 @@ def detectFood():
         }, headers={'Authorization': 'Key '+str(os.environ.get('CLARIFAI_API_KEY'))})
 
         foodItems = foodResponse.json()['outputs'][0]['data']['concepts']
+        translator = Translator()
+        translated_foodItems = [
+    {
+        'original': item['name'],
+        'translated': translator.translate(item['name'], src='en', dest='vi').text,
+        'value': item['value']
+    }
+    for item in foodItems
+]
         return {
-            'foodItems': foodItems,
+            'foodItems': translated_foodItems,
             'res': foodResponse.json()
         }
     except Exception as e:
