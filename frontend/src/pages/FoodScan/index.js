@@ -404,7 +404,7 @@ const ScannedImg = () => {
                                     }}
                                 >
                                     <tbody>
-                                        {foodItems.map((item, idx, arr) => {
+                                        {translated_foodItems.map((item, idx, arr) => {
                                             const selectedItem =
                                                 selectedItems.find(
                                                     (x) => x.id === item.id
@@ -536,8 +536,7 @@ const ScannedImg = () => {
                                                                                         key={
                                                                                             unit
                                                                                         }
-                                                                                        style={{
-                                                                                            backgroundColor:
+                                                                                        style={{backgroundColor:
                                                                                                 'var(--backgroundColor)',
                                                                                         }}
                                                                                     >
