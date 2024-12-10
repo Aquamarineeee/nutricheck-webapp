@@ -34,20 +34,15 @@ def detectFood():
 
         foodItems = foodResponse.json()['outputs'][0]['data']['concepts']
         translator = Translator()
-         # Extract and translate food items
-        translator = Translator()
-        food_names = [concept['name'] for concept in foodItems]
-        translations = translator.translate(food_names, src='en', dest='vi')
-
         # Combine translated results
         translated_foodItems = [
             {
-                'original': item['name'],
-                'translated': translations[idx].text,
-                'value': item['value']
+                "id": item["id"],
+                "name": translator.translate(item["name"], src='en', dest='vi').text,
+                "value": item["value"]
             }
-            for idx, item in enumerate(foodItems)
-        ]
+            for item in foodItems
+]
         return {
             'foodItems': translated_foodItems,
             'res': foodResponse.json()
