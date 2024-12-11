@@ -131,7 +131,7 @@ const ScannedImg = () => {
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch('/api/clarifai/detect-food', {
+            const response = await fetch('/src/apis/clarifai/detect-food', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
