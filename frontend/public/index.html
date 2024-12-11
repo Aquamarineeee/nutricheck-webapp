@@ -15,6 +15,16 @@
 
     <!-- Thêm Google Translate Widget -->
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <style>
+      /* Định vị thẻ Google Translate ở góc phải */
+      #google_translate_element {
+        position: fixed;
+        top: 20px; /* Cách từ trên xuống */
+        right: 20px; /* Cách từ phải sang */
+        z-index: 1000; /* Đảm bảo nó luôn hiển thị trên cùng */
+      }
+    </style>
+    
     <script>
       function googleTranslateElementInit() {
         new google.translate.TranslateElement({
@@ -41,11 +51,6 @@
           audio.volume = 0.5;
       });
     </script>
-
-    <!-- Nội dung trang của bạn -->
-    <h1>Chào mừng đến với NutriCheck!</h1>
-    <p>Ứng dụng web giúp bạn quản lý chế độ ăn uống và duy trì sức khỏe.</p>
-
     <!-- Thêm phần hiển thị của ứng dụng -->
     <div id="root"></div>
   </body>
