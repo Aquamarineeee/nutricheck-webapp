@@ -32,9 +32,35 @@ def detectFood():
             ]
         }, headers={'Authorization': 'Key '+str(os.environ.get('CLARIFAI_API_KEY'))})
 
-        foodItems = foodResponse.json()['outputs'][0]['data']['concepts']
+#         foodItems = foodResponse.json()['outputs'][0]['data']['concepts']
+#         translator = Translator()
+#         # Combine translated results
+#         translated_foodItems = [
+#             {
+#                 "id": item["id"],
+#                 "name": translator.translate(item["name"], src='en', dest='vi').text,
+#                 "value": item["value"]
+#             }
+#             for item in foodItems
+# ]
+#         return {
+#             'foodItems': translated_foodItems,
+#             'res': foodResponse.json()
+#         }
+#     except Exception as e:
+#         return {
+#             'msg': 'Something went wrong. Try again',
+#             'error': str(e),
+#             'res': foodResponse.json()
+#         }
+        # Lấy dữ liệu từ API
+        foodResponseData = foodResponse.json()
+        
+        # Lấy danh sách concepts
+        foodItems = foodResponseData['outputs'][0]['data']['concepts']
+
+        # Dùng Translator để dịch
         translator = Translator()
-        # Combine translated results
         translated_foodItems = [
             {
                 "id": item["id"],
@@ -42,14 +68,19 @@ def detectFood():
                 "value": item["value"]
             }
             for item in foodItems
-]
+        ]
+        
+        # Thay thế concepts bằng foodItems
+        foodResponseData['outputs'][0]['data']['foodItems'] = translated_foodItems
+        del foodResponseData['outputs'][0]['data']['concepts']  # Xóa concepts
+
         return {
             'foodItems': translated_foodItems,
-            'res': foodResponse.json()
+            'res': foodResponseData
         }
     except Exception as e:
         return {
             'msg': 'Something went wrong. Try again',
             'error': str(e),
-            'res': foodResponse.json()
+            'res': foodResponse.json()  # Dùng foodResponse.json() để ghi log
         }
