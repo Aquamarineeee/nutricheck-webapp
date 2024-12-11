@@ -71,8 +71,8 @@ def detectFood():
         ]
         
         # Thay thế concepts bằng foodItems
-        foodResponseData['outputs'][0]['data']['foodItems'] = translated_foodItems
         del foodResponseData['outputs'][0]['data']['concepts']  # Xóa concepts
+        foodResponseData['outputs'][0]['data']['concepts'] = translated_foodItems
 
         return {
             'foodItems': translated_foodItems,
