@@ -25,6 +25,8 @@ const ScannedImg = () => {
     const [isLoading, setisLoading] = useState(false);
     const [nutrientsList, setnutrientsList] = useState([]);
     const [consumed_food_id, setconsumed_food_id] = useState('');
+    const [loading, setLoading] = useState(false);  // For managing loading state
+    const [error, setError] = useState(null);
     const handleSelectImage = async (foodImage) => {
         try {
             const res = await API.captureFood({ foodImage });
@@ -127,6 +129,7 @@ const ScannedImg = () => {
         }
         setisLoading(false);
     };
+    
     const fetchFoodItems = async (imageUrl) => {
         setLoading(true);
         setError(null);
