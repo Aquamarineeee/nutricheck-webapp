@@ -25,8 +25,6 @@ const ScannedImg = () => {
     const [isLoading, setisLoading] = useState(false);
     const [nutrientsList, setnutrientsList] = useState([]);
     const [consumed_food_id, setconsumed_food_id] = useState('');
-    const [loading, setLoading] = useState(false);  // For managing loading state
-    const [error, setError] = useState(null);
     const handleSelectImage = async (foodImage) => {
         try {
             const res = await API.captureFood({ foodImage });
@@ -129,47 +127,16 @@ const ScannedImg = () => {
         }
         setisLoading(false);
     };
-    
-    const fetchFoodItems = async (imageUrl) => {
-        setLoading(true);
-        setError(null);
-        try {
-            const response = await fetch('/src/apis/clarifai/detect-food', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ image_url: imageUrl }),
-            });
-            if (!response.ok) throw new Error('Failed to fetch food items');
-            const data = await response.json();
-            return data.foodItems;
-        } catch (err) {
-            setError('Something went wrong: ' + err.message);
-        } finally {
-            setLoading(false);
-        }
-    };
-    
+
     useEffect(() => {
-        if (!state.image_url || !state.foodItems || !state.imageBlob) {
+        if (!state.image_url || !state.foodItems || !state.imageBlob)
             navigate('/');
-        } else {
+        else {
             setimage(state.image_url);
             setfoodItems(state.foodItems);
             setimageBlob(state.imageBlob);
         }
-    }, [state.image_url, state.foodItems, state.imageBlob]);
-
-    // useEffect(() => {
-    //     if (!state.image_url || !state.foodItems || !state.imageBlob)
-    //         navigate('/');
-    //     else {
-    //         setimage(state.image_url);
-    //         setfoodItems(state.foodItems);
-    //         setimageBlob(state.imageBlob);
-    //     }
-    // }, []);
+    }, []);
     const FoodSuggestionTable = () => {
         const foodIngredients = [
             { id: 1, name: 'Cơm (1 bát con)', weight: 150},
