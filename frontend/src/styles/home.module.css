@@ -96,6 +96,7 @@
 }
 
 .divider {
+  position: absolute;
   top: 400px;
   color: #fff;
   font-size: 22px;
