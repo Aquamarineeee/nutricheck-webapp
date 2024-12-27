@@ -114,13 +114,22 @@
 
 .divider {
   position: relative;
-  top: 400px;
+  top: 350px;
   color: #fff;
   font-size: 22px;
   font-weight: 600;
   margin: 0 10px;
 }
-
+@media (max-width: 768px) {
+  .divider{
+    position: relative;
+    top: 200px;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0 10px;
+  }
+}
 .spacer {
   height: 10vh;
 }
