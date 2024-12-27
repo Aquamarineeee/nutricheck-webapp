@@ -28,6 +28,7 @@
 }
 /* styles.module.css */
 .titletest {
+  top: 300px;
   width: 500px;
   height: auto;
 }
