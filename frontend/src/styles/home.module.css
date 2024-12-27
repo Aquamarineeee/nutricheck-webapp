@@ -67,10 +67,15 @@
 .buttonGroup {
   position: absolute;
   margin-top: 2px;
-  top: 200px;
+  top: 300px;
   display: flex;
   justify-content: center;
   text-align: center;
+}
+@media (max-width: 768px) {
+  .buttonGroup {
+    top: 200px; /* Kích thước riêng cho điện thoại */
+  }
 }
 
 .homebtns {
