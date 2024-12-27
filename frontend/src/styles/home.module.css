@@ -64,10 +64,9 @@
 }
 
 .buttonGroup {
+  position: absolute;
   margin-top: 2px;
   top: 150px;
-  transform: translate(-50%, -50%);
-  width: 80%;
   display: flex;
   justify-content: center;
   text-align: center;

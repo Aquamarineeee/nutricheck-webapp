@@ -16,10 +16,10 @@ code {
 
 :root {
   /* --themecolor: #dd790f; */
-  --themecolor: #e38b29;
+  --themecolor: #76f163;
   --onOrange: #fdeedc;
   --backgroundColor: #f2f2ef;
-  --lightOrange: #ffd8a9;
+  --lightOrange: #a9eaff;
 }
 button {
   cursor: pointer;
