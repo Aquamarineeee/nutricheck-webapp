@@ -53,7 +53,7 @@
 
 .subtitle {
   position: absolute;
-  top: calc(50% + 20cm); /* Đặt ở giữa màn hình và lùi xuống 5cm */
+  top: 120px; /* Đặt ở giữa màn hình và lùi xuống 5cm */
   left: 50%; /* Đặt ở giữa màn hình theo chiều ngang */
   transform: translate(-50%, -50%); /* Canh giữa chính xác */
   color: #000;
