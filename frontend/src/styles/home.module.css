@@ -54,7 +54,7 @@
 
 .subtitle {
   position: absolute;
-  top: 300px; /* Đặt ở giữa màn hình và lùi xuống 5cm */
+  top: 500px; /* Đặt ở giữa màn hình và lùi xuống 5cm */
   left: 50%; /* Đặt ở giữa màn hình theo chiều ngang */
   transform: translate(-50%, -50%); /* Canh giữa chính xác */
   color: #000;
@@ -63,7 +63,19 @@
   width: 80%;
   text-align: center;
 }
-
+@media (max-width: 768px) {
+  .subtitle {
+    position: absolute;
+    top: 300px; /* Đặt ở giữa màn hình và lùi xuống 5cm */
+    left: 50%; /* Đặt ở giữa màn hình theo chiều ngang */
+    transform: translate(-50%, -50%); /* Canh giữa chính xác */
+    color: #000;
+    font-size: 18px;
+    margin-top: 2px;
+    width: 80%;
+    text-align: center;
+  }
+}
 .buttonGroup {
   position: absolute;
   margin-top: 2px;
