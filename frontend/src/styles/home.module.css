@@ -67,14 +67,19 @@
 .buttonGroup {
   position: absolute;
   margin-top: 2px;
-  top: 300px;
+  top: 400px;
   display: flex;
   justify-content: center;
   text-align: center;
 }
 @media (max-width: 768px) {
   .buttonGroup {
-    top: 200px; /* Kích thước riêng cho điện thoại */
+    position: absolute;
+    margin-top: 2px;
+    top: 200px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
   }
 }
 
@@ -96,7 +101,7 @@
 }
 
 .divider {
-  position: absolute;
+  position: relative;
   top: 400px;
   color: #fff;
   font-size: 22px;
