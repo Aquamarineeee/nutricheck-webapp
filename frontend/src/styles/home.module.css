@@ -52,6 +52,11 @@
 }
 
 .subtitle {
+  position: absolute;
+  top: 50%; /* Đặt phần tử ở giữa theo chiều dọc */
+  left: 50%; /* Đặt phần tử ở giữa theo chiều ngang */
+  transform: translate(-50%, -30%); /* Canh giữa và lùi xuống một chút (40% thay vì 50%) */
+  width: 80%;
   color: #000;
   font-size: 18px;
   margin-top: 2px;
