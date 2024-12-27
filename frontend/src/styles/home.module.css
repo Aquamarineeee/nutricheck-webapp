@@ -28,7 +28,7 @@
 }
 /* styles.module.css */
 .titletest {
-  top: 300px;
+  top: 500px;
   width: 500px;
   height: auto;
 }
@@ -54,7 +54,7 @@
 
 .subtitle {
   position: absolute;
-  top: 300px; /* Đặt ở giữa màn hình và lùi xuống 5cm */
+  top: 500px; /* Đặt ở giữa màn hình và lùi xuống 5cm */
   left: 50%; /* Đặt ở giữa màn hình theo chiều ngang */
   transform: translate(-50%, -50%); /* Canh giữa chính xác */
   color: #000;
