@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import WeeklyReport from './WeeklyReport';
+import WeeklyReport from './WeeklyReport'; // Import WeeklyReport
 
 const UserInfo = () => {
-  const [calories, setCalories] = useState(0);
+  const [calories, setCalories] = useState(0); // Tổng calo từ khi đăng ký
 
   useEffect(() => {
     const fetchCalories = async () => {
@@ -25,9 +25,9 @@ const UserInfo = () => {
   return (
     <div>
       <h2>Thông tin người dùng</h2>
-      <p>Tổng tiêu thụ: {calories} calo từ khi đăng ký</p>
-
-      {/* Hiển thị WeeklyReport */}
+      <p><strong>Tổng calo từ khi đăng ký:</strong> {calories} calo</p>
+      
+      {/* Hiển thị báo cáo tuần */}
       <WeeklyReport />
     </div>
   );

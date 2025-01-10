@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const WeeklyReport = () => {
-  const [totalCalories, setTotalCalories] = useState(0);
+  const [totalCalories, setTotalCalories] = useState(0); // Tổng calo trong tuần
+  const [weekData, setWeekData] = useState([]); // Dữ liệu calo từng ngày
 
   useEffect(() => {
     const fetchWeeklyData = async () => {
@@ -13,13 +14,11 @@ const WeeklyReport = () => {
           },
         });
 
-        // Tính tổng calo từ dữ liệu trả về
-        const weekData = response.data.weekData || [];
-        const total = weekData.reduce((sum, day) => {
-          const dailyCalories = day.foodItems.reduce((daySum, item) => daySum + item.CALORIE, 0);
-          return sum + dailyCalories;
-        }, 0);
+        const data = response.data.weekData || [];
+        setWeekData(data);
 
+        // Tính tổng calo trong tuần
+        const total = data.reduce((sum, day) => sum + day.CALORIES, 0);
         setTotalCalories(total);
       } catch (error) {
         console.error('Error fetching weekly calories:', error);
@@ -32,7 +31,14 @@ const WeeklyReport = () => {
   return (
     <div>
       <h3>Weekly Report</h3>
-      <p>Tổng calo tiêu thụ trong tuần: <strong>{totalCalories.toFixed(1)}</strong> calo</p>
+      <p><strong>Tổng calo tiêu thụ trong tuần:</strong> {totalCalories.toFixed(1)} calo</p>
+      <ul>
+        {weekData.map((day, index) => (
+          <li key={index}>
+            <strong>{day.DAY}</strong>: {day.CALORIES.toFixed(1)} calo ({day.CONSUMED_ON})
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
