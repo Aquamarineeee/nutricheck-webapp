@@ -47,11 +47,6 @@ const UserSignup = () => {
 
   // Xử lý submit thông tin
   const handleSubmit = async () => {
-    if (!state.age || !state.weight || !state.height || !state.activity) {
-      enqueueSnackbar("Vui lòng điền đầy đủ thông tin", { variant: "error" });
-      return;
-    }
-
     try {
       setisLoading(true);
       const res = await API.userAdditionInfo(state);
