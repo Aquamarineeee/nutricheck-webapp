@@ -1,45 +1,46 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { calculateTotalCalories } from "../utils/utils";
-import { Divider, Grid } from '@mui/material';
-import WeeklyReport from './WeeklyReport';
+import WeeklyReport from './WeeklyReport'; // Import WeeklyReport component
 
 const UserInfo = () => {
   const [calories, setCalories] = useState(0);
-  const [weeklyFoodItems, setWeeklyFoodItems] = useState([]); // Dữ liệu thực phẩm cả tuần
+  const [weeklyData, setWeeklyData] = useState([]); // State for weekly data
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Fetch total calories since registration
     const fetchCalories = async () => {
       try {
-        // Lấy tổng calo
-        const caloriesResponse = await axios.get('/api/food/total-calories-since-registration', {
+        const response = await axios.get('/api/food/total-calories-since-registration', {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            Authorization: `Bearer ${localStorage.getItem('token')}`, // If token is needed
           },
         });
-        setCalories(caloriesResponse.data.total_calories || 0);
-
-        // Lấy dữ liệu thực phẩm theo tuần
-        const weeklyResponse = await axios.get('/api/food/weekly-report', {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-        });
-        setWeeklyFoodItems(weeklyResponse.data.weekly_food_items || []);
+        setCalories(response.data.total_calories || 0);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error fetching total calories:', error);
+      }
+    };
+
+    // Fetch data for last week
+    const fetchWeeklyData = async () => {
+      try {
+        const response = await axios.get('/api/food/last-week-nutrition-details');
+        setWeeklyData(response.data.weekData); // Store the weekly data in state
+      } catch (error) {
+        console.error('Error fetching weekly data:', error);
       }
     };
 
     fetchCalories();
+    fetchWeeklyData(); // Fetch the weekly data
   }, []);
 
   return (
     <div>
       <h2>Thông tin người dùng</h2>
-      <p>Tổng tiêu thụ: {calories.toFixed(1)} calo kể từ khi đăng ký</p>
+      <p> Tổng tiêu thụ: {calories} calo/1 tuần</p>
       <p>Người dùng có thể đọc thêm các khuyến nghị về lượng calo tiêu thụ đối với từng thể trạng khác nhau ở: </p>
       <button
         onClick={() => navigate("/blog/suggest")}
@@ -48,8 +49,8 @@ const UserInfo = () => {
         Đánh giá mức độ tiêu thụ khuyến cáo
       </button>
 
-      {/* Thêm WeeklyReport */}
-      <WeeklyReport weeklyFoodItems={weeklyFoodItems} />
+      {/* Render WeeklyReport with the weekly data */}
+      <WeeklyReport weeklyFoodItems={weeklyData} />
     </div>
   );
 };
