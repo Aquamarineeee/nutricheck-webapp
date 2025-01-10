@@ -1,50 +1,46 @@
-import React, { useContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { Box, Container } from "@mui/material";
-import LogoutIcon from "@mui/icons-material/Logout";
 import ArrowForwardIos from "@mui/icons-material/ArrowForwardIos";
+import { Box } from "@mui/material";
+import { Container } from "@mui/system";
+import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "../../styles/auth.modules.css";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { API } from "../../services/apis";
 import { useSnackbar } from "notistack";
 import { AppContext } from "../../Context/AppContext";
-import "../../styles/auth.modules.css";
-import { API } from "../../services/apis";
 
 const UserSignup = () => {
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
-  const { userInfo, setuserInfo, setmaxCalories, fetchTodaysConsumption, fetchWeekData } =
+  const { setuserInfo, setmaxCalories, fetchTodaysConsumption, fetchWeekData } =
     useContext(AppContext);
-
   const [isLoading, setisLoading] = useState(false);
-
-  // Khởi tạo state với dữ liệu từ userInfo (hoặc giá trị mặc định nếu không có)
   const [state, setstate] = useState({
-    age: userInfo.AGE || "",  // Dữ liệu từ userInfo hoặc chuỗi rỗng nếu không có
-    gender: userInfo.GENDER || "female",  // Dữ liệu từ userInfo hoặc giá trị mặc định
-    weight: userInfo.WEIGHT || "",  // Dữ liệu từ userInfo hoặc chuỗi rỗng
-    height: userInfo.HEIGHT || "",  // Dữ liệu từ userInfo hoặc chuỗi rỗng
-    activity: userInfo.ACTIVITY || "1.2",  // Dữ liệu từ userInfo hoặc giá trị mặc định
+    age: "",
+    gender: "female",
+    weight: "",
+    height: "",
+    activity: "1.2",
   });
 
-  // Cập nhật state khi userInfo thay đổi
-  useEffect(() => {
-      setstate({
-        age: userInfo.AGE || "",
-        gender: userInfo.GENDER || "female",
-        weight: userInfo.WEIGHT || "",
-        height: userInfo.HEIGHT || "",
-        activity: userInfo.ACTIVITY || "1.2",
-      });
-  }, [userInfo]);
-
-  // Xử lý đăng xuất
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("userInfo");
     navigate("/");
   };
 
-  // Xử lý submit thông tin
   const handleSubmit = async () => {
+    if (
+      !state.age ||
+      !state.weight ||
+      !state.height ||
+      !state.activity
+    ) {
+      enqueueSnackbar("Vui lòng điền đầy đủ thông tin", { variant: "error" });
+      return;
+    }
+
+    try {
       setisLoading(true);
       const res = await API.userAdditionInfo(state);
       localStorage.setItem("userInfo", JSON.stringify(res.userInfo));
@@ -53,7 +49,10 @@ const UserSignup = () => {
       fetchTodaysConsumption();
       fetchWeekData();
       navigate("/dashboard");
-   
+    } catch (err) {
+      setisLoading(false);
+      enqueueSnackbar("Đã có lỗi xảy ra", { variant: "error" });
+    }
   };
 
   return (
@@ -70,7 +69,7 @@ const UserSignup = () => {
             <form>
               <label className="form-label">Tuổi</label>
               <input
-                value={state.age}  // Tự động điền giá trị từ state
+                value={state.age}
                 onChange={(e) => setstate({ ...state, age: e.target.value })}
                 className="text-field"
                 placeholder="vd. 25"
@@ -78,7 +77,7 @@ const UserSignup = () => {
               />
               <label className="form-label">Cân nặng</label>
               <input
-                value={state.weight}  // Tự động điền giá trị từ state
+                value={state.weight}
                 onChange={(e) => setstate({ ...state, weight: e.target.value })}
                 className="text-field"
                 placeholder="vd. 80"
@@ -86,7 +85,7 @@ const UserSignup = () => {
               />
               <label className="form-label">Chiều cao</label>
               <input
-                value={state.height}  // Tự động điền giá trị từ state
+                value={state.height}
                 onChange={(e) => setstate({ ...state, height: e.target.value })}
                 className="text-field"
                 placeholder="vd. 180"
@@ -94,7 +93,7 @@ const UserSignup = () => {
               />
               <label className="form-label">Mức độ hoạt động</label>
               <select
-                value={state.activity}  // Tự động điền giá trị từ state
+                value={state.activity}
                 onChange={(e) =>
                   setstate({ ...state, activity: e.target.value })
                 }
