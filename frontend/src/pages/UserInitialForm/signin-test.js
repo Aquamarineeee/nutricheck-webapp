@@ -27,15 +27,14 @@ const UserSignup = () => {
 
   // Cập nhật state khi userInfo thay đổi
   useEffect(() => {
-    if (userInfo) {
-      setstate({
-        age: userInfo.AGE || "",
-        gender: userInfo.GENDER || "female",
-        weight: userInfo.WEIGHT || "",
-        height: userInfo.HEIGHT || "",
-        activity: userInfo.ACTIVITY || "1.2",
+    setisLoading(true);
+    setstate({
+          age: state.age || userInfo.AGE,
+          gender: state.gender || userInfo.GENDER,
+          weight: state.weight || userInfo.WEIGHT,
+          height: state.height || userInfo.HEIGHT,
+          activity: state.activity || userInfo.ACTIVITY,
       });
-    }
   }, [userInfo]);
 
   // Xử lý đăng xuất
