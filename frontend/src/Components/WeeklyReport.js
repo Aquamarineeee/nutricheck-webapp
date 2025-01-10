@@ -1,9 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid, Divider } from '@mui/material';
 import FoodCard from './FoodCard'; // Giả sử bạn có component này
 import { formatAMPM } from '../utils/utils';
+import axios from 'axios';
 
-const WeeklyReport = ({ weeklyFoodItems }) => {
+const WeeklyReport = () => {
+  const [weeklyFoodItems, setWeeklyFoodItems] = useState([]); // state để lưu dữ liệu tuần
+
+  // Hàm gọi API để lấy dữ liệu tuần
+  useEffect(() => {
+    const fetchWeeklyData = async () => {
+      try {
+        const response = await axios.get('/api/food/last-week-nutrition-details', {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`, // Nếu cần token
+          },
+        });
+        setWeeklyFoodItems(response.data.weekData || []); // Lưu dữ liệu tuần vào state
+      } catch (error) {
+        console.error('Error fetching weekly calories:', error);
+      }
+    };
+
+    fetchWeeklyData(); // Gọi hàm khi component mount
+  }, []);
+
   // Kiểm tra xem weeklyFoodItems có phải là mảng hợp lệ không
   if (!Array.isArray(weeklyFoodItems) || weeklyFoodItems.length === 0) {
     return <div>No data available for this week.</div>; // Hiển thị khi không có dữ liệu
@@ -61,6 +82,7 @@ const WeeklyReport = ({ weeklyFoodItems }) => {
         </span>
       </div>
 
+      {/* Hiển thị báo cáo cho mỗi ngày trong tuần */}
       {weeklyFoodItems.map((day) => (
         <div key={day.date} style={{ marginBottom: '3rem' }}>
           <div
