@@ -8,6 +8,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { API } from "../../services/apis";
 import { useSnackbar } from "notistack";
 import { AppContext } from "../../Context/AppContext";
+import Axios from "axios";
 
 const UserSignup = () => {
   const navigate = useNavigate();
