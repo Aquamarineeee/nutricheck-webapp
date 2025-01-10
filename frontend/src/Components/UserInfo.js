@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { calculateTotalCalories } from "../../utils/utils";
+import { calculateTotalCalories } from "../utils/utils";
 const UserInfo = () => {
   const [calories, setCalories] = useState(0);
   const navigate = useNavigate();
