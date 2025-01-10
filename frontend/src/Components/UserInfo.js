@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import WeeklyReport from './WeeklyReport';  // Import WeeklyReport component
+import WeeklyReport from "./WeeklyReport"; // Import WeeklyReport
 
 const UserInfo = () => {
-  const [calories, setCalories] = useState(0); // Total calories
-  const [weeklyData, setWeeklyData] = useState([]); // Weekly data for WeeklyReport
+  const [calories, setCalories] = useState(0);
+  const [weeklyData, setWeeklyData] = useState([]); // Thêm state để lưu dữ liệu tuần
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch total calories since registration
     const fetchCalories = async () => {
       try {
         const response = await axios.get('/api/food/total-calories-since-registration', {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`, // If token is needed
+            Authorization: `Bearer ${localStorage.getItem('token')}`, // Nếu cần token
           },
         });
         setCalories(response.data.total_calories || 0);
@@ -23,24 +22,27 @@ const UserInfo = () => {
       }
     };
 
-    // Fetch data for last week (weekly calories)
     const fetchWeeklyData = async () => {
       try {
-        const response = await axios.get('/api/food/last-week-nutrition-details');
-        setWeeklyData(response.data.weekData); // Store the weekly data
+        const response = await axios.get('/api/food/last-week-nutrition-details', {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        });
+        setWeeklyData(response.data.weekData || []); // Lưu dữ liệu tuần vào state
       } catch (error) {
-        console.error('Error fetching weekly data:', error);
+        console.error('Error fetching weekly calories:', error);
       }
     };
 
     fetchCalories();
-    fetchWeeklyData(); // Fetch weekly data
+    fetchWeeklyData(); // Gọi fetchWeeklyData khi component mount
   }, []);
 
   return (
     <div>
       <h2>Thông tin người dùng</h2>
-      <p> Tổng tiêu thụ: {calories} calo từ khi đăng ký</p>
+      <p>Tổng tiêu thụ: {calories} calo từ khi đăng ký</p>
       <p>Người dùng có thể đọc thêm các khuyến nghị về lượng calo tiêu thụ đối với từng thể trạng khác nhau ở: </p>
       <button
         onClick={() => navigate("/blog/suggest")}
@@ -49,8 +51,12 @@ const UserInfo = () => {
         Đánh giá mức độ tiêu thụ khuyến cáo
       </button>
 
-      {/* Render WeeklyReport and pass the weekly data */}
-      <WeeklyReport weeklyFoodItems={weeklyData} />
+      {/* Hiển thị WeeklyReport nếu có dữ liệu */}
+      {weeklyData.length > 0 ? (
+        <WeeklyReport weeklyFoodItems={weeklyData} />
+      ) : (
+        <p>Không có dữ liệu calo cho tuần này.</p>
+      )}
     </div>
   );
 };
