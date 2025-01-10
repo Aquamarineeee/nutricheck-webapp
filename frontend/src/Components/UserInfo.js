@@ -21,11 +21,11 @@ const UserInfo = () => {
 
     fetchCalories();
   }, []);
-  const total_calories = calculateTotalCalories();
+  const totalcalories = calculateTotalCalories(dailyCalories);
   return (
     <div>
       <h2>Thông tin người dùng</h2>
-      <p> Tổng tiêu thụ : {total_calories} calo/1 tuần</p>
+      <p> Tổng tiêu thụ : {totalcalories} calo/1 tuần</p>
       <p>Người dùng có thể đọc thêm các khuyến nghị về lượng calo tiêu thụ đối với từng thể trạng khác nhau ở: </p>
       <button
               onClick={() => navigate("/blog/suggest")}
