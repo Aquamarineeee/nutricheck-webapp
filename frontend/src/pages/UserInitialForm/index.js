@@ -20,10 +20,10 @@ const UserInitialForm = () => {
     useContext(AppContext);
   const [isLoading, setisLoading] = useState(false);
   const [state, setstate] = useState({
-    age: "",
+    age: "18",
     gender: "female",
     weight: "50",
-    height: "",
+    height: "160",
     activity: "1.2",
   });
 
