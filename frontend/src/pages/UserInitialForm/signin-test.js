@@ -1,10 +1,10 @@
-import ArrowForwardIos from "@mui/icons-material/ArrowForwardIos";
-import { Box } from "@mui/material";
-import { Container } from "@mui/system";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles/auth.modules.css";
 import LogoutIcon from "@mui/icons-material/Logout";
+import ArrowForwardIos from "@mui/icons-material/ArrowForwardIos";
+import { Box } from "@mui/material";
+import { Container } from "@mui/system";
 import { API } from "../../services/apis";
 import { useSnackbar } from "notistack";
 import { AppContext } from "../../Context/AppContext";
@@ -22,6 +22,33 @@ const UserSignup = () => {
     height: "",
     activity: "1.2",
   });
+
+  // Gọi API để lấy thông tin người dùng từ database
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        setisLoading(true);
+        const res = await API.getUserInfo(); // Gọi API lấy thông tin người dùng
+        if (res) {
+          setstate({
+            age: res.age || "",
+            gender: res.gender || "female",
+            weight: res.weight || "",
+            height: res.height || "",
+            activity: res.activity || "1.2",
+          });
+        }
+      } catch (err) {
+        enqueueSnackbar("Không thể tải thông tin người dùng", {
+          variant: "error",
+        });
+      } finally {
+        setisLoading(false);
+      }
+    };
+
+    fetchUserData();
+  }, []); // Chỉ chạy một lần khi component mount
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -50,8 +77,9 @@ const UserSignup = () => {
       fetchWeekData();
       navigate("/dashboard");
     } catch (err) {
-      setisLoading(false);
       enqueueSnackbar("Đã có lỗi xảy ra", { variant: "error" });
+    } finally {
+      setisLoading(false);
     }
   };
 
@@ -64,7 +92,7 @@ const UserSignup = () => {
       <img className="logo" src="/static/img/logo.png" alt="Logo" />
       <Container maxWidth="sm" className="form-container">
         <Box className="form-box">
-          <h1 className="form-title"> Nhập lại thông tin</h1>
+          <h1 className="form-title">Nhập lại thông tin</h1>
           <div className="form-content">
             <form>
               <label className="form-label">Tuổi</label>
