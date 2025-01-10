@@ -81,7 +81,7 @@ const UserSignup = () => {
             <form>
               <label className="form-label">Tuổi</label>
               <input
-                value={state.age}
+                value={state.age || userInfo.AGE}
                 onChange={(e) => setstate({ ...state, age: e.target.value })}
                 className="text-field"
                 placeholder="vd. 25"
@@ -89,7 +89,7 @@ const UserSignup = () => {
               />
               <label className="form-label">Cân nặng</label>
               <input
-                value={state.weight}
+                value={state.weight || userInfo.WEIGHT}
                 onChange={(e) => setstate({ ...state, weight: e.target.value })}
                 className="text-field"
                 placeholder="vd. 80"
@@ -97,7 +97,7 @@ const UserSignup = () => {
               />
               <label className="form-label">Chiều cao</label>
               <input
-                value={state.height}
+                value={state.height || userInfo.HEIGHT}
                 onChange={(e) => setstate({ ...state, height: e.target.value })}
                 className="text-field"
                 placeholder="vd. 180"
