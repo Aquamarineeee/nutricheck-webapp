@@ -26,8 +26,7 @@ const bottomNavbarPaths = [
   "/blog/diet",
   "/blog/suggest",
   "/blog/quest",
-  "/blog/excercice",
-  "/chatbot"
+  "/blog/excercice"
 ];
 function App() {
   const location = useLocation();
@@ -52,7 +51,6 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/foodScan" element={<FoodScan />} />
         <Route path="/nutrients" element={<Nutrients />} />
-        <Route path="/chat" element = {<Chatbot/>} />
       </Routes>
       {bottomNavbarPaths.includes(location.pathname) && <BottomNavBar />}
     </>

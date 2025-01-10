@@ -144,31 +144,6 @@ const Blogs = () => {
               </div>
             </Grid>
 
-            {/* AI chat-bot */}
-            <Grid item sm={6} lg={4} xs={12}>
-              <div style={{ width: "100%" }} className={styles.cardContainer}>
-                <div className={styles.cardImage}>
-                  <img src={"https://i.pinimg.com/736x/80/e4/6c/80e46c3ff75e4d92d9afb3734b4b8e86.jpg"} alt="AI" />
-                </div>
-                <div className={styles.cardBody}>
-                  <span className={styles.cardBadge}> Chat-bot AI </span>
-                  <h1 style={{ textAlign: "start" }}>
-                    Support <br/> 
-                  </h1>
-                  <p className={styles.cardBubtitle}>
-                  Chỉnh sửa ...?
-                  </p>
-                  <div className={styles.cardAuthor}>
-                    <Button
-                      variant="outlined"
-                      onClick={() => navigate("/Chatbot")}
-                    >
-                      Đọc thêm
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </Grid>
             {/* blog4 */}
             <Grid item sm={6} lg={4} xs={12}>
               <div style={{ width: "100%" }} className={styles.cardContainer}>
