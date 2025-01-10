@@ -8,7 +8,6 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { API } from "../../services/apis";
 import { useSnackbar } from "notistack";
 import { AppContext } from "../../Context/AppContext";
-import Axios from "axios";
 
 const UserSignup = () => {
   const navigate = useNavigate();
@@ -16,20 +15,20 @@ const UserSignup = () => {
   const { setuserInfo, setmaxCalories, fetchTodaysConsumption, fetchWeekData } =
     useContext(AppContext);
   const [isLoading, setisLoading] = useState(false);
+  const { userInfo } = useContext(AppContext);
   const [state, setstate] = useState({
-    age: "",
-    gender: "female",
-    weight: "",
-    height: "",
+    age: userInfo.AGE ,
+    gender: userInfo.GENDER,
+    weight: userInfo.WEIGHT,
+    height: userInfo.HEIGHT,
     activity: "1.2",
   });
-
+  
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("userInfo");
     navigate("/");
   };
-
   const handleSubmit = async () => {
     if (
       !state.age ||
@@ -40,18 +39,7 @@ const UserSignup = () => {
       enqueueSnackbar("Vui lòng điền đầy đủ thông tin", { variant: "error" });
       return;
     }
-    try {
-      const response = await Axios.get('/auth/me');
-      setstate({
-        age: response.data.age || "", // Gán giá trị mặc định
-        gender: response.data.gender || "female",
-        weight: response.data.weight || "",
-        height: response.data.height || "",
-        activity: response.data.activity || "1.2",
-      });
-    } catch (error) {
-      console.error("Lỗi khi lấy thông tin người dùng:", error);
-    }
+
     try {
       setisLoading(true);
       const res = await API.userAdditionInfo(state);
