@@ -16,24 +16,23 @@ const UserSignup = () => {
 
   const [isLoading, setisLoading] = useState(false);
 
-  // Khởi tạo state với giá trị mặc định
+  // Khởi tạo state với dữ liệu từ userInfo (hoặc giá trị mặc định nếu không có)
   const [state, setstate] = useState({
-    age: "",
-    gender: "female",
-    weight: "",
-    height: "",
-    activity: "1.2",
+    age: userInfo.AGE || "",  // Dữ liệu từ userInfo hoặc chuỗi rỗng nếu không có
+    gender: userInfo.GENDER || "female",  // Dữ liệu từ userInfo hoặc giá trị mặc định
+    weight: userInfo.WEIGHT || "",  // Dữ liệu từ userInfo hoặc chuỗi rỗng
+    height: userInfo.HEIGHT || "",  // Dữ liệu từ userInfo hoặc chuỗi rỗng
+    activity: userInfo.ACTIVITY || "1.2",  // Dữ liệu từ userInfo hoặc giá trị mặc định
   });
 
   // Cập nhật state khi userInfo thay đổi
   useEffect(() => {
-    setisLoading(true);
-    setstate({
-          age: state.age || userInfo.AGE,
-          gender: state.gender || userInfo.GENDER,
-          weight: state.weight || userInfo.WEIGHT,
-          height: state.height || userInfo.HEIGHT,
-          activity: state.activity || userInfo.ACTIVITY,
+      setstate({
+        age: userInfo.AGE || "",
+        gender: userInfo.GENDER || "female",
+        weight: userInfo.WEIGHT || "",
+        height: userInfo.HEIGHT || "",
+        activity: userInfo.ACTIVITY || "1.2",
       });
   }, [userInfo]);
 
@@ -46,6 +45,7 @@ const UserSignup = () => {
 
   // Xử lý submit thông tin
   const handleSubmit = async () => {
+    try {
       setisLoading(true);
       const res = await API.userAdditionInfo(state);
       localStorage.setItem("userInfo", JSON.stringify(res.userInfo));
@@ -54,6 +54,10 @@ const UserSignup = () => {
       fetchTodaysConsumption();
       fetchWeekData();
       navigate("/dashboard");
+    } catch (err) {
+      setisLoading(false);
+      enqueueSnackbar("Đã có lỗi xảy ra", { variant: "error" });
+    }
   };
 
   return (
@@ -70,7 +74,7 @@ const UserSignup = () => {
             <form>
               <label className="form-label">Tuổi</label>
               <input
-                value={state.age || userInfo.AGE}
+                value={state.age}  // Tự động điền giá trị từ state
                 onChange={(e) => setstate({ ...state, age: e.target.value })}
                 className="text-field"
                 placeholder="vd. 25"
@@ -78,7 +82,7 @@ const UserSignup = () => {
               />
               <label className="form-label">Cân nặng</label>
               <input
-                value={state.weight || userInfo.WEIGHT}
+                value={state.weight}  // Tự động điền giá trị từ state
                 onChange={(e) => setstate({ ...state, weight: e.target.value })}
                 className="text-field"
                 placeholder="vd. 80"
@@ -86,7 +90,7 @@ const UserSignup = () => {
               />
               <label className="form-label">Chiều cao</label>
               <input
-                value={state.height || userInfo.HEIGHT}
+                value={state.height}  // Tự động điền giá trị từ state
                 onChange={(e) => setstate({ ...state, height: e.target.value })}
                 className="text-field"
                 placeholder="vd. 180"
@@ -94,7 +98,7 @@ const UserSignup = () => {
               />
               <label className="form-label">Mức độ hoạt động</label>
               <select
-                value={state.activity}
+                value={state.activity}  // Tự động điền giá trị từ state
                 onChange={(e) =>
                   setstate({ ...state, activity: e.target.value })
                 }
