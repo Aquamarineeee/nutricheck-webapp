@@ -1,41 +1,53 @@
-import ArrowForwardIos from "@mui/icons-material/ArrowForwardIos";
-import { Box } from "@mui/material";
-import { Container } from "@mui/system";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "../../styles/auth.modules.css";
+import { Box, Container } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { API } from "../../services/apis";
+import ArrowForwardIos from "@mui/icons-material/ArrowForwardIos";
 import { useSnackbar } from "notistack";
 import { AppContext } from "../../Context/AppContext";
+import "../../styles/auth.modules.css";
+import { API } from "../../services/apis";
 
 const UserSignup = () => {
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
-  const { setuserInfo, setmaxCalories, fetchTodaysConsumption, fetchWeekData } =
+  const { userInfo, setuserInfo, setmaxCalories, fetchTodaysConsumption, fetchWeekData } =
     useContext(AppContext);
+
   const [isLoading, setisLoading] = useState(false);
-  const { userInfo } = useContext(AppContext);
+
+  // Khởi tạo state với giá trị mặc định
   const [state, setstate] = useState({
-    age: userInfo.AGE ,
-    gender: userInfo.GENDER,
-    weight: userInfo.WEIGHT,
-    height: userInfo.HEIGHT,
+    age: "",
+    gender: "female",
+    weight: "",
+    height: "",
     activity: "1.2",
   });
-  
+
+  // Cập nhật state khi userInfo thay đổi
+  useEffect(() => {
+    if (userInfo) {
+      setstate({
+        age: userInfo.AGE || "",
+        gender: userInfo.GENDER || "female",
+        weight: userInfo.WEIGHT || "",
+        height: userInfo.HEIGHT || "",
+        activity: userInfo.ACTIVITY || "1.2",
+      });
+    }
+  }, [userInfo]);
+
+  // Xử lý đăng xuất
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("userInfo");
     navigate("/");
   };
+
+  // Xử lý submit thông tin
   const handleSubmit = async () => {
-    if (
-      !state.age ||
-      !state.weight ||
-      !state.height ||
-      !state.activity
-    ) {
+    if (!state.age || !state.weight || !state.height || !state.activity) {
       enqueueSnackbar("Vui lòng điền đầy đủ thông tin", { variant: "error" });
       return;
     }
