@@ -16,7 +16,6 @@ import Blog01 from "./pages/Blogs/Blog01";
 import Blog055 from "./pages/Blogs/Blog055";
 import Blog10 from "./pages/Blogs/Blog10";
 import Blog16 from "./pages/Blogs/Blog16";
-import Chatbot from "./aichatbot/ais";
 const bottomNavbarPaths = [
   "/dashboard",
   "/reports",
