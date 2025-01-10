@@ -22,7 +22,7 @@ const UserInitialForm = () => {
   const [state, setstate] = useState({
     age: "",
     gender: "female",
-    weight: "",
+    weight: "50",
     height: "",
     activity: "1.2",
   });
