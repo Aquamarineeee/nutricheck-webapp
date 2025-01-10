@@ -46,7 +46,6 @@ const UserSignup = () => {
 
   // Xử lý submit thông tin
   const handleSubmit = async () => {
-    try {
       setisLoading(true);
       const res = await API.userAdditionInfo(state);
       localStorage.setItem("userInfo", JSON.stringify(res.userInfo));
@@ -55,10 +54,6 @@ const UserSignup = () => {
       fetchTodaysConsumption();
       fetchWeekData();
       navigate("/dashboard");
-    } catch (err) {
-      setisLoading(false);
-      enqueueSnackbar("Đã có lỗi xảy ra", { variant: "error" });
-    }
   };
 
   return (
