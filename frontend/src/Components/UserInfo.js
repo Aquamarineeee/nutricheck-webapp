@@ -20,8 +20,8 @@ const UserInfo = () => {
         const total = weekData.reduce((sum, item) => sum + item.CALORIES, 0);
         setTotalCalories(total);
 
-        // Tính lượng calo tối thiểu theo công thức BMR
-        const { weight, height, age, gender, activity } = userInfo;
+        // Kiểm tra và gán giá trị mặc định nếu thiếu dữ liệu
+        const { weight = 0, height = 0, age = 0, gender = "female", activity = "sedentary" } = userInfo;
 
         // Công thức Mifflin-St Jeor
         const BMR =
@@ -38,7 +38,8 @@ const UserInfo = () => {
           very_active: 1.9, // Vận động rất cao
         };
 
-        const dailyCalories = BMR * (activityFactor[activity] || 1.2); // Lượng calo mỗi ngày
+        const activityMultiplier = activityFactor[activity] || 1.2; // Giá trị mặc định nếu không tìm thấy activity
+        const dailyCalories = BMR * activityMultiplier; // Lượng calo mỗi ngày
         const weeklyCalories = dailyCalories * 7; // Lượng calo mỗi tuần
         setMinCalories(weeklyCalories);
       } catch (error) {
@@ -59,27 +60,28 @@ const UserInfo = () => {
         Thông tin người dùng:
       </Typography>
       <Typography variant="body1" gutterBottom>
-        Tên: {user.username}
+        Tên: {user.username || "Không có thông tin"}
       </Typography>
       <Typography variant="body1" gutterBottom>
-        Cân nặng: {user.weight} kg
+        Cân nặng: {user.weight || "Không có thông tin"} kg
       </Typography>
       <Typography variant="body1" gutterBottom>
-        Chiều cao: {user.height} cm
+        Chiều cao: {user.height || "Không có thông tin"} cm
       </Typography>
       <Typography variant="body1" gutterBottom>
-        Tuổi: {user.age}
+        Tuổi: {user.age || "Không có thông tin"}
       </Typography>
       <Typography variant="body1" gutterBottom>
         Giới tính: {user.gender === "male" ? "Nam" : "Nữ"}
       </Typography>
       <Typography variant="body1" gutterBottom>
-        Mức độ vận động: {user.activity}
+        Mức độ vận động: {user.activity || "Không có thông tin"}
       </Typography>
       <Typography variant="h6" gutterBottom>
         Tổng lượng calo tiêu thụ trong tuần: {totalCalories.toFixed(1)} calo
         <br />
-        Lượng calo tối thiểu cần thiết trong tuần: {minCalories.toFixed(1)} calo
+        Lượng calo tối thiểu cần thiết trong tuần:{" "}
+        {isNaN(minCalories) ? "Không xác định" : minCalories.toFixed(1)} calo
       </Typography>
       {totalCalories < minCalories ? (
         <Alert severity="warning">
