@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { Alert, Typography } from "@mui/material";
 import Chart from "react-apexcharts";
 import { useSnackbar } from "notistack";
-import { AppContext } from "../../Context/AppContext";
+import { AppContext } from "../Context/AppContext";
 
 const UserInfo = () => {
   const { enqueueSnackbar } = useSnackbar();
