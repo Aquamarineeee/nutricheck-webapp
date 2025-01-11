@@ -1,58 +1,42 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Typography, Alert } from "@mui/material";
-import { API } from "../services/apis";
+import { AppContext } from "../context/AppContext";
 
 const UserInfo = () => {
-  const [user, setUser] = useState(null);
-  const [totalCalories, setTotalCalories] = useState(0);
-  const [minCalories, setMinCalories] = useState(0);
+  const { userInfo, weekData, nutrients, maxCalories } = useContext(AppContext);
 
-  useEffect(() => {
-    const fetchUserInfo = async () => {
-      try {
-        // Lấy thông tin người dùng
-        const userInfo = await API.userInfo();
-        setUser(userInfo);
+  // Tính tổng lượng calo tiêu thụ trong tuần
+  const totalCalories = weekData.reduce((sum, item) => sum + item.CALORIES, 0);
 
-        // Lấy dữ liệu calo hàng tuần
-        const weekResponse = await API.lastWeekCalorieDetails();
-        const weekData = weekResponse.weekData || [];
-        const total = weekData.reduce((sum, item) => sum + item.CALORIES, 0);
-        setTotalCalories(total);
+  // Tính lượng calo tối thiểu cần thiết dựa trên thông tin người dùng
+  const calculateMinWeeklyCalories = () => {
+    if (!userInfo || !userInfo.weight || !userInfo.height || !userInfo.age || !userInfo.activity) {
+      return null; // Thiếu thông tin để tính toán
+    }
 
-        // Kiểm tra và gán giá trị mặc định nếu thiếu dữ liệu
-        const { weight = 0, height = 0, age = 0, gender = "female", activity = "sedentary" } = userInfo;
+    const { weight, height, age, gender, activity } = userInfo;
 
-        // Công thức Mifflin-St Jeor
-        const BMR =
-          gender === "male"
-            ? 10 * weight + 6.25 * height - 5 * age + 5
-            : 10 * weight + 6.25 * height - 5 * age - 161;
+    // Công thức Mifflin-St Jeor
+    const BMR =
+      gender === "male"
+        ? 10 * weight + 6.25 * height - 5 * age + 5
+        : 10 * weight + 6.25 * height - 5 * age - 161;
 
-        // Hệ số vận động
-        const activityFactor = {
-          sedentary: 1.2, // Không vận động
-          light: 1.375, // Vận động nhẹ
-          moderate: 1.55, // Vận động trung bình
-          active: 1.725, // Vận động cao
-          very_active: 1.9, // Vận động rất cao
-        };
-
-        const activityMultiplier = activityFactor[activity] || 1.2; // Giá trị mặc định nếu không tìm thấy activity
-        const dailyCalories = BMR * activityMultiplier; // Lượng calo mỗi ngày
-        const weeklyCalories = dailyCalories * 7; // Lượng calo mỗi tuần
-        setMinCalories(weeklyCalories);
-      } catch (error) {
-        console.error("Lỗi khi lấy dữ liệu người dùng:", error);
-      }
+    // Hệ số vận động
+    const activityFactor = {
+      sedentary: 1.2,
+      light: 1.375,
+      moderate: 1.55,
+      active: 1.725,
+      very_active: 1.9,
     };
 
-    fetchUserInfo();
-  }, []);
+    const activityMultiplier = activityFactor[activity] || 1.2;
+    const dailyCalories = BMR * activityMultiplier; // Lượng calo mỗi ngày
+    return dailyCalories * 7; // Lượng calo mỗi tuần
+  };
 
-  if (!user) {
-    return <Alert severity="info">Đang tải thông tin người dùng...</Alert>;
-  }
+  const minWeeklyCalories = calculateMinWeeklyCalories();
 
   return (
     <div>
@@ -60,33 +44,34 @@ const UserInfo = () => {
         Thông tin người dùng:
       </Typography>
       <Typography variant="body1" gutterBottom>
-        Tên: {user.username || "Không có thông tin"}
+        Tên: {userInfo?.username || "Không có thông tin"}
       </Typography>
       <Typography variant="body1" gutterBottom>
-        Cân nặng: {user.weight || "Không có thông tin"} kg
+        Cân nặng: {userInfo?.weight || "Không có thông tin"} kg
       </Typography>
       <Typography variant="body1" gutterBottom>
-        Chiều cao: {user.height || "Không có thông tin"} cm
+        Chiều cao: {userInfo?.height || "Không có thông tin"} cm
       </Typography>
       <Typography variant="body1" gutterBottom>
-        Tuổi: {user.age || "Không có thông tin"}
+        Tuổi: {userInfo?.age || "Không có thông tin"}
       </Typography>
       <Typography variant="body1" gutterBottom>
-        Giới tính: {user.gender === "male" ? "Nam" : "Nữ"}
+        Giới tính: {userInfo?.gender === "male" ? "Nam" : "Nữ"}
       </Typography>
       <Typography variant="body1" gutterBottom>
-        Mức độ vận động: {user.activity || "Không có thông tin"}
+        Mức độ vận động: {userInfo?.activity || "Không có thông tin"}
       </Typography>
       <Typography variant="h6" gutterBottom>
         Tổng lượng calo tiêu thụ trong tuần: {totalCalories.toFixed(1)} calo
-        <br />
-        Lượng calo tối thiểu cần thiết trong tuần:{" "}
-        {isNaN(minCalories) ? "Không xác định" : minCalories.toFixed(1)} calo
       </Typography>
-      {totalCalories < minCalories ? (
+      <Typography variant="h6" gutterBottom>
+        Lượng calo tối thiểu cần thiết trong tuần:{" "}
+        {minWeeklyCalories ? minWeeklyCalories.toFixed(1) : "Không xác định"} calo
+      </Typography>
+      {minWeeklyCalories && totalCalories < minWeeklyCalories ? (
         <Alert severity="warning">
-          Bạn tiêu thụ ít hơn mức calo tối thiểu cần thiết trong tuần. Hãy chú ý
-          bổ sung thêm dinh dưỡng!
+          Bạn tiêu thụ ít hơn mức calo tối thiểu cần thiết trong tuần. Hãy bổ
+          sung thêm dinh dưỡng!
         </Alert>
       ) : (
         <Alert severity="success">
