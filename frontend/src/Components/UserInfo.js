@@ -58,8 +58,6 @@ const UserInfo = () => {
 
   useEffect(() => {
     const calculateTotalCalories = () => {
-      if (weekData.length > 0) {
-        calculateNutritionData(); };
       const totalWeek = weekData.reduce((sum, item) => sum + item.CALORIES, 0);
       setTotalCalories(totalWeek);
 
