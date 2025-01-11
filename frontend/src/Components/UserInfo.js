@@ -1,35 +1,58 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Alert, Typography } from "@mui/material";
 import Chart from "react-apexcharts";
 import { useSnackbar } from "notistack";
-import { API } from "../services/apis"; // Đường dẫn có thể cần điều chỉnh
+import { AppContext } from "../Context/AppContext";
 
 const UserInfo = () => {
   const { enqueueSnackbar } = useSnackbar();
-  const [weekData, setWeekData] = useState([]);
+  const { userInfo, weekData, fetchWeekData } = useContext(AppContext);
   const [totalCalories, setTotalCalories] = useState(0);
+  const [minCalories, setMinCalories] = useState(0);
 
   useEffect(() => {
-    const fetchWeekData = async () => {
-      try {
-        // Lấy dữ liệu calo hàng tuần từ API
-        const response = await API.lastWeekCalorieDetails();
-        const data = response.weekData || [];
-
-        setWeekData(data);
-
-        // Tính tổng lượng calo
-        const total = data.reduce((sum, item) => sum + item.CALORIES, 0);
-        setTotalCalories(total);
-      } catch (error) {
-        enqueueSnackbar("Không thể tải dữ liệu calo hàng tuần.", {
-          variant: "error",
+    const calculateMinCalories = () => {
+      if (!userInfo || !userInfo.WEIGHT || !userInfo.HEIGHT || !userInfo.AGE || !userInfo.GENDER || !userInfo.ACTIVITY) {
+        enqueueSnackbar("Thông tin người dùng không đầy đủ để tính toán calo tối thiểu.", {
+          variant: "warning",
         });
+        return;
       }
+
+      const { WEIGHT: weight, HEIGHT: height, AGE: age, GENDER: gender, ACTIVITY: activity } = userInfo;
+
+      // Công thức Mifflin-St Jeor
+      const BMR =
+        gender === "male"
+          ? 10 * weight + 6.25 * height - 5 * age + 5
+          : 10 * weight + 6.25 * height - 5 * age - 161;
+
+      // Hệ số vận động
+      const activityFactor = {
+        sedentary: 1.2, // Không vận động
+        light: 1.375, // Vận động nhẹ
+        moderate: 1.55, // Vận động trung bình
+        active: 1.725, // Vận động cao
+        very_active: 1.9, // Vận động rất cao
+      };
+
+      const dailyCalories = BMR * (activityFactor[activity] || 1.2); // Lượng calo mỗi ngày
+      const weeklyCalories = dailyCalories * 7; // Lượng calo mỗi tuần
+      setMinCalories(weeklyCalories);
+    };
+
+    calculateMinCalories();
+  }, [userInfo, enqueueSnackbar]);
+
+  useEffect(() => {
+    const calculateTotalCalories = () => {
+      const total = weekData.reduce((sum, item) => sum + item.CALORIES, 0);
+      setTotalCalories(total);
     };
 
     fetchWeekData();
-  }, [enqueueSnackbar]);
+    calculateTotalCalories();
+  }, [weekData, fetchWeekData]);
 
   // Tạo dữ liệu biểu đồ
   const categories = weekData.map((item) => item.DAY); // Tên các ngày trong tuần
@@ -44,6 +67,19 @@ const UserInfo = () => {
       <Typography variant="body1" gutterBottom>
         <strong>Tổng lượng calo tiêu thụ:</strong> {totalCalories.toFixed(1)} calo
       </Typography>
+      <Typography variant="body1" gutterBottom>
+        <strong>Lượng calo tối thiểu cần thiết trong tuần:</strong> {minCalories.toFixed(1)} calo
+      </Typography>
+
+      {totalCalories < minCalories ? (
+        <Alert severity="warning">
+          Bạn tiêu thụ ít hơn mức calo tối thiểu cần thiết trong tuần. Hãy chú ý bổ sung thêm dinh dưỡng!
+        </Alert>
+      ) : (
+        <Alert severity="success">
+          Bạn đã tiêu thụ đủ lượng calo tối thiểu trong tuần.
+        </Alert>
+      )}
 
       {weekData.length > 0 ? (
         <Chart
