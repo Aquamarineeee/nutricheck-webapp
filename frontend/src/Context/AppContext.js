@@ -29,10 +29,6 @@ export const AppContextProvider = ({ children }) => {
     const [isTourTaken, setisTourTaken] = useState(false);
 
 
-    const [weeklyNutrition, setWeeklyNutrition] = useState({});
-    const [monthlyNutrition, setMonthlyNutrition] = useState({});
-    const [maxWeekly, setMaxWeekly] = useState({});
-    const [maxMonthly, setMaxMonthly] = useState({});
 
     const [userInfo, setuserInfo] = useState({});
     const [weekData, setweekData] = useState([]);
@@ -133,6 +129,11 @@ export const AppContextProvider = ({ children }) => {
         }
         exec();
     }, []);
+    const [weeklyNutrition, setWeeklyNutrition] = useState({});
+    const [monthlyNutrition, setMonthlyNutrition] = useState({});
+    const [maxWeekly, setMaxWeekly] = useState({});
+    const [maxMonthly, setMaxMonthly] = useState({});
+
     const calculateNutritionData = () => {
         if (!weekData || weekData.length === 0) return;
     
@@ -187,7 +188,10 @@ export const AppContextProvider = ({ children }) => {
                 maxCalories,
                 handleLogout,
                 setisLoading,
-                calculateNutritionData,
+                weeklyNutrition,
+                monthlyNutrition,
+                maxWeekly,
+                maxMonthly,
             }}
         >
             <FullPageLoading isLoading={isLoading} />
