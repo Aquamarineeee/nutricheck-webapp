@@ -11,6 +11,12 @@ const UserInfo = () => {
   const [minCaloriesWeek, setMinCaloriesWeek] = useState(0);
   const [minCaloriesMonth, setMinCaloriesMonth] = useState(0);
   const [totalMonthlyCalories, setTotalMonthlyCalories] = useState(0);
+  const [nutritionSummary, setNutritionSummary] = useState({
+    protein: 0,
+    carbs: 0,
+    fat: 0,
+    calcium: 0,
+  });
 
   useEffect(() => {
     const calculateMinCalories = () => {
@@ -56,6 +62,19 @@ const UserInfo = () => {
       // Giả sử tuần dữ liệu đại diện, nhân tổng calo tuần với 4 để ước tính tháng
       const totalMonth = totalWeek * 4;
       setTotalMonthlyCalories(totalMonth);
+
+      // Tổng hợp dinh dưỡng
+      const totalProtein = weekData.reduce((sum, item) => sum + (item.PROTEIN || 0), 0);
+      const totalCarbs = weekData.reduce((sum, item) => sum + (item.CARBS || 0), 0);
+      const totalFat = weekData.reduce((sum, item) => sum + (item.FAT || 0), 0);
+      const totalCalcium = weekData.reduce((sum, item) => sum + (item.CALCIUM || 0), 0);
+
+      setNutritionSummary({
+        protein: totalProtein,
+        carbs: totalCarbs,
+        fat: totalFat,
+        calcium: totalCalcium,
+      });
     };
 
     fetchWeekData();
@@ -106,6 +125,22 @@ const UserInfo = () => {
       </Typography>
       <Typography variant="body1" gutterBottom>
         <strong>Lượng calo tối thiểu cần thiết trong tháng:</strong> {minCaloriesMonth.toFixed(1)} calo
+      </Typography>
+
+      <Typography variant="body1" gutterBottom>
+        <strong>Tổng hợp dinh dưỡng trong tuần:</strong>
+      </Typography>
+      <Typography variant="body2" gutterBottom>
+        - Đạm (Protein): {nutritionSummary.protein.toFixed(1)} g
+      </Typography>
+      <Typography variant="body2" gutterBottom>
+        - Tinh bột (Carbs): {nutritionSummary.carbs.toFixed(1)} g
+      </Typography>
+      <Typography variant="body2" gutterBottom>
+        - Chất béo (Fat): {nutritionSummary.fat.toFixed(1)} g
+      </Typography>
+      <Typography variant="body2" gutterBottom>
+        - Canxi (Calcium): {nutritionSummary.calcium.toFixed(1)} mg
       </Typography>
 
       {totalCalories < minCaloriesWeek ? (
