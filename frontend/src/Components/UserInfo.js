@@ -7,126 +7,222 @@ import { AppContext } from "../Context/AppContext";
 const UserInfo = () => {
   const { enqueueSnackbar } = useSnackbar();
   const { userInfo, weekData, fetchWeekData } = useContext(AppContext);
-
-  const [totalCaloriesWeek, setTotalCaloriesWeek] = useState(0);
-  const [totalCaloriesMonth, setTotalCaloriesMonth] = useState(0);
-  const [nutritionSummaryWeek, setNutritionSummaryWeek] = useState({});
-  const [nutritionSummaryMonth, setNutritionSummaryMonth] = useState({});
-  const [highestNutrientWeek, setHighestNutrientWeek] = useState("");
-  const [highestNutrientMonth, setHighestNutrientMonth] = useState("");
+  const [totalCalories, setTotalCalories] = useState(0);
+  const [minCaloriesWeek, setMinCaloriesWeek] = useState(0);
+  const [minCaloriesMonth, setMinCaloriesMonth] = useState(0);
+  const [totalMonthlyCalories, setTotalMonthlyCalories] = useState(0);
+  const [nutritionSummary, setNutritionSummary] = useState({
+    protein: 0,
+    carbs: 0,
+    fat: 0,
+    calcium: 0,
+  });
+  const [dailyTopNutrients, setDailyTopNutrients] = useState([]);
+  const [weeklyTopNutrients, setWeeklyTopNutrients] = useState([]);
 
   useEffect(() => {
-    const calculateNutrition = () => {
-      // Tổng hợp calo và các dinh dưỡng trong tuần
-      const weekCalories = weekData.reduce((sum, day) => sum + day.CALORIES, 0);
-      const monthCalories = weekCalories * 4; // Giả định 1 tháng có 4 tuần
+    const calculateMinCalories = () => {
+      if (!userInfo || !userInfo.WEIGHT || !userInfo.HEIGHT || !userInfo.AGE || !userInfo.GENDER || !userInfo.ACTIVITY) {
+        enqueueSnackbar("Thông tin người dùng không đầy đủ để tính toán calo tối thiểu.", {
+          variant: "warning",
+        });
+        return;
+      }
 
-      const totalNutrientsWeek = {
-        protein: weekData.reduce((sum, day) => sum + (day.PROTEIN || 0), 0),
-        carbs: weekData.reduce((sum, day) => sum + (day.CARBS || 0), 0),
-        fat: weekData.reduce((sum, day) => sum + (day.FAT || 0), 0),
-        calcium: weekData.reduce((sum, day) => sum + (day.CALCIUM || 0), 0),
+      const { WEIGHT: weight, HEIGHT: height, AGE: age, GENDER: gender, ACTIVITY: activity } = userInfo;
+
+      // Công thức Mifflin-St Jeor
+      const BMR =
+        gender === "male"
+          ? 10 * weight + 6.25 * height - 5 * age + 5
+          : 10 * weight + 6.25 * height - 5 * age - 161;
+
+      // Hệ số vận động
+      const activityFactor = {
+        sedentary: 1.2, // Không vận động
+        light: 1.375, // Vận động nhẹ
+        moderate: 1.55, // Vận động trung bình
+        active: 1.725, // Vận động cao
+        very_active: 1.9, // Vận động rất cao
       };
 
-      const totalNutrientsMonth = {
-        protein: totalNutrientsWeek.protein * 4,
-        carbs: totalNutrientsWeek.carbs * 4,
-        fat: totalNutrientsWeek.fat * 4,
-        calcium: totalNutrientsWeek.calcium * 4,
+      const dailyCalories = BMR * (activityFactor[activity] || 1.2); // Lượng calo mỗi ngày
+      const weeklyCalories = dailyCalories * 7; // Lượng calo mỗi tuần
+      const monthlyCalories = dailyCalories * 30; // Lượng calo mỗi tháng
+      setMinCaloriesWeek(weeklyCalories);
+      setMinCaloriesMonth(monthlyCalories);
+    };
+
+    calculateMinCalories();
+  }, [userInfo, enqueueSnackbar]);
+
+  useEffect(() => {
+    const calculateTotalCalories = () => {
+      if (weekData.length > 0) {
+        calculateNutritionData(); };
+      const totalWeek = weekData.reduce((sum, item) => sum + item.CALORIES, 0);
+      setTotalCalories(totalWeek);
+
+      // Giả sử tuần dữ liệu đại diện, nhân tổng calo tuần với 4 để ước tính tháng
+      const totalMonth = totalWeek * 4;
+      setTotalMonthlyCalories(totalMonth);
+
+      // Tổng hợp dinh dưỡng
+      const totalProtein = weekData.reduce((sum, item) => sum + (item.PROTEIN || 0), 0);
+      const totalCarbs = weekData.reduce((sum, item) => sum + (item.CARBS || 0), 0);
+      const totalFat = weekData.reduce((sum, item) => sum + (item.FAT || 0), 0);
+      const totalCalcium = weekData.reduce((sum, item) => sum + (item.CALCIUM || 0), 0);
+
+
+      
+
+      setNutritionSummary({
+        protein: totalProtein,
+        carbs: totalCarbs,
+        fat: totalFat,
+        calcium: totalCalcium,
+      });
+    };
+
+    const findTopNutrients = () => {
+      // Lọc thành phần dinh dưỡng cao nhất trong ngày
+      const dailyTop = weekData.map((day) => {
+        const nutrients = [
+          { name: "Protein", value: day.PROTEIN || 0 },
+          { name: "Carbs", value: day.CARBS || 0 },
+          { name: "Fat", value: day.FAT || 0 },
+          { name: "Calcium", value: day.CALCIUM || 0 },
+        ];
+        nutrients.sort((a, b) => b.value - a.value);
+        return { day: day.DAY, topNutrient: nutrients[0] };
+      });
+
+      setDailyTopNutrients(dailyTop);
+
+      // Tổng hợp thành phần dinh dưỡng trong tuần
+      const weeklyTotal = {
+        protein: weekData.reduce((sum, item) => sum + (item.PROTEIN || 0), 0),
+        carbs: weekData.reduce((sum, item) => sum + (item.CARBS || 0), 0),
+        fat: weekData.reduce((sum, item) => sum + (item.FAT || 0), 0),
+        calcium: weekData.reduce((sum, item) => sum + (item.CALCIUM || 0), 0),
       };
+      const weeklySorted = Object.entries(weeklyTotal)
+        .map(([key, value]) => ({ name: key, value }))
+        .sort((a, b) => b.value - a.value);
 
-      // Xác định thành phần cao nhất
-      const highestWeek = Object.entries(totalNutrientsWeek).sort((a, b) => b[1] - a[1])[0];
-      const highestMonth = Object.entries(totalNutrientsMonth).sort((a, b) => b[1] - a[1])[0];
-
-      setTotalCaloriesWeek(weekCalories);
-      setTotalCaloriesMonth(monthCalories);
-      setNutritionSummaryWeek(totalNutrientsWeek);
-      setNutritionSummaryMonth(totalNutrientsMonth);
-      setHighestNutrientWeek(highestWeek[0]);
-      setHighestNutrientMonth(highestMonth[0]);
+      setWeeklyTopNutrients(weeklySorted);
     };
 
     fetchWeekData();
-    calculateNutrition();
+    calculateTotalCalories();
+    findTopNutrients();
   }, [weekData, fetchWeekData]);
+
+  // Tạo dữ liệu biểu đồ
+  const categories = weekData.map((item) => item.DAY); // Tên các ngày trong tuần
+  const weekCalories = weekData.map((item) => item.CALORIES); // Calo từng ngày
 
   return (
     <div>
       <Typography variant="h6" gutterBottom>
-        Báo cáo dinh dưỡng tuần này
+        Báo cáo calo tuần này
       </Typography>
 
-      {/* Hiển thị tổng lượng calo */}
-      <Typography variant="body1">
-        <strong>Tổng calo tiêu thụ trong tuần:</strong> {totalCaloriesWeek.toFixed(1)} calo
-      </Typography>
-      <Typography variant="body1">
-        <strong>Tổng calo tiêu thụ trong tháng:</strong> {totalCaloriesMonth.toFixed(1)} calo
-      </Typography>
+      {userInfo && (
+        <div>
+          <Typography variant="body1" gutterBottom>
+            <strong>Tên:</strong> {userInfo.USERNAME}
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            <strong>Tuổi:</strong> {userInfo.AGE}
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            <strong>Giới tính:</strong> {userInfo.GENDER === "male" ? "Nam" : "Nữ"}
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            <strong>Chiều cao:</strong> {userInfo.HEIGHT} cm
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            <strong>Cân nặng:</strong> {userInfo.WEIGHT} kg
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            <strong>Mức độ vận động:</strong> {userInfo.ACTIVITY}
+          </Typography>
+        </div>
+      )}
+<Typography variant="h6">Tổng lượng calo tiêu thụ</Typography>
+<Typography variant="body1">
+    <strong>Tuần:</strong>
+    <ul>
+        <li>Chất béo: {weeklyNutrition.fat?.toFixed(2)} cal</li>
+        <li>Tinh bột: {weeklyNutrition.carbs?.toFixed(2)} cal</li>
+        <li>Đạm: {weeklyNutrition.protein?.toFixed(2)} cal</li>
+        <li>Canxi: {weeklyNutrition.calcium?.toFixed(2)} mg</li>
+    </ul>
+</Typography>
+<Typography variant="body1">
+    <strong>Hàm lượng cao nhất tuần:</strong> {maxWeekly[0]} ({maxWeekly[1]?.toFixed(2)} cal)
+</Typography>
 
-      {/* Hiển thị tổng hợp dinh dưỡng */}
-      <Typography variant="body1" gutterBottom>
-        <strong>Tổng dinh dưỡng trong tuần:</strong>
-      </Typography>
-      <Typography variant="body2">
-        - Protein: {nutritionSummaryWeek.protein.toFixed(1)} g
-      </Typography>
-      <Typography variant="body2">
-        - Tinh bột (Carbs): {nutritionSummaryWeek.carbs.toFixed(1)} g
-      </Typography>
-      <Typography variant="body2">
-        - Chất béo (Fat): {nutritionSummaryWeek.fat.toFixed(1)} g
-      </Typography>
-      <Typography variant="body2">
-        - Canxi: {nutritionSummaryWeek.calcium.toFixed(1)} mg
-      </Typography>
+<Typography variant="body1">
+    <strong>Tháng:</strong>
+    <ul>
+        <li>Chất béo: {monthlyNutrition.fat?.toFixed(2)} cal</li>
+        <li>Tinh bột: {monthlyNutrition.carbs?.toFixed(2)} cal</li>
+        <li>Đạm: {monthlyNutrition.protein?.toFixed(2)} cal</li>
+        <li>Canxi: {monthlyNutrition.calcium?.toFixed(2)} mg</li>
+    </ul>
+</Typography>
+<Typography variant="body1">
+    <strong>Hàm lượng cao nhất tháng:</strong> {maxMonthly[0]} ({maxMonthly[1]?.toFixed(2)} cal)
+</Typography>
 
-      <Typography variant="body1" gutterBottom>
-        <strong>Tổng dinh dưỡng trong tháng:</strong>
-      </Typography>
-      <Typography variant="body2">
-        - Protein: {nutritionSummaryMonth.protein.toFixed(1)} g
-      </Typography>
-      <Typography variant="body2">
-        - Tinh bột (Carbs): {nutritionSummaryMonth.carbs.toFixed(1)} g
-      </Typography>
-      <Typography variant="body2">
-        - Chất béo (Fat): {nutritionSummaryMonth.fat.toFixed(1)} g
-      </Typography>
-      <Typography variant="body2">
-        - Canxi: {nutritionSummaryMonth.calcium.toFixed(1)} mg
-      </Typography>
+      {totalCalories < minCaloriesWeek ? (
+        <Alert severity="warning">
+          Bạn tiêu thụ ít hơn mức calo tối thiểu cần thiết trong tuần. Hãy chú ý bổ sung thêm dinh dưỡng!
+        </Alert>
+      ) : (
+        <Alert severity="success">
+          Bạn đã tiêu thụ đủ lượng calo tối thiểu trong tuần.
+        </Alert>
+      )}
 
-      {/* Hiển thị hàm lượng cao nhất */}
-      <Typography variant="body1" gutterBottom>
-        <strong>Thành phần cao nhất trong tuần:</strong> {highestNutrientWeek}
-      </Typography>
-      <Typography variant="body1" gutterBottom>
-        <strong>Thành phần cao nhất trong tháng:</strong> {highestNutrientMonth}
-      </Typography>
-
-      {/* Biểu đồ calo tuần */}
       {weekData.length > 0 ? (
+        
         <Chart
           type="bar"
-          series={[{ name: "Calo", data: weekData.map((day) => day.CALORIES) }]}
+          series={[
+            {
+              name: "Calo",
+              data: weekCalories,
+              color: "#FFA726", // Màu thanh biểu đồ
+            },
+          ]}
           height={350}
           options={{
             xaxis: {
-              categories: weekData.map((day) => day.DAY),
+              categories: categories,
               title: { text: "Ngày" },
             },
-            yaxis: { title: { text: "Calo" } },
-            chart: { toolbar: { show: false } },
-            plotOptions: {
-              bar: { borderRadius: 4, columnWidth: "50%" },
+            yaxis: {
+              title: { text: "Calo" },
             },
-            dataLabels: { enabled: false },
+            chart: {
+              toolbar: { show: false },
+            },
+            plotOptions: {
+              bar: {
+                borderRadius: 6,
+                columnWidth: "50%",
+              },
+            },
+            dataLabels: {
+              enabled: false,
+            },
           }}
         />
       ) : (
-        <Alert severity="info">Không có dữ liệu tuần này.</Alert>
+        <Alert severity="info">Không có dữ liệu calo tuần này.</Alert>
       )}
     </div>
   );
