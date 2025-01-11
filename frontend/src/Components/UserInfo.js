@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { Alert, Typography } from "@mui/material";
 import Chart from "react-apexcharts";
 import { useSnackbar } from "notistack";
-import { AppContext } from "../Context/AppContext";
+import { AppContext } from "../../Context/AppContext";
 
 const UserInfo = () => {
   const { enqueueSnackbar } = useSnackbar();
@@ -63,6 +63,29 @@ const UserInfo = () => {
       <Typography variant="h6" gutterBottom>
         Báo cáo calo tuần này
       </Typography>
+
+      {userInfo && (
+        <div>
+          <Typography variant="body1" gutterBottom>
+            <strong>Tên:</strong> {userInfo.USERNAME}
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            <strong>Tuổi:</strong> {userInfo.AGE}
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            <strong>Giới tính:</strong> {userInfo.GENDER === "male" ? "Nam" : "Nữ"}
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            <strong>Chiều cao:</strong> {userInfo.HEIGHT} cm
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            <strong>Cân nặng:</strong> {userInfo.WEIGHT} kg
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            <strong>Mức độ vận động:</strong> {userInfo.ACTIVITY}
+          </Typography>
+        </div>
+      )}
 
       <Typography variant="body1" gutterBottom>
         <strong>Tổng lượng calo tiêu thụ:</strong> {totalCalories.toFixed(1)} calo
