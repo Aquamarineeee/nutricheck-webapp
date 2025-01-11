@@ -1,85 +1,160 @@
 import React, { useContext } from "react";
-import { Typography, Alert } from "@mui/material";
-import { AppContext } from "../Context/AppContext";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import { Button, Alert } from "@mui/material";
+import { AppContext } from "../../Context/AppContext";
+import styles from "../../styles/blog.module.css";
 
-const UserInfo = () => {
-  const { userInfo, weekData, nutrients, maxCalories } = useContext(AppContext);
+// Hàm tính lượng calo hàng ngày và hàng tuần
+const calculateWeeklyCalories = (weight, height, age, gender, activityLevel) => {
+    let BMR = 0;
 
-  // Tính tổng lượng calo tiêu thụ trong tuần
-  const totalCalories = weekData.reduce((sum, item) => sum + item.CALORIES, 0);
-
-  // Tính lượng calo tối thiểu cần thiết dựa trên thông tin người dùng
-  const calculateMinWeeklyCalories = () => {
-    if (!userInfo || !userInfo.weight || !userInfo.height || !userInfo.age || !userInfo.activity) {
-      return null; // Thiếu thông tin để tính toán
+    // Tính BMR theo Mifflin-St Jeor Equation
+    if (gender === "male") {
+        BMR = 10 * weight + 6.25 * height - 5 * age + 5;
+    } else if (gender === "female") {
+        BMR = 10 * weight + 6.25 * height - 5 * age - 161;
     }
 
-    const { weight, height, age, gender, activity } = userInfo;
-
-    // Công thức Mifflin-St Jeor
-    const BMR =
-      gender === "male"
-        ? 10 * weight + 6.25 * height - 5 * age + 5
-        : 10 * weight + 6.25 * height - 5 * age - 161;
-
-    // Hệ số vận động
-    const activityFactor = {
-      sedentary: 1.2,
-      light: 1.375,
-      moderate: 1.55,
-      active: 1.725,
-      very_active: 1.9,
+    // Hệ số hoạt động
+    const activityFactors = {
+        sedentary: 1.2,    // Ít vận động
+        light: 1.375,      // Vận động nhẹ
+        moderate: 1.55,    // Vận động vừa
+        active: 1.725,     // Vận động nặng
+        veryActive: 1.9,   // Vận động rất nặng
     };
 
-    const activityMultiplier = activityFactor[activity] || 1.2;
-    const dailyCalories = BMR * activityMultiplier; // Lượng calo mỗi ngày
-    return dailyCalories * 7; // Lượng calo mỗi tuần
-  };
+    const dailyCalories = BMR * (activityFactors[activityLevel] || 1.2);
+    const weeklyCalories = dailyCalories * 7;
 
-  const minWeeklyCalories = calculateMinWeeklyCalories();
+    return {
+        dailyCalories: dailyCalories.toFixed(2),
+        weeklyCalories: weeklyCalories.toFixed(2),
+    };
+};
 
-  return (
-    <div>
-      <Typography variant="h6" gutterBottom>
-        Thông tin người dùng:
-      </Typography>
-      <Typography variant="body1" gutterBottom>
-        Tên: {userInfo?.username || "Không có thông tin"}
-      </Typography>
-      <Typography variant="body1" gutterBottom>
-        Cân nặng: {userInfo?.weight || "Không có thông tin"} kg
-      </Typography>
-      <Typography variant="body1" gutterBottom>
-        Chiều cao: {userInfo?.height || "Không có thông tin"} cm
-      </Typography>
-      <Typography variant="body1" gutterBottom>
-        Tuổi: {userInfo?.age || "Không có thông tin"}
-      </Typography>
-      <Typography variant="body1" gutterBottom>
-        Giới tính: {userInfo?.gender === "male" ? "Nam" : "Nữ"}
-      </Typography>
-      <Typography variant="body1" gutterBottom>
-        Mức độ vận động: {userInfo?.activity || "Không có thông tin"}
-      </Typography>
-      <Typography variant="h6" gutterBottom>
-        Tổng lượng calo tiêu thụ trong tuần: {totalCalories.toFixed(1)} calo
-      </Typography>
-      <Typography variant="h6" gutterBottom>
-        Lượng calo tối thiểu cần thiết trong tuần:{" "}
-        {minWeeklyCalories ? minWeeklyCalories.toFixed(1) : "Không xác định"} calo
-      </Typography>
-      {minWeeklyCalories && totalCalories < minWeeklyCalories ? (
-        <Alert severity="warning">
-          Bạn tiêu thụ ít hơn mức calo tối thiểu cần thiết trong tuần. Hãy bổ
-          sung thêm dinh dưỡng!
-        </Alert>
-      ) : (
-        <Alert severity="success">
-          Bạn đã tiêu thụ đủ lượng calo tối thiểu trong tuần.
-        </Alert>
-      )}
-    </div>
-  );
+const UserInfo = () => {
+    const { userInfo, handleLogout } = useContext(AppContext);
+
+    // Lấy thông tin người dùng
+    const { weight, height, age, gender, activity } = userInfo || {};
+
+    // Tính toán lượng calo
+    const caloriesInfo = weight && height && age && gender && activity
+        ? calculateWeeklyCalories(weight, height, age, gender, activity)
+        : null;
+
+    return (
+        <div
+            style={{
+                minHeight: "100vh",
+                backgroundColor: "var(--backgroundColor)",
+                paddingBottom: "5rem",
+            }}
+        >
+            <div
+                style={{
+                    backgroundColor: "var(--backgroundColor)",
+                    boxShadow: "rgba(0, 0, 0, 0.2) 0px 3px 3px 0px",
+                    display: "flex",
+                    justifyContent: "start",
+                }}
+            >
+                <h1
+                    style={{
+                        display: "inline-block",
+                        margin: "0 auto",
+                        padding: "0.8rem",
+                    }}
+                >
+                    Hồ sơ
+                </h1>
+            </div>
+            <Container maxWidth="sm" sx={{ pb: 3, mt: 10 }}>
+                <Box
+                    sx={{
+                        bgcolor: "white",
+                        p: 4,
+                        borderRadius: "16px",
+                        boxShadow: 10,
+                    }}
+                >
+                    {/* Thông tin cá nhân */}
+                    <div
+                        style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            justifyContent: "start",
+                            alignItems: "start",
+                        }}
+                    >
+                        <div>
+                            <img
+                                src="https://avatar.iran.liara.run/public/boy"
+                                alt="avatar"
+                                style={{ borderRadius: "50%", objectFit: "contain" }}
+                                className={styles.Img}
+                            />
+                        </div>
+                        <div>
+                            <h3>{userInfo?.USERNAME || "Tên người dùng"}</h3>
+                            <p>{userInfo?.EMAIL || "Email không xác định"}</p>
+                        </div>
+                    </div>
+
+                    {/* Thông tin thêm */}
+                    <div className={styles.detailsCon}>
+                        <h3>Tuổi</h3>
+                        <p>{userInfo?.AGE || "Không rõ"} Tuổi</p>
+                    </div>
+                    <div className={styles.detailsCon}>
+                        <h3>Giới tính</h3>
+                        <p>{userInfo?.GENDER === "female" ? "Nữ" : userInfo?.GENDER === "male" ? "Nam" : "Không rõ"}</p>
+                    </div>
+                    <div className={styles.detailsCon}>
+                        <h3>Chiều cao</h3>
+                        <p>{userInfo?.HEIGHT || "Không rõ"} cm</p>
+                    </div>
+                    <div className={styles.detailsCon}>
+                        <h3>Cân nặng</h3>
+                        <p>{userInfo?.WEIGHT || "Không rõ"} kg</p>
+                    </div>
+
+                    {/* Lượng calo tính toán */}
+                    {caloriesInfo ? (
+                        <Alert severity="info" style={{ marginTop: "20px" }}>
+                            <p>
+                                <b>Lượng calo cần thiết hàng ngày:</b> {caloriesInfo.dailyCalories} calo
+                            </p>
+                            <p>
+                                <b>Lượng calo cần thiết hàng tuần:</b> {caloriesInfo.weeklyCalories} calo
+                            </p>
+                        </Alert>
+                    ) : (
+                        <Alert severity="error" style={{ marginTop: "20px" }}>
+                            Không thể tính lượng calo do thiếu thông tin!
+                        </Alert>
+                    )}
+
+                    {/* Nút đăng xuất */}
+                    <div
+                        style={{
+                            paddingTop: "5rem",
+                            paddingLeft: "5rem",
+                            paddingRight: "5rem",
+                            display: "flex",
+                            justifyContent: "center",
+                        }}
+                    >
+                        <Button onClick={handleLogout} variant="contained" color="info">
+                            Đăng xuất
+                        </Button>
+                    </div>
+                </Box>
+            </Container>
+        </div>
+    );
 };
 
 export default UserInfo;
