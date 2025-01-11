@@ -121,7 +121,7 @@ const UserInfo = () => {
   // Tạo dữ liệu biểu đồ
   const categories = weekData.map((item) => item.DAY); // Tên các ngày trong tuần
   const weekCalories = weekData.map((item) => item.CALORIES); // Calo từng ngày
-
+  const { weeklyNutrition, monthlyNutrition, maxWeekly, maxMonthly } = useContext(AppContext);
   return (
     <div>
       <Typography variant="h6" gutterBottom>
@@ -150,32 +150,32 @@ const UserInfo = () => {
           </Typography>
         </div>
       )}
-<Typography variant="h6">Tổng lượng calo tiêu thụ</Typography>
-<Typography variant="body1">
-    <strong>Tuần:</strong>
-    <ul>
-        <li>Chất béo: {weeklyNutrition.fat?.toFixed(2)} cal</li>
-        <li>Tinh bột: {weeklyNutrition.carbs?.toFixed(2)} cal</li>
-        <li>Đạm: {weeklyNutrition.protein?.toFixed(2)} cal</li>
-        <li>Canxi: {weeklyNutrition.calcium?.toFixed(2)} mg</li>
-    </ul>
-</Typography>
-<Typography variant="body1">
-    <strong>Hàm lượng cao nhất tuần:</strong> {maxWeekly[0]} ({maxWeekly[1]?.toFixed(2)} cal)
-</Typography>
+        <Typography variant="h6">Tổng lượng calo tiêu thụ</Typography>
+            <Typography variant="body1">
+                <strong>Tuần:</strong>
+                <ul>
+                    <li>Chất béo: {weeklyNutrition.fat?.toFixed(2)} cal</li>
+                    <li>Tinh bột: {weeklyNutrition.carbs?.toFixed(2)} cal</li>
+                    <li>Đạm: {weeklyNutrition.protein?.toFixed(2)} cal</li>
+                    <li>Canxi: {weeklyNutrition.calcium?.toFixed(2)} mg</li>
+                </ul>
+            </Typography>
+            <Typography variant="body1">
+                <strong>Hàm lượng cao nhất tuần:</strong> {maxWeekly[0]} ({maxWeekly[1]?.toFixed(2)} cal)
+            </Typography>
 
-<Typography variant="body1">
-    <strong>Tháng:</strong>
-    <ul>
-        <li>Chất béo: {monthlyNutrition.fat?.toFixed(2)} cal</li>
-        <li>Tinh bột: {monthlyNutrition.carbs?.toFixed(2)} cal</li>
-        <li>Đạm: {monthlyNutrition.protein?.toFixed(2)} cal</li>
-        <li>Canxi: {monthlyNutrition.calcium?.toFixed(2)} mg</li>
-    </ul>
-</Typography>
-<Typography variant="body1">
-    <strong>Hàm lượng cao nhất tháng:</strong> {maxMonthly[0]} ({maxMonthly[1]?.toFixed(2)} cal)
-</Typography>
+            <Typography variant="body1">
+                <strong>Tháng:</strong>
+                <ul>
+                    <li>Chất béo: {monthlyNutrition.fat?.toFixed(2)} cal</li>
+                    <li>Tinh bột: {monthlyNutrition.carbs?.toFixed(2)} cal</li>
+                    <li>Đạm: {monthlyNutrition.protein?.toFixed(2)} cal</li>
+                    <li>Canxi: {monthlyNutrition.calcium?.toFixed(2)} mg</li>
+                </ul>
+            </Typography>
+            <Typography variant="body1">
+                <strong>Hàm lượng cao nhất tháng:</strong> {maxMonthly[0]} ({maxMonthly[1]?.toFixed(2)} cal)
+            </Typography>
 
       {totalCalories < minCaloriesWeek ? (
         <Alert severity="warning">

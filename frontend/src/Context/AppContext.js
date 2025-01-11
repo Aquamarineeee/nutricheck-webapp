@@ -129,47 +129,66 @@ export const AppContextProvider = ({ children }) => {
         }
         exec();
     }, []);
-    const [weeklyNutrition, setWeeklyNutrition] = useState({});
-    const [monthlyNutrition, setMonthlyNutrition] = useState({});
-    const [maxWeekly, setMaxWeekly] = useState({});
-    const [maxMonthly, setMaxMonthly] = useState({});
-
-    const calculateNutritionData = () => {
-        if (!weekData || weekData.length === 0) return;
-    
-        // Tính tổng calo cho tuần
-        const weeklyTotals = weekData.reduce(
-            (totals, day) => {
-                totals.fat += day.FAT * 9 || 0;
-                totals.carbs += day.CARBS * 4 || 0;
-                totals.protein += day.PROTEIN * 4 || 0;
-                totals.calcium += day.CALCIUM || 0; // Không tính calo cho Canxi
-                return totals;
-            },
-            { fat: 0, carbs: 0, protein: 0, calcium: 0 }
-        );
-    
-        // Tính tổng calo cho tháng (giả định 4 tuần)
-        const monthlyTotals = {
-            fat: weeklyTotals.fat * 4,
-            carbs: weeklyTotals.carbs * 4,
-            protein: weeklyTotals.protein * 4,
-            calcium: weeklyTotals.calcium * 4,
+    const [weeklyNutrition, setWeeklyNutrition] = useState({
+        fat: 0,
+        carbs: 0,
+        protein: 0,
+        calcium: 0,
+    });
+    const [monthlyNutrition, setMonthlyNutrition] = useState({
+        fat: 0,
+        carbs: 0,
+        protein: 0,
+        calcium: 0,
+    });
+    const [maxWeekly, setMaxWeekly] = useState(['', 0]); // [Tên dinh dưỡng, giá trị]
+    const [maxMonthly, setMaxMonthly] = useState(['', 0]);
+    const calculateNutritionData = (data) => {
+        let nutrition = {
+            fat: 0,
+            carbs: 0,
+            protein: 0,
+            calcium: 0,
         };
     
-        // Tìm hàm lượng cao nhất
-        const maxWeekly = Object.entries(weeklyTotals).reduce((max, entry) =>
-            entry[1] > max[1] ? entry : max
-        );
-        const maxMonthly = Object.entries(monthlyTotals).reduce((max, entry) =>
-            entry[1] > max[1] ? entry : max
+        data.forEach((day) => {
+            nutrition.fat += day.fat;
+            nutrition.carbs += day.carbs;
+            nutrition.protein += day.protein;
+            nutrition.calcium += day.calcium;
+        });
+    
+        // Tìm giá trị lớn nhất
+        const maxKey = Object.keys(nutrition).reduce((a, b) =>
+            nutrition[a] > nutrition[b] ? a : b
         );
     
-        setWeeklyNutrition(weeklyTotals);
-        setMonthlyNutrition(monthlyTotals);
-        setMaxWeekly(maxWeekly);
-        setMaxMonthly(maxMonthly);
+        return {
+            nutrition,
+            max: [maxKey, nutrition[maxKey]],
+        };
     };
+    
+    const fetchWeekAndMonthData = async () => {
+        try {
+            const weekRes = await API.lastWeekCalorieDetails();
+            const monthRes = await API.lastMonthCalorieDetails();
+    
+            const weekData = calculateNutritionData(weekRes.weekData);
+            const monthData = calculateNutritionData(monthRes.monthData);
+    
+            setWeeklyNutrition(weekData.nutrition);
+            setMaxWeekly(weekData.max);
+    
+            setMonthlyNutrition(monthData.nutrition);
+            setMaxMonthly(monthData.max);
+        } catch (error) {
+            console.error('Lỗi khi lấy dữ liệu tuần và tháng:', error);
+        }
+    };
+    useEffect(() => {
+        fetchWeekAndMonthData();
+    }, []);
     return (
         <AppContext.Provider
             value={{
@@ -192,6 +211,7 @@ export const AppContextProvider = ({ children }) => {
                 monthlyNutrition,
                 maxWeekly,
                 maxMonthly,
+                fetchWeekAndMonthData,
             }}
         >
             <FullPageLoading isLoading={isLoading} />
