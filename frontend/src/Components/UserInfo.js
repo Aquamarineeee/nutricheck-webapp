@@ -8,7 +8,9 @@ const UserInfo = () => {
   const { enqueueSnackbar } = useSnackbar();
   const { userInfo, weekData, fetchWeekData } = useContext(AppContext);
   const [totalCalories, setTotalCalories] = useState(0);
-  const [minCalories, setMinCalories] = useState(0);
+  const [minCaloriesWeek, setMinCaloriesWeek] = useState(0);
+  const [minCaloriesMonth, setMinCaloriesMonth] = useState(0);
+  const [totalMonthlyCalories, setTotalMonthlyCalories] = useState(0);
 
   useEffect(() => {
     const calculateMinCalories = () => {
@@ -38,7 +40,9 @@ const UserInfo = () => {
 
       const dailyCalories = BMR * (activityFactor[activity] || 1.2); // Lượng calo mỗi ngày
       const weeklyCalories = dailyCalories * 7; // Lượng calo mỗi tuần
-      setMinCalories(weeklyCalories);
+      const monthlyCalories = dailyCalories * 30; // Lượng calo mỗi tháng
+      setMinCaloriesWeek(weeklyCalories);
+      setMinCaloriesMonth(monthlyCalories);
     };
 
     calculateMinCalories();
@@ -46,8 +50,12 @@ const UserInfo = () => {
 
   useEffect(() => {
     const calculateTotalCalories = () => {
-      const total = weekData.reduce((sum, item) => sum + item.CALORIES, 0);
-      setTotalCalories(total);
+      const totalWeek = weekData.reduce((sum, item) => sum + item.CALORIES, 0);
+      setTotalCalories(totalWeek);
+
+      // Giả sử tuần dữ liệu đại diện, nhân tổng calo tuần với 4 để ước tính tháng
+      const totalMonth = totalWeek * 4;
+      setTotalMonthlyCalories(totalMonth);
     };
 
     fetchWeekData();
@@ -88,13 +96,19 @@ const UserInfo = () => {
       )}
 
       <Typography variant="body1" gutterBottom>
-        <strong>Tổng lượng calo tiêu thụ:</strong> {totalCalories.toFixed(1)} calo
+        <strong>Tổng lượng calo tiêu thụ (tuần):</strong> {totalCalories.toFixed(1)} calo
       </Typography>
       <Typography variant="body1" gutterBottom>
-        <strong>Lượng calo tối thiểu cần thiết trong tuần:</strong> {minCalories.toFixed(1)} calo
+        <strong>Lượng calo tối thiểu cần thiết trong tuần:</strong> {minCaloriesWeek.toFixed(1)} calo
+      </Typography>
+      <Typography variant="body1" gutterBottom>
+        <strong>Tổng lượng calo tiêu thụ (tháng):</strong> {totalMonthlyCalories.toFixed(1)} calo
+      </Typography>
+      <Typography variant="body1" gutterBottom>
+        <strong>Lượng calo tối thiểu cần thiết trong tháng:</strong> {minCaloriesMonth.toFixed(1)} calo
       </Typography>
 
-      {totalCalories < minCalories ? (
+      {totalCalories < minCaloriesWeek ? (
         <Alert severity="warning">
           Bạn tiêu thụ ít hơn mức calo tối thiểu cần thiết trong tuần. Hãy chú ý bổ sung thêm dinh dưỡng!
         </Alert>
