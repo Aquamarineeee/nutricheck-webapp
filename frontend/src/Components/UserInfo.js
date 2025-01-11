@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Typography, Alert } from "@mui/material";
-import { AppContext } from "../context/AppContext";
+import { AppContext } from "../Context/AppContext";
 
 const UserInfo = () => {
   const { userInfo, weekData, nutrients, maxCalories } = useContext(AppContext);
