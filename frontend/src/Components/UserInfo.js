@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import { Button, Alert } from "@mui/material";
 import { AppContext } from "../Context/AppContext";
-import styles from "../../styles/blog.module.css";
+import styles from "../styles/blog.module.css";
 
 // Hàm tính lượng calo hàng ngày và hàng tuần
 const calculateWeeklyCalories = (weight, height, age, gender, activityLevel) => {
