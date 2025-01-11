@@ -1,85 +1,95 @@
 import React, { useEffect, useState } from "react";
-import { Alert, Typography } from "@mui/material";
-import Chart from "react-apexcharts";
-import { useSnackbar } from "notistack";
-import { API } from "../services/apis"; // Đường dẫn có thể cần điều chỉnh
+import { Typography, Alert } from "@mui/material";
+import { API } from "../services/apis";
 
 const UserInfo = () => {
-  const { enqueueSnackbar } = useSnackbar();
-  const [weekData, setWeekData] = useState([]);
+  const [user, setUser] = useState(null);
   const [totalCalories, setTotalCalories] = useState(0);
+  const [minCalories, setMinCalories] = useState(0);
 
   useEffect(() => {
-    const fetchWeekData = async () => {
+    const fetchUserInfo = async () => {
       try {
-        // Lấy dữ liệu calo hàng tuần từ API
-        const response = await API.lastWeekCalorieDetails();
-        const data = response.weekData || [];
+        // Lấy thông tin người dùng
+        const userInfo = await API.userInfo();
+        setUser(userInfo);
 
-        setWeekData(data);
-
-        // Tính tổng lượng calo
-        const total = data.reduce((sum, item) => sum + item.CALORIES, 0);
+        // Lấy dữ liệu calo hàng tuần
+        const weekResponse = await API.lastWeekCalorieDetails();
+        const weekData = weekResponse.weekData || [];
+        const total = weekData.reduce((sum, item) => sum + item.CALORIES, 0);
         setTotalCalories(total);
+
+        // Tính lượng calo tối thiểu theo công thức BMR
+        const { weight, height, age, gender, activity } = userInfo;
+
+        // Công thức Mifflin-St Jeor
+        const BMR =
+          gender === "male"
+            ? 10 * weight + 6.25 * height - 5 * age + 5
+            : 10 * weight + 6.25 * height - 5 * age - 161;
+
+        // Hệ số vận động
+        const activityFactor = {
+          sedentary: 1.2, // Không vận động
+          light: 1.375, // Vận động nhẹ
+          moderate: 1.55, // Vận động trung bình
+          active: 1.725, // Vận động cao
+          very_active: 1.9, // Vận động rất cao
+        };
+
+        const dailyCalories = BMR * (activityFactor[activity] || 1.2); // Lượng calo mỗi ngày
+        const weeklyCalories = dailyCalories * 7; // Lượng calo mỗi tuần
+        setMinCalories(weeklyCalories);
       } catch (error) {
-        enqueueSnackbar("Không thể tải dữ liệu calo hàng tuần.", {
-          variant: "error",
-        });
+        console.error("Lỗi khi lấy dữ liệu người dùng:", error);
       }
     };
 
-    fetchWeekData();
-  }, [enqueueSnackbar]);
+    fetchUserInfo();
+  }, []);
 
-  // Tạo dữ liệu biểu đồ
-  const categories = weekData.map((item) => item.DAY); // Tên các ngày trong tuần
-  const weekCalories = weekData.map((item) => item.CALORIES); // Calo từng ngày
+  if (!user) {
+    return <Alert severity="info">Đang tải thông tin người dùng...</Alert>;
+  }
 
   return (
     <div>
       <Typography variant="h6" gutterBottom>
-        Báo cáo calo tuần này
+        Thông tin người dùng:
       </Typography>
-
       <Typography variant="body1" gutterBottom>
-        <strong>Tổng lượng calo tiêu thụ:</strong> {totalCalories.toFixed(1)} calo
+        Tên: {user.username}
       </Typography>
-
-      {weekData.length > 0 ? (
-        <Chart
-          type="bar"
-          series={[
-            {
-              name: "Calo",
-              data: weekCalories,
-              color: "#FFA726", // Màu thanh biểu đồ
-            },
-          ]}
-          height={350}
-          options={{
-            xaxis: {
-              categories: categories,
-              title: { text: "Ngày" },
-            },
-            yaxis: {
-              title: { text: "Calo" },
-            },
-            chart: {
-              toolbar: { show: false },
-            },
-            plotOptions: {
-              bar: {
-                borderRadius: 6,
-                columnWidth: "50%",
-              },
-            },
-            dataLabels: {
-              enabled: false,
-            },
-          }}
-        />
+      <Typography variant="body1" gutterBottom>
+        Cân nặng: {user.weight} kg
+      </Typography>
+      <Typography variant="body1" gutterBottom>
+        Chiều cao: {user.height} cm
+      </Typography>
+      <Typography variant="body1" gutterBottom>
+        Tuổi: {user.age}
+      </Typography>
+      <Typography variant="body1" gutterBottom>
+        Giới tính: {user.gender === "male" ? "Nam" : "Nữ"}
+      </Typography>
+      <Typography variant="body1" gutterBottom>
+        Mức độ vận động: {user.activity}
+      </Typography>
+      <Typography variant="h6" gutterBottom>
+        Tổng lượng calo tiêu thụ trong tuần: {totalCalories.toFixed(1)} calo
+        <br />
+        Lượng calo tối thiểu cần thiết trong tuần: {minCalories.toFixed(1)} calo
+      </Typography>
+      {totalCalories < minCalories ? (
+        <Alert severity="warning">
+          Bạn tiêu thụ ít hơn mức calo tối thiểu cần thiết trong tuần. Hãy chú ý
+          bổ sung thêm dinh dưỡng!
+        </Alert>
       ) : (
-        <Alert severity="info">Không có dữ liệu calo tuần này.</Alert>
+        <Alert severity="success">
+          Bạn đã tiêu thụ đủ lượng calo tối thiểu trong tuần.
+        </Alert>
       )}
     </div>
   );
