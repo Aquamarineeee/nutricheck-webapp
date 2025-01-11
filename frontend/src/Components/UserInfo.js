@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Typography, Alert } from "@mui/material";
 import { API } from "../services/apis";
-import { AppContext } from "../../Context/AppContext";
+import { AppContext } from "../Context/AppContext";
 
 const UserInfo = () => {
   const [user, setUser] = useState(null);
