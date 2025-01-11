@@ -1,49 +1,48 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { Alert, Typography } from "@mui/material";
-import { useSnackbar } from "notistack";
 import Chart from "react-apexcharts";
+import { useSnackbar } from "notistack";
+import { API } from "../services/apis"; // Đường dẫn có thể cần điều chỉnh
 
 const UserInfo = () => {
   const { enqueueSnackbar } = useSnackbar();
-  const [weekData, setWeekData] = useState([]); // Dữ liệu tuần
-  const [totalCalories, setTotalCalories] = useState(0); // Tổng calo tiêu thụ trong tuần
+  const [weekData, setWeekData] = useState([]);
+  const [totalCalories, setTotalCalories] = useState(0);
 
   useEffect(() => {
     const fetchWeekData = async () => {
       try {
-        const response = await axios.get("/api/food/last-week-nutrition-details", {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
+        // Lấy dữ liệu calo hàng tuần từ API
+        const response = await API.lastWeekCalorieDetails();
+        const data = response.weekData || [];
 
-        const data = response.data.weekData || [];
         setWeekData(data);
 
-        // Tính tổng calo trong tuần
-        const total = data.reduce((sum, day) => sum + day.CALORIES, 0);
+        // Tính tổng lượng calo
+        const total = data.reduce((sum, item) => sum + item.CALORIES, 0);
         setTotalCalories(total);
       } catch (error) {
-        enqueueSnackbar("Không thể tải dữ liệu tuần.", { variant: "error" });
+        enqueueSnackbar("Không thể tải dữ liệu calo hàng tuần.", {
+          variant: "error",
+        });
       }
     };
 
     fetchWeekData();
   }, [enqueueSnackbar]);
 
-  // Dữ liệu cho biểu đồ
-  const categories = weekData.map((item) => item.DAY); // Tên các ngày
-  const weekCalories = weekData.map((item) => item.CALORIES); // Lượng calo từng ngày
+  // Tạo dữ liệu biểu đồ
+  const categories = weekData.map((item) => item.DAY); // Tên các ngày trong tuần
+  const weekCalories = weekData.map((item) => item.CALORIES); // Calo từng ngày
 
   return (
     <div>
-      <Typography variant="h5" gutterBottom>
-        Báo cáo Calo hàng tuần
+      <Typography variant="h6" gutterBottom>
+        Báo cáo calo tuần này
       </Typography>
 
-      <Typography variant="subtitle1">
-        <strong>Tổng calo tiêu thụ:</strong> {totalCalories.toFixed(1)} calo
+      <Typography variant="body1" gutterBottom>
+        <strong>Tổng lượng calo tiêu thụ:</strong> {totalCalories.toFixed(1)} calo
       </Typography>
 
       {weekData.length > 0 ? (
@@ -53,20 +52,24 @@ const UserInfo = () => {
             {
               name: "Calo",
               data: weekCalories,
+              color: "#FFA726", // Màu thanh biểu đồ
             },
           ]}
-          height={300}
+          height={350}
           options={{
             xaxis: {
               categories: categories,
+              title: { text: "Ngày" },
             },
             yaxis: {
-              title: {
-                text: "Calo",
-              },
+              title: { text: "Calo" },
+            },
+            chart: {
+              toolbar: { show: false },
             },
             plotOptions: {
               bar: {
+                borderRadius: 6,
                 columnWidth: "50%",
               },
             },
@@ -76,7 +79,7 @@ const UserInfo = () => {
           }}
         />
       ) : (
-        <Alert severity="info">Không có dữ liệu tuần này.</Alert>
+        <Alert severity="info">Không có dữ liệu calo tuần này.</Alert>
       )}
     </div>
   );
