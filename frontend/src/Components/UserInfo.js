@@ -17,6 +17,8 @@ const UserInfo = () => {
     fat: 0,
     calcium: 0,
   });
+  const [dailyTopNutrients, setDailyTopNutrients] = useState([]);
+  const [weeklyTopNutrients, setWeeklyTopNutrients] = useState([]);
 
   useEffect(() => {
     const calculateMinCalories = () => {
@@ -77,8 +79,38 @@ const UserInfo = () => {
       });
     };
 
+    const findTopNutrients = () => {
+      // Lọc thành phần dinh dưỡng cao nhất trong ngày
+      const dailyTop = weekData.map((day) => {
+        const nutrients = [
+          { name: "Protein", value: day.PROTEIN || 0 },
+          { name: "Carbs", value: day.CARBS || 0 },
+          { name: "Fat", value: day.FAT || 0 },
+          { name: "Calcium", value: day.CALCIUM || 0 },
+        ];
+        nutrients.sort((a, b) => b.value - a.value);
+        return { day: day.DAY, topNutrient: nutrients[0] };
+      });
+
+      setDailyTopNutrients(dailyTop);
+
+      // Tổng hợp thành phần dinh dưỡng trong tuần
+      const weeklyTotal = {
+        protein: weekData.reduce((sum, item) => sum + (item.PROTEIN || 0), 0),
+        carbs: weekData.reduce((sum, item) => sum + (item.CARBS || 0), 0),
+        fat: weekData.reduce((sum, item) => sum + (item.FAT || 0), 0),
+        calcium: weekData.reduce((sum, item) => sum + (item.CALCIUM || 0), 0),
+      };
+      const weeklySorted = Object.entries(weeklyTotal)
+        .map(([key, value]) => ({ name: key, value }))
+        .sort((a, b) => b.value - a.value);
+
+      setWeeklyTopNutrients(weeklySorted);
+    };
+
     fetchWeekData();
     calculateTotalCalories();
+    findTopNutrients();
   }, [weekData, fetchWeekData]);
 
   // Tạo dữ liệu biểu đồ
@@ -143,6 +175,24 @@ const UserInfo = () => {
         - Canxi (Calcium): {nutritionSummary.calcium.toFixed(1)} mg
       </Typography>
 
+      <Typography variant="body1" gutterBottom>
+        <strong>Thành phần dinh dưỡng nổi bật hàng ngày:</strong>
+      </Typography>
+      {dailyTopNutrients.map((item, index) => (
+        <Typography key={index} variant="body2" gutterBottom>
+          - {item.day}: {item.topNutrient.name} ({item.topNutrient.value.toFixed(1)})
+        </Typography>
+      ))}
+
+      <Typography variant="body1" gutterBottom>
+        <strong>Thành phần dinh dưỡng tiêu thụ nhiều nhất trong tuần:</strong>
+      </Typography>
+      {weeklyTopNutrients.map((item, index) => (
+        <Typography key={index} variant="body2" gutterBottom>
+          - {item.name}: {item.value.toFixed(1)}
+        </Typography>
+      ))}
+
       {totalCalories < minCaloriesWeek ? (
         <Alert severity="warning">
           Bạn tiêu thụ ít hơn mức calo tối thiểu cần thiết trong tuần. Hãy chú ý bổ sung thêm dinh dưỡng!
@@ -154,6 +204,7 @@ const UserInfo = () => {
       )}
 
       {weekData.length > 0 ? (
+        
         <Chart
           type="bar"
           series={[
