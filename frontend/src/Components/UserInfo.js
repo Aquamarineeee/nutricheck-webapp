@@ -3,6 +3,7 @@ import { Alert, Typography } from "@mui/material";
 import Chart from "react-apexcharts";
 import { useSnackbar } from "notistack";
 import { AppContext } from "../Context/AppContext";
+import { API } from '../services/apis';
 
 const UserInfo = () => {
   const { enqueueSnackbar } = useSnackbar();
@@ -65,7 +66,31 @@ const UserInfo = () => {
   // Tạo dữ liệu biểu đồ
   const categories = weekData.map((item) => item.DAY); // Tên các ngày trong tuần
   const weekCalories = weekData.map((item) => item.CALORIES); // Calo từng ngày
-
+  const [totalNutritionWeek, setTotalNutritionWeek] = useState({});
+  const [totalNutritionMonth, setTotalNutritionMonth] = useState({});
+  const [highestNutritionWeek, setHighestNutritionWeek] = useState('');
+  const [highestNutritionMonth, setHighestNutritionMonth] = useState('');
+  useEffect(() => {
+    const fetchNutritionData = async () => {
+      try {
+        const weekData = await API.totalNutrition({ user_id: userInfo.USER_ID, period: "week" });
+        const monthData = await API.totalNutrition({ user_id: userInfo.USER_ID, period: "month" });
+  
+        setTotalNutritionWeek(weekData.total_nutrition);
+        setHighestNutritionWeek(weekData.highest_nutrition);
+  
+        setTotalNutritionMonth(monthData.total_nutrition);
+        setHighestNutritionMonth(monthData.highest_nutrition);
+      } catch (error) {
+        enqueueSnackbar("Lỗi khi tải dữ liệu dinh dưỡng", { variant: "error" });
+      }
+    };
+  
+    if (userInfo) {
+      fetchNutritionData();
+    }
+  }, [userInfo, enqueueSnackbar]);
+  
   return (
     <div>
       <Typography variant="h6" gutterBottom>
@@ -117,6 +142,39 @@ const UserInfo = () => {
           Bạn đã tiêu thụ đủ lượng calo tối thiểu trong tuần.
         </Alert>
       )}
+      <Typography variant="body1" gutterBottom>
+        <strong>Tổng đạm tiêu thụ trong tuần:</strong> {totalNutritionWeek.proteins?.toFixed(1) || 0} g
+      </Typography>
+      <Typography variant="body1" gutterBottom>
+        <strong>Tổng chất béo tiêu thụ trong tuần:</strong> {totalNutritionWeek.fat?.toFixed(1) || 0} g
+      </Typography>
+      <Typography variant="body1" gutterBottom>
+        <strong>Tổng tinh bột tiêu thụ trong tuần:</strong> {totalNutritionWeek.carbohydrates?.toFixed(1) || 0} g
+      </Typography>
+      <Typography variant="body1" gutterBottom>
+        <strong>Tổng canxi tiêu thụ trong tuần:</strong> {totalNutritionWeek.calcium?.toFixed(1) || 0} mg
+      </Typography>
+
+      <Typography variant="body1" gutterBottom>
+        <strong>Thành phần dinh dưỡng tiêu thụ cao nhất trong tuần:</strong> {highestNutritionWeek}
+      </Typography>
+
+      <Typography variant="body1" gutterBottom>
+        <strong>Tổng đạm tiêu thụ trong tháng:</strong> {totalNutritionMonth.proteins?.toFixed(1) || 0} g
+      </Typography>
+      <Typography variant="body1" gutterBottom>
+        <strong>Tổng chất béo tiêu thụ trong tháng:</strong> {totalNutritionMonth.fat?.toFixed(1) || 0} g
+      </Typography>
+      <Typography variant="body1" gutterBottom>
+        <strong>Tổng tinh bột tiêu thụ trong tháng:</strong> {totalNutritionMonth.carbohydrates?.toFixed(1) || 0} g
+      </Typography>
+      <Typography variant="body1" gutterBottom>
+        <strong>Tổng canxi tiêu thụ trong tháng:</strong> {totalNutritionMonth.calcium?.toFixed(1) || 0} mg
+      </Typography>
+
+      <Typography variant="body1" gutterBottom>
+        <strong>Thành phần dinh dưỡng tiêu thụ cao nhất trong tháng:</strong> {highestNutritionMonth}
+      </Typography>
 
       {weekData.length > 0 ? (
         <Chart

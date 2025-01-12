@@ -502,7 +502,7 @@ const ScannedImg = () => {
         "rosemary": 10,
         "rutabaga": 100,
         "sage": 10,
-        "salad/ rau xào/ rau luộc": 150,
+        "salad": 150,
         "salami": 50,
         "salmon": 200,
         "salsa": 100,

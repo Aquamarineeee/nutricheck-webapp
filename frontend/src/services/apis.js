@@ -81,6 +81,18 @@ const consumptionOn = async (date) => {
         )
     ).data;
 };
+
+const totalNutrition = async ({ user_id, period = "week" }) => {
+    return (
+        await Axios.get('/food/total-nutrition', {
+            params: {
+                user_id,
+                period,
+            },
+        })
+    ).data;
+};
+
 export const API = {
     userInfo,
     login,
@@ -93,4 +105,5 @@ export const API = {
     todaysConsumption,
     lastWeekCalorieDetails,
     consumptionOn,
+    totalNutrition,
 };
