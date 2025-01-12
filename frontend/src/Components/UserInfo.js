@@ -3,9 +3,6 @@ import { Alert, Typography } from "@mui/material";
 import Chart from "react-apexcharts";
 import { useSnackbar } from "notistack";
 import { AppContext } from "../Context/AppContext";
-import { API } from "../services/apis";
-import { Button } from "@mui/material";
-
 
 const UserInfo = () => {
   const { enqueueSnackbar } = useSnackbar();
@@ -14,30 +11,7 @@ const UserInfo = () => {
   const [minCaloriesWeek, setMinCaloriesWeek] = useState(0);
   const [minCaloriesMonth, setMinCaloriesMonth] = useState(0);
   const [totalMonthlyCalories, setTotalMonthlyCalories] = useState(0);
-  const [weekNutrition, setWeekNutrition] = useState(null); // Dữ liệu dinh dưỡng tuần
-  const [monthNutrition, setMonthNutrition] = useState(null); // Dữ liệu dinh dưỡng tháng
-  const [activePeriod, setActivePeriod] = useState("week"); // Giai đoạn hiển thị: "week" hoặc "month"
 
-  useEffect(() => {
-    const fetchNutritionData = async (period) => {
-      try {
-        if (!userInfo?.USER_ID) {
-          enqueueSnackbar("Không tìm thấy ID người dùng.", { variant: "warning" });
-          return;
-        }
-        const data = await totalNutrition({ user_id: userInfo.USER_ID, period });
-        if (period === "week") setWeekNutrition(data);
-        if (period === "month") setMonthNutrition(data);
-      } catch (error) {
-        enqueueSnackbar("Không thể lấy dữ liệu dinh dưỡng.", { variant: "error" });
-      }
-    };
-        // Gọi API cho cả tuần và tháng
-        fetchNutritionData("week");
-        fetchNutritionData("month");
-      }, [userInfo, enqueueSnackbar]);
-
-  const activeNutrition = activePeriod === "week" ? weekNutrition : monthNutrition;
   useEffect(() => {
     const calculateMinCalories = () => {
       if (!userInfo || !userInfo.WEIGHT || !userInfo.HEIGHT || !userInfo.AGE || !userInfo.GENDER || !userInfo.ACTIVITY) {
@@ -143,60 +117,6 @@ const UserInfo = () => {
           Bạn đã tiêu thụ đủ lượng calo tối thiểu trong tuần.
         </Alert>
       )}
-      <Button
-        variant={activePeriod === "week" ? "contained" : "outlined"}
-        onClick={() => setActivePeriod("week")}
-      >
-        Tuần này
-      </Button>
-      <Button
-        variant={activePeriod === "month" ? "contained" : "outlined"}
-        onClick={() => setActivePeriod("month")}
-      >
-        Tháng này
-      </Button>
-
-      {activeNutrition ? (
-        <div>
-          <Typography variant="body1">
-            <strong>Tổng lượng Protein:</strong> {activeNutrition.total_nutrition.proteins.toFixed(1)} g
-          </Typography>
-          <Typography variant="body1">
-            <strong>Tổng lượng Chất béo:</strong> {activeNutrition.total_nutrition.fat.toFixed(1)} g
-          </Typography>
-          <Typography variant="body1">
-            <strong>Tổng lượng Tinh bột:</strong> {activeNutrition.total_nutrition.carbohydrates.toFixed(1)} g
-          </Typography>
-          <Typography variant="body1">
-            <strong>Tổng lượng Canxi:</strong> {activeNutrition.total_nutrition.calcium.toFixed(1)} mg
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            <strong>Mức tối thiểu cần thiết:</strong>
-          </Typography>
-          <ul>
-            <li>Protein: {activeNutrition.minimum_requirements.proteins.toFixed(1)} g</li>
-            <li>Chất béo: {activeNutrition.minimum_requirements.fat.toFixed(1)} g</li>
-            <li>Tinh bột: {activeNutrition.minimum_requirements.carbohydrates.toFixed(1)} g</li>
-            <li>Canxi: {activeNutrition.minimum_requirements.calcium.toFixed(1)} mg</li>
-          </ul>
-          <Typography variant="body1" gutterBottom>
-            <strong>Chênh lệch so với mức tối thiểu:</strong>
-          </Typography>
-          <ul>
-            <li>Protein: {activeNutrition.differences.proteins.toFixed(1)} g</li>
-            <li>Chất béo: {activeNutrition.differences.fat.toFixed(1)} g</li>
-            <li>Tinh bột: {activeNutrition.differences.carbohydrates.toFixed(1)} g</li>
-            <li>Canxi: {activeNutrition.differences.calcium.toFixed(1)} mg</li>
-          </ul>
-        </div>
-      ) : (
-        <Alert severity="info">Đang tải dữ liệu dinh dưỡng...</Alert>
-      )}
-
-      {activeNutrition && activeNutrition.differences.proteins < 0 && (
-        <Alert severity="warning">
-          Bạn chưa đạt mức tiêu thụ tối thiểu một số thành phần dinh dưỡng trong giai đoạn này!
-        </Alert> )}
 
       {weekData.length > 0 ? (
         <Chart
