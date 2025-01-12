@@ -1,8 +1,8 @@
-// import React, { useState, useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
-// import About from "./About";
-// import Services from "./Services";
-// import styles from "../../styles/home.module.css";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import About from "./About";
+import Services from "./Services";
+import styles from "../../styles/home.module.css";
 
 // export default function Home() {
 //   const navigate = useNavigate();
@@ -89,8 +89,7 @@
 //     </div>
 //   );
 // }
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+
 
 export default function Home() {
   const navigate = useNavigate();
