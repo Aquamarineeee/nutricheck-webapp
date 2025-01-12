@@ -41,6 +41,7 @@ export default function Home() {
       {!isCaptchaVerified ? (
         <div className={styles.captchaWrapper}>
           <div className={styles.captchaContainer}>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/RecaptchaLogo.svg/1200px-RecaptchaLogo.svg.png" alt="reCAPTCHA logo" className={styles.recaptchaLogo} />
             <div className={styles.recaptcha}>
               {/* Render reCAPTCHA widget here */}
             </div>
