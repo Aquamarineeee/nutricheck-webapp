@@ -16,7 +16,6 @@ import Blog01 from "./pages/Blogs/Blog01";
 import Blog055 from "./pages/Blogs/Blog055";
 import Blog10 from "./pages/Blogs/Blog10";
 import Blog16 from "./pages/Blogs/Blog16";
-import GoogleCaptcha from "./pages/Home/captcha";
 const bottomNavbarPaths = [
   "/dashboard",
   "/reports",
@@ -44,7 +43,6 @@ function App() {
         <Route path="/blog/suggest" element={<Blog055 />} />
         <Route path="/blog/quest" element={<Blog10 />} />
         <Route path="/blog/excercise" element={<Blog16 />} />
-        <Route path= "/captcha" element = {<GoogleCaptcha/>} />
 
         <Route path="/UserSignup" element={<UserSignup />} />
         <Route path="/userInitialForm" element={<UserInitialForm />} />
