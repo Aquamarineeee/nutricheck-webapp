@@ -189,6 +189,38 @@ export const AppContextProvider = ({ children }) => {
     useEffect(() => {
         fetchWeekAndMonthData();
     }, []);
+
+    const initialState = {
+        nutrients: {
+          calorie: 0,
+          protiens: 0,
+          carbs: 0,
+          fats: 0,
+          calcium: 0,
+          maxprotiens: 50,
+          maxcarbs: 300,
+          maxfats: 70,
+          maxcalcium: 1000,
+          week: {
+            calories: 0,
+            protiens: 0,
+            carbs: 0,
+            fats: 0,
+            calcium: 0,
+            highest: 0,
+          },
+          month: {
+            calories: 0,
+            protiens: 0,
+            carbs: 0,
+            fats: 0,
+            calcium: 0,
+            highest: 0,
+          },
+        },
+        // ...
+      };
+          
     return (
         <AppContext.Provider
             value={{
@@ -212,6 +244,7 @@ export const AppContextProvider = ({ children }) => {
                 maxWeekly,
                 maxMonthly,
                 fetchWeekAndMonthData,
+                
             }}
         >
             <FullPageLoading isLoading={isLoading} />
