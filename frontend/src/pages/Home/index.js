@@ -19,7 +19,7 @@ export default function Home() {
         <div className={styles.captchaWrapper}>
           <h3>Vui lòng hoàn thành CAPTCHA để tiếp tục</h3>
           <ReCAPTCHA
-            sitekey="6LegfbUqAAAAAGt7-789XtAswF40MQk22RsqTnU0" // Thay YOUR_GOOGLE_RECAPTCHA_SITE_KEY bằng khóa site từ Google reCAPTCHA
+            sitekey="6LcifrUqAAAAALR4ZBp2feXBAkvt37KywhaEXIkP" // Thay YOUR_GOOGLE_RECAPTCHA_SITE_KEY bằng khóa site từ Google reCAPTCHA
             onChange={handleCaptchaSuccess}
           />
         </div>
