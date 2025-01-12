@@ -25,8 +25,7 @@ const bottomNavbarPaths = [
   "/blog/diet",
   "/blog/suggest",
   "/blog/quest",
-  "/blog/excercice",
-  "/captcha"
+  "/blog/excercice"
 ];
 function App() {
   const location = useLocation();
