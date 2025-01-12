@@ -11,6 +11,47 @@ const UserInfo = () => {
   const [minCaloriesWeek, setMinCaloriesWeek] = useState(0);
   const [minCaloriesMonth, setMinCaloriesMonth] = useState(0);
   const [totalMonthlyCalories, setTotalMonthlyCalories] = useState(0);
+  const [mealSuggestions, setMealSuggestions] = useState([]);
+
+  // Cập nhật gợi ý món ăn
+  const generateMealSuggestions = () => {
+    if (!userInfo) return;
+
+    const { GOAL } = userInfo; // Giả sử 'GOAL' là mục tiêu dinh dưỡng của người dùng
+
+    let suggestions = [];
+    if (GOAL === "increase_weight") {
+      suggestions = [
+        "Cháo yến mạch với quả bơ và hạt chia",
+        "Salad bơ, hạt điều, và thịt gà",
+        "Sinh tố chuối, sữa chua và hạt lanh",
+        "Cơm chiên với trứng, thịt và rau củ"
+      ];
+    } else if (GOAL === "lose_weight") {
+      suggestions = [
+        "Salad rau xanh với ức gà nướng",
+        "Súp cà rốt, khoai lang và thịt bò",
+        "Sữa chua không đường với quả mọng",
+        "Trứng luộc và rau cải xào"
+      ];
+    } else if (GOAL === "maintain_weight") {
+      suggestions = [
+        "Cơm gạo lứt với cá hồi và rau cải",
+        "Bánh mì nguyên cám với trứng và bơ",
+        "Sữa đậu nành và ngũ cốc",
+        "Mỳ ống với thịt gà và rau củ"
+      ];
+    } else if (GOAL === "improve_health") {
+      suggestions = [
+        "Cháo yến mạch với trái cây tươi",
+        "Sữa chua với hạt chia và quả mâm xôi",
+        "Salad rau quả với dầu ô liu",
+        "Sinh tố bơ và rau xanh"
+      ];
+    }
+
+    setMealSuggestions(suggestions);
+  };
 
   useEffect(() => {
     const calculateMinCalories = () => {
@@ -60,11 +101,8 @@ const UserInfo = () => {
 
     fetchWeekData();
     calculateTotalCalories();
-  }, [weekData, fetchWeekData]);
-
-  // Tạo dữ liệu biểu đồ
-  const categories = weekData.map((item) => item.DAY); // Tên các ngày trong tuần
-  const weekCalories = weekData.map((item) => item.CALORIES); // Calo từng ngày
+    generateMealSuggestions(); // Gọi hàm tạo gợi ý món ăn
+  }, [weekData, fetchWeekData, userInfo]);
 
   return (
     <div>
@@ -118,37 +156,28 @@ const UserInfo = () => {
         </Alert>
       )}
 
+      <Typography variant="h6" gutterBottom>
+        Gợi ý món ăn:
+      </Typography>
+      <ul>
+        {mealSuggestions.map((meal, index) => (
+          <li key={index}>{meal}</li>
+        ))}
+      </ul>
+
       {weekData.length > 0 ? (
         <Chart
           type="bar"
-          series={[
-            {
-              name: "Calo",
-              data: weekCalories,
-              color: "#FFA726", // Màu thanh biểu đồ
-            },
-          ]}
+          series={[{ name: "Calo", data: weekCalories, color: "#FFA726" }]}
           height={350}
           options={{
-            xaxis: {
-              categories: categories,
-              title: { text: "Ngày" },
-            },
-            yaxis: {
-              title: { text: "Calo" },
-            },
-            chart: {
-              toolbar: { show: false },
-            },
+            xaxis: { categories: categories, title: { text: "Ngày" } },
+            yaxis: { title: { text: "Calo" } },
+            chart: { toolbar: { show: false } },
             plotOptions: {
-              bar: {
-                borderRadius: 6,
-                columnWidth: "50%",
-              },
+              bar: { borderRadius: 6, columnWidth: "50%" },
             },
-            dataLabels: {
-              enabled: false,
-            },
+            dataLabels: { enabled: false },
           }}
         />
       ) : (
