@@ -442,7 +442,7 @@ const ScannedImg = () => {
         "pepperoni": 50,
         "perch": 150,
         "persimmon": 100,
-        "pho": 200,
+        "pho": 100,
         "pickle": 30,
         "pie": 200,
         "pike": 150,
@@ -502,7 +502,7 @@ const ScannedImg = () => {
         "rosemary": 10,
         "rutabaga": 100,
         "sage": 10,
-        "salad": 150,
+        "salad/ rau xào/ rau luộc": 150,
         "salami": 50,
         "salmon": 200,
         "salsa": 100,
@@ -608,7 +608,8 @@ const ScannedImg = () => {
         "yardlong bean": 100,
         "yellow summer squash": 100,
         "yogurt": 150,
-        "zucchini": 100
+        "zucchini": 100,
+        "vegetable": 70
       };
       const handleSelectItem = (foodItem) => {
         // Kiểm tra nếu thực phẩm đã được chọn
