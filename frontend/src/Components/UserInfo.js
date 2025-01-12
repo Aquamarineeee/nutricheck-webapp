@@ -3,6 +3,9 @@ import { Alert, Typography } from "@mui/material";
 import Chart from "react-apexcharts";
 import { useSnackbar } from "notistack";
 import { AppContext } from "../Context/AppContext";
+import { totalNutrition } from "../services/apis";
+import { Button } from "@mui/material";
+
 
 const UserInfo = () => {
   const { enqueueSnackbar } = useSnackbar();
