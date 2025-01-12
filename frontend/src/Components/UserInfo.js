@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Alert, Typography } from "@mui/material";
+import { Alert, Typography, Grid, Button } from "@mui/material";
 import Chart from "react-apexcharts";
 import { useSnackbar } from "notistack";
 import { AppContext } from "../Context/AppContext";
@@ -11,47 +11,7 @@ const UserInfo = () => {
   const [minCaloriesWeek, setMinCaloriesWeek] = useState(0);
   const [minCaloriesMonth, setMinCaloriesMonth] = useState(0);
   const [totalMonthlyCalories, setTotalMonthlyCalories] = useState(0);
-  const [mealSuggestions, setMealSuggestions] = useState([]);
-
-  // Cập nhật gợi ý món ăn
-  const generateMealSuggestions = () => {
-    if (!userInfo) return;
-
-    const { GOAL } = userInfo; // Giả sử 'GOAL' là mục tiêu dinh dưỡng của người dùng
-
-    let suggestions = [];
-    if (GOAL === "increase_weight") {
-      suggestions = [
-        "Cháo yến mạch với quả bơ và hạt chia",
-        "Salad bơ, hạt điều, và thịt gà",
-        "Sinh tố chuối, sữa chua và hạt lanh",
-        "Cơm chiên với trứng, thịt và rau củ"
-      ];
-    } else if (GOAL === "lose_weight") {
-      suggestions = [
-        "Salad rau xanh với ức gà nướng",
-        "Súp cà rốt, khoai lang và thịt bò",
-        "Sữa chua không đường với quả mọng",
-        "Trứng luộc và rau cải xào"
-      ];
-    } else if (GOAL === "maintain_weight") {
-      suggestions = [
-        "Cơm gạo lứt với cá hồi và rau cải",
-        "Bánh mì nguyên cám với trứng và bơ",
-        "Sữa đậu nành và ngũ cốc",
-        "Mỳ ống với thịt gà và rau củ"
-      ];
-    } else if (GOAL === "improve_health") {
-      suggestions = [
-        "Cháo yến mạch với trái cây tươi",
-        "Sữa chua với hạt chia và quả mâm xôi",
-        "Salad rau quả với dầu ô liu",
-        "Sinh tố bơ và rau xanh"
-      ];
-    }
-
-    setMealSuggestions(suggestions);
-  };
+  const [suggestedMeals, setSuggestedMeals] = useState([]);
 
   useEffect(() => {
     const calculateMinCalories = () => {
@@ -101,8 +61,42 @@ const UserInfo = () => {
 
     fetchWeekData();
     calculateTotalCalories();
-    generateMealSuggestions(); // Gọi hàm tạo gợi ý món ăn
-  }, [weekData, fetchWeekData, userInfo]);
+  }, [weekData, fetchWeekData]);
+
+  const getMealSuggestions = (goal) => {
+    const meals = {
+      gain: [
+        { name: "Sữa chua với trái cây", calories: 300 },
+        { name: "Cơm gà xào rau", calories: 500 },
+        { name: "Bánh mì kẹp thịt", calories: 450 },
+        { name: "Nước ép bơ", calories: 200 },
+      ],
+      lose: [
+        { name: "Salad rau xanh", calories: 150 },
+        { name: "Cá hồi nướng", calories: 200 },
+        { name: "Gà luộc", calories: 180 },
+        { name: "Trái cây tươi", calories: 100 },
+      ],
+      maintain: [
+        { name: "Cơm với thịt bò xào", calories: 350 },
+        { name: "Mỳ Ý sốt cà chua", calories: 450 },
+        { name: "Cháo yến mạch", calories: 200 },
+        { name: "Trái cây trộn", calories: 150 },
+      ],
+    };
+
+    return meals[goal] || [];
+  };
+
+  useEffect(() => {
+    const goal = totalCalories < minCaloriesWeek ? "gain" : totalCalories > minCaloriesWeek ? "lose" : "maintain";
+    const suggestedMeals = getMealSuggestions(goal);
+    setSuggestedMeals(suggestedMeals);
+  }, [totalCalories, minCaloriesWeek]);
+
+  // Tạo dữ liệu biểu đồ
+  const categories = weekData.map((item) => item.DAY); // Tên các ngày trong tuần
+  const weekCalories = weekData.map((item) => item.CALORIES); // Calo từng ngày
 
   return (
     <div>
@@ -156,33 +150,34 @@ const UserInfo = () => {
         </Alert>
       )}
 
-      <Typography variant="h6" gutterBottom>
-        Gợi ý món ăn:
-      </Typography>
-      <ul>
-        {mealSuggestions.map((meal, index) => (
-          <li key={index}>{meal}</li>
-        ))}
-      </ul>
-
       {weekData.length > 0 ? (
         <Chart
           type="bar"
           series={[{ name: "Calo", data: weekCalories, color: "#FFA726" }]}
           height={350}
           options={{
-            xaxis: { categories: categories, title: { text: "Ngày" } },
+            xaxis: { categories, title: { text: "Ngày" } },
             yaxis: { title: { text: "Calo" } },
             chart: { toolbar: { show: false } },
-            plotOptions: {
-              bar: { borderRadius: 6, columnWidth: "50%" },
-            },
+            plotOptions: { bar: { borderRadius: 6, columnWidth: "50%" } },
             dataLabels: { enabled: false },
           }}
         />
       ) : (
         <Alert severity="info">Không có dữ liệu calo tuần này.</Alert>
       )}
+
+      <Typography variant="h6" gutterBottom>
+        Gợi ý món ăn
+      </Typography>
+
+      <Grid container spacing={2}>
+        {suggestedMeals.slice(0, 4).map((meal, index) => (
+          <Grid item xs={12} sm={6} md={3} key={index}>
+            <Typography variant="body1">{meal.name} - {meal.calories} calo</Typography>
+          </Grid>
+        ))}
+      </Grid>
     </div>
   );
 };
