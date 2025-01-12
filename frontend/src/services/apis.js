@@ -83,15 +83,24 @@ const consumptionOn = async (date) => {
 };
 
 const totalNutrition = async ({ user_id, period = "week" }) => {
-    return (
-        await Axios.get('/food/total-nutrition', {
+    try {
+        const response = await Axios.get('/food/total-nutrition', {
             params: {
                 user_id,
                 period,
             },
-        })
-    ).data;
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching total nutrition:", error);
+
+        // Trả về lỗi từ API (nếu có) hoặc thông báo mặc định
+        const errorMessage =
+            error.response?.data?.error || "Unable to fetch total nutrition data.";
+        throw new Error(errorMessage);
+    }
 };
+
 
 export const API = {
     userInfo,
