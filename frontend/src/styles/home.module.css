@@ -332,6 +332,11 @@
 
 .recaptcha {
   /* reCAPTCHA widget styles */
-  width: 300px;
-  height: 300px;
+  width: 50px;
+  height: 50px;
+}
+.recaptchaLogo {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
 }

@@ -34,14 +34,13 @@ export default function Home() {
       console.error("Có lỗi xảy ra khi xác minh reCAPTCHA:", error);
     }
   };
-  
 
   return (
-      <div className={styles.container}>
+    <div>
       {!isCaptchaVerified ? (
         <div className={styles.captchaWrapper}>
           <div className={styles.captchaContainer}>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/RecaptchaLogo.svg/1200px-RecaptchaLogo.svg.png" alt="reCAPTCHA logo" className={styles.recaptchaLogo} />
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/RecaptchaLogo.svg/1200px-RecaptchaLogo.svg.png" alt="reCAPTCHA logo" className={styles.recaptchaLogo} />
             <div className={styles.recaptcha}>
               {/* Render reCAPTCHA widget here */}
             </div>
