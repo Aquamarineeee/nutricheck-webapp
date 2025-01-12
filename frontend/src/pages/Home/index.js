@@ -89,8 +89,6 @@ import styles from "../../styles/home.module.css";
 //     </div>
 //   );
 // }
-
-
 export default function Home() {
   const navigate = useNavigate();
   const [isCaptchaVerified, setIsCaptchaVerified] = useState(false);
@@ -125,12 +123,17 @@ export default function Home() {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       {!isCaptchaVerified ? (
         <div className={styles.captchaWrapper}>
-          <h3>Vui lòng xác nhận Re-Captcha để tiếp tục</h3>
+          <div className={styles.captchaContainer}>
+            <div className={styles.recaptcha}>
+              {/* Render reCAPTCHA widget here */}
+            </div>
+          </div>
+          <h3>Vui lòng hoàn thành CAPTCHA để tiếp tục</h3>
           <button className={styles.captchaBtn} onClick={handleCaptchaSubmit}>
-            Xác nhận RE-CAPTCHA
+            Xác nhận CAPTCHA
           </button>
         </div>
       ) : (
@@ -144,8 +147,8 @@ export default function Home() {
                 alt="Brandname"
               />
               <p className={styles.subtitle}>
-              Trợ lý dinh dưỡng để kiểm soát chế độ ăn uống, quản lý thói quen ăn
-              uống và duy trì sức khỏe tốt.
+                Trợ lý dinh dưỡng để kiểm soát chế độ ăn uống, quản lý thói quen ăn
+                uống và duy trì sức khỏe tốt.
               </p>
               <div className={styles.buttonGroup}>
                 <button
