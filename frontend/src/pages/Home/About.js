@@ -43,7 +43,7 @@ const About = () => {
         <p>Câu hỏi: {captcha.question}</p>
         <input
           type="number"
-          placeholder="Nhập câu trả lời"
+          placeholder="Nhập câu trả lời của bạn: "
           value={userAnswer}
           onChange={(e) => setUserAnswer(e.target.value)}
         />
