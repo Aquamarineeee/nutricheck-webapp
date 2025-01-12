@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Alert, Typography, Grid, Button } from "@mui/material";
+import { Alert, Typography, Grid } from "@mui/material";
 import Chart from "react-apexcharts";
 import { useSnackbar } from "notistack";
 import { AppContext } from "../Context/AppContext";
@@ -70,18 +70,36 @@ const UserInfo = () => {
         { name: "Cơm gà xào rau", calories: 500 },
         { name: "Bánh mì kẹp thịt", calories: 450 },
         { name: "Nước ép bơ", calories: 200 },
+        { name: "Mỳ Ý sốt kem", calories: 700 },
+        { name: "Bò viên sốt cà chua", calories: 550 },
+        { name: "Phở gà", calories: 600 },
+        { name: "Cơm chiên dương châu", calories: 650 },
+        { name: "Cháo yến mạch với chuối", calories: 350 },
+        { name: "Trái cây khô và hạt chia", calories: 250 },
       ],
       lose: [
         { name: "Salad rau xanh", calories: 150 },
         { name: "Cá hồi nướng", calories: 200 },
         { name: "Gà luộc", calories: 180 },
         { name: "Trái cây tươi", calories: 100 },
+        { name: "Soup bí đỏ", calories: 120 },
+        { name: "Salad cá ngừ", calories: 250 },
+        { name: "Gà xào rau củ", calories: 250 },
+        { name: "Bánh mì nướng với bơ", calories: 170 },
+        { name: "Trái cây tươi trộn hạt", calories: 150 },
+        { name: "Sữa chua không đường", calories: 100 },
       ],
       maintain: [
         { name: "Cơm với thịt bò xào", calories: 350 },
         { name: "Mỳ Ý sốt cà chua", calories: 450 },
         { name: "Cháo yến mạch", calories: 200 },
         { name: "Trái cây trộn", calories: 150 },
+        { name: "Gà nướng", calories: 400 },
+        { name: "Cá ngừ salad", calories: 300 },
+        { name: "Cơm gà luộc", calories: 500 },
+        { name: "Súp cà rốt", calories: 180 },
+        { name: "Bánh mì sandwich với trứng", calories: 250 },
+        { name: "Mì gà xào rau củ", calories: 450 },
       ],
     };
 
@@ -168,11 +186,35 @@ const UserInfo = () => {
       )}
 
       <Typography variant="h6" gutterBottom>
-        Gợi ý món ăn
+        Gợi ý món ăn (Tăng cân)
       </Typography>
 
       <Grid container spacing={2}>
-        {suggestedMeals.slice(0, 4).map((meal, index) => (
+        {suggestedMeals.slice(0, 10).map((meal, index) => (
+          <Grid item xs={12} sm={6} md={3} key={index}>
+            <Typography variant="body1">{meal.name} - {meal.calories} calo</Typography>
+          </Grid>
+        ))}
+      </Grid>
+
+      <Typography variant="h6" gutterBottom>
+        Gợi ý món ăn (Giảm cân)
+      </Typography>
+
+      <Grid container spacing={2}>
+        {suggestedMeals.slice(10, 20).map((meal, index) => (
+          <Grid item xs={12} sm={6} md={3} key={index}>
+            <Typography variant="body1">{meal.name} - {meal.calories} calo</Typography>
+          </Grid>
+        ))}
+      </Grid>
+
+      <Typography variant="h6" gutterBottom>
+        Gợi ý món ăn (Giữ cân)
+      </Typography>
+
+      <Grid container spacing={2}>
+        {suggestedMeals.slice(20, 30).map((meal, index) => (
           <Grid item xs={12} sm={6} md={3} key={index}>
             <Typography variant="body1">{meal.name} - {meal.calories} calo</Typography>
           </Grid>
