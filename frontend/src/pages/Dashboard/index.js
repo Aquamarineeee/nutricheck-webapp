@@ -625,13 +625,17 @@ const Dashboard = () => {
 
       {/* Gợi ý món ăn */}
       <Box>
-      <h2> </h2>
-        <div style={{ textAlign: 'center', size: "18px"}}>
+        <h2> </h2>
+        <div style={{ textAlign: 'center', fontSize: "18px" }}>
+          {/* Content for the center-aligned div */}
         </div>
         {protienSuggestion.status === "Thiếu" && (
-          <div style={{ textAlign: 'center', size: "19px"}}>
-            <h3>Món ăn tốt cho sức khỏe với đủ hàm lượng dinh dưỡng có thể cân bằng : <br/> </h3>
-            <table style={{ margin: '10px auto', borderCollapse: 'collapse' }}>
+          <div style={{ textAlign: 'center', fontSize: "19px" }}>
+            <h3>
+              <br />
+              Món ăn tốt cho sức khỏe với đủ hàm lượng dinh dưỡng có thể cân bằng :<br />
+            </h3>
+            <table style={{ margin: '10px auto', border: '1px solid black', borderCollapse: 'collapse' }}>
               <thead>
                 <tr>
                   <th>Tên món</th>
