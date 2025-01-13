@@ -625,37 +625,36 @@ const Dashboard = () => {
 
       {/* Gợi ý món ăn */}
       <Box>
-        <h2> style={{ marginTop: "1.5rem", marginBottom: "1rem" }}  </h2>
-        <p> Gợi ý món ăn </p>
-        {protienSuggestion.status === "Thiếu" && (
-          <div>
-            <h3>Món ăn giàu đạm:</h3>
-            <table>
-              <thead>
-                <tr>
-                  <th>Tên món</th>
-                  <th>Calo</th>
-                  <th>Đạm (g)</th>
-                  <th>Tinh bột (g)</th>
-                  <th>Chất béo (g)</th>
-                  <th>Canxi (mg)</th>
+            <h2> Gợi ý món ăn </h2>
+      {protienSuggestion.status === "Thiếu" && (
+        <div>
+          <h3>Món ăn giàu đạm:</h3>
+          <table style={{ marginTop: "1.5rem", marginBottom: "1rem" }}>
+            <thead>
+              <tr>
+                <th>Tên món</th>
+                <th>Calo</th>
+                <th>Đạm (g)</th>
+                <th>Tinh bột (g)</th>
+                <th>Chất béo (g)</th>
+                <th>Canxi (mg)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {randomFoods.map((food, idx) => (
+                <tr key={idx}>
+                  <td>{food.name}</td>
+                  <td>{food.calories}</td>
+                  <td>{food.protien}</td>
+                  <td>{food.carbs}</td>
+                  <td>{food.fats}</td>
+                  <td>{food.calcium}</td>
                 </tr>
-              </thead>
-              <tbody>
-                  {randomFoods.map((food, idx) => (
-                    <tr key={idx}>
-                        <td>{food.name}</td>
-                        <td>{food.calories}</td>
-                        <td>{food.protien}</td>
-                        <td>{food.carbs}</td>
-                        <td>{food.fats}</td>
-                        <td>{food.calcium}</td>
-                    </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
       </Box>
     </Container>
 
