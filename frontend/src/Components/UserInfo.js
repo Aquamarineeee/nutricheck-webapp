@@ -245,18 +245,7 @@ const UserInfo = () => {
         <Typography variant="h6" align="center" gutterBottom style={{ fontWeight: "bold", fontSize: "23px" }} >
                       Gợi ý thực đơn <br />
       </Typography>
-
-      {Object.keys(suggestedMeals).map((goal) => (
-        <div key={goal}>
-          <Typography
-            variant="body1"
-            align="center"
-            gutterBottom
-            style={{ fontWeight: "bold", fontSize: "20px" }}
-          >
-            <strong>{goal === "gain" ? "\nNhu cầu tăng cân" : goal === "lose" ? "\nNhu cầu giảm cân" : "\nNhu cầu giữ cân nặng ổn định"}</strong>
-          </Typography>
-          <Box
+      <Box
             sx={{
               border: "2px solid #A5D6A7", // Màu xanh lá cây nhạt
               borderRadius: "8px",         // Bo góc
@@ -269,6 +258,16 @@ const UserInfo = () => {
             Dựa trên lượng calo, thành phần dinh dưỡng bạn đã tiêu thụ và thể trạng của riêng bạn, chúng tôi đã lập gợi ý thực đơn cho riêng bạn, tùy thuộc vào lựa chọn của bạn... <br/>
             </Typography>
   </Box>
+      {Object.keys(suggestedMeals).map((goal) => (
+        <div key={goal}>
+          <Typography
+            variant="body1"
+            align="center"
+            gutterBottom
+            style={{ fontWeight: "bold", fontSize: "20px" }}
+          >
+            <strong>{goal === "gain" ? "\nNhu cầu tăng cân" : goal === "lose" ? "\nNhu cầu giảm cân" : "\nNhu cầu giữ cân nặng ổn định"}</strong>
+          </Typography>
           <Table>
             <TableHead>
               <TableRow>
