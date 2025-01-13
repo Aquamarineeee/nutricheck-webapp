@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Alert, Typography, Grid, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, Paper } from "@mui/material";
 import Chart from "react-apexcharts";
 import { useSnackbar } from "notistack";
 import { AppContext } from "../Context/AppContext";
@@ -131,31 +131,48 @@ const UserInfo = () => {
   return (
     <div>
       <Typography variant="h6" align="center" gutterBottom style={{ fontWeight: "bold", fontSize: "20px" }}>
-        Báo cáo calo tuần này của người dùng...
-      </Typography>
+  Báo cáo calo tuần này của người dùng...
+</Typography>
 
-      {userInfo && (
-        <div>
-          <Typography variant="body1" align="center" gutterBottom>
-            <strong>Tên:</strong> {userInfo.USERNAME}
-          </Typography>
-          <Typography variant="body1" align="center" gutterBottom>
-            <strong>Tuổi:</strong> {userInfo.AGE}
-          </Typography>
-          <Typography variant="body1" align="center" gutterBottom>
-            <strong>Giới tính:</strong> {userInfo.GENDER === "male" ? "Nam" : "Nữ"}
-          </Typography>
-          <Typography variant="body1" align="center" gutterBottom>
-            <strong>Chiều cao:</strong> {userInfo.HEIGHT} cm
-          </Typography>
-          <Typography variant="body1" align="center" gutterBottom>
-            <strong>Cân nặng:</strong> {userInfo.WEIGHT} kg
-          </Typography>
-          <Typography variant="body1" align="center" gutterBottom>
-            <strong>Mức độ vận động:</strong> {userInfo.ACTIVITY}
-          </Typography>
-        </div>
-      )}
+{userInfo && (
+  <TableContainer component={Paper} style={{ margin: "20px auto", maxWidth: "600px" }}>
+    <Table>
+      <TableHead>
+        <TableRow>
+          <TableCell align="center" colSpan={2} style={{ fontWeight: "bold", fontSize: "16px" }}>
+            Thông tin người dùng
+          </TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        <TableRow>
+          <TableCell align="right"><strong>Tên:</strong></TableCell>
+          <TableCell align="left">{userInfo.USERNAME}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell align="right"><strong>Tuổi:</strong></TableCell>
+          <TableCell align="left">{userInfo.AGE}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell align="right"><strong>Giới tính:</strong></TableCell>
+          <TableCell align="left">{userInfo.GENDER === "male" ? "Nam" : "Nữ"}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell align="right"><strong>Chiều cao:</strong></TableCell>
+          <TableCell align="left">{userInfo.HEIGHT} cm</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell align="right"><strong>Cân nặng:</strong></TableCell>
+          <TableCell align="left">{userInfo.WEIGHT} kg</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell align="right"><strong>Mức độ vận động:</strong></TableCell>
+          <TableCell align="left">{userInfo.ACTIVITY}</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  </TableContainer>
+)}
 
       <Typography variant="body1" gutterBottom>
         <strong><br /> Tổng lượng calo tiêu thụ (tuần):</strong> {totalCalories.toFixed(1)} calo
