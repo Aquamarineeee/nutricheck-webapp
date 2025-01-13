@@ -615,22 +615,22 @@ const Dashboard = () => {
                           </Typography>
 
     </Box >
-            <table>
-          <tbody>
-            <tr>
-              <td>{protienSuggestion.message}</td>
-            </tr>
-            <tr>
-              <td>{calciumSuggestion.message}</td>
-            </tr>
-            <tr>
-              <td>{carbsSuggestion.message}</td>
-            </tr>
-            <tr>
-              <td>{fatsSuggestion.message}</td>
-            </tr>
-          </tbody>
-        </table>
+          <table style={{ border: '1px solid #ccc', width: '100%', textAlign: 'center' }}>
+        <tbody>
+          <tr>
+            <td style={{ border: '1px solid #ccc' }}>{protienSuggestion.message}</td>
+          </tr>
+          <tr>
+            <td style={{ border: '1px solid #ccc' }}>{calciumSuggestion.message}</td>
+          </tr>
+          <tr>
+            <td style={{ border: '1px solid #ccc' }}>{carbsSuggestion.message}</td>
+          </tr>
+          <tr>
+            <td style={{ border: '1px solid #ccc' }}>{fatsSuggestion.message}</td>
+          </tr>
+        </tbody>
+      </table>
       </Box>
 
       {/* Gợi ý món ăn */}
