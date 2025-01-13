@@ -256,9 +256,19 @@ const UserInfo = () => {
           >
             <strong>{goal === "gain" ? "\nNhu cầu tăng cân" : goal === "lose" ? "\nNhu cầu giảm cân" : "\nNhu cầu giữ cân nặng ổn định"}</strong>
           </Typography>
-          <Typography variant="h6" align="center" gutterBottom style={{ fontWeight: "bold", fontSize: "23px" }} >
-                      Dựa trên lượng calo, thành phần dinh dưỡng bạn đã tiêu thụ và thể trạng của riêng bạn, chúng tôi đã lập gợi ý thực đơn cho riêng bạn, tùy thuộc vào lựa chọn của bạn... <br/>
-      </Typography>
+          <Box
+            sx={{
+              border: "2px solid #A5D6A7", // Màu xanh lá cây nhạt
+              borderRadius: "8px",         // Bo góc
+              padding: "16px",             // Khoảng cách bên trong
+              margin: "16px 0",            // Khoảng cách bên ngoài
+              backgroundColor: "#E8F5E9",  // Màu nền nhẹ
+            }}
+          >
+            <Typography variant="h6" align="center" gutterBottom style={{ fontWeight: "bold", fontSize: "18px" }} >
+            Dựa trên lượng calo, thành phần dinh dưỡng bạn đã tiêu thụ và thể trạng của riêng bạn, chúng tôi đã lập gợi ý thực đơn cho riêng bạn, tùy thuộc vào lựa chọn của bạn... <br/>
+            </Typography>
+  </Box>
           <Table>
             <TableHead>
               <TableRow>
