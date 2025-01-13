@@ -625,36 +625,36 @@ const Dashboard = () => {
 
       {/* Gợi ý món ăn */}
       <Box>
-            <h2> Gợi ý món ăn </h2>
-      {protienSuggestion.status === "Thiếu" && (
-        <div>
-          <h3>Món ăn giàu đạm:</h3>
-          <table style={{ marginTop: "1.5rem", marginBottom: "1rem" }}>
-            <thead>
-              <tr>
-                <th>Tên món</th>
-                <th>Calo</th>
-                <th>Đạm (g)</th>
-                <th>Tinh bột (g)</th>
-                <th>Chất béo (g)</th>
-                <th>Canxi (mg)</th>
-              </tr>
-            </thead>
-            <tbody>
-              {randomFoods.map((food, idx) => (
-                <tr key={idx}>
-                  <td>{food.name}</td>
-                  <td>{food.calories}</td>
-                  <td>{food.protien}</td>
-                  <td>{food.carbs}</td>
-                  <td>{food.fats}</td>
-                  <td>{food.calcium}</td>
+      <h2> Gợi ý món ăn </h2>
+        {protienSuggestion.status === "Thiếu" && (
+          <div style={{ textAlign: 'center' }}>
+            <h3>Món ăn giàu đạm:</h3>
+            <table style={{ margin: '10px auto', borderCollapse: 'collapse' }}>
+              <thead>
+                <tr>
+                  <th>Tên món</th>
+                  <th>Calo</th>
+                  <th>Đạm (g)</th>
+                  <th>Tinh bột (g)</th>
+                  <th>Chất béo (g)</th>
+                  <th>Canxi (mg)</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+              </thead>
+              <tbody>
+                {randomFoods.map((food, idx) => (
+                  <tr key={idx}>
+                    <td>{food.name}</td>
+                    <td>{food.calories}</td>
+                    <td>{food.protien}</td>
+                    <td>{food.carbs}</td>
+                    <td>{food.fats}</td>
+                    <td>{food.calcium}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </Box>
     </Container>
 
