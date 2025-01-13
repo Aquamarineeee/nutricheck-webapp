@@ -131,7 +131,7 @@ const UserInfo = () => {
     // Kiểm tra xem lượng calo tiêu thụ có thấp hơn 80% lượng calo tối thiểu không
     if (totalCalories < minCaloriesWeek * 0.8) {
       // Giải thích chi tiết cho người dùng về tác hại của việc tiêu thụ quá ít calo
-      return "Tuy nhiên, tôi cũng sẽ đưa ra khuyến cáo sức khỏe cho bạn với lượng calo trên: Bạn tiêu thụ quá ít calo trong tuần, điều này có thể dẫn đến suy dinh dưỡng. Lượng calo quá thấp sẽ không đủ để cơ thể tạo năng lượng cần thiết cho các hoạt động cơ bản như hô hấp, tuần hoàn, và vận động. Hãy kiểm tra lại chế độ ăn của mình, bổ sung các thực phẩm giàu dinh dưỡng như rau, protein, và ngũ cốc nguyên hạt để cải thiện năng lượng hàng ngày. \nNếu bạn đang có nhu cầu giảm cân, vui lòng hãy đọc khuyến cáo sức khỏe ở trên và chú ý phòng các bệnh ";
+      return "Tuy nhiên, tôi cũng sẽ đưa ra khuyến cáo sức khỏe cho bạn với lượng calo trên: Bạn tiêu thụ quá ít calo trong tuần, điều này có thể dẫn đến suy dinh dưỡng. Lượng calo quá thấp sẽ không đủ để cơ thể tạo năng lượng cần thiết cho các hoạt động cơ bản như hô hấp, tuần hoàn, và vận động. Hãy kiểm tra lại chế độ ăn của mình, bổ sung các thực phẩm giàu dinh dưỡng như rau, protein, và ngũ cốc nguyên hạt để cải thiện năng lượng hàng ngày. \nNếu bạn đang có nhu cầu giảm cân, vui lòng hãy đọc khuyến cáo sức khỏe ở trên và chú ý phòng các bệnh tật liên quan để giữ cho mình sức khỏe tốt nhất.";
     } 
     // Kiểm tra xem lượng calo tiêu thụ có vượt quá 120% lượng calo tối thiểu không
     else if (totalCalories > minCaloriesWeek * 1.2) {
@@ -259,9 +259,20 @@ const UserInfo = () => {
       ) : (
         <Alert severity="info">Không có dữ liệu calo tuần này.</Alert>
       )}
-        <Typography variant="h6" align="center" gutterBottom style={{ fontWeight: "bold", fontSize: "23px" }} >
+      <Box
+            sx={{
+              border: "2px solidrgb(130, 194, 244)", // Màu xanh dương cây nhạt
+              borderRadius: "5px",         // Bo góc
+              padding: "16px",             // Khoảng cách bên trong
+              margin: "16px 0",            // Khoảng cách bên ngoài
+              backgroundColor: "#E8F5E9",  // Màu nền nhẹ
+            }}
+          >
+            <Typography variant="h6" align="center" gutterBottom style={{ fontWeight: "bold", fontSize: "23px" }} >
                       Gợi ý thực đơn <br />
-      </Typography>
+            </Typography>
+  </Box>
+        
 
       {Object.keys(suggestedMeals).map((goal) => (
         <div key={goal}>
@@ -302,7 +313,9 @@ const UserInfo = () => {
               ))}
             </TableBody>
           </Table>
-          <Box
+        </div>
+))}
+    <Box
             sx={{
               border: "2px solid #EF9A9A", // Màu đỏ nhạt
               borderRadius: "8px",
@@ -323,9 +336,6 @@ const UserInfo = () => {
               {getHealthWarnings()}
             </Typography>
           </Box>
-        </div>
-))}
-
     </div>
   );
 };
