@@ -615,7 +615,7 @@ const Dashboard = () => {
                           </Typography>
 
     </Box >
-    <h2 style={{ textAlign:'center', size: "16px" }}>
+    <h2 style={{ textAlign:'center', size: "12px" }}>
         <p>{protienSuggestion.message}</p>
         <p>{calciumSuggestion.message}</p>
         <p>{carbsSuggestion.message}</p>
@@ -633,7 +633,7 @@ const Dashboard = () => {
           <div style={{ textAlign: 'center', fontSize: "19px" }}>
             <h3>
               <br />
-              Món ăn tốt cho sức khỏe với đủ hàm lượng dinh dưỡng có thể cân bằng :<br />
+              Gợi ý món ăn thêm vào bữa ăn của bạn tốt cho sức khỏe, đủ hàm lượng dinh dưỡng  :<br />
             </h3>
             <table style={{ margin: '10px auto', border: '1px solid black', borderCollapse: 'collapse' }}>
               <thead>
