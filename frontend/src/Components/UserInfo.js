@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Alert, Typography, Grid } from "@mui/material";
+import { Alert, Typography, Grid, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import Chart from "react-apexcharts";
 import { useSnackbar } from "notistack";
 import { AppContext } from "../Context/AppContext";
+
 
 const UserInfo = () => {
   const { enqueueSnackbar } = useSnackbar();
@@ -241,3 +242,4 @@ const UserInfo = () => {
 };
 
 export default UserInfo;
+
