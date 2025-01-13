@@ -615,12 +615,22 @@ const Dashboard = () => {
                           </Typography>
 
     </Box >
-    <h2 style={{ textAlign:'center', size: "12px" }}>
-        <p>{protienSuggestion.message}</p>
-        <p>{calciumSuggestion.message}</p>
-        <p>{carbsSuggestion.message}</p>
-        <p>{fatsSuggestion.message}</p>
-          </h2>
+            <table>
+          <tbody>
+            <tr>
+              <td>{protienSuggestion.message}</td>
+            </tr>
+            <tr>
+              <td>{calciumSuggestion.message}</td>
+            </tr>
+            <tr>
+              <td>{carbsSuggestion.message}</td>
+            </tr>
+            <tr>
+              <td>{fatsSuggestion.message}</td>
+            </tr>
+          </tbody>
+        </table>
       </Box>
 
       {/* Gợi ý món ăn */}
