@@ -265,7 +265,7 @@ const UserInfo = () => {
               borderRadius: "5px",         // Bo góc
               padding: "16px",             // Khoảng cách bên trong
               margin: "16px 0",            // Khoảng cách bên ngoài
-              backgroundColor: "#E8F5E9",  // Màu nền nhẹ
+              backgroundColor: "#33CCFF",  // Màu nền nhẹ
             }}
           >
             <Typography variant="h6" align="center" gutterBottom style={{ fontWeight: "bold", fontSize: "23px" }} >
