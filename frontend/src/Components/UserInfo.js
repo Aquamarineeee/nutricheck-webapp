@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, Paper, Alert } from "@mui/material";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, Paper, Alert, Box } from "@mui/material";
 import Chart from "react-apexcharts";
 import { useSnackbar } from "notistack";
 import { AppContext } from "../Context/AppContext";
@@ -130,44 +130,59 @@ const UserInfo = () => {
 
   return (
     <div>
-      <Typography variant="h6" align="center" gutterBottom style={{ fontWeight: "bold", fontSize: "20px" }}>
-      <br/> Báo cáo calo tuần này của người dùng...
-</Typography>
+      <Box
+    sx={{
+      border: "2px solid #A5D6A7", // Màu xanh lá cây nhạt
+      borderRadius: "8px",         // Bo góc
+      padding: "16px",             // Khoảng cách bên trong
+      margin: "16px 0",            // Khoảng cách bên ngoài
+      backgroundColor: "#E8F5E9",  // Màu nền nhẹ
+    }}
+  >
+    <Typography
+      variant="h6"
+      align="center"
+      gutterBottom
+      style={{ fontWeight: "bold", fontSize: "23px" }}
+    >
+      <br /> Báo cáo calo tuần này của người dùng...
+    </Typography>
+  </Box>
 
 {userInfo && (
   <TableContainer component={Paper} style={{ margin: "20px auto", maxWidth: "600px" }}>
     <Table>
       <TableHead>
         <TableRow>
-          <TableCell align="center" colSpan={2} style={{ fontWeight: "bold", fontSize: "25px" }}>
+          <TableCell align="center" colSpan={2} style={{ fontWeight: "bold", fontSize: "23px" }}>
             Thông tin người dùng
           </TableCell>
         </TableRow>
       </TableHead>
       <TableBody>
         <TableRow>
-          <TableCell align="left" style={{ fontWeight: "bold", fontSize: "20px" }} ><strong>Tên:</strong></TableCell>
-          <TableCell align="left" style={{fontSize: "20px"}}>{userInfo.USERNAME}</TableCell>
+          <TableCell align="left" style={{ fontWeight: "bold", fontSize: "19px" }} ><strong>Tên:</strong></TableCell>
+          <TableCell align="left" style={{fontSize: "19px"}}>{userInfo.USERNAME}</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell align="left" style={{ fontWeight: "bold", fontSize: "20px" }}><strong>Tuổi:</strong></TableCell>
-          <TableCell align="left" style={{fontSize: "20px"}}>{userInfo.AGE}</TableCell>
+          <TableCell align="left" style={{ fontWeight: "bold", fontSize: "19px" }}><strong>Tuổi:</strong></TableCell>
+          <TableCell align="left" style={{fontSize: "19px"}}>{userInfo.AGE}</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell align="left" style={{ fontWeight: "bold", fontSize: "20px" }}><strong>Giới tính:</strong></TableCell>
-          <TableCell align="left" style={{fontSize: "20px"}}>{userInfo.GENDER === "male" ? "Nam" : "Nữ"}</TableCell>
+          <TableCell align="left" style={{ fontWeight: "bold", fontSize: "19px" }}><strong>Giới tính:</strong></TableCell>
+          <TableCell align="left" style={{fontSize: "19px"}}>{userInfo.GENDER === "male" ? "Nam" : "Nữ"}</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell align="left" style={{ fontWeight: "bold", fontSize: "20px" }}><strong>Chiều cao:</strong></TableCell>
-          <TableCell align="left" style={{fontSize: "20px"}}>{userInfo.HEIGHT} cm</TableCell>
+          <TableCell align="left" style={{ fontWeight: "bold", fontSize: "19px" }}><strong>Chiều cao:</strong></TableCell>
+          <TableCell align="left" style={{fontSize: "19px"}}>{userInfo.HEIGHT} cm</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell align="left" style={{ fontWeight: "bold", fontSize: "20px" }} ><strong>Cân nặng:</strong></TableCell>
-          <TableCell align="left" style={{fontSize: "20px"}}>{userInfo.WEIGHT} kg</TableCell>
+          <TableCell align="left" style={{ fontWeight: "bold", fontSize: "19px" }} ><strong>Cân nặng:</strong></TableCell>
+          <TableCell align="left" style={{fontSize: "19px"}}>{userInfo.WEIGHT} kg</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell align="left" style={{ fontWeight: "bold", fontSize: "20px" }}><strong>Mức độ vận động:</strong></TableCell>
-          <TableCell align="left" style={{fontSize: "20px"}}>{userInfo.ACTIVITY}</TableCell>
+          <TableCell align="left" style={{ fontWeight: "bold", fontSize: "19px" }}><strong>Mức độ vận động:</strong></TableCell>
+          <TableCell align="left" style={{fontSize: "19px"}}>{userInfo.ACTIVITY}</TableCell>
         </TableRow>
       </TableBody>
     </Table>
@@ -241,6 +256,9 @@ const UserInfo = () => {
           >
             <strong>{goal === "gain" ? "\nNhu cầu tăng cân" : goal === "lose" ? "\nNhu cầu giảm cân" : "\nNhu cầu giữ cân nặng ổn định"}</strong>
           </Typography>
+          <Typography variant="h6" align="center" gutterBottom style={{ fontWeight: "bold", fontSize: "23px" }} >
+                      Dựa trên lượng calo, thành phần dinh dưỡng bạn đã tiêu thụ và thể trạng của riêng bạn, chúng tôi đã lập gợi ý thực đơn cho riêng bạn, tùy thuộc vào lựa chọn của bạn... <br/>
+      </Typography>
           <Table>
             <TableHead>
               <TableRow>
