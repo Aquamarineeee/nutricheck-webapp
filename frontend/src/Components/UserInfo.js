@@ -188,11 +188,11 @@ const UserInfo = () => {
       </Typography>
 
       {totalCalories < minCaloriesWeek ? (
-        <Alert severity="warning" sx={{ fontWeight: "bold", fontSize: "20px" }} >
+        <Alert severity="warning" sx={{ fontWeight: "bold", fontSize: "17px" }} >
           Bạn tiêu thụ ít hơn mức calo tối thiểu cần thiết trong tuần. Hãy chú ý bổ sung thêm dinh dưỡng!
         </Alert>
       ) : (
-        <Alert severity="success" sx={{ fontWeight: "bold", fontSize: "20px" }} >
+        <Alert severity="success" sx={{ fontWeight: "bold", fontSize: "17px" }} >
           Bạn đã tiêu thụ đủ lượng calo tối thiểu trong tuần.
         </Alert>
       )}
@@ -206,7 +206,7 @@ const UserInfo = () => {
         <strong>Lượng calo tối thiểu mỗi tuần:</strong> {minCaloriesWeek.toFixed(1)} calo
       </Typography>
 
-      <Alert severity={dailyCaloriesConsumed < minCaloriesDay ? "warning" : "success"} sx={{ fontWeight: "bold", fontSize: "20px" }} >
+      <Alert severity={dailyCaloriesConsumed < minCaloriesDay ? "warning" : "success"} sx={{ fontWeight: "bold", fontSize: "17px" }} >
         Dựa trên lượng calo bạn đã tiêu thụ, có thể thấy bạn {dailyCaloriesConsumed < minCaloriesDay ? "cần ăn thêm để tăng calo" : "đã tiêu thụ đủ calo trong ngày"}.
       </Alert>
 
@@ -227,7 +227,7 @@ const UserInfo = () => {
       ) : (
         <Alert severity="info">Không có dữ liệu calo tuần này.</Alert>
       )}
-        <Typography variant="h6" align="center" gutterBottom style={{ fontWeight: "bold", fontSize: "20px" }} >
+        <Typography variant="h6" align="center" gutterBottom style={{ fontWeight: "bold", fontSize: "23px" }} >
                       Gợi ý thực đơn <br />
       </Typography>
 
@@ -239,13 +239,13 @@ const UserInfo = () => {
             gutterBottom
             style={{ fontWeight: "bold", fontSize: "20px" }}
           >
-            <strong>{goal === "gain" ? "Tăng cân" : goal === "lose" ? "Giảm cân" : "Giữ cân"}</strong>
+            <strong>{goal === "gain" ? "\nNhu cầu tăng cân" : goal === "lose" ? "\nNhu cầu giảm cân" : "\nNhu cầu giữ cân nặng ổn định"}</strong>
           </Typography>
           <Table>
             <TableHead>
               <TableRow>
                 <TableCell style={{ fontSize: "20px", fontWeight: "bold" }}>Tên món</TableCell>
-                <TableCell style={{ fontSize: "20px" }}>Calo</TableCell>
+                <TableCell style={{ fontSize: "20px" , fontWeight: "bold" }}>Calo</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
