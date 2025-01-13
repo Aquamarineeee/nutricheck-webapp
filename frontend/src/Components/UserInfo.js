@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Alert, Typography, Grid } from "@mui/material";
+import { Alert, Typography, Grid, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
 import Chart from "react-apexcharts";
 import { useSnackbar } from "notistack";
 import { AppContext } from "../Context/AppContext";
@@ -8,10 +8,10 @@ const UserInfo = () => {
   const { enqueueSnackbar } = useSnackbar();
   const { userInfo, weekData, fetchWeekData } = useContext(AppContext);
   const [totalCalories, setTotalCalories] = useState(0);
+  const [minCaloriesDay, setMinCaloriesDay] = useState(0);
   const [minCaloriesWeek, setMinCaloriesWeek] = useState(0);
-  const [minCaloriesMonth, setMinCaloriesMonth] = useState(0);
-  const [totalMonthlyCalories, setTotalMonthlyCalories] = useState(0);
-  const [suggestedMeals, setSuggestedMeals] = useState([]);
+  const [totalDailyCalories, setTotalDailyCalories] = useState(0);
+  const [suggestedMeals, setSuggestedMeals] = useState({});
 
   useEffect(() => {
     const calculateMinCalories = () => {
@@ -32,35 +32,32 @@ const UserInfo = () => {
 
       // Hệ số vận động
       const activityFactor = {
-        sedentary: 1.2, // Không vận động
-        light: 1.375, // Vận động nhẹ
-        moderate: 1.55, // Vận động trung bình
-        active: 1.725, // Vận động cao
-        very_active: 1.9, // Vận động rất cao
+        sedentary: 1.2,
+        light: 1.375,
+        moderate: 1.55,
+        active: 1.725,
+        very_active: 1.9,
       };
 
-      const dailyCalories = BMR * (activityFactor[activity] || 1.2); // Lượng calo mỗi ngày
-      const weeklyCalories = dailyCalories * 7; // Lượng calo mỗi tuần
-      const monthlyCalories = dailyCalories * 30; // Lượng calo mỗi tháng
-      setMinCaloriesWeek(weeklyCalories);
-      setMinCaloriesMonth(monthlyCalories);
+      const dailyCalories = BMR * (activityFactor[activity] || 1.2);
+      setMinCaloriesDay(dailyCalories);
+      setMinCaloriesWeek(dailyCalories * 7);
     };
 
     calculateMinCalories();
   }, [userInfo, enqueueSnackbar]);
 
   useEffect(() => {
-    const calculateTotalCalories = () => {
+    const calculateCalories = () => {
       const totalWeek = weekData.reduce((sum, item) => sum + item.CALORIES, 0);
       setTotalCalories(totalWeek);
 
-      // Giả sử tuần dữ liệu đại diện, nhân tổng calo tuần với 4 để ước tính tháng
-      const totalMonth = totalWeek * 4;
-      setTotalMonthlyCalories(totalMonth);
+      const todayData = weekData.find((item) => item.DAY === new Date().toLocaleDateString("en-US", { weekday: "long" }));
+      setTotalDailyCalories(todayData ? todayData.CALORIES : 0);
     };
 
     fetchWeekData();
-    calculateTotalCalories();
+    calculateCalories();
   }, [weekData, fetchWeekData]);
 
   const getMealSuggestions = (goal) => {
@@ -103,18 +100,17 @@ const UserInfo = () => {
       ],
     };
 
-    return meals[goal] || [];
+    return meals[goal].sort(() => 0.5 - Math.random()).slice(0, 5);
   };
 
   useEffect(() => {
     const goal = totalCalories < minCaloriesWeek ? "gain" : totalCalories > minCaloriesWeek ? "lose" : "maintain";
-    const suggestedMeals = getMealSuggestions(goal);
-    setSuggestedMeals(suggestedMeals);
+    setSuggestedMeals({
+      gain: getMealSuggestions("gain"),
+      lose: getMealSuggestions("lose"),
+      maintain: getMealSuggestions("maintain"),
+    });
   }, [totalCalories, minCaloriesWeek]);
-
-  // Tạo dữ liệu biểu đồ
-  const categories = weekData.map((item) => item.DAY); // Tên các ngày trong tuần
-  const weekCalories = weekData.map((item) => item.CALORIES); // Calo từng ngày
 
   return (
     <div>
@@ -131,9 +127,6 @@ const UserInfo = () => {
             <strong>Tuổi:</strong> {userInfo.AGE}
           </Typography>
           <Typography variant="body1" gutterBottom>
-            <strong>Giới tính:</strong> {userInfo.GENDER === "male" ? "Nam" : "Nữ"}
-          </Typography>
-          <Typography variant="body1" gutterBottom>
             <strong>Chiều cao:</strong> {userInfo.HEIGHT} cm
           </Typography>
           <Typography variant="body1" gutterBottom>
@@ -146,80 +139,60 @@ const UserInfo = () => {
       )}
 
       <Typography variant="body1" gutterBottom>
+        <strong>Lượng calo tối thiểu mỗi ngày:</strong> {minCaloriesDay.toFixed(1)} calo
+      </Typography>
+      <Typography variant="body1" gutterBottom>
+        <strong>Lượng calo hôm nay:</strong> {totalDailyCalories.toFixed(1)} calo
+      </Typography>
+      <Typography variant="body1" gutterBottom>
         <strong>Tổng lượng calo tiêu thụ (tuần):</strong> {totalCalories.toFixed(1)} calo
       </Typography>
-      <Typography variant="body1" gutterBottom>
-        <strong>Lượng calo tối thiểu cần thiết trong tuần:</strong> {minCaloriesWeek.toFixed(1)} calo
-      </Typography>
-      <Typography variant="body1" gutterBottom>
-        <strong>Tổng lượng calo tiêu thụ (tháng):</strong> {totalMonthlyCalories.toFixed(1)} calo
-      </Typography>
-      <Typography variant="body1" gutterBottom>
-        <strong>Lượng calo tối thiểu cần thiết trong tháng:</strong> {minCaloriesMonth.toFixed(1)} calo
-      </Typography>
 
-      {totalCalories < minCaloriesWeek ? (
-        <Alert severity="warning">
-          Bạn tiêu thụ ít hơn mức calo tối thiểu cần thiết trong tuần. Hãy chú ý bổ sung thêm dinh dưỡng!
-        </Alert>
-      ) : (
-        <Alert severity="success">
-          Bạn đã tiêu thụ đủ lượng calo tối thiểu trong tuần.
-        </Alert>
-      )}
+      <Alert severity={totalCalories < minCaloriesWeek ? "warning" : "success"}>
+        {totalCalories < minCaloriesWeek
+          ? "Bạn tiêu thụ ít hơn mức calo tối thiểu trong tuần."
+          : "Bạn đã tiêu thụ đủ lượng calo tối thiểu trong tuần."}
+      </Alert>
 
-      {weekData.length > 0 ? (
-        <Chart
-          type="bar"
-          series={[{ name: "Calo", data: weekCalories, color: "#FFA726" }]}
-          height={350}
-          options={{
-            xaxis: { categories, title: { text: "Ngày" } },
-            yaxis: { title: { text: "Calo" } },
-            chart: { toolbar: { show: false } },
-            plotOptions: { bar: { borderRadius: 6, columnWidth: "50%" } },
-            dataLabels: { enabled: false },
-          }}
-        />
-      ) : (
-        <Alert severity="info">Không có dữ liệu calo tuần này.</Alert>
-      )}
+      <Typography variant="body1" gutterBottom>
+        Dựa trên lượng calo bạn đã tiêu thụ, bạn cần điều chỉnh để:
+        {totalCalories < minCaloriesWeek
+          ? " Tăng lượng calo"
+          : totalCalories > minCaloriesWeek
+          ? " Giảm lượng calo"
+          : " Giữ lượng calo ổn định"}
+        .
+      </Typography>
 
       <Typography variant="h6" gutterBottom>
-        Gợi ý món ăn (Tăng cân)
+        Gợi ý thực đơn
       </Typography>
 
-      <Grid container spacing={2}>
-        {suggestedMeals.slice(0, 10).map((meal, index) => (
-          <Grid item xs={12} sm={6} md={3} key={index}>
-            <Typography variant="body1">{meal.name} - {meal.calories} calo</Typography>
-          </Grid>
-        ))}
-      </Grid>
-
-      <Typography variant="h6" gutterBottom>
-        Gợi ý món ăn (Giảm cân)
-      </Typography>
-
-      <Grid container spacing={2}>
-        {suggestedMeals.slice(10, 20).map((meal, index) => (
-          <Grid item xs={12} sm={6} md={3} key={index}>
-            <Typography variant="body1">{meal.name} - {meal.calories} calo</Typography>
-          </Grid>
-        ))}
-      </Grid>
-
-      <Typography variant="h6" gutterBottom>
-        Gợi ý món ăn (Giữ cân)
-      </Typography>
-
-      <Grid container spacing={2}>
-        {suggestedMeals.slice(20, 30).map((meal, index) => (
-          <Grid item xs={12} sm={6} md={3} key={index}>
-            <Typography variant="body1">{meal.name} - {meal.calories} calo</Typography>
-          </Grid>
-        ))}
-      </Grid>
+      {Object.keys(suggestedMeals).map((goal) => (
+        <div key={goal}>
+          <Typography variant="subtitle1" gutterBottom>
+            {goal === "gain" ? "Tăng cân" : goal === "lose" ? "Giảm cân" : "Giữ cân"}
+          </Typography>
+          <TableContainer component={Paper}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Món ăn</TableCell>
+                  <TableCell>Calo</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {suggestedMeals[goal].map((meal, index) => (
+                  <TableRow key={index}>
+                    <TableCell>{meal.name}</TableCell>
+                    <TableCell>{meal.calories}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
+      ))}
     </div>
   );
 };
