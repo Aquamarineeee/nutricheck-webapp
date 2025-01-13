@@ -610,12 +610,12 @@ const Dashboard = () => {
 
               }}
             >
-              <h2> style={{ textAlign: 'center', size :"16px" }} 
-              <div > Phân tích thói quen ăn uống </div>
-              </h2>
+              <Typography variant="h6" align="center" gutterBottom style={{ fontWeight: "bold", fontSize: "25px" }} >
+                                    Phân tích hàm lượng dinh dưỡng, thói quen ăn uống <br />
+                          </Typography>
 
     </Box >
-    <h2 style={{ textAlign:'center', size: "14px" }}>
+    <h2 style={{ textAlign:'center', size: "16px" }}>
         <p>{protienSuggestion.message}</p>
         <p>{calciumSuggestion.message}</p>
         <p>{carbsSuggestion.message}</p>
@@ -625,12 +625,12 @@ const Dashboard = () => {
 
       {/* Gợi ý món ăn */}
       <Box>
-      <h2> Gợi ý món ăn </h2>
+      <h2> </h2>
         <div style={{ textAlign: 'center', size: "18px"}}>
         </div>
         {protienSuggestion.status === "Thiếu" && (
-          <div style={{ textAlign: 'center', size: "17px"}}>
-            <h3><br/> Món ăn tốt cho sức khỏe với đủ hàm lượng dinh dưỡng có thể cân bằng : <br/> </h3>
+          <div style={{ textAlign: 'center', size: "19px"}}>
+            <h3>Món ăn tốt cho sức khỏe với đủ hàm lượng dinh dưỡng có thể cân bằng : <br/> </h3>
             <table style={{ margin: '10px auto', borderCollapse: 'collapse' }}>
               <thead>
                 <tr>
