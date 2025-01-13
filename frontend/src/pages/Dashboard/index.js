@@ -607,21 +607,26 @@ const Dashboard = () => {
                 padding: "16px",             // Khoảng cách bên trong
                 margin: "16px 0",            // Khoảng cách bên ngoài
                 backgroundColor: "#FFE4E1",  // Màu nền nhẹ
+
               }}
             >
-              <Typography variant="h6" align="center" gutterBottom style={{ fontWeight: "bold", fontSize: "25px" }} >
-                        <br/> Phân tích thói quen ăn uống <br />
+              <Typography variant="h6" align="center" gutterBottom >
+                        <br/> <h2 style={{ marginTop: "1.5rem", marginBottom: "1rem" }}></h2> Phân tích thói quen ăn uống <br />
               </Typography>
-    </Box>
+
+    </Box >
+    <h2 style={{ marginTop: "1.5rem", marginBottom: "1rem" }}>
         <p>{protienSuggestion.message}</p>
         <p>{calciumSuggestion.message}</p>
         <p>{carbsSuggestion.message}</p>
         <p>{fatsSuggestion.message}</p>
+          </h2>
       </Box>
 
       {/* Gợi ý món ăn */}
       <Box>
-        <h2>Gợi ý món ăn</h2>
+        <h2> style={{ marginTop: "1.5rem", marginBottom: "1rem" }}  </h2>
+        <p> Gợi ý món ăn </p>
         {protienSuggestion.status === "Thiếu" && (
           <div>
             <h3>Món ăn giàu đạm:</h3>
