@@ -266,7 +266,7 @@ const UserInfo = () => {
             }}
           >
             <Typography variant="h6" align="center" gutterBottom style={{ fontWeight: "bold", fontSize: "18px" }} >
-            Dựa trên lượng calo, thành phần dinh dưỡng bạn đã tiêu thụ và thể trạng của riêng bạn, chúng tôi đã lập gợi ý thực đơn cho riêng bạn, tùy thuộc vào lựa chọn của bạn... <br/>
+            Dựa trên lượng calo, thành phần dinh dưỡng bạn đã tiêu thụ và thể trạng của bạn, chúng tôi đã lập gợi ý thực đơn cá nhân hóa cho riêng bạn, tùy thuộc vào lựa chọn của bạn... <br/>
             </Typography>
   </Box>
           <Table>
