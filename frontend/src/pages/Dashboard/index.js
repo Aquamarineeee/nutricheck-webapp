@@ -610,12 +610,12 @@ const Dashboard = () => {
 
               }}
             >
-              <h2> Phân tích thói quen ăn uống </h2>
-                <div style={{ textAlign: 'center' }}>
-                  </div>
+              <h2> style={{ textAlign: 'center', size :"16px" }} 
+              <div > Phân tích thói quen ăn uống </div>
+              </h2>
 
     </Box >
-    <h2 style={{ textAlign:'center', size: "16px" }}>
+    <h2 style={{ textAlign:'center', size: "14px" }}>
         <p>{protienSuggestion.message}</p>
         <p>{calciumSuggestion.message}</p>
         <p>{carbsSuggestion.message}</p>
@@ -630,7 +630,7 @@ const Dashboard = () => {
         </div>
         {protienSuggestion.status === "Thiếu" && (
           <div style={{ textAlign: 'center', size: "17px"}}>
-            <h3>Món ăn tốt cho sức khỏe với đủ hàm lượng dinh dưỡng có thể cân bằng : <br/> </h3>
+            <h3><br/> Món ăn tốt cho sức khỏe với đủ hàm lượng dinh dưỡng có thể cân bằng : <br/> </h3>
             <table style={{ margin: '10px auto', borderCollapse: 'collapse' }}>
               <thead>
                 <tr>
