@@ -130,35 +130,35 @@ const UserInfo = () => {
 
   return (
     <div>
-      <Typography variant="h6" gutterBottom>
-        Báo cáo calo tuần này
+      <Typography variant="h6" align="center" gutterBottom style={{ fontWeight: "bold", fontSize: "20px" }}>
+        Báo cáo calo tuần này của người dùng...
       </Typography>
 
       {userInfo && (
         <div>
-          <Typography variant="body1" gutterBottom>
+          <Typography variant="body1" align="center" gutterBottom>
             <strong>Tên:</strong> {userInfo.USERNAME}
           </Typography>
-          <Typography variant="body1" gutterBottom>
+          <Typography variant="body1" align="center" gutterBottom>
             <strong>Tuổi:</strong> {userInfo.AGE}
           </Typography>
-          <Typography variant="body1" gutterBottom>
+          <Typography variant="body1" align="center" gutterBottom>
             <strong>Giới tính:</strong> {userInfo.GENDER === "male" ? "Nam" : "Nữ"}
           </Typography>
-          <Typography variant="body1" gutterBottom>
+          <Typography variant="body1" align="center" gutterBottom>
             <strong>Chiều cao:</strong> {userInfo.HEIGHT} cm
           </Typography>
-          <Typography variant="body1" gutterBottom>
+          <Typography variant="body1" align="center" gutterBottom>
             <strong>Cân nặng:</strong> {userInfo.WEIGHT} kg
           </Typography>
-          <Typography variant="body1" gutterBottom>
+          <Typography variant="body1" align="center" gutterBottom>
             <strong>Mức độ vận động:</strong> {userInfo.ACTIVITY}
           </Typography>
         </div>
       )}
 
       <Typography variant="body1" gutterBottom>
-        <strong>Tổng lượng calo tiêu thụ (tuần):</strong> {totalCalories.toFixed(1)} calo
+        <strong><br /> Tổng lượng calo tiêu thụ (tuần):</strong> {totalCalories.toFixed(1)} calo
       </Typography>
       <Typography variant="body1" gutterBottom>
         <strong>Lượng calo tối thiểu cần thiết trong tuần:</strong> {minCaloriesWeek.toFixed(1)} calo
@@ -180,7 +180,7 @@ const UserInfo = () => {
         </Alert>
       )}
       <Typography variant="body1" gutterBottom>
-        <strong>Lượng calo tối thiểu mỗi ngày:</strong> {minCaloriesDay.toFixed(1)} calo
+        <strong><br />Lượng calo tối thiểu mỗi ngày:</strong> {minCaloriesDay.toFixed(1)} calo
       </Typography>
       <Typography variant="body1" gutterBottom>
         <strong>Lượng calo tiêu thụ hôm nay:</strong> {dailyCaloriesConsumed.toFixed(1)} calo
@@ -190,7 +190,7 @@ const UserInfo = () => {
       </Typography>
 
       <Alert severity={dailyCaloriesConsumed < minCaloriesDay ? "warning" : "success"}>
-        Dựa trên lượng calo bạn đã tiêu thụ, có thể thấy bạn {dailyCaloriesConsumed < minCaloriesDay ? "cần ăn thêm để tăng calo" : "đã tiêu thụ đủ calo trong ngày"}.
+      <br /> Dựa trên lượng calo bạn đã tiêu thụ, có thể thấy bạn {dailyCaloriesConsumed < minCaloriesDay ? "cần ăn thêm để tăng calo" : "đã tiêu thụ đủ calo trong ngày"}.
       </Alert>
 
 
@@ -210,8 +210,8 @@ const UserInfo = () => {
       ) : (
         <Alert severity="info">Không có dữ liệu calo tuần này.</Alert>
       )}
-        <Typography variant="h6" gutterBottom>
-                      Gợi ý thực đơn
+        <Typography variant="h6" align="center" gutterBottom style={{ fontWeight: "bold", fontSize: "20px" }} >
+                      Gợi ý thực đơn <br />
       </Typography>
 
       {Object.keys(suggestedMeals).map((goal) => (
