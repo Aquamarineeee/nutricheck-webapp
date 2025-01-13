@@ -147,6 +147,87 @@ const Dashboard = () => {
       settourRun(false);
     }
   };
+  const getSuggestions = (nutrient, current, max) => {
+    if (current < max) {
+      const remaining = max - current;
+      return {
+        status: "Thiếu",
+        message: `Bạn cần bổ sung ${remaining.toFixed(1)}g ${nutrient} nữa.`,
+      };
+    } else if (current > max) {
+      const excess = current - max;
+      return {
+        status: "Thừa",
+        message: `Bạn đã thừa ${excess.toFixed(1)}g ${nutrient}. Hãy giảm thiểu lượng ${nutrient} tiêu thụ.`,
+      };
+    }
+    return {
+      status: "Đủ",
+      message: `Bạn đã tiêu thụ đủ ${nutrient}. Hãy duy trì chế độ này.`,
+    };
+  };
+    
+  const foodSuggestions = [
+    { name: "Ức gà", protien: 25, carbs: 0, fats: 2, calcium: 15, calories: 120 },
+    { name: "Cá hồi", protien: 22, carbs: 0, fats: 12, calcium: 20, calories: 200 },
+    { name: "Sữa chua", protien: 10, carbs: 15, fats: 5, calcium: 150, calories: 100 },
+    { name: "Trứng gà", protien: 6, carbs: 1, fats: 5, calcium: 30, calories: 70 },
+    { name: "Bông cải xanh", protien: 3, carbs: 7, fats: 0, calcium: 47, calories: 35 },
+    { name: "Chuối", protien: 1, carbs: 27, fats: 0, calcium: 5, calories: 105 },
+    { name: "Táo", protien: 0.5, carbs: 25, fats: 0, calcium: 6, calories: 95 },
+    { name: "Cá ngừ", protien: 20, carbs: 0, fats: 1, calcium: 15, calories: 90 },
+    { name: "Hạnh nhân", protien: 6, carbs: 6, fats: 14, calcium: 76, calories: 160 },
+    { name: "Đậu hũ", protien: 8, carbs: 2, fats: 4, calcium: 350, calories: 70 },
+    { name: "Khoai lang", protien: 2, carbs: 24, fats: 0, calcium: 30, calories: 100 },
+    { name: "Bơ", protien: 2, carbs: 9, fats: 15, calcium: 10, calories: 160 },
+    { name: "Sữa bò", protien: 8, carbs: 12, fats: 8, calcium: 300, calories: 150 },
+    { name: "Yến mạch", protien: 5, carbs: 27, fats: 3, calcium: 52, calories: 150 },
+    { name: "Rau chân vịt", protien: 3, carbs: 4, fats: 0, calcium: 99, calories: 23 },
+    { name: "Thịt bò nạc", protien: 26, carbs: 0, fats: 7, calcium: 20, calories: 190 },
+    { name: "Tôm", protien: 20, carbs: 1, fats: 0.5, calcium: 70, calories: 85 },
+    { name: "Phô mai", protien: 7, carbs: 1, fats: 9, calcium: 200, calories: 110 },
+    { name: "Cam", protien: 1, carbs: 21, fats: 0, calcium: 40, calories: 80 },
+    { name: "Mật ong", protien: 0, carbs: 17, fats: 0, calcium: 2, calories: 64 },
+    { name: "Hạt chia", protien: 4, carbs: 12, fats: 9, calcium: 177, calories: 120 },
+    { name: "Nấm", protien: 3, carbs: 3, fats: 0, calcium: 2, calories: 22 },
+    { name: "Dưa hấu", protien: 1, carbs: 11, fats: 0, calcium: 10, calories: 46 },
+    { name: "Quả óc chó", protien: 4, carbs: 4, fats: 18, calcium: 20, calories: 185 },
+    { name: "Hạt điều", protien: 5, carbs: 9, fats: 13, calcium: 37, calories: 157 },
+    { name: "Dâu tây", protien: 1, carbs: 11, fats: 0, calcium: 16, calories: 50 },
+    { name: "Đậu đen", protien: 15, carbs: 41, fats: 0.5, calcium: 46, calories: 227 },
+    { name: "Thịt gà quay", protien: 20, carbs: 0, fats: 8, calcium: 15, calories: 165 },
+    { name: "Ngô", protien: 3, carbs: 19, fats: 1, calcium: 2, calories: 86 },
+    { name: "Rau cải", protien: 2, carbs: 4, fats: 0, calcium: 50, calories: 20 },
+  ];
+
+
+    // Tương tự phần trên...
+    const protienSuggestion = getSuggestions(
+      "đạm",
+      nutrients.protiens,
+      nutrients.maxprotiens
+    );
+    const calciumSuggestion = getSuggestions(
+      "canxi",
+      nutrients.calcium,
+      nutrients.maxcalcium
+    );
+    const carbsSuggestion = getSuggestions(
+      "tinh bột",
+      nutrients.carbs,
+      nutrients.maxcarbs
+    );
+    const fatsSuggestion = getSuggestions(
+      "chất béo",
+      nutrients.fats,
+      nutrients.maxfats
+    );
+    const getRandomFoods = (foodList, count) => {
+      const shuffled = foodList.sort(() => 0.5 - Math.random());
+      return shuffled.slice(0, count);
+    };
+    const randomFoods = getRandomFoods(foodSuggestions, 7);
+  
 
   return (
     <motion.div
@@ -516,6 +597,63 @@ const Dashboard = () => {
           </Grid>
         </div>
       </Container>
+      <Container>
+      {/* Phân tích thói quen ăn uống */}
+      <Box>
+        <Box
+              sx={{
+                border: "2px solidrgb(130, 194, 244)", // Màu xanh dương cây nhạt
+                borderRadius: "5px",         // Bo góc
+                padding: "16px",             // Khoảng cách bên trong
+                margin: "16px 0",            // Khoảng cách bên ngoài
+                backgroundColor: "#FFE4E1",  // Màu nền nhẹ
+              }}
+            >
+              <Typography variant="h6" align="center" gutterBottom style={{ fontWeight: "bold", fontSize: "25px" }} >
+                        <br/> Phân tích thói quen ăn uống <br />
+              </Typography>
+    </Box>
+        <p>{protienSuggestion.message}</p>
+        <p>{calciumSuggestion.message}</p>
+        <p>{carbsSuggestion.message}</p>
+        <p>{fatsSuggestion.message}</p>
+      </Box>
+
+      {/* Gợi ý món ăn */}
+      <Box>
+        <h2>Gợi ý món ăn</h2>
+        {protienSuggestion.status === "Thiếu" && (
+          <div>
+            <h3>Món ăn giàu đạm:</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Tên món</th>
+                  <th>Calo</th>
+                  <th>Đạm (g)</th>
+                  <th>Tinh bột (g)</th>
+                  <th>Chất béo (g)</th>
+                  <th>Canxi (mg)</th>
+                </tr>
+              </thead>
+              <tbody>
+                  {randomFoods.map((food, idx) => (
+                    <tr key={idx}>
+                        <td>{food.name}</td>
+                        <td>{food.calories}</td>
+                        <td>{food.protien}</td>
+                        <td>{food.carbs}</td>
+                        <td>{food.fats}</td>
+                        <td>{food.calcium}</td>
+                    </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </Box>
+    </Container>
+
     </motion.div>
   );
 };

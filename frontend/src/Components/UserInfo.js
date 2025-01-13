@@ -265,10 +265,10 @@ const UserInfo = () => {
               borderRadius: "5px",         // Bo góc
               padding: "16px",             // Khoảng cách bên trong
               margin: "16px 0",            // Khoảng cách bên ngoài
-              backgroundColor: "#33CCFF",  // Màu nền nhẹ
+              backgroundColor: "#7FFFD4",  // Màu nền nhẹ
             }}
           >
-            <Typography variant="h6" align="center" gutterBottom style={{ fontWeight: "bold", fontSize: "23px" }} >
+            <Typography variant="h6" align="center" gutterBottom style={{ fontWeight: "bold", fontSize: "25px" }} >
                       Gợi ý thực đơn <br />
             </Typography>
   </Box>
