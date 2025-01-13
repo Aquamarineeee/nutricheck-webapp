@@ -610,12 +610,12 @@ const Dashboard = () => {
 
               }}
             >
-              <Typography variant="h6" align="center" gutterBottom >
-                        <br/> <h2 style={{ marginTop: "1.5rem", marginBottom: "1rem" }}></h2> Phân tích thói quen ăn uống <br />
-              </Typography>
+              <h2> Phân tích thói quen ăn uống </h2>
+                <div style={{ textAlign: 'center',marginTop: "1.5rem", marginBottom: "1rem" }}>
+                  </div>
 
     </Box >
-    <h2 style={{ marginTop: "1.5rem", marginBottom: "1rem" }}>
+    <h2 style={{ marginTop: "4.5rem", marginBottom: "4rem" }}>
         <p>{protienSuggestion.message}</p>
         <p>{calciumSuggestion.message}</p>
         <p>{carbsSuggestion.message}</p>
@@ -628,7 +628,7 @@ const Dashboard = () => {
       <h2> Gợi ý món ăn </h2>
         {protienSuggestion.status === "Thiếu" && (
           <div style={{ textAlign: 'center' }}>
-            <h3>Món ăn giàu đạm:</h3>
+            <h3>Món ăn tốt cho sức khỏe với đủ hàm lượng dinh dưỡng có thể cân bằng :</h3>
             <table style={{ margin: '10px auto', borderCollapse: 'collapse' }}>
               <thead>
                 <tr>
