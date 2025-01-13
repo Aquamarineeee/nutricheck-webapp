@@ -131,7 +131,7 @@ const UserInfo = () => {
   return (
     <div>
       <Typography variant="h6" align="center" gutterBottom style={{ fontWeight: "bold", fontSize: "20px" }}>
-  Báo cáo calo tuần này của người dùng...
+      <br/> Báo cáo calo tuần này của người dùng...
 </Typography>
 
 {userInfo && (
@@ -139,34 +139,34 @@ const UserInfo = () => {
     <Table>
       <TableHead>
         <TableRow>
-          <TableCell align="center" colSpan={2} style={{ fontWeight: "bold", fontSize: "16px" }}>
+          <TableCell align="center" colSpan={2} style={{ fontWeight: "bold", fontSize: "25px" }}>
             Thông tin người dùng
           </TableCell>
         </TableRow>
       </TableHead>
       <TableBody>
         <TableRow>
-          <TableCell align="right"><strong>Tên:</strong></TableCell>
+          <TableCell align="left"><strong>Tên:</strong></TableCell>
           <TableCell align="left">{userInfo.USERNAME}</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell align="right"><strong>Tuổi:</strong></TableCell>
+          <TableCell align="left"><strong>Tuổi:</strong></TableCell>
           <TableCell align="left">{userInfo.AGE}</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell align="right"><strong>Giới tính:</strong></TableCell>
+          <TableCell align="left"><strong>Giới tính:</strong></TableCell>
           <TableCell align="left">{userInfo.GENDER === "male" ? "Nam" : "Nữ"}</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell align="right"><strong>Chiều cao:</strong></TableCell>
+          <TableCell align="left"><strong>Chiều cao:</strong></TableCell>
           <TableCell align="left">{userInfo.HEIGHT} cm</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell align="right"><strong>Cân nặng:</strong></TableCell>
+          <TableCell align="left"><strong>Cân nặng:</strong></TableCell>
           <TableCell align="left">{userInfo.WEIGHT} kg</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell align="right"><strong>Mức độ vận động:</strong></TableCell>
+          <TableCell align="left"><strong>Mức độ vận động:</strong></TableCell>
           <TableCell align="left">{userInfo.ACTIVITY}</TableCell>
         </TableRow>
       </TableBody>
@@ -188,11 +188,11 @@ const UserInfo = () => {
       </Typography>
 
       {totalCalories < minCaloriesWeek ? (
-        <Alert severity="warning">
+        <Alert severity="warning" sx={{ fontWeight: "bold", fontSize: "23px" }} >
           Bạn tiêu thụ ít hơn mức calo tối thiểu cần thiết trong tuần. Hãy chú ý bổ sung thêm dinh dưỡng!
         </Alert>
       ) : (
-        <Alert severity="success">
+        <Alert severity="success" sx={{ fontWeight: "bold", fontSize: "23px" }} >
           Bạn đã tiêu thụ đủ lượng calo tối thiểu trong tuần.
         </Alert>
       )}
@@ -206,8 +206,8 @@ const UserInfo = () => {
         <strong>Lượng calo tối thiểu mỗi tuần:</strong> {minCaloriesWeek.toFixed(1)} calo
       </Typography>
 
-      <Alert severity={dailyCaloriesConsumed < minCaloriesDay ? "warning" : "success"}>
-      <br /> Dựa trên lượng calo bạn đã tiêu thụ, có thể thấy bạn {dailyCaloriesConsumed < minCaloriesDay ? "cần ăn thêm để tăng calo" : "đã tiêu thụ đủ calo trong ngày"}.
+      <Alert severity={dailyCaloriesConsumed < minCaloriesDay ? "warning" : "success"} sx={{ fontWeight: "bold", fontSize: "23px" }} >
+        Dựa trên lượng calo bạn đã tiêu thụ, có thể thấy bạn {dailyCaloriesConsumed < minCaloriesDay ? "cần ăn thêm để tăng calo" : "đã tiêu thụ đủ calo trong ngày"}.
       </Alert>
 
 
