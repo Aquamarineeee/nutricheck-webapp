@@ -127,6 +127,23 @@ const UserInfo = () => {
   // Tạo dữ liệu biểu đồ
   const categories = weekData.map((item) => item.DAY); // Tên các ngày trong tuần
   const weekCalories = weekData.map((item) => item.CALORIES); // Calo từng ngày
+  const getHealthWarnings = () => {
+    // Kiểm tra xem lượng calo tiêu thụ có thấp hơn 80% lượng calo tối thiểu không
+    if (totalCalories < minCaloriesWeek * 0.8) {
+      // Giải thích chi tiết cho người dùng về tác hại của việc tiêu thụ quá ít calo
+      return "Tuy nhiên, tôi cũng sẽ đưa ra khuyến cáo sức khỏe cho bạn với lượng calo trên: Bạn tiêu thụ quá ít calo trong tuần, điều này có thể dẫn đến suy dinh dưỡng. Lượng calo quá thấp sẽ không đủ để cơ thể tạo năng lượng cần thiết cho các hoạt động cơ bản như hô hấp, tuần hoàn, và vận động. Hãy kiểm tra lại chế độ ăn của mình, bổ sung các thực phẩm giàu dinh dưỡng như rau, protein, và ngũ cốc nguyên hạt để cải thiện năng lượng hàng ngày. \nNếu bạn đang có nhu cầu giảm cân, vui lòng hãy đọc khuyến cáo sức khỏe ở trên và chú ý phòng các bệnh ";
+    } 
+    // Kiểm tra xem lượng calo tiêu thụ có vượt quá 120% lượng calo tối thiểu không
+    else if (totalCalories > minCaloriesWeek * 1.2) {
+      // Giải thích chi tiết về tác hại của việc tiêu thụ quá nhiều calo
+      return "Tuy nhiên, tôi cũng sẽ đưa ra khuyến cáo sức khỏe cho bạn với lượng calo trên: \nBạn tiêu thụ quá nhiều calo trong tuần, điều này có thể dẫn đến tăng cân và các bệnh mãn tính. Khi lượng calo nạp vào vượt quá mức cơ thể cần, năng lượng dư thừa sẽ chuyển hóa thành mỡ, tích tụ lâu ngày gây béo phì. Điều này làm tăng nguy cơ mắc các bệnh như tiểu đường, cao huyết áp, và tim mạch. Hãy điều chỉnh chế độ ăn, giảm thực phẩm chứa nhiều đường và chất béo, tăng cường rau xanh và thực phẩm ít calo.";
+    } 
+    // Trường hợp lượng calo tiêu thụ nằm trong mức hợp lý
+    else {
+      // Giải thích về lợi ích của việc duy trì mức calo hợp lý
+      return "Lượng calo tiêu thụ trong tuần của bạn nằm trong mức hợp lý, cho thấy bạn đang duy trì một chế độ ăn uống cân bằng. Điều này giúp cơ thể bạn có đủ năng lượng để hoạt động mà không tích tụ mỡ thừa, đồng thời giảm nguy cơ mắc các bệnh liên quan đến dinh dưỡng. Hãy tiếp tục duy trì chế độ ăn uống này, kết hợp với luyện tập thể dục để tăng cường sức khỏe.";
+    }
+  };
 
   return (
     <div>
@@ -285,6 +302,27 @@ const UserInfo = () => {
               ))}
             </TableBody>
           </Table>
+          <Box
+            sx={{
+              border: "2px solid #EF9A9A", // Màu đỏ nhạt
+              borderRadius: "8px",
+              padding: "16px",
+              margin: "16px 0",
+              backgroundColor: "#FFEBEE", // Màu nền nhẹ
+            }}
+          >
+            <Typography
+              variant="h6"
+              align="center"
+              gutterBottom
+              style={{ fontWeight: "bold", fontSize: "22px" }}
+            >
+              <br/> Khuyến cáo sức khỏe về nguy cơ bệnh tật 
+            </Typography>
+            <Typography variant="body1" style={{ fontSize: "18px" }}>
+              {getHealthWarnings()}
+            </Typography>
+          </Box>
         </div>
 ))}
 
