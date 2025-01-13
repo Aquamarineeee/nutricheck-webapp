@@ -146,28 +146,28 @@ const UserInfo = () => {
       </TableHead>
       <TableBody>
         <TableRow>
-          <TableCell align="left"><strong>Tên:</strong></TableCell>
-          <TableCell align="left">{userInfo.USERNAME}</TableCell>
+          <TableCell align="left" style={{ fontWeight: "bold", fontSize: "20px" }} ><strong>Tên:</strong></TableCell>
+          <TableCell align="left" style={{fontSize: "20px"}}>{userInfo.USERNAME}</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell align="left"><strong>Tuổi:</strong></TableCell>
-          <TableCell align="left">{userInfo.AGE}</TableCell>
+          <TableCell align="left" style={{ fontWeight: "bold", fontSize: "20px" }}><strong>Tuổi:</strong></TableCell>
+          <TableCell align="left" style={{fontSize: "20px"}}>{userInfo.AGE}</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell align="left"><strong>Giới tính:</strong></TableCell>
-          <TableCell align="left">{userInfo.GENDER === "male" ? "Nam" : "Nữ"}</TableCell>
+          <TableCell align="left" style={{ fontWeight: "bold", fontSize: "20px" }}><strong>Giới tính:</strong></TableCell>
+          <TableCell align="left" style={{fontSize: "20px"}}>{userInfo.GENDER === "male" ? "Nam" : "Nữ"}</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell align="left"><strong>Chiều cao:</strong></TableCell>
-          <TableCell align="left">{userInfo.HEIGHT} cm</TableCell>
+          <TableCell align="left" style={{ fontWeight: "bold", fontSize: "20px" }}><strong>Chiều cao:</strong></TableCell>
+          <TableCell align="left" style={{fontSize: "20px"}}>{userInfo.HEIGHT} cm</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell align="left"><strong>Cân nặng:</strong></TableCell>
-          <TableCell align="left">{userInfo.WEIGHT} kg</TableCell>
+          <TableCell align="left" style={{ fontWeight: "bold", fontSize: "20px" }} ><strong>Cân nặng:</strong></TableCell>
+          <TableCell align="left" style={{fontSize: "20px"}}>{userInfo.WEIGHT} kg</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell align="left"><strong>Mức độ vận động:</strong></TableCell>
-          <TableCell align="left">{userInfo.ACTIVITY}</TableCell>
+          <TableCell align="left" style={{ fontWeight: "bold", fontSize: "20px" }}><strong>Mức độ vận động:</strong></TableCell>
+          <TableCell align="left" style={{fontSize: "20px"}}>{userInfo.ACTIVITY}</TableCell>
         </TableRow>
       </TableBody>
     </Table>
@@ -188,11 +188,11 @@ const UserInfo = () => {
       </Typography>
 
       {totalCalories < minCaloriesWeek ? (
-        <Alert severity="warning" sx={{ fontWeight: "bold", fontSize: "23px" }} >
+        <Alert severity="warning" sx={{ fontWeight: "bold", fontSize: "20px" }} >
           Bạn tiêu thụ ít hơn mức calo tối thiểu cần thiết trong tuần. Hãy chú ý bổ sung thêm dinh dưỡng!
         </Alert>
       ) : (
-        <Alert severity="success" sx={{ fontWeight: "bold", fontSize: "23px" }} >
+        <Alert severity="success" sx={{ fontWeight: "bold", fontSize: "20px" }} >
           Bạn đã tiêu thụ đủ lượng calo tối thiểu trong tuần.
         </Alert>
       )}
@@ -206,7 +206,7 @@ const UserInfo = () => {
         <strong>Lượng calo tối thiểu mỗi tuần:</strong> {minCaloriesWeek.toFixed(1)} calo
       </Typography>
 
-      <Alert severity={dailyCaloriesConsumed < minCaloriesDay ? "warning" : "success"} sx={{ fontWeight: "bold", fontSize: "23px" }} >
+      <Alert severity={dailyCaloriesConsumed < minCaloriesDay ? "warning" : "success"} sx={{ fontWeight: "bold", fontSize: "20px" }} >
         Dựa trên lượng calo bạn đã tiêu thụ, có thể thấy bạn {dailyCaloriesConsumed < minCaloriesDay ? "cần ăn thêm để tăng calo" : "đã tiêu thụ đủ calo trong ngày"}.
       </Alert>
 
@@ -233,27 +233,33 @@ const UserInfo = () => {
 
       {Object.keys(suggestedMeals).map((goal) => (
         <div key={goal}>
-          <Typography variant="body1" gutterBottom>
+          <Typography
+            variant="body1"
+            align="center"
+            gutterBottom
+            style={{ fontWeight: "bold", fontSize: "20px" }}
+          >
             <strong>{goal === "gain" ? "Tăng cân" : goal === "lose" ? "Giảm cân" : "Giữ cân"}</strong>
           </Typography>
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Tên món</TableCell>
-                <TableCell>Calo</TableCell>
+                <TableCell style={{ fontSize: "20px", fontWeight: "bold" }}>Tên món</TableCell>
+                <TableCell style={{ fontSize: "20px" }}>Calo</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {suggestedMeals[goal].map((meal, index) => (
                 <TableRow key={index}>
-                  <TableCell>{meal.name}</TableCell>
-                  <TableCell>{meal.calories}</TableCell>
+                  <TableCell style={{ fontWeight: "bold", fontSize: "20px" }}>{meal.name}</TableCell>
+                  <TableCell style={{ fontSize: "20px" }}>{meal.calories}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
         </div>
-      ))}
+))}
+
     </div>
   );
 };
