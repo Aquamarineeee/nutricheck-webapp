@@ -3,7 +3,7 @@ import Chart from "react-apexcharts";
 import LinearProgress, {
   linearProgressClasses,
 } from "@mui/material/LinearProgress";
-import { Alert, Grid, styled } from "@mui/material";
+import { Alert, Grid, styled, Typography } from "@mui/material";
 import { Box, Container } from "@mui/system";
 import FoodCard from "../../Components/FoodCard";
 import BottomNavBar from "../../Components/BottomNavBar";
