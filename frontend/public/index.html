@@ -57,22 +57,13 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <head>
-      <style>
-        #botpress-chat {
-          position: fixed;
-          bottom: 7cm; /* 7cm */
-          right: 0;
-        }
-      </style>
-    </head>
-    <body>
-      <!-- Khung Chat -->
-      <div id="botpress-chat">
-        <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
-        <script src="https://files.bpcontent.cloud/2025/01/13/15/20250113155620-PH5ZUIM8.js"></script>
-      </div>
-    </body>
-    
+    <script>
+      window.botpressWebChat.init({
+        positioning: {
+          bottom: '7cm',
+          right: '0',
+        },
+      });
+    </script>    
   </body>
 </html>
