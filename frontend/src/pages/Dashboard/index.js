@@ -16,7 +16,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
 import Joyride, { CallBackProps, STATUS, Step } from "react-joyride";
 import { motion } from "framer-motion";
-import { Container, Box, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
+import { Box, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
 
 const tourMotion = {
   offscreen: {
@@ -598,6 +598,7 @@ const Dashboard = () => {
           </Grid>
         </div>
       </Container>
+      <Container>
       {/* Phân tích thói quen ăn uống */}
       <Box
         sx={{
@@ -687,7 +688,7 @@ const Dashboard = () => {
           </TableContainer>
         </Box>
       )}
-
+    </Container>
     </motion.div>
   );
 };
