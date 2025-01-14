@@ -16,7 +16,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
 import Joyride, { CallBackProps, STATUS, Step } from "react-joyride";
 import { motion } from "framer-motion";
-import { Box, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
+import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
 
 const tourMotion = {
   offscreen: {
