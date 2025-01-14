@@ -16,6 +16,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
 import Joyride, { CallBackProps, STATUS, Step } from "react-joyride";
 import { motion } from "framer-motion";
+import { Container, Box, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
 
 const tourMotion = {
   offscreen: {
@@ -599,81 +600,95 @@ const Dashboard = () => {
       </Container>
       <Container>
       {/* Phân tích thói quen ăn uống */}
-      <Box>
-        <Box
-              sx={{
-                border: "2px solidrgb(130, 194, 244)", // Màu xanh dương cây nhạt
-                borderRadius: "5px",         // Bo góc
-                padding: "16px",             // Khoảng cách bên trong
-                margin: "16px 0",            // Khoảng cách bên ngoài
-                backgroundColor: "#FFE4E1",  // Màu nền nhẹ
+      <Box
+        sx={{
+          border: "2px solid #82C2F4", // Màu xanh dương cây nhạt
+          borderRadius: "8px",         // Bo góc
+          padding: "24px",             // Khoảng cách bên trong
+          margin: "24px 0",            // Khoảng cách bên ngoài
+          backgroundColor: "#FFF5F5",  // Màu nền nhẹ
+          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)" // Hiệu ứng đổ bóng
+        }}
+      >
+        <Typography
+          variant="h5"
+          align="center"
+          gutterBottom
+          sx={{ fontWeight: "bold", fontSize: "28px", color: "#444" }}
+        >
+          Phân tích hàm lượng dinh dưỡng & thói quen ăn uống
+        </Typography>
 
-              }}
-            >
-              <Typography variant="h6" align="center" gutterBottom style={{ fontWeight: "bold", fontSize: "25px" }} >
-                                    Phân tích hàm lượng dinh dưỡng, thói quen ăn uống <br />
-                          </Typography>
-
-    </Box >
-          <table style={{ border: '1px solid #ccc', width: '100%', textAlign: 'center' }}>
-        <tbody>
-          <tr>
-            <td style={{ border: '1px solid #ccc' }}>{protienSuggestion.message}</td>
-          </tr>
-          <tr>
-            <td style={{ border: '1px solid #ccc' }}>{calciumSuggestion.message}</td>
-          </tr>
-          <tr>
-            <td style={{ border: '1px solid #ccc' }}>{carbsSuggestion.message}</td>
-          </tr>
-          <tr>
-            <td style={{ border: '1px solid #ccc' }}>{fatsSuggestion.message}</td>
-          </tr>
-        </tbody>
-      </table>
+        <TableContainer component={Paper} sx={{ marginTop: "16px" }}>
+          <Table>
+            <TableBody>
+              <TableRow>
+                <TableCell align="center">{protienSuggestion.message}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell align="center">{calciumSuggestion.message}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell align="center">{carbsSuggestion.message}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell align="center">{fatsSuggestion.message}</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
       </Box>
 
       {/* Gợi ý món ăn */}
-      <Box>
-        <h2> </h2>
-        <div style={{ textAlign: 'center', fontSize: "18px" }}>
-          {/* Content for the center-aligned div */}
-        </div>
-        {protienSuggestion.status === "Thiếu" && (
-          <div style={{ textAlign: 'center', fontSize: "19px" }}>
-            <h3>
-              <br />
-              Gợi ý món ăn thêm vào bữa ăn của bạn tốt cho sức khỏe, đủ hàm lượng dinh dưỡng  :<br />
-            </h3>
-            <table style={{ margin: '10px auto', border: '1px solid black', borderCollapse: 'collapse' }}>
-              <thead>
-                <tr>
-                  <th>Tên món</th>
-                  <th>Calo</th>
-                  <th>Đạm (g)</th>
-                  <th>Tinh bột (g)</th>
-                  <th>Chất béo (g)</th>
-                  <th>Canxi (mg)</th>
-                </tr>
-              </thead>
-              <tbody>
-                {randomFoods.map((food, idx) => (
-                  <tr key={idx}>
-                    <td>{food.name}</td>
-                    <td>{food.calories}</td>
-                    <td>{food.protien}</td>
-                    <td>{food.carbs}</td>
-                    <td>{food.fats}</td>
-                    <td>{food.calcium}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-      </Box>
-    </Container>
+      {protienSuggestion.status === "Thiếu" && (
+        <Box
+          sx={{
+            border: "2px solid #82C2F4",
+            borderRadius: "8px",
+            padding: "24px",
+            margin: "24px 0",
+            backgroundColor: "#E8F5E9",
+            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)"
+          }}
+        >
+          <Typography
+            variant="h6"
+            align="center"
+            gutterBottom
+            sx={{ fontWeight: "bold", fontSize: "24px", color: "#444" }}
+          >
+            Gợi ý món ăn thêm vào bữa ăn của bạn tốt cho sức khỏe:
+          </Typography>
 
+          <TableContainer component={Paper} sx={{ marginTop: "16px" }}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell align="center"><strong>Tên món</strong></TableCell>
+                  <TableCell align="center"><strong>Calo</strong></TableCell>
+                  <TableCell align="center"><strong>Đạm (g)</strong></TableCell>
+                  <TableCell align="center"><strong>Tinh bột (g)</strong></TableCell>
+                  <TableCell align="center"><strong>Chất béo (g)</strong></TableCell>
+                  <TableCell align="center"><strong>Canxi (mg)</strong></TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {randomFoods.map((food, idx) => (
+                  <TableRow key={idx}>
+                    <TableCell align="center">{food.name}</TableCell>
+                    <TableCell align="center">{food.calories}</TableCell>
+                    <TableCell align="center">{food.protien}</TableCell>
+                    <TableCell align="center">{food.carbs}</TableCell>
+                    <TableCell align="center">{food.fats}</TableCell>
+                    <TableCell align="center">{food.calcium}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Box>
+      )}
+    </Container>
     </motion.div>
   );
 };
