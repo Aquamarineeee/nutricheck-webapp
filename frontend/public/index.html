@@ -57,13 +57,26 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <script>
-      window.botpressWebChat.init({
-        positioning: {
-          bottom: '7cm',
-          right: '0',
-        },
-      });
-    </script>    
+    <body>
+      <div id="botpress-chat"></div>
+      <script>
+        // Thêm script của Botpress
+        const botpressChat = document.getElementById('botpress-chat');
+        const injectScript1 = document.createElement('script');
+        injectScript1.src = "https://cdn.botpress.cloud/webchat/v2.2/inject.js";
+        const injectScript2 = document.createElement('script');
+        injectScript2.src = "https://files.bpcontent.cloud/2025/01/13/15/20250113155620-PH5ZUIM8.js";
+    
+        botpressChat.appendChild(injectScript1);
+        botpressChat.appendChild(injectScript2);
+    
+        // Chỉnh vị trí
+        botpressChat.style.position = 'fixed';
+        botpressChat.style.bottom = '7cm'; // 7cm từ đáy
+        botpressChat.style.right = '0';   // Cách lề phải 0px
+      </script>
+    </body>
+    
+    
   </body>
 </html>
