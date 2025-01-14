@@ -660,7 +660,7 @@ const Dashboard = () => {
             Gợi ý món ăn thêm vào bữa ăn của bạn tốt cho sức khỏe:
           </Typography>
 
-          <TableContainer component={Paper} sx={{ marginTop: "16px" }}>
+          <TableContainer component={Paper} sx={{ marginTop: "20px" }}>
             <Table>
               <TableHead>
                 <TableRow>
