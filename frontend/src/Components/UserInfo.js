@@ -17,7 +17,70 @@ const UserInfo = () => {
   const [suggestedMeals, setSuggestedMeals] = useState({ gain: [], lose: [], maintain: [] });
   const [feedback, setFeedback] = useState("");
   const [selectedCondition, setSelectedCondition] = useState("");
-
+  const styles = {
+    container: {
+      textAlign: "center",
+      padding: "20px",
+      backgroundColor: "#f9f9f9",
+      borderRadius: "10px",
+      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+      margin: "50px auto",
+      maxWidth: "600px",
+    },
+    title: {
+      fontSize: "24px",
+      color: "#333",
+      marginBottom: "20px",
+    },
+    selectContainer: {
+      marginBottom: "20px",
+    },
+    label: {
+      display: "block",
+      marginBottom: "10px",
+      fontSize: "16px",
+      color: "#555",
+    },
+    select: {
+      width: "100%",
+      padding: "10px",
+      fontSize: "16px",
+      borderRadius: "5px",
+      border: "1px solid #ccc",
+    },
+    button: {
+      padding: "10px 20px",
+      fontSize: "16px",
+      color: "#fff",
+      backgroundColor: "#007bff",
+      border: "none",
+      borderRadius: "5px",
+      cursor: "pointer",
+      transition: "background-color 0.3s",
+    },
+    buttonHover: {
+      backgroundColor: "#0056b3",
+    },
+    feedbackContainer: {
+      marginTop: "20px",
+      textAlign: "left",
+      padding: "20px",
+      backgroundColor: "#e8f5e9",
+      borderRadius: "5px",
+      border: "1px solid #c8e6c9",
+    },
+    resultTitle: {
+      fontSize: "20px",
+      marginBottom: "10px",
+      color: "#2e7d32",
+    },
+    resultText: {
+      whiteSpace: "pre-wrap",
+      fontSize: "16px",
+      color: "#333",
+    },
+  };
+  
   useEffect(() => {
     const calculateMinCalories = () => {
       if (!userInfo || !userInfo.WEIGHT || !userInfo.HEIGHT || !userInfo.AGE || !userInfo.GENDER || !userInfo.ACTIVITY) {
@@ -412,30 +475,39 @@ const UserInfo = () => {
               {getHealthWarnings()}
             </Typography>
       </Box>
-      <div>
-      <h1>Lựa chọn nhóm bệnh và nhận gợi ý thực đơn</h1>
+      <div style={styles.container}>
+        <h1 style={styles.title}>Lựa chọn nhóm bệnh và nhận gợi ý thực đơn</h1>
 
-      <div>
-        <label>Chọn nhóm bệnh:</label>
-        <select value={selectedCondition} onChange={(e) => setSelectedCondition(e.target.value)}>
-          <option value="">-- Chọn một nhóm bệnh --</option>
-          {Object.keys(conditions).map((category) =>
-            conditions[category].map((condition, index) => (
-              <option key={`${category}-${index}`} value={condition}>
-                {condition}
-              </option>
-            ))
-          )}
-        </select>
-      </div>
-      <button onClick={handleSubmit}>Xem nhận xét và thực đơn</button>
-      {feedback && (
-        <div>
-          <h2>Kết quả</h2>
-          <pre>{feedback}</pre>
+        <div style={styles.selectContainer}>
+          <label style={styles.label}>Chọn nhóm bệnh:</label>
+          <select
+            style={styles.select}
+            value={selectedCondition}
+            onChange={(e) => setSelectedCondition(e.target.value)}
+          >
+            <option value="">-- Chọn một nhóm bệnh --</option>
+            {Object.keys(conditions).map((category) =>
+              conditions[category].map((condition, index) => (
+                <option key={`${category}-${index}`} value={condition}>
+                  {condition}
+                </option>
+              ))
+            )}
+          </select>
         </div>
-      )}
-    </div>
+
+        <button style={styles.button} onClick={handleSubmit}>
+          Xem nhận xét và thực đơn
+        </button>
+
+        {feedback && (
+          <div style={styles.feedbackContainer}>
+            <h2 style={styles.resultTitle}>Kết quả</h2>
+            <pre style={styles.resultText}>{feedback}</pre>
+          </div>
+        )}
+      </div>
+
     </div>
   );
 };
