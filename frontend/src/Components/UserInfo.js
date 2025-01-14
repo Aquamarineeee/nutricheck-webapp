@@ -507,14 +507,19 @@ const UserInfo = () => {
           </div>
         )}
       </div>
-    <div>
-      <a href="https://nutricheck.io.vn/blog/excercise" target="_blank" rel="noopener noreferrer">
+      <>
+      <button onClick={() => navigate("/exercise")} className="custom-link">
         Bạn có thể đọc thêm các bài tập thể dục thể thao ở đây để rèn luyện sức khỏe tốt
+      </button>
+    </>
+    <a
+        href="https://cdn.botpress.cloud/webchat/v2.2/shareable.html?configUrl=https://files.bpcontent.cloud/2025/01/13/15/20250113155620-ZUX3U765.json"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="custom-link chatbot-link"
+      >
+        <br/>Có bất cứ thắc mắc nào, bạn hãy trao đổi với chat bot nhé!
       </a>
-      <a href="https://cdn.botpress.cloud/webchat/v2.2/shareable.html?configUrl=https://files.bpcontent.cloud/2025/01/13/15/20250113155620-ZUX3U765.json" target="_blank" rel="noopener noreferrer">
-        Có bất cứ thắc mắc nào, bạn hãy trao đổi với chat bot nhé!
-      </a>
-    </div>
     </div>
   );
 };
