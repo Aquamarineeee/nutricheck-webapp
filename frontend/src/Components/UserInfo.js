@@ -509,7 +509,7 @@ const UserInfo = () => {
         )}
       </div>
       <>
-      <button onClick={() => navigate("/exercise")} className="custom-link">
+      <button onClick={() => navigate("/blog/exercise")} className="custom-link">
         Bạn có thể đọc thêm các bài tập thể dục thể thao ở đây để rèn luyện sức khỏe tốt
       </button>
     </>
