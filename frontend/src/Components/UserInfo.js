@@ -206,7 +206,21 @@ const UserInfo = () => {
     };
     return menus[condition] || "Thực đơn đang được cập nhật.";
   };
+  let result = `Nếu bạn đang bị ${selectedCondition}, với mức calo tiêu thụ:\n` +
+      `- Ngày: ${dailyCalories} calo\n` +
+      `- Tuần: ${weeklyCalories} calo\n` +
+      `- Tháng: ${monthlyCalories} calo\n`;
 
+    if (conditions.calorie_deficit.includes(selectedCondition)) {
+      result += "Bạn có thể cần tăng lượng calo nạp vào để cải thiện tình trạng sức khỏe.\n";
+    } else if (conditions.calorie_surplus.includes(selectedCondition)) {
+      result += "Bạn nên giảm lượng calo tiêu thụ để tránh các biến chứng nghiêm trọng.\n";
+    }
+
+    result += "Dưới đây là gợi ý thực đơn phù hợp cho bạn:\n";
+    result += suggestMenu(selectedCondition);
+
+    setFeedback(result);
   return (
     <div>
       <Box
