@@ -598,7 +598,6 @@ const Dashboard = () => {
           </Grid>
         </div>
       </Container>
-      <Container>
       {/* Phân tích thói quen ăn uống */}
       <Box
         sx={{
@@ -688,7 +687,7 @@ const Dashboard = () => {
           </TableContainer>
         </Box>
       )}
-    </Container>
+
     </motion.div>
   );
 };
