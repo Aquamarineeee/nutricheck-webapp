@@ -15,7 +15,8 @@ const UserInfo = () => {
   const [minCaloriesMonth, setMinCaloriesMonth] = useState(0);
   const [totalMonthlyCalories, setTotalMonthlyCalories] = useState(0);
   const [suggestedMeals, setSuggestedMeals] = useState({ gain: [], lose: [], maintain: [] });
-
+  const [feedback, setFeedback] = useState("");
+  const [selectedCondition, setSelectedCondition] = useState("");
 
   useEffect(() => {
     const calculateMinCalories = () => {
@@ -206,10 +207,7 @@ const UserInfo = () => {
     };
     return menus[condition] || "Thực đơn đang được cập nhật.";
   };
-  let result = `Nếu bạn đang bị ${selectedCondition}, với mức calo tiêu thụ:\n` +
-      `- Ngày: ${dailyCalories} calo\n` +
-      `- Tuần: ${weeklyCalories} calo\n` +
-      `- Tháng: ${monthlyCalories} calo\n`;
+  let result = `Nếu bạn đang bị ${selectedCondition}, với mức calo tiêu thụ calo như trên, thì: \n`;
 
     if (conditions.calorie_deficit.includes(selectedCondition)) {
       result += "Bạn có thể cần tăng lượng calo nạp vào để cải thiện tình trạng sức khỏe.\n";
