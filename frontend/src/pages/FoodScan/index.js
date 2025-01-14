@@ -274,6 +274,7 @@ const ScannedImg = () => {
         "french beans": 100,
         "french bread": 100,
         "french fries": 150,
+        "tea" : 30,
         "french onion soup": 200,
         "french toast": 100,
         "fried calamari": 100,

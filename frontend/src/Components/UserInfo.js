@@ -3,9 +3,10 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typog
 import Chart from "react-apexcharts";
 import { useSnackbar } from "notistack";
 import { AppContext } from "../Context/AppContext";
-
+import { useNavigate } from "react-router-dom";
 
 const UserInfo = () => {
+  const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
   const { userInfo, weekData, fetchWeekData } = useContext(AppContext);
   const [totalCalories, setTotalCalories] = useState(0);
