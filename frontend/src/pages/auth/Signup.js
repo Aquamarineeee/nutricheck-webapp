@@ -44,27 +44,25 @@ const Signup = () => {
     }
     setisLoading(false);
   };
-  
- 
   const handleSignup = async () => {
     const currentDate = new Date();
   
     // Kiểm tra thông tin nhập liệu
-    if (state.username === "" || state.email === "" || state.password === "") {
-      enqueueSnackbar("Vui lòng điền thông tin chi tiết", { variant: "error" });
+    if (!state.username || !state.email || !state.password) {
+      enqueueSnackbar("Vui lòng điền đầy đủ thông tin chi tiết", { variant: "error" });
       return;
     }
   
     if (state.password !== state.confirmPassword) {
-      enqueueSnackbar("Mật khẩu không khớp", { variant: "error" });
+      enqueueSnackbar("Mật khẩu không khớp. Vui lòng kiểm tra lại.", { variant: "error" });
       return;
     }
   
-    // Regex kiểm tra độ mạnh mật khẩu
+    // Regex kiểm tra độ mạnh của mật khẩu
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,}$/;
     if (!passwordRegex.test(state.password)) {
       enqueueSnackbar(
-        "Mật khẩu phải có ít nhất 8 ký tự, bao gồm 1 chữ cái viết hoa, 1 chữ cái viết thường, 1 chữ số và 1 ký tự đặc biệt (!@#$%^&*())",
+        "Mật khẩu phải có ít nhất 8 ký tự, bao gồm 1 chữ cái viết hoa, 1 chữ cái viết thường, 1 chữ số và 1 ký tự đặc biệt (!@#$%^&*()).",
         { variant: "error" }
       );
       return;
@@ -73,28 +71,30 @@ const Signup = () => {
     setisLoading(true);
   
     try {
+      // Gửi yêu cầu đăng ký
       const res = await API.signup({
         email: state.email,
         password: state.password,
         username: state.username,
       });
+  
+      // Lưu thông tin và chuyển hướng
       localStorage.setItem("token", res.token);
       localStorage.setItem("userInfo", JSON.stringify(res.user));
-      localStorage.setItem(
-        "registrationDate",
-        currentDate.toISOString().split("T")[0]
-      );
+      localStorage.setItem("registrationDate", currentDate.toISOString().split("T")[0]);
       navigate("/userInitialForm");
     } catch (err) {
+      // Xử lý lỗi từ API
       if (err.response && err.response.status === 400) {
-        enqueueSnackbar("Tài khoản đã tồn tại", { variant: "error" });
+        enqueueSnackbar("Tài khoản đã tồn tại. Vui lòng thử email khác.", { variant: "error" });
       } else {
-        enqueueSnackbar("Đã có lỗi xảy ra", { variant: "error" });
+        enqueueSnackbar("Đã xảy ra lỗi trong quá trình đăng ký. Vui lòng thử lại.", { variant: "error" });
       }
+    } finally {
+      setisLoading(false); // Dừng trạng thái tải
     }
+  };
   
-    setisLoading(false);
-  };  
   
   return (
     <div className="auth-container">
