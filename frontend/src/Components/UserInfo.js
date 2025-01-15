@@ -201,7 +201,7 @@ const UserInfo = () => {
     // Kiểm tra xem lượng calo tiêu thụ có vượt quá 120% lượng calo tối thiểu không
     else if (totalCalories > minCaloriesWeek * 1.2) {
       // Giải thích chi tiết về tác hại của việc tiêu thụ quá nhiều calo
-      return "Tuy nhiên, tôi cũng sẽ đưa ra khuyến cáo sức khỏe cho bạn với lượng calo trên: \nBạn tiêu thụ quá nhiều calo trong tuần, điều này có thể dẫn đến tăng cân và các bệnh mãn tính. \n Khi lượng calo nạp vào vượt quá mức cơ thể cần, năng lượng dư thừa sẽ chuyển hóa thành mỡ, tích tụ lâu ngày gây béo phì. \n -> Điều này làm tăng nguy cơ mắc các bệnh như tiểu đường, cao huyết áp, và tim mạch. \n -> Ngoài ra, mức năng lượng giảm cũng làm tăng giải phóng hormone cortisol, gây căng thẳng, ảnh hưởng khả năng tập trung… \n Thiếu calo khiến quá trình trao đổi chất của cơ thể chậm lại.\n -> Khi ăn quá ít hoặc không ăn, cơ thể sẽ suy yếu, rối loạn điện giải, rối loạn nhịp tim, yếu cơ, xương… \n -> Trường hợp suy dinh dưỡng nghiêm trọng có thể dẫn đến tổn thương nội tạng vĩnh viễn. \nHãy điều chỉnh chế độ ăn, giảm thực phẩm chứa nhiều đường và chất béo, tăng cường rau xanh và thực phẩm ít calo.";
+      return "Tuy nhiên, tôi cũng sẽ đưa ra khuyến cáo sức khỏe cho bạn với lượng calo trên: \nBạn tiêu thụ quá nhiều calo trong tuần, điều này có thể dẫn đến tăng cân và các bệnh mãn tính. \n Khi lượng calo nạp vào vượt quá mức cơ thể cần, năng lượng dư thừa sẽ chuyển hóa thành mỡ, tích tụ lâu ngày gây béo phì. \n -> Điều này làm tăng nguy cơ mắc các bệnh như tiểu đường, cao huyết áp, và tim mạch. \n Người bệnh thừa cân, béo phì phải đối mặt với nhiều nguy cơ sức khỏe như: bệnh tim, cao huyết áp, đột quỵ, viêm khớp, giảm khả năng sinh sản, gan nhiễm mỡ không do rượu, đái tháo đường type 2, hội chứng ngưng thở khi ngủ…\n -> Đặc biệt, béo phì được cho là có liên quan đến 13 loại ung thư, gồm: ung thư buồng trứng, ung thư gan, ung thư não, ung thư tuyến tụy…  \nNếu bạn đang có nhu cầu giảm cân, vui lòng hãy đọc khuyến cáo sức khỏe ở trên và chú ý phòng các bệnh tật liên quan để giữ cho mình sức khỏe tốt nhất.\n\nHãy điều chỉnh chế độ ăn, giảm thực phẩm chứa nhiều đường và chất béo, tăng cường rau xanh và thực phẩm ít calo.";
     } 
     // Trường hợp lượng calo tiêu thụ nằm trong mức hợp lý
     else {
@@ -277,7 +277,7 @@ const UserInfo = () => {
     if (conditions.calorie_deficit.includes(selectedCondition)) {
       result += "-> Bạn có thể cần tăng lượng calo nạp vào để cải thiện tình trạng sức khỏe.\n";
     } else if (conditions.calorie_surplus.includes(selectedCondition)) {
-      result += "-> Bạn nên giảm lượng calo tiêu thụ để tránh các biến chứng nghiêm trọng.\n";
+      result += "\n-> Bạn nên giảm lượng calo tiêu thụ để tránh các biến chứng nghiêm trọng.\n";
     }
 
     result += "Dưới đây là gợi ý thực đơn phù hợp cho bạn:\n";
@@ -347,13 +347,13 @@ const UserInfo = () => {
 )}
 
       <Typography variant="body1" gutterBottom>
-        <strong><br /> Tổng lượng calo tiêu thụ (tuần):</strong> {totalCalories.toFixed(1)} calo
+        <strong><br /> Tổng lượng calo đã tiêu thụ (tuần):</strong> {totalCalories.toFixed(1)} calo
       </Typography>
       <Typography variant="body1" gutterBottom>
         <strong>Lượng calo tối thiểu cần thiết trong tuần:</strong> {minCaloriesWeek.toFixed(1)} calo
       </Typography>
       <Typography variant="body1" gutterBottom>
-        <strong>Tổng lượng calo tiêu thụ (tháng):</strong> {totalMonthlyCalories.toFixed(1)} calo
+        <strong>Tổng lượng calo đã tiêu thụ (tháng):</strong> {totalMonthlyCalories.toFixed(1)} calo
       </Typography>
       <Typography variant="body1" gutterBottom>
         <strong>Lượng calo tối thiểu cần thiết trong tháng:</strong> {minCaloriesMonth.toFixed(1)} calo
@@ -372,7 +372,7 @@ const UserInfo = () => {
         <strong><br />Lượng calo tối thiểu mỗi ngày:</strong> {minCaloriesDay.toFixed(1)} calo
       </Typography>
       <Typography variant="body1" gutterBottom>
-        <strong>Lượng calo tiêu thụ hôm nay:</strong> {dailyCaloriesConsumed.toFixed(1)} calo
+        <strong>Lượng calo đã tiêu thụ hôm nay:</strong> {dailyCaloriesConsumed.toFixed(1)} calo
       </Typography>
       <Typography variant="body1" gutterBottom>
         <strong>Lượng calo tối thiểu mỗi tuần:</strong> {minCaloriesWeek.toFixed(1)} calo
@@ -509,7 +509,7 @@ const UserInfo = () => {
         )}
       </div>
       <>
-      <button onClick={() => navigate("/blog/exercise")} className="custom-link">
+      <button onClick={() => navigate("/blog")} className="custom-link">
         Bạn có thể đọc thêm các bài tập thể dục thể thao ở đây để rèn luyện sức khỏe tốt
       </button>
     </>
