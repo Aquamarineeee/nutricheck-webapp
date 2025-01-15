@@ -19,6 +19,7 @@ const Signup = () => {
     password: "",
     confirmPassword: "",
   });
+  const [passwordError, setPasswordError] = useState("");
   
   const [isLoading, setisLoading] = useState(false);
 
@@ -47,15 +48,30 @@ const Signup = () => {
  
   const handleSignup = async () => {
     const currentDate = new Date();
+  
+    // Kiểm tra thông tin nhập liệu
     if (state.username === "" || state.email === "" || state.password === "") {
       enqueueSnackbar("Vui lòng điền thông tin chi tiết", { variant: "error" });
       return;
     }
+  
     if (state.password !== state.confirmPassword) {
       enqueueSnackbar("Mật khẩu không khớp", { variant: "error" });
       return;
     }
+  
+    // Regex kiểm tra độ mạnh mật khẩu
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,}$/;
+    if (!passwordRegex.test(state.password)) {
+      enqueueSnackbar(
+        "Mật khẩu phải có ít nhất 8 ký tự, bao gồm 1 chữ cái viết hoa, 1 chữ cái viết thường, 1 chữ số và 1 ký tự đặc biệt (!@#$%^&*())",
+        { variant: "error" }
+      );
+      return;
+    }
+  
     setisLoading(true);
+  
     try {
       const res = await API.signup({
         email: state.email,
@@ -64,22 +80,22 @@ const Signup = () => {
       });
       localStorage.setItem("token", res.token);
       localStorage.setItem("userInfo", JSON.stringify(res.user));
-      localStorage.setItem("registrationDate", currentDate.toISOString().split("T")[0]);
+      localStorage.setItem(
+        "registrationDate",
+        currentDate.toISOString().split("T")[0]
+      );
       navigate("/userInitialForm");
-    } 
-    catch (err) {
-      if (err.response && err.response.status === 400) { // 409: Conflict (trùng tài khoản)
+    } catch (err) {
+      if (err.response && err.response.status === 400) {
         enqueueSnackbar("Tài khoản đã tồn tại", { variant: "error" });
       } else {
         enqueueSnackbar("Đã có lỗi xảy ra", { variant: "error" });
-      // enqueueSnackbar(err.response, { variant: "error" });
       }
-      
     }
-    setisLoading(false);
-  };
   
-
+    setisLoading(false);
+  };  
+  
   return (
     <div className="auth-container">
       <img className="logo" src="/static/img/logo.png" alt="" />
@@ -113,17 +129,18 @@ const Signup = () => {
                 type="email"
               />
               <label className="form-label">Mật khẩu</label>
-              <input
-                value={state.password}
-                onChange={(e) =>
-                  setstate((prevState) => ({
-                    ...prevState,
-                    password: e.target.value,
-                  }))
-                }
-                className="text-field"
-                type="password"
-              />
+                <input
+                  value={state.password}
+                  onChange={(e) =>
+                    setstate((prevState) => ({
+                      ...prevState,
+                      password: e.target.value,
+                    }))
+                  }
+                  className="text-field"
+                  type="password"
+                />
+                {passwordError && <p className="error-text">{passwordError}</p>}
               <label className="form-label">Xác nhận mật khẩu</label>
               <input
                 value={state.confirmPassword}
