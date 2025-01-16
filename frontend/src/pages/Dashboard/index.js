@@ -255,7 +255,7 @@ const Dashboard = () => {
             padding: "0.8rem",
           }}
         >
-          Bảng điều khiển
+          Bảng điều khiển Calo
         </h1>
       </div>
 
