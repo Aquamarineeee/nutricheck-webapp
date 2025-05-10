@@ -45,7 +45,7 @@ export const foodSuggestions = {
     "Tránh các loại thực phẩm chế biến sẵn có nhiều đường hoặc muối.",
     "Ăn các loại thực phẩm chứa ít carb nhưng nhiều chất xơ như rau xanh, nấm.",
     "Giảm lượng thực phẩm tinh chế như bánh mì trắng, gạo trắng và các món chiên xào.",
-    "Ăn các món súp rau hoặc các món canh thanh đạm.",
+    "Ăn các món súp rau hoặc các món canh thanh đạm nhé.",
     "Hạn chế thực phẩm ngọt và thay bằng các món ăn ít đường như sữa chua tự nhiên.",
     "Thực hiện chế độ ăn với ít calo nhưng giàu protein như thịt gà nướng, cá hấp.",
     "Ăn các món ăn ít carb nhưng giàu chất béo lành mạnh như avocado, dầu olive.",
