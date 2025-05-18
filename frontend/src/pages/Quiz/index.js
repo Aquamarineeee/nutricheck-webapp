@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react';
-
 import styles from "../../styles/quiz.module.css";
 import questionsData from './nutritionQuestions.json';
-import Confetti from 'react-confetti'; // Thư viện tạo hiệu ứng tung hoa
+import Confetti from 'react-confetti';
 import { Rain } from 'react-rainfall';
 
-
-
-
 const NutritionQuiz = () => {
-  // Danh sách hình ảnh GIF
+  // GIF images array
   const gifImages = [
     "https://i.pinimg.com/originals/9d/7a/d1/9d7ad1eaa2948a05bd1a8a6412f3a753.gif",
     "https://i.pinimg.com/originals/bf/87/c8/bf87c88e5afe1f85944b9798b844aa0f.gif",
@@ -22,9 +18,10 @@ const NutritionQuiz = () => {
     "https://i.pinimg.com/originals/9b/d6/c6/9bd6c6cc39a44f007d675e34f4ad7f22.gif",
     "https://i.pinimg.com/originals/bc/11/80/bc11809c97271e15b7495b7ccd880ab7.gif"
   ];
-  const QUESTION_LIMIT = 5; // Giới hạn 5 câu hỏi/lần
 
-  // Danh sách câu nói truyền cảm hứng
+  const QUESTION_LIMIT = 5;
+
+  // Inspirational quotes
   const inspirationalQuotes = [
     {
       quote: '"Có thực mới vực được đạo."',
@@ -45,34 +42,26 @@ const NutritionQuiz = () => {
     {
       quote: '"Ăn sạch, sống xanh."',
       message: "Ăn uống lành mạnh giúp sống khỏe mạnh."
-    },
-    {
-      quote: '"Cơ thể bạn là ngôi nhà duy nhất bạn không thể rời đi – hãy chăm sóc nó."',
-      message: "Sức khỏe là nhà, là nơi trú ẩn suốt đời."
-    },
-    {
-      quote: '"Sức khỏe là khoản đầu tư, không phải là chi phí."',
-      message: "Đầu tư cho sức khỏe là khôn ngoan nhất."
-    },
-    {
-      quote: '"Mỗi bữa ăn là cơ hội để chữa lành."',
-      message: "Thức ăn có thể là thuốc nếu ta chọn đúng."
     }
   ];
 
-  const [shuffledQuestions, setShuffledQuestions] = useState([]);
+  const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [quizCompleted, setQuizCompleted] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [showRain, setShowRain] = useState(false);
   const [showInspiration, setShowInspiration] = useState(false);
   const [currentGif, setCurrentGif] = useState("");
   const [currentQuote, setCurrentQuote] = useState({ quote: "", message: "" });
 
-
+  // Initialize quiz with 5 random questions
   useEffect(() => {
-    const shuffled = [...questionsData].sort(() => Math.random() - 0.5);
-    setShuffledQuestions(shuffled);
+    const shuffled = [...questionsData]
+      .sort(() => Math.random() - 0.5)
+      .slice(0, QUESTION_LIMIT);
+    setQuestions(shuffled);
   }, []);
 
   const handleSelectOption = (option, correct) => {
@@ -81,24 +70,15 @@ const NutritionQuiz = () => {
     setSelectedOption(option);
     if (correct) {
       setScore(prev => prev + 1);
-      setShowConfetti(true); // Kích hoạt hiệu ứng tung hoa
-      setTimeout(() => setShowConfetti(false), 3000); // Tắt sau 3 giây
-    }
-     else {
+      setShowConfetti(true);
+      setTimeout(() => setShowConfetti(false), 3000);
+    } else {
       setShowRain(true);
       setTimeout(() => setShowRain(false), 2000);
     }
-    // Khởi tạo quiz với 5 câu hỏi ngẫu nhiên
-  useEffect(() => {
-    const shuffled = [...questionsData]
-      .sort(() => Math.random() - 0.5)
-      .slice(0, QUESTION_LIMIT);
-    setQuestions(shuffled);
-  })};
-
+  };
 
   const showRandomInspiration = () => {
-    // Chọn ngẫu nhiên hình ảnh và câu nói
     const randomGif = gifImages[Math.floor(Math.random() * gifImages.length)];
     const randomQuote = inspirationalQuotes[Math.floor(Math.random() * inspirationalQuotes.length)];
     
@@ -109,23 +89,23 @@ const NutritionQuiz = () => {
 
   const handleNextQuestion = () => {
     if (showInspiration) {
-      // Đã xem hình ảnh/câu nói, chuyển sang câu hỏi tiếp theo
       setShowInspiration(false);
-      if (currentQuestionIndex < shuffledQuestions.length - 1) {
+      if (currentQuestionIndex < questions.length - 1) {
         setCurrentQuestionIndex(prev => prev + 1);
         setSelectedOption(null);
       } else {
         setQuizCompleted(true);
       }
     } else {
-      // Hiển thị hình ảnh/câu nói trước khi chuyển câu hỏi
       showRandomInspiration();
     }
   };
 
   const handleRestart = () => {
-    const reshuffled = [...questionsData].sort(() => Math.random() - 0.5).slice(0, QUESTION_LIMIT);
-    setShuffledQuestions(reshuffled);
+    const reshuffled = [...questionsData]
+      .sort(() => Math.random() - 0.5)
+      .slice(0, QUESTION_LIMIT);
+    setQuestions(reshuffled);
     setCurrentQuestionIndex(0);
     setScore(0);
     setSelectedOption(null);
@@ -134,23 +114,42 @@ const NutritionQuiz = () => {
   };
 
   const renderQuestion = () => {
-    if (shuffledQuestions.length === 0 || quizCompleted || showInspiration) return null;
+    if (questions.length === 0 || quizCompleted || showInspiration) return null;
     
-    const currentQuestion = shuffledQuestions[currentQuestionIndex];
+    const currentQuestion = questions[currentQuestionIndex];
     const correctAnswerText = currentQuestion.options[currentQuestion.answer];
     const shuffledOptions = [...currentQuestion.options].sort(() => Math.random() - 0.5);
 
     return (
       <div className={styles.quizContainer}>
+        {showConfetti && (
+          <Confetti 
+            width={window.innerWidth}
+            height={window.innerHeight}
+            recycle={false}
+            numberOfPieces={200}
+          />
+        )}
+        
+        {showRain && (
+          <div className={styles.rainContainer}>
+            <Rain 
+              dropletsAmount={100}
+              opacity={0.5}
+              animationSpeed={2}
+            />
+          </div>
+        )}
+        
         <div className={styles.score}>
-          Điểm: {score}/{shuffledQuestions.length}
+          Câu hỏi: {currentQuestionIndex + 1}/{QUESTION_LIMIT} | Điểm: {score}
         </div>
         
         <div className={styles.progress}>
           <div 
             className={styles.progressBar} 
             style={{ 
-              width: `${((currentQuestionIndex + 1) / shuffledQuestions.length) * 100}%` 
+              width: `${((currentQuestionIndex + 1) / QUESTION_LIMIT) * 100}%` 
             }}
           />
         </div>
@@ -188,9 +187,12 @@ const NutritionQuiz = () => {
                 <p className={styles.source}>Nguồn: {currentQuestion.source}</p>
               )}
             </div>
-            
             <button className={styles.nextBtn} onClick={handleNextQuestion}>
-              Xem thông điệp truyền cảm hứng
+              {!showInspiration 
+                ? "Xem thông điệp truyền cảm hứng" 
+                : currentQuestionIndex < questions.length - 1 
+                  ? "Câu hỏi tiếp theo" 
+                  : "Xem kết quả"}
             </button>
           </>
         )}
@@ -221,7 +223,7 @@ const NutritionQuiz = () => {
         </div>
         
         <button className={styles.nextBtn} onClick={handleNextQuestion}>
-          {currentQuestionIndex < shuffledQuestions.length - 1 
+          {currentQuestionIndex < questions.length - 1 
             ? "Câu hỏi tiếp theo" 
             : "Xem kết quả"}
         </button>
@@ -235,7 +237,7 @@ const NutritionQuiz = () => {
     return (
       <div className={styles.quizContainer}>
         <h2 className={styles.question}>
-          Hoàn thành! Bạn đã trả lời đúng {score}/{shuffledQuestions.length} câu hỏi!
+          Hoàn thành! Bạn đã trả lời đúng {score}/{QUESTION_LIMIT} câu hỏi!
         </h2>
         <button className={styles.nextBtn} onClick={handleRestart}>
           Chơi lại
@@ -246,7 +248,7 @@ const NutritionQuiz = () => {
 
   return (
     <div className={styles.nutritionQuiz}>
-      <h1>Kiến thức dinh dưỡng</h1>
+      <h1>Kiến thức dinh dưỡng (5 câu/lần)</h1>
       {!showInspiration && renderQuestion()}
       {renderInspiration()}
       {renderResult()}
