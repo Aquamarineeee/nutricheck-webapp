@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import styles from "../../styles/quiz.module.css";
 
 const NutritionQuiz = () => {
-  // Danh sách câu hỏi dinh dưỡng
   const questions = [
     {
       question: "Chất dinh dưỡng nào cung cấp nhiều năng lượng nhất mỗi gram?",
