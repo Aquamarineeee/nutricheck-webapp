@@ -1,7 +1,17 @@
 import React, { useState, useEffect } from 'react';
 
+import styles from "../../styles/quiz.module.css";
 import questionsData from './nutritionQuestions.json';
-import styles from '../../styles/quiz.module.css'; // Sử dụng CSS Modules
+
+
+import React, { useState, useEffect } from 'react';
+import styles from "../../styles/quiz.module.css";
+import Confetti from 'react-confetti'; // Thư viện tạo hiệu ứng tung hoa
+import questionsData from './questions.json';
+import { Rain } from 'react-rainfall';
+
+
+
 
 const NutritionQuiz = () => {
   // Danh sách hình ảnh GIF
@@ -17,6 +27,7 @@ const NutritionQuiz = () => {
     "https://i.pinimg.com/originals/9b/d6/c6/9bd6c6cc39a44f007d675e34f4ad7f22.gif",
     "https://i.pinimg.com/originals/bc/11/80/bc11809c97271e15b7495b7ccd880ab7.gif"
   ];
+  const QUESTION_LIMIT = 5; // Giới hạn 5 câu hỏi/lần
 
   // Danh sách câu nói truyền cảm hứng
   const inspirationalQuotes = [
@@ -73,8 +84,23 @@ const NutritionQuiz = () => {
     if (selectedOption !== null) return;
     
     setSelectedOption(option);
-    if (correct) setScore(prev => prev + 1);
-  };
+    if (correct) {
+      setScore(prev => prev + 1);
+      setShowConfetti(true); // Kích hoạt hiệu ứng tung hoa
+      setTimeout(() => setShowConfetti(false), 3000); // Tắt sau 3 giây
+    }
+     else {
+      setShowRain(true);
+      setTimeout(() => setShowRain(false), 2000);
+    }
+    // Khởi tạo quiz với 5 câu hỏi ngẫu nhiên
+  useEffect(() => {
+    const shuffled = [...questionsData]
+      .sort(() => Math.random() - 0.5)
+      .slice(0, QUESTION_LIMIT);
+    setQuestions(shuffled);
+  })};
+
 
   const showRandomInspiration = () => {
     // Chọn ngẫu nhiên hình ảnh và câu nói
@@ -103,7 +129,7 @@ const NutritionQuiz = () => {
   };
 
   const handleRestart = () => {
-    const reshuffled = [...questionsData].sort(() => Math.random() - 0.5);
+    const reshuffled = [...questionsData].sort(() => Math.random() - 0.5).slice(0, QUESTION_LIMIT);
     setShuffledQuestions(reshuffled);
     setCurrentQuestionIndex(0);
     setScore(0);
