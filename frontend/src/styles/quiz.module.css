@@ -107,3 +107,51 @@ h1 {
   text-align: center;
   margin-bottom: 30px;
 }
+/* Thêm vào file CSS hiện tại */
+.inspirationContainer {
+  margin: 20px auto;
+  max-width: 800px;
+  text-align: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.gifContainer {
+  margin-bottom: 20px;
+}
+
+.inspirationGif {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.quoteContainer {
+  margin: 20px 0;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.quote {
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.message {
+  font-size: 1rem;
+  color: #495057;
+  line-height: 1.6;
+}
+
+.source {
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 10px;
+}
