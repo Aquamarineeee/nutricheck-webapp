@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
-<<<<<<< HEAD
+
 import styles from "../../styles/quiz.module.css";
 import questionsData from './nutritionQuestions.json';
-=======
-import styles from '../../styles/quiz.module.css'; // Sử dụng CSS Modules
->>>>>>> 3d6870b2f2d3a0af472ffbba547faf877d28abec
 
 const NutritionQuiz = () => {
   // Danh sách hình ảnh GIF
