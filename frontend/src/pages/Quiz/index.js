@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styles from '../styles/quiz.module.css';
+import styles from "../../styles/quiz.module.css";
 
 const NutritionQuiz = () => {
   // Danh sách câu hỏi dinh dưỡng
