@@ -170,6 +170,32 @@ const Blogs = () => {
               </div>
             </Grid>
 
+            {/* quiz */}
+            <Grid item sm={6} lg={4} xs={12}>
+              <div style={{ width: "100%" }} className={styles.cardContainer}>
+                <div className={styles.cardImage}>
+                  <img src={"https://i.pinimg.com/originals/91/f6/6f/91f66fae35a6135a42ca2b8de4554964.gif"} alt="gõ máy làm quiz :))" />
+                </div>
+                <div className={styles.cardBody}>
+                  <span className={styles.cardBadge}>Quiz </span>
+                  <h1 style={{ textAlign: "start" }}>
+                    Kiểm tra kiến thức của bạn về sức khỏe <br/> 
+                  </h1>
+                  <p className={styles.cardBubtitle}>
+                  Làm bài quiz mỗi ngày để tăng vốn hiểu biết của bạn về tầm quan trọng của việc rèn luyện sức khỏe, chế độ dinh dưỡng như thế nào là hợp lý
+                  </p>
+                  <div className={styles.cardAuthor}>
+                    <Button
+                      variant="outlined"
+                      onClick={() => navigate("/quiz")}
+                    >
+                      Đọc thêm
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </Grid>
+
           </Grid>
         </Box>
       </Container>
