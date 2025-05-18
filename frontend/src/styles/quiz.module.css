@@ -155,3 +155,22 @@ h1 {
   color: #666;
   margin-top: 10px;
 }
+.inspirationGif {
+  max-height: 200px;
+  object-fit: contain;
+  margin: 20px auto;
+  display: block;
+}
+
+.quote {
+  font-style: italic;
+  text-align: center;
+  font-size: 1.2em;
+  margin: 10px 0;
+}
+
+.message {
+  text-align: center;
+  font-size: 1em;
+  color: #555;
+}
