@@ -66,7 +66,7 @@ const NutritionQuiz = () => {
   const [currentGif, setCurrentGif] = useState("");
   const [currentQuote, setCurrentQuote] = useState({ quote: "", message: "" });
 
-  // Khởi tạo quiz
+
   useEffect(() => {
     const shuffled = [...questionsData].sort(() => Math.random() - 0.5);
     setShuffledQuestions(shuffled);
