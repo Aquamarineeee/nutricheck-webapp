@@ -16,7 +16,7 @@ import Blog01 from "./pages/Blogs/Blog01";
 import Blog055 from "./pages/Blogs/Blog055";
 import Blog10 from "./pages/Blogs/Blog10";
 import Blog16 from "./pages/Blogs/Blog16";
-import Quiz from "./pages/Quiz";
+import NutritionQuiz from "./pages/Quiz";
 const bottomNavbarPaths = [
   "/dashboard",
   "/reports",
@@ -52,7 +52,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/foodScan" element={<FoodScan />} />
         <Route path="/nutrients" element={<Nutrients />} />
-        <Route path="/quiz" element={<Quiz />} />
+        <Route path="/quiz" element={<NutritionQuiz />} />
       </Routes>
       {bottomNavbarPaths.includes(location.pathname) && <BottomNavBar />}
     </>
