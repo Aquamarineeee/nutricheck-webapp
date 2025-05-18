@@ -231,18 +231,43 @@ const NutritionQuiz = () => {
     );
   };
 
+
+
   const renderResult = () => {
     if (!quizCompleted) return null;
-    
-    return (
-      <div className={styles.quizContainer}>
-        <h2 className={styles.question}>
-          Hoàn thành! Bạn đã trả lời đúng {score}/{QUESTION_LIMIT} câu hỏi!
-        </h2>
-        <button className={styles.nextBtn} onClick={handleRestart}>
-          Chơi lại
-        </button>
+
+  // Lấy ảnh gif và thông điệp ngẫu nhiên
+  const gif = gifImages[Math.floor(Math.random() * gifImages.length)];
+  const quote = inspirationalQuotes[Math.floor(Math.random() * inspirationalQuotes.length)];
+
+  return (
+    <div className={styles.quizContainer}>
+      <Confetti 
+        width={window.innerWidth}
+        height={window.innerHeight}
+        recycle={false}
+        numberOfPieces={300}
+      />
+
+      <div className={styles.gifContainer}>
+        <img src={gif} alt="Chúc mừng" className={styles.inspirationGif} />
       </div>
+
+      <h2 className={styles.question}>
+        🎉 Chúc mừng! Bạn đã trả lời đúng {score}/{QUESTION_LIMIT} câu hỏi, hãy cố gắng rèn luyện sức khỏe bản thân nhé! 🎉
+      </h2>
+
+      <blockquote className={styles.quote}>
+        {quote.quote}
+      </blockquote>
+      <p className={styles.message}>
+        {quote.message}
+      </p>
+
+      <button className={styles.nextBtn} onClick={handleRestart}>
+        Chơi lại
+      </button>
+    </div>
     );
   };
 
