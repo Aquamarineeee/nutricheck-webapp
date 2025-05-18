@@ -36,7 +36,6 @@ const NutritionQuiz = () => {
     }
   ];
 
-  // State management
   const [shuffledQuestions, setShuffledQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
