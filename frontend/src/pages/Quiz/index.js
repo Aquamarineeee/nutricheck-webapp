@@ -2,12 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import styles from "../../styles/quiz.module.css";
 import questionsData from './nutritionQuestions.json';
-
-
-import React, { useState, useEffect } from 'react';
-import styles from "../../styles/quiz.module.css";
 import Confetti from 'react-confetti'; // Thư viện tạo hiệu ứng tung hoa
-import questionsData from './questions.json';
 import { Rain } from 'react-rainfall';
 
 
