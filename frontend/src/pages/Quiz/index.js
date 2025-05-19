@@ -16,7 +16,22 @@ const NutritionQuiz = () => {
     "https://i.pinimg.com/originals/8a/4d/5e/8a4d5e7b342fa90ed8f6fb37c7084dd7.gif",
     "https://i.pinimg.com/originals/f4/c3/cc/f4c3cc6e4872d95d98456435577e56b3.gif",
     "https://i.pinimg.com/originals/9b/d6/c6/9bd6c6cc39a44f007d675e34f4ad7f22.gif",
-    "https://i.pinimg.com/originals/bc/11/80/bc11809c97271e15b7495b7ccd880ab7.gif"
+    "https://i.pinimg.com/originals/bc/11/80/bc11809c97271e15b7495b7ccd880ab7.gif",
+    "https://i.pinimg.com/originals/ba/87/d7/ba87d75073515bade98717d3fa8fc0f6.gif",
+    "https://i.pinimg.com/originals/43/5e/cf/435ecf8d0bde12893525daab8c44a380.gif", 
+    "https://i.pinimg.com/originals/5a/11/80/5a11807b7c013d1bf6fe8e8f8437d6e4.gif", 
+    "https://i.pinimg.com/originals/49/56/cf/4956cfb7a682a861a9888c5b05807016.gif", 
+    "https://i.pinimg.com/originals/01/a7/d5/01a7d5698cbd0d5ae4af46fe70ac8003.gif", 
+    "https://i.pinimg.com/originals/14/6d/3e/146d3e03455c893e1c3ad4b373a95154.gif", 
+    "https://i.pinimg.com/originals/b0/1c/ea/b01cea84ac07cedf97fdc99e02a24fa4.gif",
+    "https://i.pinimg.com/originals/b0/3f/38/b03f383ac3a7ad7bcf28204503b554c3.gif", 
+    "https://i.pinimg.com/originals/da/58/e1/da58e1660e4c50f05e718d1af49fe415.gif", 
+    "https://i.pinimg.com/originals/0e/9c/fb/0e9cfb2057109b64707295e480e4e302.gif",
+    "https://i.pinimg.com/originals/42/b2/7b/42b27bbba6a9094b5454957ecc28360b.gif",
+    "https://i.pinimg.com/originals/6d/84/8f/6d848f6ee35a0dc8f363e87f515dc2e4.gif",
+    "https://i.pinimg.com/originals/43/d2/23/43d223fbcd3cd1fd9bee5b805ca21f64.gif", 
+    "https://i.pinimg.com/originals/84/61/c6/8461c69a5325da570dd31dadbfc87a17.gif",
+    "https://i.pinimg.com/originals/09/9b/69/099b69f93a49f99e55d205ba8614df04.gif" 
   ];
 
   const QUESTION_LIMIT = 5;
@@ -42,6 +57,42 @@ const NutritionQuiz = () => {
     {
       quote: '"Ăn sạch, sống xanh."',
       message: "Ăn uống lành mạnh giúp sống khỏe mạnh."
+    },
+    { 
+      quote: '"Tập thể dục không phải là sự trừng phạt vì đã ăn, mà là kỷ niệm với cơ thể." – Unknown',
+      message: 'Tập luyện là hành động yêu thương bản thân.'
+    },
+    {
+      quote: '"Một quả táo mỗi ngày giúp bạn tránh xa bác sĩ." – Tục ngữ phương Tây',
+      message : 'Trái cây giàu dưỡng chất giúp ngừa bệnh.'
+    },
+    {
+      quote: '"Sức khỏe là mối quan hệ giữa bạn và chính cơ thể mình." – Terri Guillemets',
+      message : 'Trái cây giàu dưỡng chất giúp ngừa bệnh.'
+    },
+    {
+      quote: '"Nước là chất dinh dưỡng bị lãng quên nhiều nhất." – FAO 2023',
+      message : 'Uống đủ nước quan trọng không kém ăn uống.'
+    },
+    {
+      quote: '"Phòng bệnh hơn chữa bệnh."',
+      message : 'Phòng ngừa bằng lối sống lành mạnh là quan trọng.'
+    },
+    {
+      quote: '"Ăn chín uống sôi."',
+      message : 'Ăn uống vệ sinh để phòng bệnh.'
+    }
+    ,{
+      quote: '"Thuốc bổ không bằng ăn no, thuốc lo không bằng cười sảng khoái."',
+      message : 'Chế độ ăn và tinh thần tốt hơn cả thuốc thang.'
+    },
+    {
+      quote: '"Người khỏe là người không bệnh."',
+      message : 'Sức khỏe quý hơn vàng.'
+    },
+    {
+      quote: '"Giấc ngủ là phương thuốc chữa lành miễn phí và hiệu quả nhất." – Matthew Walker',
+      message : 'Giấc ngủ chất lượng quan trọng như chế độ ăn.'
     }
   ];
 
@@ -234,14 +285,13 @@ const NutritionQuiz = () => {
 
 
   const renderResult = () => {
-    if (!quizCompleted) return null;
+  if (!quizCompleted) return null;
 
-  // Lấy ảnh gif và thông điệp ngẫu nhiên
   const gif = gifImages[Math.floor(Math.random() * gifImages.length)];
   const quote = inspirationalQuotes[Math.floor(Math.random() * inspirationalQuotes.length)];
 
   return (
-    <div className={styles.quizContainer}>
+    <div className={styles.quizContainer} style={{ textAlign: 'center' }}>
       <Confetti 
         width={window.innerWidth}
         height={window.innerHeight}
@@ -249,27 +299,36 @@ const NutritionQuiz = () => {
         numberOfPieces={300}
       />
 
-      <div className={styles.gifContainer}>
+      <div className={styles.gifContainer} style={{ margin: '0 auto' }}>
         <img src={gif} alt="Chúc mừng" className={styles.inspirationGif} />
       </div>
 
-      <h2 className={styles.question}>
+      <h2 className={styles.question} style={{ margin: '20px auto', maxWidth: '800px' }}>
         🎉 Chúc mừng! Bạn đã trả lời đúng {score}/{QUESTION_LIMIT} câu hỏi, hãy cố gắng rèn luyện sức khỏe bản thân nhé! 🎉
       </h2>
 
-      <blockquote className={styles.quote}>
+      <blockquote className={styles.quote} style={{ margin: '20px auto', maxWidth: '600px', fontSize: '1.2em' }}>
         {quote.quote}
       </blockquote>
-      <p className={styles.message}>
+      <p className={styles.message} style={{ margin: '20px auto', maxWidth: '600px' }}>
         {quote.message}
       </p>
 
-      <button className={styles.nextBtn} onClick={handleRestart}>
+      <button 
+        className={styles.nextBtn} 
+        onClick={handleRestart}
+        style={{
+          fontSize: '1.5em',
+          padding: '15px 30px',
+          margin: '30px auto',
+          display: 'block'
+        }}
+      >
         Chơi lại
       </button>
     </div>
-    );
-  };
+  );
+};
 
   return (
     <div className={styles.nutritionQuiz}>
