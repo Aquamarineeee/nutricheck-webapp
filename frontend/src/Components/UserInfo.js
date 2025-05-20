@@ -366,6 +366,62 @@ const UserInfo = () => {
 
     setFeedback(result);
   };
+  const generateRandomMealPlan = (totalCalories) => {
+  const mealTimes = ["Sáng", "Trưa", "Chiều", "Tối"];
+  const meals = [];
+  let remainingCalories = totalCalories;
+  
+  // Phân bổ calo cho 3 bữa đầu (bữa tối sẽ lấy phần còn lại)
+  for (let i = 0; i < mealTimes.length - 1; i++) {
+    // Tính toán calo cho bữa này (ngẫu nhiên trong khoảng hợp lý)
+    const maxCalories = remainingCalories - (mealTimes.length - i - 1) * 300; // Đảm bảo mỗi bữa sau có ít nhất 300 calo
+    const minCalories = 300;
+    const targetCalories = Math.floor(Math.random() * (maxCalories - minCalories + 1)) + minCalories;
+    
+    // Lấy món ăn ngẫu nhiên và điều chỉnh khối lượng cho phù hợp
+    let meal = getRandomMeal();
+    const scale = targetCalories / meal.calories;
+    
+    meal = {
+      ...meal,
+      calories: targetCalories,
+      protein: Math.round(meal.protein * scale),
+      fat: Math.round(meal.fat * scale),
+      carbs: Math.round(meal.carbs * scale),
+      weight: Math.round(meal.weight * scale)
+    };
+    
+    meals.push(meal);
+    remainingCalories -= targetCalories;
+  }
+  
+  // Bữa cuối (Tối) lấy toàn bộ calo còn lại
+    let lastMeal = getRandomMeal();
+    const scale = remainingCalories / lastMeal.calories;
+    
+    lastMeal = {
+      ...lastMeal,
+      calories: remainingCalories,
+      protein: Math.round(lastMeal.protein * scale),
+      fat: Math.round(lastMeal.fat * scale),
+      carbs: Math.round(lastMeal.carbs * scale),
+      weight: Math.round(lastMeal.weight * scale)
+    };
+    
+    meals.push(lastMeal);
+    
+    return meals;
+};
+
+// Sử dụng trong component
+      const [meals, setMeals] = useState([]);
+
+      // Khi tính toán calo mục tiêu
+      useEffect(() => {
+        if (totalDailyCalories > 0) {
+          setMeals(generateRandomMealPlan(totalDailyCalories));
+        }
+      }, [totalDailyCalories]);
 
   // ... (giữ nguyên các hàm getHealthWarnings, conditions, suggestMenu, handleSubmit)
 
@@ -374,61 +430,69 @@ const UserInfo = () => {
     const totalDailyCalories = meals.reduce((sum, meal) => sum + meal.calories, 0);
     
     return (
-      <Box mt={3}>
-        <Typography variant="h6" gutterBottom>
-          Thực đơn mẫu cho mục tiêu {goal === "gain" ? "tăng cân" : goal === "lose" ? "giảm cân" : "giữ cân"} 
-          ({totalDailyCalories.toFixed(0)} calo/ngày)
-        </Typography>
-        
-        <Grid container spacing={2}>
-          {["Sáng", "Trưa", "Chiều", "Tối"].map((time, index) => {
-            const meal = meals[index] || { 
-              name: "Chưa có gợi ý", 
-              calories: 0, 
-              protein: 0, 
-              fat: 0, 
-              carbs: 0, 
-              weight: 0,
-              image: "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-            };
-            return (
-              <Grid item xs={12} sm={6} md={3} key={time}>
-                <Card className="fade-in">
-                  <CardContent>
-                    <Typography variant="subtitle1" color="primary">{time}</Typography>
-                    <Box 
-                      style={{
-                        height: '150px',
-                        backgroundImage: `url(${meal.image})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        borderRadius: '8px',
-                        marginBottom: '10px'
-                      }}
-                    />
-                    <Typography variant="h6">{meal.name}</Typography>
-                    <Typography>Calo: {meal.calories}</Typography>
-                    <Typography>Protein: {meal.protein}g</Typography>
-                    <Typography>Chất béo: {meal.fat}g</Typography>
-                    <Typography>Carbs: {meal.carbs}g</Typography>
-                    <Typography>Khối lượng: {meal.weight}g</Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            );
-          })}
-        </Grid>
-        
-        <Box mt={2}>
-          <Typography variant="body1">
-            <strong>Tổng lượng dinh dưỡng trong ngày:</strong>
+        <Box mt={3}>
+          <Typography variant="h6" gutterBottom>
+            Thực đơn mẫu cho mục tiêu {goal === "gain" ? "tăng cân" : goal === "lose" ? "giảm cân" : "giữ cân"} 
+            ({totalDailyCalories.toFixed(0)} calo/ngày)
+            <Button 
+              variant="outlined" 
+              size="small" 
+              onClick={() => setMeals(generateRandomMealPlan(totalDailyCalories))}
+              style={{ marginLeft: '10px' }}
+            >
+              Tạo thực đơn mới
+            </Button>
           </Typography>
-          <Typography>Calo: {totalDailyCalories.toFixed(0)}</Typography>
-          <Typography>Protein: {meals.reduce((sum, m) => sum + m.protein, 0).toFixed(1)}g</Typography>
-          <Typography>Chất béo: {meals.reduce((sum, m) => sum + m.fat, 0).toFixed(1)}g</Typography>
-          <Typography>Carbs: {meals.reduce((sum, m) => sum + m.carbs, 0).toFixed(1)}g</Typography>
+        
+          <Grid container spacing={2}>
+            {["Sáng", "Trưa", "Chiều", "Tối"].map((time, index) => {
+              const meal = meals[index] || { 
+                name: "Đang tạo thực đơn...", 
+                calories: 0, 
+                protein: 0, 
+                fat: 0, 
+                carbs: 0, 
+                weight: 0,
+                image: "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+              };
+              return (
+                <Grid item xs={12} sm={6} md={3} key={time}>
+                  <Card className="fade-in">
+                    <CardContent>
+                      <Typography variant="subtitle1" color="primary">{time}</Typography>
+                      <Box 
+                        style={{
+                          height: '150px',
+                          backgroundImage: `url(${meal.image})`,
+                          backgroundSize: 'cover',
+                          backgroundPosition: 'center',
+                          borderRadius: '8px',
+                          marginBottom: '10px'
+                        }}
+                      />
+                      <Typography variant="h6">{meal.name}</Typography>
+                      <Typography>Calo: {meal.calories.toFixed(0)}</Typography>
+                      <Typography>Protein: {meal.protein.toFixed(1)}g</Typography>
+                      <Typography>Chất béo: {meal.fat.toFixed(1)}g</Typography>
+                      <Typography>Carbs: {meal.carbs.toFixed(1)}g</Typography>
+                      <Typography>Khối lượng: {meal.weight.toFixed(1)}g</Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              );
+            })}
+          </Grid>
+        
+          <Box mt={2}>
+            <Typography variant="body1">
+              <strong>Tổng lượng dinh dưỡng trong ngày:</strong>
+            </Typography>
+            <Typography>Calo: {meals.reduce((sum, m) => sum + m.calories, 0).toFixed(0)}</Typography>
+            <Typography>Protein: {meals.reduce((sum, m) => sum + m.protein, 0).toFixed(1)}g</Typography>
+            <Typography>Chất béo: {meals.reduce((sum, m) => sum + m.fat, 0).toFixed(1)}g</Typography>
+            <Typography>Carbs: {meals.reduce((sum, m) => sum + m.carbs, 0).toFixed(1)}g</Typography>
+          </Box>
         </Box>
-      </Box>
     );
   };
 
@@ -471,7 +535,7 @@ const UserInfo = () => {
             animation: 'ribbonFall 2s ease-in-out'
           }}>
             <img 
-              src="https://template.canva.com/EAFGLo_ona4/1/0/1600w-7-0bFzJxhiE.jpg" 
+              src="https://i.pinimg.com/originals/65/7c/4e/657c4e74484fdac17d2f7b63e7476f83.gif" 
               alt="Ribbon" 
               style={{ 
                 maxWidth: '80%',
@@ -572,63 +636,82 @@ const UserInfo = () => {
             </CardContent>
           </Card>
         </Grid>
+        </Grid>
 
         {/* Right panel - Goal setting */}
         <Grid item xs={12} md={6}>
-          <Card>
-            <CardContent>
-              <Typography variant="h6" gutterBottom>Thiết lập mục tiêu</Typography>
-              
-              <FormControl fullWidth margin="normal">
-                <InputLabel>Mục tiêu dinh dưỡng</InputLabel>
-                <Select
-                  value={goal}
-                  onChange={(e) => setGoal(e.target.value)}
-                  label="Mục tiêu dinh dưỡng"
-                >
-                  <MenuItem value="gain">Tăng cân</MenuItem>
-                  <MenuItem value="lose">Giảm cân</MenuItem>
-                  <MenuItem value="maintain">Giữ cân</MenuItem>
-                </Select>
-              </FormControl>
-              
-              {(goal === "gain" || goal === "lose") && (
-                <FormControl fullWidth margin="normal">
-                  <InputLabel>
-                    {goal === "gain" ? "Mong muốn tăng (kg/tuần)" : "Mong muốn giảm (kg/tuần)"}
-                  </InputLabel>
-                  <Select
-                    value={targetWeightChange}
-                    onChange={(e) => setTargetWeightChange(e.target.value)}
-                    label={goal === "gain" ? "Mong muốn tăng (kg/tuần)" : "Mong muốn giảm (kg/tuần)"}
-                  >
-                    {[0.5, 1, 1.5, 2].map((value) => (
-                      <MenuItem key={value} value={value}>{value} kg</MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              )}
-              
-              <Button 
-                variant="contained" 
-                color="primary" 
-                fullWidth 
-                onClick={calculateGoalCalories}
-                style={{ marginTop: "16px" }}
+        <Card>
+          <CardContent>
+            <Typography variant="h6" gutterBottom>Thiết lập mục tiêu</Typography>
+            
+            <FormControl fullWidth margin="normal">
+              <InputLabel>Mục tiêu dinh dưỡng</InputLabel>
+              <Select
+                value={goal}
+                onChange={(e) => setGoal(e.target.value)}
+                label="Mục tiêu dinh dưỡng"
               >
-                Tính toán lượng calo mục tiêu
-              </Button>
-              
-              {goalCalories > 0 && (
-                <Box mt={2}>
-                  <Typography variant="body1">
-                    <strong>Lượng calo mục tiêu mỗi ngày:</strong> {goalCalories.toFixed(0)} calo
-                  </Typography>
-                </Box>
-              )}
-            </CardContent>
-          </Card>
-        </Grid>
+                <MenuItem value="gain">Tăng cân</MenuItem>
+                <MenuItem value="lose">Giảm cân</MenuItem>
+                <MenuItem value="maintain">Giữ cân</MenuItem>
+              </Select>
+            </FormControl>
+            
+            {(goal === "gain" || goal === "lose") && (
+              <FormControl fullWidth margin="normal">
+                <TextField
+                  type="number"
+                  label={goal === "gain" ? "Mong muốn tăng (kg/tuần)" : "Mong muốn giảm (kg/tuần)"}
+                  value={targetWeightChange}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    // Kiểm tra nếu là số hợp lệ (không âm, có tối đa 5 chữ số thập phân)
+                    if (/^\d*\.?\d{0,5}$/.test(value)) {
+                      const numValue = parseFloat(value);
+                      if (numValue <= 10) {
+                        setTargetWeightChange(value === "" ? "" : numValue);
+                      } else {
+                        alert("Số cân tăng/giảm không được vượt quá 10 kg/tuần");
+                      }
+                    }
+                  }}
+                  inputProps={{
+                    min: 0,
+                    max: 10,
+                    step: "0.00001" // Cho phép nhập tối đa 5 chữ số thập phân
+                  }}
+                  error={targetWeightChange > 10 || targetWeightChange < 0}
+                  helperText={
+                    targetWeightChange > 10 
+                      ? "Vui lòng nhập giá trị không quá 10 kg" 
+                      : targetWeightChange < 0 
+                        ? "Giá trị không được âm" 
+                        : ""
+                  }
+                />
+              </FormControl>
+            )}
+            
+            <Button 
+              variant="contained" 
+              color="primary" 
+              fullWidth 
+              onClick={calculateGoalCalories}
+              style={{ marginTop: "16px" }}
+              disabled={targetWeightChange > 10 || targetWeightChange <= 0 || isNaN(targetWeightChange)}
+            >
+              Tính toán lượng calo mục tiêu
+            </Button>
+            
+            {goalCalories > 0 && (
+              <Box mt={2}>
+                <Typography variant="body1">
+                  <strong>Lượng calo mục tiêu mỗi ngày:</strong> {goalCalories.toFixed(0)} calo
+                </Typography>
+              </Box>
+            )}
+          </CardContent>
+        </Card>
       </Grid>
 
       {/* Chart */}
