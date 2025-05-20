@@ -9,6 +9,151 @@ import { useSnackbar } from "notistack";
 import { AppContext } from "../Context/AppContext";
 import { useNavigate } from "react-router-dom";
 
+// Dữ liệu thực đơn chuyển vào JSON riêng
+const mealData = {
+  gain: [
+    { 
+      name: "Sữa chua với trái cây", 
+      calories: 300, 
+      protein: 10, 
+      fat: 5, 
+      carbs: 45, 
+      weight: 200,
+      image: "https://images.unsplash.com/photo-1577234286642-fc512a5f8f11?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+    },
+    { 
+      name: "Cơm gà xào rau", 
+      calories: 500, 
+      protein: 30, 
+      fat: 15, 
+      carbs: 60, 
+      weight: 350,
+      image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+    },
+    { 
+      name: "Bánh mì kẹp thịt", 
+      calories: 450, 
+      protein: 25, 
+      fat: 20, 
+      carbs: 45, 
+      weight: 250,
+      image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+    },
+    { 
+      name: "Nước ép bơ", 
+      calories: 200, 
+      protein: 2, 
+      fat: 15, 
+      carbs: 10, 
+      weight: 300,
+      image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+    },
+    { 
+      name: "Mỳ Ý sốt kem", 
+      calories: 700, 
+      protein: 25, 
+      fat: 30, 
+      carbs: 80, 
+      weight: 400,
+      image: "https://images.unsplash.com/photo-1608212589631-123704ae8da6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+    }
+  ],
+  lose: [
+    { 
+      name: "Salad rau xanh", 
+      calories: 150, 
+      protein: 5, 
+      fat: 5, 
+      carbs: 20, 
+      weight: 200,
+      image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+    },
+    { 
+      name: "Cá hồi nướng", 
+      calories: 200, 
+      protein: 25, 
+      fat: 10, 
+      carbs: 0, 
+      weight: 150,
+      image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+    },
+    { 
+      name: "Gà luộc", 
+      calories: 180, 
+      protein: 30, 
+      fat: 5, 
+      carbs: 0, 
+      weight: 150,
+      image: "https://images.unsplash.com/photo-1601050690117-64b6d2f7f5e1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+    },
+    { 
+      name: "Trái cây tươi", 
+      calories: 100, 
+      protein: 1, 
+      fat: 0, 
+      carbs: 25, 
+      weight: 150,
+      image: "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+    },
+    { 
+      name: "Soup bí đỏ", 
+      calories: 120, 
+      protein: 3, 
+      fat: 5, 
+      carbs: 15, 
+      weight: 250,
+      image: "https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+    }
+  ],
+  maintain: [
+    { 
+      name: "Cơm với thịt bò xào", 
+      calories: 350, 
+      protein: 25, 
+      fat: 15, 
+      carbs: 30, 
+      weight: 300,
+      image: "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+    },
+    { 
+      name: "Mỳ Ý sốt cà chua", 
+      calories: 450, 
+      protein: 15, 
+      fat: 10, 
+      carbs: 70, 
+      weight: 350,
+      image: "https://images.unsplash.com/photo-1608212589631-123704ae8da6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+    },
+    { 
+      name: "Cháo yến mạch", 
+      calories: 200, 
+      protein: 8, 
+      fat: 5, 
+      carbs: 30, 
+      weight: 250,
+      image: "https://images.unsplash.com/photo-1606313564200-75b0d8a0a1c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+    },
+    { 
+      name: "Trái cây trộn", 
+      calories: 150, 
+      protein: 2, 
+      fat: 0, 
+      carbs: 35, 
+      weight: 200,
+      image: "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+    },
+    { 
+      name: "Gà nướng", 
+      calories: 400, 
+      protein: 40, 
+      fat: 20, 
+      carbs: 5, 
+      weight: 250,
+      image: "https://images.unsplash.com/photo-1601050690117-64b6d2f7f5e1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+    }
+  ]
+};
+
 const UserInfo = () => {
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
@@ -22,27 +167,37 @@ const UserInfo = () => {
   const [suggestedMeals, setSuggestedMeals] = useState({ gain: [], lose: [], maintain: [] });
   const [feedback, setFeedback] = useState("");
   const [selectedCondition, setSelectedCondition] = useState("");
-  const [goal, setGoal] = useState("maintain"); // 'gain', 'lose', or 'maintain'
+  const [goal, setGoal] = useState("maintain");
   const [targetWeightChange, setTargetWeightChange] = useState(0);
   const [goalCalories, setGoalCalories] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(true);
   
+  // Hiệu ứng màn hình chào
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowWelcome(false);
+    }, 3000); // 3 giây
+
+    return () => clearTimeout(timer);
+  }, []);
+
   // Animation effect
   useEffect(() => {
-  const handleScroll = () => {
-    const elements = document.querySelectorAll('.fade-in');
-    elements.forEach(element => {
-      const elementTop = element.getBoundingClientRect().top;
-      if (elementTop < window.innerHeight - 100) {
-        element.classList.add('visible');
-        setIsVisible(true); // Thêm dòng này
-      }
-    });
-  };
+    const handleScroll = () => {
+      const elements = document.querySelectorAll('.fade-in');
+      elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        if (elementTop < window.innerHeight - 100) {
+          element.classList.add('visible');
+          setIsVisible(true);
+        }
+      });
+    };
 
-  window.addEventListener('scroll', handleScroll);
-  return () => window.removeEventListener('scroll', handleScroll);
-}, []);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const calculateMinCalories = () => {
@@ -114,46 +269,7 @@ const UserInfo = () => {
   };
 
   const getMealSuggestions = (goal) => {
-    const meals = {
-      gain: [
-        { name: "Sữa chua với trái cây", calories: 300, protein: 10, fat: 5, carbs: 45, weight: 200 },
-        { name: "Cơm gà xào rau", calories: 500, protein: 30, fat: 15, carbs: 60, weight: 350 },
-        { name: "Bánh mì kẹp thịt", calories: 450, protein: 25, fat: 20, carbs: 45, weight: 250 },
-        { name: "Nước ép bơ", calories: 200, protein: 2, fat: 15, carbs: 10, weight: 300 },
-        { name: "Mỳ Ý sốt kem", calories: 700, protein: 25, fat: 30, carbs: 80, weight: 400 },
-        { name: "Bò viên sốt cà chua", calories: 550, protein: 35, fat: 25, carbs: 40, weight: 300 },
-        { name: "Phở gà", calories: 600, protein: 30, fat: 20, carbs: 70, weight: 500 },
-        { name: "Cơm chiên dương châu", calories: 650, protein: 20, fat: 25, carbs: 85, weight: 400 },
-        { name: "Cháo yến mạch với chuối", calories: 350, protein: 12, fat: 8, carbs: 55, weight: 300 },
-        { name: "Trái cây khô và hạt chia", calories: 250, protein: 8, fat: 12, carbs: 25, weight: 100 },
-      ],
-      lose: [
-        { name: "Salad rau xanh", calories: 150, protein: 5, fat: 5, carbs: 20, weight: 200 },
-        { name: "Cá hồi nướng", calories: 200, protein: 25, fat: 10, carbs: 0, weight: 150 },
-        { name: "Gà luộc", calories: 180, protein: 30, fat: 5, carbs: 0, weight: 150 },
-        { name: "Trái cây tươi", calories: 100, protein: 1, fat: 0, carbs: 25, weight: 150 },
-        { name: "Soup bí đỏ", calories: 120, protein: 3, fat: 5, carbs: 15, weight: 250 },
-        { name: "Salad cá ngừ", calories: 250, protein: 20, fat: 15, carbs: 5, weight: 200 },
-        { name: "Gà xào rau củ", calories: 250, protein: 25, fat: 10, carbs: 15, weight: 250 },
-        { name: "Bánh mì nướng với bơ", calories: 170, protein: 5, fat: 10, carbs: 15, weight: 100 },
-        { name: "Trái cây tươi trộn hạt", calories: 150, protein: 5, fat: 8, carbs: 15, weight: 150 },
-        { name: "Sữa chua không đường", calories: 100, protein: 10, fat: 0, carbs: 5, weight: 150 },
-      ],
-      maintain: [
-        { name: "Cơm với thịt bò xào", calories: 350, protein: 25, fat: 15, carbs: 30, weight: 300 },
-        { name: "Mỳ Ý sốt cà chua", calories: 450, protein: 15, fat: 10, carbs: 70, weight: 350 },
-        { name: "Cháo yến mạch", calories: 200, protein: 8, fat: 5, carbs: 30, weight: 250 },
-        { name: "Trái cây trộn", calories: 150, protein: 2, fat: 0, carbs: 35, weight: 200 },
-        { name: "Gà nướng", calories: 400, protein: 40, fat: 20, carbs: 5, weight: 250 },
-        { name: "Cá ngừ salad", calories: 300, protein: 25, fat: 15, carbs: 10, weight: 250 },
-        { name: "Cơm gà luộc", calories: 500, protein: 30, fat: 15, carbs: 60, weight: 400 },
-        { name: "Súp cà rốt", calories: 180, protein: 3, fat: 5, carbs: 30, weight: 300 },
-        { name: "Bánh mì sandwich với trứng", calories: 250, protein: 15, fat: 10, carbs: 25, weight: 150 },
-        { name: "Mì gà xào rau củ", calories: 450, protein: 25, fat: 15, carbs: 50, weight: 350 },
-      ],
-    };
-
-    return meals[goal] ? meals[goal].sort(() => Math.random() - 0.5).slice(0, 5) : [];
+    return mealData[goal] ? [...mealData[goal]].sort(() => Math.random() - 0.5).slice(0, 5) : [];
   };
 
   useEffect(() => {
@@ -164,7 +280,6 @@ const UserInfo = () => {
       maintain: getMealSuggestions("maintain"),
     });
   }, [totalCalories, minCaloriesWeek]);
-
   const getHealthWarnings = () => {
     if (totalCalories < minCaloriesWeek * 0.8) {
       return "Bạn tiêu thụ quá ít calo trong tuần, điều này có thể dẫn đến suy dinh dưỡng. Lượng calo quá thấp sẽ không đủ để cơ thể tạo năng lượng cần thiết cho các hoạt động cơ bản như hô hấp, tuần hoàn, và vận động. Hãy kiểm tra lại chế độ ăn của mình, bổ sung các thực phẩm giàu dinh dưỡng như rau, protein, và ngũ cốc nguyên hạt để cải thiện năng lượng hàng ngày. Người bệnh thừa cân, béo phì phải đối mặt với nhiều nguy cơ sức khỏe như: bệnh tim, cao huyết áp, đột quỵ, viêm khớp, giảm khả năng sinh sản, gan nhiễm mỡ không do rượu, đái tháo đường type 2, hội chứng ngưng thở khi ngủ… Đặc biệt, béo phì được cho là có liên quan đến 13 loại ung thư, gồm: ung thư buồng trứng, ung thư gan, ung thư não, ung thư tuyến tụy…";
@@ -252,6 +367,8 @@ const UserInfo = () => {
     setFeedback(result);
   };
 
+  // ... (giữ nguyên các hàm getHealthWarnings, conditions, suggestMenu, handleSubmit)
+
   const renderMealPlan = () => {
     const meals = suggestedMeals[goal] || [];
     const totalDailyCalories = meals.reduce((sum, meal) => sum + meal.calories, 0);
@@ -265,12 +382,30 @@ const UserInfo = () => {
         
         <Grid container spacing={2}>
           {["Sáng", "Trưa", "Chiều", "Tối"].map((time, index) => {
-            const meal = meals[index] || { name: "Chưa có gợi ý", calories: 0, protein: 0, fat: 0, carbs: 0, weight: 0 };
+            const meal = meals[index] || { 
+              name: "Chưa có gợi ý", 
+              calories: 0, 
+              protein: 0, 
+              fat: 0, 
+              carbs: 0, 
+              weight: 0,
+              image: "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+            };
             return (
               <Grid item xs={12} sm={6} md={3} key={time}>
                 <Card className="fade-in">
                   <CardContent>
                     <Typography variant="subtitle1" color="primary">{time}</Typography>
+                    <Box 
+                      style={{
+                        height: '150px',
+                        backgroundImage: `url(${meal.image})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        borderRadius: '8px',
+                        marginBottom: '10px'
+                      }}
+                    />
                     <Typography variant="h6">{meal.name}</Typography>
                     <Typography>Calo: {meal.calories}</Typography>
                     <Typography>Protein: {meal.protein}g</Typography>
@@ -297,8 +432,62 @@ const UserInfo = () => {
     );
   };
 
+  // ... (giữ nguyên các hàm conditions, suggestMenu, handleSubmit)
+
   return (
     <div style={{ padding: "20px" }}>
+      {/* Welcome Screen */}
+      {showWelcome && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundColor: 'rgba(255, 255, 255, 0.9)',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          zIndex: 9999,
+          transition: 'opacity 1s ease-out',
+          opacity: showWelcome ? 1 : 0
+        }}>
+          <img 
+            src="https://i.pinimg.com/originals/65/7c/4e/657c4e74484fdac17d2f7b63e7476f83.gif" 
+            alt="Welcome" 
+            style={{ 
+              maxWidth: '80%', 
+              maxHeight: '60%',
+              borderRadius: '10px',
+              boxShadow: '0 4px 20px rgba(0,0,0,0.2)'
+            }}
+          />
+          <div style={{
+            position: 'absolute',
+            top: '10%',
+            width: '100%',
+            textAlign: 'center',
+            animation: 'ribbonFall 2s ease-in-out'
+          }}>
+            <img 
+              src="https://template.canva.com/EAFGLo_ona4/1/0/1600w-7-0bFzJxhiE.jpg" 
+              alt="Ribbon" 
+              style={{ 
+                maxWidth: '80%',
+                transform: 'rotate(0deg)'
+              }}
+            />
+          </div>
+          <style jsx>{`
+            @keyframes ribbonFall {
+              0% { transform: translateY(-100px); opacity: 0; }
+              100% { transform: translateY(0); opacity: 1; }
+            }
+          `}</style>
+        </div>
+      )}
+
       {/* Header */}
       <Box textAlign="center" mb={4}>
         <Typography variant="h4" style={{ fontWeight: "bold" }}>Trang cá nhân</Typography>
@@ -553,17 +742,17 @@ const UserInfo = () => {
 
       {/* CSS for animations */}
       <style jsx>{`
-      .fade-in {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-      }
-      .fade-in.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    `}</style>
-        </div>
+        .fade-in {
+          opacity: 0;
+          transform: translateY(20px);
+          transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      `}</style>
+    </div>
   );
 };
 
