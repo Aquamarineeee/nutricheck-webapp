@@ -1,5 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, Paper, Alert, Box } from "@mui/material";
+import { 
+  Table, TableBody, TableCell, TableContainer, TableHead, TableRow, 
+  Typography, Paper, Alert, Box, Grid, Card, CardContent, 
+  Button, Select, MenuItem, InputLabel, FormControl, Divider 
+} from "@mui/material";
 import Chart from "react-apexcharts";
 import { useSnackbar } from "notistack";
 import { AppContext } from "../Context/AppContext";
@@ -18,70 +22,37 @@ const UserInfo = () => {
   const [suggestedMeals, setSuggestedMeals] = useState({ gain: [], lose: [], maintain: [] });
   const [feedback, setFeedback] = useState("");
   const [selectedCondition, setSelectedCondition] = useState("");
+  const [goal, setGoal] = useState("maintain"); // 'gain', 'lose', or 'maintain'
+  const [targetWeightChange, setTargetWeightChange] = useState(0);
+  const [goalCalories, setGoalCalories] = useState(0);
   const styles = {
-    container: {
-      textAlign: "center",
-      padding: "20px",
-      backgroundColor: "#f9f9f9",
-      borderRadius: "10px",
-      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-      margin: "50px auto",
-      maxWidth: "600px",
+  fadeIn: {
+    opacity: 0,
+    transform: 'translateY(20px)',
+    transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
+    '&.visible': {
+      opacity: 1,
+      transform: 'translateY(0)',
     },
-    title: {
-      fontSize: "24px",
-      color: "#333",
-      marginBottom: "20px",
-    },
-    selectContainer: {
-      marginBottom: "20px",
-    },
-    label: {
-      display: "block",
-      marginBottom: "10px",
-      fontSize: "16px",
-      color: "#555",
-    },
-    select: {
-      width: "100%",
-      padding: "10px",
-      fontSize: "16px",
-      borderRadius: "5px",
-      border: "1px solid #ccc",
-    },
-    button: {
-      padding: "10px 20px",
-      fontSize: "16px",
-      color: "#fff",
-      backgroundColor: "#007bff",
-      border: "none",
-      borderRadius: "5px",
-      cursor: "pointer",
-      transition: "background-color 0.3s",
-    },
-    buttonHover: {
-      backgroundColor: "#0056b3",
-    },
-    feedbackContainer: {
-      marginTop: "20px",
-      textAlign: "left",
-      padding: "20px",
-      backgroundColor: "#e8f5e9",
-      borderRadius: "5px",
-      border: "1px solid #c8e6c9",
-    },
-    resultTitle: {
-      fontSize: "20px",
-      marginBottom: "10px",
-      color: "#2e7d32",
-    },
-    resultText: {
-      whiteSpace: "pre-wrap",
-      fontSize: "16px",
-      color: "#333",
-    },
-  };
+  },
+};
   
+  // Animation effect
+  useEffect(() => {
+    const handleScroll = () => {
+      const elements = document.querySelectorAll('.fade-in');
+      elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        if (elementTop < window.innerHeight - 100) {
+          element.classList.add('visible');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   useEffect(() => {
     const calculateMinCalories = () => {
       if (!userInfo || !userInfo.WEIGHT || !userInfo.HEIGHT || !userInfo.AGE || !userInfo.GENDER || !userInfo.ACTIVITY) {
@@ -108,13 +79,14 @@ const UserInfo = () => {
         very_active: 1.9, // Vận động rất cao
       };
 
-      const dailyCalories = BMR * (activityFactor[activity] || 1.2); // Lượng calo mỗi ngày
-      const weeklyCalories = dailyCalories * 7; // Lượng calo mỗi tuần
-      const monthlyCalories = dailyCalories * 30; // Lượng calo mỗi tháng
+      const dailyCalories = BMR * (activityFactor[activity] || 1.2);
+      const weeklyCalories = dailyCalories * 7;
+      const monthlyCalories = dailyCalories * 30;
 
-      setMinCaloriesDay(dailyCalories)
+      setMinCaloriesDay(dailyCalories);
       setMinCaloriesWeek(weeklyCalories);
       setMinCaloriesMonth(monthlyCalories);
+      setGoalCalories(dailyCalories); // Default to maintenance calories
     };
 
     calculateMinCalories();
@@ -128,7 +100,6 @@ const UserInfo = () => {
       const todayData = weekData.find((item) => item.DAY === new Date().toLocaleDateString("en-US", { weekday: "long" }));
       setDailyCaloriesConsumed(todayData ? todayData.CALORIES : 0);
 
-      // Giả sử tuần dữ liệu đại diện, nhân tổng calo tuần với 4 để ước tính tháng
       const totalMonth = totalWeek * 4;
       setTotalMonthlyCalories(totalMonth);
     };
@@ -137,43 +108,57 @@ const UserInfo = () => {
     calculateTotalCalories();
   }, [weekData, fetchWeekData]);
 
+  const calculateGoalCalories = () => {
+    let adjustedCalories = minCaloriesDay;
+    
+    if (goal === "lose") {
+      // 1 kg = ~7700 calories, so for 0.5kg/week we need ~550 calorie deficit per day
+      adjustedCalories = minCaloriesDay - (targetWeightChange * 550);
+    } else if (goal === "gain") {
+      // For weight gain, add calories
+      adjustedCalories = minCaloriesDay + (targetWeightChange * 550);
+    }
+    
+    setGoalCalories(adjustedCalories);
+  };
+
   const getMealSuggestions = (goal) => {
     const meals = {
       gain: [
-        { name: "Sữa chua với trái cây", calories: 300 },
-        { name: "Cơm gà xào rau", calories: 500 },
-        { name: "Bánh mì kẹp thịt", calories: 450 },
-        { name: "Nước ép bơ", calories: 200 },
-        { name: "Mỳ Ý sốt kem", calories: 700 },
-        { name: "Bò viên sốt cà chua", calories: 550 },
-        { name: "Phở gà", calories: 600 },
-        { name: "Cơm chiên dương châu", calories: 650 },
-        { name: "Cháo yến mạch với chuối", calories: 350 },
-        { name: "Trái cây khô và hạt chia", calories: 250 },
+        { name: "Sữa chua với trái cây", calories: 300, protein: 10, fat: 5, carbs: 45, weight: 200 },
+        { name: "Cơm gà xào rau", calories: 500, protein: 30, fat: 15, carbs: 60, weight: 350 },
+        { name: "Bánh mì kẹp thịt", calories: 450, protein: 25, fat: 20, carbs: 45, weight: 250 },
+        { name: "Nước ép bơ", calories: 200, protein: 2, fat: 15, carbs: 10, weight: 300 },
+        { name: "Mỳ Ý sốt kem", calories: 700, protein: 25, fat: 30, carbs: 80, weight: 400 },
+        { name: "Bò viên sốt cà chua", calories: 550, protein: 35, fat: 25, carbs: 40, weight: 300 },
+        { name: "Phở gà", calories: 600, protein: 30, fat: 20, carbs: 70, weight: 500 },
+        { name: "Cơm chiên dương châu", calories: 650, protein: 20, fat: 25, carbs: 85, weight: 400 },
+        { name: "Cháo yến mạch với chuối", calories: 350, protein: 12, fat: 8, carbs: 55, weight: 300 },
+        { name: "Trái cây khô và hạt chia", calories: 250, protein: 8, fat: 12, carbs: 25, weight: 100 },
       ],
       lose: [
-        { name: "Salad rau xanh", calories: 150 },
-        { name: "Cá hồi nướng", calories: 200 },
-        { name: "Gà luộc", calories: 180 },
-        { name: "Trái cây tươi", calories: 100 },
-        { name: "Soup bí đỏ", calories: 120 },
-        { name: "Salad cá ngừ", calories: 250 },
-        { name: "Gà xào rau củ", calories: 250 },
-        { name: "Bánh mì nướng với bơ", calories: 170 },
-        { name: "Trái cây tươi trộn hạt", calories: 150 },
-        { name: "Sữa chua không đường", calories: 100 },
+        { name: "Salad rau xanh", calories: 150, protein: 5, fat: 5, carbs: 20, weight: 200 },
+        { name: "Cá hồi nướng", calories: 200, protein: 25, fat: 10, carbs: 0, weight: 150 },
+        { name: "Gà luộc", calories: 180, protein: 30, fat: 5, carbs: 0, weight: 150 },
+        { name: "Trái cây tươi", calories: 100, protein: 1, fat: 0, carbs: 25, weight: 150 },
+        { name: "Soup bí đỏ", calories: 120, protein: 3, fat: 5, carbs: 15, weight: 250 },
+        { name: "Salad cá ngừ", calories: 250, protein: 20, fat: 15, carbs: 5, weight: 200 },
+        { name: "Gà xào rau củ", calories: 250, protein: 25, fat: 10, carbs: 15, weight: 250 },
+        { name: "Bánh mì nướng với bơ", calories: 170, protein: 5, fat: 10, carbs: 15, weight: 100 },
+        { name: "Trái cây tươi trộn hạt", calories: 150, protein: 5, fat: 8, carbs: 15, weight: 150 },
+        { name: "Sữa chua không đường", calories: 100, protein: 10, fat: 0, carbs: 5, weight: 150 },
       ],
       maintain: [
-        { name: "Cơm với thịt bò xào", calories: 350 },
-        { name: "Mỳ Ý sốt cà chua", calories: 450 },
-        { name: "Cháo yến mạch", calories: 200 },
-        { name: "Trái cây trộn", calories: 150 },
-        { name: "Gà nướng", calories: 400 },
-        { name: "Cá ngừ salad", calories: 300 },
-        { name: "Cơm gà luộc", calories: 500 },
-        { name: "Súp cà rốt", calories: 180 },
-        { name: "Bánh mì sandwich với trứng", calories: 250 },
-        { name: "Mì gà xào rau củ", calories: 450 },
+        { name: "Cơm với thịt bò xào", calories: 350, protein: 25, fat: 15, carbs: 30, weight: 300 },
+        { name: "Mỳ Ý sốt cà chua", calories: 450, protein: 15, fat: 10, carbs: 70, weight: 350 },
+        { name: "Cháo yến mạch", calories: 200, protein: 8, fat: 5, carbs: 30, weight: 250 },
+        { name: "Trái cây trộn", calories: 150, protein: 2, fat: 0, carbs: 35, weight: 200 },
+        { name: "Gà nướng", calories: 400, protein: 40, fat: 20, carbs: 5, weight: 250 },
+        { name: "Cá ngừ salad", calories: 300, protein: 25, fat: 15, carbs: 10, weight: 250 },
+        { name: "Cơm gà luộc", calories: 500, protein: 30, fat: 15, carbs: 60, weight: 400 },
+        { name: "Súp cà rốt", calories: 180, protein: 3, fat: 5, carbs: 30, weight: 300 },
+        { name: "Bánh mì sandwich với trứng", calories: 250, protein: 15, fat: 10, carbs: 25, weight: 150 },
+        { name: "Mì gà xào rau củ", calories: 450, protein: 25, fat: 15, carbs: 50, weight: 350 },
       ],
     };
 
@@ -181,7 +166,7 @@ const UserInfo = () => {
   };
 
   useEffect(() => {
-    const goal = totalCalories < minCaloriesWeek ? "gain" : totalCalories > minCaloriesWeek ? "lose" : "maintain";
+    const currentGoal = totalCalories < minCaloriesWeek ? "gain" : totalCalories > minCaloriesWeek ? "lose" : "maintain";
     setSuggestedMeals({
       gain: getMealSuggestions("gain"),
       lose: getMealSuggestions("lose"),
@@ -189,26 +174,16 @@ const UserInfo = () => {
     });
   }, [totalCalories, minCaloriesWeek]);
 
-  // Tạo dữ liệu biểu đồ
-  const categories = weekData.map((item) => item.DAY); // Tên các ngày trong tuần
-  const weekCalories = weekData.map((item) => item.CALORIES); // Calo từng ngày
   const getHealthWarnings = () => {
-    // Kiểm tra xem lượng calo tiêu thụ có thấp hơn 80% lượng calo tối thiểu không
     if (totalCalories < minCaloriesWeek * 0.8) {
-      // Giải thích chi tiết cho người dùng về tác hại của việc tiêu thụ quá ít calo
-      return "Tuy nhiên, tôi cũng sẽ đưa ra khuyến cáo sức khỏe cho bạn với lượng calo trên: \nBạn tiêu thụ quá ít calo trong tuần, điều này có thể dẫn đến suy dinh dưỡng. \nLượng calo quá thấp sẽ không đủ để cơ thể tạo năng lượng cần thiết cho các hoạt động cơ bản như hô hấp, tuần hoàn, và vận động.\n Hãy kiểm tra lại chế độ ăn của mình, bổ sung các thực phẩm giàu dinh dưỡng như rau, protein, và ngũ cốc nguyên hạt để cải thiện năng lượng hàng ngày.\n Người bệnh thừa cân, béo phì phải đối mặt với nhiều nguy cơ sức khỏe như: bệnh tim, cao huyết áp, đột quỵ, viêm khớp, giảm khả năng sinh sản, gan nhiễm mỡ không do rượu, đái tháo đường type 2, hội chứng ngưng thở khi ngủ…\n -> Đặc biệt, béo phì được cho là có liên quan đến 13 loại ung thư, gồm: ung thư buồng trứng, ung thư gan, ung thư não, ung thư tuyến tụy…  \nNếu bạn đang có nhu cầu giảm cân, vui lòng hãy đọc khuyến cáo sức khỏe ở trên và chú ý phòng các bệnh tật liên quan để giữ cho mình sức khỏe tốt nhất.";
-    } 
-    // Kiểm tra xem lượng calo tiêu thụ có vượt quá 120% lượng calo tối thiểu không
-    else if (totalCalories > minCaloriesWeek * 1.2) {
-      // Giải thích chi tiết về tác hại của việc tiêu thụ quá nhiều calo
-      return "Tuy nhiên, tôi cũng sẽ đưa ra khuyến cáo sức khỏe cho bạn với lượng calo trên: \nBạn tiêu thụ quá nhiều calo trong tuần, điều này có thể dẫn đến tăng cân và các bệnh mãn tính. \n Khi lượng calo nạp vào vượt quá mức cơ thể cần, năng lượng dư thừa sẽ chuyển hóa thành mỡ, tích tụ lâu ngày gây béo phì. \n -> Điều này làm tăng nguy cơ mắc các bệnh như tiểu đường, cao huyết áp, và tim mạch. \n Người bệnh thừa cân, béo phì phải đối mặt với nhiều nguy cơ sức khỏe như: bệnh tim, cao huyết áp, đột quỵ, viêm khớp, giảm khả năng sinh sản, gan nhiễm mỡ không do rượu, đái tháo đường type 2, hội chứng ngưng thở khi ngủ…\n -> Đặc biệt, béo phì được cho là có liên quan đến 13 loại ung thư, gồm: ung thư buồng trứng, ung thư gan, ung thư não, ung thư tuyến tụy…  \nNếu bạn đang có nhu cầu giảm cân, vui lòng hãy đọc khuyến cáo sức khỏe ở trên và chú ý phòng các bệnh tật liên quan để giữ cho mình sức khỏe tốt nhất.\n\nHãy điều chỉnh chế độ ăn, giảm thực phẩm chứa nhiều đường và chất béo, tăng cường rau xanh và thực phẩm ít calo.";
-    } 
-    // Trường hợp lượng calo tiêu thụ nằm trong mức hợp lý
-    else {
-      // Giải thích về lợi ích của việc duy trì mức calo hợp lý
+      return "Bạn tiêu thụ quá ít calo trong tuần, điều này có thể dẫn đến suy dinh dưỡng. Lượng calo quá thấp sẽ không đủ để cơ thể tạo năng lượng cần thiết cho các hoạt động cơ bản như hô hấp, tuần hoàn, và vận động. Hãy kiểm tra lại chế độ ăn của mình, bổ sung các thực phẩm giàu dinh dưỡng như rau, protein, và ngũ cốc nguyên hạt để cải thiện năng lượng hàng ngày. Người bệnh thừa cân, béo phì phải đối mặt với nhiều nguy cơ sức khỏe như: bệnh tim, cao huyết áp, đột quỵ, viêm khớp, giảm khả năng sinh sản, gan nhiễm mỡ không do rượu, đái tháo đường type 2, hội chứng ngưng thở khi ngủ… Đặc biệt, béo phì được cho là có liên quan đến 13 loại ung thư, gồm: ung thư buồng trứng, ung thư gan, ung thư não, ung thư tuyến tụy…";
+    } else if (totalCalories > minCaloriesWeek * 1.2) {
+      return "Bạn tiêu thụ quá nhiều calo trong tuần, điều này có thể dẫn đến tăng cân và các bệnh mãn tính. Khi lượng calo nạp vào vượt quá mức cơ thể cần, năng lượng dư thừa sẽ chuyển hóa thành mỡ, tích tụ lâu ngày gây béo phì. Điều này làm tăng nguy cơ mắc các bệnh như tiểu đường, cao huyết áp, và tim mạch. Người bệnh thừa cân, béo phì phải đối mặt với nhiều nguy cơ sức khỏe như: bệnh tim, cao huyết áp, đột quỵ, viêm khớp, giảm khả năng sinh sản, gan nhiễm mỡ không do rượu, đái tháo đường type 2, hội chứng ngưng thở khi ngủ… Đặc biệt, béo phì được cho là có liên quan đến 13 loại ung thư, gồm: ung thư buồng trứng, ung thư gan, ung thư não, ung thư tuyến tụy…";
+    } else {
       return "Lượng calo tiêu thụ trong tuần của bạn nằm trong mức hợp lý, cho thấy bạn đang duy trì một chế độ ăn uống cân bằng. Điều này giúp cơ thể bạn có đủ năng lượng để hoạt động mà không tích tụ mỡ thừa, đồng thời giảm nguy cơ mắc các bệnh liên quan đến dinh dưỡng. Hãy tiếp tục duy trì chế độ ăn uống này, kết hợp với luyện tập thể dục để tăng cường sức khỏe.";
     }
   };
+
   const conditions = {
     calorie_deficit: [
       "Thiếu máu", "Suy dinh dưỡng", "Loãng xương", "Mất ngủ", "Mệt mỏi mãn tính",
@@ -225,7 +200,6 @@ const UserInfo = () => {
     ]
   };
   
-  // Hàm gợi ý thực đơn
   const suggestMenu = (condition) => {
     const menus = {
         "Thiếu máu": "Thịt đỏ, gan, rau bina, các loại đậu, ngũ cốc nguyên hạt.",
@@ -271,6 +245,7 @@ const UserInfo = () => {
     };
     return menus[condition] || "Thực đơn đang được cập nhật.";
   };
+
   const handleSubmit = () => {
     let result = `Nếu bạn đang bị ${selectedCondition}, với mức calo tiêu thụ như trên thì:\n`;
 
@@ -285,245 +260,312 @@ const UserInfo = () => {
 
     setFeedback(result);
   };
-  return (
-    <div>
-      <Box
-    sx={{
-      border: "2px solid #A5D6A7", // Màu xanh lá cây nhạt
-      borderRadius: "8px",         // Bo góc
-      padding: "16px",             // Khoảng cách bên trong
-      margin: "16px 0",            // Khoảng cách bên ngoài
-      backgroundColor: "#E8F5E9",  // Màu nền nhẹ
-    }}
-  >
-    <Typography
-      variant="h6"
-      align="center"
-      gutterBottom
-      style={{ fontWeight: "bold", fontSize: "23px" }}
-    >
-      <br /> Báo cáo calo tuần này của người dùng...
-    </Typography>
-  </Box>
 
-{userInfo && (
-  <TableContainer component={Paper} style={{ margin: "20px auto", maxWidth: "600px" }}>
-    <Table>
-      <TableHead>
-        <TableRow>
-          <TableCell align="center" colSpan={2} style={{ fontWeight: "bold", fontSize: "23px" }}>
-            Thông tin người dùng
-          </TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        <TableRow>
-          <TableCell align="left" style={{ fontWeight: "bold", fontSize: "19px" }} ><strong>Tên:</strong></TableCell>
-          <TableCell align="left" style={{fontSize: "19px"}}>{userInfo.USERNAME}</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell align="left" style={{ fontWeight: "bold", fontSize: "19px" }}><strong>Tuổi:</strong></TableCell>
-          <TableCell align="left" style={{fontSize: "19px"}}>{userInfo.AGE}</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell align="left" style={{ fontWeight: "bold", fontSize: "19px" }}><strong>Giới tính:</strong></TableCell>
-          <TableCell align="left" style={{fontSize: "19px"}}>{userInfo.GENDER === "male" ? "Nam" : "Nữ"}</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell align="left" style={{ fontWeight: "bold", fontSize: "19px" }}><strong>Chiều cao:</strong></TableCell>
-          <TableCell align="left" style={{fontSize: "19px"}}>{userInfo.HEIGHT} cm</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell align="left" style={{ fontWeight: "bold", fontSize: "19px" }} ><strong>Cân nặng:</strong></TableCell>
-          <TableCell align="left" style={{fontSize: "19px"}}>{userInfo.WEIGHT} kg</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell align="left" style={{ fontWeight: "bold", fontSize: "19px" }}><strong>Mức độ vận động:</strong></TableCell>
-          <TableCell align="left" style={{fontSize: "19px"}}>{userInfo.ACTIVITY}</TableCell>
-        </TableRow>
-      </TableBody>
-    </Table>
-  </TableContainer>
-)}
-
-      <Typography variant="body1" gutterBottom>
-        <strong><br /> Tổng lượng calo đã tiêu thụ (tuần):</strong> {totalCalories.toFixed(1)} calo
-      </Typography>
-      <Typography variant="body1" gutterBottom>
-        <strong>Lượng calo tối thiểu cần thiết trong tuần:</strong> {minCaloriesWeek.toFixed(1)} calo
-      </Typography>
-      <Typography variant="body1" gutterBottom>
-        <strong>Tổng lượng calo đã tiêu thụ (tháng):</strong> {totalMonthlyCalories.toFixed(1)} calo
-      </Typography>
-      <Typography variant="body1" gutterBottom>
-        <strong>Lượng calo tối thiểu cần thiết trong tháng:</strong> {minCaloriesMonth.toFixed(1)} calo
-      </Typography>
-
-      {totalCalories < minCaloriesWeek ? (
-        <Alert severity="warning" sx={{ fontWeight: "bold", fontSize: "17px" }} >
-          Bạn tiêu thụ ít hơn mức calo tối thiểu cần thiết trong tuần. Hãy chú ý bổ sung thêm dinh dưỡng!
-        </Alert>
-      ) : (
-        <Alert severity="success" sx={{ fontWeight: "bold", fontSize: "17px" }} >
-          Bạn đã tiêu thụ đủ lượng calo tối thiểu trong tuần.
-        </Alert>
-      )}
-      <Typography variant="body1" gutterBottom>
-        <strong><br />Lượng calo tối thiểu mỗi ngày:</strong> {minCaloriesDay.toFixed(1)} calo
-      </Typography>
-      <Typography variant="body1" gutterBottom>
-        <strong>Lượng calo đã tiêu thụ hôm nay:</strong> {dailyCaloriesConsumed.toFixed(1)} calo
-      </Typography>
-      <Typography variant="body1" gutterBottom>
-        <strong>Lượng calo tối thiểu mỗi tuần:</strong> {minCaloriesWeek.toFixed(1)} calo
-      </Typography>
-
-      <Alert severity={dailyCaloriesConsumed < minCaloriesDay ? "warning" : "success"} sx={{ fontWeight: "bold", fontSize: "17px" }} >
-        Dựa trên lượng calo bạn đã tiêu thụ, có thể thấy bạn {dailyCaloriesConsumed < minCaloriesDay ? "cần ăn thêm để tăng calo" : "đã tiêu thụ đủ calo trong ngày"}.
-      </Alert>
-
-
-      {weekData.length > 0 ? (
-        <Chart
-          type="bar"
-          series={[{ name: "Calo", data: weekCalories, color: "#FFA726" }]}
-          height={350}
-          options={{
-            xaxis: { categories, title: { text: "Ngày" } },
-            yaxis: { title: { text: "Calo" } },
-            chart: { toolbar: { show: false } },
-            plotOptions: { bar: { borderRadius: 6, columnWidth: "50%" } },
-            dataLabels: { enabled: false },
-          }}
-        />
-      ) : (
-        <Alert severity="info">Không có dữ liệu calo tuần này.</Alert>
-      )}
-      <Box
-            sx={{
-              border: "2px solidrgb(130, 194, 244)", // Màu xanh dương cây nhạt
-              borderRadius: "5px",         // Bo góc
-              padding: "16px",             // Khoảng cách bên trong
-              margin: "16px 0",            // Khoảng cách bên ngoài
-              backgroundColor: "#7FFFD4",  // Màu nền nhẹ
-            }}
-          >
-            <Typography variant="h6" align="center" gutterBottom style={{ fontWeight: "bold", fontSize: "25px" }} >
-                      Gợi ý thực đơn <br />
-            </Typography>
-  </Box>
+  const renderMealPlan = () => {
+    const meals = suggestedMeals[goal] || [];
+    const totalDailyCalories = meals.reduce((sum, meal) => sum + meal.calories, 0);
+    
+    return (
+      <Box mt={3}>
+        <Typography variant="h6" gutterBottom>
+          Thực đơn mẫu cho mục tiêu {goal === "gain" ? "tăng cân" : goal === "lose" ? "giảm cân" : "giữ cân"} 
+          ({totalDailyCalories.toFixed(0)} calo/ngày)
+        </Typography>
         
-
-      {Object.keys(suggestedMeals).map((goal) => (
-        <div key={goal}>
-          <Typography
-            variant="body1"
-            align="center"
-            gutterBottom
-            style={{ fontWeight: "bold", fontSize: "20px" }}
-          >
-            <strong>{goal === "gain" ? "\nNhu cầu tăng cân" : goal === "lose" ? "\nNhu cầu giảm cân" : "\nNhu cầu giữ cân nặng ổn định"}</strong>
+        <Grid container spacing={2}>
+          {["Sáng", "Trưa", "Chiều", "Tối"].map((time, index) => {
+            const meal = meals[index] || { name: "Chưa có gợi ý", calories: 0, protein: 0, fat: 0, carbs: 0, weight: 0 };
+            return (
+              <Grid item xs={12} sm={6} md={3} key={time}>
+                <Card className="fade-in">
+                  <CardContent>
+                    <Typography variant="subtitle1" color="primary">{time}</Typography>
+                    <Typography variant="h6">{meal.name}</Typography>
+                    <Typography>Calo: {meal.calories}</Typography>
+                    <Typography>Protein: {meal.protein}g</Typography>
+                    <Typography>Chất béo: {meal.fat}g</Typography>
+                    <Typography>Carbs: {meal.carbs}g</Typography>
+                    <Typography>Khối lượng: {meal.weight}g</Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+            );
+          })}
+        </Grid>
+        
+        <Box mt={2}>
+          <Typography variant="body1">
+            <strong>Tổng lượng dinh dưỡng trong ngày:</strong>
           </Typography>
-          <Box
-            sx={{
-              border: "2px solid #A5D6A7", // Màu xanh lá cây nhạt
-              borderRadius: "8px",         // Bo góc
-              padding: "16px",             // Khoảng cách bên trong
-              margin: "16px 0",            // Khoảng cách bên ngoài
-              backgroundColor: "#E8F5E9",  // Màu nền nhẹ
-            }}
-          >
-            <Typography variant="h6" align="center" gutterBottom style={{ fontWeight: "bold", fontSize: "18px" }} >
-            Dựa trên lượng calo, thành phần dinh dưỡng bạn đã tiêu thụ và thể trạng của bạn, chúng tôi đã lập gợi ý thực đơn cá nhân hóa cho riêng bạn, tùy thuộc vào lựa chọn của bạn... <br/>
-            </Typography>
-  </Box>
+          <Typography>Calo: {totalDailyCalories.toFixed(0)}</Typography>
+          <Typography>Protein: {meals.reduce((sum, m) => sum + m.protein, 0).toFixed(1)}g</Typography>
+          <Typography>Chất béo: {meals.reduce((sum, m) => sum + m.fat, 0).toFixed(1)}g</Typography>
+          <Typography>Carbs: {meals.reduce((sum, m) => sum + m.carbs, 0).toFixed(1)}g</Typography>
+        </Box>
+      </Box>
+    );
+  };
+
+  return (
+    <div style={{ padding: "20px" }}>
+      {/* Header */}
+      <Box textAlign="center" mb={4}>
+        <Typography variant="h4" style={{ fontWeight: "bold" }}>Trang cá nhân</Typography>
+      </Box>
+
+      {/* User Info */}
+      {userInfo && (
+        <TableContainer component={Paper} style={{ margin: "20px auto", maxWidth: "800px" }} className="fade-in">
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell style={{ fontSize: "20px", fontWeight: "bold" }}>Tên món</TableCell>
-                <TableCell style={{ fontSize: "20px" , fontWeight: "bold" }}>Calo</TableCell>
+                <TableCell align="center" colSpan={2} style={{ fontWeight: "bold", fontSize: "23px" }}>
+                Thông tin người dùng
+              </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {suggestedMeals[goal].map((meal, index) => (
-                <TableRow key={index}>
-                  <TableCell style={{ fontWeight: "bold", fontSize: "20px" }}>{meal.name}</TableCell>
-                  <TableCell style={{ fontSize: "20px" }}>{meal.calories}</TableCell>
-                </TableRow>
-              ))}
+              <TableRow>
+                <TableCell align="left" style={{ fontWeight: "bold", fontSize: "19px" }}><strong>Tên:</strong></TableCell>
+                <TableCell align="left" style={{fontSize: "19px"}}>{userInfo.USERNAME}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell align="left" style={{ fontWeight: "bold", fontSize: "19px" }}><strong>Tuổi:</strong></TableCell>
+                <TableCell align="left" style={{fontSize: "19px"}}>{userInfo.AGE}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell align="left" style={{ fontWeight: "bold", fontSize: "19px" }}><strong>Giới tính:</strong></TableCell>
+                <TableCell align="left" style={{fontSize: "19px"}}>{userInfo.GENDER === "male" ? "Nam" : "Nữ"}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell align="left" style={{ fontWeight: "bold", fontSize: "19px" }}><strong>Chiều cao:</strong></TableCell>
+                <TableCell align="left" style={{fontSize: "19px"}}>{userInfo.HEIGHT} cm</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell align="left" style={{ fontWeight: "bold", fontSize: "19px" }}><strong>Cân nặng:</strong></TableCell>
+                <TableCell align="left" style={{fontSize: "19px"}}>{userInfo.WEIGHT} kg</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell align="left" style={{ fontWeight: "bold", fontSize: "19px" }}><strong>Mức độ vận động:</strong></TableCell>
+                <TableCell align="left" style={{fontSize: "19px"}}>{userInfo.ACTIVITY}</TableCell>
+              </TableRow>
             </TableBody>
           </Table>
-        </div>
-))}
-    <Box
-            sx={{
-              border: "2px solid #EF9A9A", // Màu đỏ nhạt
-              borderRadius: "8px",
-              padding: "16px",
-              margin: "16px 0",
-              backgroundColor: "#FFEBEE", // Màu nền nhẹ
+        </TableContainer>
+      )}
+
+      {/* Two-panel layout for calorie tracking */}
+      <Grid container spacing={3} className="fade-in">
+        {/* Left panel - Current status */}
+        <Grid item xs={12} md={6}>
+          <Card>
+            <CardContent>
+              <Typography variant="h6" gutterBottom>Thống kê calo hiện tại</Typography>
+              
+              <Typography variant="body1">
+                <strong>Lượng calo tối thiểu mỗi ngày:</strong> {minCaloriesDay.toFixed(1)} calo
+              </Typography>
+              <Typography variant="body1">
+                <strong>Lượng calo đã tiêu thụ hôm nay:</strong> {dailyCaloriesConsumed.toFixed(1)} calo
+              </Typography>
+              
+              <Box mt={2}>
+                <Typography variant="body1">
+                  <strong>Tổng lượng calo đã tiêu thụ (tuần):</strong> {totalCalories.toFixed(1)} calo
+                </Typography>
+                <Typography variant="body1">
+                  <strong>Lượng calo tối thiểu cần thiết trong tuần:</strong> {minCaloriesWeek.toFixed(1)} calo
+                </Typography>
+              </Box>
+              
+              <Box mt={2}>
+                {totalCalories < minCaloriesWeek ? (
+                  <Alert severity="warning">
+                    Bạn tiêu thụ ít hơn mức calo tối thiểu cần thiết trong tuần. Hãy chú ý bổ sung thêm dinh dưỡng!
+                  </Alert>
+                ) : (
+                  <Alert severity="success">
+                    Bạn đã tiêu thụ đủ lượng calo tối thiểu trong tuần.
+                  </Alert>
+                )}
+              </Box>
+            </CardContent>
+          </Card>
+        </Grid>
+
+        {/* Right panel - Goal setting */}
+        <Grid item xs={12} md={6}>
+          <Card>
+            <CardContent>
+              <Typography variant="h6" gutterBottom>Thiết lập mục tiêu</Typography>
+              
+              <FormControl fullWidth margin="normal">
+                <InputLabel>Mục tiêu dinh dưỡng</InputLabel>
+                <Select
+                  value={goal}
+                  onChange={(e) => setGoal(e.target.value)}
+                  label="Mục tiêu dinh dưỡng"
+                >
+                  <MenuItem value="gain">Tăng cân</MenuItem>
+                  <MenuItem value="lose">Giảm cân</MenuItem>
+                  <MenuItem value="maintain">Giữ cân</MenuItem>
+                </Select>
+              </FormControl>
+              
+              {(goal === "gain" || goal === "lose") && (
+                <FormControl fullWidth margin="normal">
+                  <InputLabel>
+                    {goal === "gain" ? "Mong muốn tăng (kg/tuần)" : "Mong muốn giảm (kg/tuần)"}
+                  </InputLabel>
+                  <Select
+                    value={targetWeightChange}
+                    onChange={(e) => setTargetWeightChange(e.target.value)}
+                    label={goal === "gain" ? "Mong muốn tăng (kg/tuần)" : "Mong muốn giảm (kg/tuần)"}
+                  >
+                    {[0.5, 1, 1.5, 2].map((value) => (
+                      <MenuItem key={value} value={value}>{value} kg</MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              )}
+              
+              <Button 
+                variant="contained" 
+                color="primary" 
+                fullWidth 
+                onClick={calculateGoalCalories}
+                style={{ marginTop: "16px" }}
+              >
+                Tính toán lượng calo mục tiêu
+              </Button>
+              
+              {goalCalories > 0 && (
+                <Box mt={2}>
+                  <Typography variant="body1">
+                    <strong>Lượng calo mục tiêu mỗi ngày:</strong> {goalCalories.toFixed(0)} calo
+                  </Typography>
+                </Box>
+              )}
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
+
+      {/* Chart */}
+      {weekData.length > 0 && (
+        <Box mt={4} className="fade-in">
+          <Typography variant="h6" gutterBottom>Biểu đồ calo tiêu thụ trong tuần</Typography>
+          <Chart
+            type="bar"
+            series={[{ name: "Calo", data: weekData.map(item => item.CALORIES), color: "#FFA726" }]}
+            height={350}
+            options={{
+              xaxis: { 
+                categories: weekData.map(item => item.DAY), 
+                title: { text: "Ngày" } 
+              },
+              yaxis: { title: { text: "Calo" } },
+              chart: { toolbar: { show: false } },
+              plotOptions: { bar: { borderRadius: 6, columnWidth: "50%" } },
+              dataLabels: { enabled: false },
             }}
-          >
-            <Typography
-              variant="h6"
-              align="center"
-              gutterBottom
-              style={{ fontWeight: "bold", fontSize: "22px" }}
-            >
-              <br/> Khuyến cáo sức khỏe về nguy cơ bệnh tật 
-            </Typography>
-            <Typography variant="body1" style={{ fontSize: "18px" }}>
-              {getHealthWarnings()}
-            </Typography>
+          />
+        </Box>
+      )}
+
+      {/* Meal suggestions */}
+      <Box mt={4} className="fade-in">
+        <Typography variant="h5" gutterBottom>Gợi ý thực đơn</Typography>
+        <Typography variant="body1" gutterBottom>
+          Dựa trên lượng calo, thành phần dinh dưỡng bạn đã tiêu thụ và thể trạng của bạn, 
+          chúng tôi đã lập gợi ý thực đơn cá nhân hóa cho riêng bạn, tùy thuộc vào lựa chọn của bạn...
+        </Typography>
+        
+        {renderMealPlan()}
       </Box>
-      <div style={styles.container}>
-        <h1 style={styles.title}>Lựa chọn nhóm bệnh và nhận gợi ý thực đơn</h1>
 
-        <div style={styles.selectContainer}>
-          <label style={styles.label}>Chọn nhóm bệnh:</label>
-          <select
-            style={styles.select}
-            value={selectedCondition}
-            onChange={(e) => setSelectedCondition(e.target.value)}
-          >
-            <option value="">-- Chọn một nhóm bệnh --</option>
-            {Object.keys(conditions).map((category) =>
-              conditions[category].map((condition, index) => (
-                <option key={`${category}-${index}`} value={condition}>
-                  {condition}
-                </option>
-              ))
+      {/* Health warnings */}
+      <Box mt={4} className="fade-in">
+        <Card style={{ backgroundColor: "#FFF3E0" }}>
+          <CardContent>
+            <Typography variant="h5" gutterBottom>Khuyến cáo sức khỏe</Typography>
+            <Typography variant="body1">{getHealthWarnings()}</Typography>
+          </CardContent>
+        </Card>
+      </Box>
+
+      {/* Disease condition selector */}
+      <Box mt={4} className="fade-in">
+        <Card>
+          <CardContent>
+            <Typography variant="h5" gutterBottom>Lựa chọn nhóm bệnh và nhận gợi ý thực đơn</Typography>
+            
+            <FormControl fullWidth margin="normal">
+            <InputLabel>Chọn nhóm bệnh</InputLabel>
+            <Select
+              value={selectedCondition}
+              onChange={(e) => setSelectedCondition(e.target.value)}
+              label="Chọn nhóm bệnh"
+            >
+              <MenuItem value="">-- Chọn một nhóm bệnh --</MenuItem>
+              {Object.keys(conditions).map((category) =>
+                conditions[category].map((condition, index) => (
+                  <MenuItem key={`${category}-${index}`} value={condition}>
+                    {condition}
+                  </MenuItem>
+                ))
+              )}
+            </Select>
+          </FormControl>
+            
+            <Button 
+              variant="contained" 
+              color="primary" 
+              onClick={handleSubmit}
+              style={{ marginTop: "16px" }}
+              disabled={!selectedCondition}
+            >
+              Xem nhận xét và thực đơn
+            </Button>
+            
+            {feedback && (
+              <Box mt={2} style={{ whiteSpace: "pre-wrap" }}>
+                <Typography variant="h6">Kết quả</Typography>
+                <Typography variant="body1">{feedback}</Typography>
+              </Box>
             )}
-          </select>
-        </div>
+          </CardContent>
+        </Card>
+      </Box>
 
-        <button style={styles.button} onClick={handleSubmit}>
-          Xem nhận xét và thực đơn
-        </button>
+      {/* Footer */}
+      <Box mt={4} pt={2} borderTop={1} borderColor="divider" className="fade-in">
+        <Typography variant="body2" align="center">
+          Bất cứ thông tin thắc mắc vui lòng liên hệ: 
+          <a href="https://web.facebook.com/mochi.mocha.77377" target="_blank" rel="noopener noreferrer">
+            Facebook
+          </a>
+        </Typography>
+      </Box>
 
-        {feedback && (
-          <div style={styles.feedbackContainer}>
-            <h2 style={styles.resultTitle}>Kết quả</h2>
-            <pre style={styles.resultText}>{feedback}</pre>
-          </div>
-        )}
-      </div>
-      <>
-      <button onClick={() => navigate("/blog")} className="custom-link">
-        Bạn có thể đọc thêm các bài tập thể dục thể thao ở đây để rèn luyện sức khỏe tốt
-      </button>
-    </>
-    <a
-        href="https://cdn.botpress.cloud/webchat/v2.2/shareable.html?configUrl=https://files.bpcontent.cloud/2025/01/13/15/20250113155620-ZUX3U765.json"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="custom-link chatbot-link"
-      >
-        <br/>Có bất cứ thắc mắc nào, bạn hãy trao đổi với chat bot nhé!
-      </a>
+      {/* Chatbot link */}
+      <Box mt={2} textAlign="center" className="fade-in">
+        <a
+          href="https://cdn.botpress.cloud/webchat/v2.2/shareable.html?configUrl=https://files.bpcontent.cloud/2025/01/13/15/20250113155620-ZUX3U765.json"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="custom-link chatbot-link"
+        >
+          Có bất cứ thắc mắc nào, bạn hãy trao đổi với chat bot nhé!
+        </a>
+      </Box>
+
+      {/* CSS for animations */}
+      <Box sx={styles.fadeIn} className={isVisible ? 'visible' : ''}>
+      {/* Nội dung */}
+      </Box>
     </div>
   );
 };
 
 export default UserInfo;
-
