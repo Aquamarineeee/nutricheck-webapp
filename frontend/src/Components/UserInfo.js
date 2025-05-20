@@ -25,33 +25,24 @@ const UserInfo = () => {
   const [goal, setGoal] = useState("maintain"); // 'gain', 'lose', or 'maintain'
   const [targetWeightChange, setTargetWeightChange] = useState(0);
   const [goalCalories, setGoalCalories] = useState(0);
-  const styles = {
-  fadeIn: {
-    opacity: 0,
-    transform: 'translateY(20px)',
-    transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
-    '&.visible': {
-      opacity: 1,
-      transform: 'translateY(0)',
-    },
-  },
-};
+  const [isVisible, setIsVisible] = useState(false);
   
   // Animation effect
   useEffect(() => {
-    const handleScroll = () => {
-      const elements = document.querySelectorAll('.fade-in');
-      elements.forEach(element => {
-        const elementTop = element.getBoundingClientRect().top;
-        if (elementTop < window.innerHeight - 100) {
-          element.classList.add('visible');
-        }
-      });
-    };
+  const handleScroll = () => {
+    const elements = document.querySelectorAll('.fade-in');
+    elements.forEach(element => {
+      const elementTop = element.getBoundingClientRect().top;
+      if (elementTop < window.innerHeight - 100) {
+        element.classList.add('visible');
+        setIsVisible(true); // Thêm dòng này
+      }
+    });
+  };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  window.addEventListener('scroll', handleScroll);
+  return () => window.removeEventListener('scroll', handleScroll);
+}, []);
 
   useEffect(() => {
     const calculateMinCalories = () => {
@@ -561,10 +552,18 @@ const UserInfo = () => {
       </Box>
 
       {/* CSS for animations */}
-      <Box sx={styles.fadeIn} className={isVisible ? 'visible' : ''}>
-      {/* Nội dung */}
-      </Box>
-    </div>
+      <style jsx>{`
+      .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    `}</style>
+        </div>
   );
 };
 
