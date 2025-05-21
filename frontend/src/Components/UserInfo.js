@@ -11,14 +11,15 @@ import { useSnackbar } from "notistack";
 import { AppContext } from "../Context/AppContext";
 import { useNavigate } from "react-router-dom";
 import gainMealsData from "./gainMeals.json";
-import maintaiMealsData from "./maintainMeals.json";
-import losdeMealsData from "./loseMeals.json";
+import maintainMealsData from "./maintainMeals.json"; 
+import loseMealsData from "./loseMeals.json";       
+
 
 // Dữ liệu thực đơn chuyển vào JSON riêng
 const mealData = {
     gain: gainMealsData,
-    lose: losdeMealsData,
-    maintain: maintaiMealsData
+    lose: loseMealsData,       
+    maintain: maintainMealsData 
 };
 
 // Component cho từng bữa ăn trong thực đơn
