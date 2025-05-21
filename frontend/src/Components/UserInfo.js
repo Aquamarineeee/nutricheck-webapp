@@ -18,13 +18,7 @@ const mealData = {
     lose: loseMealsData,
     maintain:maintainMealsData
 };
-const mealTimeMapping = {
-    "morning": "Sáng",
-    "lunch": "Trưa",
-    "afternoon": "Chiều",
-    "dinner": "Tối",
-    "any": ["Sáng", "Trưa", "Chiều", "Tối"] // Đối với những món có thể ăn bất cứ lúc nào
-};
+
 
 const UserInfo = () => {
     const navigate = useNavigate();
@@ -284,52 +278,63 @@ const UserInfo = () => {
         setFeedback(result);
     };
     // Hàm chọn món ăn cải tiến
-const selectMealGreedy = (availableMeals, targetCalories, usedMeals, mealTime) => {
-  // Lọc món phù hợp với bữa ăn
-  const timeMapping = {
-    "Sáng": ["breakfast"],
-    "Trưa": ["lunch"],
-    "Chiều": ["afternoon"],
-    "Tối": ["dinner"]
-  };
-  
-  const validTimes = timeMapping[mealTime] || [];
-  const timeSpecificMeals = availableMeals.filter(meal => 
-    meal.meal_time?.some(time => validTimes.includes(time))
-  );
+    const selectMealGreedy = (availableMeals, targetCalories, mealCounts, currentMealTime) => {
+  // Ánh xạ thời gian bữa ăn từ tiếng Việt ("Sáng", "Trưa",...) sang các mã thời gian của món ăn ("morning", "lunch", "any",...)
+        const mealTimeCategoryMapping = {
+            "Sáng": ["morning", "any"],
+            "Trưa": ["lunch", "any"],
+            "Chiều": ["afternoon", "any"],
+            "Tối": ["dinner", "any"]
+        };
+        
+        const relevantMealCategories = mealTimeCategoryMapping[currentMealTime] || [];
 
-  // Lọc món chưa dùng
-  const eligibleMeals = timeSpecificMeals.filter(meal => !usedMeals.has(meal.name));
+        // Lọc món phù hợp với thời gian bữa ăn hiện tại VÀ chưa dùng quá 2 lần
+        const eligibleMeals = availableMeals.filter(meal => {
+            const isUsedTooMuch = (mealCounts[meal.name] || 0) >= 2; // Kiểm tra số lần dùng (<= 1 để được chọn)
+            
+            let isSuitableTime = false;
+            if (meal.meal_time && meal.meal_time.length > 0) {
+                // Kiểm tra xem món ăn có thể ăn vào thời gian bữa ăn hiện tại không
+                // (bằng cách xem meal.meal_time có chứa bất kỳ category nào trong relevantMealCategories không)
+                isSuitableTime = meal.meal_time.some(mealCategory => relevantMealCategories.includes(mealCategory));
+            }
 
-  // Tìm món có calo gần nhất với target
-  let bestMeal = null;
-  let minDiff = Infinity;
+            return !isUsedTooMuch && isSuitableTime;
+        });
 
-  for (const meal of eligibleMeals) {
-    const diff = Math.abs(meal.calories - targetCalories);
-    if (diff < minDiff) {
-      minDiff = diff;
-      bestMeal = meal;
-    }
-  }
+        // Tìm món trong eligibleMeals có calo gần nhất với target
+        let bestMeal = null;
+        let minDiff = Infinity;
 
-  // Fallback: nếu không tìm thấy món phù hợp thời gian
-  if (!bestMeal && availableMeals.length > 0) {
-    minDiff = Infinity;
-    for (const meal of availableMeals) {
-      if (!usedMeals.has(meal.name)) {
-        const diff = Math.abs(meal.calories - targetCalories);
-        if (diff < minDiff) {
-          minDiff = diff;
-          bestMeal = meal;
+        for (const meal of eligibleMeals) {
+            const diff = Math.abs(meal.calories - targetCalories);
+            if (diff < minDiff) {
+            minDiff = diff;
+            bestMeal = meal;
+            }
         }
-      }
-    }
-  }
 
-  return bestMeal;
-};
+        // Fallback: nếu không tìm thấy món nào trong eligibleMeals (không có món nào phù hợp thời gian & chưa dùng quá 2 lần)
+        // thì tìm một món bất kỳ trong tất cả các món CHƯA DÙNG QUÁ 2 LẦN (bất kể thời gian)
+        if (!bestMeal) {
+            const allUsableMealsIgnoringTime = availableMeals.filter(meal => (mealCounts[meal.name] || 0) < 2);
+            
+            let bestFallbackMeal = null;
+            let minFallbackDiff = Infinity;
 
+            for (const meal of allUsableMealsIgnoringTime) {
+                const diff = Math.abs(meal.calories - targetCalories);
+                if (diff < minFallbackDiff) {
+                minFallbackDiff = diff;
+                bestFallbackMeal = meal;
+                }
+            }
+            return bestFallbackMeal; // Trả về món fallback nếu có
+        }
+
+        return bestMeal;
+        };
 // Hàm tạo thực đơn mới
     const generateBalancedMealPlan = (totalDailyCalories, goal) => {
         const mealTimes = ["Sáng", "Trưa", "Chiều", "Tối"];
