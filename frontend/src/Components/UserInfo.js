@@ -430,15 +430,17 @@ const selectMealForTime = (availableMeals, targetCalories, usedMeals, mealTime) 
     setMeals(newMealPlan);
     
     // Tính toán chênh lệch calo
-    const totalCalories = newMealPlan.reduce((sum, meal) => sum + meal.actualCalories, 0);
+    const totalCalories = newMealPlan.reduce((sum, meal) => sum + (meal?.calories || 0), 0);
     const difference = totalCalories - totalDailyCalories;
     
     if (Math.abs(difference) > 100) {
         enqueueSnackbar(`Thực đơn chênh lệch ${difference.toFixed(0)} calo so với mục tiêu`, { 
-        variant: "info" 
+        variant: "info",
+        autoHideDuration: 3000 
         });
     }
     };
+
 
     // Cập nhật useEffect
     useEffect(() => {
@@ -446,73 +448,159 @@ const selectMealForTime = (availableMeals, targetCalories, usedMeals, mealTime) 
             generateMealPlan();
         }
     }, [totalDailyCalories, goal, userInfo]);
+    const MealCardDetail = ({ meal }) => {
+        const safeMeal = meal || {
+            name: "Đang tạo thực đơn...",
+            calories: 0,
+            protein: 0,
+            fat: 0,
+            carbs: 0,
+            weight: 0,
+            mealTime: "N/A",
+            description: "Không có mô tả",
+            ingredients_breakdown: [],
+            image: "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+        };
 
-
-
+        return (
+            <Card sx={{ height: '100%' }}>
+            <CardContent>
+                <Typography variant="h6" gutterBottom>
+                {safeMeal.mealTime}: {safeMeal.name}
+                </Typography>
+                
+                {safeMeal.image && (
+                <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
+                    <img 
+                    src={safeMeal.image} 
+                    alt={safeMeal.name} 
+                    style={{ 
+                        maxWidth: '100%', 
+                        height: '200px', 
+                        objectFit: 'cover', 
+                        borderRadius: '8px' 
+                    }} 
+                    />
+                </Box>
+                )}
+                
+                <Typography variant="body1" paragraph>
+                <strong>Mô tả:</strong> {safeMeal.description}
+                </Typography>
+                
+                <Typography variant="body1">
+                <strong>Thông tin dinh dưỡng:</strong>
+                </Typography>
+                <Box sx={{ pl: 2, mb: 2 }}>
+                <Typography>Calo: {safeMeal.calories.toFixed(0)} kcal</Typography>
+                <Typography>Protein: {safeMeal.protein.toFixed(1)}g</Typography>
+                <Typography>Chất béo: {safeMeal.fat.toFixed(1)}g</Typography>
+                <Typography>Carbs: {safeMeal.carbs.toFixed(1)}g</Typography>
+                {safeMeal.weight && <Typography>Khối lượng: {safeMeal.weight.toFixed(1)}g</Typography>}
+                </Box>
+                
+                <Typography variant="body1" gutterBottom>
+                <strong>Thành phần chính:</strong>
+                </Typography>
+                <Box sx={{ pl: 2 }}>
+                {safeMeal.ingredients_breakdown?.map((ingredient, index) => (
+                    <Typography key={index} variant="body2">
+                    - {ingredient.item}: {ingredient.weight_g || ingredient.weight_ml}g/ml
+                    {ingredient.note && ` (${ingredient.note})`}
+                    </Typography>
+                ))}
+                </Box>
+                
+                {safeMeal.recipe_link && (
+                <Button 
+                    variant="outlined" 
+                    href={safeMeal.recipe_link} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    sx={{ mt: 2 }}
+                >
+                    Xem công thức chi tiết
+                </Button>
+                )}
+            </CardContent>
+            </Card>
+        );
+        };
     const renderMealPlan = () => {
+        const totalActualCalories = meals.reduce((sum, m) => sum + (m?.calories || 0), 0);
+        const calorieDifference = totalActualCalories - totalDailyCalories;
+
         return (
             <Box mt={3}>
-                <Typography variant="h6" gutterBottom>
-                    Thực đơn mẫu cho mục tiêu {goal === "gain" ? "tăng cân" : goal === "lose" ? "giảm cân" : "giữ cân"}
-                    &nbsp;({totalDailyCalories.toFixed(0)} calo/ngày)
-                    <Button
-                        variant="outlined"
-                        size="small"
-                        onClick={generateMealPlan}
-                        style={{ marginLeft: '10px' }}
-                    >
-                        Tạo thực đơn mới
-                    </Button>
+            <Typography variant="h6" gutterBottom>
+                Thực đơn mẫu cho mục tiêu {goal === "gain" ? "tăng cân" : goal === "lose" ? "giảm cân" : "giữ cân"}
+                &nbsp;({totalDailyCalories.toFixed(0)} calo/ngày)
+                {Math.abs(calorieDifference) > 0 && (
+                <Typography 
+                    variant="caption" 
+                    color={Math.abs(calorieDifference) > 100 ? "error" : "text.secondary"}
+                    sx={{ ml: 1 }}
+                >
+                    ({calorieDifference > 0 ? '+' : ''}{calorieDifference.toFixed(0)} calo)
                 </Typography>
+                )}
+                <Button
+                variant="outlined"
+                size="small"
+                onClick={() => {
+                    setMeals([]); // Reset meals trước khi tạo mới
+                    setTimeout(() => generateMealPlan(), 0); // Đảm bảo render lại
+                }}
+                style={{ marginLeft: '10px' }}
+                >
+                Tạo thực đơn mới
+                </Button>
+            </Typography>
 
-                <Grid container spacing={2}>
-                    {["Sáng", "Trưa", "Chiều", "Tối"].map((time, index) => {
-                        const meal = meals[index] || {
-                            name: "Đang tạo thực đơn...",
-                            calories: 0,
-                            protein: 0,
-                            fat: 0,
-                            carbs: 0,
-                            weight: 0,
-                            image: "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                        };
-                        return (
-                            <Grid item xs={12} sm={6} md={3} key={time}>
-                                <Card className="fade-in">
-                                    <CardContent>
-                                        <Typography variant="subtitle1" color="primary">{time}</Typography>
-                                        <Box
-                                            style={{
-                                                height: '150px',
-                                                backgroundImage: `url(${meal.image})`,
-                                                backgroundSize: 'cover',
-                                                backgroundPosition: 'center',
-                                                borderRadius: '8px',
-                                                marginBottom: '10px'
-                                            }}
-                                        />
-                                        <Typography variant="h6">{meal.name}</Typography>
-                                        <Typography>Calo: {meal.calories.toFixed(0)}</Typography>
-                                        <Typography>Protein: {meal.protein.toFixed(1)}g</Typography>
-                                        <Typography>Chất béo: {meal.fat.toFixed(1)}g</Typography>
-                                        <Typography>Carbs: {meal.carbs.toFixed(1)}g</Typography>
-                                        <Typography>Khối lượng: {meal.weight.toFixed(1)}g</Typography>
-                                    </CardContent>
-                                </Card>
-                            </Grid>
-                        );
-                    })}
-                </Grid>
+            <Grid container spacing={2}>
+                {meals.length > 0 ? (
+                meals.map((meal, index) => (
+                    <Grid item xs={12} sm={6} md={3} key={index}>
+                    <MealCardDetail meal={meal} />
+                    </Grid>
+                ))
+                ) : (
+                ["Sáng", "Trưa", "Chiều", "Tối"].map((time) => (
+                    <Grid item xs={12} sm={6} md={3} key={time}>
+                    <MealCardDetail meal={{
+                        name: "Đang tạo thực đơn...",
+                        mealTime: time,
+                        calories: 0,
+                        protein: 0,
+                        fat: 0,
+                        carbs: 0,
+                        weight: 0,
+                        description: "Vui lòng nhấn nút 'Tạo thực đơn mới'",
+                        image: "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                    }} />
+                    </Grid>
+                ))
+                )}
+            </Grid>
 
+            {meals.length > 0 && (
                 <Box mt={2}>
-                    <Typography variant="body1">
-                        <strong>Tổng lượng dinh dưỡng trong ngày:</strong>
-                    </Typography>
-                    <Typography>Calo: {meals.reduce((sum, m) => sum + m.calories, 0).toFixed(0)}</Typography>
-                    <Typography>Protein: {meals.reduce((sum, m) => sum + m.protein, 0).toFixed(1)}g</Typography>
-                    <Typography>Chất béo: {meals.reduce((sum, m) => sum + m.fat, 0).toFixed(1)}g</Typography>
-                    <Typography>Carbs: {meals.reduce((sum, m) => sum + m.carbs, 0).toFixed(1)}g</Typography>
+                <Typography variant="body1">
+                    <strong>Tổng lượng dinh dưỡng trong ngày:</strong>
+                </Typography>
+                <Typography>
+                    Calo: {totalActualCalories.toFixed(0)}
+                    {Math.abs(calorieDifference) > 0 && (
+                    <span style={{ color: Math.abs(calorieDifference) > 100 ? 'red' : 'inherit', marginLeft: '5px' }}>
+                        ({calorieDifference > 0 ? '+' : ''}{calorieDifference.toFixed(0)})
+                    </span>
+                    )}
+                </Typography>
+                <Typography>Protein: {meals.reduce((sum, m) => sum + (m?.protein || 0), 0).toFixed(1)}g</Typography>
+                <Typography>Chất béo: {meals.reduce((sum, m) => sum + (m?.fat || 0), 0).toFixed(1)}g</Typography>
+                <Typography>Carbs: {meals.reduce((sum, m) => sum + (m?.carbs || 0), 0).toFixed(1)}g</Typography>
                 </Box>
+            )}
             </Box>
         );
     };
