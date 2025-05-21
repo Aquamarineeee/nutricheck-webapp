@@ -40,7 +40,7 @@ const UserInfo = () => {
     const [meals, setMeals] = useState([]);
     const [totalDailyCalories, setTotalDailyCalories] = useState(0);
     const [weightChangeError, setWeightChangeError] = useState("");
-    const mealGlobalCounts = useRef({});
+    const [mealGlobalCounts, setMealGlobalCounts] = useState({});
 
     // Hàm chọn món ăn dựa trên calo mục tiêu (thuật toán tham lam)
     const selectMealGreedy = (availableMeals, targetCalorie, mealCounts) => {
@@ -56,8 +56,8 @@ const UserInfo = () => {
 
         // Ưu tiên món có số lần sử dụng thấp nhất trong lịch sử
         prioritizedList.sort((a, b) => {
-            const usedA = mealGlobalCounts.current[a.name] || 0;
-            const usedB = mealGlobalCounts.current[b.name] || 0;
+            const usedA = mealGlobalCounts[a.name] || 0;
+            const usedB = mealGlobalCounts[b.name] || 0;
 
             if (usedA !== usedB) return usedA - usedB;
             return Math.abs(a.calories - targetCalorie) - Math.abs(b.calories - targetCalorie);
@@ -343,7 +343,10 @@ const selectMealForTime = (availableMeals, targetCalories, usedMeals, mealTime) 
             if (selectedMeal) {
                 // Tăng số lần sử dụng món ăn này
                 mealCounts[selectedMeal.name] = (mealCounts[selectedMeal.name] || 0) + 1;
-                mealGlobalCounts.current[selectedMeal.name] = (mealGlobalCounts.current[selectedMeal.name] || 0) + 1;
+                setMealGlobalCounts(prev => ({
+                    ...prev,
+                    [selectedMeal.name]: (prev[selectedMeal.name] || 0) + 1
+                }));
 
 
                 // Tính toán tỷ lệ điều chỉnh dinh dưỡng
