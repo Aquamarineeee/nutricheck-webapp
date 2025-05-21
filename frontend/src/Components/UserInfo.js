@@ -284,7 +284,7 @@ const UserInfo = () => {
         setFeedback(result);
     };
     // Hàm chọn món ăn cải tiến
-const selectMealForTime = (availableMeals, targetCalories, usedMeals, mealTime) => {
+const selectMealGreedy = (availableMeals, targetCalories, usedMeals, mealTime) => {
   // Lọc món phù hợp với bữa ăn
   const timeMapping = {
     "Sáng": ["breakfast"],
