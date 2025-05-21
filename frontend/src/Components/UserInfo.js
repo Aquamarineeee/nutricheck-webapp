@@ -41,19 +41,7 @@ const styles = {
 
 // Component cho từng bữa ăn trong thực đơn
 const MealCard = ({ meal }) => {
-    return (
-        <Card>
-            <CardContent>
-                <Typography variant="h6">{meal.mealTime}: {meal.name}</Typography>
-                <img src={meal.image} alt={meal.name} style={{ width: '100%', height: '150px', objectFit: 'cover' }} />
-                <Typography>Calo: {meal.calories.toFixed(0)}</Typography>
-                <Typography>Protein: {meal.protein.toFixed(1)}g</Typography>
-                <Typography>Chất béo: {meal.fat.toFixed(1)}g</Typography>
-                <Typography>Carbs: {meal.carbs.toFixed(1)}g</Typography>
-            </CardContent>
-        </Card>
-    );
-};
+   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
     return (
         <motion.div
@@ -94,6 +82,7 @@ const MealCard = ({ meal }) => {
             </Card>
         </motion.div>
     );
+};
 
 
 const UserInfo = () => {
