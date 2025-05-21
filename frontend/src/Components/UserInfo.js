@@ -746,17 +746,23 @@ const UserInfo = () => {
                                     <TableCell align="left">
                                         <FormControl fullWidth size="small">
                                             <InputLabel>Tình trạng sức khỏe</InputLabel>
-                                            <Select
+                                           <Select
                                                 value={selectedCondition}
                                                 label="Tình trạng sức khỏe"
                                                 onChange={(e) => setSelectedCondition(e.target.value)}
                                             >
                                                 <MenuItem value=""><em>Chọn một tình trạng</em></MenuItem>
-                                                <ListSubheader>Thiếu Calo</ListSubheader>
+                                                {/* Thay thế ListSubheader bằng MenuItem disabled và style */}
+                                                <MenuItem disabled style={{ fontWeight: 'bold', color: 'rgba(0, 0, 0, 0.87)', opacity: 1, borderBottom: '1px solid #eee', marginTop: '8px' }}>
+                                                    Thiếu Calo
+                                                </MenuItem>
                                                 {conditions.calorie_deficit.map((cond) => (
                                                     <MenuItem key={cond} value={cond}>{cond}</MenuItem>
                                                 ))}
-                                                <ListSubheader>Thừa Calo</ListSubheader>
+                                                {/* Thay thế ListSubheader bằng MenuItem disabled và style */}
+                                                <MenuItem disabled style={{ fontWeight: 'bold', color: 'rgba(0, 0, 0, 0.87)', opacity: 1, borderBottom: '1px solid #eee', marginTop: '8px' }}>
+                                                    Thừa Calo
+                                                </MenuItem>
                                                 {conditions.calorie_surplus.map((cond) => (
                                                     <MenuItem key={cond} value={cond}>{cond}</MenuItem>
                                                 ))}
