@@ -40,55 +40,33 @@ const UserInfo = () => {
     const [meals, setMeals] = useState([]);
     const [totalDailyCalories, setTotalDailyCalories] = useState(0);
     const [weightChangeError, setWeightChangeError] = useState("");
+    const mealGlobalCounts = useRef({});
 
     // Hàm chọn món ăn dựa trên calo mục tiêu (thuật toán tham lam)
-       const selectMealGreedy = (availableMeals, targetCalorie, mealCounts) => {
-        let eligibleMeals = [];
-        let minDiff = Infinity;
-
-        // Lọc các món ăn có thể chọn (chưa dùng quá 2 lần)
+    const selectMealGreedy = (availableMeals, targetCalorie, mealCounts) => {
         const usableMeals = availableMeals.filter(meal => (mealCounts[meal.name] || 0) < 2);
 
-        // Tìm tất cả các món ăn gần nhất với targetCalorie trong một ngưỡng nhất định
-        for (const meal of usableMeals) {
-            const diff = Math.abs(meal.calories - targetCalorie);
-            if (diff < minDiff) {
-                minDiff = diff;
-                eligibleMeals = [meal]; // Reset và bắt đầu lại với món tốt nhất mới
-            } else if (diff === minDiff) {
-                eligibleMeals.push(meal); // Thêm vào danh sách nếu có cùng độ chênh lệch tốt nhất
-            }
-        }
+        // Nhóm ưu tiên
+        const withinRange = usableMeals.filter(meal => meal.calories <= targetCalorie && meal.calories >= targetCalorie - 100);
+        const equalOrSlightlyOver = usableMeals.filter(meal => meal.calories > targetCalorie && meal.calories - targetCalorie <= 100);
+        const slightlyUnder = usableMeals.filter(meal => meal.calories < targetCalorie - 100 && targetCalorie - meal.calories <= 150);
+        const farOff = usableMeals.filter(meal => !withinRange.includes(meal) && !equalOrSlightlyOver.includes(meal) && !slightlyUnder.includes(meal));
 
-        // Nếu không có món nào, thử nới lỏng ngưỡng
-        if (eligibleMeals.length === 0 && usableMeals.length > 0) {
-            // Nếu vẫn không có món nào, hoặc muốn thêm ngẫu nhiên cho mọi trường hợp,
-            // có thể xem xét một ngưỡng rộng hơn hoặc chọn ngẫu nhiên từ tất cả
-            // Ví dụ: tìm tất cả các món trong khoảng +/- 100 calo
-            const relaxedMinDiff = minDiff + 100; // Thử tìm trong khoảng rộng hơn
-            for (const meal of usableMeals) {
-                const diff = Math.abs(meal.calories - targetCalorie);
-                if (diff <= relaxedMinDiff) {
-                    eligibleMeals.push(meal);
-                }
-            }
-            // Loại bỏ các lựa chọn quá xa
-            eligibleMeals = eligibleMeals.filter(meal => Math.abs(meal.calories - targetCalorie) <= minDiff + 50);
-        }
+        const prioritizedList = [...withinRange, ...equalOrSlightlyOver, ...slightlyUnder, ...farOff];
 
-        // Nếu vẫn có các lựa chọn, chọn ngẫu nhiên từ những món tốt nhất/trong ngưỡng
-        if (eligibleMeals.length > 0) {
-            const randomIndex = Math.floor(Math.random() * eligibleMeals.length);
-            return eligibleMeals[randomIndex];
-        }
+        // Ưu tiên món có số lần sử dụng thấp nhất trong lịch sử
+        prioritizedList.sort((a, b) => {
+            const usedA = mealGlobalCounts.current[a.name] || 0;
+            const usedB = mealGlobalCounts.current[b.name] || 0;
 
-        // Fallback: Nếu không tìm thấy gì, chọn ngẫu nhiên từ tất cả các món có thể dùng
-        if (usableMeals.length > 0) {
-            return usableMeals[Math.floor(Math.random() * usableMeals.length)];
-        }
+            if (usedA !== usedB) return usedA - usedB;
+            return Math.abs(a.calories - targetCalorie) - Math.abs(b.calories - targetCalorie);
+        });
 
-        return null; // Không tìm thấy món ăn nào
+        return prioritizedList[0] || null;
     };
+
+
 
 
     // Hiệu ứng màn hình chào
@@ -365,6 +343,8 @@ const selectMealForTime = (availableMeals, targetCalories, usedMeals, mealTime) 
             if (selectedMeal) {
                 // Tăng số lần sử dụng món ăn này
                 mealCounts[selectedMeal.name] = (mealCounts[selectedMeal.name] || 0) + 1;
+                mealGlobalCounts.current[selectedMeal.name] = (mealGlobalCounts.current[selectedMeal.name] || 0) + 1;
+
 
                 // Tính toán tỷ lệ điều chỉnh dinh dưỡng
                 const scale = targetCalories / selectedMeal.calories;
