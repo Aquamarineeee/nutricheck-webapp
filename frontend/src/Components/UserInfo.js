@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext, useRef } from "react";
+
 import {
     Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
     Typography, Paper, Alert, Box, Grid, Card, CardContent,
@@ -763,13 +764,17 @@ const UserInfo = () => {
                                                     value={selectedCondition}
                                                     label="Tình trạng sức khỏe"
                                                     onChange={(e) => setSelectedCondition(e.target.value)}
-                                                >
+                                                    >
                                                     <MenuItem value=""><em>Chọn một tình trạng</em></MenuItem>
-                                                    <ListSubheader>Thiếu Calo</ListSubheader>
+
+                                                    {/* Nhóm thiếu calo */}
+                                                    <MenuItem disabled><em>— Thiếu Calo —</em></MenuItem>
                                                     {conditions.calorie_deficit.map((cond) => (
                                                         <MenuItem key={cond} value={cond}>{cond}</MenuItem>
                                                     ))}
-                                                    <ListSubheader>Thừa Calo</ListSubheader>
+
+                                                    {/* Nhóm thừa calo */}
+                                                    <MenuItem disabled><em>— Thừa Calo —</em></MenuItem>
                                                     {conditions.calorie_surplus.map((cond) => (
                                                         <MenuItem key={cond} value={cond}>{cond}</MenuItem>
                                                     ))}
