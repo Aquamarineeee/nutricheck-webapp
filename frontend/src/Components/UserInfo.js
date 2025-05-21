@@ -4,6 +4,7 @@ import {
     Typography, Paper, Alert, Box, Grid, Card, CardContent,
     Button, Select, MenuItem, InputLabel, FormControl, Divider, TextField
 } from "@mui/material";
+import Link from '@mui/material/Link';
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Chart from "react-apexcharts";
@@ -21,13 +22,38 @@ const mealData = {
     lose: loseMealsData,       
     maintain: maintainMealsData 
 };
+const styles = {
+    container: {
+        textAlign: "center",
+        padding: "20px",
+        backgroundColor: "#f9f9f9",
+        borderRadius: "10px",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+        margin: "50px auto",
+        maxWidth: "600px",
+    },
+    title: {
+        fontSize: "24px",
+        color: "#333",
+        marginBottom: "20px",
+    },
+};
 
 // Component cho từng bữa ăn trong thực đơn
 const MealCard = ({ meal }) => {
-    const { ref, inView } = useInView({
-        triggerOnce: true, // Only trigger once when it comes into view
-        threshold: 0.1, // Trigger when 10% of the item is visible
-    });
+    return (
+        <Card>
+            <CardContent>
+                <Typography variant="h6">{meal.mealTime}: {meal.name}</Typography>
+                <img src={meal.image} alt={meal.name} style={{ width: '100%', height: '150px', objectFit: 'cover' }} />
+                <Typography>Calo: {meal.calories.toFixed(0)}</Typography>
+                <Typography>Protein: {meal.protein.toFixed(1)}g</Typography>
+                <Typography>Chất béo: {meal.fat.toFixed(1)}g</Typography>
+                <Typography>Carbs: {meal.carbs.toFixed(1)}g</Typography>
+            </CardContent>
+        </Card>
+    );
+};
 
     return (
         <motion.div
@@ -68,7 +94,7 @@ const MealCard = ({ meal }) => {
             </Card>
         </motion.div>
     );
-};
+
 
 const UserInfo = () => {
     const navigate = useNavigate();
@@ -217,39 +243,36 @@ const UserInfo = () => {
     }, [weekData, fetchWeekData]);
 
     const calculateGoalCalories = () => {
-        if (!userInfo || !userInfo.WEIGHT || !userInfo.HEIGHT || !userInfo.AGE || !userInfo.GENDER || !userInfo.ACTIVITY) {
-            enqueueSnackbar("Vui lòng cập nhật đầy đủ thông tin cá nhân trước khi tính toán calo mục tiêu.", { variant: "error" });
-            return;
-        }
+    if (!userInfo || !userInfo.WEIGHT || !userInfo.HEIGHT || !userInfo.AGE || !userInfo.GENDER || !userInfo.ACTIVITY) {
+        enqueueSnackbar("Vui lòng cập nhật đầy đủ thông tin cá nhân trước khi tính toán calo mục tiêu.", { variant: "error" });
+        return;
+    }
 
-        let adjustedCalories = minCaloriesDay;
-        const absoluteWeightChange = parseFloat(targetWeightChange);
+    let adjustedCalories = minCaloriesDay;
+    const absoluteWeightChange = parseFloat(targetWeightChange);
 
-        if (isNaN(absoluteWeightChange) || absoluteWeightChange < 0 || absoluteWeightChange > 1) {
-            setWeightChangeError("Thay đổi cân nặng mục tiêu phải từ 0 đến 1 kg/tuần.");
-            return;
-        } else {
-            setWeightChangeError("");
-        }
+    // Thêm kiểm tra điều kiện
+    if (isNaN(absoluteWeightChange)) {
+        setWeightChangeError("Vui lòng nhập số hợp lệ");
+        return;
+    }
 
-        if (goal === "lose") {
-            // Deficit: 1kg ~ 7700 kcal. For 1kg/week = 1100 kcal/day. For 0.5kg/week = 550 kcal/day.
-            adjustedCalories = minCaloriesDay - (absoluteWeightChange * 1100);
-        } else if (goal === "gain") {
-            // Surplus: 1kg ~ 7700 kcal. For 1kg/week = 1100 kcal/day. For 0.5kg/week = 550 kcal/day.
-            adjustedCalories = minCaloriesDay + (absoluteWeightChange * 1100);
-        }
+    if (goal === "lose") {
+        adjustedCalories = minCaloriesDay - (absoluteWeightChange * 550); // 0.5kg/tuần ~ 550 cal/ngày
+    } else if (goal === "gain") {
+        adjustedCalories = minCaloriesDay + (absoluteWeightChange * 550);
+    }
 
-        // Ensure calories don't go too low for health reasons
-        const minRecommended = userInfo.GENDER === "male" ? 1500 : 1200;
-        if (adjustedCalories < minRecommended) {
-            adjustedCalories = minRecommended;
-            enqueueSnackbar(`Calo mục tiêu điều chỉnh thành ${minRecommended} để đảm bảo sức khỏe tối thiểu.`, { variant: "info" });
-        }
+    // Thêm kiểm tra calo tối thiểu
+    const minRecommended = userInfo.GENDER === "male" ? 1500 : 1200;
+    if (adjustedCalories < minRecommended) {
+        adjustedCalories = minRecommended;
+        enqueueSnackbar(`Calo mục tiêu được điều chỉnh thành ${minRecommended} để đảm bảo sức khỏe`, { variant: "info" });
+    }
 
-        setGoalCalories(adjustedCalories);
-        setTotalDailyCalories(adjustedCalories); // Trigger meal plan generation
-    };
+    setGoalCalories(adjustedCalories);
+    setTotalDailyCalories(adjustedCalories);
+};
 
     const getHealthWarnings = () => {
         if (minCaloriesWeek === 0) return "Chưa có đủ thông tin để đưa ra cảnh báo sức khỏe.";
@@ -747,27 +770,21 @@ const UserInfo = () => {
                                     <TableCell align="left">
                                         <FormControl fullWidth size="small">
                                             <InputLabel>Tình trạng sức khỏe</InputLabel>
-                                           <Select
-                                                value={selectedCondition}
-                                                label="Tình trạng sức khỏe"
-                                                onChange={(e) => setSelectedCondition(e.target.value)}
-                                            >
-                                                <MenuItem value=""><em>Chọn một tình trạng</em></MenuItem>
-                                                {/* Thay thế ListSubheader bằng MenuItem disabled và style */}
-                                                <MenuItem disabled style={{ fontWeight: 'bold', color: 'rgba(0, 0, 0, 0.87)', opacity: 1, borderBottom: '1px solid #eee', marginTop: '8px' }}>
-                                                    Thiếu Calo
-                                                </MenuItem>
-                                                {conditions.calorie_deficit.map((cond) => (
-                                                    <MenuItem key={cond} value={cond}>{cond}</MenuItem>
-                                                ))}
-                                                {/* Thay thế ListSubheader bằng MenuItem disabled và style */}
-                                                <MenuItem disabled style={{ fontWeight: 'bold', color: 'rgba(0, 0, 0, 0.87)', opacity: 1, borderBottom: '1px solid #eee', marginTop: '8px' }}>
-                                                    Thừa Calo
-                                                </MenuItem>
-                                                {conditions.calorie_surplus.map((cond) => (
-                                                    <MenuItem key={cond} value={cond}>{cond}</MenuItem>
-                                                ))}
-                                            </Select>
+                                                <Select
+                                                    value={selectedCondition}
+                                                    label="Tình trạng sức khỏe"
+                                                    onChange={(e) => setSelectedCondition(e.target.value)}
+                                                >
+                                                    <MenuItem value=""><em>Chọn một tình trạng</em></MenuItem>
+                                                    <ListSubheader>Thiếu Calo</ListSubheader>
+                                                    {conditions.calorie_deficit.map((cond) => (
+                                                        <MenuItem key={cond} value={cond}>{cond}</MenuItem>
+                                                    ))}
+                                                    <ListSubheader>Thừa Calo</ListSubheader>
+                                                    {conditions.calorie_surplus.map((cond) => (
+                                                        <MenuItem key={cond} value={cond}>{cond}</MenuItem>
+                                                    ))}
+                                                </Select>
                                         </FormControl>
                                     </TableCell>
                                 </TableRow>
@@ -864,6 +881,31 @@ const UserInfo = () => {
                     </TableContainer>
                 </Box>
             </motion.div>
+
+            <>
+            <Button 
+                variant="outlined" 
+                onClick={() => navigate("/blog")} 
+                sx={{ mt: 2, mb: 2 }}
+            >
+                Bạn có thể đọc thêm các bài tập thể dục thể thao ở đây để rèn luyện sức khỏe tốt
+            </Button>
+            
+            <Box sx={{ mt: 2 }}>
+                <Typography variant="body2">
+                    Có bất cứ thắc mắc nào, bạn hãy trao đổi với chat bot nhé! {' '}
+                    <Link 
+                        href="https://cdn.botpress.cloud/webchat/v2.2/shareable.html?configUrl=https://files.bpcontent.cloud/2025/01/13/15/20250113155620-ZUX3U765.json" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                    >
+                        Truy cập chatbot
+                    </Link>
+                </Typography>
+            </Box>
+            </>
+
+
         </div>
     );
 };
