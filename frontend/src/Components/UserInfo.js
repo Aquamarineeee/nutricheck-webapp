@@ -42,74 +42,52 @@ const UserInfo = () => {
     const [weightChangeError, setWeightChangeError] = useState("");
 
     // Hàm chọn món ăn dựa trên calo mục tiêu (thuật toán tham lam)
-    const selectMealGreedy = (availableMeals, targetCalorie, mealCounts) => {
-        let bestMeal = null;
+       const selectMealGreedy = (availableMeals, targetCalorie, mealCounts) => {
+        let eligibleMeals = [];
         let minDiff = Infinity;
-        let bestDiff = Infinity; // For prioritizing "nice" numbers
 
-        // Sort available meals by calories to help with greedy selection (optional, but can make it slightly more deterministic)
-        const sortedMeals = [...availableMeals].sort((a, b) => a.calories - b.calories);
+        // Lọc các món ăn có thể chọn (chưa dùng quá 2 lần)
+        const usableMeals = availableMeals.filter(meal => (mealCounts[meal.name] || 0) < 2);
 
-        // First pass: find the best exact match or closest "nice" number within abs 100
-        for (const meal of sortedMeals) {
-            // Check if meal can be chosen (max 2 times)
-            if ((mealCounts[meal.name] || 0) < 2) {
+        // Tìm tất cả các món ăn gần nhất với targetCalorie trong một ngưỡng nhất định
+        for (const meal of usableMeals) {
+            const diff = Math.abs(meal.calories - targetCalorie);
+            if (diff < minDiff) {
+                minDiff = diff;
+                eligibleMeals = [meal]; // Reset và bắt đầu lại với món tốt nhất mới
+            } else if (diff === minDiff) {
+                eligibleMeals.push(meal); // Thêm vào danh sách nếu có cùng độ chênh lệch tốt nhất
+            }
+        }
+
+        // Nếu không có món nào, thử nới lỏng ngưỡng
+        if (eligibleMeals.length === 0 && usableMeals.length > 0) {
+            // Nếu vẫn không có món nào, hoặc muốn thêm ngẫu nhiên cho mọi trường hợp,
+            // có thể xem xét một ngưỡng rộng hơn hoặc chọn ngẫu nhiên từ tất cả
+            // Ví dụ: tìm tất cả các món trong khoảng +/- 100 calo
+            const relaxedMinDiff = minDiff + 100; // Thử tìm trong khoảng rộng hơn
+            for (const meal of usableMeals) {
                 const diff = Math.abs(meal.calories - targetCalorie);
-
-                // Prioritize exact match
-                if (diff === 0) {
-                    return meal;
-                }
-
-                // Prioritize "nice" numbers (multiples of 50 or 100) within 100 diff
-                if (diff <= 100) {
-                    if (meal.calories % 100 === 0 || meal.calories % 50 === 0) {
-                        if (diff < bestDiff) {
-                            bestDiff = diff;
-                            bestMeal = meal;
-                        }
-                    } else if (diff < minDiff && bestMeal === null) { // If no nice number found yet, take the closest
-                        minDiff = diff;
-                        bestMeal = meal;
-                    }
+                if (diff <= relaxedMinDiff) {
+                    eligibleMeals.push(meal);
                 }
             }
+            // Loại bỏ các lựa chọn quá xa
+            eligibleMeals = eligibleMeals.filter(meal => Math.abs(meal.calories - targetCalorie) <= minDiff + 50);
         }
 
-        // Second pass: if no "nice" number or exact match found within 100, find the closest within 100
-        if (bestMeal === null) {
-            minDiff = Infinity; // Reset for closest
-            for (const meal of sortedMeals) {
-                if ((mealCounts[meal.name] || 0) < 2) {
-                    const diff = Math.abs(meal.calories - targetCalorie);
-                    if (diff <= 100 && diff < minDiff) {
-                        minDiff = diff;
-                        bestMeal = meal;
-                    }
-                }
-            }
-        }
-        
-        // Fallback: if no suitable meal found within abs 100, pick the closest one (even if outside 100 range)
-        if (bestMeal === null) {
-            minDiff = Infinity;
-            for (const meal of sortedMeals) {
-                if ((mealCounts[meal.name] || 0) < 2) {
-                    const diff = Math.abs(meal.calories - targetCalorie);
-                    if (diff < minDiff) {
-                        minDiff = diff;
-                        bestMeal = meal;
-                    }
-                }
-            }
+        // Nếu vẫn có các lựa chọn, chọn ngẫu nhiên từ những món tốt nhất/trong ngưỡng
+        if (eligibleMeals.length > 0) {
+            const randomIndex = Math.floor(Math.random() * eligibleMeals.length);
+            return eligibleMeals[randomIndex];
         }
 
-        // If still no meal, return a random one as a last resort (should not happen with a diverse meal list)
-        if (bestMeal === null && availableMeals.length > 0) {
-            return availableMeals[Math.floor(Math.random() * availableMeals.length)];
+        // Fallback: Nếu không tìm thấy gì, chọn ngẫu nhiên từ tất cả các món có thể dùng
+        if (usableMeals.length > 0) {
+            return usableMeals[Math.floor(Math.random() * usableMeals.length)];
         }
 
-        return bestMeal;
+        return null; // Không tìm thấy món ăn nào
     };
 
 
@@ -353,101 +331,111 @@ const selectMealForTime = (availableMeals, targetCalories, usedMeals, mealTime) 
 };
 
 // Hàm tạo thực đơn mới
-    const generateBalancedMealPlan = (totalDailyCalories, goal) => {
-    const mealTimes = ["Sáng", "Trưa", "Chiều", "Tối"];
-    const allMeals = mealData[goal] || mealData.maintain;
-    const selectedMeals = [];
-    const usedMeals = new Set();
-    
-    // Phân bổ calo theo tỷ lệ
-    const calorieDistribution = {
-        "Sáng": totalDailyCalories * 0.25,
-        "Trưa": totalDailyCalories * 0.35, 
-        "Chiều": totalDailyCalories * 0.15,
-        "Tối": totalDailyCalories * 0.25
-    };
+        const generateBalancedMealPlan = (totalDailyCalories, goal) => {
+        const mealTimes = ["Sáng", "Trưa", "Chiều", "Tối"];
+        const allMeals = mealData[goal] || mealData.maintain;
+        const selectedMeals = [];
+        // Khởi tạo một đối tượng để đếm số lần sử dụng mỗi món ăn trong kế hoạch hiện tại
+        const mealCounts = {}; 
 
-    let remainingCalories = totalDailyCalories;
-
-    for (let i = 0; i < mealTimes.length; i++) {
-        const mealTime = mealTimes[i];
-        let targetCalories = calorieDistribution[mealTime];
-        
-        // Điều chỉnh cho bữa cuối để đảm bảo tổng calo
-        if (i === mealTimes.length - 1) {
-        targetCalories = remainingCalories;
-        } else {
-        targetCalories = Math.min(targetCalories, remainingCalories - (mealTimes.length - i - 1) * 100);
-        }
-
-        const selectedMeal = selectMealForTime(allMeals, targetCalories, usedMeals, mealTime);
-
-        if (selectedMeal) {
-        // Tính toán tỷ lệ điều chỉnh dinh dưỡng
-        const scale = targetCalories / selectedMeal.calories;
-        
-        const adjustedMeal = {
-            ...selectedMeal,
-            mealTime: mealTime,
-            actualCalories: targetCalories,
-            protein: selectedMeal.protein * scale,
-            fat: selectedMeal.fat * scale,
-            carbs: selectedMeal.carbs * scale,
-            weight: selectedMeal.weight * scale
+        // Phân bổ calo theo tỷ lệ
+        const calorieDistribution = {
+            "Sáng": totalDailyCalories * 0.25,
+            "Trưa": totalDailyCalories * 0.35, 
+            "Chiều": totalDailyCalories * 0.15,
+            "Tối": totalDailyCalories * 0.25
         };
 
-        selectedMeals.push(adjustedMeal);
-        usedMeals.add(selectedMeal.name);
-        remainingCalories -= targetCalories;
-        } else {
-        // Fallback nếu không tìm được món
-        selectedMeals.push({
-            name: `Món ăn chưa xác định cho bữa ${mealTime}`,
-            mealTime: mealTime,
-            actualCalories: targetCalories,
-            protein: 0,
-            fat: 0,
-            carbs: 0,
-            weight: 0,
-            image: "https://via.placeholder.com/150?text=No+Meal",
-            description: "Đang cập nhật thông tin dinh dưỡng"
-        });
-        remainingCalories -= targetCalories;
-        }
-    }
+        let remainingCalories = totalDailyCalories;
 
-    return selectedMeals;
+        for (let i = 0; i < mealTimes.length; i++) {
+            const mealTime = mealTimes[i];
+            let targetCalories = calorieDistribution[mealTime];
+            
+            // Điều chỉnh cho bữa cuối để đảm bảo tổng calo
+            if (i === mealTimes.length - 1) {
+                targetCalories = remainingCalories;
+            } else {
+                targetCalories = Math.min(targetCalories, remainingCalories - (mealTimes.length - i - 1) * 100);
+            }
+
+            // Truyền mealCounts vào selectMealGreedy
+            const selectedMeal = selectMealGreedy(allMeals, targetCalories, mealCounts);
+
+            if (selectedMeal) {
+                // Tăng số lần sử dụng món ăn này
+                mealCounts[selectedMeal.name] = (mealCounts[selectedMeal.name] || 0) + 1;
+
+                // Tính toán tỷ lệ điều chỉnh dinh dưỡng
+                const scale = targetCalories / selectedMeal.calories;
+                
+                const adjustedMeal = {
+                    ...selectedMeal,
+                    mealTime: mealTime,
+                    actualCalories: targetCalories,
+                    // Cố gắng giữ nguyên macro nếu không cần scale quá nhiều, hoặc scale theo calo
+                    protein: selectedMeal.protein * scale, // scale macro theo calo
+                    fat: selectedMeal.fat * scale,
+                    carbs: selectedMeal.carbs * scale,
+                    weight: selectedMeal.weight * scale
+                };
+
+                selectedMeals.push(adjustedMeal);
+                remainingCalories -= targetCalories;
+            } else {
+                // Fallback nếu không tìm được món
+                selectedMeals.push({
+                    name: `Món ăn chưa xác định cho bữa ${mealTime}`,
+                    mealTime: mealTime,
+                    actualCalories: targetCalories,
+                    protein: 0,
+                    fat: 0,
+                    carbs: 0,
+                    weight: 0,
+                    image: "https://i.pinimg.com/originals/f4/ff/55/f4ff55ade0c4dd49b0cc474395e420e5.gif",
+                    description: "Đang cập nhật thông tin dinh dưỡng"
+                });
+                remainingCalories -= targetCalories;
+            }
+        }
+        return selectedMeals;
     };
 
     // Sử dụng trong component
     const generateMealPlan = () => {
-    if (totalDailyCalories === 0) {
-        enqueueSnackbar("Vui lòng tính toán lượng calo mục tiêu trước", { variant: "warning" });
-        return;
-    }
+        if (totalDailyCalories === 0) {
+            enqueueSnackbar("Vui lòng tính toán lượng calo mục tiêu trước", { variant: "warning" });
+            return;
+        }
 
-    const newMealPlan = generateBalancedMealPlan(totalDailyCalories, goal);
-    setMeals(newMealPlan);
-    
-    // Tính toán chênh lệch calo
-    const totalCalories = newMealPlan.reduce((sum, meal) => sum + (meal?.calories || 0), 0);
-    const difference = totalCalories - totalDailyCalories;
-    
-    if (Math.abs(difference) > 100) {
-        enqueueSnackbar(`Thực đơn chênh lệch ${difference.toFixed(0)} calo so với mục tiêu`, { 
-        variant: "info",
-        autoHideDuration: 3000 
-        });
-    }
+        // Đặt lại danh sách bữa ăn thành rỗng trước khi tạo mới
+        setMeals([]); 
+        
+        // Tạo thực đơn mới ngay lập tức
+        const newMealPlan = generateBalancedMealPlan(totalDailyCalories, goal);
+        setMeals(newMealPlan);
+        
+        // Tính toán chênh lệch calo
+        const totalCalories = newMealPlan.reduce((sum, meal) => sum + (meal?.actualCalories || 0), 0); // Sử dụng actualCalories
+        const difference = totalCalories - totalDailyCalories;
+        
+        if (Math.abs(difference) > 100) {
+            enqueueSnackbar(`Thực đơn chênh lệch ${difference.toFixed(0)} calo so với mục tiêu`, { 
+                variant: "info",
+                autoHideDuration: 3000 
+            });
+        }
     };
 
 
     // Cập nhật useEffect
-    useEffect(() => {
-        if (totalDailyCalories > 0 && userInfo?.WEIGHT) {
-            generateMealPlan();
-        }
-    }, [totalDailyCalories, goal, userInfo]);
+    // useEffect(() => {
+    //     if (totalDailyCalories > 0 && userInfo?.WEIGHT) {
+    //         generateMealPlan();
+    //     }
+    // }, [totalDailyCalories, goal, userInfo]);
+
+
     const MealCardDetail = ({ meal }) => {
         const safeMeal = meal || {
             name: "Đang tạo thực đơn...",
