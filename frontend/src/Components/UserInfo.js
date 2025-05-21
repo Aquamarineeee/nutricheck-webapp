@@ -19,6 +19,12 @@ const mealData = {
     maintain:maintainMealsData
 };
 
+const mealTimeCategoryMapping = {
+    "Sáng": ["morning", "any"],
+    "Trưa": ["lunch", "any"],
+    "Chiều": ["afternoon", "any"],
+    "Tối": ["dinner", "any"]
+};
 
 const UserInfo = () => {
     const navigate = useNavigate();
@@ -43,7 +49,7 @@ const UserInfo = () => {
     const [weightChangeError, setWeightChangeError] = useState("");
 
     // Hàm chọn món ăn dựa trên calo mục tiêu (thuật toán Best-First-Search)
-    const selectMealBestFirst = (availableMeals, targetCalorie, mealCounts, currentMealTime, mealTimeMapping) => {
+    const selectMealBestFirst = (availableMeals, targetCalorie, mealCounts, currentMealTime, mealTimeMapping = mealTimeCategoryMapping) => {
     // Hàm đánh giá: độ lệch calo
     const evaluate = (meal) => Math.abs(meal.calories - targetCalorie);
 
