@@ -787,8 +787,8 @@ const generateBalancedMealPlan = (totalDailyCalories, goal) => {
                                     onChange={(e) => {
                                         const value = e.target.value;
                                         setTargetWeightChange(value);
-                                        if (value < 0 || value > 4) {
-                                            setWeightChangeError("Mức thay đổi cân nặng hợp lý là từ 2 đến 4 kg/tháng.");
+                                        if (value < 0 || value > 1) {
+                                            setWeightChangeError("Mức thay đổi cân nặng hợp lý là từ 0 đến 1 kg/tuần.");
                                         } else {
                                             setWeightChangeError("");
                                         }
