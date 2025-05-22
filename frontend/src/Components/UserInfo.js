@@ -158,23 +158,78 @@ const UserInfo = () => {
 
     useEffect(() => {
     const calculateTotalCalories = () => {
-        if (!weekData || !weekData.daily_calories || weekData.daily_calories.length === 0) {
-            setTotalCalories(0);
-            setDailyCaloriesConsumed(0);
-            setTotalMonthlyCalories(0);
-            return;
-        }
-        const dailyCaloriesArray = weekData.daily_calories;
-        const totalWeek = dailyCaloriesArray.reduce((sum, item) => sum + item.calories, 0);
-        setTotalCalories(totalWeek);
-        const today = new Date().toLocaleDateString("en-US", { weekday: "long" });
-        const todayData = dailyCaloriesArray.find((item) => item.date === today);
-        setDailyCaloriesConsumed(todayData ? todayData.calories : 0);
-        const totalMonth = totalWeek * (30 / 7);
-        setTotalMonthlyCalories(totalMonth);
-    };
-    calculateTotalCalories();
-}, [weekData]);
+            if (!weekData || !weekData.daily_calories || weekData.daily_calories.length === 0) {
+                setTotalCalories(0);
+                setDailyCaloriesConsumed(0);
+                setTotalMonthlyCalories(0);
+                setChartOptions({}); // Reset chart options
+                setChartSeries([]);   // Reset chart series
+                return;
+            }
+
+            const dailyCaloriesArray = weekData.daily_calories;
+            const totalWeek = dailyCaloriesArray.reduce((sum, item) => sum + item.calories, 0);
+            setTotalCalories(totalWeek);
+
+            const today = new Date().toLocaleDateString("en-US", { weekday: "long" });
+            const todayData = dailyCaloriesArray.find((item) => item.date === today);
+            setDailyCaloriesConsumed(todayData ? todayData.calories : 0);
+
+            const totalMonth = totalWeek * (30 / 7);
+            setTotalMonthlyCalories(totalMonth);
+            const formattedWeekDataForChart = dailyCaloriesArray.map(item => ({
+                DAY: item.date,
+                CALORIES: item.calories
+            }));
+
+            // Gọi getChartData từ utils.js với dữ liệu đã định dạng
+            const [categories, values] = getChartData(formattedWeekDataForChart);
+
+            // Cập nhật state cho biểu đồ options và series
+            setChartOptions({
+                chart: {
+                    id: "weekly-calorie-chart",
+                    toolbar: {
+                        show: false,
+                    },
+                },
+                xaxis: {
+                    categories: categories, // Sử dụng categories từ getChartData
+                },
+                yaxis: {
+                    title: {
+                        text: "Calories",
+                    },
+                },
+                stroke: {
+                    curve: 'smooth',
+                },
+                markers: {
+                    size: 4,
+                },
+                dataLabels: {
+                    enabled: false,
+                },
+                tooltip: {
+                    y: {
+                        formatter: function (val) {
+                            return val + " calo";
+                        },
+                    },
+                },
+                colors: ['#00E396'], // Green color for consumed calories
+            });
+
+            setChartSeries([
+                {
+                    name: "Calo tiêu thụ",
+                    data: values, // Sử dụng values từ getChartData
+                },
+            ]);
+            // **KẾT THÚC PHẦN SỬA ĐỔI**
+        };
+        calculateTotalCalories();
+    }, [weekData]);
 
     const calculateGoalCalories = () => {
         let adjustedCalories = minCaloriesDay;
@@ -888,54 +943,20 @@ const selectMealForTime = (availableMeals, targetCalories, usedMeals, mealTime) 
 
             {/* Weekly Calorie Chart */}
             <Box mt={4} className="fade-in">
-                <Typography variant="h5" gutterBottom style={{ fontWeight: "bold" }}>
-                    Biểu đồ calo tiêu thụ trong tuần
-                </Typography>
-                {weekData.length > 0 ? (
-                    <Chart
-                        options={{
-                            chart: {
-                                id: "weekly-calorie-chart",
-                            },
-                            xaxis: {
-                                categories: weekData.map((item) => item.DAY),
-                            },
-                            yaxis: {
-                                title: {
-                                    text: "Calories",
-                                },
-                            },
-                            stroke: {
-                                curve: 'smooth',
-                            },
-                            markers: {
-                                size: 4,
-                            },
-                            dataLabels: {
-                                enabled: false,
-                            },
-                            tooltip: {
-                                y: {
-                                    formatter: function (val) {
-                                        return val + " calo";
-                                    },
-                                },
-                            },
-                            colors: ['#00E396'], // Green color for consumed calories
-                        }}
-                        series={[
-                            {
-                                name: "Calo tiêu thụ",
-                                data: weekData.map((item) => item.CALORIES),
-                            },
-                        ]}
-                        type="area"
-                        height={350}
-                    />
-                ) : (
-                    <Alert severity="info">Chưa có dữ liệu calo trong tuần để hiển thị biểu đồ.</Alert>
-                )}
-            </Box>
+            <Typography variant="h5" gutterBottom style={{ fontWeight: "bold" }}>
+                Biểu đồ calo tiêu thụ trong tuần
+            </Typography>
+            {chartOptions.xaxis && chartSeries.length > 0 ? ( // Kiểm tra xem dữ liệu biểu đồ đã sẵn sàng
+                <Chart
+                    options={chartOptions} // SỬ DỤNG STATE chartOptions
+                    series={chartSeries}   // SỬ DỤNG STATE chartSeries
+                    type="area" // Giữ nguyên type="area" nếu bạn muốn biểu đồ dạng vùng
+                    height={350}
+                />
+            ) : (
+                <Alert severity="info">Chưa có dữ liệu calo trong tuần để hiển thị biểu đồ.</Alert>
+            )}
+        </Box>
             <Box mt={4} className="fade-in">
                 <Typography variant="h5" gutterBottom style={{ fontWeight: "bold" }}>
                     Dự kiến lượng calo tiêu thụ trung bình hàng tháng
