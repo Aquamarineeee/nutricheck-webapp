@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useCallback} from "react";
 import {
     Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
     Typography, Paper, Alert, Box, Grid, Card, CardContent,
@@ -39,7 +39,6 @@ const UserInfo = () => {
     const [meals, setMeals] = useState([]);
     const [totalDailyCalories, setTotalDailyCalories] = useState(0);
     const [weightChangeError, setWeightChangeError] = useState("");
-    const [setMealGlobalCounts] = useState({});
     const {
         userInfo,
         weekData,
@@ -53,7 +52,7 @@ const UserInfo = () => {
     // Hàm chọn món ăn dựa trên calo mục tiêu (thuật toán tham lam)
     const selectMealGreedy = useCallback((availableMeals, targetCalorie, currentMealCountsForDay) => {
         // Filter meals that have been used less than 2 times in the current plan (if applicable)
-
+        const usableMeals = availableMeals.filter(meal => (currentMealCountsForDay[meal.name] || 0) < 2); // DÒNG NÀY BỊ THIẾU HOẶC COMMENT
 
         // Categorize meals based on proximity to target calorie
         const withinRange = usableMeals.filter(meal => meal.calories <= targetCalorie && meal.calories >= targetCalorie - 100);
@@ -157,20 +156,24 @@ const UserInfo = () => {
     }, [userInfo, enqueueSnackbar]);
 
     useEffect(() => {
-        const calculateTotalCalories = () => {
-            const totalWeek = weekData.reduce((sum, item) => sum + item.CALORIES, 0);
-            setTotalCalories(totalWeek);
-
-            const todayData = weekData.find((item) => item.DAY === new Date().toLocaleDateString("en-US", { weekday: "long" }));
-            setDailyCaloriesConsumed(todayData ? todayData.CALORIES : 0);
-
-            const totalMonth = totalWeek * 4;
-            setTotalMonthlyCalories(totalMonth);
-        };
-
-        fetchWeekData();
-        calculateTotalCalories();
-    }, [weekData, fetchWeekData]);
+    const calculateTotalCalories = () => {
+        if (!weekData || !weekData.daily_calories || weekData.daily_calories.length === 0) {
+            setTotalCalories(0);
+            setDailyCaloriesConsumed(0);
+            setTotalMonthlyCalories(0);
+            return;
+        }
+        const dailyCaloriesArray = weekData.daily_calories;
+        const totalWeek = dailyCaloriesArray.reduce((sum, item) => sum + item.calories, 0);
+        setTotalCalories(totalWeek);
+        const today = new Date().toLocaleDateString("en-US", { weekday: "long" });
+        const todayData = dailyCaloriesArray.find((item) => item.date === today);
+        setDailyCaloriesConsumed(todayData ? todayData.calories : 0);
+        const totalMonth = totalWeek * (30 / 7);
+        setTotalMonthlyCalories(totalMonth);
+    };
+    calculateTotalCalories();
+}, [weekData]);
 
     const calculateGoalCalories = () => {
         let adjustedCalories = minCaloriesDay;
@@ -419,23 +422,24 @@ const selectMealForTime = (availableMeals, targetCalories, usedMeals, mealTime) 
             return;
         }
 
-        // Đặt lại danh sách bữa ăn thành rỗng trước khi tạo mới
-        setMeals([]); 
-        
-        // Tạo thực đơn mới ngay lập tức
-        const newMealPlan = generateBalancedMealPlan(totalDailyCalories, goal);
-        setMeals(newMealPlan);
-        
-        // Tính toán chênh lệch calo
-        const totalCalories = newMealPlan.reduce((sum, meal) => sum + (meal?.actualCalories || 0), 0); // Sử dụng actualCalories
-        const difference = totalCalories - totalDailyCalories;
-        
-        if (Math.abs(difference) > 100) {
-            enqueueSnackbar(`Thực đơn chênh lệch ${difference.toFixed(0)} calo so với mục tiêu`, { 
-                variant: "info",
-                autoHideDuration: 3000 
-            });
-        }
+        setMeals([]); // Hiển thị trạng thái rỗng hoặc placeholder ngay lập tức
+
+        // Sử dụng setTimeout để tạo một độ trễ nhỏ, cho phép UI cập nhật
+        // và sau đó mới thực hiện logic nặng hơn
+        setTimeout(() => {
+            const newMealPlan = generateBalancedMealPlan(totalDailyCalories, goal);
+            setMeals(newMealPlan);
+
+            const totalCalories = newMealPlan.reduce((sum, meal) => sum + (meal?.actualCalories || 0), 0);
+            const difference = totalCalories - totalDailyCalories;
+
+            if (Math.abs(difference) > 100) {
+                enqueueSnackbar(`Thực đơn chênh lệch ${difference.toFixed(0)} calo so với mục tiêu`, {
+                    variant: "info",
+                    autoHideDuration: 3000
+                });
+            }
+        }, 0); // Độ trễ 0ms đẩy tác vụ vào hàng đợi sự kiện tiếp theo
     }, [totalDailyCalories, goal, generateBalancedMealPlan, enqueueSnackbar]);
 
 
@@ -547,7 +551,7 @@ const selectMealForTime = (availableMeals, targetCalories, usedMeals, mealTime) 
     };
 
     const renderMealPlan = () => {
-        const totalActualCalories = meals.reduce((sum, m) => sum + (m?.calories || 0), 0);
+        const totalActualCalories = meals.reduce((sum, m) => sum + (m?.actualCalories || m?.calories || 0), 0);
         const calorieDifference = totalActualCalories - totalDailyCalories;
 
         return (
@@ -578,28 +582,34 @@ const selectMealForTime = (availableMeals, targetCalories, usedMeals, mealTime) 
             </Typography>
 
             <Grid container spacing={2}>
-                {meals.length > 0 ? (
-                meals.map((meal, index) => (
-                    <Grid item xs={12} sm={6} md={3} key={index}>
-                    <MealCardDetail meal={meal} />
+                {isGeneratingMealPlan ? ( // Kiểm tra trạng thái loading
+                    <Grid item xs={12} style={{ textAlign: 'center' }}>
+                        <CircularProgress /> {/* Hoặc bất kỳ loading component nào */}
+                        <Typography>Đang tạo thực đơn...</Typography>
                     </Grid>
-                ))
+                ) : meals.length > 0 ? (
+                    meals.map((meal, index) => (
+                        <Grid item xs={12} sm={6} md={3} key={index}>
+                            <MealCardDetail meal={meal} />
+                        </Grid>
+                    ))
                 ) : (
-                ["Sáng", "Trưa", "Chiều", "Tối"].map((time) => (
-                    <Grid item xs={12} sm={6} md={3} key={time}>
-                    <MealCardDetail meal={{
-                        name: "Đang tạo thực đơn...",
-                        mealTime: time,
-                        calories: 0,
-                        protein: 0,
-                        fat: 0,
-                        carbs: 0,
-                        weight: 0,
-                        description: "Vui lòng nhấn nút 'Tạo thực đơn mới'",
-                        image: "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                    }} />
-                    </Grid>
-                ))
+                    ["Sáng", "Trưa", "Chiều", "Tối"].map((time) => (
+                        <Grid item xs={12} sm={6} md={3} key={time}>
+                            <MealCardDetail meal={{
+                                name: "Đang tạo thực đơn...", // Hoặc thông báo khác
+                                mealTime: time,
+                                calories: 0,
+                                actualCalories: 0,
+                                protein: 0,
+                                fat: 0,
+                                carbs: 0,
+                                weight: 0,
+                                description: "Vui lòng nhấn nút 'Tạo thực đơn mới'",
+                                image: "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                            }} />
+                        </Grid>
+                    ))
                 )}
             </Grid>
 
