@@ -22,7 +22,6 @@ const mealData = {
 const UserInfo = () => {
     const navigate = useNavigate();
     const { enqueueSnackbar } = useSnackbar();
-    const { userInfo, weekData, fetchWeekData } = useContext(AppContext);
     const [totalCalories, setTotalCalories] = useState(0);
     const [dailyCaloriesConsumed, setDailyCaloriesConsumed] = useState(0);
     const [minCaloriesDay, setMinCaloriesDay] = useState(0);
@@ -40,31 +39,54 @@ const UserInfo = () => {
     const [meals, setMeals] = useState([]);
     const [totalDailyCalories, setTotalDailyCalories] = useState(0);
     const [weightChangeError, setWeightChangeError] = useState("");
-    const [mealGlobalCounts, setMealGlobalCounts] = useState({});
+    const [setMealGlobalCounts] = useState({});
+    const {
+        userInfo,
+        weekData,
+        fetchWeekData,
+        userMealPreferences,    // THÊM DÒNG NÀY
+        updateUserMealPreference, // THÊM DÒNG NÀY
+        mealGlobalCounts,       // THÊM DÒNG NÀY
+        updateMealGlobalCount   // THÊM DÒNG NÀY
+    } = useContext(AppContext);
 
     // Hàm chọn món ăn dựa trên calo mục tiêu (thuật toán tham lam)
-    const selectMealGreedy = (availableMeals, targetCalorie, mealCounts) => {
-        const usableMeals = availableMeals.filter(meal => (mealCounts[meal.name] || 0) < 2);
+    const selectMealGreedy = useCallback((availableMeals, targetCalorie, currentMealCountsForDay) => {
+        // Filter meals that have been used less than 2 times in the current plan (if applicable)
 
-        // Nhóm ưu tiên
+
+        // Categorize meals based on proximity to target calorie
         const withinRange = usableMeals.filter(meal => meal.calories <= targetCalorie && meal.calories >= targetCalorie - 100);
         const equalOrSlightlyOver = usableMeals.filter(meal => meal.calories > targetCalorie && meal.calories - targetCalorie <= 100);
         const slightlyUnder = usableMeals.filter(meal => meal.calories < targetCalorie - 100 && targetCalorie - meal.calories <= 150);
         const farOff = usableMeals.filter(meal => !withinRange.includes(meal) && !equalOrSlightlyOver.includes(meal) && !slightlyUnder.includes(meal));
 
+        // Prioritize lists
         const prioritizedList = [...withinRange, ...equalOrSlightlyOver, ...slightlyUnder, ...farOff];
 
-        // Ưu tiên món có số lần sử dụng thấp nhất trong lịch sử
         prioritizedList.sort((a, b) => {
-            const usedA = mealGlobalCounts[a.name] || 0;
-            const usedB = mealGlobalCounts[b.name] || 0;
+            const usedA = mealGlobalCounts[a.name] || 0; // Sử dụng mealGlobalCounts từ Context
+            const usedB = mealGlobalCounts[b.name] || 0; // Sử dụng mealGlobalCounts từ Context
 
+            const preferenceA = userMealPreferences[a.name] || 0; // Sử dụng userMealPreferences từ Context
+            const preferenceB = userMealPreferences[b.name] || 0; // Sử dụng userMealPreferences từ Context
+
+            // Priority 1: User preference (higher preference comes first)
+            if (preferenceA !== preferenceB) return preferenceB - preferenceA;
+
+            // Priority 2: Least used meal in global history
             if (usedA !== usedB) return usedA - usedB;
+
+            // Priority 3: Closeness to targetCalorie
             return Math.abs(a.calories - targetCalorie) - Math.abs(b.calories - targetCalorie);
         });
 
         return prioritizedList[0] || null;
-    };
+    }, [mealGlobalCounts, userMealPreferences]); // Thêm dependencies
+
+
+    // Function to generate a balanced meal plan for the day
+
 
 
 
@@ -308,88 +330,90 @@ const selectMealForTime = (availableMeals, targetCalories, usedMeals, mealTime) 
   return bestMeal;
 };
 
-// Hàm tạo thực đơn mới
-const generateBalancedMealPlan = (totalDailyCalories, goal) => {
-    const mealTimes = ["Sáng", "Trưa", "Chiều", "Tối"];
-    const allMeals = mealData[goal] || mealData.maintain;
-    const selectedMeals = [];
-    const usedMealsInPlan = new Set(); // Theo dõi các món đã được chọn trong kế hoạch hiện tại
-    const mealCounts = {}; // Đếm số lần sử dụng mỗi món ăn toàn cục
+    const generateBalancedMealPlan = useCallback((totalDailyCalories, goal) => {
+        const mealTimes = ["Sáng", "Trưa", "Chiều", "Tối"];
+        // Fallback to maintain meals if goal-specific data is not available
+        const allMeals = mealData[goal] || mealData.maintain;
+        const selectedMeals = [];
+        const usedMealsInPlan = new Set(); // Tracks meals used in THIS specific plan generation
+        const mealCountsForCurrentPlan = {}; // Tracks how many times a meal is used in THIS plan
 
-    // Phân bổ calo theo tỷ lệ
-    const calorieDistribution = {
-        "Sáng": totalDailyCalories * 0.25,
-        "Trưa": totalDailyCalories * 0.35,
-        "Chiều": totalDailyCalories * 0.15,
-        "Tối": totalDailyCalories * 0.25
-    };
+        // Calorie distribution for each meal time
+        const calorieDistribution = {
+            "Sáng": totalDailyCalories * 0.25,
+            "Trưa": totalDailyCalories * 0.35,
+            "Chiều": totalDailyCalories * 0.15,
+            "Tối": totalDailyCalories * 0.25
+        };
 
-    let remainingCalories = totalDailyCalories;
+        let remainingCalories = totalDailyCalories;
 
-    for (let i = 0; i < mealTimes.length; i++) {
-        const mealTime = mealTimes[i];
-        let targetCalories = calorieDistribution[mealTime];
-        
-        // Điều chỉnh cho bữa cuối để đảm bảo tổng calo
-        if (i === mealTimes.length - 1) {
-            targetCalories = remainingCalories;
-        } else {
-            targetCalories = Math.min(targetCalories, remainingCalories - (mealTimes.length - i - 1) * 100);
+        for (let i = 0; i < mealTimes.length; i++) {
+            const mealTime = mealTimes[i];
+            let targetCaloriesForMeal = calorieDistribution[mealTime];
+
+            // Adjust target for the last meal to ensure total calories are met
+            if (i === mealTimes.length - 1) {
+                targetCaloriesForMeal = remainingCalories;
+            } else {
+                // Ensure there are enough calories for remaining meals (simple estimate)
+                targetCaloriesForMeal = Math.min(targetCaloriesForMeal, remainingCalories - (mealTimes.length - i - 1) * 100);
+            }
+
+            // Filter meals that haven't been selected yet in this plan
+            const availableMeals = allMeals.filter(meal => !usedMealsInPlan.has(meal.name));
+
+            const selectedMeal = selectMealGreedy(
+                availableMeals,
+                targetCaloriesForMeal,
+                mealCountsForCurrentPlan
+            );
+
+            if (selectedMeal) {
+                usedMealsInPlan.add(selectedMeal.name);
+                mealCountsForCurrentPlan[selectedMeal.name] = (mealCountsForCurrentPlan[selectedMeal.name] || 0) + 1;
+
+                // Update global meal count (this should ideally be done when a meal is *logged* by the user)
+                // For demonstration purposes, we'll update it here.
+                updateMealGlobalCount(selectedMeal.name); // Sử dụng updateMealGlobalCount từ Context
+
+                // Calculate scaling factor for macronutrients and weight based on actual vs. target calories
+                const scale = targetCaloriesForMeal / selectedMeal.calories;
+
+                const adjustedMeal = {
+                    ...selectedMeal,
+                    mealTime: mealTime,
+                    actualCalories: targetCaloriesForMeal, // This is the target calorie for this specific meal
+                    protein: selectedMeal.protein * scale,
+                    fat: selectedMeal.fat * scale,
+                    carbs: selectedMeal.carbs * scale,
+                    weight: selectedMeal.weight * scale
+                };
+
+                selectedMeals.push(adjustedMeal);
+                remainingCalories -= targetCaloriesForMeal;
+            } else {
+                // Fallback if no suitable meal is found
+                selectedMeals.push({
+                    name: `Món ăn chưa xác định cho bữa ${mealTime}`,
+                    mealTime: mealTime,
+                    actualCalories: targetCaloriesForMeal, // Still assign target calories for calculation
+                    calories: 0, // Original calories from JSON
+                    protein: 0,
+                    fat: 0,
+                    carbs: 0,
+                    weight: 0,
+                    image: "https://i.pinimg.com/originals/f4/ff/55/f4ff55ade0c4dd49b0cc474395e420e5.gif",
+                    description: "Đang cập nhật thông tin dinh dưỡng hoặc không tìm thấy món phù hợp."
+                });
+                remainingCalories -= targetCaloriesForMeal;
+            }
         }
-
-        // Lọc ra các món chưa được sử dụng trong kế hoạch hiện tại
-        const availableMeals = allMeals.filter(meal => !usedMealsInPlan.has(meal.name));
-        
-        // Chọn món ăn với thuật toán tham lam cải tiến
-        const selectedMeal = selectMealGreedy(availableMeals, targetCalories, mealCounts);
-
-        if (selectedMeal) {
-            // Đánh dấu món ăn đã được sử dụng trong kế hoạch hiện tại
-            usedMealsInPlan.add(selectedMeal.name);
-            
-            // Cập nhật số lần sử dụng toàn cục
-            mealCounts[selectedMeal.name] = (mealCounts[selectedMeal.name] || 0) + 1;
-            setMealGlobalCounts(prev => ({
-                ...prev,
-                [selectedMeal.name]: (prev[selectedMeal.name] || 0) + 1
-            }));
-
-            // Tính toán tỷ lệ điều chỉnh dinh dưỡng
-            const scale = targetCalories / selectedMeal.calories;
-            
-            const adjustedMeal = {
-                ...selectedMeal,
-                mealTime: mealTime,
-                actualCalories: targetCalories,
-                protein: selectedMeal.protein * scale,
-                fat: selectedMeal.fat * scale,
-                carbs: selectedMeal.carbs * scale,
-                weight: selectedMeal.weight * scale
-            };
-
-            selectedMeals.push(adjustedMeal);
-            remainingCalories -= targetCalories;
-        } else {
-            // Fallback nếu không tìm được món
-            selectedMeals.push({
-                name: `Món ăn chưa xác định cho bữa ${mealTime}`,
-                mealTime: mealTime,
-                actualCalories: targetCalories,
-                protein: 0,
-                fat: 0,
-                carbs: 0,
-                weight: 0,
-                image: "https://i.pinimg.com/originals/f4/ff/55/f4ff55ade0c4dd49b0cc474395e420e5.gif",
-                description: "Đang cập nhật thông tin dinh dưỡng"
-            });
-            remainingCalories -= targetCalories;
-        }
-    }
-    return selectedMeals;
-};
+        return selectedMeals;
+    }, [selectMealGreedy, updateMealGlobalCount]); // Thêm dependencies
 
     // Sử dụng trong component
-    const generateMealPlan = () => {
+    const generateMealPlan = useCallback(() => {
         if (totalDailyCalories === 0) {
             enqueueSnackbar("Vui lòng tính toán lượng calo mục tiêu trước", { variant: "warning" });
             return;
@@ -412,7 +436,7 @@ const generateBalancedMealPlan = (totalDailyCalories, goal) => {
                 autoHideDuration: 3000 
             });
         }
-    };
+    }, [totalDailyCalories, goal, generateBalancedMealPlan, enqueueSnackbar]);
 
 
     // Cập nhật useEffect
@@ -427,6 +451,7 @@ const generateBalancedMealPlan = (totalDailyCalories, goal) => {
         const safeMeal = meal || {
             name: "Đang tạo thực đơn...",
             calories: 0,
+            actualCalories: 0, // Add actualCalories to safeMeal
             protein: 0,
             fat: 0,
             carbs: 0,
@@ -439,68 +464,88 @@ const generateBalancedMealPlan = (totalDailyCalories, goal) => {
 
         return (
             <Card sx={{ height: '100%' }}>
-            <CardContent>
-                <Typography variant="h6" gutterBottom>
-                {safeMeal.mealTime}: {safeMeal.name}
-                </Typography>
-                
-                {safeMeal.image && (
-                <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
-                    <img 
-                    src={safeMeal.image} 
-                    alt={safeMeal.name} 
-                    style={{ 
-                        maxWidth: '100%', 
-                        height: '200px', 
-                        objectFit: 'cover', 
-                        borderRadius: '8px' 
-                    }} 
-                    />
-                </Box>
-                )}
-                
-                <Typography variant="body1" paragraph>
-                <strong>Mô tả:</strong> {safeMeal.description}
-                </Typography>
-                
-                <Typography variant="body1">
-                <strong>Thông tin dinh dưỡng:</strong>
-                </Typography>
-                <Box sx={{ pl: 2, mb: 2 }}>
-                <Typography>Calo: {safeMeal.calories.toFixed(0)} kcal</Typography>
-                <Typography>Protein: {safeMeal.protein.toFixed(1)}g</Typography>
-                <Typography>Chất béo: {safeMeal.fat.toFixed(1)}g</Typography>
-                <Typography>Carbs: {safeMeal.carbs.toFixed(1)}g</Typography>
-                {safeMeal.weight && <Typography>Khối lượng: {safeMeal.weight.toFixed(1)}g</Typography>}
-                </Box>
-                
-                <Typography variant="body1" gutterBottom>
-                <strong>Thành phần chính:</strong>
-                </Typography>
-                <Box sx={{ pl: 2 }}>
-                {safeMeal.ingredients_breakdown?.map((ingredient, index) => (
-                    <Typography key={index} variant="body2">
-                    - {ingredient.item}: {ingredient.weight_g || ingredient.weight_ml}g/ml
-                    {ingredient.note && ` (${ingredient.note})`}
+                <CardContent>
+                    <Typography variant="h6" gutterBottom>
+                        {safeMeal.mealTime}: {safeMeal.name}
                     </Typography>
-                ))}
-                </Box>
-                
-                {safeMeal.recipe_link && (
-                <Button 
-                    variant="outlined" 
-                    href={safeMeal.recipe_link} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    sx={{ mt: 2 }}
-                >
-                    Xem công thức chi tiết
-                </Button>
-                )}
-            </CardContent>
+
+                    {safeMeal.image && (
+                        <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
+                            <img
+                                src={safeMeal.image}
+                                alt={safeMeal.name}
+                                style={{
+                                    maxWidth: '100%',
+                                    height: '200px',
+                                    objectFit: 'cover',
+                                    borderRadius: '8px'
+                                }}
+                            />
+                        </Box>
+                    )}
+
+                    <Typography variant="body1" paragraph>
+                        <strong>Mô tả:</strong> {safeMeal.description}
+                    </Typography>
+
+                    <Typography variant="body1">
+                        <strong>Thông tin dinh dưỡng:</strong>
+                    </Typography>
+                    <Box sx={{ pl: 2, mb: 2 }}>
+                        <Typography>Calo: {(safeMeal.actualCalories || safeMeal.calories).toFixed(0)} kcal</Typography> {/* Use actualCalories if available */}
+                        <Typography>Protein: {safeMeal.protein.toFixed(1)}g</Typography>
+                        <Typography>Chất béo: {safeMeal.fat.toFixed(1)}g</Typography>
+                        <Typography>Carbs: {safeMeal.carbs.toFixed(1)}g</Typography>
+                        {safeMeal.weight && <Typography>Khối lượng: {safeMeal.weight.toFixed(1)}g</Typography>}
+                    </Box>
+
+                    <Typography variant="body1" gutterBottom>
+                        <strong>Thành phần chính:</strong>
+                    </Typography>
+                    <Box sx={{ pl: 2 }}>
+                        {safeMeal.ingredients_breakdown?.map((ingredient, index) => (
+                            <Typography key={index} variant="body2">
+                                - {ingredient.item}: {ingredient.weight_g || ingredient.weight_ml}g/ml
+                                {ingredient.note && ` (${ingredient.note})`}
+                            </Typography>
+                        ))}
+                    </Box>
+
+                    {safeMeal.recipe_link && (
+                        <Button
+                            variant="outlined"
+                            href={safeMeal.recipe_link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            sx={{ mt: 2 }}
+                        >
+                            Xem công thức chi tiết
+                        </Button>
+                    )}
+                    {/* Thêm nút Thích/Không thích để tương tác với userMealPreferences */}
+                    <Box mt={2} display="flex" justifyContent="space-around">
+                        <Button
+                            variant="contained"
+                            color="success"
+                            onClick={() => updateUserMealPreference(safeMeal.name, 1)} // Tăng độ ưu tiên
+                            disabled={!safeMeal.name || safeMeal.name.includes("chưa xác định")}
+                        >
+                            Thích
+                        </Button>
+                        <Button
+                            variant="contained"
+                            color="error"
+                            onClick={() => updateUserMealPreference(safeMeal.name, -1)} // Giảm độ ưu tiên
+                            disabled={!safeMeal.name || safeMeal.name.includes("chưa xác định")}
+                        >
+                            Không thích
+                        </Button>
+                    </Box>
+                </CardContent>
             </Card>
         );
-        };
+    };
+
     const renderMealPlan = () => {
         const totalActualCalories = meals.reduce((sum, m) => sum + (m?.calories || 0), 0);
         const calorieDifference = totalActualCalories - totalDailyCalories;
