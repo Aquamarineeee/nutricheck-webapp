@@ -11,7 +11,8 @@ import { useNavigate } from "react-router-dom";
 import helo from "../../src/images/helo.gif"
 import gainMealsData from "./gainMeals.json";
 import maintainMealsData from "./maintainMeals.json"; 
-import loseMealsData from "./loseMeals.json";       
+import loseMealsData from "./loseMeals.json";    
+import { getChartData } from '../utils/utils'; // <-- DÒNG NÀY CẦN ĐẢM BẢO CÓ VÀ ĐÚNG ĐƯỜNG DẪN CỦA BẠN   
 // Dữ liệu thực đơn chuyển vào JSON riêng
 const mealData = {
     gain: gainMealsData,
@@ -49,7 +50,8 @@ const UserInfo = () => {
         mealGlobalCounts,       // THÊM DÒNG NÀY
         updateMealGlobalCount   // THÊM DÒNG NÀY
     } = useContext(AppContext);
-
+    const [chartOptions, setChartOptions] = useState({});
+    const [chartSeries, setChartSeries] = useState([]);
     // Hàm chọn món ăn dựa trên calo mục tiêu (thuật toán tham lam)
     const selectMealGreedy = useCallback((availableMeals, targetCalorie, currentMealCountsForDay) => {
         // Filter meals that have been used less than 2 times in the current plan (if applicable)
@@ -166,7 +168,6 @@ const UserInfo = () => {
                 setChartSeries([]);   // Reset chart series
                 return;
             }
-
             const dailyCaloriesArray = weekData.daily_calories;
             const totalWeek = dailyCaloriesArray.reduce((sum, item) => sum + item.calories, 0);
             setTotalCalories(totalWeek);
@@ -177,6 +178,8 @@ const UserInfo = () => {
 
             const totalMonth = totalWeek * (30 / 7);
             setTotalMonthlyCalories(totalMonth);
+
+            // Chuyển đổi weekData.daily_calories sang định dạng cũ (DAY, CALORIES)
             const formattedWeekDataForChart = dailyCaloriesArray.map(item => ({
                 DAY: item.date,
                 CALORIES: item.calories
@@ -226,23 +229,47 @@ const UserInfo = () => {
                     data: values, // Sử dụng values từ getChartData
                 },
             ]);
-            // **KẾT THÚC PHẦN SỬA ĐỔI**
         };
         calculateTotalCalories();
     }, [weekData]);
 
-    const calculateGoalCalories = () => {
-        let adjustedCalories = minCaloriesDay;
+            
 
-        if (goal === "lose") {
-            adjustedCalories = minCaloriesDay - (targetWeightChange * 550);
-        } else if (goal === "gain") {
-            adjustedCalories = minCaloriesDay + (targetWeightChange * 550);
+    const calculateGoalCalories = useCallback(() => {
+        if (!userInfo || !userInfo.WEIGHT || !userInfo.HEIGHT || !userInfo.AGE || !userInfo.GENDER || !userInfo.ACTIVITY) {
+            enqueueSnackbar("Vui lòng cập nhật đầy đủ thông tin cá nhân để tính toán calo mục tiêu.", { variant: "warning" });
+            return;
         }
 
-        setGoalCalories(adjustedCalories);
-        setTotalDailyCalories(adjustedCalories); // Thêm dòng này
-    };
+        const weight = parseFloat(userInfo.WEIGHT);
+        const height = parseFloat(userInfo.HEIGHT);
+        const age = parseFloat(userInfo.AGE);
+        const gender = userInfo.GENDER;
+        const activityLevel = parseFloat(userInfo.ACTIVITY);
+        const targetChange = parseFloat(targetWeightChange);
+
+        let bmr;
+        if (gender === "male") {
+            bmr = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
+        } else {
+            bmr = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
+        }
+
+        let tdee = bmr * activityLevel;
+        let adjustedTdee = tdee;
+
+        const caloriesPerKg = 7700; // Khoảng 7700 calo mỗi kg
+
+        if (goal === "gain") {
+            adjustedTdee += (targetChange * caloriesPerKg) / 7;
+        } else if (goal === "lose") {
+            adjustedTdee -= (targetChange * caloriesPerKg) / 7;
+        }
+
+        setGoalCalories(adjustedTdee);
+        enqueueSnackbar(`Calo mục tiêu hàng ngày của bạn đã được tính toán: ${adjustedTdee.toFixed(1)} calo`, { variant: "success" });
+    }, [userInfo, goal, targetWeightChange, enqueueSnackbar]);
+
 
     const getMealSuggestions = (goal) => {
         return mealData[goal] ? [...mealData[goal]].sort(() => Math.random() - 0.5).slice(0, 5) : [];
