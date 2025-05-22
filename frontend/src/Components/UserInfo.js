@@ -315,6 +315,7 @@ const selectMealForTime = (availableMeals, targetCalories, usedMeals, mealTime) 
         const selectedMeals = [];
         // Khởi tạo một đối tượng để đếm số lần sử dụng mỗi món ăn trong kế hoạch hiện tại
         const mealCounts = {}; 
+        const usedMealsToday = new Set(); // Dùng để theo dõi các món ăn đã được sử dụng trong kế hoạch của ngày hiện tại
 
         // Phân bổ calo theo tỷ lệ
         const calorieDistribution = {
@@ -339,6 +340,7 @@ const selectMealForTime = (availableMeals, targetCalories, usedMeals, mealTime) 
 
             // Truyền mealCounts vào selectMealGreedy
             const selectedMeal = selectMealGreedy(allMeals, targetCalories, mealCounts);
+            const availableMealsForSelection = allMeals.filter(meal => !usedMealsToday.has(meal.name));
 
             if (selectedMeal) {
                 // Tăng số lần sử dụng món ăn này
