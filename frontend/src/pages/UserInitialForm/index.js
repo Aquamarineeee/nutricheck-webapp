@@ -12,9 +12,10 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import { AppContext } from "../../Context/AppContext";
-const [selectedActivity, setSelectedActivity] = useState("1.2");
+
 
 const UserInitialForm = () => {
+  const [selectedActivity, setSelectedActivity] = useState("1.2");
   const activityLevels = {
   "1.2": {
     name: "Ít hoặc không vận động",
@@ -23,7 +24,10 @@ const UserInitialForm = () => {
       "Lập trình viên / IT",
       "Kế toán",
       "Nhân viên văn phòng",
-      "Sinh viên/học sinh ngồi học cả ngày"
+      "Sinh viên/học sinh ngồi học cả ngày",
+      "Nhân viên tư vấn qua điện thoại",
+      "Biên dịch viên",
+      "Luật sư (làm tại văn phòng)"
     ],
     color: "#4CAF50" // Màu xanh lá
   },
@@ -34,7 +38,9 @@ const UserInitialForm = () => {
       "Giáo viên",
       "Bác sĩ/y tá trong bệnh viện",
       "Nhân viên phục vụ nhà hàng",
-      "Nhân viên bán hàng siêu thị"
+      "Nhân viên bán hàng siêu thị",
+      "Nhân viên thư viện", 
+      "Nhân viên lễ tân"
     ],
     color: "#FFC107" // Màu vàng
   },
@@ -45,7 +51,10 @@ const UserInitialForm = () => {
       "Nhân viên giao hàng (xe máy)",
       "Bưu tá",
       "Thợ điện, sửa xe",
-      "Nhân viên làm vườn"
+      "Nhân viên làm vườn",
+      "Nhân viên vệ sinh tòa nhà",
+      "Công nhân dây chuyền lắp ráp nhẹ"
+
     ],
     color: "#FF9800" // Màu cam
   },
@@ -56,7 +65,9 @@ const UserInitialForm = () => {
       "Nông dân làm ruộng, vườn",
       "Công nhân xây dựng",
       "Phụ hồ",
-      "Nhân viên giao hàng bằng xe đạp"
+      "Nhân viên giao hàng bằng xe đạp",
+      "Nhân viên chặt cây, khai thác rừng",
+      "Hướng dẫn viên du lịch trekking"
     ],
     color: "#F44336" // Màu đỏ
   },
@@ -67,7 +78,9 @@ const UserInitialForm = () => {
       "Vận động viên chuyên nghiệp",
       "Lính cứu hỏa",
       "Người leo núi chuyên nghiệp",
-      "Huấn luyện viên thể hình"
+      "Huấn luyện viên thể hình",
+      "Lính đặc nhiệm",
+      "Lính biên phòng tuần tra rừng"
     ],
     color: "#9C27B0" // Màu tím
   }
