@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext, useCallback} from "react";
 import {
     Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
     Typography, Paper, Alert, Box, Grid, Card, CardContent,
-    Button, Select, MenuItem, InputLabel, FormControl, Divider , TextField
+    Button, Select, MenuItem, InputLabel, FormControl, Divider , TextField, CircularProgress
 } from "@mui/material";
 import Chart from "react-apexcharts";
 import { useSnackbar } from "notistack";
@@ -38,6 +38,7 @@ const UserInfo = () => {
     const [showWelcome, setShowWelcome] = useState(true);
     const [meals, setMeals] = useState([]);
     const [totalDailyCalories, setTotalDailyCalories] = useState(0);
+    const [isGeneratingMealPlan, setIsGeneratingMealPlan] = useState(false); // THÊM DÒNG NÀY
     const [weightChangeError, setWeightChangeError] = useState("");
     const {
         userInfo,
@@ -417,16 +418,16 @@ const selectMealForTime = (availableMeals, targetCalories, usedMeals, mealTime) 
 
     // Sử dụng trong component
     const generateMealPlan = useCallback(() => {
-        if (totalDailyCalories === 0) {
-            enqueueSnackbar("Vui lòng tính toán lượng calo mục tiêu trước", { variant: "warning" });
-            return;
-        }
+    if (totalDailyCalories === 0) {
+        enqueueSnackbar("Vui lòng tính toán lượng calo mục tiêu trước", { variant: "warning" });
+        return;
+    }
 
-        setMeals([]); // Hiển thị trạng thái rỗng hoặc placeholder ngay lập tức
+    setIsGeneratingMealPlan(true); // BẮT ĐẦU LOADING
+    setMeals([]); // Xóa bữa ăn cũ
 
-        // Sử dụng setTimeout để tạo một độ trễ nhỏ, cho phép UI cập nhật
-        // và sau đó mới thực hiện logic nặng hơn
-        setTimeout(() => {
+    setTimeout(() => {
+        try {
             const newMealPlan = generateBalancedMealPlan(totalDailyCalories, goal);
             setMeals(newMealPlan);
 
@@ -439,8 +440,14 @@ const selectMealForTime = (availableMeals, targetCalories, usedMeals, mealTime) 
                     autoHideDuration: 3000
                 });
             }
-        }, 0); // Độ trễ 0ms đẩy tác vụ vào hàng đợi sự kiện tiếp theo
-    }, [totalDailyCalories, goal, generateBalancedMealPlan, enqueueSnackbar]);
+        } catch (error) {
+            console.error("Lỗi khi tạo thực đơn:", error);
+            enqueueSnackbar("Có lỗi xảy ra khi tạo thực đơn. Vui lòng thử lại.", { variant: "error" });
+        } finally {
+            setIsGeneratingMealPlan(false); // KẾT THÚC LOADING DÙ CÓ LỖI HAY KHÔNG
+        }
+    }, 0);
+}, [totalDailyCalories, goal, generateBalancedMealPlan, enqueueSnackbar]); // Thêm isGeneratingMealPlan vào dependencies nếu bạn muốn nó trigger lại khi thay đổi, nhưng thường không cần thiết
 
 
     // Cập nhật useEffect
