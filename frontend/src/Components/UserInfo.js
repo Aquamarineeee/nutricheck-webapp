@@ -150,18 +150,58 @@ const UserInfo = () => {
         calculateTotalCalories();
     }, [weekData, fetchWeekData]);
 
-    const calculateGoalCalories = () => {
-        let adjustedCalories = minCaloriesDay;
-
-        if (goal === "lose") {
-            adjustedCalories = minCaloriesDay - (targetWeightChange * 550);
-        } else if (goal === "gain") {
-            adjustedCalories = minCaloriesDay + (targetWeightChange * 550);
+   const calculateGoalCalories = useCallback(() => {
+        if (!userInfo || !userInfo.WEIGHT || !userInfo.HEIGHT || !userInfo.AGE || !userInfo.GENDER || !userInfo.ACTIVITY || !targetWeightChange) {
+            enqueueSnackbar("Vui lòng cập nhật đầy đủ thông tin cá nhân và mục tiêu thay đổi cân nặng để tính toán calo mục tiêu.", { variant: "warning" });
+            return;
         }
 
-        setGoalCalories(adjustedCalories);
-        setTotalDailyCalories(adjustedCalories); // Thêm dòng này
-    };
+        const weight = parseFloat(userInfo.WEIGHT);
+        const height = parseFloat(userInfo.HEIGHT);
+        const age = parseFloat(userInfo.AGE);
+        const gender = userInfo.GENDER;
+        const activityLevel = parseFloat(userInfo.ACTIVITY);
+        // targetWeightChange cần được đảm bảo là số và đại diện cho lượng kg bạn muốn thay đổi trong 1 tuần
+        const targetChange = parseFloat(targetWeightChange); 
+
+        let bmr;
+        if (gender === "male") {
+            // Công thức Mifflin-St Jeor cho nam
+            bmr = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
+        } else {
+            // Công thức Mifflin-St Jeor cho nữ
+            bmr = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
+        }
+
+        let tdee = bmr * activityLevel;
+        let adjustedTdee = tdee;
+
+        const caloriesPerKg = 7700; // Khoảng 7700 calo mỗi kg
+
+        if (goal === "gain") {
+            // Cộng thêm calo để tăng cân (ví dụ: mục tiêu tăng X kg/tuần)
+            adjustedTdee += (targetChange * caloriesPerKg) / 7;
+        } else if (goal === "lose") {
+            // Trừ đi calo để giảm cân (ví dụ: mục tiêu giảm X kg/tuần)
+            adjustedTdee -= (targetChange * caloriesPerKg) / 7;
+        }
+
+        // Đảm bảo calo mục tiêu không quá thấp (ví dụ: ngưỡng an toàn 1200 cho nữ, 1500 cho nam)
+        if (gender === "male" && adjustedTdee < 1500) {
+            adjustedTdee = 1500;
+            enqueueSnackbar("Lượng calo mục tiêu đã được điều chỉnh lên mức tối thiểu an toàn cho nam giới (1500 calo).", { variant: "info" });
+        } else if (gender === "female" && adjustedTdee < 1200) {
+            adjustedTdee = 1200;
+            enqueueSnackbar("Lượng calo mục tiêu đã được điều chỉnh lên mức tối thiểu an toàn cho nữ giới (1200 calo).", { variant: "info" });
+        }
+
+
+        setGoalCalories(adjustedTdee);
+        setTotalDailyCalories(adjustedTdee); // Dòng này là đúng để cập nhật tổng calo hàng ngày
+
+        enqueueSnackbar(`Calo mục tiêu hàng ngày của bạn đã được tính toán: ${adjustedTdee.toFixed(1)} calo`, { variant: "success" });
+    }, [userInfo, goal, targetWeightChange, enqueueSnackbar, setGoalCalories, setTotalDailyCalories]); // Thêm setGoalCalories và setTotalDailyCalories vào dependencies
+
 
     const getMealSuggestions = (goal) => {
         return mealData[goal] ? [...mealData[goal]].sort(() => Math.random() - 0.5).slice(0, 5) : [];
@@ -747,8 +787,8 @@ const generateBalancedMealPlan = (totalDailyCalories, goal) => {
                                     onChange={(e) => {
                                         const value = e.target.value;
                                         setTargetWeightChange(value);
-                                        if (value < 0 || value > 1) {
-                                            setWeightChangeError("Mức thay đổi cân nặng hợp lý là từ 0 đến 1 kg/tuần.");
+                                        if (value < 0 || value > 4) {
+                                            setWeightChangeError("Mức thay đổi cân nặng hợp lý là từ 2 đến 4 kg/tháng.");
                                         } else {
                                             setWeightChangeError("");
                                         }
