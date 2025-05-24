@@ -242,6 +242,10 @@ const UserInitialForm = () => {
                     </div>
                   </div>
                 )}
+                <button>
+                <span>Hoàn thành</span>
+                <ArrowForwardIos />
+              </button>
 
                 </form>
                 </div>
