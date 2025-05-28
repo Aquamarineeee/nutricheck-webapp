@@ -12,9 +12,9 @@ from src.config.db import ConsumedFood, session
 from src.middleware.jwt import token_required
 from src.constants import AI_SERVICE_ENDPOINT, DAY_OF_WEEK
 from src.config.firebase import upload_image_to_firebase
+import tempfile
+
 food = Blueprint('food', __name__, url_prefix='/api/food')
-
-
 
 @food.post('/capture-food')
 @token_required
@@ -30,22 +30,22 @@ def capture_food(current_user):
         image = request.files.get('foodImage')
         logging.info(f"Received file: {image.filename}")
 
-        # Xử lý filename và lưu file
+        # Xử lý filename và lưu file tạm thời trong thư mục /tmp
         ext = image.filename.split(".")[-1]
         filename = str(uuid.uuid4()) + '.' + ext
-        filepath = os.path.join(
-            str(current_app.config.get('IMAGE_UPLOADS')), filename)
-        logging.info(f"Saving file to {filepath}")
 
-        image.save(filepath)
-        logging.info(f"File saved successfully: {filepath}")
+        with tempfile.NamedTemporaryFile(dir='/tmp', suffix=f".{ext}", delete=False) as temp_file:
+            image.save(temp_file.name)
+            temp_filepath = temp_file.name
+
+        logging.info(f"File saved temporarily at: {temp_filepath}")
 
         # Upload image lên Firebase
         logging.info("Uploading image to Firebase...")
-        upload_image_to_firebase(filename, filepath)
+        upload_image_to_firebase(filename, temp_filepath)
         logging.info("Image uploaded successfully.")
 
-        # Lấy public URL của file
+        # Lấy public URL của file từ Firebase
         image_url = getFileStorageURL(filename)
         logging.info(f"Generated image URL: {image_url}")
 
@@ -63,25 +63,25 @@ def capture_food(current_user):
                 'msg': 'Failed to detect food items from AI service',
                 'error': foodItemsResponse.text
             }, 500
-
         foodItems = foodItemsResponse.json().get('foodItems', [])
         logging.info(f"Food items detected: {foodItems}")
 
-        # Xóa file tạm thời
-        if os.path.exists(filepath):
-            logging.info(f"Removing temporary file: {filepath}")
-            os.remove(filepath)
+        # Xóa file tạm thời sau khi xử lý xong
+        if os.path.exists(temp_filepath):
+            logging.info(f"Removing temporary file: {temp_filepath}")
+            os.remove(temp_filepath)
 
         return {
             'image_url': image_url,
             'foodItems': foodItems
         }
-
     except Exception as e:
         logging.error(f"An error occurred: {str(e)}", exc_info=True)
-        if os.path.exists(filepath):
-            logging.info(f"Removing temporary file due to error: {filepath}")
-            os.remove(filepath)
+        # Xóa file tạm thời nếu xảy ra lỗi
+        if 'temp_filepath' in locals() and os.path.exists(temp_filepath):
+            logging.info(f"Removing temporary file due to error: {temp_filepath}")
+            os.remove(temp_filepath)
+
         return {
             'msg': 'Something went wrong',
             'error': str(e)
@@ -261,34 +261,6 @@ def consumptionOn(current_user):
         }
     except Exception as e:
         return{
-            'msg': 'Something went wrong',
-            'error': str(e)
-        }, 500
-
-
-@food.get('/total-calories-since-registration')
-@token_required
-def totalCaloriesSinceRegistration(current_user):
-    try:
-        # Lấy ngày đăng ký của người dùng (giả sử bạn lưu trong `current_user.registration_date`)
-        registration_date = current_user.registration_date
-        if not registration_date:
-            return {'msg': 'Registration date not found for user'}, 400
-
-        # Tính tổng lượng calo từ ngày đăng ký đến hiện tại
-        total_calories = session.query(func.sum(ConsumedFood.calorie)).filter(
-            ConsumedFood.user_id == current_user.id,
-            ConsumedFood.is_intake == True,
-            ConsumedFood.consumed_on >= registration_date
-        ).scalar()
-
-        return {
-            'total_calories': total_calories or 0,  # Nếu không có dữ liệu, trả về 0
-            'registration_date': registration_date
-        }
-    except Exception as e:
-        logging.error(f"Error calculating total calories: {str(e)}", exc_info=True)
-        return {
             'msg': 'Something went wrong',
             'error': str(e)
         }, 500
