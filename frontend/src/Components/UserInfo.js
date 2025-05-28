@@ -507,7 +507,7 @@ const generateBalancedMealPlan = (totalDailyCalories, goal) => {
                 <strong>Thông tin dinh dưỡng:</strong>
                 </Typography>
                 <Box sx={{ pl: 2, mb: 2 }}>
-                <Typography>Calo: {safeMeal.calories.toFixed(0)} kcal</Typography>
+                <Typography>Calo: {safeMeal.calories.toFixed(0)} calo</Typography>
                 <Typography>Protein: {safeMeal.protein.toFixed(1)}g</Typography>
                 <Typography>Chất béo: {safeMeal.fat.toFixed(1)}g</Typography>
                 <Typography>Carbs: {safeMeal.carbs.toFixed(1)}g</Typography>
