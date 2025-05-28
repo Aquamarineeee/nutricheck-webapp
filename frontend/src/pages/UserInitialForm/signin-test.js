@@ -9,7 +9,77 @@ import { API } from "../../services/apis";
 import { useSnackbar } from "notistack";
 import { AppContext } from "../../Context/AppContext";
 
+
 const UserSignup = () => {
+  const [selectedActivity, setSelectedActivity] = useState("1.2");
+    const activityLevels = {
+    "1.2": {
+      name: "Ít hoặc không vận động",
+      description: "Ngồi nhiều, không đi lại trong ngày",
+      examples: [
+        "Lập trình viên / IT",
+        "Kế toán",
+        "Nhân viên văn phòng",
+        "Sinh viên/học sinh ngồi học cả ngày",
+        "Nhân viên tư vấn qua điện thoại",
+        "Biên dịch viên",
+        "Luật sư (làm tại văn phòng)"
+      ],
+      color: "#4CAF50" // Màu xanh lá
+    },
+    "1.375": {
+      name: "Hoạt động nhẹ",
+      description: "Đi lại trong nội bộ, làm việc đứng nhiều",
+      examples: [
+        "Giáo viên",
+        "Bác sĩ/y tá trong bệnh viện",
+        "Nhân viên phục vụ nhà hàng",
+        "Nhân viên bán hàng siêu thị",
+        "Nhân viên thư viện", 
+        "Nhân viên lễ tân"
+      ],
+      color: "#FFC107" // Màu vàng
+    },
+    "1.55": {
+      name: "Vừa phải",
+      description: "Lao động có vận động tay chân, đi lại ngoài trời",
+      examples: [
+        "Nhân viên giao hàng (xe máy)",
+        "Bưu tá",
+        "Thợ điện, sửa xe",
+        "Nhân viên làm vườn",
+        "Nhân viên vệ sinh tòa nhà",
+        "Công nhân dây chuyền lắp ráp nhẹ"
+  
+      ],
+      color: "#FF9800" // Màu cam
+    },
+    "1.725": {
+      name: "Hoạt động cao",
+      description: "Công việc thể lực nặng, dùng tay chân liên tục",
+      examples: [
+        "Nông dân làm ruộng, vườn",
+        "Công nhân xây dựng",
+        "Phụ hồ",
+        "Nhân viên giao hàng bằng xe đạp",
+        "Nhân viên chặt cây, khai thác rừng",
+        "Hướng dẫn viên du lịch trekking"
+      ],
+      color: "#F44336" // Màu đỏ
+    },
+    "1.9": {
+      name: "Rất cao",
+      description: "Thể lực cực cao, tập luyện/di chuyển liên tục",
+      examples: [
+        "Vận động viên chuyên nghiệp",
+        "Lính cứu hỏa",
+        "Người leo núi chuyên nghiệp",
+        "Huấn luyện viên thể hình",
+        "Lính đặc nhiệm",
+        "Lính biên phòng tuần tra rừng"
+      ],
+      color: "#9C27B0" // Màu tím
+    }};
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
   const { setuserInfo, setmaxCalories, fetchTodaysConsumption, fetchWeekData } =
@@ -92,31 +162,54 @@ const UserSignup = () => {
                 type="number"
               />
               <label className="form-label">Mức độ hoạt động</label>
-              <select
-                value={state.activity}
-                onChange={(e) =>
-                  setstate({ ...state, activity: e.target.value })
-                }
-                className="text-field"
-              >
-                <option value={1.2}>Ít hoặc không vận động</option>
-                <option value={1.375}>
-                  Nhẹ: Tập thể dục 1-3 ngày mỗi tuần
-                </option>
-                <option value={1.55}>
-                  Vừa phải: Tập thể dục 4-5 lần mỗi tuần
-                </option>
-                <option value={1.725}>Tích cực: Tập thể dục hàng ngày</option>
-                <option value={1.9}>
-                  Rất tích cực: Tập thể dục mạnh mỗi ngày
-                </option>
-              </select>
-              <button
-                disabled={isLoading}
-                className="submit-button"
-                type="button"
-                onClick={handleSubmit}
-              >
+                <select
+                  value={state.activity}
+                  onChange={(e) => {
+                    setstate({ ...state, activity: e.target.value });
+                    setSelectedActivity(e.target.value);
+                  }}
+                  className="text-field"
+                >
+                  {Object.entries(activityLevels).map(([value, level]) => (
+                    <option key={value} value={value}>
+                      {level.name} (x{value})
+                    </option>
+                  ))}
+                </select>
+
+                {selectedActivity && (
+                  <div className="activity-details" style={{ 
+                    marginTop: "10px",
+                    padding: "15px",
+                    borderRadius: "8px",
+                    backgroundColor: "#f5f5f5",
+                    borderLeft: `4px solid ${activityLevels[selectedActivity].color}`
+                  }}>
+                    <div style={{ 
+                      fontWeight: "bold",
+                      color: activityLevels[selectedActivity].color,
+                      marginBottom: "5px"
+                    }}>
+                      {activityLevels[selectedActivity].name} (Hệ số: {selectedActivity})
+                    </div>
+                    <div style={{ marginBottom: "8px" }}>
+                      {activityLevels[selectedActivity].description}
+                    </div>
+                    <div>
+                      <strong>Ví dụ:</strong>
+                      <ul style={{ 
+                        marginTop: "5px",
+                        paddingLeft: "20px",
+                        marginBottom: "0"
+                      }}>
+                        {activityLevels[selectedActivity].examples.map((example, index) => (
+                          <li key={index}>{example}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                )}
+              <button>
                 <span>Hoàn thành</span>
                 <ArrowForwardIos />
               </button>

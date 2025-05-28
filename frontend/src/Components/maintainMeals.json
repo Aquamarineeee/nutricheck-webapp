@@ -1,0 +1,2075 @@
+[
+  {
+    "name": "Bánh Đa Cá Rô",
+    "calories": 380,
+    "protein": 25,
+    "fat": 12,
+    "carbs": 45,
+    "weight": 400,
+    "ingredients_breakdown": [
+      {
+        "item": "Bánh đa đỏ (red rice noodles)",
+        "weight_g": 150,
+        "source": "USDA FDC ID: 2710823"
+      },
+      {
+        "item": "Cá rô phi (tilapia fillet)",
+        "weight_g": 100,
+        "source": "USDA FDC ID: 175175"
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/2021/08/CookProduct/banh-da-ca-ro-thumbcn-1200x676.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-nau-banh-da-ca-ro-an-kem-voi-rau-cai-cuc-ngon-don-gian-13012",
+    "meal_time": [
+      "afternoon"
+    ]
+  },
+  {
+    "name": "Bún Riêu Cua",
+    "calories": 420,
+    "protein": 28,
+    "fat": 15,
+    "carbs": 50,
+    "weight": 500,
+    "ingredients_breakdown": [
+      {
+        "item": "Bún tươi (rice vermicelli)",
+        "weight_g": 180,
+        "source": "USDA FDC ID: 169722"
+      },
+      {
+        "item": "Cua đồng (freshwater crab)",
+        "weight_g": 80,
+        "source": "USDA FDC ID: 175180"
+      }
+    ],
+    "image": "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/cach_nau_bun_rieu_cua_ha_noi_ed8278d38b.jpg",
+    "recipe_link": "https://fptshop.com.vn/tin-tuc/dien-may/cach-nau-bun-rieu-cua-ha-noi-159240",
+    "meal_time": [
+      "breakfast",
+      "lunch"
+    ]
+  },
+  {
+    "name": "Bún Bò Huế",
+    "calories": 480,
+    "protein": 35,
+    "fat": 18,
+    "carbs": 50,
+    "weight": 550,
+    "ingredients_breakdown": [
+      {
+        "item": "Bún gạo (rice noodles)",
+        "weight_g": 180,
+        "source": "USDA FDC ID: 169722"
+      },
+      {
+        "item": "Thịt bò shank (beef shank)",
+        "weight_g": 100,
+        "source": "USDA FDC ID: 172159"
+      }
+    ],
+    "image": "https://nethue.com.vn/uploaded/tin-tuc-biquyet-1.jpg",
+    "recipe_link": "https://nethue.com.vn/blog-am-thuc/bi-quyet-tao-len-mon-bun-bo-chuan-hue.html",
+    "meal_time": [
+      "breakfast",
+      "lunch"
+    ]
+  },
+  {
+    "name": "Hủ Tiếu Nam Vang",
+    "calories": 420,
+    "protein": 30,
+    "fat": 15,
+    "carbs": 45,
+    "weight": 500,
+    "ingredients_breakdown": [
+      {
+        "item": "Hủ tiếu khô (dried wheat noodles)",
+        "weight_g": 150,
+        "source": "USDA FDC ID: 168944"
+      },
+      {
+        "item": "Thịt heo xay (ground pork)",
+        "weight_g": 80,
+        "source": "USDA FDC ID: 168149"
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/2021/04/CookProduct/thum-1-1200x676-10.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-nau-mon-hu-tieu-nam-vang-ngon-dung-dieu-nhu-ngoai-hang-00979",
+    "meal_time": [
+      "breakfast",
+      "lunch"
+    ]
+  },
+  {
+    "name": "Bánh Canh Cá Lóc",
+    "calories": 350,
+    "protein": 28,
+    "fat": 10,
+    "carbs": 40,
+    "weight": 450,
+    "ingredients_breakdown": [
+      {
+        "item": "Bánh canh bột gạo (rice tube noodles)",
+        "weight_g": 150,
+        "source": "USDA FDC ID: 169722"
+      },
+      {
+        "item": "Cá lóc phi lê (snakehead fish fillet)",
+        "weight_g": 120,
+        "source": "USDA FDC ID: 175175"
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/2021/04/CookProduct/BeFunky-collage-2021-04-02T194801.290-1200x676.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-nau-banh-canh-ca-loc-mien-tay-dam-da-thom-ngon-de-lam-08929",
+    "meal_time": [
+      "afternoon"
+    ]
+  },
+  {
+    "name": "Gỏi Đu Đủ Khô Bò",
+    "calories": 280,
+    "protein": 22,
+    "fat": 8,
+    "carbs": 30,
+    "weight": 300,
+    "ingredients_breakdown": [
+      {
+        "item": "Đu đủ xanh (green papaya)",
+        "weight_g": 150,
+        "source": "USDA FDC ID: 169926"
+      },
+      {
+        "item": "Khô bò (beef jerky)",
+        "weight_g": 50,
+        "source": "USDA FDC ID: 172159"
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/2021/11/CookDish/cach-lam-nom-du-du-bo-kho-gion-ngon-kho-cuong-don-gian-tai-avt-1200x675.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-nom-du-du-bo-kho-gion-ngon-kho-cuong-don-gian-tai-13187",
+    "meal_time": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "Cơm Gà Hội An",
+    "calories": 450,
+    "protein": 35,
+    "fat": 12,
+    "carbs": 50,
+    "weight": 400,
+    "ingredients_breakdown": [
+      {
+        "item": "Gạo Jasmine (jasmine rice)",
+        "weight_g": 200,
+        "source": "USDA FDC ID: 169722"
+      },
+      {
+        "item": "Thịt gà luộc (boiled chicken)",
+        "weight_g": 120,
+        "source": "USDA FDC ID: 171447"
+      }
+    ],
+    "image": "https://i1-giadinh.vnecdn.net/2021/01/29/com2-1611892464-7028-1611892596.jpg?w=0&h=0&q=100&dpr=2&fit=crop&s=fSiuKQfCjNiGoPz8k46N-Q",
+    "recipe_link": "https://vnexpress.net/cach-lam-com-ga-hoi-an-4298407.html",
+    "meal_time": [
+      "breakfast",
+      "lunch"
+    ]
+  },
+  {
+    "name": "Bánh Mì Xíu Mại",
+    "calories": 400,
+    "protein": 20,
+    "fat": 15,
+    "carbs": 45,
+    "weight": 350,
+    "ingredients_breakdown": [
+      {
+        "item": "Bánh mì Việt Nam (Vietnamese baguette)",
+        "weight_g": 100,
+        "source": "USDA FDC ID: 180184"
+      },
+      {
+        "item": "Xíu mại (pork meatballs)",
+        "weight_g": 150,
+        "source": "USDA FDC ID: 172516"
+      },
+      {
+        "item": "Nước sốt cà chua (tomato sauce)",
+        "weight_g": 50,
+        "source": "USDA FDC ID: 174263"
+      },
+      {
+        "item": "Hành lá (green onions)",
+        "weight_g": 10,
+        "source": "USDA FDC ID: 169910"
+      }
+    ],
+    "image": "https://www.huongnghiepaau.com/wp-content/uploads/2024/04/banh-mi-xiu-mai.jpg",
+    "recipe_link": "https://www.huongnghiepaau.com/banh-mi-xiu-mai-da-lat",
+    "meal_time": [
+      "breakfast"
+    ]
+  },
+  {
+    "name": "Lẩu Gà Lá É",
+    "calories": 600,
+    "protein": 40,
+    "fat": 25,
+    "carbs": 50,
+    "weight": 500,
+    "ingredients_breakdown": [
+      {
+        "item": "Thịt gà (chicken)",
+        "weight_g": 200,
+        "source": "USDA FDC ID: 171448"
+      },
+      {
+        "item": "Lá é (Vietnamese lemon basil)",
+        "weight_g": 20,
+        "source": "USDA FDC ID: 169910"
+      },
+      {
+        "item": "Nấm (mushrooms)",
+        "weight_g": 100,
+        "source": "USDA FDC ID: 11260"
+      },
+      {
+        "item": "Bún (rice vermicelli)",
+        "weight_g": 150,
+        "source": "USDA FDC ID: 169722"
+      }
+    ],
+    "image": "https://kalite.vn/wp-content/uploads/2024/12/402598452_7004207222975681_6403554273470642148_n-2.jpg",
+    "recipe_link": "https://kalite.vn/2024/12/cach-nau-lau-ga-la-e-chuan-vi-da-lat-tai-nha/?srsltid=AfmBOoosjqQXAWWr5P_mKYJaBC5rqUijQ3cig_9WnBA4KbxlxzGQwxg6",
+    "meal_time": [
+      "lunch"
+    ]
+  },
+  {
+    "name": "Bánh Căn",
+    "calories": 350,
+    "protein": 15,
+    "fat": 10,
+    "carbs": 50,
+    "weight": 300,
+    "ingredients_breakdown": [
+      {
+        "item": "Bột gạo (rice flour)",
+        "weight_g": 150,
+        "source": "USDA FDC ID: 169722"
+      },
+      {
+        "item": "Trứng cút (quail eggs)",
+        "weight_g": 50,
+        "source": "USDA FDC ID: 171287"
+      },
+      {
+        "item": "Hành lá (green onions)",
+        "weight_g": 10,
+        "source": "USDA FDC ID: 169910"
+      },
+      {
+        "item": "Nước mắm (fish sauce)",
+        "weight_g": 20,
+        "source": "USDA FDC ID: 171542"
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/Files/2020/02/10/1235634/cach-lam-banh-can-thom-ngon-chuan-vi-da-lat-8-760x367.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-banh-can-thom-ngon-chuan-vi-da-lat-01654",
+    "meal_time": [
+      "afternoon"
+    ]
+  },
+  {
+    "name": "Bánh Tráng Nướng",
+    "calories": 300,
+    "protein": 10,
+    "fat": 15,
+    "carbs": 35,
+    "weight": 250,
+    "ingredients_breakdown": [
+      {
+        "item": "Bánh tráng (rice paper)",
+        "weight_g": 50,
+        "source": "USDA FDC ID: 169722"
+      },
+      {
+        "item": "Trứng gà (chicken egg)",
+        "weight_g": 50,
+        "source": "USDA FDC ID: 1123"
+      },
+      {
+        "item": "Phô mai (cheese)",
+        "weight_g": 30,
+        "source": "USDA FDC ID: 170876"
+      },
+      {
+        "item": "Tép khô (dried shrimp)",
+        "weight_g": 20,
+        "source": "USDA FDC ID: 151200"
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/2022/01/CookRecipe/Avatar/banh-trang-nuong-bang-chao-thumbnail.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-banh-trang-nuong-bang-chao-chong-dinh-00654",
+    "meal_time": [
+      "afternoon"
+    ]
+  },
+  {
+    "name": "Bánh Ướt Lòng Gà",
+    "calories": 450,
+    "protein": 25,
+    "fat": 15,
+    "carbs": 50,
+    "weight": 400,
+    "ingredients_breakdown": [
+      {
+        "item": "Bánh ướt (steamed rice sheets)",
+        "weight_g": 150,
+        "source": "USDA FDC ID: 169722"
+      },
+      {
+        "item": "Lòng gà (chicken intestines)",
+        "weight_g": 100,
+        "source": "USDA FDC ID: 171448"
+      },
+      {
+        "item": "Thịt gà xé (shredded chicken)",
+        "weight_g": 100,
+        "source": "USDA FDC ID: 171448"
+      },
+      {
+        "item": "Hành phi (fried shallots)",
+        "weight_g": 20,
+        "source": "USDA FDC ID: 11282"
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/Files/2017/10/07/1030799/cach-lam-banh-uot-long-ga-dam-da-ngay-mua1--2.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-banh-uot-long-ga-dam-da-ngay-mua-00809",
+    "meal_time": [
+      "afternoon"
+    ]
+  },
+  {
+    "name": "Mi Quảng Đà Lạt",
+    "calories": 500,
+    "protein": 30,
+    "fat": 20,
+    "carbs": 50,
+    "weight": 450,
+    "ingredients_breakdown": [
+      {
+        "item": "Mì Quảng (Quang-style noodles)",
+        "weight_g": 150,
+        "source": "USDA FDC ID: 169722"
+      },
+      {
+        "item": "Thịt heo (pork)",
+        "weight_g": 100,
+        "source": "USDA FDC ID: 168149"
+      },
+      {
+        "item": "Tôm (shrimp)",
+        "weight_g": 50,
+        "source": "USDA FDC ID: 151200"
+      },
+      {
+        "item": "Rau sống (fresh herbs)",
+        "weight_g": 50,
+        "source": "USDA FDC ID: 11270"
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/2021/01/CookRecipe/GalleryStep/thanh-pham-787.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-nau-mi-quang-da-lat-la-mieng-don-gian-ai-cung-lam-duoc-06911",
+    "meal_time": [
+      "lunch"
+    ]
+  },
+  {
+    "name": "Kem Bơ",
+    "calories": 250,
+    "protein": 5,
+    "fat": 15,
+    "carbs": 25,
+    "weight": 200,
+    "ingredients_breakdown": [
+      {
+        "item": "Bơ (avocado)",
+        "weight_g": 100,
+        "source": "USDA FDC ID: 171705"
+      },
+      {
+        "item": "Kem dừa (coconut ice cream)",
+        "weight_g": 50,
+        "source": "USDA FDC ID: 169910"
+      },
+      {
+        "item": "Sữa đặc (condensed milk)",
+        "weight_g": 30,
+        "source": "USDA FDC ID: 170219"
+      },
+      {
+        "item": "Dừa nạo (shredded coconut)",
+        "weight_g": 20,
+        "source": "USDA FDC ID: 12117"
+      }
+    ],
+    "image": "https://cdn2.fptshop.com.vn/unsafe/Uploads/images/tin-tuc/163399/Originals/kem-bo-hap-dan-thuc-khach.jpg",
+    "recipe_link": "https://fptshop.com.vn/tin-tuc/danh-gia/cong-thuc-lam-kem-bo-chuan-vi-da-lat-sieu-don-gian-tai-nha-163399",
+    "meal_time": [
+      "afternoon"
+    ]
+  },
+  {
+    "name": "Salad Cá Ngừ",
+    "calories": 320,
+    "protein": 30,
+    "fat": 12,
+    "carbs": 20,
+    "weight": 300,
+    "ingredients_breakdown": [
+      {
+        "item": "Cá ngừ áp chảo (seared tuna)",
+        "weight_g": 100,
+        "source": "USDA FDC ID: 175184"
+      },
+      {
+        "item": "Rau xà lách (mixed greens)",
+        "weight_g": 100,
+        "source": "USDA FDC ID: 11270"
+      }
+    ],
+    "image": "https://www.vinmec.com/static/uploads/small_20210619_075030_340544_salad_ca_ngu_song_t_max_1800x1800_jpg_8f12317f43.jpg",
+    "recipe_link": "https://www.vinmec.com/vie/bai-viet/cach-lam-salad-ca-ngu-don-gian-vi",
+    "meal_time": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "Ức Gà Sốt Chanh",
+    "calories": 280,
+    "protein": 35,
+    "fat": 8,
+    "carbs": 15,
+    "weight": 250,
+    "ingredients_breakdown": [
+      {
+        "item": "Ức gà không da (skinless chicken breast)",
+        "weight_g": 150,
+        "source": "USDA FDC ID: 171447"
+      },
+      {
+        "item": "Nước cốt chanh (lemon juice)",
+        "weight_g": 20,
+        "source": "USDA FDC ID: 171705"
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/Files/2022/03/08/1419052/cach-lam-uc-ga-sot-chanh-chua-ngot-cuc-hap-dan-202203081335116461.jpg",
+    "recipe_link": "https://www.bachhoaxanh.com/kinh-nghiem-hay/cach-lam-uc-ga-sot-chanh-chua-ngot-cuc-hap-dan-1419052?srsltid=AfmBOoqf3NJaoz8y2arhCoG-AIx3ExEpGILxHYVLgT794umbSRn_faoF",
+    "meal_time": [
+      "lunch"
+    ]
+  },
+  {
+    "name": "Súp Bí Đỏ Hạt Chia",
+    "calories": 200,
+    "protein": 8,
+    "fat": 10,
+    "carbs": 25,
+    "weight": 350,
+    "ingredients_breakdown": [
+      {
+        "item": "Bí đỏ (pumpkin)",
+        "weight_g": 200,
+        "source": "USDA FDC ID: 168446"
+      },
+      {
+        "item": "Hạt chia (chia seeds)",
+        "weight_g": 15,
+        "source": "USDA FDC ID: 170554"
+      }
+    ],
+    "image": "https://file.hstatic.net/200000700229/article/nau-sup-bi-do-bang-may-lam-sua-hat-da-nang_6d664dd9cf2f4dcda057cd92a401bb72.jpg",
+    "recipe_link": "https://eva.vn/thuc-don-hang-ngay/10-cach-nau-sup-bi-do-ngon-chuan-vi-nguoi-lon-hay-tre-con-deu-me-tit-c348a526262.html",
+    "meal_time": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "Cá Hồi Áp Chảo",
+    "calories": 350,
+    "protein": 28,
+    "fat": 20,
+    "carbs": 5,
+    "weight": 200,
+    "ingredients_breakdown": [
+      {
+        "item": "Cá hồi phi lê (salmon fillet)",
+        "weight_g": 150,
+        "source": "USDA FDC ID: 175184"
+      },
+      {
+        "item": "Dầu olive (olive oil)",
+        "weight_g": 10,
+        "source": "USDA FDC ID: 171413"
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/2021/02/CookProduct/1-1200x676-57.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/3-cach-lam-ca-hoi-ap-chao-sot-bo-chanh-va-sot-cam-02571",
+    "meal_time": [
+      "lunch"
+    ]
+  },
+  {
+    "name": "Gỏi Cuốn Tôm Thịt",
+    "calories": 180,
+    "protein": 15,
+    "fat": 5,
+    "carbs": 20,
+    "weight": 150,
+    "ingredients_breakdown": [
+      {
+        "item": "Bánh tráng (rice paper)",
+        "weight_g": 30,
+        "source": "USDA FDC ID: 169722"
+      },
+      {
+        "item": "Tôm luộc (boiled shrimp)",
+        "weight_g": 50,
+        "source": "USDA FDC ID: 151200"
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/2021/08/CookProduct/z262692910475431f8fbc533ea57bff69e5e86a005e04a1200-1200x676.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/mach-ban-cach-lam-goi-cuon-tom-thit-thom-ngon-cho-ngay-tet-00439",
+    "meal_time": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "Yến Mạch Trái Cây",
+    "calories": 250,
+    "protein": 10,
+    "fat": 8,
+    "carbs": 40,
+    "weight": 300,
+    "ingredients_breakdown": [
+      {
+        "item": "Yến mạch (oatmeal)",
+        "weight_g": 50,
+        "source": "USDA FDC ID: 168877"
+      },
+      {
+        "item": "Sữa chua Hy Lạp (Greek yogurt)",
+        "weight_g": 100,
+        "source": "USDA FDC ID: 170877"
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/2022/07/CookDish/cach-lam-yen-mach-hoa-qua-giam-can-de-qua-dem-healthy-don-avt-1200x676.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-yen-mach-hoa-qua-giam-can-de-qua-dem-healthy-don-17804",
+    "meal_time": [
+      "breakfast"
+    ]
+  },
+  {
+    "name": "Trứng Luộc Rau Củ",
+    "calories": 220,
+    "protein": 18,
+    "fat": 12,
+    "carbs": 10,
+    "weight": 250,
+    "ingredients_breakdown": [
+      {
+        "item": "Trứng gà (chicken eggs)",
+        "weight_g": 100,
+        "source": "USDA FDC ID: 1123"
+      },
+      {
+        "item": "Cà rốt (carrots)",
+        "weight_g": 100,
+        "source": "USDA FDC ID: 170393"
+      }
+    ],
+    "image": "https://afamilycdn.com/150157425591193600/2022/12/9/photo-1670571585624-16705715857402019843068-1670575310451-16705753106181459373051.jpg",
+    "recipe_link": "https://afamily.vn/thu-lam-trung-hap-rau-cu-vua-nhanh-chong-vua-du-chat-20221209155007676.chn",
+    "meal_time": [
+      "breakfast"
+    ]
+  },
+  {
+    "name": "Sinh Tố Bơ Hạnh Nhân",
+    "calories": 300,
+    "protein": 12,
+    "fat": 20,
+    "carbs": 25,
+    "weight": 350,
+    "ingredients_breakdown": [
+      {
+        "item": "Bơ (avocado)",
+        "weight_g": 100,
+        "source": "USDA FDC ID: 171705"
+      },
+      {
+        "item": "Sữa hạnh nhân (almond milk)",
+        "weight_g": 200,
+        "source": "USDA FDC ID: 170872"
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/2020/10/CookProduct/bohanhnhan120000-1200x676.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-bo-hanh-nhan-don-gian-sanh-min-cuc-an-toan-tai-nha-05011",
+    "meal_time": [
+      "afternoon"
+    ]
+  },
+  {
+    "name": "Bò Bít Tết Khoai Lang",
+    "calories": 380,
+    "protein": 35,
+    "fat": 15,
+    "carbs": 30,
+    "weight": 400,
+    "ingredients_breakdown": [
+      {
+        "item": "Thịt bò bít tết (beef steak)",
+        "weight_g": 150,
+        "source": "USDA FDC ID: 172159"
+      },
+      {
+        "item": "Khoai lang nướng (roasted sweet potato)",
+        "weight_g": 200,
+        "source": "USDA FDC ID: 168482"
+      }
+    ],
+    "image": "https://img-global.cpcdn.com/recipes/b73b07b3f5c60f4d/680x964f0.5_0.54425_1.0q90/bit-t%E1%BA%BFt-va-khoai-lang-recipe-main-photo.webp",
+    "recipe_link": "https://cookpad.com/vn/cong-thuc/12164825-bit-t%E1%BA%BFt-va-khoai-lang",
+    "meal_time": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "Cháo Yến Mạch Táo",
+    "calories": 280,
+    "protein": 12,
+    "fat": 8,
+    "carbs": 45,
+    "weight": 350,
+    "ingredients_breakdown": [
+      {
+        "item": "Yến mạch (oatmeal)",
+        "weight_g": 80,
+        "source": "USDA FDC ID: 168877"
+      },
+      {
+        "item": "Táo (apple)",
+        "weight_g": 100,
+        "source": "USDA FDC ID: 171688"
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/2020/08/CookProduct/AppleCinnamonPorridge0-19screenshot-1200x676.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-nau-chao-yen-mach-tao-va-mat-ong-don-gian-nhanh-chong-03897",
+    "meal_time": [
+      "breakfast"
+    ]
+  },
+  {
+    "name": "Cá Thu Sốt Cà Chua",
+    "calories": 320,
+    "protein": 28,
+    "fat": 15,
+    "carbs": 12,
+    "weight": 300,
+    "ingredients_breakdown": [
+      {
+        "item": "Cá thu phi lê (mackerel fillet)",
+        "weight_g": 150,
+        "source": "USDA FDC ID: 175175"
+      },
+      {
+        "item": "Cà chua bi (cherry tomatoes)",
+        "weight_g": 100,
+        "source": "USDA FDC ID: 170457"
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/Files/2020/06/01/1259945/cach-lam-ca-thu-sot-ca-chua-thom-ngon-dam-da-202208301940272258.jpg",
+    "recipe_link": "https://www.bachhoaxanh.com/kinh-nghiem-hay/cach-lam-ca-thu-sot-ca-chua-thom-ngon-dam-da-1259945?srsltid=AfmBOoqdjvLs5KEnODyBlLSFHSXis1NbFv5J0rj_Hm4jdLEi2y84k5Mz",
+    "meal_time": [
+      "lunch"
+    ]
+  },
+  {
+    "name": "Gà Xào Súp Lơ Xanh",
+    "calories": 280,
+    "protein": 30,
+    "fat": 10,
+    "carbs": 15,
+    "weight": 350,
+    "ingredients_breakdown": [
+      {
+        "item": "Ức gà (chicken breast)",
+        "weight_g": 120,
+        "source": "USDA FDC ID: 171447"
+      },
+      {
+        "item": "Súp lơ xanh (broccoli)",
+        "weight_g": 150,
+        "source": "USDA FDC ID: 170379"
+      }
+    ],
+    "image": "https://i1-giadinh.vnecdn.net/2014/06/09/3-2067-1402274901.jpg?w=680&h=0&q=100&dpr=1&fit=crop&s=gF0PeMERTk4dFiSUWSGhNQ",
+    "recipe_link": "https://vnexpress.net/ga-xao-sup-lo-xanh-3001689.html#:~:text=C%C3%A1ch%20th%E1%BB%B1c%20hi%E1%BB%87n%3A&text=%C4%90%E1%BB%95%202%20mu%E1%BB%97ng%20nh%E1%BB%8F%20d%E1%BA%A7u,s%C3%BAp%20l%C6%A1%20ch%C3%ADn%20l%C3%A0%20%C4%91%C6%B0%E1%BB%A3c.",
+    "meal_time": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "Salad Đậu Đũa Tôm",
+    "calories": 220,
+    "protein": 20,
+    "fat": 8,
+    "carbs": 18,
+    "weight": 250,
+    "ingredients_breakdown": [
+      {
+        "item": "Đậu đũa (long beans)",
+        "weight_g": 100,
+        "source": "USDA FDC ID: 170419"
+      },
+      {
+        "item": "Tôm luộc (boiled shrimp)",
+        "weight_g": 80,
+        "source": "USDA FDC ID: 151200"
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/2021/10/CookDish/cach-lam-dau-dua-xao-tom-thom-thanh-ngot-cho-mam-com-them-la-avt-1200x676.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-dau-dua-xao-tom-thom-thanh-ngot-cho-mam-com-them-la-14490",
+    "meal_time": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "Trứng Hấp Nấm Đông Cô",
+    "calories": 200,
+    "protein": 18,
+    "fat": 12,
+    "carbs": 5,
+    "weight": 200,
+    "ingredients_breakdown": [
+      {
+        "item": "Trứng gà (chicken eggs)",
+        "weight_g": 100,
+        "source": "USDA FDC ID: 1123"
+      },
+      {
+        "item": "Nấm đông cô (shiitake mushrooms)",
+        "weight_g": 50,
+        "source": "USDA FDC ID: 11260"
+      }
+    ],
+    "image": "https://unie.com.vn/wp-content/uploads/2021/12/03.jpg",
+    "recipe_link": "https://unie.com.vn/cung-unie-vao-bep-lam-mon-trung-hap-nam-thom-ngon-bo-duong/?srsltid=AfmBOopE_Hyohe0t8lve4nfKoSsx361yNpKJXFausHMOHUDO2q92kyV-",
+    "meal_time": [
+      "breakfast"
+    ]
+  },
+  {
+    "name": "Bò Xào Măng Tây",
+    "calories": 300,
+    "protein": 25,
+    "fat": 15,
+    "carbs": 20,
+    "weight": 300,
+    "ingredients_breakdown": [
+      {
+        "item": "Thịt bò thăn (beef tenderloin)",
+        "weight_g": 120,
+        "source": "USDA FDC ID: 172159"
+      },
+      {
+        "item": "Măng tây (asparagus)",
+        "weight_g": 100,
+        "source": "USDA FDC ID: 168389"
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/Files/2020/06/17/1263605/cach-lam-mang-tay-xao-thit-bo-bo-duong-cho-ca-nha-202212131522332355.jpg",
+    "recipe_link": "https://www.bachhoaxanh.com/kinh-nghiem-hay/cach-lam-mang-tay-xao-thit-bo-bo-duong-cho-ca-nha-1263605?srsltid=AfmBOorDahrgLktQFUPgutUf0xWkg7FEs-6qOWbnrPDRmMU5AqX2Ff-Q",
+    "meal_time": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "Canh Rong Biển Đậu Hũ",
+    "calories": 180,
+    "protein": 15,
+    "fat": 8,
+    "carbs": 12,
+    "weight": 350,
+    "ingredients_breakdown": [
+      {
+        "item": "Rong biển khô (dried seaweed)",
+        "weight_g": 20,
+        "source": "USDA FDC ID: 170577"
+      },
+      {
+        "item": "Đậu hũ non (silken tofu)",
+        "weight_g": 150,
+        "source": "USDA FDC ID: 174271"
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/Files/2019/09/26/1201994/bi-quyet-nau-canh-dau-phu-rong-bien-ngon-lanh-thanh-mat-khong-bi-tanh-201909261011104090.jpg",
+    "recipe_link": "https://www.bachhoaxanh.com/kinh-nghiem-hay/bi-quyet-nau-canh-dau-phu-rong-bien-ngon-lanh-thanh-mat-khong-bi-tanh-1201994?srsltid=AfmBOopxCrzY6SrU8iy2eZJ4Gl9_52D6GHqHa3Cj2gkdofv0fQTZ3Dy6",
+    "meal_time": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "Ức Vịt Luộc Gừng",
+    "calories": 250,
+    "protein": 28,
+    "fat": 12,
+    "carbs": 5,
+    "weight": 250,
+    "ingredients_breakdown": [
+      {
+        "item": "Ức vịt (duck breast)",
+        "weight_g": 150,
+        "source": "USDA FDC ID: 171450"
+      },
+      {
+        "item": "Gừng tươi (fresh ginger)",
+        "weight_g": 20,
+        "source": "USDA FDC ID: 169914"
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/Files/2019/11/20/1220469/cach-luoc-vit-khong-bi-hoi-thit-thom-va-mem-ngon-201911201416462257.jpg",
+    "recipe_link": "https://www.bachhoaxanh.com/kinh-nghiem-hay/cach-luoc-vit-khong-bi-hoi-thit-thom-va-mem-ngon-1220469?srsltid=AfmBOopCaLVVtnE1_Rtv7z0mB1BETLvG2FByMakAl4K0HXZddKb7EWwO",
+    "meal_time": [
+      "lunch"
+    ]
+  },
+  {
+    "name": "Sữa Chua Hy Lạp Hạt Óc Chó",
+    "calories": 220,
+    "protein": 12,
+    "fat": 15,
+    "carbs": 10,
+    "weight": 200,
+    "ingredients_breakdown": [
+      {
+        "item": "Sữa chua Hy Lạp (Greek yogurt)",
+        "weight_g": 150,
+        "source": "USDA FDC ID: 170877"
+      },
+      {
+        "item": "Hạt óc chó (walnuts)",
+        "weight_g": 30,
+        "source": "USDA FDC ID: 170187"
+      }
+    ],
+    "image": "https://www.mygreekdish.com/wp-content/uploads/2014/09/Greek-Yogurt-drizzled-with-Honey-and-Walnuts-Yiaourti-me-meli-750x498.jpg",
+    "recipe_link": "https://www.mygreekdish.com/recipe/greek-yogurt-with-honey-walnuts-recipe-yiaourti-meli/",
+    "meal_time": [
+      "afternoon"
+    ]
+  },
+  {
+    "name": "Tôm Hấp Bia Sả",
+    "calories": 240,
+    "protein": 25,
+    "fat": 5,
+    "carbs": 15,
+    "weight": 300,
+    "ingredients_breakdown": [
+      {
+        "item": "Tôm sú (tiger prawns)",
+        "weight_g": 150,
+        "source": "USDA FDC ID: 151200"
+      },
+      {
+        "item": "Sả (lemongrass)",
+        "weight_g": 20,
+        "source": "USDA FDC ID: 169910"
+      }
+    ],
+    "image": "https://cdn.pastaxi-manager.onepas.vn/content/uploads/articles/datnt/C%C3%A1ch%20l%C3%A0m%20t%C3%B4m%20h%E1%BA%A5p%20bia/cach-lam-tom-hap-bia%20(6).png",
+    "recipe_link": "https://pasgo.vn/blog/bat-mi-cach-lam-tom-hap-bia-sa-cuc-ngon-ma-rat-don-gian-4519",
+    "meal_time": [
+      "lunch"
+    ]
+  },
+  {
+    "name": "Chè Đậu Đen Hạt Sen",
+    "calories": 200,
+    "protein": 10,
+    "fat": 5,
+    "carbs": 35,
+    "weight": 300,
+    "ingredients_breakdown": [
+      {
+        "item": "Đậu đen (black beans)",
+        "weight_g": 80,
+        "source": "USDA FDC ID: 173756"
+      },
+      {
+        "item": "Hạt sen (lotus seeds)",
+        "weight_g": 50,
+        "source": "USDA FDC ID: 170568"
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/2021/04/CookRecipe/GalleryStep/che-hat-sen-dau-den-14.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-nau-che-hat-sen-dau-den-bui-ngot-thom-ngon-de-lam-tai-09205",
+    "meal_time": [
+      "afternoon"
+    ]
+  },
+  {
+    "name": "Nem Nướng Đà Lạt",
+    "calories": 400,
+    "protein": 25,
+    "fat": 20,
+    "carbs": 35,
+    "weight": 350,
+    "ingredients_breakdown": [
+      {
+        "item": "Nem nướng (grilled pork sausage)",
+        "weight_g": 150,
+        "source": "USDA FDC ID: 168149"
+      },
+      {
+        "item": "Bánh tráng (rice paper)",
+        "weight_g": 50,
+        "source": "USDA FDC ID: 169722"
+      },
+      {
+        "item": "Rau sống (fresh herbs)",
+        "weight_g": 50,
+        "source": "USDA FDC ID: 11270"
+      },
+      {
+        "item": "Nước chấm (dipping sauce)",
+        "weight_g": 50,
+        "source": "USDA FDC ID: 171542"
+      }
+    ],
+    "image": "https://reviewvilla.vn/wp-content/uploads/2022/05/Nem-nuong-Da-Lat-7.jpg",
+    "recipe_link": "https://reviewvilla.vn/nem-nuong-da-lat/",
+    "meal_time": [
+      "lunch"
+    ]
+  },
+  {
+    "name": "Sushi Cá Hồi (Nhật)",
+    "calories": 350,
+    "protein": 22,
+    "fat": 10,
+    "carbs": 45,
+    "weight": 250,
+    "ingredients_breakdown": [
+      {
+        "item": "Cơm sushi (sushi rice)",
+        "weight_g": 120,
+        "source": "USDA FDC ID: 169722"
+      },
+      {
+        "item": "Cá hồi tươi (salmon sashimi)",
+        "weight_g": 50,
+        "source": "USDA FDC ID: 175184"
+      }
+    ],
+    "image": "https://www.huongnghiepaau.com/wp-content/uploads/2017/11/cach-lam-sushi-ca-hoi.jpg",
+    "recipe_link": "https://www.huongnghiepaau.com/sushi-ca-hoi",
+    "meal_time": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "Kimchi Hàn Quốc",
+    "calories": 50,
+    "protein": 2,
+    "fat": 1,
+    "carbs": 10,
+    "weight": 100,
+    "ingredients_breakdown": [
+      {
+        "item": "Cải thảo (napa cabbage)",
+        "weight_g": 80,
+        "source": "USDA FDC ID: 170462"
+      },
+      {
+        "item": "Ớt bột Gochugaru",
+        "weight_g": 5,
+        "source": "USDA FDC ID: 170210"
+      }
+    ],
+    "image": "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/2023_11_3_638346373170840215_cach-lam-kim-chi.jpg",
+    "recipe_link": "https://fptshop.com.vn/tin-tuc/dien-may/cach-lam-kim-chi-165261",
+    "meal_time": [
+      "lunch",
+      "dinner"
+    ]
+  },
+  {
+    "name": "Phở Gà (1 tô tiêu chuẩn)",
+    "calories": 450,
+    "protein": 35,
+    "fat": 18,
+    "carbs": 35,
+    "weight": 500,
+    "meal_time": [
+      "breakfast",
+      "lunch"
+    ],
+    "description": "Phở gà thường ít béo hơn phở bò, nước dùng thanh đạm, thịt gà cung cấp protein nạc. Phù hợp giữ cân: Nước dùng ít chất béo, protein cao từ thịt gà.",
+    "ingredients_breakdown": [
+      {
+        "item": "Bánh phở tươi (wet rice noodles)",
+        "weight_g": 150,
+        "note": "Giảm lượng bánh phở so với suất ăn tăng cân.",
+        "source": "USDA FoodData Central, FDC ID: 789179 (Noodles, fresh, rice)"
+      },
+      {
+        "item": "Thịt gà nạc (chicken breast, cooked, shredded)",
+        "weight_g": 80,
+        "note": "Thịt gà nạc luộc/hấp, xé sợi.",
+        "source": "USDA FoodData Central, FDC ID: 171050 (Chicken, broilers or fryers, breast, meat only, cooked, fried) - (Ước tính từ thịt gà luộc)."
+      },
+      {
+        "item": "Nước dùng gà (chicken broth)",
+        "weight_ml": 250,
+        "note": "Nước dùng gà trong, ít béo.",
+        "source": "USDA FoodData Central, FDC ID: 173953 (Broth, chicken, canned, less sodium)."
+      },
+      {
+        "item": "Hành lá, rau thơm (scallions, fresh herbs)",
+        "weight_g": 10,
+        "note": "Gia vị và rau thơm.",
+        "source": "USDA FoodData Central."
+      },
+      {
+        "item": "Giá đỗ (mung bean sprouts)",
+        "weight_g": 10,
+        "note": "Thêm chất xơ.",
+        "source": "USDA FoodData Central, FDC ID: 170404 (Mung bean sprouts, raw)."
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/2021/09/CookProduct/1200(3)-1200x676-2.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/huong-dan-cach-lam-pho-ga-thom-ngon-tai-nha-01019"
+  },
+  {
+    "name": "Bún Chả Hà Nội (1 suất)",
+    "calories": 480,
+    "protein": 30,
+    "fat": 25,
+    "carbs": 30,
+    "weight": 450,
+    "meal_time": [
+      "breakfast",
+      "lunch"
+    ],
+    "description": "Bún chả có bún tươi, thịt nướng (chả băm và chả miếng) và nước chấm chua ngọt. Ăn kèm nhiều rau sống. Phù hợp giữ cân: Có thể điều chỉnh lượng chả và tăng rau xanh.",
+    "ingredients_breakdown": [
+      {
+        "item": "Bún tươi (rice vermicelli)",
+        "weight_g": 120,
+        "note": "Lượng bún vừa phải.",
+        "source": "USDA FoodData Central, FDC ID: 169722 (Rice, white, long-grain, regular, cooked) - (Ước tính từ bún/phở)."
+      },
+      {
+        "item": "Chả băm nướng (grilled pork patties)",
+        "weight_g": 60,
+        "note": "Thịt heo nạc băm, nướng không quá nhiều dầu.",
+        "source": "USDA FoodData Central, FDC ID: 173516 (Pork, fresh, ground, 80% lean / 20% fat, cooked, pan-fried) - (Ước tính)."
+      },
+      {
+        "item": "Chả miếng nướng (grilled pork slices)",
+        "weight_g": 40,
+        "note": "Thịt ba chỉ nạc, nướng không quá nhiều dầu.",
+        "source": "USDA FoodData Central, FDC ID: 172960 (Pork, fresh, belly, raw) - (Ước tính)."
+      },
+      {
+        "item": "Nước chấm chua ngọt (fish sauce dipping)",
+        "weight_ml": 80,
+        "note": "Nước chấm chua ngọt.",
+        "source": "Ước tính."
+      },
+      {
+        "item": "Rau sống các loại (fresh herbs and vegetables)",
+        "weight_g": 150,
+        "note": "Xà lách, tía tô, kinh giới.",
+        "source": "USDA FoodData Central."
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/2022/01/CookDish/huong-dan-cach-lam-bun-cha-ha-noi-thom-ngon-nhu-ngoai-hang-avt-1200x676.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/huong-dan-cach-lam-bun-cha-ha-noi-thom-ngon-nhu-ngoai-hang-01018"
+  },
+  {
+    "name": "Mì Quảng Gà/Tôm (1 tô tiêu chuẩn)",
+    "calories": 420,
+    "protein": 25,
+    "fat": 15,
+    "carbs": 40,
+    "weight": 450,
+    "meal_time": [
+      "breakfast",
+      "lunch"
+    ],
+    "description": "Mì Quảng với sợi mì đặc trưng, nước dùng sệt, có thể là gà, tôm, trứng. Ăn kèm nhiều rau sống. Phù hợp giữ cân: Ưu tiên nhân gà hoặc tôm, tăng lượng rau.",
+    "ingredients_breakdown": [
+      {
+        "item": "Mì Quảng (Quang noodles)",
+        "weight_g": 150,
+        "note": "Sợi mì Quảng.",
+        "source": "Ước tính."
+      },
+      {
+        "item": "Thịt gà (chicken, cooked)",
+        "weight_g": 50,
+        "note": "Thịt gà hoặc tôm.",
+        "source": "USDA FoodData Central, FDC ID: 171050 (Chicken, broilers or fryers, breast, meat only, cooked, fried)."
+      },
+      {
+        "item": "Tôm (shrimp, cooked)",
+        "weight_g": 30,
+        "note": "Tôm.",
+        "source": "USDA FoodData Central, FDC ID: 171308 (Shrimp, cooked)."
+      },
+      {
+        "item": "Nước dùng (broth)",
+        "weight_ml": 100,
+        "note": "Nước dùng sệt, ít dầu mỡ.",
+        "source": "Ước tính."
+      },
+      {
+        "item": "Đậu phộng rang (roasted peanuts)",
+        "weight_g": 10,
+        "note": "Đậu phộng giã nhỏ, rắc lên.",
+        "source": "USDA FoodData Central, FDC ID: 169837 (Peanuts, all types, raw)."
+      },
+      {
+        "item": "Bánh đa mè (sesame rice cracker)",
+        "weight_g": 10,
+        "note": "Bánh tráng nướng giòn.",
+        "source": "Ước tính."
+      },
+      {
+        "item": "Rau sống các loại (fresh herbs and vegetables)",
+        "weight_g": 100,
+        "note": "Xà lách, rau thơm.",
+        "source": "USDA FoodData Central."
+      }
+    ],
+    "image": "https://img-global.cpcdn.com/recipes/b2f9c9f32d302a2a/680x964cq90/mi-qu%E1%BA%A3ng-ga-tom-tr%E1%BB%A9ng-recipe-main-photo.webp",
+    "recipe_link": "https://cookpad.com/vn/cong-thuc/16360751-mi-qu%E1%BA%A3ng-ga-tom-tr%E1%BB%A9ng"
+  },
+  {
+    "name": "Bánh Mì Trứng Ốp La (1 ổ)",
+    "calories": 350,
+    "protein": 15,
+    "fat": 18,
+    "carbs": 30,
+    "weight": 150,
+    "meal_time": [
+      "breakfast"
+    ],
+    "description": "Bánh mì kẹp trứng ốp la, có thể thêm một ít pate, xíu mại và rau dưa. Phù hợp giữ cân: Giảm lượng pate/xíu mại, tăng rau.",
+    "ingredients_breakdown": [
+      {
+        "item": "Bánh mì (baguette)",
+        "weight_g": 80,
+        "note": "Ổ bánh mì.",
+        "source": "USDA FoodData Central, FDC ID: 168697 (Rolls, french, enriched, white, baked from fresh dough) - (Ước tính từ bánh mì)."
+      },
+      {
+        "item": "Trứng gà (chicken egg)",
+        "weight_g": 50,
+        "note": "Một quả trứng ốp la.",
+        "source": "USDA FoodData Central, FDC ID: 748967 (Egg, whole, raw)."
+      },
+      {
+        "item": "Xíu mại (pork meatball, steamed)",
+        "weight_g": 10,
+        "note": "Hạn chế lượng xíu mại/pate để giảm calo.",
+        "source": "Ước tính."
+      },
+      {
+        "item": "Rau dưa (pickled vegetables)",
+        "weight_g": 10,
+        "note": "Dưa chuột, đồ chua.",
+        "source": "USDA FoodData Central."
+      }
+    ],
+    "image": "https://storage.googleapis.com/onelife-public/blog.onelife.vn/2021/10/cach-lam-banh-mi-trung-op-la-banh-banh-ngot-175937477452.jpg",
+    "recipe_link": "https://kingfoodmart.com/bai-viet/cong-thuc-nau-an/banh-mi-trung-op-la"
+  },
+  {
+    "name": "Xôi Gà (1 suất nhỏ)",
+    "calories": 400,
+    "protein": 20,
+    "fat": 15,
+    "carbs": 45,
+    "weight": 200,
+    "meal_time": [
+      "breakfast"
+    ],
+    "description": "Xôi nếp nấu với gà xé, hành phi. Phù hợp giữ cân: Ăn một lượng vừa phải, không quá nhiều dầu mỡ.",
+    "ingredients_breakdown": [
+      {
+        "item": "Gạo nếp (glutinous rice, cooked)",
+        "weight_g": 120,
+        "note": "Lượng xôi vừa phải.",
+        "source": "USDA FoodData Central, FDC ID: 169722 (Rice, white, long-grain, regular, cooked) - (Ước tính từ gạo nếp)."
+      },
+      {
+        "item": "Thịt gà xé (shredded chicken, cooked)",
+        "weight_g": 50,
+        "note": "Thịt gà nạc xé.",
+        "source": "USDA FoodData Central, FDC ID: 171050 (Chicken, broilers or fryers, breast, meat only, cooked, fried) - (Ước tính)."
+      },
+      {
+        "item": "Hành phi (fried shallots)",
+        "weight_g": 10,
+        "note": "Hành phi.",
+        "source": "Ước tính."
+      },
+      {
+        "item": "Mỡ hành (scallion oil, optional)",
+        "weight_g": 10,
+        "note": "Hạn chế mỡ hành nếu muốn giảm chất béo.",
+        "source": "Ước tính."
+      }
+    ],
+    "image": "https://www.huongnghiepaau.com/wp-content/uploads/2019/06/hoan-thanh-xoi-ga.jpg",
+    "recipe_link": "https://www.huongnghiepaau.com/xoi-ga"
+  },
+  {
+    "name": "Cá Kho Tộ (1 khúc cá + cơm)",
+    "calories": 500,
+    "protein": 30,
+    "fat": 20,
+    "carbs": 50,
+    "weight": 400,
+    "meal_time": [
+      "lunch",
+      "dinner"
+    ],
+    "description": "Cá kho đậm đà vị mặn ngọt, ăn kèm cơm trắng. Phù hợp giữ cân: Ưu tiên phần cá nạc, hạn chế nước sốt đậm đặc.",
+    "ingredients_breakdown": [
+      {
+        "item": "Cá (fish, cooked)",
+        "weight_g": 120,
+        "note": "Cá lóc, cá basa...",
+        "source": "USDA FoodData Central, FDC ID: 170001 (Fish, cod, Atlantic, cooked, dry heat)."
+      },
+      {
+        "item": "Thịt ba chỉ (pork belly, optional)",
+        "weight_g": 20,
+        "note": "Thêm một ít thịt ba chỉ để tạo vị béo (có thể bỏ qua để giảm fat).",
+        "source": "USDA FoodData Central, FDC ID: 172960 (Pork, fresh, belly, raw)."
+      },
+      {
+        "item": "Nước mắm, đường, dầu ăn, gia vị (fish sauce, sugar, oil, spices)",
+        "weight_g": 30,
+        "note": "Gia vị kho cá.",
+        "source": "Ước tính."
+      },
+      {
+        "item": "Cơm trắng (cooked white rice)",
+        "weight_g": 180,
+        "note": "Một bát cơm vừa.",
+        "source": "USDA FoodData Central, FDC ID: 169722 (Rice, white, long-grain, regular, cooked)."
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/Files/2021/02/23/1329799/bi-quyet-nau-ca-kho-to-ngon-chuan-vi-ca-dai-mau-sac-chuan-dep-202208271627215315.jpg",
+    "recipe_link": "https://www.bachhoaxanh.com/kinh-nghiem-hay/bi-quyet-nau-ca-kho-to-ngon-chuan-vi-ca-dai-mau-sac-chuan-dep-1329799?srsltid=AfmBOoqf5HqP6WQRUi3tQxwXHb3mjQgQuYJEt5alghkaayKPdYvk_rG9"
+  },
+  {
+    "name": "Thịt Kho Trứng (2 miếng thịt + 1 trứng + cơm)",
+    "calories": 600,
+    "protein": 35,
+    "fat": 30,
+    "carbs": 45,
+    "weight": 450,
+    "meal_time": [
+      "lunch",
+      "dinner"
+    ],
+    "description": "Thịt ba chỉ kho tàu với trứng, món ăn truyền thống ngày Tết. Phù hợp giữ cân: Chọn phần thịt ít mỡ, ăn kèm nhiều rau luộc.",
+    "ingredients_breakdown": [
+      {
+        "item": "Thịt ba chỉ (pork belly, cooked)",
+        "weight_g": 100,
+        "note": "Chọn phần thịt ít mỡ, thái miếng vừa.",
+        "source": "USDA FoodData Central, FDC ID: 172960 (Pork, fresh, belly, raw) - (Ước tính sau khi kho)."
+      },
+      {
+        "item": "Trứng vịt/gà luộc (boiled duck/chicken egg)",
+        "weight_g": 60,
+        "note": "1 quả trứng luộc.",
+        "source": "USDA FoodData Central, FDC ID: 748967 (Egg, whole, raw)."
+      },
+      {
+        "item": "Nước dừa tươi (fresh coconut water)",
+        "weight_ml": 50,
+        "note": "Nước dừa tươi để kho.",
+        "source": "USDA FoodData Central, FDC ID: 170959 (Coconut water, raw)."
+      },
+      {
+        "item": "Gia vị kho (spices for braising)",
+        "weight_g": 10,
+        "note": "Nước mắm, đường, hành, tỏi...",
+        "source": "Ước tính."
+      },
+      {
+        "item": "Cơm trắng (cooked white rice)",
+        "weight_g": 200,
+        "note": "Một bát cơm vừa.",
+        "source": "USDA FoodData Central, FDC ID: 169722 (Rice, white, long-grain, regular, cooked)."
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/Files/2017/03/28/965845/cach-lam-thit-kho-trung-thom-ngon-dam-da-bat-com-tai-nha-202202261110487084.jpg",
+    "recipe_link": "https://www.bachhoaxanh.com/kinh-nghiem-hay/cach-lam-thit-kho-trung-ngon-tuyet-965845?srsltid=AfmBOoq9cywa40JbLII6SeIU45uIFo90Byuj8GVcWVWujpygElaTZcC8"
+  },
+  {
+    "name": "Canh Chua Cá (1 tô vừa + cơm)",
+    "calories": 450,
+    "protein": 30,
+    "fat": 15,
+    "carbs": 40,
+    "weight": 500,
+    "meal_time": [
+      "lunch",
+      "dinner"
+    ],
+    "description": "Canh chua với cá, rau củ quả, vị chua ngọt đặc trưng. Phù hợp giữ cân: Ít dầu mỡ, nhiều rau củ, protein từ cá.",
+    "ingredients_breakdown": [
+      {
+        "item": "Cá (fish, cooked)",
+        "weight_g": 80,
+        "note": "Cá lóc, cá tra...",
+        "source": "USDA FoodData Central, FDC ID: 170001 (Fish, cod, Atlantic, cooked, dry heat)."
+      },
+      {
+        "item": "Thơm (pineapple, raw)",
+        "weight_g": 50,
+        "note": "Thơm.",
+        "source": "USDA FoodData Central, FDC ID: 170178 (Pineapple, raw)."
+      },
+      {
+        "item": "Cà chua (tomatoes, raw)",
+        "weight_g": 50,
+        "note": "Cà chua.",
+        "source": "USDA FoodData Central, FDC ID: 170457 (Tomatoes, red, ripe, raw)."
+      },
+      {
+        "item": "Đậu bắp (okra, raw)",
+        "weight_g": 50,
+        "note": "Đậu bắp.",
+        "source": "USDA FoodData Central, FDC ID: 170441 (Okra, raw)."
+      },
+      {
+        "item": "Giá đỗ (mung bean sprouts)",
+        "weight_g": 30,
+        "note": "Giá đỗ.",
+        "source": "USDA FoodData Central, FDC ID: 170404 (Mung bean sprouts, raw)."
+      },
+      {
+        "item": "Bạc hà (elephant ear stem)",
+        "weight_g": 30,
+        "note": "Bạc hà.",
+        "source": "Ước tính."
+      },
+      {
+        "item": "Nước dùng (broth)",
+        "weight_ml": 150,
+        "note": "Nước dùng.",
+        "source": "Ước tính."
+      },
+      {
+        "item": "Cơm trắng (cooked white rice)",
+        "weight_g": 100,
+        "note": "Một bát cơm nhỏ.",
+        "source": "USDA FoodData Central, FDC ID: 169722 (Rice, white, long-grain, regular, cooked)."
+      }
+    ],
+    "image": "https://i1-giadinh.vnecdn.net/2021/03/19/ca2-1616122035-2163-1616122469.jpg?w=0&h=0&q=100&dpr=2&fit=crop&s=8PTOflZJZdwzP68MSUhLhg",
+    "recipe_link": "https://vnexpress.net/bi-quyet-nau-canh-chua-ca-trong-30-phut-4298447.html"
+  },
+  {
+    "name": "Đậu Phụ Sốt Cà Chua (1 đĩa + cơm)",
+    "calories": 380,
+    "protein": 20,
+    "fat": 15,
+    "carbs": 40,
+    "weight": 400,
+    "meal_time": [
+      "lunch",
+      "dinner"
+    ],
+    "description": "Món ăn chay/mặn đều dùng được, đậu phụ mềm, sốt cà chua đậm đà. Phù hợp giữ cân: Ít calo, nhiều protein thực vật.",
+    "ingredients_breakdown": [
+      {
+        "item": "Đậu phụ (tofu, firm)",
+        "weight_g": 150,
+        "note": "Đậu phụ.",
+        "source": "USDA FoodData Central, FDC ID: 171696 (Tofu, firm, prepared with calcium sulfate and magnesium chloride (nigari))."
+      },
+      {
+        "item": "Cà chua (tomatoes, raw)",
+        "weight_g": 100,
+        "note": "Cà chua.",
+        "source": "USDA FoodData Central, FDC ID: 170457 (Tomatoes, red, ripe, raw)."
+      },
+      {
+        "item": "Hành lá, gia vị (scallions, spices)",
+        "weight_g": 10,
+        "note": "Hành lá và gia vị.",
+        "source": "USDA FoodData Central."
+      },
+      {
+        "item": "Cơm trắng (cooked white rice)",
+        "weight_g": 140,
+        "note": "Một bát cơm vừa.",
+        "source": "USDA FoodData Central, FDC ID: 169722 (Rice, white, long-grain, regular, cooked)."
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/2021/05/CookProduct/BeFunky-collage(43)-1200x676.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-dau-hu-sot-ca-chua-chay-don-gian-de-lam-cho-bua-com-10227"
+  },
+  {
+    "name": "Gà Xào Sả Ớt (1 đĩa + cơm)",
+    "calories": 520,
+    "protein": 35,
+    "fat": 25,
+    "carbs": 35,
+    "weight": 450,
+    "meal_time": [
+      "lunch",
+      "dinner"
+    ],
+    "description": "Gà xào cay nồng với sả và ớt, ăn kèm cơm trắng. Phù hợp giữ cân: Chọn phần thịt gà nạc, hạn chế dầu khi xào.",
+    "ingredients_breakdown": [
+      {
+        "item": "Thịt gà (chicken, cooked)",
+        "weight_g": 120,
+        "note": "Thịt gà nạc thái hạt lựu.",
+        "source": "USDA FoodData Central, FDC ID: 171050 (Chicken, broilers or fryers, breast, meat only, cooked, fried)."
+      },
+      {
+        "item": "Sả (lemongrass, raw)",
+        "weight_g": 20,
+        "note": "Sả băm.",
+        "source": "USDA FoodData Central - (Ước tính)."
+      },
+      {
+        "item": "Ớt (chili pepper, raw)",
+        "weight_g": 5,
+        "note": "Ớt tươi.",
+        "source": "USDA FoodData Central, FDC ID: 170390 (Peppers, hot chili, red, raw)."
+      },
+      {
+        "item": "Gia vị (spices)",
+        "weight_g": 10,
+        "note": "Nước mắm, đường, dầu hào.",
+        "source": "Ước tính."
+      },
+      {
+        "item": "Cơm trắng (cooked white rice)",
+        "weight_g": 150,
+        "note": "Một bát cơm vừa.",
+        "source": "USDA FoodData Central, FDC ID: 169722 (Rice, white, long-grain, regular, cooked)."
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/Files/2021/03/15/1335523/cach-lam-ga-xao-sa-ot-cay-thom-nong-ngon-mieng-tai-nha-202203160906413409.jpg",
+    "recipe_link": "https://www.bachhoaxanh.com/kinh-nghiem-hay/cach-lam-ga-xao-sa-ot-cay-thom-nong-ngon-mieng-tai-nha-1335523?srsltid=AfmBOooLIdpbEOksfUFuVKOO_e0wtvbUOJ0B0oaZTLbiInkr-Qsgt0Xq"
+  },
+  {
+    "name": "Rau Muống Luộc/Xào Tỏi (1 đĩa)",
+    "calories": 100,
+    "protein": 2,
+    "fat": 1,
+    "carbs": 15,
+    "weight": 200,
+    "meal_time": [
+      "lunch",
+      "dinner"
+    ],
+    "description": "Món rau quen thuộc, dễ chế biến, bổ sung chất xơ. Phù hợp giữ cân: Tuyệt vời cho việc bổ sung chất xơ và vitamin, món luộc ít calo hơn.",
+    "ingredients_breakdown": [
+      {
+        "item": "Rau muống (water spinach, raw)",
+        "weight_g": 200,
+        "note": "Rau muống.",
+        "source": "USDA FoodData Central, FDC ID: 170465 (Spinach, raw) - (Ước tính từ rau xanh lá)."
+      },
+      {
+        "item": "Tỏi (garlic, raw)",
+        "weight_g": 5,
+        "note": "Tỏi (nếu xào).",
+        "source": "USDA FoodData Central, FDC ID: 170395 (Garlic, raw)."
+      },
+      {
+        "item": "Dầu ăn (vegetable oil, optional for stir-fry)",
+        "weight_g": 5,
+        "note": "Dầu ăn (nếu xào).",
+        "source": "USDA FoodData Central, FDC ID: 171092 (Oil, soybean, salad or cooking)."
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/2021/04/CookProduct/thumb3-1200x676-1.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-rau-muong-xao-toi-ngon-thom-nuc-mui-dan-da-kho-cuong-09390"
+  },
+  {
+    "name": "Bánh Tráng Nướng Đà Lạt (1 cái)",
+    "calories": 280,
+    "protein": 8,
+    "fat": 15,
+    "carbs": 25,
+    "weight": 120,
+    "meal_time": [
+      "afternoon"
+    ],
+    "description": "Bánh tráng nướng giòn với trứng, thịt băm, hành lá. Phù hợp giữ cân: Ăn một lượng vừa phải, không nên ăn quá nhiều cái.",
+    "ingredients_breakdown": [
+      {
+        "item": "Bánh tráng (rice paper)",
+        "weight_g": 30,
+        "note": "Bánh tráng dày, dùng để nướng.",
+        "source": "Ước tính."
+      },
+      {
+        "item": "Trứng gà (chicken egg)",
+        "weight_g": 50,
+        "note": "Khoảng 1 quả trứng.",
+        "source": "USDA FoodData Central, FDC ID: 748967 (Egg, whole, raw)."
+      },
+      {
+        "item": "Thịt băm (ground pork)",
+        "weight_g": 20,
+        "note": "Thịt băm xào chín.",
+        "source": "USDA FoodData Central, FDC ID: 173516 (Pork, fresh, ground, 80% lean / 20% fat, cooked, pan-fried)."
+      },
+      {
+        "item": "Hành lá (scallions)",
+        "weight_g": 10,
+        "note": "Hành lá thái nhỏ.",
+        "source": "USDA FoodData Central, FDC ID: 170438 (Onions, green, raw)."
+      },
+      {
+        "item": "Phô mai (cheese, optional)",
+        "weight_g": 5,
+        "note": "Phô mai rắc thêm (nếu có).",
+        "source": "USDA FoodData Central, FDC ID: 170845 (Cheese, cheddar)."
+      },
+      {
+        "item": "Tương ớt, sốt mayonnaise (chili sauce, mayonnaise)",
+        "weight_g": 5,
+        "note": "Sốt ăn kèm.",
+        "source": "Ước tính."
+      }
+    ],
+    "image": "https://file.hstatic.net/200000640901/file/cach_lam_banh_trang_nuong_ngon_chuan_vi_da_lat_bang_chao_chong_dinh.8_9632be0f12e543faa9981a58bb7064b8_grande.jpg",
+    "recipe_link": "https://korkmaz.vn/blogs/tu-van-su-dung/cach-lam-banh-trang-nuong-ngon-chuan-vi-da-lat-bang-chao-chong-dinh"
+  },
+  {
+    "name": "Sữa Đậu Nành Nóng (1 ly lớn)",
+    "calories": 180,
+    "protein": 10,
+    "fat": 8,
+    "carbs": 15,
+    "weight": 300,
+    "meal_time": [
+      "afternoon"
+    ],
+    "description": "Đồ uống bổ dưỡng, ít béo. Phù hợp giữ cân: Nguồn protein thực vật tốt, nên uống không đường hoặc ít đường.",
+    "ingredients_breakdown": [
+      {
+        "item": "Đậu nành (soybeans, cooked)",
+        "weight_g": 50,
+        "note": "Đậu nành đã nấu và xay lọc.",
+        "source": "USDA FoodData Central, FDC ID: 171690 (Soybeans, mature seeds, cooked, boiled, with salt)."
+      },
+      {
+        "item": "Nước (water)",
+        "weight_ml": 250,
+        "note": "Nước lọc.",
+        "source": "Ước tính."
+      },
+      {
+        "item": "Đường (sugar, optional)",
+        "weight_g": 10,
+        "note": "Đường thêm vào (tùy khẩu vị).",
+        "source": "USDA FoodData Central, FDC ID: 169862 (Sugars, granulated)."
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/Files/2017/09/05/1019185/cach-nau-sua-dau-nanh-thom-ngon-chuan-cong-thuc-tai-nha-202205241448355499.jpg",
+    "recipe_link": "https://www.bachhoaxanh.com/kinh-nghiem-hay/cach-lam-sua-dau-nanh-thom-ngon-beo-ngay-1019185?srsltid=AfmBOor_k487khU_sxfUZrXHNPL-FBEDIfTB_HOlc6gkOfKnNizMZ3i7"
+  },
+  {
+    "name": "Bánh Bò Nướng (1 miếng lớn)",
+    "calories": 250,
+    "protein": 5,
+    "fat": 10,
+    "carbs": 35,
+    "weight": 100,
+    "meal_time": [
+      "afternoon"
+    ],
+    "description": "Bánh mềm xốp, thơm mùi cốt dừa. Phù hợp giữ cân: Ăn vừa phải như một món tráng miệng.",
+    "ingredients_breakdown": [
+      {
+        "item": "Bột gạo (rice flour)",
+        "weight_g": 30,
+        "note": "Thành phần chính của bánh.",
+        "source": "USDA FoodData Central, FDC ID: 170940 (Flour, rice, white)."
+      },
+      {
+        "item": "Nước cốt dừa (coconut milk)",
+        "weight_g": 20,
+        "note": "Tạo độ béo và thơm.",
+        "source": "USDA FoodData Central, FDC ID: 170960 (Coconut milk, raw)."
+      },
+      {
+        "item": "Đường (sugar)",
+        "weight_g": 15,
+        "note": "Tạo vị ngọt.",
+        "source": "USDA FoodData Central, FDC ID: 169862 (Sugars, granulated)."
+      },
+      {
+        "item": "Trứng gà (chicken egg)",
+        "weight_g": 10,
+        "note": "Tạo độ nở và màu sắc.",
+        "source": "USDA FoodData Central, FDC ID: 748967 (Egg, whole, raw)."
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/Files/2020/12/25/1315969/cach-lam-banh-bo-dua-nuong-thom-ngon-chi-voi-chiec-chao-chong-dinh-202202241624455671.jpg",
+    "recipe_link": "https://www.bachhoaxanh.com/kinh-nghiem-hay/cach-lam-banh-bo-dua-nuong-thom-ngon-nhu-ngoai-tiem-chi-voi-chiec-chao-chong-dinh-1315969?srsltid=AfmBOopTYY7yfydo-gBKfmjmxfWdJjcrz4IjGlxJGJ_q_J9O65-uYgn7"
+  },
+  {
+    "name": "Bánh Bèo Chén (5-6 chén)",
+    "calories": 300,
+    "protein": 10,
+    "fat": 15,
+    "carbs": 30,
+    "weight": 200,
+    "meal_time": [
+      "afternoon"
+    ],
+    "description": "Bánh bèo mềm, nhân tôm thịt, tóp mỡ, nước mắm chua ngọt. Phù hợp giữ cân: Hạn chế tóp mỡ, tăng lượng rau sống ăn kèm.",
+    "ingredients_breakdown": [
+      {
+        "item": "Bột gạo (rice flour)",
+        "weight_g": 50,
+        "note": "Thành phần chính làm bánh.",
+        "source": "USDA FoodData Central, FDC ID: 170940 (Flour, rice, white)."
+      },
+      {
+        "item": "Tôm khô (dried shrimp)",
+        "weight_g": 10,
+        "note": "Tôm khô rang giã nhỏ.",
+        "source": "USDA FoodData Central, FDC ID: 171308 (Shrimp, cooked) - (Ước tính)."
+      },
+      {
+        "item": "Thịt heo (pork, cooked)",
+        "weight_g": 20,
+        "note": "Thịt băm xào.",
+        "source": "USDA FoodData Central, FDC ID: 173516 (Pork, fresh, ground, 80% lean / 20% fat, cooked, pan-fried)."
+      },
+      {
+        "item": "Tóp mỡ (fried pork fat)",
+        "weight_g": 15,
+        "note": "Tóp mỡ giòn rụm.",
+        "source": "Ước tính."
+      },
+      {
+        "item": "Dầu hẹ (scallion oil)",
+        "weight_g": 10,
+        "note": "Dầu có hành lá phi.",
+        "source": "Ước tính."
+      },
+      {
+        "item": "Nước mắm chua ngọt (fish sauce dipping)",
+        "weight_ml": 30,
+        "note": "Nước chấm bánh bèo.",
+        "source": "Ước tính."
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/Files/2017/03/21/963426/cach-lam-banh-beo-thom-ngon-202110041645542724.jpg",
+    "recipe_link": "https://www.bachhoaxanh.com/kinh-nghiem-hay/cach-lam-banh-beo-thom-ngon-963426?srsltid=AfmBOooNJcwG9Xm5PtQNMZFe7S-44Xb8ZC49Ou0cn_2s-UvHpn_eQ7zB"
+  },
+  {
+    "name": "Khoai Lang Nướng (1 củ vừa)",
+    "calories": 160,
+    "protein": 2,
+    "fat": 0.5,
+    "carbs": 35,
+    "weight": 150,
+    "meal_time": [
+      "afternoon"
+    ],
+    "description": "Món ăn vặt dân dã, giàu chất xơ. Phù hợp giữ cân: Tuyệt vời cho bữa phụ, cung cấp carb tốt và chất xơ.",
+    "ingredients_breakdown": [
+      {
+        "item": "Khoai lang (sweet potato, baked)",
+        "weight_g": 150,
+        "note": "Khoai lang đã nướng chín.",
+        "source": "USDA FoodData Central, FDC ID: 168478 (Sweet potato, cooked, baked in skin, flesh, without salt)."
+      }
+    ],
+    "image": "https://file.hstatic.net/200000700229/article/nuong-khoai-lang-bang-noi-chien-khong-dau-thumb_4ab55ffa74b4476b9556dd26cffffa72.jpg",
+    "recipe_link": "https://www.bluestone.com.vn/blogs/vao-bep/nuong-khoai-lang-bang-noi-chien-khong-dau?srsltid=AfmBOopD6ZUZMbcEwyYcnVKLnqKct_LDYCa_KV9b-Ys9V72HfGsJxRWN"
+  },
+  {
+    "name": "Bắp Nướng Mỡ Hành (1 bắp)",
+    "calories": 200,
+    "protein": 5,
+    "fat": 10,
+    "carbs": 25,
+    "weight": 180,
+    "meal_time": [
+      "afternoon"
+    ],
+    "description": "Bắp nướng thơm lừng, phủ mỡ hành và hành phi. Phù hợp giữ cân: Hạn chế lượng mỡ hành.",
+    "ingredients_breakdown": [
+      {
+        "item": "Bắp ngô (corn, cooked, sweet, yellow)",
+        "weight_g": 150,
+        "note": "Bắp ngô đã nướng.",
+        "source": "USDA FoodData Central, FDC ID: 168477 (Corn, sweet, yellow, cooked, boiled, drained, without salt)."
+      },
+      {
+        "item": "Mỡ hành (scallion oil)",
+        "weight_g": 20,
+        "note": "Dầu ăn phi hành lá.",
+        "source": "Ước tính."
+      },
+      {
+        "item": "Hành phi (fried shallots)",
+        "weight_g": 10,
+        "note": "Hành phi giòn rắc lên.",
+        "source": "Ước tính."
+      }
+    ],
+    "image": "https://cdn-www.vinid.net/c397aa5d-bap-nuong-mo-hanh-2.jpg",
+    "recipe_link": "https://vinid.net/blog/bi-quyet-nau-an/cach-lam-bap-nuong-mo-hanh/"
+  },
+  {
+    "name": "Gỏi Cuốn (2 cuốn)",
+    "calories": 280,
+    "protein": 15,
+    "fat": 8,
+    "carbs": 30,
+    "weight": 200,
+    "meal_time": [
+      "afternoon"
+    ],
+    "description": "Cuốn tươi mát với tôm, thịt, bún và rau sống. Phù hợp giữ cân: Rất tốt cho bữa phụ, ít calo, nhiều protein và chất xơ.",
+    "ingredients_breakdown": [
+      {
+        "item": "Bánh tráng (rice paper)",
+        "weight_g": 20,
+        "note": "Vỏ bánh tráng cuốn.",
+        "source": "Ước tính."
+      },
+      {
+        "item": "Tôm tươi (shrimp, cooked)",
+        "weight_g": 30,
+        "note": "Tôm luộc.",
+        "source": "USDA FoodData Central, FDC ID: 171308 (Shrimp, cooked)."
+      },
+      {
+        "item": "Thịt ba chỉ luộc (boiled pork belly)",
+        "weight_g": 30,
+        "note": "Thịt ba chỉ luộc thái lát.",
+        "source": "USDA FoodData Central, FDC ID: 172960 (Pork, fresh, belly, raw) - (Ước tính)."
+      },
+      {
+        "item": "Bún tươi (rice vermicelli)",
+        "weight_g": 50,
+        "note": "Bún tươi.",
+        "source": "USDA FoodData Central, FDC ID: 169722 (Rice, white, long-grain, regular, cooked) - (Ước tính từ bún/phở)."
+      },
+      {
+        "item": "Rau sống (fresh herbs and vegetables)",
+        "weight_g": 60,
+        "note": "Xà lách, rau thơm.",
+        "source": "USDA FoodData Central."
+      },
+      {
+        "item": "Nước chấm tương đen/nước mắm (peanut hoisin sauce/fish sauce)",
+        "weight_g": 10,
+        "note": "Nước chấm.",
+        "source": "Ước tính."
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/Files/2021/10/21/1392444/tong-hop-8-cach-lam-goi-cuon-ngon-hap-dan-sieu-de-lam-tai-nha-202112311051553252.jpg",
+    "recipe_link": "https://www.bachhoaxanh.com/kinh-nghiem-hay/tong-hop-8-cach-lam-goi-cuon-ngon-hap-dan-sieu-de-lam-tai-nha-1392444?srsltid=AfmBOorG6nNpHDLXjS72q9JwaIh53KJ0sohwS6enSQlgn3A6JQL7q1tI"
+  },
+  {
+    "name": "Bánh Ướt Lòng Gà (1 đĩa)",
+    "calories": 400,
+    "protein": 25,
+    "fat": 15,
+    "carbs": 40,
+    "weight": 300,
+    "meal_time": [
+      "afternoon"
+    ],
+    "description": "Bánh ướt mềm, ăn kèm lòng gà, thịt gà xé, hành phi. Phù hợp giữ cân: Lượng protein tốt, kiểm soát lượng nước mắm và dầu hành.",
+    "ingredients_breakdown": [
+      {
+        "item": "Bánh ướt (steamed rice paper)",
+        "weight_g": 150,
+        "note": "Bánh ướt.",
+        "source": "Ước tính."
+      },
+      {
+        "item": "Thịt gà xé (shredded chicken, cooked)",
+        "weight_g": 50,
+        "note": "Thịt gà luộc xé.",
+        "source": "USDA FoodData Central, FDC ID: 171050 (Chicken, broilers or fryers, breast, meat only, cooked, fried) - (Ước tính)."
+      },
+      {
+        "item": "Lòng gà (chicken giblets, cooked)",
+        "weight_g": 30,
+        "note": "Lòng gà luộc.",
+        "source": "USDA FoodData Central, FDC ID: 171063 (Chicken, giblets, cooked, simmered)."
+      },
+      {
+        "item": "Hành phi (fried shallots)",
+        "weight_g": 10,
+        "note": "Hành phi giòn.",
+        "source": "Ước tính."
+      },
+      {
+        "item": "Rau thơm (fresh herbs)",
+        "weight_g": 20,
+        "note": "Rau sống.",
+        "source": "USDA FoodData Central."
+      },
+      {
+        "item": "Nước mắm chua ngọt (fish sauce dipping)",
+        "weight_ml": 40,
+        "note": "Nước mắm chua ngọt.",
+        "source": "Ước tính."
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/Files/2017/10/07/1030799/cach-lam-banh-uot-long-ga-dam-da-ngay-mua1--2.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-banh-uot-long-ga-dam-da-ngay-mua-00809"
+  },
+  {
+    "name": "Trái Cây Dĩa (1 dĩa thập cẩm)",
+    "calories": 200,
+    "protein": 2,
+    "fat": 1,
+    "carbs": 50,
+    "weight": 300,
+    "meal_time": [
+      "afternoon"
+    ],
+    "description": "Dĩa trái cây tươi nhiều loại. Phù hợp giữ cân: Bữa phụ lành mạnh, giàu vitamin và chất xơ.",
+    "ingredients_breakdown": [
+      {
+        "item": "Chuối (banana, raw)",
+        "weight_g": 80,
+        "note": "Chuối.",
+        "source": "USDA FoodData Central, FDC ID: 170163 (Bananas, raw)."
+      },
+      {
+        "item": "Xoài (mango, raw)",
+        "weight_g": 80,
+        "note": "Xoài.",
+        "source": "USDA FoodData Central, FDC ID: 170176 (Mangoes, raw)."
+      },
+      {
+        "item": "Thanh long (dragon fruit, raw)",
+        "weight_g": 80,
+        "note": "Thanh long.",
+        "source": "USDA FoodData Central - (Ước tính)."
+      },
+      {
+        "item": "Dưa hấu (watermelon, raw)",
+        "weight_g": 60,
+        "note": "Dưa hấu.",
+        "source": "USDA FoodData Central, FDC ID: 170468 (Watermelon, raw)."
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/Files/2020/03/27/1244919/cach-lam-trai-cay-to-tuoi-mat-thom-ngon-don-gian-7.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-trai-cay-to-tuoi-mat-thom-ngon-don-gian-01894"
+  },
+  {
+    "name": "Nước Ép Trái Cây Tươi (1 ly)",
+    "calories": 150,
+    "protein": 1,
+    "fat": 0.5,
+    "carbs": 35,
+    "weight": 300,
+    "meal_time": [
+      "afternoon"
+    ],
+    "description": "Nước ép từ các loại trái cây tươi. Phù hợp giữ cân: Nên uống nguyên chất, không thêm đường.",
+    "ingredients_breakdown": [
+      {
+        "item": "Cam (orange, raw)",
+        "weight_g": 100,
+        "note": "Cam.",
+        "source": "USDA FoodData Central, FDC ID: 170172 (Oranges, raw, all commercial varieties)."
+      },
+      {
+        "item": "Ổi (guava, raw)",
+        "weight_g": 100,
+        "note": "Ổi.",
+        "source": "USDA FoodData Central - (Ước tính)."
+      },
+      {
+        "item": "Cà rốt (carrots, raw)",
+        "weight_g": 50,
+        "note": "Cà rốt.",
+        "source": "USDA FoodData Central, FDC ID: 170389 (Carrots, raw)."
+      },
+      {
+        "item": "Đường (sugar, optional)",
+        "weight_g": 10,
+        "note": "Đường (nếu cần).",
+        "source": "USDA FoodData Central, FDC ID: 169862 (Sugars, granulated)."
+      }
+    ],
+    "image": "https://baristaschool.vn/wp-content/uploads/2022/10/best-fresh-strawberry-juice-recipe-cantaloupe-pear-ginger-square-e1665824050546.jpg",
+    "recipe_link": "https://baristaschool.vn/10-cong-thuc-nuoc-ep-tuoi-mat-de-lam-tai-nha/"
+  },
+  {
+    "name": "Sữa Chua Trái Cây (1 ly)",
+    "calories": 250,
+    "protein": 8,
+    "fat": 8,
+    "carbs": 35,
+    "weight": 200,
+    "meal_time": [
+      "afternoon"
+    ],
+    "description": "Sữa chua với trái cây cắt nhỏ. Phù hợp giữ cân: Bữa phụ tốt, cung cấp protein và chất xơ, canxi.",
+    "ingredients_breakdown": [
+      {
+        "item": "Sữa chua (yogurt, plain, whole milk)",
+        "weight_g": 150,
+        "note": "Sữa chua.",
+        "source": "USDA FoodData Central, FDC ID: 171268 (Yogurt, plain, whole milk)."
+      },
+      {
+        "item": "Trái cây tươi (mixed fresh fruits)",
+        "weight_g": 50,
+        "note": "Dâu, chuối, xoài.",
+        "source": "USDA FoodData Central."
+      },
+      {
+        "item": "Sữa đặc (condensed milk, optional)",
+        "weight_g": 10,
+        "note": "Sữa đặc (nếu thích ngọt).",
+        "source": "USDA FoodData Central, FDC ID: 168270 (Milk, condensed, sweetened, canned)."
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/2021/06/CookRecipe/GalleryStep/thanh-pham-1080.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-sua-chua-trai-cay-tuoi-ngon-tuyet-voi-an-la-ghien-11174"
+  },
+  {
+    "name": "Bánh Tằm Bì (1 đĩa)",
+    "calories": 400,
+    "protein": 15,
+    "fat": 20,
+    "carbs": 40,
+    "weight": 300,
+    "meal_time": [
+      "afternoon"
+    ],
+    "description": "Sợi bánh tằm mềm, bì heo và thịt heo thái sợi, chan nước cốt dừa và nước mắm chua ngọt. Phù hợp giữ cân: Kiểm soát lượng bì heo và nước cốt dừa.",
+    "ingredients_breakdown": [
+      {
+        "item": "Sợi bánh tằm (thick rice noodles)",
+        "weight_g": 150,
+        "note": "Sợi bánh tằm.",
+        "source": "USDA FoodData Central, FDC ID: 789179 (Noodles, fresh, rice) - (Ước tính)."
+      },
+      {
+        "item": "Bì heo (shredded pork skin)",
+        "weight_g": 50,
+        "note": "Bì heo thái sợi.",
+        "source": "Ước tính."
+      },
+      {
+        "item": "Thịt heo nạc (lean pork, cooked)",
+        "weight_g": 30,
+        "note": "Thịt heo nạc luộc/hấp thái sợi.",
+        "source": "USDA FoodData Central, FDC ID: 173516 (Pork, fresh, ground, 80% lean / 20% fat, cooked, pan-fried) - (Ước tính)."
+      },
+      {
+        "item": "Nước cốt dừa (coconut milk)",
+        "weight_g": 30,
+        "note": "Nước cốt dừa.",
+        "source": "USDA FoodData Central, FDC ID: 170960 (Coconut milk, raw)."
+      },
+      {
+        "item": "Rau thơm (fresh herbs)",
+        "weight_g": 20,
+        "note": "Rau thơm.",
+        "source": "USDA FoodData Central."
+      },
+      {
+        "item": "Nước mắm chua ngọt (fish sauce dipping)",
+        "weight_ml": 20,
+        "note": "Nước chấm.",
+        "source": "Ước tính."
+      },
+      {
+        "item": "Dầu hẹ (scallion oil)",
+        "weight_g": 5,
+        "note": "Dầu hẹ.",
+        "source": "Ước tính."
+      }
+    ],
+    "image": "https://daylambanh.edu.vn/wp-content/uploads/2019/09/banh-tam-bi-mien-tay.jpg",
+    "recipe_link": "https://daylambanh.edu.vn/banh-tam-bi-nuoc-cot-dua"
+  },
+  {
+    "name": "Bánh Mì Sữa Nóng (1 ổ nhỏ)",
+    "calories": 250,
+    "protein": 8,
+    "fat": 10,
+    "carbs": 30,
+    "weight": 120,
+    "meal_time": [
+      "afternoon"
+    ],
+    "description": "Bánh mì mềm, chấm sữa đặc nóng. Phù hợp giữ cân: Hạn chế lượng sữa đặc và bơ.",
+    "ingredients_breakdown": [
+      {
+        "item": "Bánh mì (bread, white)",
+        "weight_g": 80,
+        "note": "Bánh mì thường.",
+        "source": "USDA FoodData Central, FDC ID: 168697 (Rolls, french, enriched, white, baked from fresh dough) - (Ước tính từ bánh mì)."
+      },
+      {
+        "item": "Sữa đặc (condensed milk)",
+        "weight_g": 20,
+        "note": "Sữa đặc.",
+        "source": "USDA FoodData Central, FDC ID: 168270 (Milk, condensed, sweetened, canned)."
+      },
+      {
+        "item": "Bơ (butter)",
+        "weight_g": 10,
+        "note": "Bơ phết bánh.",
+        "source": "USDA FoodData Central, FDC ID: 171089 (Butter, with salt)."
+      }
+    ],
+    "image": "https://afamilycdn.com/thumb_w/650/150157425591193600/2021/10/25/yuan2859789a00652cb85efd97b165d5ec90-16351560464711900576797.jpeg",
+    "recipe_link": "https://afamily.vn/khong-can-may-nhoi-bot-lam-banh-mi-sua-mem-xop-chi-nhin-thoi-da-me-20211025171445793.chn"
+  }
+]

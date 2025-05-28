@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-
 import styles from "../../styles/quiz.module.css";
 import questionsData from './nutritionQuestions.json';
+import Confetti from 'react-confetti';
+import { Rain } from 'react-rainfall';
 
 const NutritionQuiz = () => {
-  // Danh sách hình ảnh GIF
+  // GIF images array
   const gifImages = [
     "https://i.pinimg.com/originals/9d/7a/d1/9d7ad1eaa2948a05bd1a8a6412f3a753.gif",
     "https://i.pinimg.com/originals/bf/87/c8/bf87c88e5afe1f85944b9798b844aa0f.gif",
@@ -15,10 +16,27 @@ const NutritionQuiz = () => {
     "https://i.pinimg.com/originals/8a/4d/5e/8a4d5e7b342fa90ed8f6fb37c7084dd7.gif",
     "https://i.pinimg.com/originals/f4/c3/cc/f4c3cc6e4872d95d98456435577e56b3.gif",
     "https://i.pinimg.com/originals/9b/d6/c6/9bd6c6cc39a44f007d675e34f4ad7f22.gif",
-    "https://i.pinimg.com/originals/bc/11/80/bc11809c97271e15b7495b7ccd880ab7.gif"
+    "https://i.pinimg.com/originals/bc/11/80/bc11809c97271e15b7495b7ccd880ab7.gif",
+    "https://i.pinimg.com/originals/ba/87/d7/ba87d75073515bade98717d3fa8fc0f6.gif",
+    "https://i.pinimg.com/originals/43/5e/cf/435ecf8d0bde12893525daab8c44a380.gif", 
+    "https://i.pinimg.com/originals/5a/11/80/5a11807b7c013d1bf6fe8e8f8437d6e4.gif", 
+    "https://i.pinimg.com/originals/49/56/cf/4956cfb7a682a861a9888c5b05807016.gif", 
+    "https://i.pinimg.com/originals/01/a7/d5/01a7d5698cbd0d5ae4af46fe70ac8003.gif", 
+    "https://i.pinimg.com/originals/14/6d/3e/146d3e03455c893e1c3ad4b373a95154.gif", 
+    "https://i.pinimg.com/originals/b0/1c/ea/b01cea84ac07cedf97fdc99e02a24fa4.gif",
+    "https://i.pinimg.com/originals/b0/3f/38/b03f383ac3a7ad7bcf28204503b554c3.gif", 
+    "https://i.pinimg.com/originals/da/58/e1/da58e1660e4c50f05e718d1af49fe415.gif", 
+    "https://i.pinimg.com/originals/0e/9c/fb/0e9cfb2057109b64707295e480e4e302.gif",
+    "https://i.pinimg.com/originals/42/b2/7b/42b27bbba6a9094b5454957ecc28360b.gif",
+    "https://i.pinimg.com/originals/6d/84/8f/6d848f6ee35a0dc8f363e87f515dc2e4.gif",
+    "https://i.pinimg.com/originals/43/d2/23/43d223fbcd3cd1fd9bee5b805ca21f64.gif", 
+    "https://i.pinimg.com/originals/84/61/c6/8461c69a5325da570dd31dadbfc87a17.gif",
+    "https://i.pinimg.com/originals/09/9b/69/099b69f93a49f99e55d205ba8614df04.gif" 
   ];
 
-  // Danh sách câu nói truyền cảm hứng
+  const QUESTION_LIMIT = 5;
+
+  // Inspirational quotes
   const inspirationalQuotes = [
     {
       quote: '"Có thực mới vực được đạo."',
@@ -40,44 +58,78 @@ const NutritionQuiz = () => {
       quote: '"Ăn sạch, sống xanh."',
       message: "Ăn uống lành mạnh giúp sống khỏe mạnh."
     },
-    {
-      quote: '"Cơ thể bạn là ngôi nhà duy nhất bạn không thể rời đi – hãy chăm sóc nó."',
-      message: "Sức khỏe là nhà, là nơi trú ẩn suốt đời."
+    { 
+      quote: '"Tập thể dục không phải là sự trừng phạt vì đã ăn, mà là kỷ niệm với cơ thể." – Unknown',
+      message: 'Tập luyện là hành động yêu thương bản thân.'
     },
     {
-      quote: '"Sức khỏe là khoản đầu tư, không phải là chi phí."',
-      message: "Đầu tư cho sức khỏe là khôn ngoan nhất."
+      quote: '"Một quả táo mỗi ngày giúp bạn tránh xa bác sĩ." – Tục ngữ phương Tây',
+      message : 'Trái cây giàu dưỡng chất giúp ngừa bệnh.'
     },
     {
-      quote: '"Mỗi bữa ăn là cơ hội để chữa lành."',
-      message: "Thức ăn có thể là thuốc nếu ta chọn đúng."
+      quote: '"Sức khỏe là mối quan hệ giữa bạn và chính cơ thể mình." – Terri Guillemets',
+      message : 'Trái cây giàu dưỡng chất giúp ngừa bệnh.'
+    },
+    {
+      quote: '"Nước là chất dinh dưỡng bị lãng quên nhiều nhất." – FAO 2023',
+      message : 'Uống đủ nước quan trọng không kém ăn uống.'
+    },
+    {
+      quote: '"Phòng bệnh hơn chữa bệnh."',
+      message : 'Phòng ngừa bằng lối sống lành mạnh là quan trọng.'
+    },
+    {
+      quote: '"Ăn chín uống sôi."',
+      message : 'Ăn uống vệ sinh để phòng bệnh.'
+    }
+    ,{
+      quote: '"Thuốc bổ không bằng ăn no, thuốc lo không bằng cười sảng khoái."',
+      message : 'Chế độ ăn và tinh thần tốt hơn cả thuốc thang.'
+    },
+    {
+      quote: '"Người khỏe là người không bệnh."',
+      message : 'Sức khỏe quý hơn vàng.'
+    },
+    {
+      quote: '"Giấc ngủ là phương thuốc chữa lành miễn phí và hiệu quả nhất." – Matthew Walker',
+      message : 'Giấc ngủ chất lượng quan trọng như chế độ ăn.'
     }
   ];
 
-  const [shuffledQuestions, setShuffledQuestions] = useState([]);
+  const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [quizCompleted, setQuizCompleted] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [showRain, setShowRain] = useState(false);
   const [showInspiration, setShowInspiration] = useState(false);
   const [currentGif, setCurrentGif] = useState("");
   const [currentQuote, setCurrentQuote] = useState({ quote: "", message: "" });
 
-
+  // Initialize quiz with 5 random questions
   useEffect(() => {
-    const shuffled = [...questionsData].sort(() => Math.random() - 0.5);
-    setShuffledQuestions(shuffled);
+    const shuffled = [...questionsData]
+      .sort(() => Math.random() - 0.5)
+      .slice(0, QUESTION_LIMIT);
+    setQuestions(shuffled);
   }, []);
 
   const handleSelectOption = (option, correct) => {
     if (selectedOption !== null) return;
     
     setSelectedOption(option);
-    if (correct) setScore(prev => prev + 1);
+    if (correct) {
+      setScore(prev => prev + 1);
+      setShowConfetti(true);
+      setTimeout(() => setShowConfetti(false), 3000);
+    } else {
+      setShowRain(true);
+      setTimeout(() => setShowRain(false), 2000);
+    }
   };
 
   const showRandomInspiration = () => {
-    // Chọn ngẫu nhiên hình ảnh và câu nói
     const randomGif = gifImages[Math.floor(Math.random() * gifImages.length)];
     const randomQuote = inspirationalQuotes[Math.floor(Math.random() * inspirationalQuotes.length)];
     
@@ -88,23 +140,23 @@ const NutritionQuiz = () => {
 
   const handleNextQuestion = () => {
     if (showInspiration) {
-      // Đã xem hình ảnh/câu nói, chuyển sang câu hỏi tiếp theo
       setShowInspiration(false);
-      if (currentQuestionIndex < shuffledQuestions.length - 1) {
+      if (currentQuestionIndex < questions.length - 1) {
         setCurrentQuestionIndex(prev => prev + 1);
         setSelectedOption(null);
       } else {
         setQuizCompleted(true);
       }
     } else {
-      // Hiển thị hình ảnh/câu nói trước khi chuyển câu hỏi
       showRandomInspiration();
     }
   };
 
   const handleRestart = () => {
-    const reshuffled = [...questionsData].sort(() => Math.random() - 0.5);
-    setShuffledQuestions(reshuffled);
+    const reshuffled = [...questionsData]
+      .sort(() => Math.random() - 0.5)
+      .slice(0, QUESTION_LIMIT);
+    setQuestions(reshuffled);
     setCurrentQuestionIndex(0);
     setScore(0);
     setSelectedOption(null);
@@ -113,23 +165,42 @@ const NutritionQuiz = () => {
   };
 
   const renderQuestion = () => {
-    if (shuffledQuestions.length === 0 || quizCompleted || showInspiration) return null;
+    if (questions.length === 0 || quizCompleted || showInspiration) return null;
     
-    const currentQuestion = shuffledQuestions[currentQuestionIndex];
+    const currentQuestion = questions[currentQuestionIndex];
     const correctAnswerText = currentQuestion.options[currentQuestion.answer];
     const shuffledOptions = [...currentQuestion.options].sort(() => Math.random() - 0.5);
 
     return (
       <div className={styles.quizContainer}>
+        {showConfetti && (
+          <Confetti 
+            width={window.innerWidth}
+            height={window.innerHeight}
+            recycle={false}
+            numberOfPieces={200}
+          />
+        )}
+        
+        {showRain && (
+          <div className={styles.rainContainer}>
+            <Rain 
+              dropletsAmount={100}
+              opacity={0.5}
+              animationSpeed={2}
+            />
+          </div>
+        )}
+        
         <div className={styles.score}>
-          Điểm: {score}/{shuffledQuestions.length}
+          Câu hỏi: {currentQuestionIndex + 1}/{QUESTION_LIMIT} | Điểm: {score}
         </div>
         
         <div className={styles.progress}>
           <div 
             className={styles.progressBar} 
             style={{ 
-              width: `${((currentQuestionIndex + 1) / shuffledQuestions.length) * 100}%` 
+              width: `${((currentQuestionIndex + 1) / QUESTION_LIMIT) * 100}%` 
             }}
           />
         </div>
@@ -167,9 +238,12 @@ const NutritionQuiz = () => {
                 <p className={styles.source}>Nguồn: {currentQuestion.source}</p>
               )}
             </div>
-            
             <button className={styles.nextBtn} onClick={handleNextQuestion}>
-              Xem thông điệp truyền cảm hứng
+              {!showInspiration 
+                ? "Xem thông điệp truyền cảm hứng" 
+                : currentQuestionIndex < questions.length - 1 
+                  ? "Câu hỏi tiếp theo" 
+                  : "Xem kết quả"}
             </button>
           </>
         )}
@@ -200,7 +274,7 @@ const NutritionQuiz = () => {
         </div>
         
         <button className={styles.nextBtn} onClick={handleNextQuestion}>
-          {currentQuestionIndex < shuffledQuestions.length - 1 
+          {currentQuestionIndex < questions.length - 1 
             ? "Câu hỏi tiếp theo" 
             : "Xem kết quả"}
         </button>
@@ -208,24 +282,57 @@ const NutritionQuiz = () => {
     );
   };
 
+
+
   const renderResult = () => {
-    if (!quizCompleted) return null;
-    
-    return (
-      <div className={styles.quizContainer}>
-        <h2 className={styles.question}>
-          Hoàn thành! Bạn đã trả lời đúng {score}/{shuffledQuestions.length} câu hỏi!
-        </h2>
-        <button className={styles.nextBtn} onClick={handleRestart}>
-          Chơi lại
-        </button>
+  if (!quizCompleted) return null;
+
+  const gif = gifImages[Math.floor(Math.random() * gifImages.length)];
+  const quote = inspirationalQuotes[Math.floor(Math.random() * inspirationalQuotes.length)];
+
+  return (
+    <div className={styles.quizContainer} style={{ textAlign: 'center' }}>
+      <Confetti 
+        width={window.innerWidth}
+        height={window.innerHeight}
+        recycle={false}
+        numberOfPieces={300}
+      />
+
+      <div className={styles.gifContainer} style={{ margin: '0 auto' }}>
+        <img src={gif} alt="Chúc mừng" className={styles.inspirationGif} />
       </div>
-    );
-  };
+
+      <h2 className={styles.question} style={{ margin: '20px auto', maxWidth: '800px' }}>
+        🎉 Chúc mừng! Bạn đã trả lời đúng {score}/{QUESTION_LIMIT} câu hỏi, hãy cố gắng rèn luyện sức khỏe bản thân nhé! 🎉
+      </h2>
+
+      <blockquote className={styles.quote} style={{ margin: '20px auto', maxWidth: '600px', fontSize: '1.2em' }}>
+        {quote.quote}
+      </blockquote>
+      <p className={styles.message} style={{ margin: '20px auto', maxWidth: '600px' }}>
+        {quote.message}
+      </p>
+
+      <button 
+        className={styles.nextBtn} 
+        onClick={handleRestart}
+        style={{
+          fontSize: '1.5em',
+          padding: '15px 30px',
+          margin: '30px auto',
+          display: 'block'
+        }}
+      >
+        Chơi lại
+      </button>
+    </div>
+  );
+};
 
   return (
     <div className={styles.nutritionQuiz}>
-      <h1>Kiến thức dinh dưỡng</h1>
+      <h1>Kiến thức dinh dưỡng (5 câu/lần)</h1>
       {!showInspiration && renderQuestion()}
       {renderInspiration()}
       {renderResult()}
