@@ -92,5 +92,5 @@ def foodNutrients():
     except Exception as e:
         print(e)
         return {
-            'msg': 'Something went wrong. Try again later'
+            'msg': 'Something went wrong. Try again'
         }, 500
