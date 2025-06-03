@@ -52,7 +52,7 @@ const UserInfo = () => {
     // Hàm chọn món ăn dựa trên calo mục tiêu (thuật toán tham lam)
 const selectMealGreedy = useCallback((availableMeals, targetCalorie, currentMealCounts, preferredContinents, vietnameseFoodPriority) => {
     // Only consider meals that have been used less than 2 times in the current plan
-    const usableMeals = availableMeals.filter(meal => (mealCounts[meal.name] || 0) < 2);
+    const usableMeals = availableMeals.filter(meal => (currentMealCounts[meal.name] || 0) < 2);
 
     // If no usable meals remain, return null early
     if (usableMeals.length === 0) {
@@ -158,7 +158,7 @@ const selectMealGreedy = useCallback((availableMeals, targetCalorie, currentMeal
             const { WEIGHT: weight, HEIGHT: height, AGE: age, GENDER: gender, ACTIVITY: activity } = userInfo;
 
             // Công thức Mifflin-St Jeor
-            const BMR =
+            const bmr =
                 gender === "male"
                     ? 10 * weight + 6.25 * height - 5 * age + 5
                     : 10 * weight + 6.25 * height - 5 * age - 161;
@@ -174,7 +174,7 @@ const selectMealGreedy = useCallback((availableMeals, targetCalorie, currentMeal
             const activityMultiplier = activityFactor[userInfo.ACTIVITY] || 1.2; // Default to sedentary if not found
             let tdee = bmr * activityMultiplier; // Use activityMultiplier here
 
-            const dailyCalories = BMR * (activityFactor[activity] || 1.2);
+            const dailyCalories = bmr * (activityFactor[activity] || 1.2);
             const weeklyCalories = dailyCalories * 7;
             const monthlyCalories = dailyCalories * 30;
 
