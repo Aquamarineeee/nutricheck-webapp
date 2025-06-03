@@ -71,6 +71,14 @@ const UserInfo = () => {
     if (usableMeals.length === 0) {
         return null; // Không còn món nào để chọn
     }
+    const withinRange = usableMeals.filter(meal => meal.calories <= targetCalorie && meal.calories >= targetCalorie - 100);
+    const equalOrSlightlyOver = usableMeals.filter(meal => meal.calories > targetCalorie && meal.calories - targetCalorie <= 100);
+    const slightlyUnder = usableMeals.filter(meal => meal.calories < targetCalorie - 100 && targetCalorie - meal.calories <= 150);
+    const farOff = usableMeals.filter(meal =>
+        !withinRange.includes(meal) &&
+        !equalOrSlightlyOver.includes(meal) &&
+        !slightlyUnder.includes(meal)
+    );
     const prioritizedList = [...withinRange, ...equalOrSlightlyOver, ...slightlyUnder, ...farOff];
 
     if (prioritizedList.length === 0) {
