@@ -56,7 +56,6 @@ const UserInfo = () => {
     targetCalorie,       // Calo mục tiêu cho bữa ăn hiện tại
     currentPlanMealCounts, // Đếm số lần món ăn đã được dùng trong *kế hoạch hiện tại* (không quá 2)
     preferredContinents, // Châu lục ưu tiên của người dùng
-    vietnameseFoodPriority, // Trạng thái checkbox "Ưu tiên món ăn Việt Nam"
     mealsAlreadySelectedInDay, // Set<string> chứa tên các món đã chọn trong 4 bữa của ngày hôm nay (để đảm bảo không trùng lặp)
     forceVietnameseThisSlot // boolean: Cờ này là TRUE nếu cần đảm bảo món Việt cho bữa này (do chưa có món Việt trong ngày)
 ) => {
@@ -437,56 +436,46 @@ const selectMealForTime = (availableMeals, targetCalories, usedMeals, mealTime) 
 };
 
 // Hàm tạo thực đơn mới
-const generateBalancedMealPlan = useCallback((
-    totalDailyCalories,
-    goal,
-    preferredContinents,
-    vietnameseFoodPriority, // Trạng thái checkbox
-    minPricePerMeal,
-    maxPricePerMeal
-) => {
-    const mealTimes = ["Sáng", "Trưa", "Chiều", "Tối"];
-    const allMeals = mealData[goal] || mealData.maintain;
+const generateBalancedMealPlan = useCallback((goal, minPricePerMeal, maxPricePerMeal, preferredContinents) => {
     const selectedMeals = [];
-    const currentPlanMealCounts = {}; // Theo dõi sử dụng trong kế hoạch này (max 2)
-    const newMealGlobalCounts = { ...mealGlobalCounts }; // Sao chép để cập nhật số lần dùng tổng thể
-    const mealsAlreadySelectedInDay = new Set(); // THEO DÕI CÁC MÓN ĐÃ CHỌN TRONG NGÀY (4 BỮA)
-    let isVietnameseMealAdded = false; // Flag: Đã có món Việt trong ngày chưa?
+    const currentPlanMealCounts = {}; // Theo dõi số lần món ăn xuất hiện trong plan 4 bữa hiện tại
+    const newMealGlobalCounts = { ...mealGlobalCounts }; // Sao chép global counts để cập nhật
 
-    const calorieDistribution = {
-        "Sáng": totalDailyCalories * 0.25,
-        "Trưa": totalDailyCalories * 0.35,
-        "Chiều": totalDailyCalories * 0.15,
-        "Tối": totalDailyCalories * 0.25,
-    };
-    let remainingCalories = totalDailyCalories;
+    const mealsAlreadySelectedInDay = new Set(); // Theo dõi món đã được chọn trong ngày để đảm bảo duy nhất
+
+    let isVietnameseMealAdded = false; // Theo dõi xem đã có món Việt nào được thêm vào chưa
+
+    // Lấy dữ liệu món ăn dựa trên mục tiêu
+    const allMeals = mealData[goal] || [];
+
+    const mealTimes = ["Bữa sáng", "Bữa trưa", "Bữa chiều", "Bữa tối"];
 
     for (let i = 0; i < mealTimes.length; i++) {
-        // ... (targetCalories, mealsToConsider)
+        // Định nghĩa targetCalories và mealsToConsider BÊN TRONG VÒNG LẶP
+        // Đảm bảo chúng được cập nhật cho mỗi bữa ăn
+        const targetCalories = calculateTargetCaloriesForMealTime(userInfo.bmr, goal, i, dailyCaloriesConsumed, totalCalories);
+
+        let mealsToConsider = allMeals.filter(meal => {
+            const isWithinPriceRange = meal.price >= minPricePerMeal && meal.price <= maxPricePerMeal;
+            const isWithinCalorieRange = meal.calories >= targetCalories * 0.7 && meal.calories <= targetCalories * 1.3;
+            return isWithinPriceRange && isWithinCalorieRange;
+        });
 
         let forceVietnameseForThisSlot = false;
         if (!isVietnameseMealAdded) {
-            // Logic để cố gắng chọn món Việt.
-            // Nếu đây là bữa ăn cuối cùng và chưa có món Việt nào được thêm,
-            // thì bắt buộc phải chọn món Việt.
             const isLastMealSlot = (i === mealTimes.length - 1);
             const availableVietnameseMealsInConsideration = mealsToConsider.filter(m =>
                 m.origin?.country === "Việt Nam" && !mealsAlreadySelectedInDay.has(m.name)
             );
 
             if (availableVietnameseMealsInConsideration.length > 0) {
-                forceVietnameseForThisSlot = true; // Ưu tiên chọn món Việt nếu có sẵn và phù hợp
+                forceVietnameseForThisSlot = true;
             } else if (isLastMealSlot) {
-                // Nếu là bữa cuối cùng và chưa có món Việt,
-                // BẮT BUỘC phải tìm một món Việt từ toàn bộ danh sách, bất kể calo/giá ban đầu
                 const anyRemainingVietnameseInAllMeals = allMeals.some(m =>
                     m.origin?.country === "Việt Nam" && !mealsAlreadySelectedInDay.has(m.name)
                 );
                 if (anyRemainingVietnameseInAllMeals) {
-                     forceVietnameseForThisSlot = true;
-                     // Lúc này, mealsToConsider có thể không chứa món Việt,
-                     // nên selectMealGreedy có thể trả về null.
-                     // Chúng ta sẽ xử lý fallback mạnh mẽ hơn bên dưới.
+                    forceVietnameseForThisSlot = true;
                 }
             }
         }
@@ -501,13 +490,25 @@ const generateBalancedMealPlan = useCallback((
         );
 
         if (selectedMeal) {
-            // ... (cập nhật counts và thêm món ăn)
+            currentPlanMealCounts[selectedMeal.name] = (currentPlanMealCounts[selectedMeal.name] || 0) + 1;
+            newMealGlobalCounts[selectedMeal.name] = (newMealGlobalCounts[selectedMeal.name] || 0) + 1;
+            mealsAlreadySelectedInDay.add(selectedMeal.name);
+
+            if (selectedMeal.origin && selectedMeal.origin.country === "Việt Nam") {
+                isVietnameseMealAdded = true;
+            }
+
+            selectedMeals.push({
+                ...selectedMeal,
+                meal_time: mealTimes[i],
+            });
         } else {
-            // **LOGIC FALLBACK QUAN TRỌNG ĐỂ ĐẢM BẢO MÓN VIỆT BẮT BUỘC**
+            // FALLBACK LOGIC - ĐẢM BẢO CÓ MÓN VIỆT BẮT BUỘC VÀ CÁC TRƯỜNG HỢP KHÁC
             let finalFallbackMeal = null;
 
-            if (forceVietnameseForThisSlot) { // Nếu chúng ta đang cố gắng ép buộc một món Việt
-                // Tìm món Việt duy nhất từ TẤT CẢ các món ăn, bất kể calo/giá ban đầu
+            if (forceVietnameseForThisSlot) {
+                // Nếu chúng ta đang cố gắng ép buộc một món Việt nhưng selectMealGreedy không tìm thấy
+                // Tìm món Việt duy nhất từ TẤT CẢ các món ăn, không xét calo/giá ban đầu
                 finalFallbackMeal = allMeals.find(meal =>
                     meal.origin?.country === "Việt Nam" &&
                     !mealsAlreadySelectedInDay.has(meal.name) &&
@@ -515,12 +516,11 @@ const generateBalancedMealPlan = useCallback((
                 );
                 if (!finalFallbackMeal) {
                     enqueueSnackbar("Không thể tìm được món ăn Việt Nam duy nhất cho thực đơn này trong danh sách hiện có.", { variant: "warning" });
-                    // Nếu không tìm được món Việt nào, vẫn tiếp tục tìm món ăn bất kỳ để tránh lỗi
                 }
             }
 
-            // Nếu không cần ép buộc món Việt, hoặc đã ép buộc mà không tìm được món Việt duy nhất,
-            // thì tìm món ăn bất kỳ làm fallback
+            // Nếu không tìm được món Việt bắt buộc hoặc không cần món Việt bắt buộc,
+            // thì tìm món ăn bất kỳ làm fallback (không trùng trong ngày, không quá 2 lần trong plan)
             if (!finalFallbackMeal) {
                 finalFallbackMeal = allMeals.find(meal =>
                     !mealsAlreadySelectedInDay.has(meal.name) &&
@@ -558,11 +558,30 @@ const generateBalancedMealPlan = useCallback((
             }
         }
     }
-    // ... (phần cập nhật mealGlobalCounts và planGenerationCount ở cuối hàm)
-}, [goal, mealGlobalCounts, minPricePerMeal, maxPricePerMeal, preferredContinents, selectMealGreedy]); // BỎ vietnameseFoodPriority khỏi dependencies
 
+    // Cập nhật mealGlobalCounts và planGenerationCount sau khi tạo xong 4 bữa
+    setMealGlobalCounts(newMealGlobalCounts);
+
+    setPlanGenerationCount(prevCount => {
+        const newCount = prevCount + 1;
+        const RESET_THRESHOLD = 7;
+        if (newCount % RESET_THRESHOLD === 0) {
+            enqueueSnackbar("Làm mới danh sách ưu tiên món ăn để tăng sự đa dạng!", { variant: "info", autoHideDuration: 3000 });
+            setMealGlobalCounts(prevCounts => {
+                const resetCounts = {};
+                for (const mealName in prevCounts) {
+                    resetCounts[mealName] = Math.max(0, Math.floor(prevCounts[mealName] / 2));
+                }
+                return resetCounts;
+            });
+        }
+        return newCount;
+    });
+
+    return selectedMeals;
+}, [goal, mealGlobalCounts, minPricePerMeal, maxPricePerMeal, preferredContinents, selectMealGreedy, userInfo.bmr, dailyCaloriesConsumed, totalCalories, allMeals, enqueueSnackbar]); // BỎ vietnameseFoodPriority khỏi đây
     // Sử dụng trong component
-    const generateMealPlan = () => {
+const generateMealPlan = () => {
         if (totalDailyCalories === 0) {
             enqueueSnackbar("Vui lòng tính toán lượng calo mục tiêu trước", { variant: "warning" });
             return;
@@ -603,7 +622,7 @@ const generateBalancedMealPlan = useCallback((
     // }, [totalDailyCalories, goal, userInfo]);
 
 
-    const MealCardDetail = ({ meal }) => {
+const MealCardDetail = ({ meal }) => {
         const safeMeal = meal || {
         name: "Đang tạo thực đơn...",
         calories: 0,
