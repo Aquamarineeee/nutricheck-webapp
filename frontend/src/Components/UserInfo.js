@@ -50,6 +50,7 @@ const UserInfo = () => {
     const [preferredContinents, setPreferredContinents] = useState([]); // Ví dụ: ["Châu Á", "Châu Âu"]
     const [vietnameseFoodPriority, setVietnameseFoodPriority] = useState(false); // Thêm dòng này
     const [selectedConditions, setSelectedConditions] = useState([]); // Đổi tên và kiểu dữ liệu
+    const [planGenerationCount, setPlanGenerationCount] = useState(0); // Đếm số lần tạo thực đơn
 
     const selectMealGreedy = useCallback((
     availableMeals,      // Danh sách các món ăn có sẵn (đã lọc theo calo, giá, thời gian bữa ăn)
@@ -123,8 +124,16 @@ const UserInfo = () => {
         const usedA = mealGlobalCounts[a.name] || 0;
         const usedB = mealGlobalCounts[b.name] || 0;
 
+        const globalUsedA = mealGlobalCounts[a.name] || 0;
+        const globalUsedB = mealGlobalCounts[b.name] || 0;
+
+        if (globalUsedA !== globalUsedB) {
+            return globalUsedA - globalUsedB; // Tăng dần (món ít dùng global hơn lên trước)
+            }
+
+        // Nếu global usage như nhau, xét đến usage trong kế hoạch hiện tại (max 2 lần/ngày)
         if (usedA !== usedB) {
-            return usedA - usedB; // Tăng dần (ít dùng hơn lên trước)
+            return usedA - usedB; // Tăng dần (món ít dùng trong kế hoạch hiện tại hơn lên trước)
         }
 
         // TIÊU CHÍ 4: Gần với calo mục tiêu nhất (tiêu chí phụ cuối cùng)
@@ -445,7 +454,7 @@ const generateBalancedMealPlan = useCallback((
     const currentPlanMealCounts = {}; // Theo dõi sử dụng trong kế hoạch này (max 2)
     const newMealGlobalCounts = { ...mealGlobalCounts }; // Sao chép để cập nhật số lần dùng tổng thể
     const mealsAlreadySelectedInDay = new Set(); // THEO DÕI CÁC MÓN ĐÃ CHỌN TRONG NGÀY (4 BỮA)
-    let isVietnameseMealAdded = false; // CỜ: Đã có món Việt trong ngày chưa?
+    let isVietnameseMealAdded = false; // Flag: Đã có món Việt trong ngày chưa?
 
     const calorieDistribution = {
         "Sáng": totalDailyCalories * 0.25,
@@ -497,7 +506,7 @@ const generateBalancedMealPlan = useCallback((
             preferredContinents,
             vietnameseFoodPriority,
             mealsAlreadySelectedInDay, // TRUYỀN Set các món đã chọn trong ngày
-            forceVietnameseForThisSlot // TRUYỀN CỜ BUỘC MÓN VIỆT
+            forceVietnameseForThisSlot // TRUYỀN flag BUỘC MÓN VIỆT
         );
 
         if (selectedMeal) {
@@ -506,7 +515,7 @@ const generateBalancedMealPlan = useCallback((
             mealsAlreadySelectedInDay.add(selectedMeal.name); // THÊM VÀO SET CÁC MÓN ĐÃ CHỌN
 
             if (selectedMeal.origin && selectedMeal.origin.country === "Việt Nam") {
-                isVietnameseMealAdded = true; // ĐẶT CỜ ĐÃ CÓ MÓN VIỆT
+                isVietnameseMealAdded = true; // ĐẶT flag ĐÃ CÓ MÓN VIỆT
             }
 
             // ... (Phần điều chỉnh calo và thêm món vào selectedMeals giữ nguyên)
@@ -569,8 +578,27 @@ const generateBalancedMealPlan = useCallback((
         }
     }
     setMealGlobalCounts(newMealGlobalCounts);
+    setPlanGenerationCount(prevCount => prevCount + 1);
+
+    // LOGIC ĐA DẠNG HÓA: Reset hoặc giảm trọng số global counts định kỳ
+    // Đây là heuristic để tránh việc các món cũ không bao giờ được chọn lại
+    const RESET_THRESHOLD = 7; // Ví dụ: reset sau mỗi 7 lần tạo thực đơn mới
+    if (planGenerationCount % RESET_THRESHOLD === RESET_THRESHOLD - 1) { // Kích hoạt khi đến ngưỡng
+        enqueueSnackbar("Làm mới danh sách ưu tiên món ăn để tăng sự đa dạng!", { variant: "info", autoHideDuration: 3000 });
+        // Cách 1: Reset hoàn toàn (có thể gây lặp lại nhiều món phổ biến)
+        // setMealGlobalCounts({});
+
+        // Cách 2: Giảm một nửa số lần sử dụng (ưu tiên hơn)
+        setMealGlobalCounts(prevCounts => {
+            const newCounts = {};
+            for (const mealName in prevCounts) {
+                newCounts[mealName] = Math.max(0, Math.floor(prevCounts[mealName] / 2)); // Giảm một nửa
+            }
+            return newCounts;
+        });
+    }
     return selectedMeals;
-}, [goal, mealGlobalCounts, minPricePerMeal, maxPricePerMeal, preferredContinents, vietnameseFoodPriority, selectMealGreedy]);
+}, [goal, mealGlobalCounts, minPricePerMeal, maxPricePerMeal, preferredContinents, vietnameseFoodPriority, selectMealGreedy, planGenerationCount]);
 
     // Sử dụng trong component
     const generateMealPlan = () => {
@@ -1121,23 +1149,52 @@ const generateBalancedMealPlan = useCallback((
                     }
                 />
             </FormControl>
+            <Box sx={{ mt: 3, mb: 3, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleSubmit}
+                    disabled={selectedConditions.length === 0}
+                    sx={{
+                        padding: '12px 30px', // Tăng kích thước nút
+                        fontSize: '1.1rem',
+                        borderRadius: '8px',
+                        boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
+                        '&:hover': {
+                            boxShadow: '0 6px 15px rgba(0,0,0,0.2)',
+                        },
+                    }}
+                >
+                    Nhận gợi ý thực đơn bệnh lý
+                </Button>
 
-            <Button 
-                variant="contained" 
-                color="primary" 
-                onClick={handleSubmit} 
-                disabled={selectedConditions.length === 0} // Vô hiệu hóa nút nếu không có lựa chọn nào
-            >
-                Nhận gợi ý
-            </Button>
-            {feedback && (
-                    <Alert severity="success" style={{ marginTop: "20px", whiteSpace: "pre-line" }}>
-                        {feedback}
-                    </Alert>
+                {feedback && (
+                    <Paper
+                        elevation={3} // Thêm độ nổi cho thông báo
+                        sx={{
+                            mt: 4, // Khoảng cách trên
+                            p: 3, // Padding bên trong
+                            width: '100%',
+                            maxWidth: '800px', // Giới hạn chiều rộng
+                            bgcolor: 'background.paper', // Màu nền theo theme
+                            borderRadius: '10px',
+                            boxShadow: '0 6px 20px rgba(0,0,0,0.15)',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            textAlign: 'center'
+                        }}
+                    >
+                        <Typography variant="h6" gutterBottom color="primary" sx={{ fontWeight: 'bold' }}>
+                            Gợi ý sức khỏe và Thực đơn
+                        </Typography>
+                        <Alert severity="success" sx={{ width: '100%', whiteSpace: 'pre-line', p: 2 }}>
+                            {feedback}
+                        </Alert>
+                    </Paper>
                 )}
             </Box>
-
-            <Divider style={{ margin: "40px 0" }} />
+            </Box>
 
             {/* Weekly Calorie Chart */}
             <Box mt={4} className="fade-in">
