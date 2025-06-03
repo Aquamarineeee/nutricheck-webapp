@@ -609,13 +609,13 @@ const selectMealGreedy = (
                 </Box>
                 
                 <Typography variant="body1" gutterBottom>
-                    {safeMeal.price !== undefined && <Typography>Giá: {safeMeal.price.toLocaleString('vi-VN')} VND</Typography>}
+                    {safeMeal.price !== undefined && <Typography> <strong>Giá: {safeMeal.price.toLocaleString('vi-VN')} VND </strong></Typography>}
                 </Typography>
                 <Typography variant="body1" gutterBottom>
-                    {safeMeal.origin && safeMeal.origin.country && <Typography>Quốc gia: {safeMeal.origin.country}</Typography>}
+                    {safeMeal.origin && safeMeal.origin.country && <Typography> <strong> Quốc gia: {safeMeal.origin.country}</strong></Typography>}
                 </Typography>
                 <Typography variant="body1" gutterBottom>
-                    {safeMeal.origin && safeMeal.origin.continent && <Typography>Châu lục: {safeMeal.origin.continent}</Typography>}
+                    {safeMeal.origin && safeMeal.origin.continent && <Typography><strong>Châu lục: {safeMeal.origin.continent}</strong></Typography>}
                 </Typography>
 
                 {safeMeal.recipe_link && (
