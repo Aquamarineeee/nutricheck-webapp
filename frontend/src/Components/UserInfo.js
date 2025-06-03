@@ -47,7 +47,7 @@ const UserInfo = () => {
 
 
     // Hàm chọn món ăn dựa trên calo mục tiêu (thuật toán tham lam)
-    const selectMealGreedy = (
+const selectMealGreedy = (
     availableMeals,
     targetCalorie,
     mealCounts,
@@ -58,17 +58,14 @@ const UserInfo = () => {
     preferredContinent,
     mealIndex
 ) => {
-    // B1: Lọc theo giá
     const priceFiltered = availableMeals.filter(m =>
         m.price &&
-        m.price >= minPrice - 10 &&
-        m.price <= maxPrice + 10
+        m.price >= minPrice &&
+        m.price <= maxPrice
     );
 
-    // B2: Lọc món chưa được dùng trong plan hiện tại
     const usableMeals = priceFiltered.filter(meal => !usedMealsSet.has(meal.name));
 
-    // B3: Ưu tiên món Việt hoặc theo châu lục
     const vnMeals = usableMeals.filter(m => m.origin?.country === "Việt Nam");
     const continentMeals = preferredContinent
         ? usableMeals.filter(m => m.origin?.continent === preferredContinent)
@@ -81,34 +78,35 @@ const UserInfo = () => {
         prioritized = continentMeals.length > 0 ? continentMeals : usableMeals;
     }
 
-    // B4: Lọc trong khoảng ±150 calo
     let pool = prioritized.filter(m => Math.abs(m.calories - targetCalorie) <= 150);
-
     if (pool.length === 0) {
         pool = prioritized.filter(m => Math.abs(m.calories - targetCalorie) <= 200);
     }
-
     if (pool.length === 0) {
         pool = prioritized;
     }
 
-    // B5: Ưu tiên món dùng ít → sắp xếp theo số lần dùng rồi random trong top gần calo
+    // 🧠 Heuristic: sort theo ít dùng hơn và gần target calo hơn
     pool.sort((a, b) => {
-        const countA = mealCounts[a.name] || 0;
-        const countB = mealCounts[b.name] || 0;
+        const usedA = mealCounts[a.name] || 0;
+        const usedB = mealCounts[b.name] || 0;
         const diffA = Math.abs(a.calories - targetCalorie);
         const diffB = Math.abs(b.calories - targetCalorie);
-
-        // Ưu tiên: ít dùng hơn trước → gần calo hơn sau
-        return countA - countB || diffA - diffB;
+        return usedA - usedB || diffA - diffB;
     });
 
-    // Lấy top 5 ít dùng và gần calo nhất → random từ đó
-    const topCandidates = pool.slice(0, 5);
-    const selected = topCandidates[Math.floor(Math.random() * topCandidates.length)];
+    // ✅ Duyệt toàn bộ, lấy món đầu tiên chưa dùng
+    for (let i = 0; i < pool.length; i++) {
+        const candidate = pool[i];
+        if (!usedMealsSet.has(candidate.name)) {
+            return candidate;
+        }
+    }
 
-    return selected || null;
+    // ❗Nếu tất cả đã dùng trong plan hiện tại → fallback random
+    return pool[Math.floor(Math.random() * pool.length)] || null;
 };
+
 
 
 
@@ -400,7 +398,7 @@ const UserInfo = () => {
         const allMeals = mealData[goal] || mealData.maintain;
         const selectedMeals = [];
         const usedMealsInPlan = new Set(); // Theo dõi các món đã được chọn trong kế hoạch hiện tại
-        const mealCounts = {}; // Đếm số lần sử dụng mỗi món ăn toàn cục
+        const mealCounts = { ...mealGlobalCounts };
 
         // Phân bổ calo theo tỷ lệ
         const calorieDistribution = {
