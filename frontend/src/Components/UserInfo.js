@@ -71,6 +71,11 @@ const UserInfo = () => {
     if (usableMeals.length === 0) {
         return null; // Không còn món nào để chọn
     }
+    const prioritizedList = [...withinRange, ...equalOrSlightlyOver, ...slightlyUnder, ...farOff];
+
+    if (prioritizedList.length === 0) {
+        return null;
+    }
 
     // 2. Phân loại món ăn theo độ gần với calo mục tiêu (như code hiện tại của bạn)
     //    ... (giữ nguyên logic phân loại withinRange, equalOrSlightlyOver, etc.)
