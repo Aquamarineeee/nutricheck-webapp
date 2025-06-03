@@ -2,7 +2,8 @@ import React, { useEffect, useState, useCallback, useContext } from "react";
 import {
     Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
     Typography, Paper, Alert, Box, Grid, Card, CardContent,
-    Button, Select, MenuItem, InputLabel, FormControl, Divider , TextField
+    Button, Select, MenuItem, InputLabel, FormControl, Divider, TextField,
+    Checkbox, ListItemText, Switch, FormControlLabel, Autocomplete, Chip // <-- Đảm bảo có Autocomplete và Chip
 } from "@mui/material";
 import Chart from "react-apexcharts";
 import { useSnackbar } from "notistack";
@@ -11,7 +12,8 @@ import { useNavigate } from "react-router-dom";
 import helo from "../../src/images/helo.gif"
 import gainMealsData from "./gainMeals.json";
 import maintainMealsData from "./maintainMeals.json"; 
-import loseMealsData from "./loseMeals.json";       
+import loseMealsData from "./loseMeals.json";     
+import OutlinedInput from '@mui/material/OutlinedInput';   
 // Dữ liệu thực đơn chuyển vào JSON riêng
 const mealData = {
     gain: gainMealsData,
@@ -44,6 +46,12 @@ const UserInfo = () => {
     const [preferredContinent, setPreferredContinent] = useState("");
     const [minPrice, setMinPrice] = useState(15000);
     const [maxPrice, setMaxPrice] = useState(100000);
+    const [minPricePerMeal, setMinPricePerMeal] = useState(0); // Chi phí tối thiểu mỗi bữa
+    const [maxPricePerMeal, setMaxPricePerMeal] = useState(1000000); // Chi phí tối đa mỗi bữa (1,000,000 VND)
+    const [priceError, setPriceError] = useState(""); // Để hiển thị lỗi nếu có
+    const [preferredContinents, setPreferredContinents] = useState([]); // Ví dụ: ["Châu Á", "Châu Âu"]
+    const [selectedConditions, setSelectedConditions] = useState([]); // Đổi tên và kiểu dữ liệu
+    const [planGenerationCount, setPlanGenerationCount] = useState(0); // Đếm số lần tạo thực đơn
 
 
     // Hàm chọn món ăn dựa trên calo mục tiêu (thuật toán tham lam)
