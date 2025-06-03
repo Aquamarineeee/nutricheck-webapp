@@ -137,7 +137,7 @@ const UserInfo = () => {
     });
 
     return prioritizedList[0] || null; // Trả về món được ưu tiên cao nhất
-}, [mealGlobalCounts, preferredContinents, vietnameseFoodPriority]); // Đảm bảo dependencies đúng
+}, [mealGlobalCounts, preferredContinents]); // Đảm bảo dependencies đúng
 
 
 
@@ -434,6 +434,26 @@ const selectMealForTime = (availableMeals, targetCalories, usedMeals, mealTime) 
 
   return bestMeal;
 };
+const calculateTargetCaloriesForMealTime = useCallback((mealTimeIndex) => {
+    let targetCalories;
+    switch (mealTimeIndex) {
+        case 0: // Bữa sáng
+            targetCalories = goalCalories * 0.25; // 25% calo mục tiêu
+            break;
+        case 1: // Bữa trưa
+            targetCalories = goalCalories * 0.35; // 35% calo mục tiêu
+            break;
+        case 2: // Bữa chiều (snack)
+            targetCalories = goalCalories * 0.1; // 10% calo mục tiêu
+            break;
+        case 3: // Bữa tối
+            targetCalories = goalCalories * 0.3; // 30% calo mục tiêu
+            break;
+        default:
+            targetCalories = goalCalories * 0.25;
+    }
+    return targetCalories;
+}, [goalCalories]);
 
 // Hàm tạo thực đơn mới
 const generateBalancedMealPlan = useCallback((goal, minPricePerMeal, maxPricePerMeal, preferredContinents) => {
@@ -453,7 +473,7 @@ const generateBalancedMealPlan = useCallback((goal, minPricePerMeal, maxPricePer
     for (let i = 0; i < mealTimes.length; i++) {
         // Định nghĩa targetCalories và mealsToConsider BÊN TRONG VÒNG LẶP
         // Đảm bảo chúng được cập nhật cho mỗi bữa ăn
-        const targetCalories = calculateTargetCaloriesForMealTime(userInfo.bmr, goal, i, dailyCaloriesConsumed, totalCalories);
+        const targetCalories = calculateTargetCaloriesForMealTime(i);
 
         let mealsToConsider = allMeals.filter(meal => {
             const isWithinPriceRange = meal.price >= minPricePerMeal && meal.price <= maxPricePerMeal;
@@ -579,7 +599,7 @@ const generateBalancedMealPlan = useCallback((goal, minPricePerMeal, maxPricePer
     });
 
     return selectedMeals;
-}, [goal, mealGlobalCounts, minPricePerMeal, maxPricePerMeal, preferredContinents, selectMealGreedy, userInfo.bmr, dailyCaloriesConsumed, totalCalories, allMeals, enqueueSnackbar]); // BỎ vietnameseFoodPriority khỏi đây
+}, [goal, mealGlobalCounts, minPricePerMeal, maxPricePerMeal, preferredContinents, selectMealGreedy, userInfo.bmr, dailyCaloriesConsumed, totalCalories, enqueueSnackbar, calculateTargetCaloriesForMealTime, mealData]);
     // Sử dụng trong component
 const generateMealPlan = () => {
         if (totalDailyCalories === 0) {
@@ -595,7 +615,6 @@ const generateMealPlan = () => {
         totalDailyCalories,
         goal,
         preferredContinents, // Truyền tham số này
-        vietnameseFoodPriority, // Đã có từ trước
         minPricePerMeal, // Đã có từ trước
         maxPricePerMeal // Đã có từ trước
     );
