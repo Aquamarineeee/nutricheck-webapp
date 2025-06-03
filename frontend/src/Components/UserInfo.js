@@ -398,9 +398,6 @@ const UserInfo = () => {
         const usedMealsInPlan = new Set(); // Theo dõi các món đã được chọn trong kế hoạch hiện tại
         const mealCounts = {}; // Đếm số lần sử dụng mỗi món ăn toàn cục
 
-        const minPrice = 15000;
-        const maxPrice = 100000;
-
         // Phân bổ calo theo tỷ lệ
         const calorieDistribution = {
             "Sáng": totalDailyCalories * 0.25,
