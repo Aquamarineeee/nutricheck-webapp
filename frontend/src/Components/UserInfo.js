@@ -50,80 +50,67 @@ const UserInfo = () => {
     const selectMealGreedy = (
     availableMeals,
     targetCalorie,
-    mealCounts, // Đếm số lần sử dụng toàn cục
-    usedMealsSet, // Set các món đã dùng trong plan hiện tại
-    vnIncluded, // Cờ báo đã có món Việt trong ngày chưa
+    mealCounts,
+    usedMealsSet,
+    vnIncluded,
     minPrice,
     maxPrice,
-    preferredContinent, // Châu lục ưu tiên
-    mealIndex // Vị trí bữa ăn: 0 (sáng) -> 3 (tối)
+    preferredContinent,
+    mealIndex
 ) => {
-    // B1: Lọc theo giá (NGHIÊM NGẶT trong khoảng minPrice và maxPrice)
+    // B1: Lọc theo giá
     const priceFiltered = availableMeals.filter(m =>
         m.price &&
-        m.price >= minPrice && // KHÔNG CÒN -10 VND
-        m.price <= maxPrice   // KHÔNG CÒN +10 VND
+        m.price >= minPrice - 10 &&
+        m.price <= maxPrice + 10
     );
 
-    // B2: Lọc món chưa được dùng trong plan hiện tại VÀ giới hạn tổng số lần sử dụng
-    const usableMeals = priceFiltered.filter(meal =>
-        !usedMealsSet.has(meal.name) &&
-        (mealCounts[meal.name] || 0) < 2 // Giới hạn tổng số lần sử dụng 1 món
-    );
+    // B2: Lọc món chưa được dùng trong plan hiện tại
+    const usableMeals = priceFiltered.filter(meal => !usedMealsSet.has(meal.name));
 
-    // B3: Ưu tiên món theo logic châu lục & Việt Nam (đầu tiên, dựa trên usableMeals)
+    // B3: Ưu tiên món Việt hoặc theo châu lục
     const vnMeals = usableMeals.filter(m => m.origin?.country === "Việt Nam");
-    const continentMeals = preferredMeals => preferredContinent
-        ? preferredMeals.filter(m => m.origin?.continent === preferredContinent)
-        : preferredMeals; // Hàm lọc riêng cho continentMeals
+    const continentMeals = preferredContinent
+        ? usableMeals.filter(m => m.origin?.continent === preferredContinent)
+        : usableMeals;
 
-    let prioritizedByOrigin = []; // Danh sách đã được ưu tiên theo nguồn gốc (Việt Nam/Châu lục)
-
-    // Logic "ép" chọn món Việt nếu chưa có và chưa đến bữa cuối
+    let prioritized;
     if (!vnIncluded && vnMeals.length > 0 && mealIndex < 3) {
-        prioritizedByOrigin = vnMeals;
+        prioritized = vnMeals;
     } else {
-        // Ưu tiên theo châu lục, fallback về usableMeals nếu không tìm thấy món nào từ châu lục ưu tiên
-        const filteredByContinent = continentMeals(usableMeals);
-        prioritizedByOrigin = filteredByContinent.length > 0 ? filteredByContinent : usableMeals;
+        prioritized = continentMeals.length > 0 ? continentMeals : usableMeals;
     }
 
-    let finalCandidates = []; // Danh sách cuối cùng để sắp xếp
-    let calorieTolerance = 150; // Bắt đầu với +/- 150 calo
-    const maxCalorieTolerance = 500; // Giới hạn tìm kiếm tối đa để tránh vòng lặp vô hạn
+    // B4: Lọc trong khoảng ±150 calo
+    let pool = prioritized.filter(m => Math.abs(m.calories - targetCalorie) <= 150);
 
-    // BƯỚC CẢI TIẾN: Lặp và mở rộng phạm vi tìm kiếm calo
-    while (finalCandidates.length === 0 && calorieTolerance <= maxCalorieTolerance) {
-        finalCandidates = prioritizedByOrigin.filter(meal =>
-            Math.abs(meal.calories - targetCalorie) <= calorieTolerance
-        );
-        if (finalCandidates.length === 0) {
-            calorieTolerance += 50; // Tăng phạm vi tìm kiếm lên 50 calo mỗi lần
-        }
+    if (pool.length === 0) {
+        pool = prioritized.filter(m => Math.abs(m.calories - targetCalorie) <= 200);
     }
 
-    // Fallback cuối cùng nếu không tìm thấy món nào ngay cả sau khi mở rộng phạm vi tối đa
-    // Hoặc nếu prioritizedByOrigin ban đầu đã rỗng
-    if (finalCandidates.length === 0 && prioritizedByOrigin.length > 0) {
-        // Nếu vẫn không có ứng viên sau khi mở rộng hết cỡ, lấy tất cả các món từ prioritizedByOrigin
-        // và để bước sắp xếp xử lý độ lệch calo lớn hơn.
-        finalCandidates = [...prioritizedByOrigin];
-    } else if (finalCandidates.length === 0 && prioritizedByOrigin.length === 0) {
-        // Nếu không có món ăn nào khả dụng từ đầu, trả về null ngay
-        return null;
+    if (pool.length === 0) {
+        pool = prioritized;
     }
 
-    // B5: Sắp xếp danh sách cuối cùng: Ưu tiên món dùng ít và calo gần target nhất
-    finalCandidates.sort((a, b) => {
-        const usedA = mealCounts[a.name] || 0;
-        const usedB = mealCounts[b.name] || 0;
+    // B5: Ưu tiên món dùng ít → sắp xếp theo số lần dùng rồi random trong top gần calo
+    pool.sort((a, b) => {
+        const countA = mealCounts[a.name] || 0;
+        const countB = mealCounts[b.name] || 0;
         const diffA = Math.abs(a.calories - targetCalorie);
         const diffB = Math.abs(b.calories - targetCalorie);
-        return usedA - usedB || diffA - diffB; // Ưu tiên số lần sử dụng thấp nhất, sau đó đến độ lệch calo thấp nhất
+
+        // Ưu tiên: ít dùng hơn trước → gần calo hơn sau
+        return countA - countB || diffA - diffB;
     });
 
-    return finalCandidates[0] || null;
+    // Lấy top 5 ít dùng và gần calo nhất → random từ đó
+    const topCandidates = pool.slice(0, 5);
+    const selected = topCandidates[Math.floor(Math.random() * topCandidates.length)];
+
+    return selected || null;
 };
+
+
 
 
 
@@ -408,113 +395,95 @@ const UserInfo = () => {
 };
 
 // Hàm tạo thực đơn mới
-// Hàm tạo thực đơn mới - Cải tiến để tương thích với selectMealGreedy mới
-const generateBalancedMealPlan = (totalDailyCalories, goal, minPrice, maxPrice, preferredContinent) => {
-    const mealTimes = ["Sáng", "Trưa", "Chiều", "Tối"];
-    const allMeals = mealData[goal] || mealData.maintain;
-    const selectedMeals = [];
-    const usedMealsInPlan = new Set(); // Theo dõi các món đã được chọn trong kế hoạch hiện tại
+    const generateBalancedMealPlan = (totalDailyCalories, goal, minPrice,maxPrice, preferredContinent) => {
+        const mealTimes = ["Sáng", "Trưa", "Chiều", "Tối"];
+        const allMeals = mealData[goal] || mealData.maintain;
+        const selectedMeals = [];
+        const usedMealsInPlan = new Set(); // Theo dõi các món đã được chọn trong kế hoạch hiện tại
+        const mealCounts = {}; // Đếm số lần sử dụng mỗi món ăn toàn cục
 
-    // KHỞI TẠO ĐÚNG: Đếm số lần sử dụng mỗi món ăn toàn cục, sao chép từ mealGlobalCounts
-    // Đảm bảo mealGlobalCounts được định nghĩa và có giá trị ban đầu trong AppContext hoặc nơi phù hợp
-    const mealCounts = { ...mealGlobalCounts }; // <--- Đã sửa ở đây
+        // Phân bổ calo theo tỷ lệ
+        const calorieDistribution = {
+            "Sáng": totalDailyCalories * 0.25,
+            "Trưa": totalDailyCalories * 0.35,
+            "Chiều": totalDailyCalories * 0.15,
+            "Tối": totalDailyCalories * 0.25
+        };
 
-    // Phân bổ calo theo tỷ lệ
-    const calorieDistribution = {
-        "Sáng": totalDailyCalories * 0.25,
-        "Trưa": totalDailyCalories * 0.35,
-        "Chiều": totalDailyCalories * 0.15,
-        "Tối": totalDailyCalories * 0.25
-    };
+        let remainingCalories = totalDailyCalories;
 
-    let remainingCalories = totalDailyCalories;
-    let vietnameseMealIncludedToday = false; // Cờ theo dõi đã có món Việt trong ngày chưa
+        for (let i = 0; i < mealTimes.length; i++) {
+            const mealTime = mealTimes[i];
+            let targetCalories = calorieDistribution[mealTime];
 
-    for (let i = 0; i < mealTimes.length; i++) {
-        const mealTime = mealTimes[i];
-        let targetCalories = calorieDistribution[mealTime];
+            // Điều chỉnh cho bữa cuối để đảm bảo tổng calo
+            if (i === mealTimes.length - 1) {
+                targetCalories = remainingCalories;
+            } else {
+                targetCalories = Math.min(targetCalories, remainingCalories - (mealTimes.length - i - 1) * 100);
+            }
 
-        // Điều chỉnh calo mục tiêu cho các bữa ăn cuối cùng để cân bằng tổng calo
-        if (i === mealTimes.length - 1) { // Logic điều chỉnh calo của bạn
-            targetCalories = remainingCalories;
-        } else {
-            targetCalories = Math.min(targetCalories, remainingCalories - (mealTimes.length - i - 1) * 100); // Logic điều chỉnh calo của bạn
-        }
+            const availableMeals = allMeals.filter(meal => !usedMealsInPlan.has(meal.name));
 
-        // LỌC ĐÚNG: Lọc các món ăn phù hợp với bữa ăn hiện tại (mealTime)
-        const availableMealsForSelection = allMeals.filter(meal =>
-            meal.meal_time?.some(time => [mealTime].includes(time)) && // <-- Đã thêm điều kiện này
-            !usedMealsInPlan.has(meal.name) // Vẫn giữ điều kiện không trùng lặp trong plan hiện tại
-        );
-
-        // ✅ Kiểm tra đã có món Việt chưa trong thực đơn này (logic này của bạn vẫn đúng)
-        // vnIncluded cần được tính toán lại trong mỗi vòng lặp nếu bạn muốn selectMealGreedy biết trạng thái cập nhật nhất
-        vietnameseMealIncludedToday = [...usedMealsInPlan].some(name => {
-            const meal = allMeals.find(m => m.name === name);
-            return meal?.origin?.country === "Việt Nam";
-        });
-
-        // ✅ Gọi hàm selectMealGreedy đã merge và cải tiến
-        const selectedMeal = selectMealGreedy(
-            availableMealsForSelection, // <--- Đã truyền danh sách món ăn đã lọc theo mealTime
-            targetCalories,
-            mealCounts, // Sử dụng mealCounts cục bộ đã được khởi tạo từ mealGlobalCounts
-            usedMealsInPlan,
-            vietnameseMealIncludedToday, // vnIncluded
-            minPrice,
-            maxPrice,
-            preferredContinent,
-            i // mealIndex
-        );
-
-        if (selectedMeal) {
-            // Cập nhật usedMealsInPlan và mealCounts cục bộ
-            usedMealsInPlan.add(selectedMeal.name);
-            mealCounts[selectedMeal.name] = (mealCounts[selectedMeal.name] || 0) + 1;
-
-            // LƯU Ý: setMealGlobalCounts sẽ được gọi một lần ở cuối hàm, KHÔNG PHẢI trong vòng lặp này.
-            // Đoạn code bạn có ở đây:
-            // setMealGlobalCounts(prev => ({
-            //     ...prev,
-            //     [selectedMeal.name]: (prev[selectedMeal.name] || 0) + 1
-            // }));
-            // Sẽ bị loại bỏ khỏi đây.
-
-            const scale = targetCalories / selectedMeal.calories;
-
-            const adjustedMeal = {
-                ...selectedMeal,
-                mealTime: mealTime,
-                actualCalories: targetCalories,
-                protein: selectedMeal.protein * scale,
-                fat: selectedMeal.fat * scale,
-                carbs: selectedMeal.carbs * scale,
-                weight: selectedMeal.weight * scale
-            };
-
-            selectedMeals.push(adjustedMeal);
-            remainingCalories -= targetCalories;
-        } else {
-            selectedMeals.push({
-                name: `Món ăn chưa xác định cho bữa ${mealTime}`,
-                mealTime: mealTime,
-                actualCalories: targetCalories,
-                protein: 0,
-                fat: 0,
-                carbs: 0,
-                weight: 0,
-                image: "https://i.pinimg.com/originals/f4/ff/55/f4ff55ade0c4dd49b0cc474395e420e5.gif",
-                description: "Đang cập nhật thông tin dinh dưỡng hoặc không tìm thấy món phù hợp với tiêu chí."
+            // ✅ Kiểm tra đã có món Việt chưa trong thực đơn này
+            const vnIncluded = [...usedMealsInPlan].some(name => {
+                const meal = allMeals.find(m => m.name === name);
+                return meal?.origin?.country === "Việt Nam";
             });
-            remainingCalories -= targetCalories;
+
+            // ✅ Gọi greedy đã merge
+            const selectedMeal = selectMealGreedy(
+                availableMeals,
+                targetCalories,
+                mealCounts,
+                usedMealsInPlan,
+                vnIncluded,
+                minPrice,
+                maxPrice,
+                preferredContinent,
+                i // i là index bữa ăn (0-3)
+                );
+
+            if (selectedMeal) {
+                usedMealsInPlan.add(selectedMeal.name);
+                mealCounts[selectedMeal.name] = (mealCounts[selectedMeal.name] || 0) + 1;
+                setMealGlobalCounts(prev => ({
+                    ...prev,
+                    [selectedMeal.name]: (prev[selectedMeal.name] || 0) + 1
+                }));
+
+                const scale = targetCalories / selectedMeal.calories;
+
+                const adjustedMeal = {
+                    ...selectedMeal,
+                    mealTime: mealTime,
+                    actualCalories: targetCalories,
+                    protein: selectedMeal.protein * scale,
+                    fat: selectedMeal.fat * scale,
+                    carbs: selectedMeal.carbs * scale,
+                    weight: selectedMeal.weight * scale
+                };
+
+                selectedMeals.push(adjustedMeal);
+                remainingCalories -= targetCalories;
+            } else {
+                selectedMeals.push({
+                    name: `Món ăn chưa xác định cho bữa ${mealTime}`,
+                    mealTime: mealTime,
+                    actualCalories: targetCalories,
+                    protein: 0,
+                    fat: 0,
+                    carbs: 0,
+                    weight: 0,
+                    image: "https://i.pinimg.com/originals/f4/ff/55/f4ff55ade0c4dd49b0cc474395e420e5.gif",
+                    description: "Đang cập nhật thông tin dinh dưỡng"
+                });
+                remainingCalories -= targetCalories;
+            }
         }
-    }
 
-    // CẬP NHẬT ĐÚNG: Chỉ gọi setMealGlobalCounts MỘT LẦN sau khi toàn bộ kế hoạch đã được tạo xong
-    setMealGlobalCounts(mealCounts); // <--- Đã sửa ở đây
-
-    return selectedMeals;
-};
+        return selectedMeals;
+    };
 
     // Sử dụng trong component
     const generateMealPlan = () => {
