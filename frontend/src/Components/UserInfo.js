@@ -608,17 +608,27 @@ const selectMealGreedy = (
                 ))}
                 </Box>
                 
+                <Typography variant="body1" gutterBottom>
+                    {safeMeal.price !== undefined && <Typography>Giá: {safeMeal.price.toLocaleString('vi-VN')} VND</Typography>}
+                </Typography>
+                <Typography variant="body1" gutterBottom>
+                    {safeMeal.origin && safeMeal.origin.country && <Typography>Quốc gia: {safeMeal.origin.country}</Typography>}
+                </Typography>
+                <Typography variant="body1" gutterBottom>
+                    {safeMeal.origin && safeMeal.origin.continent && <Typography>Châu lục: {safeMeal.origin.continent}</Typography>}
+                </Typography>
+
                 {safeMeal.recipe_link && (
-                <Button 
-                    variant="outlined" 
-                    href={safeMeal.recipe_link} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    sx={{ mt: 2 }}
-                >
-                    Xem công thức chi tiết
-                </Button>
-                )}
+                    <Button
+                        variant="outlined"
+                        href={safeMeal.recipe_link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        sx={{ mt: 2 }}
+                    >
+                        Xem công thức chi tiết
+                    </Button>
+                                    )}
             </CardContent>
             </Card>
         );
