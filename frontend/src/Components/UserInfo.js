@@ -41,6 +41,9 @@ const UserInfo = () => {
     const [totalDailyCalories, setTotalDailyCalories] = useState(0);
     const [weightChangeError, setWeightChangeError] = useState("");
     const [mealGlobalCounts, setMealGlobalCounts] = useState({});
+    const [preferredContinent, setPreferredContinent] = useState("");
+    const [minPrice, setMinPrice] = useState(15000);
+    const [maxPrice, setMaxPrice] = useState(100000);
 
 
     // Hàm chọn món ăn dựa trên calo mục tiêu (thuật toán tham lam)
@@ -51,43 +54,55 @@ const UserInfo = () => {
     usedMealsSet,
     vnIncluded,
     minPrice,
-    maxPrice
+    maxPrice,
+    preferredContinent,
+    mealIndex // vị trí bữa ăn: 0 (sáng) -> 3 (tối)
 ) => {
-    // B1: Lọc món hợp lệ theo giá
-        const priceFiltered = availableMeals.filter(m =>
-            m.price &&
-            m.price >= minPrice - 10 &&
-            m.price <= maxPrice + 10
-        );
+    // B1: Lọc theo giá ±10 VND
+    const priceFiltered = availableMeals.filter(m =>
+        m.price &&
+        m.price >= minPrice - 10 &&
+        m.price <= maxPrice + 10
+    );
 
-        // B2: Lọc món chưa được dùng
-        const usableMeals = priceFiltered.filter(meal => !usedMealsSet.has(meal.name));
+    // B2: Lọc món chưa được dùng trong plan hiện tại
+    const usableMeals = priceFiltered.filter(meal => !usedMealsSet.has(meal.name));
 
-        // B3: Nếu chưa có món Việt thì lọc riêng món Việt trước
-        const vnMeals = usableMeals.filter(meal => meal.origin?.country === "Việt Nam");
-        const vnEnforcedMeals = vnIncluded ? usableMeals : (vnMeals.length > 0 ? vnMeals : usableMeals);
+    // B3: Ưu tiên món theo logic châu lục & Việt Nam
+    const vnMeals = usableMeals.filter(m => m.origin?.country === "Việt Nam");
+    const continentMeals = preferredContinent
+        ? usableMeals.filter(m => m.origin?.continent === preferredContinent)
+        : usableMeals;
 
-        // B4: Phân nhóm theo khoảng calo (giữ nguyên heuristic gốc)
-        const withinRange = vnEnforcedMeals.filter(meal => meal.calories <= targetCalorie && meal.calories >= targetCalorie - 100);
-        const equalOrSlightlyOver = vnEnforcedMeals.filter(meal => meal.calories > targetCalorie && meal.calories - targetCalorie <= 100);
-        const slightlyUnder = vnEnforcedMeals.filter(meal => meal.calories < targetCalorie - 100 && targetCalorie - meal.calories <= 150);
-        const farOff = vnEnforcedMeals.filter(meal =>
-            !withinRange.includes(meal) &&
-            !equalOrSlightlyOver.includes(meal) &&
-            !slightlyUnder.includes(meal)
-        );
+    let prioritized;
+    if (!vnIncluded && vnMeals.length > 0 && mealIndex < 3) {
+        // Nếu chưa có món Việt và chưa đến bữa cuối → ép chọn món Việt
+        prioritized = vnMeals;
+    } else {
+        // Ưu tiên theo châu lục, fallback về usable
+        prioritized = continentMeals.length > 0 ? continentMeals : usableMeals;
+    }
 
-        const prioritizedList = [...withinRange, ...equalOrSlightlyOver, ...slightlyUnder, ...farOff];
+    // B4: Phân nhóm theo khoảng calorie (heuristic cũ)
+    const withinRange = prioritized.filter(m => m.calories <= targetCalorie && m.calories >= targetCalorie - 100);
+    const equalOrSlightlyOver = prioritized.filter(m => m.calories > targetCalorie && m.calories - targetCalorie <= 100);
+    const slightlyUnder = prioritized.filter(m => m.calories < targetCalorie - 100 && targetCalorie - m.calories <= 150);
+    const farOff = prioritized.filter(m =>
+        !withinRange.includes(m) &&
+        !equalOrSlightlyOver.includes(m) &&
+        !slightlyUnder.includes(m)
+    );
 
-        // B5: Ưu tiên món dùng ít và calo gần target nhất
-        prioritizedList.sort((a, b) => {
-            const usedA = mealCounts[a.name] || 0;
-            const usedB = mealCounts[b.name] || 0;
-            const diffA = Math.abs(a.calories - targetCalorie);
-            const diffB = Math.abs(b.calories - targetCalorie);
+    const prioritizedList = [...withinRange, ...equalOrSlightlyOver, ...slightlyUnder, ...farOff];
 
-            return usedA - usedB || diffA - diffB;
-        });
+    // B5: Ưu tiên món dùng ít và calo gần target nhất
+    prioritizedList.sort((a, b) => {
+        const usedA = mealCounts[a.name] || 0;
+        const usedB = mealCounts[b.name] || 0;
+        const diffA = Math.abs(a.calories - targetCalorie);
+        const diffB = Math.abs(b.calories - targetCalorie);
+        return usedA - usedB || diffA - diffB;
+    });
 
     return prioritizedList[0] || null;
 };
@@ -376,7 +391,7 @@ const UserInfo = () => {
 };
 
 // Hàm tạo thực đơn mới
-    const generateBalancedMealPlan = (totalDailyCalories, goal) => {
+    const generateBalancedMealPlan = (totalDailyCalories, goal, minPrice,maxPrice, preferredContinent) => {
         const mealTimes = ["Sáng", "Trưa", "Chiều", "Tối"];
         const allMeals = mealData[goal] || mealData.maintain;
         const selectedMeals = [];
@@ -423,8 +438,10 @@ const UserInfo = () => {
                 usedMealsInPlan,
                 vnIncluded,
                 minPrice,
-                maxPrice
-            );
+                maxPrice,
+                preferredContinent,
+                i // i là index bữa ăn (0-3)
+                );
 
             if (selectedMeal) {
                 usedMealsInPlan.add(selectedMeal.name);
@@ -478,7 +495,13 @@ const UserInfo = () => {
         setMeals([]); 
         
         // Tạo thực đơn mới ngay lập tức
-        const newMealPlan = generateBalancedMealPlan(totalDailyCalories, goal);
+        const newMealPlan = generateBalancedMealPlan(
+            totalDailyCalories,
+            goal,
+            minPrice,
+            maxPrice,
+            preferredContinent
+            );
         setMeals(newMealPlan);
         
         // Tính toán chênh lệch calo
@@ -836,7 +859,53 @@ const UserInfo = () => {
                                     helperText={weightChangeError}
                                 />
                             </FormControl>
-                        )}
+
+                         )}
+                        <Grid container spacing={2}>
+                            <Grid item xs={6}>
+                                <TextField
+                                label="Giá tối thiểu (VND)"
+                                type="number"
+                                value={minPrice}
+                                onChange={(e) => {
+                                    const val = parseInt(e.target.value);
+                                    if (val > 0 && val < 1000000) setMinPrice(val);
+                                }}
+                                helperText="Giá > 0 và < 1.000.000 VND"
+                                fullWidth
+                                />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <TextField
+                                label="Giá tối đa (VND)"
+                                type="number"
+                                value={maxPrice}
+                                onChange={(e) => {
+                                    const val = parseInt(e.target.value);
+                                    if (val >= minPrice + 10000 && val <= 1000000) setMaxPrice(val);
+                                }}
+                                helperText="Lớn hơn min ít nhất 10.000 VND"
+                                fullWidth
+                                />
+                            </Grid>
+                        </Grid>
+                        <FormControl fullWidth margin="normal">
+                            <InputLabel>Ưu tiên châu lục</InputLabel>
+                                <Select
+                                    value={preferredContinent}
+                                    onChange={(e) => setPreferredContinent(e.target.value)}
+                                >
+                                    <MenuItem value="">Không chọn</MenuItem>
+                                    <MenuItem value="Châu Á">Châu Á</MenuItem>
+                                    <MenuItem value="Châu Âu">Châu Âu</MenuItem>
+                                    <MenuItem value="Châu Mỹ">Châu Mỹ</MenuItem>
+                                    <MenuItem value="Châu Phi">Châu Phi</MenuItem>
+                                    <MenuItem value="Châu Úc">Châu Úc</MenuItem>
+                                </Select>
+                            </FormControl>
+                            
+
+
                         <Button
                             variant="contained"
                             color="primary"
