@@ -332,18 +332,31 @@ const selectMealGreedy = (
     };
 
     const handleSubmit = () => {
-        let result = `Nếu bạn đang bị ${selectedCondition}, với mức calo tiêu thụ như trên thì:\n`;
+       if (selectedConditions.length === 0) {
+            enqueueSnackbar("Vui lòng chọn hoặc nhập ít nhất một tình trạng sức khỏe.", { variant: "warning" });
+            setFeedback("");
+            return;
+    }
 
-        if (conditions.calorie_deficit.includes(selectedCondition)) {
-            result += "-> Bạn có thể cần tăng lượng calo nạp vào để cải thiện tình trạng sức khỏe.\n";
-        } else if (conditions.calorie_surplus.includes(selectedCondition)) {
-            result += "\n-> Bạn nên giảm lượng calo tiêu thụ để tránh các biến chứng nghiêm trọng.\n";
-        }
+        let fullFeedback = "";
+        selectedConditions.forEach(condition => {
+            let result = `Nếu bạn đang bị ${condition}, với mức calo tiêu thụ như trên thì:\n`;
 
-        result += "Dưới đây là gợi ý thực đơn phù hợp cho bạn:\n";
-        result += suggestMenu(selectedCondition);
+            if (conditions.calorie_deficit.includes(condition)) {
+                result += "-> Bạn có thể cần tăng lượng calo nạp vào để cải thiện tình trạng sức khỏe.\n";
+            } else if (conditions.calorie_surplus.includes(condition)) {
+                result += "\n-> Bạn nên giảm lượng calo tiêu thụ để tránh các biến chứng nghiêm trọng.\n";
+            } else {
+                // Trường hợp bệnh do người dùng nhập vào, không có trong danh sách
+                result += "\n-> Đây là tình trạng sức khỏe bạn đã nhập. Hãy tham khảo ý kiến chuyên gia dinh dưỡng để có lời khuyên phù hợp.\n";
+            }
 
-        setFeedback(result);
+            result += "Dưới đây là gợi ý thực đơn phù hợp cho bạn:\n";
+            result += suggestMenu(condition); // Hàm suggestMenu vẫn hoạt động với từng bệnh riêng lẻ
+            fullFeedback += result + "\n\n---\n\n"; // Thêm dấu phân cách giữa các bệnh
+        });
+
+        setFeedback(fullFeedback);
     };
     // Hàm chọn món ăn cải tiến
     const selectMealForTime = (availableMeals, targetCalories, usedMeals, mealTime) => {
@@ -888,22 +901,47 @@ const selectMealGreedy = (
                                 />
                             </Grid>
                         </Grid>
+                        {/* Chọn châu lục ưu tiên */}
                         <FormControl fullWidth margin="normal">
-                            <InputLabel>Ưu tiên châu lục</InputLabel>
-                                <Select
-                                    value={preferredContinent}
-                                    onChange={(e) => setPreferredContinent(e.target.value)}
-                                >
-                                    <MenuItem value="">Không chọn</MenuItem>
-                                    <MenuItem value="Châu Á">Châu Á</MenuItem>
-                                    <MenuItem value="Châu Âu">Châu Âu</MenuItem>
-                                    <MenuItem value="Châu Mỹ">Châu Mỹ</MenuItem>
-                                    <MenuItem value="Châu Phi">Châu Phi</MenuItem>
-                                    <MenuItem value="Châu Úc">Châu Úc</MenuItem>
-                                </Select>
-                            </FormControl>
-                            
+                                    <InputLabel id="preferred-continents-label">Ưu tiên 3 châu lục</InputLabel>
+                                    <Select
+                                        labelId="preferred-continents-label"
+                                        multiple // Cho phép chọn nhiều mục
+                                        value={preferredContinents}
+                                        onChange={(e) => {
+                                            const {
+                                                target: { value },
+                                            } = e;
+                                            // Xử lý giá trị: nếu là chuỗi (do người dùng gõ tay), chuyển thành mảng
+                                            // Nếu là mảng (do chọn từ dropdown), giữ nguyên
+                                            const selectedValues = typeof value === 'string' ? value.split(',') : value;
 
+                                            // Giới hạn chỉ chọn tối đa 3 châu lục
+                                            if (selectedValues.length <= 3) {
+                                                setPreferredContinents(selectedValues);
+                                            } else {
+                                                // Hiển thị thông báo nếu người dùng cố gắng chọn quá 3
+                                                // Bạn cần có hàm enqueueSnackbar từ thư viện notistack nếu dùng
+                                                enqueueSnackbar("Chỉ có thể chọn tối đa 3 châu lục ưu tiên.", { variant: "warning" });
+                                            }
+                                        }}
+                                        input={<OutlinedInput label="Ưu tiên 3 châu lục" />} // Thêm input để hiển thị label đúng
+                                        renderValue={(selected) => selected.join(', ')} // Cách hiển thị các mục đã chọn
+                                    >
+                                        {["Châu Á", "Châu Âu", "Châu Phi", "Châu Mỹ", "Châu Úc"].map((continent) => (
+                                            <MenuItem key={continent} value={continent}>
+                                                <Checkbox checked={preferredContinents.indexOf(continent) > -1} /> {/* Đánh dấu check */}
+                                                <ListItemText primary={continent} /> {/* Hiển thị tên châu lục */}
+                                            </MenuItem>
+                                        ))}
+                                    </Select>
+                        </FormControl>
+
+                        <Box mt={2} textAlign="center">
+                                <Typography variant="body2" color="textSecondary">
+                                    Bạn có thể tham khảo tỷ giá quy đổi tiền tệ tại: <a href="https://www.vietcombank.com.vn/ExchangeRates/ForeignCurrencies/" target="_blank" rel="noopener noreferrer">Vietcombank</a> hoặc <a href="https://www.xe.com/" target="_blank" rel="noopener noreferrer">XE.com</a>
+                                </Typography>
+                        </Box>
 
                         <Button
                             variant="contained"
@@ -929,44 +967,92 @@ const selectMealGreedy = (
             <Divider style={{ margin: "40px 0" }} />
 
             {/* Meal Plan Section */}
-            {totalDailyCalories > 0 && renderMealPlan()}
-
-            <Divider style={{ margin: "40px 0" }} />
-
-            {/* Health Feedback Section */}
-            <Box mt={4} className="fade-in">
-                <Typography variant="h5" gutterBottom style={{ fontWeight: "bold" }}>
-                    Cảnh báo sức khỏe và gợi ý dinh dưỡng
-                </Typography>
-                <Alert severity="info" style={{ marginBottom: "20px" }}>
-                    {getHealthWarnings()}
-                </Alert>
-
-                <FormControl fullWidth margin="normal">
-                    <InputLabel>Chọn tình trạng sức khỏe bạn đang gặp phải</InputLabel>
-                    <Select
-                        value={selectedCondition}
-                        onChange={(e) => setSelectedCondition(e.target.value)}
-                        label="Chọn tình trạng sức khỏe bạn đang gặp phải"
-                    >
-                        <MenuItem value="">-- Chọn --</MenuItem>
-                        {Object.values(conditions).flat().sort().map((condition) => (
-                            <MenuItem key={condition} value={condition}>
-                                {condition}
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
-
-                <Button variant="contained" color="primary" onClick={handleSubmit} disabled={!selectedCondition}>
-                    Nhận gợi ý
-                </Button>
-
-                {feedback && (
-                    <Alert severity="success" style={{ marginTop: "20px", whiteSpace: "pre-line" }}>
-                        {feedback}
-                    </Alert>
-                )}
+                        {totalDailyCalories > 0 && renderMealPlan()}
+            
+                        <Divider style={{ margin: "40px 0" }} />
+            
+                        {/* Health Feedback Section */}
+                        <Box mt={4} className="fade-in">
+                            <Typography variant="h5" gutterBottom style={{ fontWeight: "bold" }}>
+                                Cảnh báo sức khỏe và gợi ý dinh dưỡng
+                            </Typography>
+                            <Alert severity="info" style={{ marginBottom: "20px" }}>
+                                {getHealthWarnings()}
+                            </Alert>
+            
+                            <FormControl fullWidth margin="normal">
+                            <Autocomplete
+                                multiple // Cho phép chọn nhiều mục
+                                freeSolo // Cho phép người dùng nhập các giá trị không có trong danh sách
+                                options={Object.values(conditions).flat().sort()} // Danh sách các điều kiện có sẵn
+                                value={selectedConditions} // Giá trị đang được chọn (là một mảng)
+                                onChange={(event, newValue) => {
+                                    // newValue là một mảng chứa cả các lựa chọn và các giá trị tự nhập
+                                    setSelectedConditions(newValue);
+                                }}
+                                renderInput={(params) => (
+                                    <TextField
+                                        {...params}
+                                        label="Chọn hoặc nhập tình trạng sức khỏe bạn đang gặp phải"
+                                        placeholder="Ví dụ: Tiểu đường, Mệt mỏi mãn tính, ..."
+                                    />
+                                )}
+                                renderTags={(value, getTagProps) =>
+                                    value.map((option, index) => (
+                                        <Chip
+                                            key={index} // Sử dụng index làm key tạm thời, hoặc generate ID duy nhất nếu cần
+                                            label={option}
+                                            {...getTagProps({ index })}
+                                        />
+                                    ))
+                                }
+                            />
+                        </FormControl>
+                        <Box sx={{ mt: 3, mb: 3, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <Button
+                                variant="contained"
+                                color="primary"
+                                onClick={handleSubmit}
+                                disabled={selectedConditions.length === 0}
+                                sx={{
+                                    padding: '12px 30px', // Tăng kích thước nút
+                                    fontSize: '1.1rem',
+                                    borderRadius: '8px',
+                                    boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
+                                    '&:hover': {
+                                        boxShadow: '0 6px 15px rgba(0,0,0,0.2)',
+                                    },
+                                }}
+                            >
+                                Nhận gợi ý thực đơn bệnh lý
+                            </Button>
+            
+                            {feedback && (
+                                <Paper
+                                    elevation={3} // Thêm độ nổi cho thông báo
+                                    sx={{
+                                        mt: 4, // Khoảng cách trên
+                                        p: 3, // Padding bên trong
+                                        width: '100%',
+                                        maxWidth: '800px', // Giới hạn chiều rộng
+                                        bgcolor: 'background.paper', // Màu nền theo theme
+                                        borderRadius: '10px',
+                                        boxShadow: '0 6px 20px rgba(0,0,0,0.15)',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'center',
+                                        textAlign: 'center'
+                                    }}
+                                >
+                                    <Typography variant="h6" gutterBottom color="primary" sx={{ fontWeight: 'bold' }}>
+                                        Gợi ý sức khỏe và Thực đơn
+                                    </Typography>
+                                    <Alert severity="success" sx={{ width: '100%', whiteSpace: 'pre-line', p: 2 }}>
+                                        {feedback}
+                                    </Alert>
+                                </Paper>
+                    )}
+            </Box>
             </Box>
 
             <Divider style={{ margin: "40px 0" }} />
