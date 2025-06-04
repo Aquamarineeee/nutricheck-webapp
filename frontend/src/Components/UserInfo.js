@@ -554,7 +554,7 @@ const selectMealGreedy = (
             goal,
             minPrice,
             maxPrice,
-            preferredContinent
+            preferredContinents
             );
         setMeals(newMealPlan);
         
