@@ -65,7 +65,8 @@ const selectMealGreedy = (
     maxPrice,
     preferredContinents,     // ⬅️ Array: các châu lục được ưu tiên
     mealIndex,
-    selectedContinentsSet    // ⬅️ Set: theo dõi đã chọn châu nào rồi
+    selectedContinentsSet,
+    vietnamDishCount    // ⬅️ Set: theo dõi đã chọn châu nào rồi
 ) => {
     // B1: Lọc theo giá hợp lệ
     const priceFiltered = availableMeals.filter(m =>
@@ -87,17 +88,29 @@ const selectMealGreedy = (
     );
 
     let prioritized;
-    if (!vnIncluded && vnMeals.length > 0 && mealIndex < 3) {
+
+    if (vietnamDishCount < 1 && vnMeals.length > 0 && mealIndex < 3) {
+        // Chưa có món Việt và chưa đến bữa cuối → ưu tiên món Việt
         prioritized = vnMeals;
-    } else if (preferredUnselectedContinentMeals.length > 0) {
-        prioritized = preferredUnselectedContinentMeals;
     } else {
-        // fallback: món thuộc châu ưu tiên (dù đã có)
-        const anyPreferred = usableMeals.filter(m =>
-            preferredContinents.includes(m.origin?.continent)
+        // Loại các món Việt nếu đã có đủ
+        const nonVietnamMeals = usableMeals.filter(m => m.origin?.country !== "Việt Nam");
+
+        const preferredUnselectedContinentMeals = nonVietnamMeals.filter(m =>
+            preferredContinents.includes(m.origin?.continent) &&
+            !selectedContinentsSet.has(m.origin?.continent)
         );
-        prioritized = anyPreferred.length > 0 ? anyPreferred : usableMeals;
+
+        if (preferredUnselectedContinentMeals.length > 0) {
+            prioritized = preferredUnselectedContinentMeals;
+        } else {
+            const anyPreferred = nonVietnamMeals.filter(m =>
+                preferredContinents.includes(m.origin?.continent)
+            );
+            prioritized = anyPreferred.length > 0 ? anyPreferred : nonVietnamMeals;
+        }
     }
+
 
     // B4: Lọc theo calo gần target
     let pool = prioritized.filter(m => Math.abs(m.calories - targetCalorie) <= 150);
@@ -428,6 +441,8 @@ const selectMealGreedy = (
         const usedMealsInPlan = new Set(); // Theo dõi các món đã được chọn trong kế hoạch hiện tại
         const mealCounts = { ...mealGlobalCounts };
         const selectedContinents = new Set();
+        let vietnamDishCount = 0;
+
 
 
         // Phân bổ calo theo tỷ lệ
@@ -470,7 +485,8 @@ const selectMealGreedy = (
                 maxPrice,
                 preferredContinents,
                 i, // i là index bữa ăn (0-3)
-                selectedContinents
+                selectedContinents,
+                vietnamDishCount
                 );
             
 
@@ -481,9 +497,12 @@ const selectMealGreedy = (
                     ...prev,
                     [selectedMeal.name]: (prev[selectedMeal.name] || 0) + 1
             }));
-            if (selectedMeal.origin?.country !== "Việt Nam" && selectedMeal.origin?.continent) {
+            if (selectedMeal.origin?.country === "Việt Nam") {
+                vietnamDishCount++;
+            } else if (selectedMeal.origin?.continent) {
                 selectedContinents.add(selectedMeal.origin.continent);
             }
+
             
 
             const scale = targetCalories / selectedMeal.calories;
