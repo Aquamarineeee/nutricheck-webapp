@@ -63,29 +63,43 @@ const selectMealGreedy = (
     vnIncluded,
     minPrice,
     maxPrice,
-    preferredContinent,
-    mealIndex
+    preferredContinents,     // ⬅️ Array: các châu lục được ưu tiên
+    mealIndex,
+    selectedContinentsSet    // ⬅️ Set: theo dõi đã chọn châu nào rồi
 ) => {
+    // B1: Lọc theo giá hợp lệ
     const priceFiltered = availableMeals.filter(m =>
         m.price &&
         m.price >= minPrice &&
         m.price <= maxPrice
     );
 
+    // B2: Lọc món chưa dùng
     const usableMeals = priceFiltered.filter(meal => !usedMealsSet.has(meal.name));
 
+    // B3: Phân nhóm
     const vnMeals = usableMeals.filter(m => m.origin?.country === "Việt Nam");
-    const continentMeals = preferredContinent
-        ? usableMeals.filter(m => m.origin?.continent === preferredContinent)
-        : usableMeals;
+
+    // Các món thuộc châu ưu tiên và chưa bị trùng
+    const preferredUnselectedContinentMeals = usableMeals.filter(m =>
+        preferredContinents.includes(m.origin?.continent) &&
+        !selectedContinentsSet.has(m.origin?.continent)
+    );
 
     let prioritized;
     if (!vnIncluded && vnMeals.length > 0 && mealIndex < 3) {
         prioritized = vnMeals;
+    } else if (preferredUnselectedContinentMeals.length > 0) {
+        prioritized = preferredUnselectedContinentMeals;
     } else {
-        prioritized = continentMeals.length > 0 ? continentMeals : usableMeals;
+        // fallback: món thuộc châu ưu tiên (dù đã có)
+        const anyPreferred = usableMeals.filter(m =>
+            preferredContinents.includes(m.origin?.continent)
+        );
+        prioritized = anyPreferred.length > 0 ? anyPreferred : usableMeals;
     }
 
+    // B4: Lọc theo calo gần target
     let pool = prioritized.filter(m => Math.abs(m.calories - targetCalorie) <= 150);
     if (pool.length === 0) {
         pool = prioritized.filter(m => Math.abs(m.calories - targetCalorie) <= 200);
@@ -94,7 +108,7 @@ const selectMealGreedy = (
         pool = prioritized;
     }
 
-    // 🧠 Heuristic: sort theo ít dùng hơn và gần target calo hơn
+    // B5: Heuristic – ít dùng hơn + gần calo hơn
     pool.sort((a, b) => {
         const usedA = mealCounts[a.name] || 0;
         const usedB = mealCounts[b.name] || 0;
@@ -103,23 +117,16 @@ const selectMealGreedy = (
         return usedA - usedB || diffA - diffB;
     });
 
-    // ✅ Duyệt toàn bộ, lấy món đầu tiên chưa dùng
-    for (let i = 0; i < pool.length; i++) {
-        const candidate = pool[i];
+    // B6: Duyệt để lấy món chưa dùng
+    for (const candidate of pool) {
         if (!usedMealsSet.has(candidate.name)) {
             return candidate;
         }
     }
 
-    // ❗Nếu tất cả đã dùng trong plan hiện tại → fallback random
+    // fallback: chọn random
     return pool[Math.floor(Math.random() * pool.length)] || null;
 };
-
-
-
-
-
-
 
     // Hiệu ứng màn hình chào
     useEffect(() => {
@@ -420,6 +427,8 @@ const selectMealGreedy = (
         const selectedMeals = [];
         const usedMealsInPlan = new Set(); // Theo dõi các món đã được chọn trong kế hoạch hiện tại
         const mealCounts = { ...mealGlobalCounts };
+        const selectedContinents = new Set();
+
 
         // Phân bổ calo theo tỷ lệ
         const calorieDistribution = {
@@ -444,13 +453,13 @@ const selectMealGreedy = (
 
             const availableMeals = allMeals.filter(meal => !usedMealsInPlan.has(meal.name));
 
-            // ✅ Kiểm tra đã có món Việt chưa trong thực đơn này
+            // Kiểm tra đã có món Việt chưa trong thực đơn này
             const vnIncluded = [...usedMealsInPlan].some(name => {
                 const meal = allMeals.find(m => m.name === name);
                 return meal?.origin?.country === "Việt Nam";
             });
 
-            // ✅ Gọi greedy đã merge
+            // Gọi greedy đã merge
             const selectedMeal = selectMealGreedy(
                 availableMeals,
                 targetCalories,
@@ -460,8 +469,10 @@ const selectMealGreedy = (
                 minPrice,
                 maxPrice,
                 preferredContinent,
-                i // i là index bữa ăn (0-3)
+                i, // i là index bữa ăn (0-3)
+                selectedContinents
                 );
+            
 
             if (selectedMeal) {
                 usedMealsInPlan.add(selectedMeal.name);
@@ -469,11 +480,15 @@ const selectMealGreedy = (
                 setMealGlobalCounts(prev => ({
                     ...prev,
                     [selectedMeal.name]: (prev[selectedMeal.name] || 0) + 1
-                }));
+            }));
+            if (selectedMeal.origin?.country !== "Việt Nam" && selectedMeal.origin?.continent) {
+                selectedContinents.add(selectedMeal.origin.continent);
+            }
+            
 
-                const scale = targetCalories / selectedMeal.calories;
+            const scale = targetCalories / selectedMeal.calories;
 
-                const adjustedMeal = {
+            const adjustedMeal = {
                     ...selectedMeal,
                     mealTime: mealTime,
                     actualCalories: targetCalories,
@@ -481,7 +496,7 @@ const selectMealGreedy = (
                     fat: selectedMeal.fat * scale,
                     carbs: selectedMeal.carbs * scale,
                     weight: selectedMeal.weight * scale
-                };
+            };
 
                 selectedMeals.push(adjustedMeal);
                 remainingCalories -= targetCalories;
