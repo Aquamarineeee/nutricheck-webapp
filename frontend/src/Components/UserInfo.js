@@ -421,7 +421,7 @@ const selectMealGreedy = (
 };
 
 // Hàm tạo thực đơn mới
-    const generateBalancedMealPlan = (totalDailyCalories, goal, minPrice,maxPrice, preferredContinent) => {
+    const generateBalancedMealPlan = (totalDailyCalories, goal, minPrice,maxPrice, preferredContinents) => {
         const mealTimes = ["Sáng", "Trưa", "Chiều", "Tối"];
         const allMeals = mealData[goal] || mealData.maintain;
         const selectedMeals = [];
@@ -468,7 +468,7 @@ const selectMealGreedy = (
                 vnIncluded,
                 minPrice,
                 maxPrice,
-                preferredContinent,
+                preferredContinents,
                 i, // i là index bữa ăn (0-3)
                 selectedContinents
                 );
