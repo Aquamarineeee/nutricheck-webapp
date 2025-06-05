@@ -144,8 +144,9 @@
                 chatInput.value = '';
 
                 try {
-                    // Đảm bảo URL này trỏ đến backend Flask của bạn
-                    const response = await fetch('https://backend-zeta-fawn-20.vercel.app/api', {
+                    // Đảm bảo URL này trỏ đến đúng endpoint chatbot trên backend Flask của bạn
+                    // Đây là URL đầy đủ đến endpoint chatbot.
+                    const response = await fetch('https://backend-zeta-fawn-20.vercel.app/api/chatbot/message', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
