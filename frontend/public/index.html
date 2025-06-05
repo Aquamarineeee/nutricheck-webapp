@@ -13,7 +13,6 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>Trợ lý dinh dưỡng</title>
 
-    <!-- Thêm Google Translate Widget -->
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <style>
       /* Định vị thẻ Google Translate ở góc phải */
@@ -23,64 +22,167 @@
         right: 20px; /* Cách từ phải sang */
         z-index: 1000; /* Đảm bảo nó luôn hiển thị trên cùng */
       }
+
+      /* CSS cho chatbot của bạn */
+      #my-chatbot-container {
+          position: fixed;
+          bottom: 20px; /* Cách từ đáy */
+          right: 20px; /* Cách từ phải */
+          width: 350px; /* Chiều rộng của chatbot */
+          height: 450px; /* Chiều cao của chatbot */
+          border: 1px solid #ccc;
+          border-radius: 8px;
+          box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+          z-index: 999; /* Đảm bảo nó hiển thị trên cùng */
+          background-color: white;
+      }
+      #chat-messages {
+          flex-grow: 1;
+          padding: 10px;
+          overflow-y: auto;
+          background-color: #f9f9f9;
+      }
+      .message {
+          margin-bottom: 8px;
+          padding: 6px 10px;
+          border-radius: 12px;
+          max-width: 80%;
+          word-wrap: break-word;
+      }
+      .user-message {
+          align-self: flex-end;
+          background-color: #007bff;
+          color: white;
+          margin-left: auto;
+      }
+      .bot-message {
+          align-self: flex-start;
+          background-color: #e2e6ea;
+          color: #333;
+          margin-right: auto;
+      }
+      #chat-input-container {
+          display: flex;
+          border-top: 1px solid #eee;
+      }
+      #chat-input {
+          flex-grow: 1; /* Cho phép input mở rộng */
+          padding: 10px;
+          border: none; /* Bỏ border để trông đẹp hơn với container */
+          box-sizing: border-box;
+          border-radius: 0 0 0 8px;
+      }
+      #send-button {
+          width: 70px;
+          padding: 10px;
+          background-color: #28a745;
+          color: white;
+          border: none;
+          border-radius: 0 0 8px 0;
+          cursor: pointer;
+      }
     </style>
-    
+
     <script>
       function googleTranslateElementInit() {
         new google.translate.TranslateElement({
-          // pageLanguage: 'vi', // Ngôn ngữ mặc định là tiếng Việt
-          includedLanguages: 'vi,en,es,fr,de,it,ja,ko,zh-CN,zh-TW,ru', // Các ngôn ngữ hỗ trợ
+          includedLanguages: 'vi,en,es,fr,de,it,ja,ko,zh-CN,zh-TW,ru',
           layout: google.translate.TranslateElement.InlineLayout.SIMPLE
         }, 'google_translate_element');
       }
     </script>
   </head>
 
-
-
   <body>
-
     <div id="google_translate_element"></div>
 
-    <!-- Audio -->
     <audio id="audio" autoplay loop muted>
       <source src="dolia.mp3" type="audio/mpeg">
     </audio>
     <script>
       document.addEventListener('DOMContentLoaded', () => {
           const audio = document.getElementById('audio');
-          audio.muted = false; // Bỏ tắt tiếng nếu cần
+          audio.muted = false;
           audio.volume = 0.5;
       });
     </script>
-    <!-- Thêm phần hiển thị của ứng dụng -->
-    <div id="root"></div>
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-      <div id="botpress-chat"></div>
-      <script>
-        // Thêm script của Botpress
-        const botpressChat = document.getElementById('botpress-chat');
-        const injectScript1 = document.createElement('script');
-        injectScript1.src = "https://cdn.botpress.cloud/webchat/v2.2/inject.js";
-        const injectScript2 = document.createElement('script');
-        injectScript2.src = "https://files.bpcontent.cloud/2025/01/13/15/20250113155620-PH5ZUIM8.js";
-    
-        botpressChat.appendChild(injectScript1);
-        botpressChat.appendChild(injectScript2);
-    
-        // Chỉnh vị trí
-        botpressChat.style.position = 'fixed';
-        botpressChat.style.bottom = '7cm'; // 7cm từ đáy
-        botpressChat.style.right = '0';   // Cách lề phải 0px
-      </script>
-    </body>
-    
 
-    
-    
+    <div id="root"></div>
+
+    <div id="my-chatbot-container">
+        <div id="chat-messages"></div>
+        <div id="chat-input-container">
+            <input type="text" id="chat-input" placeholder="Nhập tin nhắn của bạn...">
+            <button id="send-button">Gửi</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const chatInput = document.getElementById('chat-input');
+            const sendButton = document.getElementById('send-button');
+            const chatMessages = document.getElementById('chat-messages');
+
+            function addMessage(sender, message) {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message');
+                if (sender === 'user') {
+                    messageDiv.classList.add('user-message');
+                } else {
+                    messageDiv.classList.add('bot-message');
+                }
+                messageDiv.textContent = message;
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            async function sendChatbotMessage(message) {
+                addMessage('user', message);
+                chatInput.value = '';
+
+                try {
+                    // Đảm bảo URL này trỏ đến backend Flask của bạn
+                    const response = await fetch('https://backend-zeta-fawn-20.vercel.app/api', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ message: message })
+                    });
+
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(`Lỗi từ server: ${errorData.error || response.statusText}`);
+                    }
+
+                    const data = await response.json();
+                    const botResponse = data.response || "Xin lỗi, tôi không hiểu.";
+                    addMessage('bot', botResponse);
+                } catch (error) {
+                    console.error("Lỗi khi gửi tin nhắn chatbot:", error);
+                    addMessage('bot', "Đã xảy ra lỗi. Vui lòng thử lại.");
+                }
+            }
+
+            sendButton.addEventListener('click', () => {
+                const message = chatInput.value.trim();
+                if (message) {
+                    sendChatbotMessage(message);
+                }
+            });
+
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    const message = chatInput.value.trim();
+                    if (message) {
+                        sendChatbotMessage(message);
+                    }
+                }
+            });
+        });
+    </script>
   </body>
 </html>
