@@ -24,20 +24,56 @@
       }
 
       /* CSS cho chatbot của bạn */
+            /* CSS cho chatbot của bạn */
       #my-chatbot-container {
           position: fixed;
-          bottom: 20px; /* Cách từ đáy */
-          right: 20px; /* Cách từ phải */
-          width: 350px; /* Chiều rộng của chatbot */
-          height: 450px; /* Chiều cao của chatbot */
+          bottom: 20px; /* Vị trí mặc định khi mở */
+          right: 20px;
+          width: 350px;
+          height: 450px;
           border: 1px solid #ccc;
           border-radius: 8px;
           box-shadow: 0 4px 8px rgba(0,0,0,0.2);
           display: flex;
           flex-direction: column;
           overflow: hidden;
-          z-index: 999; /* Đảm bảo nó hiển thị trên cùng */
+          z-index: 999;
           background-color: white;
+          /* Thêm transition để hiệu ứng mượt mà khi mở/đóng */
+          transition: width 0.3s ease, height 0.3s ease, bottom 0.3s ease, right 0.3s ease, opacity 0.3s ease;
+      }
+
+      /* CSS cho nút mở/đóng chatbot */
+      #chatbot-toggle-button {
+          position: fixed;
+          right: 20px;
+          /* Tính toán 3/4 từ trên xuống: Ví dụ, nếu chiều cao viewport là 100vh, 3/4 là 75vh */
+          /* Bạn có thể điều chỉnh 'calc(75vh - 20px)' để nút nằm đúng vị trí mong muốn */
+          top: calc(75vh - 20px); /* 3/4 chiều cao của viewport, trừ đi một nửa chiều cao của nút để căn giữa */
+          width: 60px; /* Kích thước icon */
+          height: 60px; /* Kích thước icon */
+          border-radius: 50%; /* Làm tròn để thành hình tròn */
+          background-color: #007bff; /* Màu nền icon */
+          color: white;
+          border: none;
+          cursor: pointer;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 24px;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+          z-index: 1000; /* Đảm bảo icon nằm trên cùng */
+      }
+
+      /* CSS cho header của chatbot */
+      #chatbot-header {
+          background-color: #007bff; /* Màu nền giống icon */
+          color: white;
+          padding: 10px;
+          font-weight: bold;
+          text-align: center;
+          border-top-left-radius: 8px;
+          border-top-right-radius: 8px;
       }
       #chat-messages {
           flex-grow: 1;
@@ -112,13 +148,19 @@
 
     <div id="root"></div>
 
+    <button id="chatbot-toggle-button" style="display: none;">
+        <img src="https://img.lovepik.com/png/20231001/orange-circle-frame-dialog-box-leaves-leave-the-png_51726_wh860.png" alt="Chatbot Icon" style="width: 40px; height: 40px; border-radius: 50%;">
+    </button>
     <div id="my-chatbot-container">
+        <div id="chatbot-header">NutriWiseAdvisor</div>
         <div id="chat-messages"></div>
         <div id="chat-input-container">
             <input type="text" id="chat-input" placeholder="Nhập tin nhắn của bạn...">
             <button id="send-button">Gửi</button>
         </div>
     </div>
+
+
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -183,6 +225,178 @@
                     }
                 }
             });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const chatInput = document.getElementById('chat-input');
+            const sendButton = document.getElementById('send-button');
+            const chatMessages = document.getElementById('chat-messages');
+            const chatbotContainer = document.getElementById('my-chatbot-container');
+            const toggleButton = document.getElementById('chatbot-toggle-button');
+
+            const fileInput = document.getElementById('file-input'); // Input file
+            const attachButton = document.getElementById('attach-button'); // Nút đính kèm
+            const imagePreviewContainer = document.getElementById('image-preview-container'); // Khay xem trước
+
+            let isChatbotOpen = false;
+            let attachedFiles = []; // Mảng để lưu trữ các file đã chọn
+
+            // Ban đầu ẩn chatbot, chỉ hiện nút toggle
+            chatbotContainer.style.display = 'none';
+            toggleButton.style.display = 'block';
+
+            function addMessage(sender, message) {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message');
+                if (sender === 'user') {
+                    messageDiv.classList.add('user-message');
+                } else {
+                    messageDiv.classList.add('bot-message');
+                }
+                messageDiv.textContent = message;
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            function clearPreview() {
+                imagePreviewContainer.innerHTML = '';
+                attachedFiles = [];
+                fileInput.value = ''; // Reset input file
+            }
+
+            async function sendChatbotMessage(message) {
+                // Thêm tin nhắn người dùng vào khung chat
+                addMessage('user', message);
+
+                // Nếu có ảnh đính kèm, hiển thị chúng cùng với tin nhắn người dùng
+                if (attachedFiles.length > 0) {
+                    const imagesDiv = document.createElement('div');
+                    imagesDiv.classList.add('message', 'user-message');
+                    imagesDiv.style.display = 'flex';
+                    imagesDiv.style.flexWrap = 'wrap';
+                    imagesDiv.style.marginTop = '5px';
+                    imagesDiv.style.marginBottom = '5px';
+                    
+                    attachedFiles.forEach(file => {
+                        const img = document.createElement('img');
+                        img.src = URL.createObjectURL(file);
+                        img.style.maxWidth = '100px';
+                        img.style.maxHeight = '100px';
+                        img.style.margin = '2px';
+                        img.style.border = '1px solid #ddd';
+                        img.style.borderRadius = '4px';
+                        imagesDiv.appendChild(img);
+                    });
+                    chatMessages.appendChild(imagesDiv);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }
+
+                chatInput.value = ''; // Xóa nội dung input
+                clearPreview(); // Xóa khay xem trước ảnh
+
+                try {
+                    const formData = new FormData();
+                    formData.append('message', message); // Thêm tin nhắn
+                    attachedFiles.forEach((file, index) => {
+                        formData.append(`image${index}`, file); // Thêm từng ảnh
+                    });
+
+                    const response = await fetch('https://backend-zeta-fawn-20.vercel.app/api/chatbot/message', {
+                        method: 'POST',
+                        // Không đặt 'Content-Type' header khi dùng FormData, trình duyệt sẽ tự động đặt với boundary
+                        body: formData
+                    });
+
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(`Lỗi từ server: ${errorData.error || response.statusText}`);
+                    }
+
+                    const data = await response.json();
+                    const botResponse = data.response || "Xin lỗi, tôi không hiểu.";
+                    addMessage('bot', botResponse);
+                } catch (error) {
+                    console.error("Lỗi khi gửi tin nhắn chatbot:", error);
+                    addMessage('bot', "Đã xảy ra lỗi. Vui lòng thử lại.");
+                }
+            }
+
+            // Xử lý sự kiện click vào nút toggle (mở/đóng chatbot)
+            toggleButton.addEventListener('click', () => {
+                isChatbotOpen = !isChatbotOpen;
+                if (isChatbotOpen) {
+                    chatbotContainer.style.display = 'flex';
+                    toggleButton.style.display = 'none';
+                    if (chatMessages.children.length === 0) {
+                         addMessage('bot', 'Xin chào! Tôi là NutriWiseAdvisor. Tôi có thể giúp gì cho bạn?');
+                    }
+                } else {
+                    chatbotContainer.style.display = 'none';
+                    toggleButton.style.display = 'block';
+                }
+            });
+
+            // Xử lý sự kiện click nút gửi
+            sendButton.addEventListener('click', () => {
+                const message = chatInput.value.trim();
+                if (message || attachedFiles.length > 0) { // Gửi nếu có tin nhắn hoặc có ảnh
+                    sendChatbotMessage(message);
+                }
+            });
+
+            // Xử lý sự kiện nhấn Enter trong input
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    const message = chatInput.value.trim();
+                    if (message || attachedFiles.length > 0) { // Gửi nếu có tin nhắn hoặc có ảnh
+                        sendChatbotMessage(message);
+                    }
+                }
+            });
+
+            // Xử lý sự kiện click nút đính kèm (mở cửa sổ chọn file)
+            attachButton.addEventListener('click', () => {
+                fileInput.click(); // Kích hoạt input file ẩn
+            });
+
+            // Xử lý khi người dùng chọn file
+            fileInput.addEventListener('change', (event) => {
+                const files = event.target.files;
+                if (files.length > 0) {
+                    // Thêm các file mới vào mảng attachedFiles
+                    for (let i = 0; i < files.length; i++) {
+                        attachedFiles.push(files[i]);
+                    }
+                    renderImagePreviews();
+                }
+            });
+
+            // Hàm hiển thị các ảnh đã chọn vào khay xem trước
+            function renderImagePreviews() {
+                imagePreviewContainer.innerHTML = ''; // Xóa các preview cũ
+                attachedFiles.forEach((file, index) => {
+                    const previewItem = document.createElement('div');
+                    previewItem.classList.add('image-preview-item');
+
+                    const img = document.createElement('img');
+                    img.src = URL.createObjectURL(file);
+                    img.alt = file.name;
+                    previewItem.appendChild(img);
+
+                    const removeButton = document.createElement('button');
+                    removeButton.classList.add('remove-image-button');
+                    removeButton.textContent = 'x';
+                    removeButton.onclick = () => {
+                        attachedFiles.splice(index, 1); // Xóa file khỏi mảng
+                        renderImagePreviews(); // Render lại khay xem trước
+                    };
+                    previewItem.appendChild(removeButton);
+
+                    imagePreviewContainer.appendChild(previewItem);
+                });
+            }
         });
     </script>
   </body>
