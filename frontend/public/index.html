@@ -397,22 +397,28 @@
                 }
                 if (attachedFiles.length > 0) {
                     // Hiển thị ảnh đã chọn/chụp trong khung chat người dùng
-                    attachedFiles.forEach(file => {
-                        const reader = new FileReader();
-                        reader.onload = (e) => {
-                            addMessage('user', { type: 'image', src: e.target.result, text: message || '' });
-                        };
-                        reader.readAsDataURL(file);
+                    // Sử dụng Promise.all để đảm bảo tất cả ảnh được đọc xong trước khi tiếp tục
+                    const imageUrlPromises = attachedFiles.map(file => {
+                        return new Promise((resolve) => {
+                            const reader = new FileReader();
+                            reader.onload = (e) => resolve(e.target.result);
+                            reader.readAsDataURL(file);
+                        });
+                    });
+                    const imageUrls = await Promise.all(imageUrlPromises);
+
+                    imageUrls.forEach(url => {
+                        addMessage('user', { type: 'image', src: url, text: message || '' });
                     });
                 }
                 
-                // Tạo FormData để gửi cả văn bản và tệp
                 const formData = new FormData();
                 if (message) {
                     formData.append('message', message);
                 }
                 attachedFiles.forEach((file, index) => {
-                    formData.append(`image_${index}`, file); // Thêm từng tệp ảnh vào FormData
+                    // Tên key phải khớp với cách bạn lấy file ở backend: request.files.getlist('image')
+                    formData.append('image', file); // SỬA ĐỂ TẤT CẢ ẢNH DÙNG CÙNG KEY 'image'
                 });
 
                 chatInput.value = ''; // Xóa nội dung input
@@ -422,8 +428,9 @@
                 try {
                     const response = await fetch('https://backend-zeta-fawn-20.vercel.app/api/chatbot/message', {
                         method: 'POST',
-                        // Không cần đặt 'Content-Type' header khi dùng FormData, trình duyệt sẽ tự động đặt với boundary
-                        body: formData
+                        // QUAN TRỌNG: KHÔNG ĐẶT 'Content-Type': 'application/json' KHI DÙNG FormData
+                        // Trình duyệt sẽ tự động đặt 'Content-Type': 'multipart/form-data' với boundary
+                        body: formData 
                     });
 
                     if (!response.ok) {
@@ -432,13 +439,14 @@
                     }
 
                     const data = await response.json();
-                    const botResponse = data.response || "Xin lỗi, tôi không hiểu, vui lòng thử lại nhé.";
+                    const botResponse = data.response || "Xin lỗi, tôi không hiểu.";
                     addMessage('bot', botResponse);
                 } catch (error) {
                     console.error("Lỗi khi gửi tin nhắn chatbot:", error);
                     addMessage('bot', "Đã xảy ra lỗi. Vui lòng thử lại.");
                 }
             }
+
 
             // Xử lý sự kiện click vào nút toggle
             toggleButton.addEventListener('click', () => {
