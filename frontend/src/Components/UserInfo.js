@@ -1437,87 +1437,87 @@ const selectMealGreedy = (
                     Gợi ý bài tập
                 </Typography>
 
-                {exerciseSuggestions.length.length > 0 ? (
+                {exerciseSuggestions.length > 0 ? ( // LỖI ĐÃ SỬA TẠI ĐÂY
                     <Slider {...settings}>
-                    {exerciseSuggestions.length.map((exercise) => (
-                        <Box key={exercise.id} p={2}>
-                        <Card sx={{ maxWidth: 800, mx: "auto" }}>
-                            {exercise.image && (
-                            <Box
-                                component="img"
-                                src={exercise.image}
-                                alt={exercise.title}
-                                sx={{
-                                width: "100%",
-                                height: 300,
-                                objectFit: "cover",
-                                borderTopLeftRadius: 8,
-                                borderTopRightRadius: 8,
-                                }}
-                            />
-                            )}
-                            <CardContent>
-                            <Typography variant="h6" gutterBottom>
-                                {exercise.title}
-                            </Typography>
-                            <Typography variant="body1" paragraph>
-                                {exercise.description}
-                            </Typography>
+                        {exerciseSuggestions.map((exercise) => ( // LỖI ĐÃ SỬA TẠI ĐÂY
+                            <Box key={exercise.id} p={2}>
+                                <Card sx={{ maxWidth: 800, mx: "auto" }}>
+                                    {exercise.image && (
+                                        <Box
+                                            component="img"
+                                            src={exercise.image}
+                                            alt={exercise.title}
+                                            sx={{
+                                                width: "100%",
+                                                height: 300,
+                                                objectFit: "cover",
+                                                borderTopLeftRadius: 8,
+                                                borderTopRightRadius: 8,
+                                            }}
+                                        />
+                                    )}
+                                    <CardContent>
+                                        <Typography variant="h6" gutterBottom>
+                                            {exercise.title}
+                                        </Typography>
+                                        <Typography variant="body1" paragraph>
+                                            {exercise.description}
+                                        </Typography>
 
-                            {exercise.note && (
-                                <Typography variant="body2" sx={{ mb: 1 }}>
-                                <strong>Lưu ý:</strong> {exercise.note}
-                                </Typography>
-                            )}
+                                        {exercise.note && (
+                                            <Typography variant="body2" sx={{ mb: 1 }}>
+                                            <strong>Lưu ý:</strong> {exercise.note}
+                                            </Typography>
+                                        )}
 
-                            {exercise.benefitsForHealth?.length > 0 && (
-                                <Box mb={1}>
-                                <Typography variant="body2" fontWeight="bold">Lợi ích:</Typography>
-                                {exercise.benefitsForHealth.map((item, idx) => (
-                                    <Chip key={idx} label={item} sx={{ m: 0.5 }} />
-                                ))}
-                                </Box>
-                            )}
+                                        {exercise.benefitsForHealth?.length > 0 && (
+                                            <Box mb={1}>
+                                            <Typography variant="body2" fontWeight="bold">Lợi ích:</Typography>
+                                            {exercise.benefitsForHealth.map((item, idx) => (
+                                                <Chip key={idx} label={item} sx={{ m: 0.5 }} />
+                                            ))}
+                                            </Box>
+                                        )}
 
-                            {exercise.diseasePrevention?.length > 0 && (
-                                <Box mb={1}>
-                                <Typography variant="body2" fontWeight="bold">Phòng ngừa bệnh:</Typography>
-                                {exercise.diseasePrevention.map((item, idx) => (
-                                    <Chip key={idx} label={item} sx={{ m: 0.5 }} />
-                                ))}
-                                </Box>
-                            )}
+                                        {exercise.diseasePrevention?.length > 0 && (
+                                            <Box mb={1}>
+                                            <Typography variant="body2" fontWeight="bold">Phòng ngừa bệnh:</Typography>
+                                            {exercise.diseasePrevention.map((item, idx) => (
+                                                <Chip key={idx} label={item} sx={{ m: 0.5 }} />
+                                            ))}
+                                            </Box>
+                                        )}
 
-                            {exercise.suitableAgeGroup?.length > 0 && (
-                                <Box mb={1}>
-                                <Typography variant="body2" fontWeight="bold">Phù hợp với:</Typography>
-                                {exercise.suitableAgeGroup.map((item, idx) => (
-                                    <Chip key={idx} label={item} sx={{ m: 0.5 }} />
-                                ))}
-                                </Box>
-                            )}
+                                        {exercise.suitableAgeGroup?.length > 0 && (
+                                            <Box mb={1}>
+                                            <Typography variant="body2" fontWeight="bold">Phù hợp với:</Typography>
+                                            {exercise.suitableAgeGroup.map((item, idx) => (
+                                                <Chip key={idx} label={item} sx={{ m: 0.5 }} />
+                                            ))}
+                                            </Box>
+                                        )}
 
-                            {exercise.realLifeApplication && (
-                                <Typography variant="body2" sx={{ mt: 1 }}>
-                                <strong>Ứng dụng thực tế:</strong> {exercise.realLifeApplication}
-                                </Typography>
-                            )}
+                                        {exercise.realLifeApplication && (
+                                            <Typography variant="body2" sx={{ mt: 1 }}>
+                                            <strong>Ứng dụng thực tế:</strong> {exercise.realLifeApplication}
+                                            </Typography>
+                                        )}
 
-                            {exercise.link && (
-                                <Button
-                                variant="outlined"
-                                href={exercise.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                sx={{ mt: 2 }}
-                                >
-                                Xem video hướng dẫn
-                                </Button>
-                            )}
-                            </CardContent>
-                        </Card>
-                        </Box>
-                    ))}
+                                        {exercise.link && (
+                                            <Button
+                                            variant="outlined"
+                                            href={exercise.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            sx={{ mt: 2 }}
+                                            >
+                                            Xem video hướng dẫn
+                                            </Button>
+                                        )}
+                                    </CardContent>
+                                </Card>
+                            </Box>
+                        ))}
                     </Slider>
                 ) : (
                     <Typography textAlign="center" variant="body1" mt={2}>
