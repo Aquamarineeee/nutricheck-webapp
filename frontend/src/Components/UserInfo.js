@@ -26,6 +26,7 @@ const mealData = {
 };
 
 
+
 const UserInfo = () => {
     const navigate = useNavigate();
     const { enqueueSnackbar } = useSnackbar();
@@ -60,6 +61,7 @@ const UserInfo = () => {
     const [averageSleepHours, setAverageSleepHours] = useState("");
     const [dailyWaterIntake, setDailyWaterIntake] = useState("");
     const [exerciseSuggestions, setExerciseSuggestions] =useState("");
+    
 
     // Hàm chọn món ăn dựa trên calo mục tiêu (thuật toán tham lam)
 const selectMealGreedy = (
@@ -1435,9 +1437,9 @@ const selectMealGreedy = (
                     Gợi ý bài tập
                 </Typography>
 
-                {suggestions.length > 0 ? (
+                {exerciseSuggestions.length.length > 0 ? (
                     <Slider {...settings}>
-                    {suggestions.map((exercise) => (
+                    {exerciseSuggestions.length.map((exercise) => (
                         <Box key={exercise.id} p={2}>
                         <Card sx={{ maxWidth: 800, mx: "auto" }}>
                             {exercise.image && (
@@ -1524,7 +1526,7 @@ const selectMealGreedy = (
                 )}
 
                 <Box textAlign="center" mt={3}>
-                    <Button variant="contained" color="primary" onClick={() => onShuffle(true)}>
+                    <Button variant="contained" color="primary" onClick={() => generateExerciseSuggestions(true)}>
                     Đổi gợi ý bài tập khác
                     </Button>
                 </Box>
@@ -1587,20 +1589,21 @@ const selectMealGreedy = (
                     />
                     </FormControl>
 
-                    {dailyWaterIntake && weight && (
+
+                    {dailyWaterIntake && userInfo.WEIGHT && (
                     <Alert
                         severity={
-                        dailyWaterIntake / 1000 >= weight * 0.03 &&
-                        dailyWaterIntake / 1000 <= weight * 0.04
+                        dailyWaterIntake / 1000 >= userInfo.WEIGHT * 0.03 &&
+                        dailyWaterIntake / 1000 <= userInfo.WEIGHT * 0.04
                             ? "success"
                             : "warning"
                         }
                         sx={{ mt: 2 }}
                     >
-                        {dailyWaterIntake / 1000 >= weight * 0.03 &&
-                        dailyWaterIntake / 1000 <= weight * 0.04
+                        {dailyWaterIntake / 1000 >= userInfo.WEIGHT * 0.03 &&
+                        dailyWaterIntake / 1000 <= userInfo.WEIGHT * 0.04
                         ? `Bạn đang uống đủ nước (${(dailyWaterIntake / 1000).toFixed(1)} lít/ngày).`
-                        : `Với ${(dailyWaterIntake / 1000).toFixed(1)} lít/ngày, bạn nên điều chỉnh. Mức lý tưởng là khoảng ${(weight * 30 / 1000).toFixed(1)}–${(weight * 40 / 1000).toFixed(1)} lít.`}
+                        : `Với ${(dailyWaterIntake / 1000).toFixed(1)} lít/ngày, bạn nên điều chỉnh. Mức lý tưởng là khoảng ${(userInfo.WEIGHT* 30 / 1000).toFixed(1)}–${(userInfo.WEIGHT * 40 / 1000).toFixed(1)} lít.`}
                     </Alert>
                     )}
                 </Box>
