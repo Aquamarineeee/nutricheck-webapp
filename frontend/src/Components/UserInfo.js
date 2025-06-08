@@ -13,7 +13,8 @@ import helo from "../../src/images/helo.gif"
 import gainMealsData from "./gainMeals.json";
 import maintainMealsData from "./maintainMeals.json"; 
 import loseMealsData from "./loseMeals.json";     
-import OutlinedInput from '@mui/material/OutlinedInput';   
+import OutlinedInput from '@mui/material/OutlinedInput'; 
+import exerciseData from './exerciseData.json';  
 // Dữ liệu thực đơn chuyển vào JSON riêng
 const mealData = {
     gain: gainMealsData,
@@ -52,7 +53,9 @@ const UserInfo = () => {
     const [preferredContinents, setPreferredContinents] = useState([]); // Ví dụ: ["Châu Á", "Châu Âu"]
     const [selectedConditions, setSelectedConditions] = useState([]); // Đổi tên và kiểu dữ liệu
     const [planGenerationCount, setPlanGenerationCount] = useState(0); // Đếm số lần tạo thực đơn
-
+    const [averageSleepHours, setAverageSleepHours] = useState("");
+    const [dailyWaterIntake, setDailyWaterIntake] = useState("");
+    const [exerciseSuggestions, setExerciseSuggestions] =useState("");
 
     // Hàm chọn món ăn dựa trên calo mục tiêu (thuật toán tham lam)
 const selectMealGreedy = (
@@ -389,49 +392,107 @@ const selectMealGreedy = (
     // Hàm chọn món ăn cải tiến
     const selectMealForTime = (availableMeals, targetCalories, usedMeals, mealTime) => {
   // Lọc món phù hợp với bữa ăn
-  const timeMapping = {
-    "Sáng": ["breakfast"],
-    "Trưa": ["lunch"],
-    "Chiều": ["afternoon"],
-    "Tối": ["dinner"]
-  };
-  
-  const validTimes = timeMapping[mealTime] || [];
-  const timeSpecificMeals = availableMeals.filter(meal => 
-    meal.meal_time?.some(time => validTimes.includes(time))
-  );
+            const timeMapping = {
+                "Sáng": ["breakfast"],
+                "Trưa": ["lunch"],
+                "Chiều": ["afternoon"],
+                "Tối": ["dinner"]
+            };
+            
+            const validTimes = timeMapping[mealTime] || [];
+            const timeSpecificMeals = availableMeals.filter(meal => 
+                meal.meal_time?.some(time => validTimes.includes(time))
+            );
 
-  // Lọc món chưa dùng
-  const eligibleMeals = timeSpecificMeals.filter(meal => !usedMeals.has(meal.name));
+            // Lọc món chưa dùng
+            const eligibleMeals = timeSpecificMeals.filter(meal => !usedMeals.has(meal.name));
 
-  // Tìm món có calo gần nhất với target
-  let bestMeal = null;
-  let minDiff = Infinity;
+            // Tìm món có calo gần nhất với target
+            let bestMeal = null;
+            let minDiff = Infinity;
 
-  for (const meal of eligibleMeals) {
-    const diff = Math.abs(meal.calories - targetCalories);
-    if (diff < minDiff) {
-      minDiff = diff;
-      bestMeal = meal;
-    }
-  }
+            for (const meal of eligibleMeals) {
+                const diff = Math.abs(meal.calories - targetCalories);
+                if (diff < minDiff) {
+                minDiff = diff;
+                bestMeal = meal;
+                }
+            }
 
-  // Fallback: nếu không tìm thấy món phù hợp thời gian
-  if (!bestMeal && availableMeals.length > 0) {
-    minDiff = Infinity;
-    for (const meal of availableMeals) {
-      if (!usedMeals.has(meal.name)) {
-        const diff = Math.abs(meal.calories - targetCalories);
-        if (diff < minDiff) {
-          minDiff = diff;
-          bestMeal = meal;
+            // Fallback: nếu không tìm thấy món phù hợp thời gian
+            if (!bestMeal && availableMeals.length > 0) {
+                minDiff = Infinity;
+                for (const meal of availableMeals) {
+                if (!usedMeals.has(meal.name)) {
+                    const diff = Math.abs(meal.calories - targetCalories);
+                    if (diff < minDiff) {
+                    minDiff = diff;
+                    bestMeal = meal;
+                    }
+                }
+                }
+            }
+
+            return bestMeal;
+        };
+
+        const generateExerciseSuggestions = useCallback((isRandom = false) => {
+        if (!userInfo || !userInfo.ACTIVITY || !goal) {
+            enqueueSnackbar("Vui lòng cập nhật đầy đủ thông tin cá nhân và mục tiêu để nhận gợi ý bài tập.", { variant: "warning" });
+            return;
         }
-      }
-    }
-  }
 
-  return bestMeal;
-};
+        const { ACTIVITY: activityLevel } = userInfo;
+        const currentGoal = goal;
+
+        // Lọc ra các bài tập phù hợp với activityLevel của người dùng
+        const relevantExercises = exerciseData.filter(
+            (item) => item.activityLevel === activityLevel || item.activityLevel === "any"
+        );
+
+        let suggestionsToDisplay = [];
+
+        if (isRandom) {
+            const numberOfRandomSuggestions = 3; // Số lượng bài tập ngẫu nhiên muốn hiển thị
+            const shuffled = [...relevantExercises].sort(() => 0.5 - Math.random());
+            suggestionsToDisplay = shuffled.slice(0, numberOfRandomSuggestions);
+            enqueueSnackbar("Đã tạo gợi ý bài tập ngẫu nhiên mới!", { variant: "info" });
+
+        } else {
+            let selectedSuggestions = new Map();
+
+            const addSuggestion = (item) => {
+                if (!selectedSuggestions.has(item.id)) {
+                    selectedSuggestions.set(item.id, item);
+                }
+            };
+
+            // 1. Gợi ý chính xác nhất: Khớp hoàn toàn activityLevel và goal
+            exerciseData.filter(
+                (item) => item.activityLevel === activityLevel && item.goal === currentGoal
+            ).forEach(addSuggestion);
+
+            // 2. Gợi ý chung cho Activity Level (goal: "any")
+            exerciseData.filter(
+                (item) => item.activityLevel === activityLevel && item.goal === "any"
+            ).forEach(addSuggestion);
+
+            // 3. Gợi ý chung cho Goal (activityLevel: "any")
+            exerciseData.filter(
+                (item) => item.activityLevel === "any" && item.goal === currentGoal
+            ).forEach(addSuggestion);
+
+            suggestionsToDisplay = Array.from(selectedSuggestions.values());
+            enqueueSnackbar("Đã tạo gợi ý bài tập cá nhân hóa!", { variant: "success" });
+        }
+        setExerciseSuggestions(suggestionsToDisplay);
+
+}, [userInfo, goal, enqueueSnackbar]);
+    useEffect(() => {
+    if (userInfo && userInfo.ACTIVITY && goal) {
+        generateExerciseSuggestions(false); // Tạo gợi ý ban đầu (không random)
+    }
+}, [userInfo, goal, generateExerciseSuggestions]);
 
 // Hàm tạo thực đơn mới
     const generateBalancedMealPlan = (totalDailyCalories, goal, minPrice,maxPrice, preferredContinents) => {
@@ -537,6 +598,7 @@ const selectMealGreedy = (
 
         return selectedMeals;
     };
+    
 
     // Sử dụng trong component
     const generateMealPlan = () => {
@@ -623,7 +685,7 @@ const selectMealGreedy = (
                 <strong>Thông tin dinh dưỡng:</strong>
                 </Typography>
                 <Box sx={{ pl: 2, mb: 2 }}>
-                <Typography>Calo: {safeMeal.calories.toFixed(0)} kcal</Typography>
+                <Typography>Calo: {safeMeal.calories.toFixed(0)} calo</Typography>
                 <Typography>Protein: {safeMeal.protein.toFixed(1)}g</Typography>
                 <Typography>Chất béo: {safeMeal.fat.toFixed(1)}g</Typography>
                 <Typography>Carbs: {safeMeal.carbs.toFixed(1)}g</Typography>
@@ -668,7 +730,7 @@ const selectMealGreedy = (
         );
         };
     const renderMealPlan = () => {
-        const totalActualCalories = meals.reduce((sum, m) => sum + (m?.calories || 0), 0);
+        const totalActualCalories = meals.reduce((sum, m) => sum + (m?.actualCalories || 0), 0);
         const calorieDifference = totalActualCalories - totalDailyCalories;
 
         return (
@@ -745,6 +807,183 @@ const selectMealGreedy = (
             </Box>
         );
     };
+    <Divider style={ {margin: "40px 0"}} />
+    {/*holistic health advice*/}
+    <Box mt = {4} className="fade-in">
+        <Typography variant="h5" gutterBottom style = {{fontWeight: "bold"}}> 
+            Lời khuyên về sức khỏe tổng thể
+        </Typography>
+        {/*Giấc ngủ*/}
+        <Card sx = {{mb:3}}>
+            <CardContent>
+                <Typography variant="h6" gutterBottom> Giấc ngủ</Typography>
+                <Typography variant="body1"> Giấc ngủ đủ giấc là yếu tố then chốt cho sức khỏe tổng thể  </Typography>
+                <Typography variant = "body1" mt = {1}>
+                    Để cải thiện giấc ngủ, hãy thử các biện pháp sau:
+                    <ul>
+                        <li>Đi ngủ và thức dậy vào cùng một thời điểm mỗi ngày, kể cả cuối tuần</li>
+                        <li>Tạo ra môi trường ngủ tối, yên tĩnh và mát mẻ</li>
+                        <li>Tránh caffein và rượu, chất kích thích, gây mất ngủ trước khi ngủ</li>
+                        <li>Theo một nghiên cứu từ các nhà khoa học, cần hạn chế sử dụng thiết bị điện tử trước khi đi ngủ. (Ít nhất không sử dụng trước 1 tiếng)</li>
+                        <li>Thực hiện các hoạt động thư giãn trước khi ngủ như đọc sách, thiền, hoặc tắm nước ấm </li>
+                    </ul>
+                </Typography>
+                {/* Input số giờ ngủ */}
+                <FormControl fullWidth margin = "normal">
+                    <TextField 
+                    label = "Số giờ ngủ trung bình mỗi đêm"
+                    type = "number"
+                    value = {averageSleepHours}
+                        onChange={(e) => setAverageSleepHours(e.target.value)}
+                        inputProps={{min: "0",step : "0.1"}}
+                        helperText= "Ví dụ 7.5 giờ"
+                    />
+                </FormControl>
+                {/* Lời khuyên cá nhân hóa dựa trên input */}
+                {averageSleepHours && (
+                    <Alert severity={averageSleepHours >= 7 && averageSleepHours <= 9 ? "success" : "warning"} sx={{ mt: 2 }}>
+                        {averageSleepHours >= 7 && averageSleepHours <= 9
+                            ? `Bạn đang ngủ đủ giấc (${averageSleepHours} giờ). Rất tốt cho sức khỏe!`
+                            : `Với ${averageSleepHours} giờ ngủ, bạn có thể đang thiếu hoặc thừa giấc. Mục tiêu là 7-9 giờ/đêm. Hãy điều chỉnh để cải thiện sức khỏe nhé.`
+                        }
+                    </Alert>
+                )}
+                <Typography variant="body1" mt={2}>
+                    {/* Lời khuyên dựa trên mức độ vận động (giữ nguyên) */}
+                    {userInfo.ACTIVITY === "sedentary" ? "Với mức độ vận động thấp, bạn cần đảm bảo giấc ngủ chất lượng để cơ thể phục hồi tối ưu, tránh tình trạng mệt mỏi do thiếu vận động." : ""}
+                    {userInfo.ACTIVITY === "active" || userInfo.ACTIVITY === "very_active" ? "Do mức độ vận động cao, giấc ngủ sâu và đủ rất quan trọng để cơ bắp phục hồi và tái tạo năng lượng." : ""}
+                </Typography>
+            </CardContent>
+        </Card>
+        {/* Lượng nước tiêu thụ mỗi ngày */}
+        <Card sx={{ mb: 3 }}>
+            <CardContent>
+                <Typography variant="h6" gutterBottom>Lượng nước tiêu thụ mỗi ngày</Typography>
+                <Typography variant="body1">
+                    Uống đủ nước là rất quan trọng để duy trì các chức năng cơ thể. Lượng nước khuyến nghị có thể khác nhau tùy vào cân nặng, mức độ hoạt động và khí hậu. Một quy tắc chung là nam giới trưởng thành nên uống khoảng 3.7 lít/ngày và nữ giới khoảng 2.7 lít/ngày từ tổng lượng thực phẩm và đồ uống.
+                </Typography>
+                <Typography variant="body1" mt={1}>
+                    Nước giúp:
+                    <ul>
+                        <li>Vận chuyển chất dinh dưỡng và oxy đến các tế bào.</li>
+                        <li>Điều hòa nhiệt độ cơ thể.</li>
+                        <li>Bôi trơn khớp.</li>
+                        <li>Bảo vệ các cơ quan và mô.</li>
+                        <li>Loại bỏ chất thải qua nước tiểu và phân.</li>
+                    </ul>
+                </Typography>
+                {/* Input cho lượng nước */}
+                <FormControl fullWidth margin="normal">
+                    <TextField
+                        label="Lượng nước uống hàng ngày (ml)"
+                        type="number"
+                        value={dailyWaterIntake}
+                        onChange={(e) => setDailyWaterIntake(e.target.value)}
+                        inputProps={{ min: "0" }}
+                        helperText="Ví dụ: 2500 ml"
+                    />
+                </FormControl>
+                {/* Lời khuyên cá nhân hóa dựa trên input và cân nặng */}
+            {dailyWaterIntake && userInfo.WEIGHT && (
+                <Alert severity={
+                    (dailyWaterIntake / 1000 >= (userInfo.WEIGHT * 30 / 1000) && dailyWaterIntake / 1000 <= (userInfo.WEIGHT * 40 / 1000))
+                    ? "success"
+                    : "warning"
+                } sx={{ mt: 2 }}>
+                    {dailyWaterIntake / 1000 >= (userInfo.WEIGHT * 30 / 1000) && dailyWaterIntake / 1000 <= (userInfo.WEIGHT * 40 / 1000)
+                        ? `Bạn đang uống đủ lượng nước khuyến nghị (${(dailyWaterIntake / 1000).toFixed(1)} lít). Rất tốt!`
+                        : `Với ${(dailyWaterIntake / 1000).toFixed(1)} lít nước mỗi ngày, bạn có thể cần điều chỉnh. Mục tiêu cho bạn là khoảng ${(userInfo.WEIGHT * 30 / 1000).toFixed(1)} - ${(userInfo.WEIGHT * 40 / 1000).toFixed(1)} lít.`
+                    }
+                    {userInfo.ACTIVITY === "active" || userInfo.ACTIVITY === "very_active" ? " Do bạn có mức độ vận động cao, bạn cần uống thêm nước để bù đắp lượng mồ hôi mất đi." : ""}
+                    {userInfo.ACTIVITY === "sedentary" ? " Ngay cả khi ít vận động, việc uống đủ nước vẫn rất quan trọng để duy trì trao đổi chất." : ""}
+                </Alert>
+            )}
+        </CardContent>
+    </Card>
+    {/* Bài tập thể thao tốt cho sức khỏe (cá nhân hóa) */}
+    {/* Phần này sẽ thay đổi thành động */}
+    <Card sx={{ mb: 3 }}>
+        <CardContent>
+            <Typography variant="h6" gutterBottom>Bài tập thể thao tốt cho sức khỏe</Typography>
+            <Typography variant="body1">
+                Hoạt động thể chất thường xuyên mang lại vô số lợi ích cho sức khỏe, bao gồm kiểm soát cân nặng, giảm nguy cơ mắc bệnh tim mạch, tiểu đường type 2, và một số bệnh ung thư, cải thiện tâm trạng và tăng cường năng lượng.
+            </Typography>
+            {/* Nút để tạo gợi ý bài tập */}
+            <Box mt={2} mb={2}>
+                <Button variant="contained" onClick={generateExerciseSuggestions}>
+                    Tạo gợi ý bài tập cá nhân hóa
+                </Button>
+            </Box>
+
+            {/* Hiển thị gợi ý bài tập */}
+            {exerciseSuggestions.length>0 ? (
+                <Box mt = {2}>
+                    <Typography variant = "body1">
+                        <strong>Dựa trên thông tin của bạn ({userInfo?.ACTIVITY} và mục tiêu {goal === "gain" ? "tăng cân" : goal === "lose" ? "giảm cân" : "giữ cân"}):</strong>
+                    </Typography>
+                    <ul>
+                        {exerciseSuggestions.map((suggestion) => (
+                            <li key={suggestion.id} style={{ marginBottom: '20px', borderBottom: '1px solid #eee', paddingBottom: '10px' }}>
+                                <Typography variant="h6" gutterBottom>
+                                    <strong>{suggestion.title}</strong>
+                                </Typography>
+                                <Typography variant="body1">
+                                    {suggestion.description}
+                                    {suggestion.note && ` (${suggestion.note})`}
+                                </Typography>
+
+                                {/* Thêm các thông tin mới */}
+                                {suggestion.benefitsForHealth && suggestion.benefitsForHealth.length > 0 && (
+                                    <Typography variant="body2" sx={{ mt: 1 }}>
+                                        <strong>Lợi ích sức khỏe:</strong> {suggestion.benefitsForHealth.join(', ')}.
+                                    </Typography>
+                                )}
+                                {suggestion.diseasePrevention && suggestion.diseasePrevention.length > 0 && (
+                                    <Typography variant="body2" sx={{ mt: 0.5 }}>
+                                        <strong>Phòng chống bệnh:</strong> {suggestion.diseasePrevention.join(', ')}.
+                                    </Typography>
+                                )}
+                                {suggestion.realLifeApplication && (
+                                    <Typography variant="body2" sx={{ mt: 0.5 }}>
+                                        <strong>Ứng dụng thực tế:</strong> {suggestion.realLifeApplication}
+                                    </Typography>
+                                )}
+                                {suggestion.suitableAgeGroup && suggestion.suitableAgeGroup.length > 0 && (
+                                    <Typography variant="body2" sx={{ mt: 0.5 }}>
+                                        <strong>Phù hợp với:</strong> {suggestion.suitableAgeGroup.join(', ')}.
+                                    </Typography>
+                                )}
+
+                                {suggestion.link && (
+                                    <Box mt={1}>
+                                        <Button
+                                            variant="outlined"
+                                            size="small"
+                                            onClick={() => window.open(suggestion.link, '_blank')}
+                                        >
+                                            Xem hướng dẫn
+                                        </Button>
+                                    </Box>
+                                )}
+                            </li>
+                        ))}
+                    </ul>
+                        </Box>
+                    ) : (
+                        <Alert severity="info" sx={{ mt: 2 }}>
+                            Nhấn nút "Tạo gợi ý bài tập cá nhân hóa" để xem các bài tập phù hợp với bạn.
+                        </Alert>
+                    )}
+                                
+        </CardContent>
+    </Card>
+    {/* Khuyến nghị tham khảo ý kiến chuyên gia */}
+    <Alert severity="info" sx={{ mt: 4 }}>
+        <Typography variant="body2">
+            **Lưu ý quan trọng:** Mọi lời khuyên về dinh dưỡng, giấc ngủ, lượng nước và bài tập thể thao trên đây chỉ mang tính chất tham khảo chung. Để có được kế hoạch cá nhân hóa chính xác và an toàn nhất cho tình trạng sức khỏe của bạn, **chúng tôi đặc biệt khuyến nghị bạn nên tham khảo ý kiến của bác sĩ, chuyên gia dinh dưỡng hoặc huấn luyện viên thể hình chuyên nghiệp.** Họ có thể đưa ra lời khuyên dựa trên tiền sử bệnh lý, tình trạng sức khỏe hiện tại và mục tiêu cụ thể của bạn.
+        </Typography>
+    </Alert>
+    </Box>
 
     return (
         <div style={{ padding: "20px" }}>
@@ -1016,10 +1255,8 @@ const selectMealGreedy = (
                 </Grid>
             </Grid>
 
-            <Divider style={{ margin: "40px 0" }} />
-
             {/* Meal Plan Section */}
-                        {totalDailyCalories > 0 && renderMealPlan()}
+            {totalDailyCalories > 0 && renderMealPlan()}
             
                         <Divider style={{ margin: "40px 0" }} />
             
@@ -1177,6 +1414,43 @@ const selectMealGreedy = (
                         </TableBody>
                     </Table>
                 </TableContainer>
+            </Box>
+            <Box mt={4} className="fade-in">
+                <Typography variant="h5" gutterBottom style={{ fontWeight: "bold" }}>
+                    Gợi ý bài tập
+                </Typography>
+                {exerciseSuggestions.length > 0 ? (
+                    <TableContainer component={Paper} style={{ margin: "20px auto", maxWidth: "800px" }}>
+                        <Table>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell style={{ fontWeight: "bold", fontSize: "19px" }}>Bài tập</TableCell>
+                                    <TableCell style={{ fontWeight: "bold", fontSize: "19px" }}>Mô tả</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {exerciseSuggestions.map((exercise, index) => (
+                                    <TableRow key={index}>
+                                        <TableCell style={{ fontSize: "19px" }}>{exercise.name}</TableCell>
+                                        <TableCell style={{ fontSize: "19px" }}>{exercise.description}</TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                ) : (
+                    <Alert severity="info" style={{ maxWidth: "800px", margin: "20px auto" }}>
+                        Không có gợi ý bài tập nào phù hợp với mục tiêu của bạn hoặc đang chờ tính toán.
+                    </Alert>
+                )}
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => generateExerciseSuggestions(true)} // Gọi lại với random = true
+                    style={{ margin: "10px auto", display: "block" }}
+                >
+                    Đổi gợi ý bài tập khác
+                </Button>
             </Box>
         </div>
     );
