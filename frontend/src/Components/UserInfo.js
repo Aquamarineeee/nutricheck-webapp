@@ -5,6 +5,9 @@ import {
     Button, Select, MenuItem, InputLabel, FormControl, Divider, TextField,
     Checkbox, ListItemText, Switch, FormControlLabel, Autocomplete, Chip // <-- Đảm bảo có Autocomplete và Chip
 } from "@mui/material";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 import Chart from "react-apexcharts";
 import { useSnackbar } from "notistack";
 import { AppContext } from "../Context/AppContext";
@@ -21,6 +24,7 @@ const mealData = {
     lose: loseMealsData,
     maintain:maintainMealsData
 };
+
 
 const UserInfo = () => {
     const navigate = useNavigate();
@@ -360,6 +364,15 @@ const selectMealGreedy = (
             "Bệnh Parkinson": "Cá béo, dầu cá, các loại hạt, rau xanh, nghệ."
         };
         return menus[condition] || "Thực đơn đang được cập nhật.";
+    };
+    const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    adaptiveHeight: true,
+    arrows: true,
     };
 
     const handleSubmit = () => {
@@ -1415,43 +1428,184 @@ const selectMealGreedy = (
                     </Table>
                 </TableContainer>
             </Box>
+            
+
             <Box mt={4} className="fade-in">
-                <Typography variant="h5" gutterBottom style={{ fontWeight: "bold" }}>
+                <Typography variant="h5" gutterBottom fontWeight="bold" textAlign="center">
                     Gợi ý bài tập
                 </Typography>
-                {exerciseSuggestions.length > 0 ? (
-                    <TableContainer component={Paper} style={{ margin: "20px auto", maxWidth: "800px" }}>
-                        <Table>
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell style={{ fontWeight: "bold", fontSize: "19px" }}>Bài tập</TableCell>
-                                    <TableCell style={{ fontWeight: "bold", fontSize: "19px" }}>Mô tả</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {exerciseSuggestions.map((exercise, index) => (
-                                    <TableRow key={index}>
-                                        <TableCell style={{ fontSize: "19px" }}>{exercise.name}</TableCell>
-                                        <TableCell style={{ fontSize: "19px" }}>{exercise.description}</TableCell>
-                                    </TableRow>
+
+                {suggestions.length > 0 ? (
+                    <Slider {...settings}>
+                    {suggestions.map((exercise) => (
+                        <Box key={exercise.id} p={2}>
+                        <Card sx={{ maxWidth: 800, mx: "auto" }}>
+                            {exercise.image && (
+                            <Box
+                                component="img"
+                                src={exercise.image}
+                                alt={exercise.title}
+                                sx={{
+                                width: "100%",
+                                height: 300,
+                                objectFit: "cover",
+                                borderTopLeftRadius: 8,
+                                borderTopRightRadius: 8,
+                                }}
+                            />
+                            )}
+                            <CardContent>
+                            <Typography variant="h6" gutterBottom>
+                                {exercise.title}
+                            </Typography>
+                            <Typography variant="body1" paragraph>
+                                {exercise.description}
+                            </Typography>
+
+                            {exercise.note && (
+                                <Typography variant="body2" sx={{ mb: 1 }}>
+                                <strong>Lưu ý:</strong> {exercise.note}
+                                </Typography>
+                            )}
+
+                            {exercise.benefitsForHealth?.length > 0 && (
+                                <Box mb={1}>
+                                <Typography variant="body2" fontWeight="bold">Lợi ích:</Typography>
+                                {exercise.benefitsForHealth.map((item, idx) => (
+                                    <Chip key={idx} label={item} sx={{ m: 0.5 }} />
                                 ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
+                                </Box>
+                            )}
+
+                            {exercise.diseasePrevention?.length > 0 && (
+                                <Box mb={1}>
+                                <Typography variant="body2" fontWeight="bold">Phòng ngừa bệnh:</Typography>
+                                {exercise.diseasePrevention.map((item, idx) => (
+                                    <Chip key={idx} label={item} sx={{ m: 0.5 }} />
+                                ))}
+                                </Box>
+                            )}
+
+                            {exercise.suitableAgeGroup?.length > 0 && (
+                                <Box mb={1}>
+                                <Typography variant="body2" fontWeight="bold">Phù hợp với:</Typography>
+                                {exercise.suitableAgeGroup.map((item, idx) => (
+                                    <Chip key={idx} label={item} sx={{ m: 0.5 }} />
+                                ))}
+                                </Box>
+                            )}
+
+                            {exercise.realLifeApplication && (
+                                <Typography variant="body2" sx={{ mt: 1 }}>
+                                <strong>Ứng dụng thực tế:</strong> {exercise.realLifeApplication}
+                                </Typography>
+                            )}
+
+                            {exercise.link && (
+                                <Button
+                                variant="outlined"
+                                href={exercise.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                sx={{ mt: 2 }}
+                                >
+                                Xem video hướng dẫn
+                                </Button>
+                            )}
+                            </CardContent>
+                        </Card>
+                        </Box>
+                    ))}
+                    </Slider>
                 ) : (
-                    <Alert severity="info" style={{ maxWidth: "800px", margin: "20px auto" }}>
-                        Không có gợi ý bài tập nào phù hợp với mục tiêu của bạn hoặc đang chờ tính toán.
-                    </Alert>
+                    <Typography textAlign="center" variant="body1" mt={2}>
+                    Không có gợi ý bài tập nào.
+                    </Typography>
                 )}
-                <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() => generateExerciseSuggestions(true)} // Gọi lại với random = true
-                    style={{ margin: "10px auto", display: "block" }}
-                >
+
+                <Box textAlign="center" mt={3}>
+                    <Button variant="contained" color="primary" onClick={() => onShuffle(true)}>
                     Đổi gợi ý bài tập khác
-                </Button>
+                    </Button>
+                </Box>
             </Box>
+
+            <Box mt={4} className="fade-in">
+                <Typography variant="h5" gutterBottom fontWeight="bold" textAlign="center">
+                    Gợi ý sức khỏe cá nhân hóa
+                </Typography>
+
+                <Divider sx={{ my: 3 }} />
+
+                {/* Giấc ngủ */}
+                <Box>
+                    <Typography variant="h6" gutterBottom fontWeight="medium">
+                    Giấc ngủ mỗi đêm
+                    </Typography>
+                    <FormControl fullWidth margin="normal">
+                    <TextField
+                        label="Số giờ ngủ trung bình mỗi đêm"
+                        type="number"
+                        value={averageSleepHours}
+                        onChange={(e) => setAverageSleepHours(e.target.value)}
+                        inputProps={{ min: "0", step: "0.1" }}
+                        helperText="Ví dụ: 7.5 giờ"
+                    />
+                    </FormControl>
+
+                    {averageSleepHours && (
+                    <Alert
+                        severity={
+                        averageSleepHours >= 7 && averageSleepHours <= 9
+                            ? "success"
+                            : "warning"
+                        }
+                        sx={{ mt: 2 }}
+                    >
+                        {averageSleepHours >= 7 && averageSleepHours <= 9
+                        ? `Bạn đang ngủ đủ giấc (${averageSleepHours} giờ). Rất tốt cho sức khỏe!`
+                        : `Với ${averageSleepHours} giờ ngủ, bạn có thể đang thiếu hoặc thừa giấc. Mục tiêu là 7–9 giờ/đêm. Hãy điều chỉnh để cải thiện sức khỏe nhé.`}
+                    </Alert>
+                    )}
+                </Box>
+
+                <Divider sx={{ my: 3 }} />
+
+                {/* Nước uống */}
+                <Box>
+                    <Typography variant="h6" gutterBottom fontWeight="medium">
+                    Lượng nước uống mỗi ngày
+                    </Typography>
+                    <FormControl fullWidth margin="normal">
+                    <TextField
+                        label="Lượng nước uống hàng ngày (ml)"
+                        type="number"
+                        value={dailyWaterIntake}
+                        onChange={(e) => setDailyWaterIntake(e.target.value)}
+                        inputProps={{ min: "0" }}
+                        helperText="Ví dụ: 2500 ml"
+                    />
+                    </FormControl>
+
+                    {dailyWaterIntake && weight && (
+                    <Alert
+                        severity={
+                        dailyWaterIntake / 1000 >= weight * 0.03 &&
+                        dailyWaterIntake / 1000 <= weight * 0.04
+                            ? "success"
+                            : "warning"
+                        }
+                        sx={{ mt: 2 }}
+                    >
+                        {dailyWaterIntake / 1000 >= weight * 0.03 &&
+                        dailyWaterIntake / 1000 <= weight * 0.04
+                        ? `Bạn đang uống đủ nước (${(dailyWaterIntake / 1000).toFixed(1)} lít/ngày).`
+                        : `Với ${(dailyWaterIntake / 1000).toFixed(1)} lít/ngày, bạn nên điều chỉnh. Mức lý tưởng là khoảng ${(weight * 30 / 1000).toFixed(1)}–${(weight * 40 / 1000).toFixed(1)} lít.`}
+                    </Alert>
+                    )}
+                </Box>
+                </Box>
+
         </div>
     );
 };
