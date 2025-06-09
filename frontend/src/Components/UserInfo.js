@@ -908,232 +908,9 @@ const UserInfo = () => {
                     </Typography>
                 </CardContent>
             </Card>
-
-            <Divider sx={{ my: 4 }} /> {/* Đường phân cách */}
-                <Typography variant="h6" gutterBottom fontWeight="medium">
-                    Bạn gặp vấn đề gì về giấc ngủ?
-                </Typography>
-                <FormControl fullWidth margin="normal">
-                    <InputLabel id="sleep-conditions-label">Vấn đề bạn gặp phải</InputLabel>
-                    <Select
-                        labelId="sleep-conditions-label"
-                        multiple
-                        value={selectedSleepConditions}
-                        onChange={(e) => setSelectedSleepConditions(e.target.value)}
-                        input={<OutlinedInput label="Vấn đề bạn gặp phải" />}
-                        renderValue={(selected) => selected.join(', ')}
-                        MenuProps={{
-                            PaperProps: {
-                                style: {
-                                    maxHeight: 224,
-                                    width: 250,
-                                },
-                            },
-                        }}
-                    >
-                        {sleepConditionsOptions.map((condition) => (
-                            <MenuItem key={condition} value={condition}>
-                                <Checkbox checked={selectedSleepConditions.indexOf(condition) > -1} />
-                                <ListItemText primary={condition} />
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
-
-                <FormControl fullWidth margin="normal">
-                    <InputLabel id="sleep-herbs-label">Dược liệu bạn muốn thử</InputLabel>
-                    <Select
-                        labelId="sleep-herbs-label"
-                        multiple
-                        value={selectedSleepHerbs}
-                        onChange={(e) => setSelectedSleepHerbs(e.target.value)}
-                        input={<OutlinedInput label="Dược liệu bạn muốn thử" />}
-                        renderValue={(selected) => selected.join(', ')}
-                        MenuProps={{
-                            PaperProps: {
-                                style: {
-                                    maxHeight: 224,
-                                    width: 250,
-                                },
-                            },
-                        }}
-                    >
-                        {sleepHerbsOptions.map((herb) => (
-                            <MenuItem key={herb} value={herb}>
-                                <Checkbox checked={selectedSleepHerbs.indexOf(herb) > -1} />
-                                <ListItemText primary={herb} />
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
-
-                <Button variant="contained" color="primary" onClick={generateSleepAidSuggestion} sx={{ mt: 2 }}>
-                    Tạo gợi ý hỗ trợ giấc ngủ
-                </Button>
-
-                {sleepAidSuggestion && (
-                    <Button variant="outlined" onClick={generateSleepAidSuggestion} sx={{ mt: 2 }}>
-                        Tạo gợi ý khác (ngẫu nhiên)
-                    </Button>
-                )}
-
-                {sleepAidSuggestion && ( // Hiển thị gợi ý nếu có
-                    <Card sx={{ maxWidth: 800, mx: "auto", mt: 4 }}>
-                        {/* ... nội dung Card hiện có của bạn */}
-                    </Card>
-                )}
-
-                {sleepAidSuggestion && ( // Hiển thị gợi ý nếu có
-                    <Card sx={{ maxWidth: 800, mx: "auto", mt: 4 }}>
-                        <CardContent>
-                            <Typography variant="h6" gutterBottom fontWeight="bold">
-                                Gợi ý cho bạn: {sleepAidSuggestion.title}
-                            </Typography>
-                            {sleepAidSuggestion.image && (
-                                <Box
-                                    component="img"
-                                    src={sleepAidSuggestion.image}
-                                    alt={sleepAidSuggestion.title}
-                                    sx={{
-                                        width: "100%",
-                                        height: 200,
-                                        objectFit: "cover",
-                                        borderRadius: 1,
-                                        mb: 2
-                                    }}
-                                />
-                            )}
-                            <Typography variant="body1" paragraph>
-                                {sleepAidSuggestion.description}
-                            </Typography>
-
-                            {sleepAidSuggestion.materials && sleepAidSuggestion.materials.length > 0 && (
-                                <Typography variant="body2" sx={{ mb: 1 }}>
-                                    <strong>Cần chuẩn bị:</strong> {sleepAidSuggestion.materials.join(', ')}
-                                </Typography>
-                            )}
-
-                            {sleepAidSuggestion.prepTime && (
-                                <Typography variant="body2" sx={{ mb: 1 }}>
-                                    <strong>Thời gian chuẩn bị:</strong> {sleepAidSuggestion.prepTime}
-                                </Typography>
-                            )}
-
-                            {sleepAidSuggestion.howTo && (
-                                <Typography variant="body2" sx={{ mb: 1 }}>
-                                    <strong>Cách thực hiện:</strong> {sleepAidSuggestion.howTo}
-                                </Typography>
-                            )}
-
-                            {sleepAidSuggestion.realLifeApplication && (
-                                <Typography variant="body2" sx={{ mb: 1 }}>
-                                    <strong>Ứng dụng thực tế:</strong> {sleepAidSuggestion.realLifeApplication}
-                                </Typography>
-                            )}
-
-                            {sleepAidSuggestion.suitableAgeGroup && sleepAidSuggestion.suitableAgeGroup.length > 0 && (
-                                <Box mb={1}>
-                                    <Typography variant="body2" fontWeight="bold">Phù hợp với:</Typography>
-                                    {sleepAidSuggestion.suitableAgeGroup.map((item, idx) => (
-                                        <Chip key={idx} label={item} sx={{ m: 0.5 }} />
-                                    ))}
-                                </Box>
-                            )}
-
-                            {sleepAidSuggestion.benefits && sleepAidSuggestion.benefits.length > 0 && (
-                                <Box mb={1}>
-                                    <Typography variant="body2" fontWeight="bold">Lợi ích:</Typography>
-                                    {sleepAidSuggestion.benefits.map((item, idx) => (
-                                        <Chip key={idx} label={item} sx={{ m: 0.5 }} />
-                                    ))}
-                                </Box>
-                            )}
-
-                            {sleepAidSuggestion.prevention && sleepAidSuggestion.prevention.length > 0 && (
-                                <Box mb={1}>
-                                    <Typography variant="body2" fontWeight="bold">Phòng ngừa:</Typography>
-                                    {sleepAidSuggestion.prevention.map((item, idx) => (
-                                        <Chip key={idx} label={item} sx={{ m: 0.5 }} />
-                                    ))}
-                                </Box>
-                            )}
-                            {sleepAidSuggestion.prevention && sleepAidSuggestion.source.length > 0 && (
-                                <Box mb={1}>
-                                    <Typography variant="body2" fontWeight="bold">Nguồn:</Typography>
-                                    {sleepAidSuggestion.source.map((item, idx) => (
-                                        <Chip key={idx} label={item} sx={{ m: 0.5 }} />
-                                    ))}
-                                </Box>
-                            )}
-
-                            {sleepAidSuggestion.link && (
-                                <Button
-                                    variant="outlined"
-                                    href={sleepAidSuggestion.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    sx={{ mt: 2 }}
-                                >
-                                    Xem video hướng dẫn
-                                </Button>
-                            )}
-                        </CardContent>
-                    </Card>
-                )}
-
-                {/* Nếu không có gợi ý và người dùng đã click tìm kiếm */}
-                {!sleepAidSuggestion && (selectedSleepConditions.length > 0 || selectedSleepHerbs.length > 0) && (
-                    <Alert severity="info" sx={{ mt: 2 }}>
-                        Không tìm thấy gợi ý phù hợp với lựa chọn của bạn. Vui lòng thử các lựa chọn khác.
-                    </Alert>
-                )}
             </Box>
-
-            {/* Lượng nước tiêu thụ mỗi ngày */}
-            <Card sx={{ mb: 3 }}>
-                <CardContent>
-                    <Typography variant="h6" gutterBottom>Lượng nước tiêu thụ mỗi ngày</Typography>
-                    <Typography variant="body1">
-                        Uống đủ nước là rất quan trọng để duy trì các chức năng cơ thể. Lượng nước khuyến nghị có thể khác nhau tùy vào cân nặng, mức độ hoạt động và khí hậu. Một quy tắc chung là nam giới trưởng thành nên uống khoảng 3.7 lít/ngày và nữ giới khoảng 2.7 lít/ngày từ tổng lượng thực phẩm và đồ uống.
-                    </Typography>
-                    <Typography variant="body1" mt={1}>
-                        Nước giúp:
-                        <ul>
-                            <li>Vận chuyển chất dinh dưỡng và oxy đến các tế bào.</li>
-                            <li>Điều hòa nhiệt độ cơ thể.</li>
-                            <li>Bôi trơn khớp.</li>
-                            <li>Bảo vệ các cơ quan và mô.</li>
-                            <li>Loại bỏ chất thải qua nước tiểu và phân.</li>
-                        </ul>
-                    </Typography>
-                    {/* Input cho lượng nước */}
-                    <FormControl fullWidth margin="normal">
-                        <TextField
-                            label="Lượng nước uống hàng ngày (ml)"
-                            type="number"
-                            value={dailyWaterIntake}
-                            onChange={(e) => setDailyWaterIntake(e.target.value)}
-                            inputProps={{ min: "0" }}
-                            helperText="Ví dụ: 2500 ml"
-                        />
-                    </FormControl>
-                    {/* Lời khuyên cá nhân hóa dựa trên input và cân nặng */}
-                {dailyWaterIntake && userInfo.WEIGHT && (
-                    <Alert severity={
-                        (dailyWaterIntake / 1000 >= (userInfo.WEIGHT * 30 / 1000) && dailyWaterIntake / 1000 <= (userInfo.WEIGHT * 40 / 1000))
-                        ? "success"
-                        : "warning"
-                    } sx={{ mt: 2 }}>
-                        {dailyWaterIntake / 1000 >= (userInfo.WEIGHT * 30 / 1000) && dailyWaterIntake / 1000 <= (userInfo.WEIGHT * 40 / 1000)
-                            ? `Bạn đang uống đủ lượng nước khuyến nghị (${(dailyWaterIntake / 1000).toFixed(1)} lít). Rất tốt!`
-                            : `Với ${(dailyWaterIntake / 1000).toFixed(1)} lít nước mỗi ngày, bạn có thể cần điều chỉnh. Mục tiêu cho bạn là khoảng ${(userInfo.WEIGHT * 30 / 1000).toFixed(1)} - ${(userInfo.WEIGHT * 40 / 1000).toFixed(1)} lít.`
-                        }
-                        {userInfo.ACTIVITY === "active" || userInfo.ACTIVITY === "very_active" ? " Do bạn có mức độ vận động cao, bạn cần uống thêm nước để bù đắp lượng mồ hôi mất đi." : ""}
-                        {userInfo.ACTIVITY === "sedentary" ? " Ngay cả khi ít vận động, việc uống đủ nước vẫn rất quan trọng để duy trì trao đổi chất." : ""}
-                    </Alert>
-                )}
-            </CardContent>
-        </Card>
+            
+                
         {/* Bài tập thể thao tốt cho sức khỏe (cá nhân hóa) */}
         {/* Phần này sẽ thay đổi thành động */}
         <Card sx={{ mb: 3 }}>
@@ -1789,6 +1566,231 @@ const UserInfo = () => {
                             {userInfo.ACTIVITY === "active" || userInfo.ACTIVITY === "very_active" ? "Do mức độ vận động cao, giấc ngủ sâu và đủ rất quan trọng để cơ bắp phục hồi và tái tạo năng lượng." : ""}
                         </Typography>
                     </Box>
+                    <Box mt={4} className="fade-in">
+                    <Typography variant="h6" gutterBottom fontWeight="medium">
+                        Bạn gặp vấn đề gì về giấc ngủ?
+                    </Typography>
+                    <FormControl fullWidth margin="normal">
+                        <InputLabel id="sleep-conditions-label">Vấn đề bạn gặp phải</InputLabel>
+                        <Select
+                            labelId="sleep-conditions-label"
+                            multiple
+                            value={selectedSleepConditions}
+                            onChange={(e) => setSelectedSleepConditions(e.target.value)}
+                            input={<OutlinedInput label="Vấn đề bạn gặp phải" />}
+                            renderValue={(selected) => selected.join(', ')}
+                            MenuProps={{
+                                PaperProps: {
+                                    style: {
+                                        maxHeight: 224,
+                                        width: 250,
+                                    },
+                                },
+                            }}
+                        >
+                            {sleepConditionsOptions.map((condition) => (
+                                <MenuItem key={condition} value={condition}>
+                                    <Checkbox checked={selectedSleepConditions.indexOf(condition) > -1} />
+                                    <ListItemText primary={condition} />
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+
+                    <FormControl fullWidth margin="normal">
+                        <InputLabel id="sleep-herbs-label">Dược liệu bạn muốn thử</InputLabel>
+                        <Select
+                            labelId="sleep-herbs-label"
+                            multiple
+                            value={selectedSleepHerbs}
+                            onChange={(e) => setSelectedSleepHerbs(e.target.value)}
+                            input={<OutlinedInput label="Dược liệu bạn muốn thử" />}
+                            renderValue={(selected) => selected.join(', ')}
+                            MenuProps={{
+                                PaperProps: {
+                                    style: {
+                                        maxHeight: 224,
+                                        width: 250,
+                                    },
+                                },
+                            }}
+                        >
+                            {sleepHerbsOptions.map((herb) => (
+                                <MenuItem key={herb} value={herb}>
+                                    <Checkbox checked={selectedSleepHerbs.indexOf(herb) > -1} />
+                                    <ListItemText primary={herb} />
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+
+                    <Button variant="contained" color="primary" onClick={generateSleepAidSuggestion} sx={{ mt: 2 }}>
+                        Tạo gợi ý hỗ trợ giấc ngủ
+                    </Button>
+
+                    {sleepAidSuggestion && (
+                        <Button variant="outlined" onClick={generateSleepAidSuggestion} sx={{ mt: 2 }}>
+                            Tạo gợi ý khác (ngẫu nhiên)
+                        </Button>
+                    )}
+
+                    {sleepAidSuggestion && ( // Hiển thị gợi ý nếu có
+                        <Card sx={{ maxWidth: 800, mx: "auto", mt: 4 }}>
+                            {/* ... nội dung Card hiện có của bạn */}
+                        </Card>
+                    )}
+
+                    {sleepAidSuggestion && ( // Hiển thị gợi ý nếu có
+                        <Card sx={{ maxWidth: 800, mx: "auto", mt: 4 }}>
+                            <CardContent>
+                                <Typography variant="h6" gutterBottom fontWeight="bold">
+                                    Gợi ý cho bạn: {sleepAidSuggestion.title}
+                                </Typography>
+                                {sleepAidSuggestion.image && (
+                                    <Box
+                                        component="img"
+                                        src={sleepAidSuggestion.image}
+                                        alt={sleepAidSuggestion.title}
+                                        sx={{
+                                            width: "100%",
+                                            height: 200,
+                                            objectFit: "cover",
+                                            borderRadius: 1,
+                                            mb: 2
+                                        }}
+                                    />
+                                )}
+                                <Typography variant="body1" paragraph>
+                                    {sleepAidSuggestion.description}
+                                </Typography>
+
+                                {sleepAidSuggestion.materials && sleepAidSuggestion.materials.length > 0 && (
+                                    <Typography variant="body2" sx={{ mb: 1 }}>
+                                        <strong>Cần chuẩn bị:</strong> {sleepAidSuggestion.materials.join(', ')}
+                                    </Typography>
+                                )}
+
+                                {sleepAidSuggestion.prepTime && (
+                                    <Typography variant="body2" sx={{ mb: 1 }}>
+                                        <strong>Thời gian chuẩn bị:</strong> {sleepAidSuggestion.prepTime}
+                                    </Typography>
+                                )}
+
+                                {sleepAidSuggestion.howTo && (
+                                    <Typography variant="body2" sx={{ mb: 1 }}>
+                                        <strong>Cách thực hiện:</strong> {sleepAidSuggestion.howTo}
+                                    </Typography>
+                                )}
+
+                                {sleepAidSuggestion.realLifeApplication && (
+                                    <Typography variant="body2" sx={{ mb: 1 }}>
+                                        <strong>Ứng dụng thực tế:</strong> {sleepAidSuggestion.realLifeApplication}
+                                    </Typography>
+                                )}
+
+                                {sleepAidSuggestion.suitableAgeGroup && sleepAidSuggestion.suitableAgeGroup.length > 0 && (
+                                    <Box mb={1}>
+                                        <Typography variant="body2" fontWeight="bold">Phù hợp với:</Typography>
+                                        {sleepAidSuggestion.suitableAgeGroup.map((item, idx) => (
+                                            <Chip key={idx} label={item} sx={{ m: 0.5 }} />
+                                        ))}
+                                    </Box>
+                                )}
+
+                                {sleepAidSuggestion.benefits && sleepAidSuggestion.benefits.length > 0 && (
+                                    <Box mb={1}>
+                                        <Typography variant="body2" fontWeight="bold">Lợi ích:</Typography>
+                                        {sleepAidSuggestion.benefits.map((item, idx) => (
+                                            <Chip key={idx} label={item} sx={{ m: 0.5 }} />
+                                        ))}
+                                    </Box>
+                                )}
+
+                                {sleepAidSuggestion.prevention && sleepAidSuggestion.prevention.length > 0 && (
+                                    <Box mb={1}>
+                                        <Typography variant="body2" fontWeight="bold">Phòng ngừa:</Typography>
+                                        {sleepAidSuggestion.prevention.map((item, idx) => (
+                                            <Chip key={idx} label={item} sx={{ m: 0.5 }} />
+                                        ))}
+                                    </Box>
+                                )}
+                                {sleepAidSuggestion.prevention && sleepAidSuggestion.source.length > 0 && (
+                                    <Box mb={1}>
+                                        <Typography variant="body2" fontWeight="bold">Nguồn:</Typography>
+                                        {sleepAidSuggestion.source.map((item, idx) => (
+                                            <Chip key={idx} label={item} sx={{ m: 0.5 }} />
+                                        ))}
+                                    </Box>
+                                )}
+
+                                {sleepAidSuggestion.link && (
+                                    <Button
+                                        variant="outlined"
+                                        href={sleepAidSuggestion.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        sx={{ mt: 2 }}
+                                    >
+                                        Xem video hướng dẫn
+                                    </Button>
+                                )}
+                            </CardContent>
+                        </Card>
+                    )}
+
+                    {/* Nếu không có gợi ý và người dùng đã click tìm kiếm */}
+                    {!sleepAidSuggestion && (selectedSleepConditions.length > 0 || selectedSleepHerbs.length > 0) && (
+                        <Alert severity="info" sx={{ mt: 2 }}>
+                            Không tìm thấy gợi ý phù hợp với lựa chọn của bạn. Vui lòng thử các lựa chọn khác.
+                        </Alert>
+                    )}
+                </Box>
+
+                {/* Lượng nước tiêu thụ mỗi ngày */}
+                <Card sx={{ mb: 3 }}>
+                        <CardContent>
+                        <Typography variant="h6" gutterBottom>Lượng nước tiêu thụ mỗi ngày</Typography>
+                        <Typography variant="body1">
+                            Uống đủ nước là rất quan trọng để duy trì các chức năng cơ thể. Lượng nước khuyến nghị có thể khác nhau tùy vào cân nặng, mức độ hoạt động và khí hậu. Một quy tắc chung là nam giới trưởng thành nên uống khoảng 3.7 lít/ngày và nữ giới khoảng 2.7 lít/ngày từ tổng lượng thực phẩm và đồ uống.
+                        </Typography>
+                        <Typography variant="body1" mt={1}>
+                            Nước giúp:
+                            <ul>
+                                <li>Vận chuyển chất dinh dưỡng và oxy đến các tế bào.</li>
+                                <li>Điều hòa nhiệt độ cơ thể.</li>
+                                <li>Bôi trơn khớp.</li>
+                                <li>Bảo vệ các cơ quan và mô.</li>
+                                <li>Loại bỏ chất thải qua nước tiểu và phân.</li>
+                            </ul>
+                        </Typography>
+                        {/* Input cho lượng nước */}
+                        <FormControl fullWidth margin="normal">
+                            <TextField
+                                label="Lượng nước uống hàng ngày (ml)"
+                                type="number"
+                                value={dailyWaterIntake}
+                                onChange={(e) => setDailyWaterIntake(e.target.value)}
+                                inputProps={{ min: "0" }}
+                                helperText="Ví dụ: 2500 ml"
+                            />
+                        </FormControl>
+                        {/* Lời khuyên cá nhân hóa dựa trên input và cân nặng */}
+                    {dailyWaterIntake && userInfo.WEIGHT && (
+                        <Alert severity={
+                            (dailyWaterIntake / 1000 >= (userInfo.WEIGHT * 30 / 1000) && dailyWaterIntake / 1000 <= (userInfo.WEIGHT * 40 / 1000))
+                            ? "success"
+                            : "warning"
+                        } sx={{ mt: 2 }}>
+                            {dailyWaterIntake / 1000 >= (userInfo.WEIGHT * 30 / 1000) && dailyWaterIntake / 1000 <= (userInfo.WEIGHT * 40 / 1000)
+                                ? `Bạn đang uống đủ lượng nước khuyến nghị (${(dailyWaterIntake / 1000).toFixed(1)} lít). Rất tốt!`
+                                : `Với ${(dailyWaterIntake / 1000).toFixed(1)} lít nước mỗi ngày, bạn có thể cần điều chỉnh. Mục tiêu cho bạn là khoảng ${(userInfo.WEIGHT * 30 / 1000).toFixed(1)} - ${(userInfo.WEIGHT * 40 / 1000).toFixed(1)} lít.`
+                            }
+                            {userInfo.ACTIVITY === "active" || userInfo.ACTIVITY === "very_active" ? " Do bạn có mức độ vận động cao, bạn cần uống thêm nước để bù đắp lượng mồ hôi mất đi." : ""}
+                            {userInfo.ACTIVITY === "sedentary" ? " Ngay cả khi ít vận động, việc uống đủ nước vẫn rất quan trọng để duy trì trao đổi chất." : ""}
+                        </Alert>
+                    )}
+                    </CardContent>
+                </Card>
 
                     <Divider sx={{ my: 3 }} />
 
