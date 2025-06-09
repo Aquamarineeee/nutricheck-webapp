@@ -335,13 +335,111 @@ const UserInfo = () => {
             });
         }, [totalCalories, minCaloriesWeek]);
         const getHealthWarnings = () => {
-            if (totalCalories < minCaloriesWeek * 0.8) {
-                return "Bạn tiêu thụ quá ít calo trong tuần, điều này có thể dẫn đến suy dinh dưỡng. Lượng calo quá thấp sẽ không đủ để cơ thể tạo năng lượng cần thiết cho các hoạt động cơ bản như hô hấp, tuần hoàn, và vận động. Hãy kiểm tra lại chế độ ăn của mình, bổ sung các thực phẩm giàu dinh dưỡng như rau, protein, và ngũ cốc nguyên hạt để cải thiện năng lượng hàng ngày. Người bệnh thừa cân, béo phì phải đối mặt với nhiều nguy cơ sức khỏe như: bệnh tim, cao huyết áp, đột quỵ, viêm khớp, giảm khả năng sinh sản, gan nhiễm mỡ không do rượu, đái tháo đường type 2, hội chứng ngưng thở khi ngủ… Đặc biệt, béo phì được cho là có liên quan đến 13 loại ung thư, gồm: ung thư buồng trứng, ung thư gan, ung thư não, ung thư tuyến tụy…";
-            } else if (totalCalories > minCaloriesWeek * 1.2) {
-                return "Bạn tiêu thụ quá nhiều calo trong tuần, điều này có thể dẫn đến tăng cân và các bệnh mãn tính. Khi lượng calo nạp vào vượt quá mức cơ thể cần, năng lượng dư thừa sẽ chuyển hóa thành mỡ, tích tụ lâu ngày gây béo phì. Điều này làm tăng nguy cơ mắc các bệnh như tiểu đường, cao huyết áp, và tim mạch. Người bệnh thừa cân, béo phì phải đối mặt với nhiều nguy cơ sức khỏe như: bệnh tim, cao huyết áp, đột quỵ, viêm khớp, giảm khả năng sinh sản, gan nhiễm mỡ không do rượu, đái tháo đường type 2, hội chứng ngưng thở khi ngủ… Đặc biệt, béo phì được cho là có liên quan đến 13 loại ung thư, gồm: ung thư buồng trứng, ung thư gan, ung thư não, ung thư tuyến tụy…";
-            } else {
-                return "Lượng calo tiêu thụ trong tuần của bạn nằm trong mức hợp lý, cho thấy bạn đang duy trì một chế độ ăn uống cân bằng. Điều này giúp cơ thể bạn có đủ năng lượng để hoạt động mà không tích tụ mỡ thừa, đồng thời giảm nguy cơ mắc các bệnh liên quan đến dinh dưỡng. Hãy tiếp tục duy trì chế độ ăn uống này, kết hợp với luyện tập thể dục để tăng cường sức khỏe.";
-            }
+                
+                    if (totalCalories < minCaloriesWeek * 0.8) {
+                        return (
+                        <Alert severity="warning" sx={{ mt: 2 }}>
+                            <Typography variant="h6" fontWeight="bold" gutterBottom>
+                            Cảnh báo: Lượng Calo Tiêu Thụ Quá Thấp!
+                            </Typography>
+                            <Typography variant="body1" paragraph>
+                            Bạn tiêu thụ quá ít calo trong tuần, điều này có thể dẫn đến <strong>suy dinh dưỡng nghiêm trọng</strong>. Lượng calo quá thấp sẽ không đủ để cơ thể tạo năng lượng cần thiết cho các hoạt động cơ bản như hô hấp, tuần hoàn, và vận động.
+                            </Typography>
+                            <Typography variant="body1" paragraph>
+                            Hãy kiểm tra lại chế độ ăn của mình, bổ sung các thực phẩm giàu dinh dưỡng như <strong>rau xanh, protein nạc, và ngũ cốc nguyên hạt</strong> để cải thiện năng lượng hàng ngày và đảm bảo sức khỏe.
+                            </Typography>
+
+                            <Divider sx={{ my: 2 }} />
+
+                            <Typography variant="h6" fontWeight="bold" gutterBottom>
+                            Nguy Cơ Sức Khỏe Khi Thừa Cân, Béo Phì
+                            </Typography>
+                            <Typography variant="body1" paragraph>
+                            Người bệnh thừa cân, béo phì phải đối mặt với nhiều nguy cơ sức khỏe nghiêm trọng như:
+                            </Typography>
+                            <List dense sx={{ ml: 2, listStyleType: 'disc', pl: 2 }}>
+                            <ListItem sx={{ display: 'list-item', py: 0.5 }}>Bệnh tim</ListItem>
+                            <ListItem sx={{ display: 'list-item', py: 0.5 }}>Cao huyết áp</ListItem>
+                            <ListItem sx={{ display: 'list-item', py: 0.5 }}>Đột quỵ</ListItem>
+                            <ListItem sx={{ display: 'list-item', py: 0.5 }}>Viêm khớp</ListItem>
+                            <ListItem sx={{ display: 'list-item', py: 0.5 }}>Giảm khả năng sinh sản</ListItem>
+                            <ListItem sx={{ display: 'list-item', py: 0.5 }}>Gan nhiễm mỡ không do rượu</ListItem>
+                            <ListItem sx={{ display: 'list-item', py: 0.5 }}>Đái tháo đường type 2</ListItem>
+                            <ListItem sx={{ display: 'list-item', py: 0.5 }}>Hội chứng ngưng thở khi ngủ</ListItem>
+                            </List>
+
+                            <Typography variant="body1" paragraph sx={{ mt: 2 }}>
+                            Đặc biệt, béo phì được cho là có liên quan đến <strong>13 loại ung thư</strong>, gồm:
+                            </Typography>
+                            <List dense sx={{ ml: 2, listStyleType: 'disc', pl: 2 }}>
+                            <ListItem sx={{ display: 'list-item', py: 0.5 }}>Ung thư buồng trứng</ListItem>
+                            <ListItem sx={{ display: 'list-item', py: 0.5 }}>Ung thư gan</ListItem>
+                            <ListItem sx={{ display: 'list-item', py: 0.5 }}>Ung thư não</ListItem>
+                            <ListItem sx={{ display: 'list-item', py: 0.5 }}>Ung thư tuyến tụy</ListItem>
+                            </List>
+                            <Typography variant="body2" sx={{ mt: 2, fontStyle: 'italic' }}>
+                            Hãy tham khảo ý kiến chuyên gia dinh dưỡng hoặc bác sĩ để có kế hoạch ăn uống và vận động phù hợp nhất cho sức khỏe của bạn.
+                            </Typography>
+                        </Alert>
+                        );
+                    } else if (totalCalories > minCaloriesWeek * 1.2) {
+                        return (
+                        <Alert severity="warning" sx={{ mt: 2 }}>
+                            <Typography variant="h6" fontWeight="bold" gutterBottom>
+                            Cảnh báo: Lượng Calo Tiêu Thụ Quá Nhiều!
+                            </Typography>
+                            <Typography variant="body1" paragraph>
+                            Bạn tiêu thụ quá nhiều calo trong tuần, điều này có thể dẫn đến <strong>tăng cân và các bệnh mãn tính</strong>. Khi lượng calo nạp vào vượt quá mức cơ thể cần, năng lượng dư thừa sẽ chuyển hóa thành mỡ, tích tụ lâu ngày gây béo phì.
+                            </Typography>
+
+                            <Divider sx={{ my: 2 }} />
+
+                            <Typography variant="h6" fontWeight="bold" gutterBottom>
+                            Nguy Cơ Sức Khỏe Khi Thừa Cân, Béo Phì
+                            </Typography>
+                            <Typography variant="body1" paragraph>
+                            Người bệnh thừa cân, béo phì phải đối mặt với nhiều nguy cơ sức khỏe nghiêm trọng như:
+                            </Typography>
+                            <List dense sx={{ ml: 2, listStyleType: 'disc', pl: 2 }}>
+                            <ListItem sx={{ display: 'list-item', py: 0.5 }}>Bệnh tim</ListItem>
+                            <ListItem sx={{ display: 'list-item', py: 0.5 }}>Cao huyết áp</ListItem>
+                            <ListItem sx={{ display: 'list-item', py: 0.5 }}>Đột quỵ</ListItem>
+                            <ListItem sx={{ display: 'list-item', py: 0.5 }}>Viêm khớp</ListItem>
+                            <ListItem sx={{ display: 'list-item', py: 0.5 }}>Giảm khả năng sinh sản</ListItem>
+                            <ListItem sx={{ display: 'list-item', py: 0.5 }}>Gan nhiễm mỡ không do rượu</ListItem>
+                            <ListItem sx={{ display: 'list-item', py: 0.5 }}>Đái tháo đường type 2</ListItem>
+                            <ListItem sx={{ display: 'list-item', py: 0.5 }}>Hội chứng ngưng thở khi ngủ</ListItem>
+                            </List>
+
+                            <Typography variant="body1" paragraph sx={{ mt: 2 }}>
+                            Đặc biệt, béo phì được cho là có liên quan đến <strong>13 loại ung thư</strong>, gồm:
+                            </Typography>
+                            <List dense sx={{ ml: 2, listStyleType: 'disc', pl: 2 }}>
+                            <ListItem sx={{ display: 'list-item', py: 0.5 }}>Ung thư buồng trứng</ListItem>
+                            <ListItem sx={{ display: 'list-item', py: 0.5 }}>Ung thư gan</ListItem>
+                            <ListItem sx={{ display: 'list-item', py: 0.5 }}>Ung thư não</ListItem>
+                            <ListItem sx={{ display: 'list-item', py: 0.5 }}>Ung thư tuyến tụy</ListItem>
+                            </List>
+                            <Typography variant="body2" sx={{ mt: 2, fontStyle: 'italic' }}>
+                            Hãy điều chỉnh chế độ ăn uống và tăng cường vận động để duy trì cân nặng khỏe mạnh và giảm thiểu các nguy cơ này.
+                            </Typography>
+                        </Alert>
+                        );
+                    } else {
+                        return (
+                        <Alert severity="success" sx={{ mt: 2 }}>
+                            <Typography variant="h6" fontWeight="bold" gutterBottom>
+                            Chúc mừng: Lượng Calo Tiêu Thụ Hợp Lý!
+                            </Typography>
+                            <Typography variant="body1" paragraph>
+                            Lượng calo tiêu thụ trong tuần của bạn nằm trong mức hợp lý, cho thấy bạn đang duy trì một <strong>chế độ ăn uống cân bằng</strong>. Điều này giúp cơ thể bạn có đủ năng lượng để hoạt động mà không tích tụ mỡ thừa.
+                            </Typography>
+                            <Typography variant="body1" sx={{ fontStyle: 'italic' }}>
+                            Hãy tiếp tục duy trì chế độ ăn uống này, kết hợp với luyện tập thể dục đều đặn để tăng cường sức khỏe tổng thể.
+                            </Typography>
+                        </Alert>
+                        );
+                    };
         };
 
         const conditions = {
@@ -424,18 +522,7 @@ const UserInfo = () => {
 
             let fullFeedback = "";
             selectedConditions.forEach(condition => {
-                let result = `Nếu bạn đang bị ${condition}, với mức calo tiêu thụ như trên thì:\n`;
-
-                if (conditions.calorie_deficit.includes(condition)) {
-                    result += "-> Bạn có thể cần tăng lượng calo nạp vào để cải thiện tình trạng sức khỏe.\n";
-                } else if (conditions.calorie_surplus.includes(condition)) {
-                    result += "\n-> Bạn nên giảm lượng calo tiêu thụ để tránh các biến chứng nghiêm trọng.\n";
-                } else {
-                    // Trường hợp bệnh do người dùng nhập vào, không có trong danh sách
-                    result += "\n-> Đây là tình trạng sức khỏe bạn đã nhập. Hãy tham khảo ý kiến chuyên gia dinh dưỡng để có lời khuyên phù hợp.\n";
-                }
-
-                result += "Dưới đây là gợi ý thực đơn phù hợp cho bạn:\n";
+                let result = `Nếu bạn đang bị ${condition}, với mức calo tiêu thụ như trên thì, dưới đây là gợi ý thực đơn phù hợp cho bạn:\n`;
                 result += suggestMenu(condition); // Hàm suggestMenu vẫn hoạt động với từng bệnh riêng lẻ
                 fullFeedback += result + "\n\n---\n\n"; // Thêm dấu phân cách giữa các bệnh
             });
@@ -1277,7 +1364,7 @@ const UserInfo = () => {
                                     Cảnh báo sức khỏe và gợi ý dinh dưỡng
                                 </Typography>
                                 <Alert severity="info" style={{ marginBottom: "20px" }}>
-                                    {getHealthWarnings()}
+                                    {getHealthWarnings}
                                 </Alert>
                 
                                 <FormControl fullWidth margin="normal">
@@ -1627,6 +1714,7 @@ const UserInfo = () => {
                     <Button variant="contained" color="primary" onClick={generateSleepAidSuggestion} sx={{ mt: 2 }}>
                         Tạo gợi ý hỗ trợ giấc ngủ
                     </Button>
+                    <Divider sx={{ my: 3 }} />
 
                     {sleepAidSuggestion && (
                         <Button variant="outlined" onClick={generateSleepAidSuggestion} sx={{ mt: 2 }}>
@@ -1745,6 +1833,7 @@ const UserInfo = () => {
                 </Box>
 
                 {/* Lượng nước tiêu thụ mỗi ngày */}
+                <Divider sx={{ my: 3 }} />
                 <Card sx={{ mb: 3 }}>
                         <CardContent>
                         <Typography variant="h6" gutterBottom>Lượng nước tiêu thụ mỗi ngày</Typography>
@@ -1798,45 +1887,32 @@ const UserInfo = () => {
                         Lượng nước uống mỗi ngày
                     </Typography>
                     <FormControl fullWidth margin="normal">
-                        <TextField
-                            label="Lượng nước uống hàng ngày (ml)"
-                            type="number"
-                            value={dailyWaterIntake}
-                            onChange={(e) => {
-                                const value = e.target.value;
-                                // Chuyển đổi giá trị sang số. Nếu là chuỗi rỗng thì giữ nguyên chuỗi rỗng.
-                                // Điều này giúp TextField hiển thị trống khi người dùng xóa hết số.
-                                setDailyWaterIntake(value === '' ? '' : Number(value));
-                            }}
-                            inputProps={{ min: "0" }}
-                            helperText="Ví dụ: 2500 ml"
-                        />
+                        {dailyWaterIntake !== '' && dailyWaterIntake !== null && userInfo.WEIGHT ? (
+                            <Alert
+                                severity={
+                                    // Logic cho severity của Alert
+                                    dailyWaterIntake > 0 && dailyWaterIntake <= 7000 ? // Nếu giá trị hợp lệ trong khoảng 1-7000ml
+                                        (dailyWaterIntake / 1000 >= userInfo.WEIGHT * 0.03 && dailyWaterIntake / 1000 <= userInfo.WEIGHT * 0.04
+                                            ? "success" // Đủ nước
+                                            : "warning") // Thiếu/thừa nước nhưng vẫn trong khoảng hợp lý
+                                        : "error" // Giá trị không hợp lệ (<=0 hoặc >7000)
+                                }
+                                sx={{ mt: 2 }}
+                            >
+                                {/* Logic cho nội dung của Alert */}
+                                {dailyWaterIntake > 0 && dailyWaterIntake <= 7000 ? (
+                                    dailyWaterIntake / 1000 >= userInfo.WEIGHT * 0.03 &&
+                                    dailyWaterIntake / 1000 <= userInfo.WEIGHT * 0.04
+                                        ? `Bạn đang uống đủ nước (${(dailyWaterIntake / 1000).toFixed(1)} lít/ngày).`
+                                        : `Với ${(dailyWaterIntake / 1000).toFixed(1)} lít/ngày, bạn nên điều chỉnh. Mức lý tưởng là khoảng ${(userInfo.WEIGHT * 30 / 1000).toFixed(1)}–${(userInfo.WEIGHT * 40 / 1000).toFixed(1)} lít.`
+                                ) : (
+                                    'Lượng nước không hợp lệ, vui lòng nhập lại một số từ 1 đến 7000 ml.' // Thông báo lỗi rõ ràng hơn
+                                )}
+                            </Alert>
+                        ) : null /* Không hiển thị Alert nếu dailyWaterIntake là rỗng hoặc null, hoặc userInfo.WEIGHT chưa có */ }
                     </FormControl>
 
-                    {/* Chỉ hiển thị Alert nếu dailyWaterIntake có giá trị (không rỗng) và userInfo.WEIGHT tồn tại */}
-                    {dailyWaterIntake !== '' && dailyWaterIntake !== null && userInfo.WEIGHT ? (
-                        <Alert
-                            severity={
-                                // Logic cho severity của Alert
-                                dailyWaterIntake > 0 && dailyWaterIntake <= 7000 ? // Nếu giá trị hợp lệ trong khoảng 1-7000ml
-                                    (dailyWaterIntake / 1000 >= userInfo.WEIGHT * 0.03 && dailyWaterIntake / 1000 <= userInfo.WEIGHT * 0.04
-                                        ? "success" // Đủ nước
-                                        : "warning") // Thiếu/thừa nước nhưng vẫn trong khoảng hợp lý
-                                    : "error" // Giá trị không hợp lệ (<=0 hoặc >7000)
-                            }
-                            sx={{ mt: 2 }}
-                        >
-                            {/* Logic cho nội dung của Alert */}
-                            {dailyWaterIntake > 0 && dailyWaterIntake <= 7000 ? (
-                                dailyWaterIntake / 1000 >= userInfo.WEIGHT * 0.03 &&
-                                dailyWaterIntake / 1000 <= userInfo.WEIGHT * 0.04
-                                    ? `Bạn đang uống đủ nước (${(dailyWaterIntake / 1000).toFixed(1)} lít/ngày).`
-                                    : `Với ${(dailyWaterIntake / 1000).toFixed(1)} lít/ngày, bạn nên điều chỉnh. Mức lý tưởng là khoảng ${(userInfo.WEIGHT * 30 / 1000).toFixed(1)}–${(userInfo.WEIGHT * 40 / 1000).toFixed(1)} lít.`
-                            ) : (
-                                'Lượng nước không hợp lệ, vui lòng nhập lại một số từ 1 đến 7000 ml.' // Thông báo lỗi rõ ràng hơn
-                            )}
-                        </Alert>
-                    ) : null /* Không hiển thị Alert nếu dailyWaterIntake là rỗng hoặc null, hoặc userInfo.WEIGHT chưa có */ }
+                    
                 </Box>
                 </Box>
             </div>
