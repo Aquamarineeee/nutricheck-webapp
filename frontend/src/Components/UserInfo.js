@@ -1714,7 +1714,7 @@ const UserInfo = () => {
                                         ))}
                                     </Box>
                                 )}
-                                {sleepAidSuggestion.prevention && sleepAidSuggestion.source.length > 0 && (
+                                {sleepAidSuggestion.source && sleepAidSuggestion.source.length > 0 && (
                                     <Box mb={1}>
                                         <Typography variant="body2" fontWeight="bold">Nguồn:</Typography>
                                         {sleepAidSuggestion.source.map((item, idx) => (
