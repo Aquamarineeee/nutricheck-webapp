@@ -1714,12 +1714,10 @@ const UserInfo = () => {
                                         ))}
                                     </Box>
                                 )}
-                                {sleepAidSuggestion.slink && sleepAidSuggestion.slink.length > 0 && (
+                                {sleepAidSuggestion.slink && (
                                     <Box mb={1}>
                                         <Typography variant="body2" fontWeight="bold">Nguồn:</Typography>
-                                        {sleepAidSuggestion.slink.map((item, idx) => (
-                                            <Chip key={idx} label={item} sx={{ m: 0.5 }} />
-                                        ))}
+                                        <Chip label={sleepAidSuggestion.slink} sx={{ m: 0.5 }} />
                                     </Box>
                                 )}
 
