@@ -3,8 +3,9 @@ import {
     Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
     Typography, Paper, Alert, Box, Grid, Card, CardContent,
     Button, Select, MenuItem, InputLabel, FormControl, Divider, TextField,
-    Checkbox, ListItemText, Switch, FormControlLabel, Autocomplete, Chip, List, ListItem// <-- Đảm bảo có Autocomplete và Chip
+    Checkbox, ListItemText, Switch, FormControlLabel, Autocomplete, Chip // <-- Đảm bảo có Autocomplete và Chip
 } from "@mui/material";
+import { keyframes, styled } from "@mui/system";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
@@ -19,14 +20,146 @@ import loseMealsData from "./loseMeals.json";
 import OutlinedInput from '@mui/material/OutlinedInput'; 
 import exerciseData from './exerciseData.json'; 
 import sleepAidData from './sleepAidData.json'; 
+
+import SleepAidCard from './SleepAidCard';
+
 // Dữ liệu thực đơn chuyển vào JSON riêng
 const mealData = {
     gain: gainMealsData,
     lose: loseMealsData,
     maintain:maintainMealsData
 };
+const activityFactor = {
+    sedentary: 1.2, // Không vận động
+    light: 1.375, // Vận động nhẹ
+    moderate: 1.55, // Vận động trung bình
+    active: 1.725, // Vận động cao
+    very_active: 1.9, // Vận động rất cao
+};
+const sleepHerbsOptions = ['Gừng', 'Hoa cúc', 'Oải hương', 'Bạc hà', 'Rễ Valerian', 'Chuối']; 
+const sleepConditionsOptions = ['Mất ngủ', 'Căng thẳng', 'Lo âu', 'Ngủ không sâu giấc', 'Giật mình khi ngủ', 'Khó ngủ']; 
 
-
+const sleepAidData = [
+    {
+        "id": "sleep_tip_001",
+        "conditions": ["Mất ngủ", "Căng thẳng", "Ngủ không sâu giấc"],
+        "herbs": ["Chuối"], // Giả định chuối là 1 loại "dược liệu" ở đây
+        "title": "Ăn một quả chuối",
+        "description": "Ăn một quả chuối là một phương pháp tự nhiên hỗ trợ cải thiện chất lượng giấc ngủ và thư giãn thần kinh.",
+        "image": "https://images.unsplash.com/photo-1571217226063-22877114b096?q=80&w=2000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Cập nhật link ảnh thực tế
+        "materials": ["Chuối"],
+        "prepTime": "4 phút",
+        "howTo": "Hướng dẫn thực hiện ăn một quả chuối một cách đơn giản và hiệu quả.",
+        "link": "https://www.youtube.com/watch?v=your-banana-sleep-video",
+        "realLifeApplication": "Áp dụng ăn một quả chuối vào buổi tối trước khi ngủ để dễ đi vào giấc ngủ hơn.",
+        "suitableAgeGroup": ["Người lớn tuổi", "Thanh thiếu niên"],
+        "benefits": ["Thúc đẩy melatonin", "Giảm cortisol", "Tăng serotonin", "Hạ huyết áp"],
+        "prevention": ["Căng thẳng", "Ngủ không sâu"],
+        "slink": "NIH, National Center for Complementary and Integrative Health, 2022"
+    },
+    {
+        "id": "sleep_tip_002",
+        "conditions": ["Mất ngủ", "Lo âu"],
+        "herbs": ["Hoa cúc", "Oải hương"],
+        "title": "Uống trà hoa cúc và oải hương",
+        "description": "Trà hoa cúc và oải hương giúp thư giãn tâm trí và cơ thể, thúc đẩy giấc ngủ ngon.",
+        "image": "https://images.unsplash.com/photo-1544186523-a5c7c2c1c69b?q=80&w=2000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Cập nhật link ảnh
+        "materials": ["Hoa cúc khô", "Oải hương khô", "Nước nóng"],
+        "prepTime": "10 phút",
+        "howTo": "Pha một thìa cà phê hoa cúc và oải hương khô với nước nóng, ủ 5-7 phút.",
+        "link": "https://www.youtube.com/watch?v=your-chamomile-lavender-video",
+        "realLifeApplication": "Uống một cốc trà ấm trước khi đi ngủ 30 phút.",
+        "suitableAgeGroup": ["Người trưởng thành", "Người lớn tuổi"],
+        "benefits": ["Thư giãn", "Giảm lo âu", "Cải thiện chất lượng giấc ngủ"],
+        "prevention": ["Mất ngủ", "Căng thẳng"],
+        "slink": "Sleep Foundation, Herbal Teas for Sleep, 2023"
+    },
+    {
+        "id": "sleep_tip_003",
+        "conditions": ["Căng thẳng", "Khó ngủ"],
+        "herbs": ["Gừng"],
+        "title": "Ngâm chân nước gừng ấm",
+        "description": "Nước gừng ấm giúp thư giãn cơ bắp, cải thiện lưu thông máu và làm dịu tinh thần.",
+        "image": "https://images.unsplash.com/photo-1589182375836-8c03e3a4794e?q=80&w=2000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Cập nhật link ảnh
+        "materials": ["Gừng tươi", "Nước ấm", "Chậu ngâm chân"],
+        "prepTime": "5 phút",
+        "howTo": "Đập dập gừng, cho vào nước ấm, ngâm chân 15-20 phút.",
+        "link": "https://www.youtube.com/watch?v=your-ginger-foot-bath-video",
+        "realLifeApplication": "Thực hiện trước khi ngủ 1 tiếng để thư giãn và dễ ngủ hơn.",
+        "suitableAgeGroup": ["Mọi lứa tuổi"],
+        "benefits": ["Thư giãn", "Giảm căng thẳng", "Cải thiện lưu thông máu"],
+        "prevention": ["Chân tay lạnh", "Khó ngủ"],
+        "slink": "Healthline, Benefits of Ginger for Sleep, 2023"
+    },
+    {
+        "id": "sleep_tip_004",
+        "conditions": ["Mất ngủ"],
+        "herbs": ["Rễ Valerian"],
+        "title": "Sử dụng tinh dầu rễ Valerian",
+        "description": "Rễ Valerian nổi tiếng với khả năng an thần, giúp giảm thời gian đi vào giấc ngủ.",
+        "image": "https://images.unsplash.com/photo-1621213032549-b541d4c2c2f7?q=80&w=2000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Cập nhật link ảnh
+        "materials": ["Tinh dầu rễ Valerian", "Máy khuếch tán tinh dầu hoặc bông gòn"],
+        "prepTime": "2 phút",
+        "howTo": "Nhỏ vài giọt tinh dầu vào máy khuếch tán hoặc lên bông gòn đặt gần gối.",
+        "link": "https://www.youtube.com/watch?v=your-valerian-oil-video",
+        "realLifeApplication": "Sử dụng trong phòng ngủ 30 phút trước khi ngủ.",
+        "suitableAgeGroup": ["Người trưởng thành"],
+        "benefits": ["An thần", "Giảm mất ngủ", "Thúc đẩy giấc ngủ sâu"],
+        "prevention": ["Mất ngủ kinh niên"],
+        "slink": "National Sleep Foundation, Valerian for Sleep, 2022"
+    },
+    {
+        "id": "sleep_tip_005",
+        "conditions": ["Căng thẳng", "Khó ngủ"],
+        "herbs": ["Bạc hà"],
+        "title": "Tắm bồn với tinh dầu bạc hà",
+        "description": "Tắm nước ấm có tinh dầu bạc hà giúp thư giãn cơ thể và tinh thần, chuẩn bị cho giấc ngủ.",
+        "image": "https://images.unsplash.com/photo-1589182375836-8c03e3a4794e?q=80&w=2000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Cập nhật link ảnh
+        "materials": ["Tinh dầu bạc hà", "Nước ấm", "Bồn tắm"],
+        "prepTime": "5 phút",
+        "howTo": "Nhỏ 5-10 giọt tinh dầu bạc hà vào bồn nước ấm và ngâm mình 20-30 phút.",
+        "link": "https://www.youtube.com/watch?v=your-peppermint-bath-video",
+        "realLifeApplication": "Thực hiện vào buổi tối trước khi ngủ để thư giãn tối đa.",
+        "suitableAgeGroup": ["Mọi lứa tuổi"],
+        "benefits": ["Thư giãn cơ bắp", "Giảm căng thẳng", "Hạ nhiệt cơ thể"],
+        "prevention": ["Mệt mỏi", "Khó ngủ"],
+        "slink": "Medical News Today, Peppermint Oil for Sleep, 2023"
+    },
+     { // Thêm một vài mục nữa để carousel có nhiều dữ liệu hơn
+        "id": "sleep_tip_006",
+        "conditions": ["Mất ngủ", "Căng thẳng"],
+        "herbs": ["Oải hương"],
+        "title": "Phun sương tinh dầu oải hương",
+        "description": "Tinh dầu oải hương có tác dụng làm dịu và thư giãn, rất tốt cho giấc ngủ.",
+        "image": "https://images.unsplash.com/photo-1579227114347-c0e527d92176?q=80&w=2000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "materials": ["Tinh dầu oải hương", "Bình xịt"],
+        "prepTime": "1 phút",
+        "howTo": "Pha loãng tinh dầu với nước, xịt nhẹ lên gối hoặc trong phòng.",
+        "link": "https://www.youtube.com/watch?v=dvnXDaIzF1w",
+        "realLifeApplication": "Sử dụng trước khi ngủ 15 phút.",
+        "suitableAgeGroup": ["Mọi lứa tuổi"],
+        "benefits": ["Thư giãn", "Giảm lo lắng", "Hỗ trợ giấc ngủ"],
+        "prevention": ["Căng thẳng", "Khó ngủ"],
+        "slink": "National Sleep Foundation, Lavender for Sleep, 2023"
+    },
+    {
+        "id": "sleep_tip_007",
+        "conditions": ["Căng thẳng"],
+        "herbs": ["Gừng"],
+        "title": "Uống trà gừng ấm",
+        "description": "Trà gừng giúp làm ấm cơ thể, giảm căng thẳng và làm dịu dạ dày, hỗ trợ giấc ngủ.",
+        "image": "https://images.unsplash.com/photo-1585802277490-21a4f02e60b1?q=80&w=2000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "materials": ["Gừng tươi", "Nước nóng"],
+        "prepTime": "5 phút",
+        "howTo": "Thái lát gừng, cho vào nước nóng, ủ 5-7 phút.",
+        "link": "https://www.youtube.com/watch?v/some-yoga-tutorial2",
+        "realLifeApplication": "Uống một cốc trước khi ngủ.",
+        "suitableAgeGroup": ["Mọi lứa tuổi"],
+        "benefits": ["Làm ấm", "Giảm căng thẳng", "Hỗ trợ tiêu hóa"],
+        "prevention": ["Đầy bụng", "Khó ngủ"],
+        "slink": "Healthline, Ginger Tea for Sleep, 2023"
+    }
+];
 
 const UserInfo = () => {
     const navigate = useNavigate();
@@ -66,42 +199,65 @@ const UserInfo = () => {
     const [selectedSleepConditions, setSelectedSleepConditions] = useState([]);
     const [selectedSleepHerbs, setSelectedSleepHerbs] = useState([]);
     const [sleepAidSuggestion, setSleepAidSuggestion] = useState(null); // Lưu trữ object gợi ý
+    const [sleepConditionsOptions, setSleepConditionsOptions] = useState([]);
+    const [sleepHerbsOptions, setSleepHerbsOptions] = useState([]);
+    const [currentSleepAidSuggestions, setCurrentSleepAidSuggestions] = useState([]);
     
 
-    //Dữ liệu cho tùy chỉnh (giấc ngủ)
-    const sleepConditionsOptions = ['Khó ngủ', 'Mất ngủ', 'Ngủ không sâu giấc', 'Căng thẳng', 'Lo âu'];
-    const sleepHerbsOptions = ['Gừng', 'Hoa cúc', 'Oải hương', 'Bạc hà', 'Rễ Valerian'];
-
-    const generateSleepAidSuggestion = useCallback(() => {
-        let filteredSuggestions = sleepAidData.filter(item => {
-            // Lọc theo điều kiện được chọn (nếu có)
-            const matchesCondition = selectedSleepConditions.length === 0 ||
-                selectedSleepConditions.some(condition => item.conditions.includes(condition));
-
-            // Lọc theo dược liệu được chọn (nếu có)
-            const matchesHerb = selectedSleepHerbs.length === 0 ||
-                selectedSleepHerbs.some(herb => item.herbs.includes(herb));
-
-            return matchesCondition && matchesHerb;
-        });
-
-        // Nếu không có điều kiện hoặc dược liệu nào được chọn, hiển thị tất cả các gợi ý
-        if (selectedSleepConditions.length === 0 && selectedSleepHerbs.length === 0) {
-            filteredSuggestions = sleepAidData;
-        }
-
-        if (filteredSuggestions.length > 0) {
-            // Chọn ngẫu nhiên một gợi ý từ danh sách đã lọc
-            const randomIndex = Math.floor(Math.random() * filteredSuggestions.length);
-            setSleepAidSuggestion(filteredSuggestions[randomIndex]);
-            enqueueSnackbar("Đã tạo gợi ý hỗ trợ giấc ngủ mới!", { variant: "success" });
-        } else {
-            setSleepAidSuggestion(null); // Không có gợi ý nào phù hợp
-            enqueueSnackbar("Không tìm thấy gợi ý hỗ trợ giấc ngủ phù hợp với lựa chọn của bạn.", { variant: "info" });
-        }
-    }, [selectedSleepConditions, selectedSleepHerbs, enqueueSnackbar]);
-
     // Hàm chọn món ăn dựa trên calo mục tiêu (thuật toán tham lam)
+    const floatAnimation = keyframes`
+        0% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-10px); /* Nhấp nhô lên 10px */
+        }
+        100% {
+            transform: translateY(0px);
+        }
+        `;
+    const sett = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4, // Mặc định hiển thị 4 slide trên màn hình lớn
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        vertical: false,
+        verticalSwiping: false,
+        responsive: [
+            { breakpoint: 1200, settings: { slidesToShow: 3, slidesToScroll: 1, } },
+            { breakpoint: 900, settings: { slidesToShow: 2, slidesToScroll: 1, } },
+            { breakpoint: 600, settings: { slidesToShow: 1, slidesToScroll: 1 } }
+        ]
+    };
+    const sleepAidCarouselSettings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3, // Hiển thị 3 gợi ý cùng lúc
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 4000,
+        responsive: [
+            { breakpoint: 1200, settings: { slidesToShow: 2, slidesToScroll: 1, } },
+            { breakpoint: 900, settings: { slidesToShow: 1, slidesToScroll: 1, } }
+        ]
+    };
+    useEffect(() => {
+        // Extract unique conditions and herbs from sleepAidData
+        const allConditions = new Set();
+        const allHerbs = new Set();
+        sleepAidData.forEach(item => {
+            item.conditions.forEach(condition => allConditions.add(condition));
+            item.herbs.forEach(herb => allHerbs.add(herb));
+        });
+        setSleepConditionsOptions(Array.from(allConditions));
+        setSleepHerbsOptions(Array.from(allHerbs));
+    }, []);
+
+    
     const selectMealGreedy = (
         availableMeals,
         targetCalorie,
@@ -335,7 +491,6 @@ const UserInfo = () => {
             });
         }, [totalCalories, minCaloriesWeek]);
         const getHealthWarnings = () => {
-                
                     if (totalCalories < minCaloriesWeek * 0.8) {
                         return (
                         <Alert severity="warning" sx={{ mt: 2 }}>
@@ -576,7 +731,7 @@ const UserInfo = () => {
                 return bestMeal;
             };
 
-            const generateExerciseSuggestions = useCallback((isRandom = false) => {
+        const generateExerciseSuggestions = useCallback((isRandom = false) => {
             if (!userInfo || !userInfo.ACTIVITY || !goal) {
                 enqueueSnackbar("Vui lòng cập nhật đầy đủ thông tin cá nhân và mục tiêu để nhận gợi ý bài tập.", { variant: "warning" });
                 return;
@@ -585,54 +740,106 @@ const UserInfo = () => {
             const { ACTIVITY: activityLevel } = userInfo;
             const currentGoal = goal;
 
-            // Lọc ra các bài tập phù hợp với activityLevel của người dùng
             const relevantExercises = exerciseData.filter(
                 (item) => item.activityLevel === activityLevel || item.activityLevel === "any"
             );
 
             let suggestionsToDisplay = [];
+            const selectedIds = new Set();
+
+            const addUniqueSuggestion = (item) => {
+                if (!selectedIds.has(item.id)) {
+                    selectedIds.add(item.id);
+                    suggestionsToDisplay.push(item);
+                }
+            };
 
             if (isRandom) {
-                const numberOfRandomSuggestions = 3; // Số lượng bài tập ngẫu nhiên muốn hiển thị
+                const numberOfRandomSuggestions = 3;
                 const shuffled = [...relevantExercises].sort(() => 0.5 - Math.random());
                 suggestionsToDisplay = shuffled.slice(0, numberOfRandomSuggestions);
                 enqueueSnackbar("Đã tạo gợi ý bài tập ngẫu nhiên mới!", { variant: "info" });
-
             } else {
-                let selectedSuggestions = new Map();
-
-                const addSuggestion = (item) => {
-                    if (!selectedSuggestions.has(item.id)) {
-                        selectedSuggestions.set(item.id, item);
-                    }
-                };
-
-                // 1. Gợi ý chính xác nhất: Khớp hoàn toàn activityLevel và goal
-                exerciseData.filter(
+                // Ưu tiên 1: Khớp hoàn toàn activityLevel và goal
+                relevantExercises.filter(
                     (item) => item.activityLevel === activityLevel && item.goal === currentGoal
-                ).forEach(addSuggestion);
+                ).forEach(addUniqueSuggestion);
 
-                // 2. Gợi ý chung cho Activity Level (goal: "any")
-                exerciseData.filter(
-                    (item) => item.activityLevel === activityLevel && item.goal === "any"
-                ).forEach(addSuggestion);
+                // Ưu tiên 2: Khớp activityLevel, mục tiêu "any"
+                if (suggestionsToDisplay.length < 3) {
+                    relevantExercises.filter(
+                        (item) => item.activityLevel === activityLevel && item.goal === "any"
+                    ).forEach(addUniqueSuggestion);
+                }
 
-                // 3. Gợi ý chung cho Goal (activityLevel: "any")
-                exerciseData.filter(
-                    (item) => item.activityLevel === "any" && item.goal === currentGoal
-                ).forEach(addSuggestion);
+                // Ưu tiên 3: Khớp goal, activityLevel "any"
+                if (suggestionsToDisplay.length < 3) {
+                    relevantExercises.filter(
+                        (item) => item.activityLevel === "any" && item.goal === currentGoal
+                    ).forEach(addUniqueSuggestion);
+                }
 
-                suggestionsToDisplay = Array.from(selectedSuggestions.values());
+                // Ưu tiên 4: Các bài tập chung (activityLevel "any", goal "any")
+                if (suggestionsToDisplay.length < 3) {
+                    relevantExercises.filter(
+                        (item) => item.activityLevel === "any" && item.goal === "any"
+                    ).forEach(addUniqueSuggestion);
+                }
+
+                // Đảm bảo đủ số lượng bằng cách thêm ngẫu nhiên từ phần còn lại nếu cần
+                const minSuggestions = 3;
+                if (suggestionsToDisplay.length < minSuggestions) {
+                    const remainingExercises = relevantExercises.filter(item => !selectedIds.has(item.id));
+                    const shuffledRemaining = [...remainingExercises].sort(() => 0.5 - Math.random());
+                    for (let i = 0; i < shuffledRemaining.length && suggestionsToDisplay.length < minSuggestions; i++) {
+                        addUniqueSuggestion(shuffledRemaining[i]);
+                    }
+                }
+
                 enqueueSnackbar("Đã tạo gợi ý bài tập cá nhân hóa!", { variant: "success" });
             }
             setExerciseSuggestions(suggestionsToDisplay);
-
     }, [userInfo, goal, enqueueSnackbar]);
+
         useEffect(() => {
-        if (userInfo && userInfo.ACTIVITY && goal) {
-            generateExerciseSuggestions(false); // Tạo gợi ý ban đầu (không random)
+            if (userInfo && userInfo.ACTIVITY && goal) {
+                generateExerciseSuggestions(false); // Tạo gợi ý ban đầu (không random)
+            }
+        }, [userInfo, goal, generateExerciseSuggestions]);
+
+
+        // ... (các state và useEffect khác)
+
+// Điều chỉnh hàm này để tạo ra một danh sách kết hợp cho carousel
+        const generateSleepAidSuggestion = useCallback(() => {
+        let filteredSuggestions = sleepAidData.filter(item => {
+            // Lọc theo điều kiện được chọn (nếu có)
+            const matchesCondition = selectedSleepConditions.length === 0 ||
+                selectedSleepConditions.some(condition => item.conditions.includes(condition));
+
+            // Lọc theo dược liệu được chọn (nếu có)
+            const matchesHerb = selectedSleepHerbs.length === 0 ||
+                selectedSleepHerbs.some(herb => item.herbs.includes(herb));
+
+            return matchesCondition && matchesHerb;
+        });
+
+        // Nếu không có điều kiện hoặc dược liệu nào được chọn, hiển thị tất cả các gợi ý
+        if (selectedSleepConditions.length === 0 && selectedSleepHerbs.length === 0) {
+            filteredSuggestions = sleepAidData;
         }
-    }, [userInfo, goal, generateExerciseSuggestions]);
+
+        if (filteredSuggestions.length > 0) {
+            // Chọn ngẫu nhiên một gợi ý từ danh sách đã lọc
+            const randomIndex = Math.floor(Math.random() * filteredSuggestions.length);
+            setSleepAidSuggestion(filteredSuggestions[randomIndex]);
+            enqueueSnackbar("Đã tạo gợi ý hỗ trợ giấc ngủ mới!", { variant: "success" });
+        } else {
+            setSleepAidSuggestion(null); // Không có gợi ý nào phù hợp
+            enqueueSnackbar("Không tìm thấy gợi ý hỗ trợ giấc ngủ phù hợp với lựa chọn của bạn.", { variant: "info" });
+        }
+    }, [selectedSleepConditions, selectedSleepHerbs, enqueueSnackbar]);
+
 
     // Hàm tạo thực đơn mới
         const generateBalancedMealPlan = (totalDailyCalories, goal, minPrice,maxPrice, preferredContinents) => {
@@ -900,31 +1107,40 @@ const UserInfo = () => {
                     </Button>
                 </Typography>
 
-                <Grid container spacing={2}>
+                <Slider {...sett}>
                     {meals.length > 0 ? (
-                    meals.map((meal, index) => (
-                        <Grid item xs={12} sm={6} md={3} key={index}>
-                        <MealCardDetail meal={meal} />
-                        </Grid>
-                    ))
+                        meals.map((meal, index) => (
+                            // Mỗi MealCardDetail cần được bọc trong một thẻ div đơn giản
+                            // để Slider có thể quản lý chúng như các slide
+                            <div key={index} style={{ padding: '8px' }}> {/* Thêm padding để tạo khoảng cách giữa các card */}
+                                <MealCardDetail
+                                    meal={meal}
+                                    sx={{ animation: `${floatAnimation} 3s ease-in-out infinite` }}
+                                />
+                            </div>
+                        ))
                     ) : (
-                    ["Sáng", "Trưa", "Chiều", "Tối"].map((time) => (
-                        <Grid item xs={12} sm={6} md={3} key={time}>
-                        <MealCardDetail meal={{
-                            name: "Đang tạo thực đơn...",
-                            mealTime: time,
-                            calories: 0,
-                            protein: 0,
-                            fat: 0,
-                            carbs: 0,
-                            weight: 0,
-                            description: "Vui lòng nhấn nút 'Tạo thực đơn mới'",
-                            image: "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                        }} />
-                        </Grid>
-                    ))
+                        // Hiển thị placeholder cũng trong Slider
+                        ["Sáng", "Trưa", "Chiều", "Tối"].map((time) => (
+                            <div key={time} style={{ padding: '8px' }}> {/* Thêm padding cho placeholder cards */}
+                                <MealCardDetail
+                                    meal={{
+                                        name: "Đang tạo thực đơn...",
+                                        mealTime: time,
+                                        calories: 0,
+                                        protein: 0,
+                                        fat: 0,
+                                        carbs: 0,
+                                        weight: 0,
+                                        description: "Vui lòng nhấn nút 'Tạo thực đơn mới'",
+                                        image: "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                                    }}
+                                    sx={{ animation: `${floatAnimation} 3s ease-in-out infinite` }}
+                                />
+                            </div>
+                        ))
                     )}
-                </Grid>
+                </Slider>
 
                 {meals.length > 0 && (
                     <Box mt={2}>
@@ -1364,7 +1580,7 @@ const UserInfo = () => {
                                     Cảnh báo sức khỏe và gợi ý dinh dưỡng
                                 </Typography>
                                 <Alert severity="info" style={{ marginBottom: "20px" }}>
-                                    {getHealthWarnings}
+                                    {getHealthWarnings()}
                                 </Alert>
                 
                                 <FormControl fullWidth margin="normal">
@@ -1831,6 +2047,8 @@ const UserInfo = () => {
                         </Alert>
                     )}
                 </Box>
+
+                    
 
                 {/* Lượng nước tiêu thụ mỗi ngày */}
                 <Divider sx={{ my: 3 }} />
