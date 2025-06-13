@@ -3,7 +3,7 @@ import {
     Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
     Typography, Paper, Alert, Box, Grid, Card, CardContent,
     Button, Select, MenuItem, InputLabel, FormControl, Divider, TextField,
-    Checkbox, ListItemText, Switch, FormControlLabel, Autocomplete, Chip, IconButton 
+    Checkbox, ListItemText, Switch, FormControlLabel, Autocomplete, Chip, IconButton, List, ListItem // <-- Đảm bảo có Autocomplete và Chip
 } from "@mui/material";
 import { keyframes, styled } from "@mui/system";
 import "slick-carousel/slick/slick.css";
@@ -21,7 +21,9 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import exerciseData from './exerciseData.json'; 
 import sleepAidData from './sleepAidData.json'; 
 import herbsData from './herbsData.json';
-import {generateSleepAidSuggestion} from './SleepAidCard';
+import {generateSleepAidSuggestions} from './SleepAidCard';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const sleepHerbsOptions = [...new Set(herbsData.flatMap(item => item.herbs))];
 const sleepConditionsOptions = ['Mất ngủ', 'Căng thẳng', 'Lo âu', 'Ngủ không sâu giấc', 'Giật mình khi ngủ', 'Khó ngủ'];
