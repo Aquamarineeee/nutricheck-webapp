@@ -3,7 +3,7 @@ import {
     Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
     Typography, Paper, Alert, Box, Grid, Card, CardContent,
     Button, Select, MenuItem, InputLabel, FormControl, Divider, TextField,
-    Checkbox, ListItemText, Switch, FormControlLabel, Autocomplete, Chip, IconButton // <-- Đảm bảo có Autocomplete và Chip
+    Checkbox, ListItemText, Switch, FormControlLabel, Autocomplete, Chip, IconButton 
 } from "@mui/material";
 import { keyframes, styled } from "@mui/system";
 import "slick-carousel/slick/slick.css";
@@ -20,7 +20,7 @@ import loseMealsData from "./loseMeals.json";
 import OutlinedInput from '@mui/material/OutlinedInput'; 
 import exerciseData from './exerciseData.json'; 
 import sleepAidData from './sleepAidData.json'; 
-import herbsData from '../data/herbsData.json';
+import herbsData from './herbsData.json';
 import {generateSleepAidSuggestion} from './SleepAidCard';
 
 const sleepHerbsOptions = [...new Set(herbsData.flatMap(item => item.herbs))];
