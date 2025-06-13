@@ -38,7 +38,7 @@ const floatAnimation = keyframes`
     100% { transform: translateY(0px); }
 `;
 
-function SleepAidGenerator() {
+function generateSleepAidSuggestions() {
     const [selectedSleepHerbs, setSelectedSleepHerbs] = useState([]);
     const [selectedSleepConditions, setSelectedSleepConditions] = useState([]);
     const [suggestionsList, setSuggestionsList] = useState([]);
@@ -313,4 +313,4 @@ function SleepAidGenerator() {
     );
 }
 
-export default SleepAidGenerator;
+export default generateSleepAidSuggestionsr;
