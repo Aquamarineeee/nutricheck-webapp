@@ -1,20 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import {
-    FormControl,
-    InputLabel,
-    Select,
-    MenuItem,
-    Checkbox,
-    ListItemText,
-    OutlinedInput,
-    Button,
-    Divider,
-    Card,
-    CardContent,
-    Typography,
-    Box,
-    Chip,
-    IconButton,
+import {FormControl,InputLabel,Select, MenuItem,Checkbox,ListItemText,OutlinedInput,Button,Divider,Card,CardContent,Typography,Box,Chip,IconButton,
 } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -38,7 +23,7 @@ const floatAnimation = keyframes`
     100% { transform: translateY(0px); }
 `;
 
-const generateSleepAidSuggestions = () =>{
+const SleepAidCard = () =>{
     const [selectedSleepHerbs, setSelectedSleepHerbs] = useState([]);
     const [selectedSleepConditions, setSelectedSleepConditions] = useState([]);
     const [suggestionsList, setSuggestionsList] = useState([]);
@@ -313,4 +298,4 @@ const generateSleepAidSuggestions = () =>{
     );
 }
 
-export default generateSleepAidSuggestions;
+export default SleepAidCard;
