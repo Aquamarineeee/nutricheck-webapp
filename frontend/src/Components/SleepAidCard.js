@@ -1,29 +1,28 @@
+// src/Components/SleepAidCard.js
+
 import React, { useState, useCallback } from 'react';
-import {FormControl,InputLabel,Select, MenuItem,Checkbox,ListItemText,OutlinedInput,Button,Divider,Card,CardContent,Typography,Box,Chip,IconButton,
+import {
+    FormControl, InputLabel, Select, MenuItem, Checkbox, ListItemText,
+    OutlinedInput, Button, Divider, Card, CardContent, Typography, Box,
+    Chip, IconButton,
 } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useSnackbar } from 'notistack';
-
-// Import keyframes từ @emotion/react
 import { keyframes } from '@emotion/react';
 
-// Import dữ liệu từ file JSON
-import herbsData from './herbsData.json'; // Đảm bảo đường dẫn đúng
-
-// Lọc ra danh sách dược liệu duy nhất từ dữ liệu của bạn
+// Đảm bảo đường dẫn đúng
+import herbsData from './herbsData.json';
 const sleepHerbsOptions = [...new Set(herbsData.flatMap(item => item.herbs))];
-// Giả sử bạn cũng có một danh sách các điều kiện
 const sleepConditionsOptions = ['Mất ngủ', 'Căng thẳng', 'Lo âu', 'Ngủ không sâu giấc', 'Giật mình khi ngủ', 'Khó ngủ'];
 
-// Định nghĩa keyframes animation
 const floatAnimation = keyframes`
     0% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
     100% { transform: translateY(0px); }
 `;
 
-const SleepAidCard = () =>{
+const SleepAidCard = () => { 
     const [selectedSleepHerbs, setSelectedSleepHerbs] = useState([]);
     const [selectedSleepConditions, setSelectedSleepConditions] = useState([]);
     const [suggestionsList, setSuggestionsList] = useState([]);
@@ -36,10 +35,8 @@ const SleepAidCard = () =>{
         let baseFilteredSuggestions = herbsData.filter(item => {
             const matchesCondition = selectedSleepConditions.length === 0 ||
                 selectedSleepConditions.some(condition => item.conditions.includes(condition));
-
             const matchesHerb = selectedSleepHerbs.length === 0 ||
                 selectedSleepHerbs.some(herb => item.herbs.includes(herb));
-
             return matchesCondition && matchesHerb;
         });
 
@@ -64,7 +61,6 @@ const SleepAidCard = () =>{
                 const herbSpecificSuggestions = herbsData.filter(item =>
                     item.herbs.includes(chosenHerb)
                 );
-
                 if (herbSpecificSuggestions.length > 0) {
                     const randomHerbIndex = Math.floor(Math.random() * herbSpecificSuggestions.length);
                     matchedSuggestions.push({
@@ -109,7 +105,6 @@ const SleepAidCard = () =>{
 
     return (
         <Box sx={{ p: 3 }}>
-            {/* Các FormControl của bạn */}
             <FormControl fullWidth margin="normal">
                 <InputLabel id="sleep-herbs-label">Dược liệu bạn muốn thử</InputLabel>
                 <Select
@@ -176,13 +171,12 @@ const SleepAidCard = () =>{
                     </IconButton>
 
                     <Card
-                        // Áp dụng animation vào Card
                         sx={{
                             maxWidth: 800,
                             mx: "auto",
                             mt: 4,
                             width: '100%',
-                            animation: `${floatAnimation} 3s ease-in-out infinite`, // Áp dụng animation
+                            animation: `${floatAnimation} 3s ease-in-out infinite`,
                         }}
                     >
                         <CardContent>
@@ -297,5 +291,6 @@ const SleepAidCard = () =>{
         </Box>
     );
 }
+
 
 export default SleepAidCard;
