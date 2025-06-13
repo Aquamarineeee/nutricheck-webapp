@@ -3,7 +3,7 @@ import {
     Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
     Typography, Paper, Alert, Box, Grid, Card, CardContent,
     Button, Select, MenuItem, InputLabel, FormControl, Divider, TextField,
-    Checkbox, ListItemText, Switch, FormControlLabel, Autocomplete, Chip, ListItem, List // <-- Đảm bảo có Autocomplete và Chip
+    Checkbox, ListItemText, Switch, FormControlLabel, Autocomplete, Chip, IconButton // <-- Đảm bảo có Autocomplete và Chip
 } from "@mui/material";
 import { keyframes, styled } from "@mui/system";
 import "slick-carousel/slick/slick.css";
@@ -20,8 +20,17 @@ import loseMealsData from "./loseMeals.json";
 import OutlinedInput from '@mui/material/OutlinedInput'; 
 import exerciseData from './exerciseData.json'; 
 import sleepAidData from './sleepAidData.json'; 
+import herbsData from '../data/herbsData.json';
+import {generateSleepAidSuggestion} from './SleepAidCard';
 
-import SleepAidCard from './SleepAidCard';
+const sleepHerbsOptions = [...new Set(herbsData.flatMap(item => item.herbs))];
+const sleepConditionsOptions = ['Mất ngủ', 'Căng thẳng', 'Lo âu', 'Ngủ không sâu giấc', 'Giật mình khi ngủ', 'Khó ngủ'];
+
+const floatAnimation = keyframes`
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+`;
 
 // Dữ liệu thực đơn chuyển vào JSON riêng
 const mealData = {
@@ -36,8 +45,7 @@ const activityFactor = {
     active: 1.725, // Vận động cao
     very_active: 1.9, // Vận động rất cao
 };
-const sleepHerbsOptions = ['Gừng', 'Hoa cúc', 'Oải hương', 'Bạc hà', 'Rễ Valerian', 'Chuối']; 
-const sleepConditionsOptions = ['Mất ngủ', 'Căng thẳng', 'Lo âu', 'Ngủ không sâu giấc', 'Giật mình khi ngủ', 'Khó ngủ']; 
+
 
 
 const UserInfo = () => {
@@ -81,6 +89,8 @@ const UserInfo = () => {
     const [sleepConditionsOptions, setSleepConditionsOptions] = useState([]);
     const [sleepHerbsOptions, setSleepHerbsOptions] = useState([]);
     const [currentSleepAidSuggestions, setCurrentSleepAidSuggestions] = useState([]);
+    const [suggestionsList, setSuggestionsList] = useState([]);
+    const [currentPage, setCurrentPage] = useState(0);
     
 
     // Hàm chọn món ăn dựa trên calo mục tiêu (thuật toán tham lam)
@@ -687,39 +697,6 @@ const UserInfo = () => {
         }, [userInfo, goal, generateExerciseSuggestions]);
 
 
-        // ... (các state và useEffect khác)
-
-// Điều chỉnh hàm này để tạo ra một danh sách kết hợp cho carousel
-        const generateSleepAidSuggestion = useCallback(() => {
-        let filteredSuggestions = sleepAidData.filter(item => {
-            // Lọc theo điều kiện được chọn (nếu có)
-            const matchesCondition = selectedSleepConditions.length === 0 ||
-                selectedSleepConditions.some(condition => item.conditions.includes(condition));
-
-            // Lọc theo dược liệu được chọn (nếu có)
-            const matchesHerb = selectedSleepHerbs.length === 0 ||
-                selectedSleepHerbs.some(herb => item.herbs.includes(herb));
-
-            return matchesCondition && matchesHerb;
-        });
-
-        // Nếu không có điều kiện hoặc dược liệu nào được chọn, hiển thị tất cả các gợi ý
-        if (selectedSleepConditions.length === 0 && selectedSleepHerbs.length === 0) {
-            filteredSuggestions = sleepAidData;
-        }
-
-        if (filteredSuggestions.length > 0) {
-            // Chọn ngẫu nhiên một gợi ý từ danh sách đã lọc
-            const randomIndex = Math.floor(Math.random() * filteredSuggestions.length);
-            setSleepAidSuggestion(filteredSuggestions[randomIndex]);
-            enqueueSnackbar("Đã tạo gợi ý hỗ trợ giấc ngủ mới!", { variant: "success" });
-        } else {
-            setSleepAidSuggestion(null); // Không có gợi ý nào phù hợp
-            enqueueSnackbar("Không tìm thấy gợi ý hỗ trợ giấc ngủ phù hợp với lựa chọn của bạn.", { variant: "info" });
-        }
-    }, [selectedSleepConditions, selectedSleepHerbs, enqueueSnackbar]);
-
-
     // Hàm tạo thực đơn mới
         const generateBalancedMealPlan = (totalDailyCalories, goal, minPrice,maxPrice, preferredContinents) => {
             const mealTimes = ["Sáng", "Trưa", "Chiều", "Tối"];
@@ -1176,6 +1153,32 @@ const UserInfo = () => {
                 **Lưu ý quan trọng:** Mọi lời khuyên về dinh dưỡng, giấc ngủ, lượng nước và bài tập thể thao trên đây chỉ mang tính chất tham khảo chung. Để có được kế hoạch cá nhân hóa chính xác và an toàn nhất cho tình trạng sức khỏe của bạn, **chúng tôi đặc biệt khuyến nghị bạn nên tham khảo ý kiến của bác sĩ, chuyên gia dinh dưỡng hoặc huấn luyện viên thể hình chuyên nghiệp.** Họ có thể đưa ra lời khuyên dựa trên tiền sử bệnh lý, tình trạng sức khỏe hiện tại và mục tiêu cụ thể của bạn.
             </Typography>
         </Alert>
+
+        const handleGenerateSuggestion = useCallback(() => {
+            const uniqueSuggestions = generateSleepAidSuggestions(
+                selectedSleepConditions,
+                selectedSleepHerbs
+            );
+
+            if (uniqueSuggestions.length > 0) {
+                setSuggestionsList(uniqueSuggestions);
+                setCurrentPage(0);
+                enqueueSnackbar("Đã tạo gợi ý hỗ trợ giấc ngủ!", { variant: "success" });
+            } else {
+                setSuggestionsList([]);
+                enqueueSnackbar("Không tìm thấy gợi ý hỗ trợ giấc ngủ phù hợp với lựa chọn của bạn.", { variant: "info" });
+            }
+        }, [selectedSleepConditions, selectedSleepHerbs, enqueueSnackbar]); // dependencies của useCallback
+
+        const handleNextPage = () => {
+            setCurrentPage((prevPage) => (prevPage + 1) % suggestionsList.length);
+        };
+
+        const handlePrevPage = () => {
+            setCurrentPage((prevPage) => (prevPage - 1 + suggestionsList.length) % suggestionsList.length);
+        };
+
+        const currentSuggestion = suggestionsList[currentPage];
         
 
         return (
@@ -1779,152 +1782,202 @@ const UserInfo = () => {
                         </Select>
                     </FormControl>
 
-                    <FormControl fullWidth margin="normal">
-                        <InputLabel id="sleep-herbs-label">Dược liệu bạn muốn thử</InputLabel>
-                        <Select
-                            labelId="sleep-herbs-label"
-                            multiple
-                            value={selectedSleepHerbs}
-                            onChange={(e) => setSelectedSleepHerbs(e.target.value)}
-                            input={<OutlinedInput label="Dược liệu bạn muốn thử" />}
-                            renderValue={(selected) => selected.join(', ')}
-                            MenuProps={{
-                                PaperProps: {
-                                    style: {
-                                        maxHeight: 224,
-                                        width: 250,
+                    <Box sx={{ p: 3 }}>
+                        <FormControl fullWidth margin="normal">
+                            <InputLabel id="sleep-herbs-label">Dược liệu bạn muốn thử</InputLabel>
+                            <Select
+                                labelId="sleep-herbs-label"
+                                multiple
+                                value={selectedSleepHerbs}
+                                onChange={(e) => setSelectedSleepHerbs(e.target.value)}
+                                input={<OutlinedInput label="Dược liệu bạn muốn thử" />}
+                                renderValue={(selected) => selected.join(', ')}
+                                MenuProps={{
+                                    PaperProps: {
+                                        style: {
+                                            maxHeight: 224,
+                                            width: 250,
+                                        },
                                     },
-                                },
-                            }}
+                                }}
+                            >
+                                {sleepHerbsOptions.map((herb) => (
+                                    <MenuItem key={herb} value={herb}>
+                                        <Checkbox checked={selectedSleepHerbs.indexOf(herb) > -1} />
+                                        <ListItemText primary={herb} />
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+
+                        <FormControl fullWidth margin="normal">
+                            <InputLabel id="sleep-conditions-label">Tình trạng giấc ngủ</InputLabel>
+                            <Select
+                                labelId="sleep-conditions-label"
+                                multiple
+                                value={selectedSleepConditions}
+                                onChange={(e) => setSelectedSleepConditions(e.target.value)}
+                                input={<OutlinedInput label="Tình trạng giấc ngủ" />}
+                                renderValue={(selected) => selected.join(', ')}
+                                MenuProps={{
+                                    PaperProps: {
+                                        style: {
+                                            maxHeight: 224,
+                                            width: 250,
+                                        },
+                                    },
+                                }}
+                            >
+                                {sleepConditionsOptions.map((condition) => (
+                                    <MenuItem key={condition} value={condition}>
+                                        <Checkbox checked={selectedSleepConditions.indexOf(condition) > -1} />
+                                        <ListItemText primary={condition} />
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+
+                        {/* Gọi hàm mới tại đây */}
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={handleGenerateSuggestion}
+                            sx={{ mt: 2 }}
                         >
-                            {sleepHerbsOptions.map((herb) => (
-                                <MenuItem key={herb} value={herb}>
-                                    <Checkbox checked={selectedSleepHerbs.indexOf(herb) > -1} />
-                                    <ListItemText primary={herb} />
-                                </MenuItem>
-                            ))}
-                        </Select>
-                    </FormControl>
-
-                    <Button variant="contained" color="primary" onClick={generateSleepAidSuggestion} sx={{ mt: 2 }}>
-                        Tạo gợi ý hỗ trợ giấc ngủ
-                    </Button>
-                    <Divider sx={{ my: 3 }} />
-
-                    {sleepAidSuggestion && (
-                        <Button variant="outlined" onClick={generateSleepAidSuggestion} sx={{ mt: 2 }}>
-                            Tạo gợi ý khác (ngẫu nhiên)
+                            Tạo gợi ý hỗ trợ giấc ngủ
                         </Button>
-                    )}
 
-                    {sleepAidSuggestion && ( // Hiển thị gợi ý nếu có
-                        <Card sx={{ maxWidth: 800, mx: "auto", mt: 4 }}>
-                            {/* ... nội dung Card hiện có của bạn */}
-                        </Card>
-                    )}
+                        <Divider sx={{ my: 3 }} />
 
-                    {sleepAidSuggestion && ( // Hiển thị gợi ý nếu có
-                        <Card sx={{ maxWidth: 800, mx: "auto", mt: 4 }}>
-                            <CardContent>
-                                <Typography variant="h6" gutterBottom fontWeight="bold">
-                                    Gợi ý cho bạn: {sleepAidSuggestion.title}
-                                </Typography>
-                                {sleepAidSuggestion.image && (
-                                    <Box
-                                        component="img"
-                                        src={sleepAidSuggestion.image}
-                                        alt={sleepAidSuggestion.title}
-                                        sx={{
-                                            width: "100%",
-                                            height: 200,
-                                            objectFit: "cover",
-                                            borderRadius: 1,
-                                            mb: 2
-                                        }}
-                                    />
-                                )}
-                                <Typography variant="body1" paragraph>
-                                    {sleepAidSuggestion.description}
-                                </Typography>
+                        {suggestionsList.length > 0 && (
+                            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
+                                <IconButton onClick={handlePrevPage} disabled={suggestionsList.length <= 1}>
+                                    <ArrowBackIosIcon />
+                                </IconButton>
 
-                                {sleepAidSuggestion.materials && sleepAidSuggestion.materials.length > 0 && (
-                                    <Typography variant="body2" sx={{ mb: 1 }}>
-                                        <strong>Cần chuẩn bị:</strong> {sleepAidSuggestion.materials.join(', ')}
-                                    </Typography>
-                                )}
+                                <Card
+                                    sx={{
+                                        maxWidth: 800,
+                                        mx: "auto",
+                                        mt: 4,
+                                        width: '100%',
+                                        animation: `${floatAnimation} 3s ease-in-out infinite`,
+                                    }}
+                                >
+                                    <CardContent>
+                                        <Typography variant="h6" gutterBottom fontWeight="bold">
+                                            Gợi ý cho bạn: {currentSuggestion.title}
+                                        </Typography>
+                                        {currentSuggestion.type === 'herb_specific' && (
+                                            <Typography variant="caption" display="block" sx={{ mb: 1, fontStyle: 'italic' }}>
+                                                (Gợi ý theo dược liệu đã chọn: **{currentSuggestion.chosenHerb}**)
+                                            </Typography>
+                                        )}
 
-                                {sleepAidSuggestion.prepTime && (
-                                    <Typography variant="body2" sx={{ mb: 1 }}>
-                                        <strong>Thời gian chuẩn bị:</strong> {sleepAidSuggestion.prepTime}
-                                    </Typography>
-                                )}
+                                        {currentSuggestion.image && (
+                                            <Box
+                                                component="img"
+                                                src={currentSuggestion.image}
+                                                alt={currentSuggestion.title}
+                                                sx={{
+                                                    width: "100%",
+                                                    height: 200,
+                                                    objectFit: "cover",
+                                                    borderRadius: 1,
+                                                    mb: 2
+                                                }}
+                                            />
+                                        )}
+                                        <Typography variant="body1" paragraph>
+                                            {currentSuggestion.description}
+                                        </Typography>
 
-                                {sleepAidSuggestion.howTo && (
-                                    <Typography variant="body2" sx={{ mb: 1 }}>
-                                        <strong>Cách thực hiện:</strong> {sleepAidSuggestion.howTo}
-                                    </Typography>
-                                )}
+                                        {currentSuggestion.materials && currentSuggestion.materials.length > 0 && (
+                                            <Typography variant="body2" sx={{ mb: 1 }}>
+                                                <strong>Cần chuẩn bị:</strong> {currentSuggestion.materials.join(', ')}
+                                            </Typography>
+                                        )}
 
-                                {sleepAidSuggestion.realLifeApplication && (
-                                    <Typography variant="body2" sx={{ mb: 1 }}>
-                                        <strong>Ứng dụng thực tế:</strong> {sleepAidSuggestion.realLifeApplication}
-                                    </Typography>
-                                )}
+                                        {currentSuggestion.prepTime && (
+                                            <Typography variant="body2" sx={{ mb: 1 }}>
+                                                <strong>Thời gian chuẩn bị:</strong> {currentSuggestion.prepTime}
+                                            </Typography>
+                                        )}
 
-                                {sleepAidSuggestion.suitableAgeGroup && sleepAidSuggestion.suitableAgeGroup.length > 0 && (
-                                    <Box mb={1}>
-                                        <Typography variant="body2" fontWeight="bold">Phù hợp với:</Typography>
-                                        {sleepAidSuggestion.suitableAgeGroup.map((item, idx) => (
-                                            <Chip key={idx} label={item} sx={{ m: 0.5 }} />
-                                        ))}
-                                    </Box>
-                                )}
+                                        {currentSuggestion.howTo && (
+                                            <Typography variant="body2" sx={{ mb: 1 }}>
+                                                <strong>Cách thực hiện:</strong> {currentSuggestion.howTo}
+                                            </Typography>
+                                        )}
 
-                                {sleepAidSuggestion.benefits && sleepAidSuggestion.benefits.length > 0 && (
-                                    <Box mb={1}>
-                                        <Typography variant="body2" fontWeight="bold">Lợi ích:</Typography>
-                                        {sleepAidSuggestion.benefits.map((item, idx) => (
-                                            <Chip key={idx} label={item} sx={{ m: 0.5 }} />
-                                        ))}
-                                    </Box>
-                                )}
+                                        {currentSuggestion.realLifeApplication && (
+                                            <Typography variant="body2" sx={{ mb: 1 }}>
+                                                <strong>Ứng dụng thực tế:</strong> {currentSuggestion.realLifeApplication}
+                                            </Typography>
+                                        )}
 
-                                {sleepAidSuggestion.prevention && sleepAidSuggestion.prevention.length > 0 && (
-                                    <Box mb={1}>
-                                        <Typography variant="body2" fontWeight="bold">Phòng ngừa:</Typography>
-                                        {sleepAidSuggestion.prevention.map((item, idx) => (
-                                            <Chip key={idx} label={item} sx={{ m: 0.5 }} />
-                                        ))}
-                                    </Box>
-                                )}
-                                {sleepAidSuggestion.slink && (
-                                    <Box mb={1}>
-                                        <Typography variant="body2" fontWeight="bold">Nguồn:</Typography>
-                                        <Chip label={sleepAidSuggestion.slink} sx={{ m: 0.5 }} />
-                                    </Box>
-                                )}
+                                        {currentSuggestion.suitableAgeGroup && currentSuggestion.suitableAgeGroup.length > 0 && (
+                                            <Box mb={1}>
+                                                <Typography variant="body2" fontWeight="bold">Phù hợp với:</Typography>
+                                                {currentSuggestion.suitableAgeGroup.map((item, idx) => (
+                                                    <Chip key={idx} label={item} sx={{ m: 0.5 }} />
+                                                ))}
+                                            </Box>
+                                        )}
 
-                                {sleepAidSuggestion.link && (
-                                    <Button
-                                        variant="outlined"
-                                        href={sleepAidSuggestion.link}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        sx={{ mt: 2 }}
-                                    >
-                                        Xem video hướng dẫn
-                                    </Button>
-                                )}
-                            </CardContent>
-                        </Card>
-                    )}
+                                        {currentSuggestion.benefits && currentSuggestion.benefits.length > 0 && (
+                                            <Box mb={1}>
+                                                <Typography variant="body2" fontWeight="bold">Lợi ích:</Typography>
+                                                {currentSuggestion.benefits.map((item, idx) => (
+                                                    <Chip key={idx} label={item} sx={{ m: 0.5 }} />
+                                                ))}
+                                            </Box>
+                                        )}
 
-                    {/* Nếu không có gợi ý và người dùng đã click tìm kiếm */}
-                    {!sleepAidSuggestion && (selectedSleepConditions.length > 0 || selectedSleepHerbs.length > 0) && (
-                        <Alert severity="info" sx={{ mt: 2 }}>
-                            Không tìm thấy gợi ý phù hợp với lựa chọn của bạn. Vui lòng thử các lựa chọn khác.
-                        </Alert>
-                    )}
+                                        {currentSuggestion.prevention && currentSuggestion.prevention.length > 0 && (
+                                            <Box mb={1}>
+                                                <Typography variant="body2" fontWeight="bold">Phòng ngừa:</Typography>
+                                                {currentSuggestion.prevention.map((item, idx) => (
+                                                    <Chip key={idx} label={item} sx={{ m: 0.5 }} />
+                                                ))}
+                                            </Box>
+                                        )}
+                                        {currentSuggestion.slink && (
+                                            <Box mb={1}>
+                                                <Typography variant="body2" fontWeight="bold">Nguồn:</Typography>
+                                                <Chip label={currentSuggestion.slink} sx={{ m: 0.5 }} />
+                                            </Box>
+                                        )}
+
+                                        {currentSuggestion.link && (
+                                            <Button
+                                                variant="outlined"
+                                                href={currentSuggestion.link}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                sx={{ mt: 2 }}
+                                            >
+                                                Xem thêm
+                                            </Button>
+                                        )}
+                                    </CardContent>
+                                </Card>
+                                <IconButton onClick={handleNextPage} disabled={suggestionsList.length <= 1}>
+                                    <ArrowForwardIosIcon />
+                                </IconButton>
+                            </Box>
+                        )}
+
+                        {suggestionsList.length > 1 && (
+                            <Button
+                                variant="outlined"
+                                onClick={handleGenerateSuggestion} // Gọi hàm mới tại đây
+                                sx={{ mt: 2 }}
+                            >
+                                Tạo gợi ý khác (ngẫu nhiên)
+                            </Button>
+                        )}
+                </Box>
                 </Box>
 
                     
