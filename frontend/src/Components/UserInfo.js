@@ -3,7 +3,7 @@ import {
     Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
     Typography, Paper, Alert, Box, Grid, Card, CardContent,
     Button, Select, MenuItem, InputLabel, FormControl, Divider, TextField,
-    Checkbox, ListItemText, Switch, FormControlLabel, Autocomplete, Chip, IconButton, List, ListItem // <-- Đảm bảo có Autocomplete và Chip
+    Checkbox, ListItemText, Switch, FormControlLabel, Autocomplete, Chip, IconButton, List, ListItem 
 } from "@mui/material";
 import { keyframes, styled } from "@mui/system";
 import "slick-carousel/slick/slick.css";
@@ -19,14 +19,12 @@ import maintainMealsData from "./maintainMeals.json";
 import loseMealsData from "./loseMeals.json";     
 import OutlinedInput from '@mui/material/OutlinedInput'; 
 import exerciseData from './exerciseData.json'; 
-import sleepAidData from './sleepAidData.json'; 
-import herbsData from './herbsData.json';
-import SleepAidCard from './SleepAidCard';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import SleepAidCard from './SleepAidCard';
+import sleepAidData from './sleepAidData.json'
 
-const sleepHerbsOptions = [...new Set(herbsData.flatMap(item => item.herbs))];
-const sleepConditionsOptions = ['Mất ngủ', 'Căng thẳng', 'Lo âu', 'Ngủ không sâu giấc', 'Giật mình khi ngủ', 'Khó ngủ'];
+
 
 const floatAnimation = keyframes`
     0% { transform: translateY(0px); }
@@ -123,31 +121,6 @@ const UserInfo = () => {
             { breakpoint: 600, settings: { slidesToShow: 1, slidesToScroll: 1 } }
         ]
     };
-    const sleepAidCarouselSettings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 3, // Hiển thị 3 gợi ý cùng lúc
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 4000,
-        responsive: [
-            { breakpoint: 1200, settings: { slidesToShow: 2, slidesToScroll: 1, } },
-            { breakpoint: 900, settings: { slidesToShow: 1, slidesToScroll: 1, } }
-        ]
-    };
-    useEffect(() => {
-        // Extract unique conditions and herbs from sleepAidData
-        const allConditions = new Set();
-        const allHerbs = new Set();
-        sleepAidData.forEach(item => {
-            item.conditions.forEach(condition => allConditions.add(condition));
-            item.herbs.forEach(herb => allHerbs.add(herb));
-        });
-        setSleepConditionsOptions(Array.from(allConditions));
-        setSleepHerbsOptions(Array.from(allHerbs));
-    }, []);
-
     
     const selectMealGreedy = (
         availableMeals,
