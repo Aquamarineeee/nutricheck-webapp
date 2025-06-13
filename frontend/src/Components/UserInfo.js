@@ -19,9 +19,9 @@ import maintainMealsData from "./maintainMeals.json";
 import loseMealsData from "./loseMeals.json";     
 import OutlinedInput from '@mui/material/OutlinedInput'; 
 import exerciseData from './exerciseData.json'; 
-import sleepAidData from './sleepAidData.json'; 
+import generateSleepAidSuggestions from './sleepAidData.json'; 
 import herbsData from './herbsData.json';
-import {generateSleepAidSuggestions} from './SleepAidCard';
+import SleepAidCard from './SleepAidCard';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
