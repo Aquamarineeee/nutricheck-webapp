@@ -24,7 +24,7 @@ import { useSnackbar } from 'notistack';
 import { keyframes } from '@emotion/react';
 
 // Import dữ liệu từ file JSON
-import herbsData from './data/herbsData.json'; // Đảm bảo đường dẫn đúng
+import herbsData from './herbsData.json'; // Đảm bảo đường dẫn đúng
 
 // Lọc ra danh sách dược liệu duy nhất từ dữ liệu của bạn
 const sleepHerbsOptions = [...new Set(herbsData.flatMap(item => item.herbs))];
