@@ -19,7 +19,7 @@ import maintainMealsData from "./maintainMeals.json";
 import loseMealsData from "./loseMeals.json";     
 import OutlinedInput from '@mui/material/OutlinedInput'; 
 import exerciseData from './exerciseData.json'; 
-import generateSleepAidSuggestions from './sleepAidData.json'; 
+import sleepAidData from './sleepAidData.json'; 
 import herbsData from './herbsData.json';
 import SleepAidCard from './SleepAidCard';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
@@ -1157,7 +1157,7 @@ const UserInfo = () => {
         </Alert>
 
         const handleGenerateSuggestion = useCallback(() => {
-            const uniqueSuggestions = generateSleepAidSuggestions(
+            const uniqueSuggestions = SleepAidCard(
                 selectedSleepConditions,
                 selectedSleepHerbs
             );
