@@ -95,6 +95,7 @@ const UserInfo = () => {
     const [showBMI, setShowBMI] = useState(false);
     const [editing, setEditing] = useState(false);
     const [editedUserInfo, setEditedUserInfo] = useState({});
+    const [totalMealPrice, setTotalMealPrice] = useState(0);
     
 
     // Hàm chọn món ăn dựa trên calo mục tiêu (thuật toán tham lam)
@@ -116,6 +117,13 @@ const UserInfo = () => {
             setEditedUserInfo({ ...userInfo });
         }
     };
+    const handleFieldChange = (e) => {
+        const { name, value } = e.target;
+        setEditedUserInfo(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
     const sett = {
         dots: true,
         infinite: true,
@@ -132,6 +140,16 @@ const UserInfo = () => {
             { breakpoint: 600, settings: { slidesToShow: 1, slidesToScroll: 1 } }
         ]
     };
+
+    useEffect(() => {
+        // Cập nhật totalMealPrice mỗi khi currentMealsList thay đổi
+        if (currentMealsList.length > 0) {
+            const sumPrices = currentMealsList.reduce((sum, meal) => sum + (meal.price || 0), 0);
+            setTotalMealPrice(sumPrices);
+        } else {
+            setTotalMealPrice(0);
+        }
+    }, [currentMealsList]);
     
     const selectMealGreedy = (
         availableMeals,
