@@ -3,7 +3,7 @@ import {
     Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
     Typography, Paper, Alert, Box, Grid, Card, CardContent,
     Button, Select, MenuItem, InputLabel, FormControl, Divider, TextField,
-    Checkbox, ListItemText, Switch, FormControlLabel, Autocomplete, Chip, IconButton, List, ListItem 
+    Checkbox, ListItemText, Switch, FormControlLabel, Autocomplete, Chip, IconButton, List, ListItem // <-- Đảm bảo có Autocomplete và Chip
 } from "@mui/material";
 import { keyframes, styled } from "@mui/system";
 import "slick-carousel/slick/slick.css";
@@ -91,6 +91,7 @@ const UserInfo = () => {
     const [currentSleepAidSuggestions, setCurrentSleepAidSuggestions] = useState([]);
     const [suggestionsList, setSuggestionsList] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
+    const [showSleepAid, setShowSleepAid] = useState(false);
     
 
     // Hàm chọn món ăn dựa trên calo mục tiêu (thuật toán tham lam)
@@ -1813,146 +1814,21 @@ const UserInfo = () => {
                         </FormControl>
 
                         {/* Gọi hàm mới tại đây */}
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            onClick={handleGenerateSuggestion}
-                            sx={{ mt: 2 }}
-                        >
-                            Tạo gợi ý hỗ trợ giấc ngủ
-                        </Button>
-
-                        <Divider sx={{ my: 3 }} />
-
-                        {suggestionsList.length > 0 && (
-                            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
-                                <IconButton onClick={handlePrevPage} disabled={suggestionsList.length <= 1}>
-                                    <ArrowBackIosIcon />
-                                </IconButton>
-
-                                <Card
-                                    sx={{
-                                        maxWidth: 800,
-                                        mx: "auto",
-                                        mt: 4,
-                                        width: '100%',
-                                        animation: `${floatAnimation} 3s ease-in-out infinite`,
-                                    }}
-                                >
-                                    <CardContent>
-                                        <Typography variant="h6" gutterBottom fontWeight="bold">
-                                            Gợi ý cho bạn: {currentSuggestion.title}
-                                        </Typography>
-                                        {currentSuggestion.type === 'herb_specific' && (
-                                            <Typography variant="caption" display="block" sx={{ mb: 1, fontStyle: 'italic' }}>
-                                                (Gợi ý theo dược liệu đã chọn: **{currentSuggestion.chosenHerb}**)
-                                            </Typography>
-                                        )}
-
-                                        {currentSuggestion.image && (
-                                            <Box
-                                                component="img"
-                                                src={currentSuggestion.image}
-                                                alt={currentSuggestion.title}
-                                                sx={{
-                                                    width: "100%",
-                                                    height: 200,
-                                                    objectFit: "cover",
-                                                    borderRadius: 1,
-                                                    mb: 2
-                                                }}
-                                            />
-                                        )}
-                                        <Typography variant="body1" paragraph>
-                                            {currentSuggestion.description}
-                                        </Typography>
-
-                                        {currentSuggestion.materials && currentSuggestion.materials.length > 0 && (
-                                            <Typography variant="body2" sx={{ mb: 1 }}>
-                                                <strong>Cần chuẩn bị:</strong> {currentSuggestion.materials.join(', ')}
-                                            </Typography>
-                                        )}
-
-                                        {currentSuggestion.prepTime && (
-                                            <Typography variant="body2" sx={{ mb: 1 }}>
-                                                <strong>Thời gian chuẩn bị:</strong> {currentSuggestion.prepTime}
-                                            </Typography>
-                                        )}
-
-                                        {currentSuggestion.howTo && (
-                                            <Typography variant="body2" sx={{ mb: 1 }}>
-                                                <strong>Cách thực hiện:</strong> {currentSuggestion.howTo}
-                                            </Typography>
-                                        )}
-
-                                        {currentSuggestion.realLifeApplication && (
-                                            <Typography variant="body2" sx={{ mb: 1 }}>
-                                                <strong>Ứng dụng thực tế:</strong> {currentSuggestion.realLifeApplication}
-                                            </Typography>
-                                        )}
-
-                                        {currentSuggestion.suitableAgeGroup && currentSuggestion.suitableAgeGroup.length > 0 && (
-                                            <Box mb={1}>
-                                                <Typography variant="body2" fontWeight="bold">Phù hợp với:</Typography>
-                                                {currentSuggestion.suitableAgeGroup.map((item, idx) => (
-                                                    <Chip key={idx} label={item} sx={{ m: 0.5 }} />
-                                                ))}
-                                            </Box>
-                                        )}
-
-                                        {currentSuggestion.benefits && currentSuggestion.benefits.length > 0 && (
-                                            <Box mb={1}>
-                                                <Typography variant="body2" fontWeight="bold">Lợi ích:</Typography>
-                                                {currentSuggestion.benefits.map((item, idx) => (
-                                                    <Chip key={idx} label={item} sx={{ m: 0.5 }} />
-                                                ))}
-                                            </Box>
-                                        )}
-
-                                        {currentSuggestion.prevention && currentSuggestion.prevention.length > 0 && (
-                                            <Box mb={1}>
-                                                <Typography variant="body2" fontWeight="bold">Phòng ngừa:</Typography>
-                                                {currentSuggestion.prevention.map((item, idx) => (
-                                                    <Chip key={idx} label={item} sx={{ m: 0.5 }} />
-                                                ))}
-                                            </Box>
-                                        )}
-                                        {currentSuggestion.slink && (
-                                            <Box mb={1}>
-                                                <Typography variant="body2" fontWeight="bold">Nguồn:</Typography>
-                                                <Chip label={currentSuggestion.slink} sx={{ m: 0.5 }} />
-                                            </Box>
-                                        )}
-
-                                        {currentSuggestion.link && (
-                                            <Button
-                                                variant="outlined"
-                                                href={currentSuggestion.link}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                sx={{ mt: 2 }}
-                                            >
-                                                Xem thêm
-                                            </Button>
-                                        )}
-                                    </CardContent>
-                                </Card>
-                                <IconButton onClick={handleNextPage} disabled={suggestionsList.length <= 1}>
-                                    <ArrowForwardIosIcon />
-                                </IconButton>
-                            </Box>
-                        )}
-
-                        {suggestionsList.length > 1 && (
-                            <Button
-                                variant="outlined"
-                                onClick={handleGenerateSuggestion} // Gọi hàm mới tại đây
-                                sx={{ mt: 2 }}
-                            >
-                                Tạo gợi ý khác (ngẫu nhiên)
-                            </Button>
-                        )}
-                </Box>
+                        <Box mb={4}>
+                                <FormControlLabel
+                                    control={<Switch checked={showSleepAid} onChange={() => setShowSleepAid(!showSleepAid)} />}
+                                    label="Gợi ý hỗ trợ giấc ngủ"
+                                />
+                                {showSleepAid && (
+                                    <Card variant="outlined" sx={{ mt: 2 }}>
+                                        <CardContent>
+                                            {/* Đảm bảo component SleepAidCard được render ở đây */}
+                                            <SleepAidCard /> {/* <--- Dòng này rất quan trọng */}
+                                        </CardContent>
+                                    </Card>
+                                )}
+                        </Box>
+                    </Box>
                 </Box>
 
                     
