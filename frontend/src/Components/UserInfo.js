@@ -92,6 +92,9 @@ const UserInfo = () => {
     const [suggestionsList, setSuggestionsList] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const [showSleepAid, setShowSleepAid] = useState(false);
+    const [showBMI, setShowBMI] = useState(false);
+    const [editing, setEditing] = useState(false);
+    const [editedUserInfo, setEditedUserInfo] = useState({});
     
 
     // Hàm chọn món ăn dựa trên calo mục tiêu (thuật toán tham lam)
@@ -106,6 +109,13 @@ const UserInfo = () => {
             transform: translateY(0px);
         }
         `;
+    const handleEditToggle = () => {
+        setEditing(!editing);
+        if (editing) {
+            // Khi tắt chế độ chỉnh sửa, reset lại editedUserInfo về userInfo hiện tại
+            setEditedUserInfo({ ...userInfo });
+        }
+    };
     const sett = {
         dots: true,
         infinite: true,
@@ -532,6 +542,21 @@ const UserInfo = () => {
         adaptiveHeight: true,
         arrows: true,
         };
+        const calculateBMI = useCallback(() => {
+                if (!userInfo || !userInfo.WEIGHT || !userInfo.HEIGHT) {
+                    return null;
+                }
+                const heightInMeters = userInfo.HEIGHT / 100;
+                return (userInfo.WEIGHT / (heightInMeters * heightInMeters)).toFixed(2);
+            }, [userInfo]);
+
+            const getBMICategory = useCallback((bmi) => {
+                if (bmi < 18.5) return "Thiếu cân";
+                if (bmi >= 18.5 && bmi <= 24.9) return "Bình thường";
+                if (bmi >= 25 && bmi <= 29.9) return "Thừa cân";
+                if (bmi >= 30) return "Béo phì";
+                return "";
+        }, []);
 
         const handleSubmit = () => {
         if (selectedConditions.length === 0) {
@@ -549,52 +574,7 @@ const UserInfo = () => {
 
             setFeedback(fullFeedback);
         };
-        // Hàm chọn món ăn cải tiến
-        const selectMealForTime = (availableMeals, targetCalories, usedMeals, mealTime) => {
-    // Lọc món phù hợp với bữa ăn
-                const timeMapping = {
-                    "Sáng": ["breakfast"],
-                    "Trưa": ["lunch"],
-                    "Chiều": ["afternoon"],
-                    "Tối": ["dinner"]
-                };
-                
-                const validTimes = timeMapping[mealTime] || [];
-                const timeSpecificMeals = availableMeals.filter(meal => 
-                    meal.meal_time?.some(time => validTimes.includes(time))
-                );
-
-                // Lọc món chưa dùng
-                const eligibleMeals = timeSpecificMeals.filter(meal => !usedMeals.has(meal.name));
-
-                // Tìm món có calo gần nhất với target
-                let bestMeal = null;
-                let minDiff = Infinity;
-
-                for (const meal of eligibleMeals) {
-                    const diff = Math.abs(meal.calories - targetCalories);
-                    if (diff < minDiff) {
-                    minDiff = diff;
-                    bestMeal = meal;
-                    }
-                }
-
-                // Fallback: nếu không tìm thấy món phù hợp thời gian
-                if (!bestMeal && availableMeals.length > 0) {
-                    minDiff = Infinity;
-                    for (const meal of availableMeals) {
-                    if (!usedMeals.has(meal.name)) {
-                        const diff = Math.abs(meal.calories - targetCalories);
-                        if (diff < minDiff) {
-                        minDiff = diff;
-                        bestMeal = meal;
-                        }
-                    }
-                    }
-                }
-
-                return bestMeal;
-            };
+        
 
         const generateExerciseSuggestions = useCallback((isRandom = false) => {
             if (!userInfo || !userInfo.ACTIVITY || !goal) {
@@ -813,11 +793,11 @@ const UserInfo = () => {
 
 
         // Cập nhật useEffect
-        // useEffect(() => {
-        //     if (totalDailyCalories > 0 && userInfo?.WEIGHT) {
-        //         generateMealPlan();
-        //     }
-        // }, [totalDailyCalories, goal, userInfo]);
+        useEffect(() => {
+            if (totalDailyCalories > 0 && userInfo?.WEIGHT) {
+                generateMealPlan();
+            }
+        }, [totalDailyCalories, goal, userInfo]);
 
 
         const MealCardDetail = ({ meal }) => {
@@ -990,6 +970,7 @@ const UserInfo = () => {
                     <Typography>Protein: {meals.reduce((sum, m) => sum + (m?.protein || 0), 0).toFixed(1)}g</Typography>
                     <Typography>Chất béo: {meals.reduce((sum, m) => sum + (m?.fat || 0), 0).toFixed(1)}g</Typography>
                     <Typography>Carbs: {meals.reduce((sum, m) => sum + (m?.carbs || 0), 0).toFixed(1)}g</Typography>
+                    <Typography>Tổng giá tiền 4 bữa: {totalMealPrice.toLocaleString('vi-VN')} VNĐ</Typography>
                     </Box>
                 )}
                 </Box>
@@ -1212,50 +1193,159 @@ const UserInfo = () => {
                 )}
 
                 {/* Header */}
-                <Box textAlign="center" mb={4}>
-                    <Typography variant="h4" style={{ fontWeight: "bold" }}>Trang cá nhân</Typography>
-                </Box>
+               <div style={{ padding: '20px', maxWidth: '1200px', margin: 'auto' }}>
+                    <Box mb={4}>
+                        <Typography variant="h4" component="h1" gutterBottom align="center">
+                            Thông tin cá nhân
+                        </Typography>
 
-                {/* User Info */}
-                {userInfo && (
-                    <TableContainer component={Paper} style={{ margin: "20px auto", maxWidth: "800px" }} className="fade-in">
-                        <Table>
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell align="center" colSpan={2} style={{ fontWeight: "bold", fontSize: "23px" }}>
-                                        Thông tin người dùng
-                                    </TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                <TableRow>
-                                    <TableCell align="left" style={{ fontWeight: "bold", fontSize: "19px" }}><strong>Tên:</strong></TableCell>
-                                    <TableCell align="left" style={{fontSize: "19px"}}>{userInfo.USERNAME}</TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell align="left" style={{ fontWeight: "bold", fontSize: "19px" }}><strong>Tuổi:</strong></TableCell>
-                                    <TableCell align="left" style={{fontSize: "19px"}}>{userInfo.AGE}</TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell align="left" style={{ fontWeight: "bold", fontSize: "19px" }}><strong>Giới tính:</strong></TableCell>
-                                    <TableCell align="left" style={{fontSize: "19px"}}>{userInfo.GENDER === "male" ? "Nam" : "Nữ"}</TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell align="left" style={{ fontWeight: "bold", fontSize: "19px" }}><strong>Chiều cao:</strong></TableCell>
-                                    <TableCell align="left" style={{fontSize: "19px"}}>{userInfo.HEIGHT} cm</TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell align="left" style={{ fontWeight: "bold", fontSize: "19px" }}><strong>Cân nặng:</strong></TableCell>
-                                    <TableCell align="left" style={{fontSize: "19px"}}>{userInfo.WEIGHT} kg</TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell align="left" style={{ fontWeight: "bold", fontSize: "19px" }}><strong>Mức độ vận động:</strong></TableCell>
-                                    <TableCell align="left" style={{fontSize: "19px"}}>{userInfo.ACTIVITY}</TableCell>
-                                </TableRow>
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                )}
+                        <Box mb={3} sx={{
+                            display: 'flex',
+                            flexDirection: { xs: 'column', md: 'row' },
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            gap: 3,
+                            p: 2,
+                            borderRadius: '8px',
+                            boxShadow: 3
+                        }}>
+                            <Box sx={{ flexGrow: 1 }}>
+                                <Grid container spacing={2}>
+                                    <Grid item xs={12} sm={6}>
+                                        <TextField
+                                            fullWidth
+                                            label="Tên"
+                                            name="NAME"
+                                            value={editedUserInfo.NAME || ''}
+                                            onChange={handleFieldChange}
+                                            disabled={!editing}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12} sm={6}>
+                                        <TextField
+                                            fullWidth
+                                            label="Chiều cao (cm)"
+                                            name="HEIGHT"
+                                            type="number"
+                                            value={editedUserInfo.HEIGHT || ''}
+                                            onChange={handleFieldChange}
+                                            disabled={!editing}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12} sm={6}>
+                                        <TextField
+                                            fullWidth
+                                            label="Cân nặng (kg)"
+                                            name="WEIGHT"
+                                            type="number"
+                                            value={editedUserInfo.WEIGHT || ''}
+                                            onChange={handleFieldChange}
+                                            disabled={!editing}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12} sm={6}>
+                                        <TextField
+                                            fullWidth
+                                            label="Tuổi"
+                                            name="AGE"
+                                            type="number"
+                                            value={editedUserInfo.AGE || ''}
+                                            onChange={handleFieldChange}
+                                            disabled={!editing}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12} sm={6}>
+                                        <FormControl fullWidth disabled={!editing}>
+                                            <InputLabel>Giới tính</InputLabel>
+                                            <Select
+                                                name="GENDER"
+                                                value={editedUserInfo.GENDER || ''}
+                                                label="Giới tính"
+                                                onChange={handleFieldChange}
+                                            >
+                                                <MenuItem value="Nam">Nam</MenuItem>
+                                                <MenuItem value="Nữ">Nữ</MenuItem>
+                                            </Select>
+                                        </FormControl>
+                                    </Grid>
+                                    <Grid item xs={12} sm={6}>
+                                        <FormControl fullWidth disabled={!editing}>
+                                            <InputLabel>Mức độ vận động</InputLabel>
+                                            <Select
+                                                name="ACTIVITY_LEVEL"
+                                                value={editedUserInfo.ACTIVITY_LEVEL || ''}
+                                                label="Mức độ vận động"
+                                                onChange={handleFieldChange}
+                                            >
+                                                <MenuItem value="Ít vận động">Ít vận động (ít hoặc không tập thể dục)</MenuItem>
+                                                <MenuItem value="Vận động nhẹ">Vận động nhẹ (1-3 ngày/tuần)</MenuItem>
+                                                <MenuItem value="Vận động vừa">Vận động vừa (3-5 ngày/tuần)</MenuItem>
+                                                <MenuItem value="Vận động nhiều">Vận động nhiều (6-7 ngày/tuần)</MenuItem>
+                                                <MenuItem value="Vận động rất nhiều">Vận động rất nhiều (2 lần/ngày)</MenuItem>
+                                            </Select>
+                                        </FormControl>
+                                    </Grid>
+                                    <Grid item xs={12} sm={6}>
+                                        <FormControl fullWidth disabled={!editing}>
+                                            <InputLabel>Mục tiêu</InputLabel>
+                                            <Select
+                                                name="GOAL"
+                                                value={editedUserInfo.GOAL || ''}
+                                                label="Mục tiêu"
+                                                onChange={handleFieldChange}
+                                            >
+                                                <MenuItem value="Giảm cân">Giảm cân</MenuItem>
+                                                <MenuItem value="Tăng cân">Tăng cân</MenuItem>
+                                                <MenuItem value="Duy trì cân nặng">Duy trì cân nặng</MenuItem>
+                                            </Select>
+                                        </FormControl>
+                                    </Grid>
+                                </Grid>
+                                <Box mt={3} sx={{ display: 'flex', gap: 2, justifyContent: 'flex-end' }}>
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        onClick={editing ? handleSubmit : handleEditToggle}
+                                    >
+                                        {editing ? 'Lưu thay đổi' : 'Chỉnh sửa thông tin'}
+                                    </Button>
+                                    {editing && (
+                                        <Button
+                                            variant="outlined"
+                                            color="secondary"
+                                            onClick={handleEditToggle}
+                                        >
+                                            Hủy
+                                        </Button>
+                                    )}
+                                </Box>
+                            </Box>
+                        </Box>
+                    </Box>
+                </div>
+
+
+                <Box mb={4}>
+                    <FormControlLabel
+                        control={<Switch checked={showBMI} onChange={() => setShowBMI(!showBMI)} />}
+                        label="Xem chỉ số BMI"
+                    />
+                    {showBMI && (
+                        <Card variant="outlined" sx={{ mt: 2 }}>
+                            <CardContent>
+                                <Typography variant="h6" gutterBottom>
+                                    Chỉ số BMI
+                                </Typography>
+                                <Typography variant="body1">
+                                    Chỉ số BMI của bạn: {calculateBMI() || 'N/A'}
+                                </Typography>
+                                <Typography variant="body1">
+                                    Tình trạng: {getBMICategory(calculateBMI())}
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    )}
+                </Box>
 
                 {/* Two-panel layout for calorie tracking */}
                 <Grid container spacing={3} className="fade-in">
@@ -1727,92 +1817,10 @@ const UserInfo = () => {
                             {userInfo.ACTIVITY === "active" || userInfo.ACTIVITY === "very_active" ? "Do mức độ vận động cao, giấc ngủ sâu và đủ rất quan trọng để cơ bắp phục hồi và tái tạo năng lượng." : ""}
                         </Typography>
                     </Box>
-                    <Box mt={4} className="fade-in">
-                    <Typography variant="h6" gutterBottom fontWeight="medium">
-                        Bạn gặp vấn đề gì về giấc ngủ?
-                    </Typography>
-                    <FormControl fullWidth margin="normal">
-                        <InputLabel id="sleep-conditions-label">Vấn đề bạn gặp phải</InputLabel>
-                        <Select
-                            labelId="sleep-conditions-label"
-                            multiple
-                            value={selectedSleepConditions}
-                            onChange={(e) => setSelectedSleepConditions(e.target.value)}
-                            input={<OutlinedInput label="Vấn đề bạn gặp phải" />}
-                            renderValue={(selected) => selected.join(', ')}
-                            MenuProps={{
-                                PaperProps: {
-                                    style: {
-                                        maxHeight: 224,
-                                        width: 250,
-                                    },
-                                },
-                            }}
-                        >
-                            {sleepConditionsOptions.map((condition) => (
-                                <MenuItem key={condition} value={condition}>
-                                    <Checkbox checked={selectedSleepConditions.indexOf(condition) > -1} />
-                                    <ListItemText primary={condition} />
-                                </MenuItem>
-                            ))}
-                        </Select>
-                    </FormControl>
+                    
+                    <Divider sx = {{my:3}}/>
 
-                    <Box sx={{ p: 3 }}>
-                        <FormControl fullWidth margin="normal">
-                            <InputLabel id="sleep-herbs-label">Dược liệu bạn muốn thử</InputLabel>
-                            <Select
-                                labelId="sleep-herbs-label"
-                                multiple
-                                value={selectedSleepHerbs}
-                                onChange={(e) => setSelectedSleepHerbs(e.target.value)}
-                                input={<OutlinedInput label="Dược liệu bạn muốn thử" />}
-                                renderValue={(selected) => selected.join(', ')}
-                                MenuProps={{
-                                    PaperProps: {
-                                        style: {
-                                            maxHeight: 224,
-                                            width: 250,
-                                        },
-                                    },
-                                }}
-                            >
-                                {sleepHerbsOptions.map((herb) => (
-                                    <MenuItem key={herb} value={herb}>
-                                        <Checkbox checked={selectedSleepHerbs.indexOf(herb) > -1} />
-                                        <ListItemText primary={herb} />
-                                    </MenuItem>
-                                ))}
-                            </Select>
-                        </FormControl>
-
-                        <FormControl fullWidth margin="normal">
-                            <InputLabel id="sleep-conditions-label">Tình trạng giấc ngủ</InputLabel>
-                            <Select
-                                labelId="sleep-conditions-label"
-                                multiple
-                                value={selectedSleepConditions}
-                                onChange={(e) => setSelectedSleepConditions(e.target.value)}
-                                input={<OutlinedInput label="Tình trạng giấc ngủ" />}
-                                renderValue={(selected) => selected.join(', ')}
-                                MenuProps={{
-                                    PaperProps: {
-                                        style: {
-                                            maxHeight: 224,
-                                            width: 250,
-                                        },
-                                    },
-                                }}
-                            >
-                                {sleepConditionsOptions.map((condition) => (
-                                    <MenuItem key={condition} value={condition}>
-                                        <Checkbox checked={selectedSleepConditions.indexOf(condition) > -1} />
-                                        <ListItemText primary={condition} />
-                                    </MenuItem>
-                                ))}
-                            </Select>
-                        </FormControl>
-
+                    <Box mt = {4} className = "fade-in">
                         {/* Gọi hàm mới tại đây */}
                         <Box mb={4}>
                                 <FormControlLabel
@@ -1912,9 +1920,6 @@ const UserInfo = () => {
                             </Alert>
                         ) : null /* Không hiển thị Alert nếu dailyWaterIntake là rỗng hoặc null, hoặc userInfo.WEIGHT chưa có */ }
                     </FormControl>
-
-                    
-                </Box>
                 </Box>
             </div>
         );
