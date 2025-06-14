@@ -13,6 +13,9 @@ import { keyframes } from '@emotion/react';
 
 // Đảm bảo đường dẫn đúng
 import herbsData from './herbsData.json';
+// Import sleepAidData
+import sleepAidData from './sleepAidData.json'; 
+
 const sleepHerbsOptions = [...new Set(herbsData.flatMap(item => item.herbs))];
 const sleepConditionsOptions = ['Mất ngủ', 'Căng thẳng', 'Lo âu', 'Ngủ không sâu giấc', 'Giật mình khi ngủ', 'Khó ngủ'];
 
@@ -22,17 +25,18 @@ const floatAnimation = keyframes`
     100% { transform: translateY(0px); }
 `;
 
-const SleepAidCard = () => { 
+const SleepAidCard = () => {
     const [selectedSleepHerbs, setSelectedSleepHerbs] = useState([]);
     const [selectedSleepConditions, setSelectedSleepConditions] = useState([]);
     const [suggestionsList, setSuggestionsList] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const { enqueueSnackbar } = useSnackbar();
 
-    const generateSleepAidSuggestion = useCallback(() => {
-        let matchedSuggestions = [];
+    const generateSleepAidSuggestion = useCallback((isRandomButton = false) => { // Thêm tham số để biết gọi từ đâu
+        let potentialSuggestions = [];
 
-        let baseFilteredSuggestions = herbsData.filter(item => {
+        // 1. Ưu tiên tìm kiếm từ herbsData dựa trên các tiêu chí đã chọn
+        const filteredHerbsData = herbsData.filter(item => {
             const matchesCondition = selectedSleepConditions.length === 0 ||
                 selectedSleepConditions.some(condition => item.conditions.includes(condition));
             const matchesHerb = selectedSleepHerbs.length === 0 ||
@@ -40,49 +44,69 @@ const SleepAidCard = () => {
             return matchesCondition && matchesHerb;
         });
 
-        if (baseFilteredSuggestions.length > 0) {
-            const randomIndex = Math.floor(Math.random() * baseFilteredSuggestions.length);
-            matchedSuggestions.push({
-                ...baseFilteredSuggestions[randomIndex],
-                type: 'random_suggestion'
-            });
-        } else {
-            if (herbsData.length > 0) {
-                const randomIndex = Math.floor(Math.random() * herbsData.length);
-                matchedSuggestions.push({
-                    ...herbsData[randomIndex],
-                    type: 'random_fallback'
+        // 2. Tìm kiếm từ sleepAidData dựa trên các điều kiện đã chọn
+        const filteredSleepAidData = sleepAidData.filter(item => {
+            return selectedSleepConditions.length === 0 ||
+                   selectedSleepConditions.some(condition => item.conditions.includes(condition));
+        });
+
+        // Combine and prioritize
+        // If filters are applied, prioritize results that match the filters.
+        if (selectedSleepConditions.length > 0 || selectedSleepHerbs.length > 0) {
+            // Add filtered herbsData suggestions
+            potentialSuggestions.push(...filteredHerbsData.map(item => ({ ...item, source: 'herbsData' })));
+            // Add filtered sleepAidData suggestions
+            potentialSuggestions.push(...filteredSleepAidData.map(item => ({ ...item, source: 'sleepAidData' })));
+        }
+
+        // If no specific filters or no matches, or if button "Tạo gợi ý khác" is clicked,
+        // include all data for random selection (but still prefer filtered if available)
+        if (potentialSuggestions.length === 0 || isRandomButton) {
+            // If random button is clicked or no filtered suggestions, broaden the scope
+            // Combine all herbsData and sleepAidData
+            const allData = [
+                ...herbsData.map(item => ({ ...item, source: 'herbsData' })),
+                ...sleepAidData.map(item => ({ ...item, source: 'sleepAidData' }))
+            ];
+
+            // If filters are present, we still want to prefer those that partially match
+            if (selectedSleepConditions.length > 0 || selectedSleepHerbs.length > 0) {
+                const partiallyMatched = allData.filter(item => {
+                    const matchesCondition = selectedSleepConditions.length === 0 ||
+                        selectedSleepConditions.some(condition => item.conditions?.includes(condition)); // Use ?. for safety
+                    const matchesHerb = selectedSleepHerbs.length === 0 ||
+                        item.herbs?.some(herb => selectedSleepHerbs.includes(herb)); // Use ?. for safety
+                    return matchesCondition || matchesHerb; // Match if either condition or herb is present
                 });
+                if (partiallyMatched.length > 0) {
+                    potentialSuggestions = partiallyMatched;
+                } else {
+                    // If no partial match, just use all data
+                    potentialSuggestions = allData;
+                }
+            } else {
+                potentialSuggestions = allData;
             }
         }
 
-        if (selectedSleepHerbs.length > 0) {
-            selectedSleepHerbs.forEach(chosenHerb => {
-                const herbSpecificSuggestions = herbsData.filter(item =>
-                    item.herbs.includes(chosenHerb)
-                );
-                if (herbSpecificSuggestions.length > 0) {
-                    const randomHerbIndex = Math.floor(Math.random() * herbSpecificSuggestions.length);
-                    matchedSuggestions.push({
-                        ...herbSpecificSuggestions[randomHerbIndex],
-                        type: 'herb_specific',
-                        chosenHerb: chosenHerb
-                    });
-                } else {
-                    console.warn(`Không tìm thấy gợi ý nào cho dược liệu: ${chosenHerb}`);
-                }
-            });
-        }
-
+        // Ensure uniqueness and shuffle for randomness
         const uniqueSuggestions = [];
         const seenIds = new Set();
-        matchedSuggestions.forEach(suggestion => {
-            if (!seenIds.has(suggestion.id)) {
+        potentialSuggestions.forEach(suggestion => {
+            // Use both id and source to ensure uniqueness if IDs might overlap between datasets
+            const uniqueKey = `${suggestion.id}-${suggestion.source}`;
+            if (!seenIds.has(uniqueKey)) {
                 uniqueSuggestions.push(suggestion);
-                seenIds.add(suggestion.id);
+                seenIds.add(uniqueKey);
             }
         });
 
+        // Shuffle the unique suggestions
+        for (let i = uniqueSuggestions.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [uniqueSuggestions[i], uniqueSuggestions[j]] = [uniqueSuggestions[j], uniqueSuggestions[i]];
+        }
+        
         if (uniqueSuggestions.length > 0) {
             setSuggestionsList(uniqueSuggestions);
             setCurrentPage(0);
@@ -159,7 +183,7 @@ const SleepAidCard = () => {
                 </Select>
             </FormControl>
 
-            <Button variant="contained" color="primary" onClick={generateSleepAidSuggestion} sx={{ mt: 2 }}>
+            <Button variant="contained" color="primary" onClick={() => generateSleepAidSuggestion(false)} sx={{ mt: 2 }}>
                 Tạo gợi ý hỗ trợ giấc ngủ
             </Button>
             <Divider sx={{ my: 3 }} />
@@ -183,7 +207,7 @@ const SleepAidCard = () => {
                             <Typography variant="h6" gutterBottom fontWeight="bold">
                                 Gợi ý cho bạn: {currentSuggestion.title}
                             </Typography>
-                            {currentSuggestion.type === 'herb_specific' && (
+                            {currentSuggestion.type === 'herb_specific' && ( // Keep this if you want to explicitly label.
                                 <Typography variant="caption" display="block" sx={{ mb: 1, fontStyle: 'italic' }}>
                                     (Gợi ý theo dược liệu đã chọn: **{currentSuggestion.chosenHerb}**)
                                 </Typography>
@@ -284,13 +308,12 @@ const SleepAidCard = () => {
             )}
 
             {suggestionsList.length > 1 && (
-                <Button variant="outlined" onClick={generateSleepAidSuggestion} sx={{ mt: 2 }}>
+                <Button variant="outlined" onClick={() => generateSleepAidSuggestion(true)} sx={{ mt: 2 }}> {/* Pass true here */}
                     Tạo gợi ý khác (ngẫu nhiên)
                 </Button>
             )}
         </Box>
     );
 }
-
 
 export default SleepAidCard;
