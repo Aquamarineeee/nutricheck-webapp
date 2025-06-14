@@ -142,14 +142,10 @@ const UserInfo = () => {
     };
 
     useEffect(() => {
-        // Cập nhật totalMealPrice mỗi khi currentMealsList thay đổi
-        if (currentMealsList.length > 0) {
-            const sumPrices = currentMealsList.reduce((sum, meal) => sum + (meal.price || 0), 0);
-            setTotalMealPrice(sumPrices);
-        } else {
-            setTotalMealPrice(0);
-        }
-    }, [currentMealsList]);
+        const calculatedTotalPrice = meals.reduce((sum, meal) => sum + (meal?.price || 0), 0);
+        setTotalMealPrice(calculatedTotalPrice);
+    }, [meals]);
+
     
     const selectMealGreedy = (
         availableMeals,
@@ -988,12 +984,16 @@ const UserInfo = () => {
                     <Typography>Protein: {meals.reduce((sum, m) => sum + (m?.protein || 0), 0).toFixed(1)}g</Typography>
                     <Typography>Chất béo: {meals.reduce((sum, m) => sum + (m?.fat || 0), 0).toFixed(1)}g</Typography>
                     <Typography>Carbs: {meals.reduce((sum, m) => sum + (m?.carbs || 0), 0).toFixed(1)}g</Typography>
-                    <Typography>Tổng giá tiền 4 bữa: {totalMealPrice.toLocaleString('vi-VN')} VNĐ</Typography>
+                    {meals.length > 0 && (
+                        <Alert severity="success" sx={{ mt: 2 }}>
+                            Tổng tiền dự kiến cho thực đơn: <strong>{totalMealPrice.toLocaleString('vi-VN')} VNĐ</strong>
+                        </Alert>    )}
                     </Box>
                 )}
                 </Box>
             );
         };
+        
         <Divider style={ {margin: "40px 0"}} />
         {/*holistic health advice*/}
         <Box mt = {4} className="fade-in">
