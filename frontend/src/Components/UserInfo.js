@@ -23,6 +23,7 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import SleepAidCard from './SleepAidCard';
 import sleepAidData from './sleepAidData.json'
+import { calculateBMR, calculateTDEE } from "./helthCal";
 
 
 
@@ -145,6 +146,28 @@ const UserInfo = () => {
         const calculatedTotalPrice = meals.reduce((sum, meal) => sum + (meal?.price || 0), 0);
         setTotalMealPrice(calculatedTotalPrice);
     }, [meals]);
+
+    useEffect(() => {
+        const { WEIGHT, HEIGHT, AGE, GENDER, ACTIVITY_LEVEL } = editedUserInfo;
+
+        // Kiểm tra xem tất cả các thông tin cần thiết có hợp lệ không
+        if (
+            WEIGHT && !isNaN(parseFloat(WEIGHT)) && parseFloat(WEIGHT) > 0 &&
+            HEIGHT && !isNaN(parseFloat(HEIGHT)) && parseFloat(HEIGHT) > 0 &&
+            AGE && !isNaN(parseInt(AGE)) && parseInt(AGE) > 0 &&
+            GENDER && ACTIVITY_LEVEL
+        ) {
+            const calculatedBMR = calculateBMR(WEIGHT, HEIGHT, AGE, GENDER);
+            const calculatedTDEE = calculateTDEE(calculatedBMR, ACTIVITY_LEVEL);
+
+            setBmr(calculatedBMR);
+            setTdee(calculatedTDEE);
+        } else {
+            setBmr(0);
+            setTdee(0);
+        }
+    }, [editedUserInfo]);
+    
 
     
     const selectMealGreedy = (
@@ -571,14 +594,58 @@ const UserInfo = () => {
                 if (bmi >= 30) return "Béo phì";
                 return "";
         }, []);
+        useEffect(() => {
+        const { WEIGHT, HEIGHT, AGE, GENDER, ACTIVITY_LEVEL } = editedUserInfo;
+
+        // Kiểm tra xem tất cả các thông tin cần thiết có hợp lệ không
+        if (
+            WEIGHT && !isNaN(parseFloat(WEIGHT)) && parseFloat(WEIGHT) > 0 &&
+            HEIGHT && !isNaN(parseFloat(HEIGHT)) && parseFloat(HEIGHT) > 0 &&
+            AGE && !isNaN(parseInt(AGE)) && parseInt(AGE) > 0 &&
+            GENDER && ACTIVITY_LEVEL
+        ) {
+            const calculatedBMR = calculateBMR(WEIGHT, HEIGHT, AGE, GENDER);
+            const calculatedTDEE = calculateTDEE(calculatedBMR, ACTIVITY_LEVEL);
+
+            setBmr(calculatedBMR);
+            setTdee(calculatedTDEE);
+        } else {
+            setBmr(0);
+            setTdee(0);
+        }
+    }, [editedUserInfo]);
+
+
+    // Hàm xử lý khi người dùng SUBMIT thông tin cá nhân 
+        const outp = async () => { 
+            const { WEIGHT, HEIGHT, AGE, GENDER, ACTIVITY_LEVEL } = editedUserInfo;
+            let finalBMR = 0;
+            let finalTDEE = 0;
+
+            if (
+                WEIGHT && !isNaN(parseFloat(WEIGHT)) && parseFloat(WEIGHT) > 0 &&
+                HEIGHT && !isNaN(parseFloat(HEIGHT)) && parseFloat(HEIGHT) > 0 &&
+                AGE && !isNaN(parseInt(AGE)) && parseInt(AGE) > 0 &&
+                GENDER && ACTIVITY_LEVEL
+            ) {
+                finalBMR = calculateBMR(WEIGHT, HEIGHT, AGE, GENDER);
+                finalTDEE = calculateTDEE(finalBMR, ACTIVITY_LEVEL);
+            }
+
+            const updatedUserInfoToSave = {
+                ...userInfo,
+                ...editedUserInfo,
+                DAILY_WATER_INTAKE: dailyWaterIntake,
+                BMR: finalBMR, // Lưu BMR vào đối tượng
+                TDEE: finalTDEE // Lưu TDEE vào đối tượng
+            };
+
+            setUserInfo(updatedUserInfoToSave);
+            setEditing(false);
+
+        };
 
         const handleSubmit = () => {
-        if (selectedConditions.length === 0) {
-                enqueueSnackbar("Vui lòng chọn hoặc nhập ít nhất một tình trạng sức khỏe.", { variant: "warning" });
-                setFeedback("");
-                return;
-        }
-
             let fullFeedback = "";
             selectedConditions.forEach(condition => {
                 let result = `Nếu bạn đang bị ${condition}, với mức calo tiêu thụ như trên thì, dưới đây là gợi ý thực đơn phù hợp cho bạn:\n`;
@@ -901,7 +968,8 @@ const UserInfo = () => {
                 </CardContent>
                 </Card>
             );
-            };
+        };
+        
         const renderMealPlan = () => {
             const totalActualCalories = meals.reduce((sum, m) => sum + (m?.actualCalories || 0), 0);
             const calorieDifference = totalActualCalories - totalDailyCalories;
@@ -933,40 +1001,31 @@ const UserInfo = () => {
                     </Button>
                 </Typography>
 
-                <Slider {...sett}>
+                <Grid container spacing={2}>
                     {meals.length > 0 ? (
-                        meals.map((meal, index) => (
-                            // Mỗi MealCardDetail cần được bọc trong một thẻ div đơn giản
-                            // để Slider có thể quản lý chúng như các slide
-                            <div key={index} style={{ padding: '8px' }}> {/* Thêm padding để tạo khoảng cách giữa các card */}
-                                <MealCardDetail
-                                    meal={meal}
-                                    sx={{ animation: `${floatAnimation} 3s ease-in-out infinite` }}
-                                />
-                            </div>
-                        ))
+                    meals.map((meal, index) => (
+                        <Grid item xs={12} sm={6} md={3} key={index}>
+                        <MealCardDetail meal={meal} />
+                        </Grid>
+                    ))
                     ) : (
-                        // Hiển thị placeholder cũng trong Slider
-                        ["Sáng", "Trưa", "Chiều", "Tối"].map((time) => (
-                            <div key={time} style={{ padding: '8px' }}> {/* Thêm padding cho placeholder cards */}
-                                <MealCardDetail
-                                    meal={{
-                                        name: "Đang tạo thực đơn...",
-                                        mealTime: time,
-                                        calories: 0,
-                                        protein: 0,
-                                        fat: 0,
-                                        carbs: 0,
-                                        weight: 0,
-                                        description: "Vui lòng nhấn nút 'Tạo thực đơn mới'",
-                                        image: "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
-                                    }}
-                                    sx={{ animation: `${floatAnimation} 3s ease-in-out infinite` }}
-                                />
-                            </div>
-                        ))
+                    ["Sáng", "Trưa", "Chiều", "Tối"].map((time) => (
+                        <Grid item xs={12} sm={6} md={3} key={time}>
+                        <MealCardDetail meal={{
+                            name: "Đang tạo thực đơn...",
+                            mealTime: time,
+                            calories: 0,
+                            protein: 0,
+                            fat: 0,
+                            carbs: 0,
+                            weight: 0,
+                            description: "Vui lòng nhấn nút 'Tạo thực đơn mới'",
+                            image: "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                        }} />
+                        </Grid>
+                    ))
                     )}
-                </Slider>
+                </Grid>
 
                 {meals.length > 0 && (
                     <Box mt={2}>
@@ -1211,136 +1270,136 @@ const UserInfo = () => {
                 )}
 
                 {/* Header */}
-               <div style={{ padding: '20px', maxWidth: '1200px', margin: 'auto' }}>
-                    <Box mb={4}>
-                        <Typography variant="h4" component="h1" gutterBottom align="center">
-                            Thông tin cá nhân
-                        </Typography>
+                <div style={{ padding: '20px', maxWidth: '1200px', margin: 'auto' }}>
+                <Box mb={4}>
+                    <Typography variant="h4" component="h1" gutterBottom align="center">
+                        Thông tin cá nhân
+                    </Typography>
 
-                        <Box mb={3} sx={{
-                            display: 'flex',
-                            flexDirection: { xs: 'column', md: 'row' },
-                            alignItems: 'center',
-                            justifyContent: 'space-between',
-                            gap: 3,
-                            p: 2,
-                            borderRadius: '8px',
-                            boxShadow: 3
-                        }}>
-                            <Box sx={{ flexGrow: 1 }}>
-                                <Grid container spacing={2}>
-                                    <Grid item xs={12} sm={6}>
-                                        <TextField
-                                            fullWidth
-                                            label="Tên"
-                                            name="NAME"
-                                            value={editedUserInfo.NAME || ''}
-                                            onChange={handleFieldChange}
-                                            disabled={!editing}
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12} sm={6}>
-                                        <TextField
-                                            fullWidth
-                                            label="Chiều cao (cm)"
-                                            name="HEIGHT"
-                                            type="number"
-                                            value={editedUserInfo.HEIGHT || ''}
-                                            onChange={handleFieldChange}
-                                            disabled={!editing}
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12} sm={6}>
-                                        <TextField
-                                            fullWidth
-                                            label="Cân nặng (kg)"
-                                            name="WEIGHT"
-                                            type="number"
-                                            value={editedUserInfo.WEIGHT || ''}
-                                            onChange={handleFieldChange}
-                                            disabled={!editing}
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12} sm={6}>
-                                        <TextField
-                                            fullWidth
-                                            label="Tuổi"
-                                            name="AGE"
-                                            type="number"
-                                            value={editedUserInfo.AGE || ''}
-                                            onChange={handleFieldChange}
-                                            disabled={!editing}
-                                        />
-                                    </Grid>
-                                    <Grid item xs={12} sm={6}>
-                                        <FormControl fullWidth disabled={!editing}>
-                                            <InputLabel>Giới tính</InputLabel>
-                                            <Select
-                                                name="GENDER"
-                                                value={editedUserInfo.GENDER || ''}
-                                                label="Giới tính"
-                                                onChange={handleFieldChange}
-                                            >
-                                                <MenuItem value="Nam">Nam</MenuItem>
-                                                <MenuItem value="Nữ">Nữ</MenuItem>
-                                            </Select>
-                                        </FormControl>
-                                    </Grid>
-                                    <Grid item xs={12} sm={6}>
-                                        <FormControl fullWidth disabled={!editing}>
-                                            <InputLabel>Mức độ vận động</InputLabel>
-                                            <Select
-                                                name="ACTIVITY_LEVEL"
-                                                value={editedUserInfo.ACTIVITY_LEVEL || ''}
-                                                label="Mức độ vận động"
-                                                onChange={handleFieldChange}
-                                            >
-                                                <MenuItem value="Ít vận động">Ít vận động (ít hoặc không tập thể dục)</MenuItem>
-                                                <MenuItem value="Vận động nhẹ">Vận động nhẹ (1-3 ngày/tuần)</MenuItem>
-                                                <MenuItem value="Vận động vừa">Vận động vừa (3-5 ngày/tuần)</MenuItem>
-                                                <MenuItem value="Vận động nhiều">Vận động nhiều (6-7 ngày/tuần)</MenuItem>
-                                                <MenuItem value="Vận động rất nhiều">Vận động rất nhiều (2 lần/ngày)</MenuItem>
-                                            </Select>
-                                        </FormControl>
-                                    </Grid>
-                                    <Grid item xs={12} sm={6}>
-                                        <FormControl fullWidth disabled={!editing}>
-                                            <InputLabel>Mục tiêu</InputLabel>
-                                            <Select
-                                                name="GOAL"
-                                                value={editedUserInfo.GOAL || ''}
-                                                label="Mục tiêu"
-                                                onChange={handleFieldChange}
-                                            >
-                                                <MenuItem value="Giảm cân">Giảm cân</MenuItem>
-                                                <MenuItem value="Tăng cân">Tăng cân</MenuItem>
-                                                <MenuItem value="Duy trì cân nặng">Duy trì cân nặng</MenuItem>
-                                            </Select>
-                                        </FormControl>
-                                    </Grid>
+                    <Box mb={3} sx={{
+                        display: 'flex',
+                        flexDirection: { xs: 'column', md: 'row' },
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        gap: 3,
+                        p: 2,
+                        borderRadius: '8px',
+                        boxShadow: 3
+                    }}>
+                        <Box sx={{ flexGrow: 1 }}>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField
+                                        fullWidth
+                                        label="Tên"
+                                        name="NAME"
+                                        value={editedUserInfo.NAME || ''}
+                                        onChange={handleFieldChange}
+                                        disabled={!editing}
+                                    />
                                 </Grid>
-                                <Box mt={3} sx={{ display: 'flex', gap: 2, justifyContent: 'flex-end' }}>
-                                    <Button
-                                        variant="contained"
-                                        color="primary"
-                                        onClick={editing ? handleSubmit : handleEditToggle}
-                                    >
-                                        {editing ? 'Lưu thay đổi' : 'Chỉnh sửa thông tin'}
-                                    </Button>
-                                    {editing && (
-                                        <Button
-                                            variant="outlined"
-                                            color="secondary"
-                                            onClick={handleEditToggle}
+                                <Grid item xs={12} sm={6}>
+                                    <TextField
+                                        fullWidth
+                                        label="Chiều cao (cm)"
+                                        name="HEIGHT"
+                                        type="number"
+                                        value={editedUserInfo.HEIGHT || ''}
+                                        onChange={handleFieldChange}
+                                        disabled={!editing}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField
+                                        fullWidth
+                                        label="Cân nặng (kg)"
+                                        name="WEIGHT"
+                                        type="number"
+                                        value={editedUserInfo.WEIGHT || ''}
+                                        onChange={handleFieldChange}
+                                        disabled={!editing}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField
+                                        fullWidth
+                                        label="Tuổi"
+                                        name="AGE"
+                                        type="number"
+                                        value={editedUserInfo.AGE || ''}
+                                        onChange={handleFieldChange}
+                                        disabled={!editing}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <FormControl fullWidth disabled={!editing}>
+                                        <InputLabel>Giới tính</InputLabel>
+                                        <Select
+                                            name="GENDER"
+                                            value={editedUserInfo.GENDER || ''}
+                                            label="Giới tính"
+                                            onChange={handleFieldChange}
                                         >
-                                            Hủy
-                                        </Button>
-                                    )}
-                                </Box>
+                                            <MenuItem value="Nam">Nam</MenuItem>
+                                            <MenuItem value="Nữ">Nữ</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <FormControl fullWidth disabled={!editing}>
+                                        <InputLabel>Mức độ vận động</InputLabel>
+                                        <Select
+                                            name="ACTIVITY_LEVEL"
+                                            value={editedUserInfo.ACTIVITY_LEVEL || ''}
+                                            label="Mức độ vận động"
+                                            onChange={handleFieldChange}
+                                        >
+                                            <MenuItem value="Ít vận động">Ít vận động (ít hoặc không tập thể dục)</MenuItem>
+                                            <MenuItem value="Vận động nhẹ">Vận động nhẹ (1-3 ngày/tuần)</MenuItem>
+                                            <MenuItem value="Vận động vừa">Vận động vừa (3-5 ngày/tuần)</MenuItem>
+                                            <MenuItem value="Vận động nhiều">Vận động nhiều (6-7 ngày/tuần)</MenuItem>
+                                            <MenuItem value="Vận động rất nhiều">Vận động rất nhiều (2 lần/ngày)</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <FormControl fullWidth disabled={!editing}>
+                                        <InputLabel>Mục tiêu</InputLabel>
+                                        <Select
+                                            name="GOAL"
+                                            value={editedUserInfo.GOAL || ''}
+                                            label="Mục tiêu"
+                                            onChange={handleFieldChange}
+                                        >
+                                            <MenuItem value="Giảm cân">Giảm cân</MenuItem>
+                                            <MenuItem value="Tăng cân">Tăng cân</MenuItem>
+                                            <MenuItem value="Duy trì cân nặng">Duy trì cân nặng</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                </Grid>
+                            </Grid>
+                            <Box mt={3} sx={{ display: 'flex', gap: 2, justifyContent: 'flex-end' }}>
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={editing ? handleSubmit : handleEditToggle} 
+                                >
+                                    {editing ? 'Lưu thay đổi' : 'Chỉnh sửa thông tin'}
+                                </Button>
+                                {editing && (
+                                    <Button
+                                        variant="outlined"
+                                        color="secondary"
+                                        onClick={handleEditToggle}
+                                    >
+                                        Hủy
+                                    </Button>
+                                )}
                             </Box>
                         </Box>
                     </Box>
-                </div>
+                </Box>
+            </div>
 
 
                 <Box mb={4}>
