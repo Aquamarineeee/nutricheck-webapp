@@ -52,7 +52,7 @@ const activityFactor = {
 const UserInfo = () => {
     const navigate = useNavigate();
     const { enqueueSnackbar } = useSnackbar();
-    const { userInfo, weekData, fetchWeekData } = useContext(AppContext);
+    const { userInfo, weekData, fetchWeekData, setUserInfo} = useContext(AppContext);
     const [totalCalories, setTotalCalories] = useState(0);
     const [dailyCaloriesConsumed, setDailyCaloriesConsumed] = useState(0);
     const [minCaloriesDay, setMinCaloriesDay] = useState(0);
@@ -61,7 +61,6 @@ const UserInfo = () => {
     const [totalMonthlyCalories, setTotalMonthlyCalories] = useState(0);
     const [suggestedMeals, setSuggestedMeals] = useState({ gain: [], lose: [], maintain: [] });
     const [feedback, setFeedback] = useState("");
-    const [selectedCondition, setSelectedCondition] = useState("");
     const [goal, setGoal] = useState("maintain");
     const [targetWeightChange, setTargetWeightChange] = useState(0);
     const [goalCalories, setGoalCalories] = useState(0);
@@ -86,10 +85,6 @@ const UserInfo = () => {
     // State mới cho gợi ý giấc ngủ
     const [selectedSleepConditions, setSelectedSleepConditions] = useState([]);
     const [selectedSleepHerbs, setSelectedSleepHerbs] = useState([]);
-    const [sleepAidSuggestion, setSleepAidSuggestion] = useState(null); // Lưu trữ object gợi ý
-    const [sleepConditionsOptions, setSleepConditionsOptions] = useState([]);
-    const [sleepHerbsOptions, setSleepHerbsOptions] = useState([]);
-    const [currentSleepAidSuggestions, setCurrentSleepAidSuggestions] = useState([]);
     const [suggestionsList, setSuggestionsList] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const [showSleepAid, setShowSleepAid] = useState(false);
@@ -97,6 +92,8 @@ const UserInfo = () => {
     const [editing, setEditing] = useState(false);
     const [editedUserInfo, setEditedUserInfo] = useState({});
     const [totalMealPrice, setTotalMealPrice] = useState(0);
+    const [bmr, setBmr] = useState(0);
+    const [tdee, setTdee] = useState(0);
     
 
     // Hàm chọn món ăn dựa trên calo mục tiêu (thuật toán tham lam)
