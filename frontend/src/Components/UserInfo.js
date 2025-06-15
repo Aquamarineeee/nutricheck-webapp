@@ -86,6 +86,13 @@ const UserInfo = () => {
     const [calculatedDisplayTDEE, setCalculatedDisplayTDEE] = useState(0);
     //up cái này để tính chênh lệch nhé
     const [currentMealsTotalCalories, setCurrentMealsTotalCalories] = useState(0); // Dòng mới
+    const targetCaloriesForDisplay = parseFloat(totalDailyCalories) || 0; // Calo mục tiêu đã điều chỉnh theo goal
+    const actualMealsCalories = currentMealsTotalCalories; // Tổng calo từ các bữa ăn mẫu
+
+    const calorieDifference = actualMealsCalories - targetCaloriesForDisplay;
+    const isDifferenceSignificant = Math.abs(calorieDifference) > 100;
+    const diffColor = isDifferenceSignificant ? 'red' : 'inherit';
+    const diffTextFormatted = calorieDifference >= 0 ? `(+${calorieDifference.toFixed(0)})` : `(${calorieDifference.toFixed(0)})`;
     
 
     // Hàm chọn món ăn dựa trên calo mục tiêu (thuật toán tham lam)
@@ -574,46 +581,19 @@ const UserInfo = () => {
             return bmrResult.toFixed(2); // Trả về kết quả đã làm tròn dưới dạng chuỗi
         }, [userInfo]); // Dependency array: Hàm này phụ thuộc vào userInfo
 
-       const calculateTDEE = useCallback((bmrValue, userInfo) => {
-            if (bmrValue === null || isNaN(parseFloat(bmrValue)) || !userInfo || !userInfo.ACTIVITY) {
-                return null;
-            }
-
-            const { ACTIVITY } = userInfo;
-            let multiplier;
-            switch (ACTIVITY) {
-                case 'sedentary': multiplier = 1.2; break;
-                case 'light': multiplier = 1.375; break;
-                case 'moderate': multiplier = 1.55; break;
-                case 'active': multiplier = 1.725; break;
-                case 'very_active': multiplier = 1.9; break;
-                default: return null;
-            }
-
-            // Parse bmrValue trở lại thành số để tính toán
-            const parsedBmr = parseFloat(bmrValue);
-            if (isNaN(parsedBmr) || parsedBmr <= 0) {
-                return null;
-            }
-
-            const tdeeResult = parsedBmr * multiplier;
-            return tdeeResult.toFixed(2); // Trả về kết quả đã làm tròn dưới dạng chuỗi
-        }, [userInfo, bmrValue]); // Dependency array: Hàm này phụ thuộc vào userInfo và bmrValue
+       
 
         useEffect(() => {
             // Gọi các hàm đã refactor
             const bmrResult = calculateBMR(userInfo); 
-            const tdeeResult = calculateTDEE(bmrResult, userInfo); 
             setCalculatedDisplayBMR(bmrResult ?? '0.00');
-            setCalculatedDisplayTDEE(tdeeResult ?? '0.00');
         }, [
             userInfo.WEIGHT,
             userInfo.HEIGHT,
             userInfo.AGE,
             userInfo.GENDER,
-            userInfo.ACTIVITY_LEVEL,
+            userInfo.ACTIVITY,
             calculateBMR,
-            calculateTDEE 
         ]);
 
 
@@ -948,13 +928,17 @@ const UserInfo = () => {
         const renderMealPlan = () => {
             const totalActualCalories = meals.reduce((sum, m) => sum + (m?.actualCalories || 0), 0);
             const calorieDifference = totalActualCalories - totalDailyCalories;
+            const actualMealsCalories = currentMealsTotalCalories; // Lấy từ state đã được cập nhật bởi useEffect
+            const isDifferenceSignificant = Math.abs(calorieDifference) > 100;
+            const diffColor = isDifferenceSignificant ? 'red' : 'inherit';
+            const diffTextFormatted = calorieDifference >= 0 ? `(+${calorieDifference.toFixed(0)})` : `(${calorieDifference.toFixed(0)})`;
 
             return (
                 <Box mt={3}>
                 <Typography variant="h6" gutterBottom>
-                    Thực đơn mẫu cho mục tiêu
-                        &nbsp;{goal === 'gain' ? 'tăng cân' : goal === 'lose' ? 'giảm cân' : 'duy trì cân nặng'}&nbsp;
-                        {actualMealsCalories.toFixed(0)} {diffText} calo/ngày
+                    Thực đơn mẫu cho mục tiêu&nbsp;
+                        {goal === 'gain' ? 'tăng cân' : goal === 'lose' ? 'giảm cân' : 'duy trì cân nặng'}&nbsp;
+                        {actualMealsCalories.toFixed(0)} {diffTextFormatted} calo/ngày
                     {Math.abs(calorieDifference) > 0 && (
                     <Typography 
                         variant="caption" 
@@ -1325,7 +1309,7 @@ const UserInfo = () => {
                                     Chỉ số BMI của bạn: {(calculatedDisplayBMR || 0).toFixed(2)} Calo/ngày
                                 </Typography>
                                 <Typography variant="body1">
-                                    Chỉ số TDEE của bạn: {(calculatedDisplayTDEE || 0).toFixed(2)} Calo/ngày
+                                    Chỉ số TDEE của bạn: {(calculatedDisplayBMR * UserInfo.ACTIVITY || 0).toFixed(2)} Calo/ngày
                                 </Typography>
                                 <Typography variant="body1">
                                     Tình trạng: {getBMICategory(calculateBMI())}
