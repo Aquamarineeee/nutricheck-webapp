@@ -104,13 +104,7 @@ const UserInfo = () => {
             transform: translateY(0px);
         }
         `;
-    const handleFieldChange = (e) => {
-        const { name, value } = e.target;
-        setEditedUserInfo(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
-    };
+    
     const sett = {
         dots: true,
         infinite: true,
@@ -128,31 +122,6 @@ const UserInfo = () => {
         ]
     };
 
-    useEffect(() => {
-        const calculatedTotalPrice = meals.reduce((sum, meal) => sum + (meal?.price || 0), 0);
-        setTotalMealPrice(calculatedTotalPrice);
-    }, [meals]);
-
-    useEffect(() => {
-        const { WEIGHT, HEIGHT, AGE, GENDER, ACTIVITY_LEVEL } = UserInfo;
-
-        // Kiểm tra xem tất cả các thông tin cần thiết có hợp lệ không
-        if (
-            WEIGHT && !isNaN(parseFloat(WEIGHT)) && parseFloat(WEIGHT) > 0 &&
-            HEIGHT && !isNaN(parseFloat(HEIGHT)) && parseFloat(HEIGHT) > 0 &&
-            AGE && !isNaN(parseInt(AGE)) && parseInt(AGE) > 0 &&
-            GENDER && ACTIVITY_LEVEL
-        ) {
-            const calculatedBMR = calculateBMR(WEIGHT, HEIGHT, AGE, GENDER);
-            const calculatedTDEE = calculateTDEE(calculatedBMR, ACTIVITY_LEVEL);
-
-            setBmr(calculatedBMR);
-            setTdee(calculatedTDEE);
-        } else {
-            setBmr(0);
-            setTdee(0);
-        }
-    }, [UserInfo]);
     
 
     
@@ -589,9 +558,9 @@ const UserInfo = () => {
             }
         };
 
-        const calculateTDEE = (bmr, activityLevel) => {
+        const calculateTDEE = (bmr, activity) => {
             let multiplier;
-            switch (activityLevel) {
+            switch (activity) {
                 case 'sedentary': multiplier = 1.2; break;
                 case 'light': multiplier = 1.375; break;
                 case 'moderate': multiplier = 1.55; break;
@@ -603,7 +572,7 @@ const UserInfo = () => {
         };
 
         useEffect(() => {
-            const { WEIGHT, HEIGHT, AGE, GENDER, ACTIVITY_LEVEL } = userInfo;
+            const { WEIGHT, HEIGHT, AGE, GENDER, ACTIVITY } = UserInfo;
 
             // Kiểm tra xem tất cả các thông tin cần thiết có hợp lệ không
             if (
@@ -613,7 +582,7 @@ const UserInfo = () => {
                 GENDER && ACTIVITY_LEVEL
             ) {
                 const calculatedBMR = calculateBMR(WEIGHT, HEIGHT, AGE, GENDER);
-                const calculatedTDEE = calculateTDEE(calculatedBMR, ACTIVITY_LEVEL);
+                const calculatedTDEE = calculateTDEE(calculatedBMR, ACTIVITY);
 
                 // Cập nhật BMR và TDEE vào state userInfo
                 setUserInfo(prevInfo => ({
@@ -629,31 +598,11 @@ const UserInfo = () => {
                     TDEE: 0
                 }));
             }
-        }, [userInfo.WEIGHT, userInfo.HEIGHT, userInfo.AGE, userInfo.GENDER, userInfo.ACTIVITY_LEVEL]);
+        }, [UserInfo.WEIGHT, UserInfo.HEIGHT, UserInfo.AGE, UserInfo.GENDER, UserInfo.ACTIVITY]);
 
 
 
-        useEffect(() => {
-            const { WEIGHT, HEIGHT, AGE, GENDER, ACTIVITY_LEVEL } = UserInfo;
-
-            // Kiểm tra xem tất cả các thông tin cần thiết có hợp lệ không
-            if (
-                WEIGHT && !isNaN(parseFloat(WEIGHT)) && parseFloat(WEIGHT) > 0 &&
-                HEIGHT && !isNaN(parseFloat(HEIGHT)) && parseFloat(HEIGHT) > 0 &&
-                AGE && !isNaN(parseInt(AGE)) && parseInt(AGE) > 0 &&
-                GENDER && ACTIVITY_LEVEL
-            ) {
-                const calculatedBMR = calculateBMR(WEIGHT, HEIGHT, AGE, GENDER);
-                const calculatedTDEE = calculateTDEE(calculatedBMR, ACTIVITY_LEVEL);
-
-                setBmr(calculatedBMR);
-                setTdee(calculatedTDEE);
-            } else {
-                setBmr(0);
-                setTdee(0);
-            }
-        }, [UserInfo]);
-
+        
 
 
         const handleSubmit = () => {
