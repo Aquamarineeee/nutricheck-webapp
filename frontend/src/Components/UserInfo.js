@@ -84,6 +84,8 @@ const UserInfo = () => {
     const [totalMealPrice, setTotalMealPrice] = useState(0);
     const [calculatedDisplayBMR, setCalculatedDisplayBMR] = useState(0);
     const [calculatedDisplayTDEE, setCalculatedDisplayTDEE] = useState(0);
+    //up cái này để tính chênh lệch nhé
+    const [currentMealsTotalCalories, setCurrentMealsTotalCalories] = useState(0); // Dòng mới
     
 
     // Hàm chọn món ăn dựa trên calo mục tiêu (thuật toán tham lam)
@@ -543,63 +545,76 @@ const UserInfo = () => {
                 if (bmi >= 30) return "Béo phì";
                 return "";
         }, []);
-        const calculateBMR = (userInfo) => {
-                const { WEIGHT, HEIGHT, AGE, GENDER } = userInfo; // Lấy các thuộc tính từ userInfo
+        const calculateBMR = useCallback((userInfo) => {
+       
+            if (!userInfo || !userInfo.WEIGHT || !userInfo.HEIGHT || !userInfo.AGE || !userInfo.GENDER) {
+                return null; // Trả về null nếu thiếu bất kỳ thông tin cần thiết nào
+            }
 
-                // Kiểm tra và chuyển đổi kiểu dữ liệu tương tự như trong code cũ
-                const parsedWeight = parseFloat(WEIGHT);
-                const parsedHeight = parseFloat(HEIGHT);
-                const parsedAge = parseInt(AGE);
+            const { WEIGHT, HEIGHT, AGE, GENDER } = userInfo;
+            const parsedWeight = parseFloat(WEIGHT);
+            const parsedHeight = parseFloat(HEIGHT);
+            const parsedAge = parseInt(AGE);
 
-                // Đảm bảo các giá trị hợp lệ trước khi tính toán
-                if (isNaN(parsedWeight) || parsedWeight <= 0 ||
-                    isNaN(parsedHeight) || parsedHeight <= 0 ||
-                    isNaN(parsedAge) || parsedAge <= 0 ||
-                    !GENDER) {
-                    return 0; // Trả về 0 nếu dữ liệu không hợp lệ
-                }
+            if (isNaN(parsedWeight) || parsedWeight <= 0 ||
+                isNaN(parsedHeight) || parsedHeight <= 0 ||
+                isNaN(parsedAge) || parsedAge <= 0) {
+                return null; // Trả về null nếu dữ liệu không hợp lệ
+            }
 
-                // Công thức tính BMR (Mifflin-St Jeor Equation)
-                if (GENDER === 'male') {
-                    return (10 * parsedWeight) + (6.25 * parsedHeight) - (5 * parsedAge) + 5;
-                } else if (GENDER === 'female') {
-                    return (10 * parsedWeight) + (6.25 * parsedHeight) - (5 * parsedAge) - 161;
-                }
-                return 0; // Mặc định trả về 0 nếu giới tính không xác định
-            };
+            let bmrResult;
+            if (GENDER === 'male') {
+                bmrResult = (10 * parsedWeight) + (6.25 * parsedHeight) - (5 * parsedAge) + 5;
+            } else if (GENDER === 'female') {
+                bmrResult = (10 * parsedWeight) + (6.25 * parsedHeight) - (5 * parsedAge) - 161;
+            } else {
+                return null;
+            }
 
-        const calculateTDEE = (bmr, activity) => {
+            return bmrResult.toFixed(2); // Trả về kết quả đã làm tròn dưới dạng chuỗi
+        }, [userInfo]); // Dependency array: Hàm này phụ thuộc vào userInfo
+
+       const calculateTDEE = useCallback((bmrValue, userInfo) => {
+            if (bmrValue === null || isNaN(parseFloat(bmrValue)) || !userInfo || !userInfo.ACTIVITY) {
+                return null;
+            }
+
+            const { ACTIVITY } = userInfo;
             let multiplier;
-            switch (activity) {
+            switch (ACTIVITY) {
                 case 'sedentary': multiplier = 1.2; break;
                 case 'light': multiplier = 1.375; break;
                 case 'moderate': multiplier = 1.55; break;
                 case 'active': multiplier = 1.725; break;
                 case 'very_active': multiplier = 1.9; break;
-                default: multiplier = 1.2;
+                default: return null;
             }
-            return bmr * multiplier;
-        };
+
+            // Parse bmrValue trở lại thành số để tính toán
+            const parsedBmr = parseFloat(bmrValue);
+            if (isNaN(parsedBmr) || parsedBmr <= 0) {
+                return null;
+            }
+
+            const tdeeResult = parsedBmr * multiplier;
+            return tdeeResult.toFixed(2); // Trả về kết quả đã làm tròn dưới dạng chuỗi
+        }, [userInfo, bmrValue]); // Dependency array: Hàm này phụ thuộc vào userInfo và bmrValue
 
         useEffect(() => {
-            const { WEIGHT, HEIGHT, AGE, GENDER, ACTIVITY_LEVEL } = userInfo;
-
-            if (
-                WEIGHT && !isNaN(parseFloat(WEIGHT)) && parseFloat(WEIGHT) > 0 &&
-                HEIGHT && !isNaN(parseFloat(HEIGHT)) && parseFloat(HEIGHT) > 0 &&
-                AGE && !isNaN(parseInt(AGE)) && parseInt(AGE) > 0 &&
-                GENDER && ACTIVITY_LEVEL
-            ) {
-                const bmr = calculateBMR(userInfo); // Gọi hàm đã refactor
-                const tdee = calculateTDEE(bmr, userInfo); // Gọi hàm đã refactor
-
-                setCalculatedDisplayBMR(bmr);
-                setCalculatedDisplayTDEE(tdee);
-            } else {
-                setCalculatedDisplayBMR(0);
-                setCalculatedDisplayTDEE(0);
-            }
-        }, [userInfo.WEIGHT, userInfo.HEIGHT, userInfo.AGE, userInfo.GENDER, userInfo.ACTIVITY_LEVEL]);
+            // Gọi các hàm đã refactor
+            const bmrResult = calculateBMR(userInfo); 
+            const tdeeResult = calculateTDEE(bmrResult, userInfo); 
+            setCalculatedDisplayBMR(bmrResult ?? '0.00');
+            setCalculatedDisplayTDEE(tdeeResult ?? '0.00');
+        }, [
+            userInfo.WEIGHT,
+            userInfo.HEIGHT,
+            userInfo.AGE,
+            userInfo.GENDER,
+            userInfo.ACTIVITY_LEVEL,
+            calculateBMR,
+            calculateTDEE 
+        ]);
 
 
 
@@ -937,8 +952,9 @@ const UserInfo = () => {
             return (
                 <Box mt={3}>
                 <Typography variant="h6" gutterBottom>
-                    Thực đơn mẫu cho mục tiêu {goal === "gain" ? "tăng cân" : goal === "lose" ? "giảm cân" : "giữ cân"}
-                    &nbsp;({totalDailyCalories.toFixed(0)} calo/ngày)
+                    Thực đơn mẫu cho mục tiêu
+                        &nbsp;{goal === 'gain' ? 'tăng cân' : goal === 'lose' ? 'giảm cân' : 'duy trì cân nặng'}&nbsp;
+                        {actualMealsCalories.toFixed(0)} {diffText} calo/ngày
                     {Math.abs(calorieDifference) > 0 && (
                     <Typography 
                         variant="caption" 
@@ -993,11 +1009,12 @@ const UserInfo = () => {
                         <strong>Tổng lượng dinh dưỡng trong ngày:</strong>
                     </Typography>
                     <Typography>
-                        Calo: {totalActualCalories.toFixed(0)}
+                        Calo: {actualMealsCalories.toFixed(0)}
+                        {/* Chỉ hiển thị phần chênh lệch nếu nó khác 0 */}
                         {Math.abs(calorieDifference) > 0 && (
-                        <span style={{ color: Math.abs(calorieDifference) > 100 ? 'red' : 'inherit', marginLeft: '5px' }}>
-                            ({calorieDifference > 0 ? '+' : ''}{calorieDifference.toFixed(0)})
-                        </span>
+                            <span style={{ color: diffColor, marginLeft: '5px' }}>
+                                ({calorieDifference > 0 ? '+' : ''}{calorieDifference.toFixed(0)})
+                            </span>
                         )}
                     </Typography>
                     <Typography>Protein: {meals.reduce((sum, m) => sum + (m?.protein || 0), 0).toFixed(1)}g</Typography>
@@ -1148,31 +1165,21 @@ const UserInfo = () => {
             </Typography>
         </Alert>
 
-        const handleGenerateSuggestion = useCallback(() => {
-            const uniqueSuggestions = SleepAidCard(
-                selectedSleepConditions,
-                selectedSleepHerbs
-            );
 
-            if (uniqueSuggestions.length > 0) {
-                setSuggestionsList(uniqueSuggestions);
-                setCurrentPage(0);
-                enqueueSnackbar("Đã tạo gợi ý hỗ trợ giấc ngủ!", { variant: "success" });
-            } else {
-                setSuggestionsList([]);
-                enqueueSnackbar("Không tìm thấy gợi ý hỗ trợ giấc ngủ phù hợp với lựa chọn của bạn.", { variant: "info" });
-            }
-        }, [selectedSleepConditions, selectedSleepHerbs, enqueueSnackbar]); // dependencies của useCallback
+        useEffect(() => {
+            const currentGoal = totalCalories < minCaloriesWeek ? "gain" : totalCalories > minCaloriesWeek ? "lose" : "maintain";
+            const newSuggestedMeals = {
+                gain: getMealSuggestions("gain"),
+                lose: getMealSuggestions("lose"),
+                maintain: getMealSuggestions("maintain"),
+            };
+            setSuggestedMeals(newSuggestedMeals);
 
-        const handleNextPage = () => {
-            setCurrentPage((prevPage) => (prevPage + 1) % suggestionsList.length);
-        };
-
-        const handlePrevPage = () => {
-            setCurrentPage((prevPage) => (prevPage - 1 + suggestionsList.length) % suggestionsList.length);
-        };
-
-        const currentSuggestion = suggestionsList[currentPage];
+            // Tính tổng calo của các món ăn được gợi ý dựa trên mục tiêu hiện tại
+            const mealsForCurrentGoal = newSuggestedMeals[currentGoal];
+            const totalCurrentCalories = mealsForCurrentGoal.reduce((sum, meal) => sum + meal.calories, 0);
+            setCurrentMealsTotalCalories(totalCurrentCalories); // Cập nhật state mới
+        }, [totalCalories, minCaloriesWeek]);
         
 
         return (
@@ -1249,66 +1256,33 @@ const UserInfo = () => {
                         <Box sx={{ flexGrow: 1 }}>
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={6}>
-                                    <TextField
-                                        fullWidth
-                                        label="Tên"
-                                        name="NAME"
-                                        value={UserInfo.NAME || ''}
-                                    />
+                                    <Typography variant="body1" sx={{ mt: 2 }}> {/* Thêm sx={{ mt: 2 }} để căn chỉnh lề nếu cần */}
+                                        <strong>Tên người dùng:</strong> {userInfo.USERNAME || 'N/A'} tuổi
+                                    </Typography>
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    <TextField
-                                        fullWidth
-                                        label="Chiều cao (cm)"
-                                        name="HEIGHT"
-                                        type="number"
-                                        value={UserInfo.HEIGHT || ''}
-                                    />
+                                    <Typography variant="body1" sx={{ mt: 2 }}> {/* Thêm sx={{ mt: 2 }} để căn chỉnh lề nếu cần */}
+                                        <strong>Chiều cao:</strong> {userInfo.HEIGHT || 'N/A'} cm
+                                    </Typography>
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    <TextField
-                                        fullWidth
-                                        label="Cân nặng (kg)"
-                                        name="WEIGHT"
-                                        type="number"
-                                        value={UserInfo.WEIGHT || ''}
-                                    />
+                                    <Typography variant="body1" sx={{ mt: 2 }}> {/* Thêm sx={{ mt: 2 }} để căn chỉnh lề nếu cần */}
+                                        <strong>Cân nặng (kg):</strong> {userInfo.WEIGHT || 'N/A'} kg
+                                    </Typography>
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    <TextField
-                                        fullWidth
-                                        label="Tuổi"
-                                        name="AGE"
-                                        type="number"
-                                        value={UserInfo.AGE || ''}
-                                    />
+                                    <Typography variant="body1" sx={{ mt: 2 }}> {/* Thêm sx={{ mt: 2 }} để căn chỉnh lề nếu cần */}
+                                        <strong>Tuổi:</strong> {userInfo.AGE || 'N/A'} tuổi
+                                    </Typography>
+                                </Grid>
+                                < Grid item xs={12} sm={6}>
+                                    <Typography variant="body1" sx={{ mt: 2 }}> {/* Thêm sx={{ mt: 2 }} để căn chỉnh lề nếu cần */}
+                                        <strong>Giới tính:</strong> {userInfo.GENDER || 'N/A'}
+                                    </Typography>
+                                        
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                        <InputLabel>Giới tính</InputLabel>
-                                        <Select
-                                            name="GENDER"
-                                            value={UserInfo.GENDER || ''}
-                                            label="Giới tính"
-                                            
-                                        >
-                                            <MenuItem value="Nam">Nam</MenuItem>
-                                            <MenuItem value="Nữ">Nữ</MenuItem>
-                                        </Select>
-                                </Grid>
-                                <Grid item xs={12} sm={6}>
-
-                                        <InputLabel>Mức độ vận động</InputLabel>
-                                        <Select
-                                            name="ACTIVITY"
-                                            value={UserInfo.ACTIVITY || ''}
-                                            label="Mức độ vận động"
-                                        >
-                                            <MenuItem value="Ít vận động">Ít vận động (ít hoặc không tập thể dục)</MenuItem>
-                                            <MenuItem value="Vận động nhẹ">Vận động nhẹ (1-3 ngày/tuần)</MenuItem>
-                                            <MenuItem value="Vận động vừa">Vận động vừa (3-5 ngày/tuần)</MenuItem>
-                                            <MenuItem value="Vận động nhiều">Vận động nhiều (6-7 ngày/tuần)</MenuItem>
-                                            <MenuItem value="Vận động rất nhiều">Vận động rất nhiều (2 lần/ngày)</MenuItem>
-                                        </Select>
+                                    <Typography variant="body1" sx={{ mt: 2 }}><strong>Giới tính:</strong> {userInfo.ACTIVITY || 'N/A'}</Typography>
                                 </Grid>
                             </Grid>
                             
@@ -1338,8 +1312,26 @@ const UserInfo = () => {
                             </CardContent>
                         </Card>
                     )}
-                    <h2>Chỉ số BMR của bạn: {(calculatedDisplayBMR || 0).toFixed(2)} Calo/ngày</h2>
-                    <h2>Chỉ số TDEE của bạn: {(calculatedDisplayTDEE || 0).toFixed(2)} Calo/ngày</h2>
+                    <FormControlLabel
+                        control={<Switch checked={showBMI} onChange={() => setShowBMI(!showBMI)} />}
+                        label="Xem chỉ số BMI, BMR và TDEE"
+                    />
+                        <Card variant="outlined" sx={{ mt: 2 }}>
+                            <CardContent>
+                                <Typography variant="h6" gutterBottom>
+                                    Chỉ số BMR và TDEE
+                                </Typography>
+                                <Typography variant="body1">
+                                    Chỉ số BMI của bạn: {(calculatedDisplayBMR || 0).toFixed(2)} Calo/ngày
+                                </Typography>
+                                <Typography variant="body1">
+                                    Chỉ số TDEE của bạn: {(calculatedDisplayTDEE || 0).toFixed(2)} Calo/ngày
+                                </Typography>
+                                <Typography variant="body1">
+                                    Tình trạng: {getBMICategory(calculateBMI())}
+                                </Typography>
+                            </CardContent>
+                        </Card>
                     <p>
                         Bạn có thể truy cập các trang sau đây để tìm hiểu thêm thông tin: {" "}
                         <a href="https://tdeecalculator.net/" target = "_blank" rel = "noopener noreferrer">Tính TDEE</a>{" | "}
