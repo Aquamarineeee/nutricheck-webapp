@@ -22,16 +22,8 @@ import exerciseData from './exerciseData.json';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import SleepAidCard from './SleepAidCard';
-import sleepAidData from './sleepAidData.json'
-import { calculateBMR, calculateTDEE } from "./helthCal";
 
 
-
-const floatAnimation = keyframes`
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
-`;
 
 // Dữ liệu thực đơn chuyển vào JSON riêng
 const mealData = {
@@ -90,6 +82,8 @@ const UserInfo = () => {
     const [showSleepAid, setShowSleepAid] = useState(false);
     const [showBMI, setShowBMI] = useState(false);
     const [totalMealPrice, setTotalMealPrice] = useState(0);
+    const [calculatedDisplayBMR, setCalculatedDisplayBMR] = useState(0);
+    const [calculatedDisplayTDEE, setCalculatedDisplayTDEE] = useState(0);
     
 
     // Hàm chọn món ăn dựa trên calo mục tiêu (thuật toán tham lam)
@@ -588,34 +582,24 @@ const UserInfo = () => {
         };
 
         useEffect(() => {
-            const { WEIGHT, HEIGHT, AGE, GENDER, ACTIVITY } = userInfo; 
+            const { WEIGHT, HEIGHT, AGE, GENDER, ACTIVITY_LEVEL } = userInfo;
 
-            // Kiểm tra xem tất cả các thông tin cần thiết có hợp lệ không
             if (
                 WEIGHT && !isNaN(parseFloat(WEIGHT)) && parseFloat(WEIGHT) > 0 &&
                 HEIGHT && !isNaN(parseFloat(HEIGHT)) && parseFloat(HEIGHT) > 0 &&
                 AGE && !isNaN(parseInt(AGE)) && parseInt(AGE) > 0 &&
-                GENDER && ACTIVITY
+                GENDER && ACTIVITY_LEVEL
             ) {
-                // Gọi các hàm đã refactor với đối tượng userInfo
-                const calculatedBMR = calculateBMR(userInfo);
-                const calculatedTDEE = calculateTDEE(calculatedBMR, userInfo);
+                const bmr = calculateBMR(userInfo); // Gọi hàm đã refactor
+                const tdee = calculateTDEE(bmr, userInfo); // Gọi hàm đã refactor
 
-                // Cập nhật BMR và TDEE vào state userInfo
-                setUserInfo(prevInfo => ({
-                    ...prevInfo,
-                    BMR: calculatedBMR,
-                    TDEE: calculatedTDEE
-                }));
+                setCalculatedDisplayBMR(bmr);
+                setCalculatedDisplayTDEE(tdee);
             } else {
-                // Đặt về 0 hoặc giá trị mặc định nếu thông tin không hợp lệ
-                setUserInfo(prevInfo => ({
-                    ...prevInfo,
-                    BMR: 0,
-                    TDEE: 0
-                }));
+                setCalculatedDisplayBMR(0);
+                setCalculatedDisplayTDEE(0);
             }
-        }, [userInfo.WEIGHT, userInfo.HEIGHT, userInfo.AGE, userInfo.GENDER, userInfo.ACTIVITY]); // Cập nhật dependencies
+        }, [userInfo.WEIGHT, userInfo.HEIGHT, userInfo.AGE, userInfo.GENDER, userInfo.ACTIVITY_LEVEL]);
 
 
 
@@ -1354,8 +1338,8 @@ const UserInfo = () => {
                             </CardContent>
                         </Card>
                     )}
-                    <h2>Chỉ số BMR của bạn: {(userInfo.BMR || 0).toFixed(2)} Calo/ngày</h2>
-                    <h2>Chỉ số TDEE của bạn: {(userInfo.TDEE || 0).toFixed(2)} Calo/ngày</h2>
+                    <h2>Chỉ số BMR của bạn: {(calculatedDisplayBMR || 0).toFixed(2)} Calo/ngày</h2>
+                    <h2>Chỉ số TDEE của bạn: {(calculatedDisplayTDEE || 0).toFixed(2)} Calo/ngày</h2>
                     <p>
                         Bạn có thể truy cập các trang sau đây để tìm hiểu thêm thông tin: {" "}
                         <a href="https://tdeecalculator.net/" target = "_blank" rel = "noopener noreferrer">Tính TDEE</a>{" | "}
