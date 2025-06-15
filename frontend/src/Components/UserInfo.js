@@ -89,11 +89,7 @@ const UserInfo = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const [showSleepAid, setShowSleepAid] = useState(false);
     const [showBMI, setShowBMI] = useState(false);
-    const [editing, setEditing] = useState(false);
-    const [editedUserInfo, setEditedUserInfo] = useState({});
     const [totalMealPrice, setTotalMealPrice] = useState(0);
-    const [bmr, setBmr] = useState(0);
-    const [tdee, setTdee] = useState(0);
     
 
     // Hàm chọn món ăn dựa trên calo mục tiêu (thuật toán tham lam)
@@ -108,13 +104,6 @@ const UserInfo = () => {
             transform: translateY(0px);
         }
         `;
-    const handleEditToggle = () => {
-        setEditing(!editing);
-        if (editing) {
-            // Khi tắt chế độ chỉnh sửa, reset lại editedUserInfo về userInfo hiện tại
-            setEditedUserInfo({ ...userInfo });
-        }
-    };
     const handleFieldChange = (e) => {
         const { name, value } = e.target;
         setEditedUserInfo(prevState => ({
@@ -145,7 +134,7 @@ const UserInfo = () => {
     }, [meals]);
 
     useEffect(() => {
-        const { WEIGHT, HEIGHT, AGE, GENDER, ACTIVITY_LEVEL } = editedUserInfo;
+        const { WEIGHT, HEIGHT, AGE, GENDER, ACTIVITY_LEVEL } = UserInfo;
 
         // Kiểm tra xem tất cả các thông tin cần thiết có hợp lệ không
         if (
@@ -163,7 +152,7 @@ const UserInfo = () => {
             setBmr(0);
             setTdee(0);
         }
-    }, [editedUserInfo]);
+    }, [UserInfo]);
     
 
     
@@ -645,7 +634,7 @@ const UserInfo = () => {
 
 
         useEffect(() => {
-            const { WEIGHT, HEIGHT, AGE, GENDER, ACTIVITY_LEVEL } = editedUserInfo;
+            const { WEIGHT, HEIGHT, AGE, GENDER, ACTIVITY_LEVEL } = UserInfo;
 
             // Kiểm tra xem tất cả các thông tin cần thiết có hợp lệ không
             if (
@@ -663,37 +652,9 @@ const UserInfo = () => {
                 setBmr(0);
                 setTdee(0);
             }
-        }, [editedUserInfo]);
+        }, [UserInfo]);
 
 
-    // Hàm xử lý khi người dùng SUBMIT thông tin cá nhân 
-        const outp = async () => { 
-            const { WEIGHT, HEIGHT, AGE, GENDER, ACTIVITY_LEVEL } = UserInfo;
-            let finalBMR = 0;
-            let finalTDEE = 0;
-
-            if (
-                WEIGHT && !isNaN(parseFloat(WEIGHT)) && parseFloat(WEIGHT) > 0 &&
-                HEIGHT && !isNaN(parseFloat(HEIGHT)) && parseFloat(HEIGHT) > 0 &&
-                AGE && !isNaN(parseInt(AGE)) && parseInt(AGE) > 0 &&
-                GENDER && ACTIVITY_LEVEL
-            ) {
-                finalBMR = calculateBMR(WEIGHT, HEIGHT, AGE, GENDER);
-                finalTDEE = calculateTDEE(finalBMR, ACTIVITY_LEVEL);
-            }
-
-            const updatedUserInfoToSave = {
-                ...userInfo,
-                ...editedUserInfo,
-                DAILY_WATER_INTAKE: dailyWaterIntake,
-                BMR: finalBMR, // Lưu BMR vào đối tượng
-                TDEE: finalTDEE // Lưu TDEE vào đối tượng
-            };
-
-            setUserInfo(updatedUserInfoToSave);
-            setEditing(false);
-
-        };
 
         const handleSubmit = () => {
             let fullFeedback = "";
@@ -1343,8 +1304,6 @@ const UserInfo = () => {
                                         label="Tên"
                                         name="NAME"
                                         value={UserInfo.NAME || ''}
-                                        onChange={handleFieldChange}
-                                        disabled={!editing}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
@@ -1354,8 +1313,6 @@ const UserInfo = () => {
                                         name="HEIGHT"
                                         type="number"
                                         value={UserInfo.HEIGHT || ''}
-                                        onChange={handleFieldChange}
-                                        disabled={!editing}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
@@ -1365,8 +1322,6 @@ const UserInfo = () => {
                                         name="WEIGHT"
                                         type="number"
                                         value={UserInfo.WEIGHT || ''}
-                                        onChange={handleFieldChange}
-                                        disabled={!editing}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
@@ -1376,32 +1331,27 @@ const UserInfo = () => {
                                         name="AGE"
                                         type="number"
                                         value={UserInfo.AGE || ''}
-                                        onChange={handleFieldChange}
-                                        disabled={!editing}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    <FormControl fullWidth disabled={!editing}>
                                         <InputLabel>Giới tính</InputLabel>
                                         <Select
                                             name="GENDER"
                                             value={UserInfo.GENDER || ''}
                                             label="Giới tính"
-                                            onChange={handleFieldChange}
+                                            
                                         >
                                             <MenuItem value="Nam">Nam</MenuItem>
                                             <MenuItem value="Nữ">Nữ</MenuItem>
                                         </Select>
-                                    </FormControl>
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    <FormControl fullWidth disabled={!editing}>
+
                                         <InputLabel>Mức độ vận động</InputLabel>
                                         <Select
                                             name="ACTIVITY_LEVEL"
-                                            value={UserInfo.ACTIVITY_LEVEL || ''}
+                                            value={UserInfo.ACTIVITY || ''}
                                             label="Mức độ vận động"
-                                            onChange={handleFieldChange}
                                         >
                                             <MenuItem value="Ít vận động">Ít vận động (ít hoặc không tập thể dục)</MenuItem>
                                             <MenuItem value="Vận động nhẹ">Vận động nhẹ (1-3 ngày/tuần)</MenuItem>
@@ -1409,42 +1359,9 @@ const UserInfo = () => {
                                             <MenuItem value="Vận động nhiều">Vận động nhiều (6-7 ngày/tuần)</MenuItem>
                                             <MenuItem value="Vận động rất nhiều">Vận động rất nhiều (2 lần/ngày)</MenuItem>
                                         </Select>
-                                    </FormControl>
-                                </Grid>
-                                <Grid item xs={12} sm={6}>
-                                    <FormControl fullWidth disabled={!editing}>
-                                        <InputLabel>Mục tiêu</InputLabel>
-                                        <Select
-                                            name="GOAL"
-                                            value={UserInfo.GOAL || ''}
-                                            label="Mục tiêu"
-                                            onChange={handleFieldChange}
-                                        >
-                                            <MenuItem value="Giảm cân">Giảm cân</MenuItem>
-                                            <MenuItem value="Tăng cân">Tăng cân</MenuItem>
-                                            <MenuItem value="Duy trì cân nặng">Duy trì cân nặng</MenuItem>
-                                        </Select>
-                                    </FormControl>
                                 </Grid>
                             </Grid>
-                            <Box mt={3} sx={{ display: 'flex', gap: 2, justifyContent: 'flex-end' }}>
-                                <Button
-                                    variant="contained"
-                                    color="primary"
-                                    onClick={editing ? handleSubmit : handleEditToggle} 
-                                >
-                                    {editing ? 'Lưu thay đổi' : 'Chỉnh sửa thông tin'}
-                                </Button>
-                                {editing && (
-                                    <Button
-                                        variant="outlined"
-                                        color="secondary"
-                                        onClick={handleEditToggle}
-                                    >
-                                        Hủy
-                                    </Button>
-                                )}
-                            </Box>
+                            
                         </Box>
                     </Box>
                 </Box>
@@ -1471,8 +1388,8 @@ const UserInfo = () => {
                             </CardContent>
                         </Card>
                     )}
-                    <h2>Chỉ số BMR của bạn: {userInfo.BMR.toFixed(2)} Calo/ngày</h2>
-                    <h2>Chỉ số TDEE của bạn: {userInfo.TDEE.toFixed(2)} Calo/ngày</h2>
+                    <h2>Chỉ số BMR của bạn: {(userInfo.BMR || 0).toFixed(2)} Calo/ngày</h2>
+                    <h2>Chỉ số TDEE của bạn: {(userInfo.TDEE || 0).toFixed(2)} Calo/ngày</h2>
                     <p>
                         Bạn có thể truy cập các trang sau đây để tìm hiểu thêm thông tin: {" "}
                         <a href="https://tdeecalculator.net/" target = "_blank" rel = "noopener noreferrer">Tính TDEE</a>{" | "}
