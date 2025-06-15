@@ -1306,11 +1306,11 @@ const UserInfo = () => {
                                     Chỉ số BMR và TDEE
                                 </Typography>
                                 <Typography variant="body1">
-                                    Chỉ số BMI của bạn: {(calculatedDisplayBMR || 0).toFixed(2)} Calo/ngày
-                                </Typography>
-                                <Typography variant="body1">
-                                    Chỉ số TDEE của bạn: {(calculatedDisplayBMR * UserInfo.ACTIVITY || 0).toFixed(2)} Calo/ngày
-                                </Typography>
+                                        Chỉ số BMR của bạn: {(parseFloat(calculatedDisplayBMR) || 0).toFixed(2)} Calo/ngày
+                                    </Typography>
+                                    <Typography variant="body1">
+                                        Chỉ số TDEE của bạn: {(parseFloat(calculatedDisplayBMR) * parseFloat(UserInfo.ACTIVITY) || 0).toFixed(2)} Calo/ngày
+                                    </Typography>
                                 <Typography variant="body1">
                                     Tình trạng: {getBMICategory(calculateBMI())}
                                 </Typography>
