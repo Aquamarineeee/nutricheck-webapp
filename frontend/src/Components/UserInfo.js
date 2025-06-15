@@ -579,7 +579,7 @@ const UserInfo = () => {
                 WEIGHT && !isNaN(parseFloat(WEIGHT)) && parseFloat(WEIGHT) > 0 &&
                 HEIGHT && !isNaN(parseFloat(HEIGHT)) && parseFloat(HEIGHT) > 0 &&
                 AGE && !isNaN(parseInt(AGE)) && parseInt(AGE) > 0 &&
-                GENDER && ACTIVITY_LEVEL
+                GENDER && ACTIVITY
             ) {
                 const calculatedBMR = calculateBMR(WEIGHT, HEIGHT, AGE, GENDER);
                 const calculatedTDEE = calculateTDEE(calculatedBMR, ACTIVITY);
