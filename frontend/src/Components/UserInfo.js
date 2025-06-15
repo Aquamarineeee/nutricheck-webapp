@@ -549,14 +549,30 @@ const UserInfo = () => {
                 if (bmi >= 30) return "Béo phì";
                 return "";
         }, []);
-        const calculateBMR = (weight, height, age, gender) => {
-            // Công thức tính BMR (ví dụ: Mifflin-St Jeor Equation)
-            if (gender === 'male') {
-                return (10 * parseFloat(weight)) + (6.25 * parseFloat(height)) - (5 * parseInt(age)) + 5;
-            } else { // female
-                return (10 * parseFloat(weight)) + (6.25 * parseFloat(height)) - (5 * parseInt(age)) - 161;
-            }
-        };
+        const calculateBMR = (userInfo) => {
+                const { WEIGHT, HEIGHT, AGE, GENDER } = userInfo; // Lấy các thuộc tính từ userInfo
+
+                // Kiểm tra và chuyển đổi kiểu dữ liệu tương tự như trong code cũ
+                const parsedWeight = parseFloat(WEIGHT);
+                const parsedHeight = parseFloat(HEIGHT);
+                const parsedAge = parseInt(AGE);
+
+                // Đảm bảo các giá trị hợp lệ trước khi tính toán
+                if (isNaN(parsedWeight) || parsedWeight <= 0 ||
+                    isNaN(parsedHeight) || parsedHeight <= 0 ||
+                    isNaN(parsedAge) || parsedAge <= 0 ||
+                    !GENDER) {
+                    return 0; // Trả về 0 nếu dữ liệu không hợp lệ
+                }
+
+                // Công thức tính BMR (Mifflin-St Jeor Equation)
+                if (GENDER === 'male') {
+                    return (10 * parsedWeight) + (6.25 * parsedHeight) - (5 * parsedAge) + 5;
+                } else if (GENDER === 'female') {
+                    return (10 * parsedWeight) + (6.25 * parsedHeight) - (5 * parsedAge) - 161;
+                }
+                return 0; // Mặc định trả về 0 nếu giới tính không xác định
+            };
 
         const calculateTDEE = (bmr, activity) => {
             let multiplier;
@@ -572,7 +588,7 @@ const UserInfo = () => {
         };
 
         useEffect(() => {
-            const { WEIGHT, HEIGHT, AGE, GENDER, ACTIVITY } = userInfo;
+            const { WEIGHT, HEIGHT, AGE, GENDER, ACTIVITY } = userInfo; 
 
             // Kiểm tra xem tất cả các thông tin cần thiết có hợp lệ không
             if (
@@ -581,8 +597,9 @@ const UserInfo = () => {
                 AGE && !isNaN(parseInt(AGE)) && parseInt(AGE) > 0 &&
                 GENDER && ACTIVITY
             ) {
-                const calculatedBMR = calculateBMR(WEIGHT, HEIGHT, AGE, GENDER);
-                const calculatedTDEE = calculateTDEE(calculatedBMR, ACTIVITY);
+                // Gọi các hàm đã refactor với đối tượng userInfo
+                const calculatedBMR = calculateBMR(userInfo);
+                const calculatedTDEE = calculateTDEE(calculatedBMR, userInfo);
 
                 // Cập nhật BMR và TDEE vào state userInfo
                 setUserInfo(prevInfo => ({
@@ -598,7 +615,7 @@ const UserInfo = () => {
                     TDEE: 0
                 }));
             }
-        }, [userInfo.WEIGHT, userInfo.HEIGHT, userInfo.AGE, userInfo.GENDER, userInfo.ACTIVITY]);
+        }, [userInfo.WEIGHT, userInfo.HEIGHT, userInfo.AGE, userInfo.GENDER, userInfo.ACTIVITY]); // Cập nhật dependencies
 
 
 
