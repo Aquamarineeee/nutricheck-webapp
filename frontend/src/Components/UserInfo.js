@@ -572,7 +572,7 @@ const UserInfo = () => {
         };
 
         useEffect(() => {
-            const { WEIGHT, HEIGHT, AGE, GENDER, ACTIVITY } = UserInfo;
+            const { WEIGHT, HEIGHT, AGE, GENDER, ACTIVITY } = userInfo;
 
             // Kiểm tra xem tất cả các thông tin cần thiết có hợp lệ không
             if (
@@ -598,7 +598,7 @@ const UserInfo = () => {
                     TDEE: 0
                 }));
             }
-        }, [UserInfo.WEIGHT, UserInfo.HEIGHT, UserInfo.AGE, UserInfo.GENDER, UserInfo.ACTIVITY]);
+        }, [userInfo.WEIGHT, userInfo.HEIGHT, userInfo.AGE, userInfo.GENDER, userInfo.ACTIVITY]);
 
 
 
@@ -1298,7 +1298,7 @@ const UserInfo = () => {
 
                                         <InputLabel>Mức độ vận động</InputLabel>
                                         <Select
-                                            name="ACTIVITY_LEVEL"
+                                            name="ACTIVITY"
                                             value={UserInfo.ACTIVITY || ''}
                                             label="Mức độ vận động"
                                         >
