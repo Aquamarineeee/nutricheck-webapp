@@ -3,9 +3,13 @@ import {
     Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
     Typography, Paper, Alert, Box, Grid, Card, CardContent,
     Button, Select, MenuItem, InputLabel, FormControl, Divider, TextField,
-    Checkbox, ListItemText, Switch, FormControlLabel, Autocomplete, Chip // <-- Đảm bảo có Autocomplete và Chip
+    Checkbox, ListItemText, Switch, FormControlLabel, Autocomplete, Chip, IconButton, List, ListItem 
 } from "@mui/material";
 import Chart from "react-apexcharts";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { keyframes, styled } from "@mui/system";
+import Slider from "react-slick";
 import { useSnackbar } from "notistack";
 import { AppContext } from "../Context/AppContext";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +17,10 @@ import helo from "../../src/images/helo.gif"
 import gainMealsData from "./gainMeals.json";
 import maintainMealsData from "./maintainMeals.json"; 
 import loseMealsData from "./loseMeals.json";     
-import OutlinedInput from '@mui/material/OutlinedInput';   
+import OutlinedInput from '@mui/material/OutlinedInput'; 
+import SleepAidCard from './SleepAidCard';
+import exerciseData from './exerciseData.json';
+import ExerciseSuggestions from './ExerciseSuggestions';   
 // Dữ liệu thực đơn chuyển vào JSON riêng
 const mealData = {
     gain: gainMealsData,
@@ -53,6 +60,14 @@ const UserInfo = () => {
     const [selectedConditions, setSelectedConditions] = useState([]); // Đổi tên và kiểu dữ liệu
     const [planGenerationCount, setPlanGenerationCount] = useState(0); // Đếm số lần tạo thực đơn
     const [totalMealPrice, setTotalMealPrice] = useState(0);
+
+    const [showBMI, setShowBMI] = useState(false); // BMI
+    const [showSleepAid, setShowSleepAid] = useState(false); //aid
+    const [calculatedDisplayBMR, setCalculatedDisplayBMR] = useState(0); // BMR & TDEE
+
+    const [averageSleepHours, setAverageSleepHours] = useState("");
+    const [dailyWaterIntake, setDailyWaterIntake] = useState("");
+    const [exerciseSuggestions, setExerciseSuggestions] =useState("");
 
 
     // Hàm chọn món ăn dựa trên calo mục tiêu (thuật toán tham lam)
@@ -226,6 +241,7 @@ const UserInfo = () => {
             fetchWeekData();
             calculateTotalCalories();
         }, [weekData, fetchWeekData]);
+ 
 
     const calculateGoalCalories = useCallback(() => {
             if (!userInfo || !userInfo.WEIGHT || !userInfo.HEIGHT || !userInfo.AGE || !userInfo.GENDER || !userInfo.ACTIVITY || !targetWeightChange) {
@@ -278,7 +294,63 @@ const UserInfo = () => {
 
             enqueueSnackbar(`Calo mục tiêu hàng ngày của bạn đã được tính toán: ${adjustedTdee.toFixed(1)} calo`, { variant: "success" });
         }, [userInfo, goal, targetWeightChange, enqueueSnackbar, setGoalCalories, setTotalDailyCalories]); // Thêm setGoalCalories và setTotalDailyCalories vào dependencies
-
+        const calculateBMI = useCallback(() => {
+                        if (!userInfo || !userInfo.WEIGHT || !userInfo.HEIGHT) {
+                            return null;
+                        }
+                        const heightInMeters = userInfo.HEIGHT / 100;
+                        return (userInfo.WEIGHT / (heightInMeters * heightInMeters)).toFixed(2);
+                    }, [userInfo]);
+        
+                    const getBMICategory = useCallback((bmi) => {
+                        if (bmi < 18.5) return "Thiếu cân";
+                        if (bmi >= 18.5 && bmi <= 24.9) return "Bình thường";
+                        if (bmi >= 25 && bmi <= 29.9) return "Thừa cân";
+                        if (bmi >= 30) return "Béo phì";
+                        return "";
+                }, []);
+        const calculateBMR = useCallback((userInfo) => {
+                if (!userInfo || !userInfo.WEIGHT || !userInfo.HEIGHT || !userInfo.AGE || !userInfo.GENDER) {
+                    return null; // Trả về null nếu thiếu bất kỳ thông tin cần thiết nào
+                }
+        
+                const { WEIGHT, HEIGHT, AGE, GENDER } = userInfo;
+                const parsedWeight = parseFloat(WEIGHT);
+                const parsedHeight = parseFloat(HEIGHT);
+                const parsedAge = parseInt(AGE);
+        
+                if (isNaN(parsedWeight) || parsedWeight <= 0 ||
+                        isNaN(parsedHeight) || parsedHeight <= 0 ||
+                        isNaN(parsedAge) || parsedAge <= 0) {
+                        return null; // Trả về null nếu dữ liệu không hợp lệ
+                    }
+        
+                let bmrResult;
+                if (GENDER === 'male') {
+                        bmrResult = (10 * parsedWeight) + (6.25 * parsedHeight) - (5 * parsedAge) + 5;
+                    } else if (GENDER === 'female') {
+                        bmrResult = (10 * parsedWeight) + (6.25 * parsedHeight) - (5 * parsedAge) - 161;
+                    } else {
+                        return null;
+                    }
+        
+                    return bmrResult.toFixed(2); // Trả về kết quả đã làm tròn dưới dạng chuỗi
+        }, [userInfo]); // Dependency array: Hàm này phụ thuộc vào userInfo
+        
+               
+        
+        useEffect(() => {
+                    // Gọi các hàm đã refactor
+                    const bmrResult = calculateBMR(userInfo); 
+                    setCalculatedDisplayBMR(bmrResult ?? '0.00');
+                }, [
+                    userInfo.WEIGHT,
+                    userInfo.HEIGHT,
+                    userInfo.AGE,
+                    userInfo.GENDER,
+                    userInfo.ACTIVITY,
+                    calculateBMR,
+                ]);
 
         const getMealSuggestions = (goal) => {
             return mealData[goal] ? [...mealData[goal]].sort(() => Math.random() - 0.5).slice(0, 5) : [];
@@ -293,13 +365,110 @@ const UserInfo = () => {
             });
         }, [totalCalories, minCaloriesWeek]);
         const getHealthWarnings = () => {
-            if (totalCalories < minCaloriesWeek * 0.8) {
-                return "Bạn tiêu thụ quá ít calo trong tuần, điều này có thể dẫn đến suy dinh dưỡng. Lượng calo quá thấp sẽ không đủ để cơ thể tạo năng lượng cần thiết cho các hoạt động cơ bản như hô hấp, tuần hoàn, và vận động. Hãy kiểm tra lại chế độ ăn của mình, bổ sung các thực phẩm giàu dinh dưỡng như rau, protein, và ngũ cốc nguyên hạt để cải thiện năng lượng hàng ngày. Người bệnh thừa cân, béo phì phải đối mặt với nhiều nguy cơ sức khỏe như: bệnh tim, cao huyết áp, đột quỵ, viêm khớp, giảm khả năng sinh sản, gan nhiễm mỡ không do rượu, đái tháo đường type 2, hội chứng ngưng thở khi ngủ… Đặc biệt, béo phì được cho là có liên quan đến 13 loại ung thư, gồm: ung thư buồng trứng, ung thư gan, ung thư não, ung thư tuyến tụy…";
-            } else if (totalCalories > minCaloriesWeek * 1.2) {
-                return "Bạn tiêu thụ quá nhiều calo trong tuần, điều này có thể dẫn đến tăng cân và các bệnh mãn tính. Khi lượng calo nạp vào vượt quá mức cơ thể cần, năng lượng dư thừa sẽ chuyển hóa thành mỡ, tích tụ lâu ngày gây béo phì. Điều này làm tăng nguy cơ mắc các bệnh như tiểu đường, cao huyết áp, và tim mạch. Người bệnh thừa cân, béo phì phải đối mặt với nhiều nguy cơ sức khỏe như: bệnh tim, cao huyết áp, đột quỵ, viêm khớp, giảm khả năng sinh sản, gan nhiễm mỡ không do rượu, đái tháo đường type 2, hội chứng ngưng thở khi ngủ… Đặc biệt, béo phì được cho là có liên quan đến 13 loại ung thư, gồm: ung thư buồng trứng, ung thư gan, ung thư não, ung thư tuyến tụy…";
-            } else {
-                return "Lượng calo tiêu thụ trong tuần của bạn nằm trong mức hợp lý, cho thấy bạn đang duy trì một chế độ ăn uống cân bằng. Điều này giúp cơ thể bạn có đủ năng lượng để hoạt động mà không tích tụ mỡ thừa, đồng thời giảm nguy cơ mắc các bệnh liên quan đến dinh dưỡng. Hãy tiếp tục duy trì chế độ ăn uống này, kết hợp với luyện tập thể dục để tăng cường sức khỏe.";
-            }
+                            if (totalCalories < minCaloriesWeek * 0.8) {
+                                return (
+                                <Alert severity="warning" sx={{ mt: 2 }}>
+                                    <Typography variant="h6" fontWeight="bold" gutterBottom>
+                                    Cảnh báo: Lượng Calo Tiêu Thụ Quá Thấp!
+                                    </Typography>
+                                    <Typography variant="body1" paragraph>
+                                    Bạn tiêu thụ quá ít calo trong tuần, điều này có thể dẫn đến <strong>suy dinh dưỡng nghiêm trọng</strong>. Lượng calo quá thấp sẽ không đủ để cơ thể tạo năng lượng cần thiết cho các hoạt động cơ bản như hô hấp, tuần hoàn, và vận động.
+                                    </Typography>
+                                    <Typography variant="body1" paragraph>
+                                    Hãy kiểm tra lại chế độ ăn của mình, bổ sung các thực phẩm giàu dinh dưỡng như <strong>rau xanh, protein nạc, và ngũ cốc nguyên hạt</strong> để cải thiện năng lượng hàng ngày và đảm bảo sức khỏe.
+                                    </Typography>
+        
+                                    <Divider sx={{ my: 2 }} />
+        
+                                    <Typography variant="h6" fontWeight="bold" gutterBottom>
+                                    Nguy Cơ Sức Khỏe Khi Thừa Cân, Béo Phì
+                                    </Typography>
+                                    <Typography variant="body1" paragraph>
+                                    Người bệnh thừa cân, béo phì phải đối mặt với nhiều nguy cơ sức khỏe nghiêm trọng như:
+                                    </Typography>
+                                    <List dense sx={{ ml: 2, listStyleType: 'disc', pl: 2 }}>
+                                    <ListItem sx={{ display: 'list-item', py: 0.5 }}>Bệnh tim</ListItem>
+                                    <ListItem sx={{ display: 'list-item', py: 0.5 }}>Cao huyết áp</ListItem>
+                                    <ListItem sx={{ display: 'list-item', py: 0.5 }}>Đột quỵ</ListItem>
+                                    <ListItem sx={{ display: 'list-item', py: 0.5 }}>Viêm khớp</ListItem>
+                                    <ListItem sx={{ display: 'list-item', py: 0.5 }}>Giảm khả năng sinh sản</ListItem>
+                                    <ListItem sx={{ display: 'list-item', py: 0.5 }}>Gan nhiễm mỡ không do rượu</ListItem>
+                                    <ListItem sx={{ display: 'list-item', py: 0.5 }}>Đái tháo đường type 2</ListItem>
+                                    <ListItem sx={{ display: 'list-item', py: 0.5 }}>Hội chứng ngưng thở khi ngủ</ListItem>
+                                    </List>
+        
+                                    <Typography variant="body1" paragraph sx={{ mt: 2 }}>
+                                    Đặc biệt, béo phì được cho là có liên quan đến <strong>13 loại ung thư</strong>, gồm:
+                                    </Typography>
+                                    <List dense sx={{ ml: 2, listStyleType: 'disc', pl: 2 }}>
+                                    <ListItem sx={{ display: 'list-item', py: 0.5 }}>Ung thư buồng trứng</ListItem>
+                                    <ListItem sx={{ display: 'list-item', py: 0.5 }}>Ung thư gan</ListItem>
+                                    <ListItem sx={{ display: 'list-item', py: 0.5 }}>Ung thư não</ListItem>
+                                    <ListItem sx={{ display: 'list-item', py: 0.5 }}>Ung thư tuyến tụy</ListItem>
+                                    </List>
+                                    <Typography variant="body2" sx={{ mt: 2, fontStyle: 'italic' }}>
+                                    Hãy tham khảo ý kiến chuyên gia dinh dưỡng hoặc bác sĩ để có kế hoạch ăn uống và vận động phù hợp nhất cho sức khỏe của bạn.
+                                    </Typography>
+                                </Alert>
+                                );
+                            } else if (totalCalories > minCaloriesWeek * 1.2) {
+                                return (
+                                <Alert severity="warning" sx={{ mt: 2 }}>
+                                    <Typography variant="h6" fontWeight="bold" gutterBottom>
+                                    Cảnh báo: Lượng Calo Tiêu Thụ Quá Nhiều!
+                                    </Typography>
+                                    <Typography variant="body1" paragraph>
+                                    Bạn tiêu thụ quá nhiều calo trong tuần, điều này có thể dẫn đến <strong>tăng cân và các bệnh mãn tính</strong>. Khi lượng calo nạp vào vượt quá mức cơ thể cần, năng lượng dư thừa sẽ chuyển hóa thành mỡ, tích tụ lâu ngày gây béo phì.
+                                    </Typography>
+        
+                                    <Divider sx={{ my: 2 }} />
+        
+                                    <Typography variant="h6" fontWeight="bold" gutterBottom>
+                                    Nguy Cơ Sức Khỏe Khi Thừa Cân, Béo Phì
+                                    </Typography>
+                                    <Typography variant="body1" paragraph>
+                                    Người bệnh thừa cân, béo phì phải đối mặt với nhiều nguy cơ sức khỏe nghiêm trọng như:
+                                    </Typography>
+                                    <List dense sx={{ ml: 2, listStyleType: 'disc', pl: 2 }}>
+                                    <ListItem sx={{ display: 'list-item', py: 0.5 }}>Bệnh tim</ListItem>
+                                    <ListItem sx={{ display: 'list-item', py: 0.5 }}>Cao huyết áp</ListItem>
+                                    <ListItem sx={{ display: 'list-item', py: 0.5 }}>Đột quỵ</ListItem>
+                                    <ListItem sx={{ display: 'list-item', py: 0.5 }}>Viêm khớp</ListItem>
+                                    <ListItem sx={{ display: 'list-item', py: 0.5 }}>Giảm khả năng sinh sản</ListItem>
+                                    <ListItem sx={{ display: 'list-item', py: 0.5 }}>Gan nhiễm mỡ không do rượu</ListItem>
+                                    <ListItem sx={{ display: 'list-item', py: 0.5 }}>Đái tháo đường type 2</ListItem>
+                                    <ListItem sx={{ display: 'list-item', py: 0.5 }}>Hội chứng ngưng thở khi ngủ</ListItem>
+                                    </List>
+        
+                                    <Typography variant="body1" paragraph sx={{ mt: 2 }}>
+                                    Đặc biệt, béo phì được cho là có liên quan đến <strong>13 loại ung thư</strong>, gồm:
+                                    </Typography>
+                                    <List dense sx={{ ml: 2, listStyleType: 'disc', pl: 2 }}>
+                                    <ListItem sx={{ display: 'list-item', py: 0.5 }}>Ung thư buồng trứng</ListItem>
+                                    <ListItem sx={{ display: 'list-item', py: 0.5 }}>Ung thư gan</ListItem>
+                                    <ListItem sx={{ display: 'list-item', py: 0.5 }}>Ung thư não</ListItem>
+                                    <ListItem sx={{ display: 'list-item', py: 0.5 }}>Ung thư tuyến tụy</ListItem>
+                                    </List>
+                                    <Typography variant="body2" sx={{ mt: 2, fontStyle: 'italic' }}>
+                                    Hãy điều chỉnh chế độ ăn uống và tăng cường vận động để duy trì cân nặng khỏe mạnh và giảm thiểu các nguy cơ này.
+                                    </Typography>
+                                </Alert>
+                                );
+                            } else {
+                                return (
+                                <Alert severity="success" sx={{ mt: 2 }}>
+                                    <Typography variant="h6" fontWeight="bold" gutterBottom>
+                                    Chúc mừng: Lượng Calo Tiêu Thụ Hợp Lý!
+                                    </Typography>
+                                    <Typography variant="body1" paragraph>
+                                    Lượng calo tiêu thụ trong tuần của bạn nằm trong mức hợp lý, cho thấy bạn đang duy trì một <strong>chế độ ăn uống cân bằng</strong>. Điều này giúp cơ thể bạn có đủ năng lượng để hoạt động mà không tích tụ mỡ thừa.
+                                    </Typography>
+                                    <Typography variant="body1" sx={{ fontStyle: 'italic' }}>
+                                    Hãy tiếp tục duy trì chế độ ăn uống này, kết hợp với luyện tập thể dục đều đặn để tăng cường sức khỏe tổng thể.
+                                    </Typography>
+                                </Alert>
+                                );
+                            };
         };
 
         const conditions = {
@@ -809,51 +978,97 @@ const UserInfo = () => {
                     </div>
                 )}
 
-                {/* Header */}
-                <Box textAlign="center" mb={4}>
-                    <Typography variant="h4" style={{ fontWeight: "bold" }}>Trang cá nhân</Typography>
-                </Box>
+                <div style={{ padding: '20px', maxWidth: '1200px', margin: 'auto' }}>
+                <Box mb={4}>
+                    <Typography variant="h4" component="h1" gutterBottom align="center">
+                        Thông tin cá nhân
+                    </Typography>
 
-                {/* User Info */}
-                {userInfo && (
-                    <TableContainer component={Paper} style={{ margin: "20px auto", maxWidth: "800px" }} className="fade-in">
-                        <Table>
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell align="center" colSpan={2} style={{ fontWeight: "bold", fontSize: "23px" }}>
-                                        Thông tin người dùng
-                                    </TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                <TableRow>
-                                    <TableCell align="left" style={{ fontWeight: "bold", fontSize: "19px" }}><strong>Tên:</strong></TableCell>
-                                    <TableCell align="left" style={{fontSize: "19px"}}>{userInfo.USERNAME}</TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell align="left" style={{ fontWeight: "bold", fontSize: "19px" }}><strong>Tuổi:</strong></TableCell>
-                                    <TableCell align="left" style={{fontSize: "19px"}}>{userInfo.AGE}</TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell align="left" style={{ fontWeight: "bold", fontSize: "19px" }}><strong>Giới tính:</strong></TableCell>
-                                    <TableCell align="left" style={{fontSize: "19px"}}>{userInfo.GENDER === "male" ? "Nam" : "Nữ"}</TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell align="left" style={{ fontWeight: "bold", fontSize: "19px" }}><strong>Chiều cao:</strong></TableCell>
-                                    <TableCell align="left" style={{fontSize: "19px"}}>{userInfo.HEIGHT} cm</TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell align="left" style={{ fontWeight: "bold", fontSize: "19px" }}><strong>Cân nặng:</strong></TableCell>
-                                    <TableCell align="left" style={{fontSize: "19px"}}>{userInfo.WEIGHT} kg</TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell align="left" style={{ fontWeight: "bold", fontSize: "19px" }}><strong>Mức độ vận động:</strong></TableCell>
-                                    <TableCell align="left" style={{fontSize: "19px"}}>{userInfo.ACTIVITY}</TableCell>
-                                </TableRow>
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                )}
+                    <Box mb={3} sx={{
+                        display: 'flex',
+                        flexDirection: { xs: 'column', md: 'row' },
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        gap: 3,
+                        p: 2,
+                        borderRadius: '8px',
+                        boxShadow: 3
+                    }}>
+                        <Box sx={{ flexGrow: 1 }}>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12} sm={6}>
+                                    <Typography variant="body1" sx={{ mt: 2 }}> {/* Thêm sx={{ mt: 2 }} để căn chỉnh lề nếu cần */}
+                                        <strong>Tên người dùng:</strong> {userInfo.USERNAME || 'N/A'} tuổi
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <Typography variant="body1" sx={{ mt: 2 }}> {/* Thêm sx={{ mt: 2 }} để căn chỉnh lề nếu cần */}
+                                        <strong>Chiều cao:</strong> {userInfo.HEIGHT || 'N/A'} cm
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <Typography variant="body1" sx={{ mt: 2 }}> {/* Thêm sx={{ mt: 2 }} để căn chỉnh lề nếu cần */}
+                                        <strong>Cân nặng (kg):</strong> {userInfo.WEIGHT || 'N/A'} kg
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <Typography variant="body1" sx={{ mt: 2 }}> {/* Thêm sx={{ mt: 2 }} để căn chỉnh lề nếu cần */}
+                                        <strong>Tuổi:</strong> {userInfo.AGE || 'N/A'} tuổi
+                                    </Typography>
+                                </Grid>
+                                < Grid item xs={12} sm={6}>
+                                    <Typography variant="body1" sx={{ mt: 2 }}> {/* Thêm sx={{ mt: 2 }} để căn chỉnh lề nếu cần */}
+                                        <strong>Giới tính:</strong> {userInfo.GENDER || 'N/A'}
+                                    </Typography>
+                                        
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <Typography variant="body1" sx={{ mt: 2 }}><strong>Giới tính:</strong> {userInfo.ACTIVITY || 'N/A'}</Typography>
+                                </Grid>
+                            </Grid>
+                            
+                        </Box>
+                    </Box>
+                </Box>
+            </div>
+
+
+                <Box mb={4}>
+                    <FormControlLabel
+                        control={<Switch checked={showBMI} onChange={() => setShowBMI(!showBMI)} />}
+                        label="Xem chỉ số BMI, BMR và TDEE"
+                    />
+                        <Card variant="outlined" sx={{ mt: 2 }}>
+                            <CardContent>
+                                <Typography variant="h6" gutterBottom>
+                                    Chỉ số BMI
+                                </Typography>
+                                <Typography variant="body1">
+                                    Chỉ số BMI của bạn: {calculateBMI() || 'N/A'}
+                                </Typography>
+                                <Typography variant="body1">
+                                    Tình trạng: {getBMICategory(calculateBMI())}
+                                </Typography>
+                                <Typography variant="h6" gutterBottom>
+                                    Chỉ số BMR và TDEE
+                                </Typography>
+                                <Typography variant="body1">
+                                        Chỉ số BMR của bạn: {(parseFloat(calculatedDisplayBMR) || 0).toFixed(2)} Calo/ngày
+                                    </Typography>
+                                    <Typography variant="body1">
+                                        Chỉ số TDEE của bạn: {(parseFloat(calculatedDisplayBMR) * parseFloat(UserInfo.ACTIVITY) || 0).toFixed(2)} Calo/ngày
+                                    </Typography>
+                                <Typography variant="body1">
+                                    Tình trạng: {getBMICategory(calculateBMI())}</Typography>
+                            </CardContent>
+                        </Card>
+                    <p>
+                        Bạn có thể truy cập các trang sau đây để tìm hiểu thêm thông tin: {" "}
+                        <a href="https://tdeecalculator.net/" target = "_blank" rel = "noopener noreferrer">Tính TDEE</a>{" | "}
+                        <a href = "https://www.calculator.net/bmr-calculator.html"target = "_blank" rel = "noopener noreferrer">Tính BMR</a>{" | "}
+                        <a href = "https://www.calculator.net/bmi-calculator.html"target = "_blank" rel = "noopener noreferrer"> Tính BMI</a>{" | "}
+                    </p>
+                </Box>
 
                 {/* Two-panel layout for calorie tracking */}
                 <Grid container spacing={3} className="fade-in">
@@ -1115,6 +1330,10 @@ const UserInfo = () => {
                         )}
                 </Box>
                 </Box>
+                <Box sx = {{mt: 4}}>
+                    <ExerciseSuggestions/>
+                </Box>
+
 
                 <Divider style={{ margin: "40px 0" }} />
 
@@ -1124,10 +1343,9 @@ const UserInfo = () => {
                         Biểu đồ calo tiêu thụ trong tuần
                     </Typography>
                     {weekData.length > 0 ? (
-                        <Chart
-                            options={{
+                        <Chart options={{
                                 chart: {
-                                    id: "weekly-calorie-chart",
+                                    id: "weekly-calorie-chart", 
                                 },
                                 xaxis: {
                                     categories: weekData.map((item) => item.DAY),
@@ -1168,6 +1386,66 @@ const UserInfo = () => {
                         <Alert severity="info">Chưa có dữ liệu calo trong tuần để hiển thị biểu đồ.</Alert>
                     )}
                 </Box>
+                < Divider style = {{margin: "40px 0"}}/>
+                    <Box mt={4} className="fade-in">
+                                    <Typography variant="h5" gutterBottom fontWeight="bold" textAlign="center">
+                                        Gợi ý sức khỏe cá nhân hóa
+                                    </Typography>
+                
+                                    <Divider sx={{ my: 3 }} />
+                
+                                    {/* Giấc ngủ */}
+                                    <Box>
+                                        <Typography variant="h6" gutterBottom fontWeight="medium">
+                                        Giấc ngủ mỗi đêm
+                                        </Typography>
+                                        <FormControl fullWidth margin="normal">
+                                        <TextField
+                                            label="Số giờ ngủ trung bình mỗi đêm"
+                                            type="number"
+                                            value={averageSleepHours}
+                                            onChange={(e) => setAverageSleepHours(e.target.value)}
+                                            inputProps={{ min: "0", step: "0.1" }}
+                                            helperText="Ví dụ: 7.5 giờ"
+                                        />
+                                        </FormControl>
+                
+                                        {averageSleepHours && (
+                                            <Alert severity={averageSleepHours >= 7 && averageSleepHours <= 9 ? "success" : "warning"} sx={{ mt: 2 }}>
+                                                {averageSleepHours > 0 && averageSleepHours <=12   ? (
+                                                averageSleepHours >= 7 && averageSleepHours <= 9
+                                                    ? `Bạn đang ngủ đủ giấc (${averageSleepHours} giờ). Rất tốt cho sức khỏe!`
+                                                    : `Với ${averageSleepHours} giờ ngủ, bạn có thể đang thiếu hoặc thừa giấc. Mục tiêu là 7-9 giờ/đêm. Hãy điều chỉnh để cải thiện sức khỏe nhé.`
+                                                ): ('Số giờ ngủ trung bình trong một ngày chưa hợp lệ. Vui lòng cung cấp lại..' )}
+                                            </Alert>
+                                    )}
+                                        <Typography variant="body1" mt={2}>
+                                            {/* Lời khuyên dựa trên mức độ vận động (giữ nguyên) */}
+                                            {userInfo.ACTIVITY === "sedentary" ? "Với mức độ vận động thấp, bạn cần đảm bảo giấc ngủ chất lượng để cơ thể phục hồi tối ưu, tránh tình trạng mệt mỏi do thiếu vận động." : ""}
+                                            {userInfo.ACTIVITY === "active" || userInfo.ACTIVITY === "very_active" ? "Do mức độ vận động cao, giấc ngủ sâu và đủ rất quan trọng để cơ bắp phục hồi và tái tạo năng lượng." : ""}
+                                        </Typography>
+                                    </Box>
+                                    
+                                    <Divider sx = {{my:3}}/>
+                
+                                    <Box mt = {4} className = "fade-in">
+                                        {/* Gọi hàm mới tại đây */}
+                                        <Box mb={4}>
+                                                <FormControlLabel
+                                                    control={<Switch checked={showSleepAid} onChange={() => setShowSleepAid(!showSleepAid)} />}
+                                                    label="Gợi ý hỗ trợ giấc ngủ"
+                                                />
+                                                {showSleepAid && (
+                                                    <Card variant="outlined" sx={{ mt: 2 }}>
+                                                        <CardContent>
+                                                            <SleepAidCard />
+                                                        </CardContent>
+                                                    </Card>
+                                                )}
+                                        </Box>
+                                    </Box>
+                                </Box>
+                
                 <Box mt={4} className="fade-in">
                     <Typography variant="h5" gutterBottom style={{ fontWeight: "bold" }}>
                         Dự kiến lượng calo tiêu thụ trung bình hàng tháng
@@ -1187,6 +1465,54 @@ const UserInfo = () => {
                         </Table>
                     </TableContainer>
                 </Box>
+
+                {/* Lượng nước tiêu thụ mỗi ngày */}
+                <Divider sx={{ my: 3 }} />
+                                    <Card sx={{ mb: 3 }}>
+                                        <CardContent>
+                                        <Typography variant="h6" gutterBottom>Lượng nước tiêu thụ mỗi ngày</Typography>
+                                        <Typography variant="body1">
+                                            Uống đủ nước là rất quan trọng để duy trì các chức năng cơ thể. Lượng nước khuyến nghị có thể khác nhau tùy vào cân nặng, mức độ hoạt động và khí hậu. Một quy tắc chung là nam giới trưởng thành nên uống khoảng 3.7 lít/ngày và nữ giới khoảng 2.7 lít/ngày từ tổng lượng thực phẩm và đồ uống.
+                                        </Typography>
+                                        <Typography variant="body1" mt={1}>
+                                            Nước giúp:
+                                            <ul>
+                                                <li>Vận chuyển chất dinh dưỡng và oxy đến các tế bào.</li>
+                                                <li>Điều hòa nhiệt độ cơ thể.</li>
+                                                <li>Bôi trơn khớp.</li>
+                                                <li>Bảo vệ các cơ quan và mô.</li>
+                                                <li>Loại bỏ chất thải qua nước tiểu và phân.</li>
+                                            </ul>
+                                        </Typography>
+                                        {/* Input cho lượng nước */}
+                                        <FormControl fullWidth margin="normal">
+                                            <TextField
+                                                label="Lượng nước uống hàng ngày (ml)"
+                                                type="number"
+                                                value={dailyWaterIntake}
+                                                onChange={(e) => setDailyWaterIntake(e.target.value)}
+                                                inputProps={{ min: "0" }}
+                                                helperText="Ví dụ: 2500 ml"
+                                            />
+                                        </FormControl>
+                                        {/* Lời khuyên cá nhân hóa dựa trên input và cân nặng */}
+                                    {dailyWaterIntake && userInfo.WEIGHT && (
+                                        <Alert severity={
+                                            (dailyWaterIntake / 1000 >= (userInfo.WEIGHT * 30 / 1000) && dailyWaterIntake / 1000 <= (userInfo.WEIGHT * 40 / 1000))
+                                            ? "success"
+                                            : "warning"
+                                        } sx={{ mt: 2 }}>
+                                            {dailyWaterIntake / 1000 >= (userInfo.WEIGHT * 30 / 1000) && dailyWaterIntake / 1000 <= (userInfo.WEIGHT * 40 / 1000)
+                                                ? `Bạn đang uống đủ lượng nước khuyến nghị (${(dailyWaterIntake / 1000).toFixed(1)} lít). Rất tốt!`
+                                                : `Với ${(dailyWaterIntake / 1000).toFixed(1)} lít nước mỗi ngày, bạn có thể cần điều chỉnh. Mục tiêu cho bạn là khoảng ${(userInfo.WEIGHT * 30 / 1000).toFixed(1)} - ${(userInfo.WEIGHT * 40 / 1000).toFixed(1)} lít.`
+                                            }
+                                            {userInfo.ACTIVITY === "active" || userInfo.ACTIVITY === "very_active" ? " Do bạn có mức độ vận động cao, bạn cần uống thêm nước để bù đắp lượng mồ hôi mất đi." : ""}
+                                            {userInfo.ACTIVITY === "sedentary" ? " Ngay cả khi ít vận động, việc uống đủ nước vẫn rất quan trọng để duy trì trao đổi chất." : ""}
+                                        </Alert>
+                                    )}
+                                    </CardContent>
+                                </Card>
+                
             </div>
         );
 };
