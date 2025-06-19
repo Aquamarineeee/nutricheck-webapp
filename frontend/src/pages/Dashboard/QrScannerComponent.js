@@ -1,7 +1,7 @@
 // src/Components/QrScannerComponent.js
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react'; // Thêm useCallback
 import { Html5QrcodeScanner, Html5Qrcode } from 'html5-qrcode';
-import { Box, Button, Typography, IconButton } from '@mui/material';
+import { Box, Button, Typography, IconButton, Alert } from '@mui/material'; // Thêm Alert
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import CloseIcon from '@mui/icons-material/Close';
 import ImageSearchIcon from '@mui/icons-material/ImageSearch';
@@ -11,12 +11,40 @@ const FILE_SCANNER_ID = "file-scanner-container"; //
 
 const QrScannerComponent = ({ onScanResult }) => {
     const [scanResult, setScanResult] = useState(null);
-    const [isScanning, setIsScanning] = useState(false);
+    const [isCameraScanning, setIsCameraScanning] = useState(false); // Khai báo isCameraScanning
+    const [isFileScanning, setIsFileScanning] = useState(false);
     const scannerRef = useRef(null); // Ref để giữ instance của Html5QrcodeScanner
-    const [isFileScanning, setIsFileScanning] = useState(false); // <-- State mới để kiểm soát quét file
-    const cameraScannerRef = useRef(null); // Ref cho camera scanner
-    const fileScannerRef = useRef(null); // <-- Ref mới cho file scanner
+    // cameraScannerRef và fileScannerRef không thực sự cần thiết nếu bạn quản lý instance qua scannerRef và biến cục bộ.
 
+    // Hàm xử lý khi đóng scanner
+    const handleCloseScanner = useCallback(() => {
+        setIsCameraScanning(false);
+        setIsFileScanning(false);
+        setScanResult(null); // Đặt lại kết quả quét
+        // Logic dừng scanner đã có trong useEffect khi isCameraScanning/isFileScanning thay đổi
+        // hoặc được gọi trực tiếp trong onScanSuccess
+    }, []);
+
+    const onScanSuccess = useCallback((decodedText, decodedResult) => {
+        console.log(`Scan result: ${decodedText}`, decodedResult);
+        setScanResult(decodedText);
+        setIsCameraScanning(false); // Dừng quét bằng camera sau khi thành công
+        if (onScanResult) {
+            onScanResult(decodedText);
+        }
+        if (scannerRef.current) {
+            scannerRef.current.clear().catch(error => {
+                console.error("Failed to clear html5QrcodeScanner on success. ", error);
+            });
+            scannerRef.current = null;
+        }
+    }, [onScanResult]); // Thêm onScanResult vào dependencies
+
+    const onScanError = useCallback((errorMessage) => {
+        console.warn(`Scan error: ${errorMessage}`);
+        // Bạn có thể hiển thị thông báo lỗi cho người dùng ở đây
+        // setScanResult(`Lỗi quét: ${errorMessage}`); // Tùy chọn: hiển thị lỗi trên UI
+    }, []);
 
     const handleImageUpload = async (event) => {
         const file = event.target.files[0];
@@ -24,73 +52,50 @@ const QrScannerComponent = ({ onScanResult }) => {
             return;
         }
 
-        setIsFileScanning(true); // Đặt trạng thái đang quét file
-        setScanResult(null); // Xóa kết quả quét trước đó
+        setIsFileScanning(true);
+        setScanResult(null);
 
         try {
-            // Khởi tạo Html5Qrcode. Nó cần một ID cho phần tử DOM,
-            // nhưng chúng ta có thể dùng một div ẩn vì không hiển thị preview camera.
+            // Không cần ref cho file scanner nếu chỉ dùng cục bộ trong hàm này
             const html5QrCode = new Html5Qrcode(FILE_SCANNER_ID);
-            fileScannerRef.current = html5QrCode; // Lưu instance vào ref
-
-            const result = await html5QrCode.scanFile(file, true); // Gọi hàm scanFile để quét
-            onScanSuccess(result.decodedText, result); // Xử lý kết quả quét thành công
-
+            const result = await html5QrCode.scanFile(file, true);
+            onScanSuccess(result.decodedText, result);
+            // Quan trọng: clear sau khi quét file
+            html5QrCode.clear().catch(error => console.error("Failed to clear file scanner.", error));
         } catch (err) {
             onScanError(err.message || "Không tìm thấy mã QR/Barcode trong ảnh.");
         } finally {
-            setIsFileScanning(false); // Đảm bảo đặt lại trạng thái sau khi quét xong (dù thành công hay lỗi)
-            fileScannerRef.current = null; // Giải phóng instance
+            setIsFileScanning(false);
         }
-    };
-
-    const onScanSuccess = (decodedText, decodedResult) => {
-        // Xử lý kết quả quét thành công
-        console.log(`Scan result: ${decodedText}`, decodedResult);
-        setScanResult(decodedText);
-        setIsScanning(false); // Dừng quét sau khi quét thành công
-        if (onScanResult) {
-            onScanResult(decodedText); // Truyền kết quả ra ngoài nếu có prop
-        }
-        // Quan trọng: Dừng scanner để giải phóng tài nguyên camera
-        scannerRef.current.clear().catch(error => {
-            console.error("Failed to clear html5QrcodeScanner. ", error);
-        });
-    };
-
-    const onScanError = (errorMessage) => {
-        // Xử lý lỗi quét
-        console.warn(`Scan error: ${errorMessage}`);
-        // Bạn có thể hiển thị thông báo lỗi cho người dùng ở đây
     };
 
     useEffect(() => {
-        if (isScanning) {
+        if (isCameraScanning) {
             const html5QrCodeScanner = new Html5QrcodeScanner(
                 QR_CODE_SCANNER_ID,
                 {
-                    fps: 10, // Số khung hình mỗi giây để quét
-                    qrbox: { width: 250, height: 250 }, // Kích thước vùng quét
-                    disableFlip: false, // Cho phép lật camera (trước/sau)
+                    fps: 10,
+                    qrbox: { width: 250, height: 250 },
+                    disableFlip: false,
                 },
                 /* verbose= */ false
             );
 
             html5QrCodeScanner.render(onScanSuccess, onScanError);
-            scannerRef.current = html5QrCodeScanner; // Lưu instance vào ref
+            scannerRef.current = html5QrCodeScanner;
 
         } else {
-            // Khi không quét hoặc component unmount, dừng scanner
+            // Khi không quét bằng camera, dừng scanner
             if (scannerRef.current) {
                 scannerRef.current.clear().catch(error => {
-                    console.error("Failed to clear html5QrcodeScanner on unmount. ", error);
+                    console.error("Failed to clear html5QrcodeScanner on unmount/stop. ", error);
                 });
-                scannerRef.current = null; // Xóa ref
+                scannerRef.current = null;
             }
-            setScanResult(null); // Reset kết quả khi dừng quét
+            // Không reset scanResult ở đây để kết quả vẫn hiển thị sau khi dừng scan
         }
 
-        // Cleanup function: Dừng scanner khi component bị unmount
+        // Cleanup function: Dừng scanner khi component bị unmount hoặc isCameraScanning thay đổi thành false
         return () => {
             if (scannerRef.current) {
                 scannerRef.current.clear().catch(error => {
@@ -99,7 +104,7 @@ const QrScannerComponent = ({ onScanResult }) => {
                 scannerRef.current = null;
             }
         };
-    }, [isScanning]); // Chỉ chạy lại khi isScanning thay đổi
+    }, [isCameraScanning, onScanSuccess, onScanError]); // Dependencies cho useEffect
 
     return (
         <Box sx={{ my: 3, p: 2, border: '1px solid #ccc', borderRadius: '8px', textAlign: 'center' }}>
@@ -107,7 +112,7 @@ const QrScannerComponent = ({ onScanResult }) => {
                 Quét mã QR/Barcode
             </Typography>
 
-            {/* Div ẩn mà Html5Qrcode cần để khởi tạo */}
+            {/* Div ẩn mà Html5Qrcode cần để khởi tạo khi quét file */}
             <div id={FILE_SCANNER_ID} style={{ display: 'none' }}></div>
 
             {/* Hiển thị các nút chọn chế độ quét khi không có chế độ nào đang hoạt động */}
@@ -117,23 +122,23 @@ const QrScannerComponent = ({ onScanResult }) => {
                         variant="contained"
                         color="primary"
                         startIcon={<QrCodeScannerIcon />}
-                        onClick={() => setIsCameraScanning(true)}
+                        onClick={() => setIsCameraScanning(true)} // Đặt trạng thái quét camera
                         sx={{ mt: 2 }}
                     >
                         Quét bằng Camera
                     </Button>
                     <Button
                         variant="outlined"
-                        component="label" // <-- Quan trọng: Biến Button thành label cho input file
+                        component="label"
                         startIcon={<ImageSearchIcon />}
                         sx={{ mt: 2 }}
                     >
                         Quét từ Ảnh
-                        <Input
+                        <input // Sử dụng thẻ input HTML thông thường
                             type="file"
-                            accept="image/*" // <-- Chỉ chấp nhận file ảnh
-                            onChange={handleImageUpload} // <-- Gọi hàm xử lý khi file được chọn
-                            sx={{ display: 'none' }} // <-- Ẩn input file gốc
+                            accept="image/*"
+                            onChange={handleImageUpload}
+                            style={{ display: 'none' }} // Ẩn input file gốc
                         />
                     </Button>
                 </Box>
@@ -143,7 +148,7 @@ const QrScannerComponent = ({ onScanResult }) => {
             {isCameraScanning && (
                 <Box>
                     <IconButton
-                        onClick={handleCloseScanner}
+                        onClick={handleCloseScanner} // Gọi hàm handleCloseScanner
                         sx={{ position: 'absolute', top: 8, right: 8 }}
                         color="error"
                     >
@@ -158,7 +163,7 @@ const QrScannerComponent = ({ onScanResult }) => {
 
             {/* UI khi đang xử lý ảnh (chờ kết quả) */}
             {isFileScanning && (
-                 <Box sx={{ mt: 2 }}>
+                <Box sx={{ mt: 2 }}>
                     <Typography variant="body2" sx={{ color: 'gray' }}>
                         Đang xử lý ảnh...
                     </Typography>
@@ -168,7 +173,7 @@ const QrScannerComponent = ({ onScanResult }) => {
                     >
                         <CloseIcon />
                     </IconButton>
-                 </Box>
+                </Box>
             )}
 
             {/* Hiển thị kết quả quét */}
