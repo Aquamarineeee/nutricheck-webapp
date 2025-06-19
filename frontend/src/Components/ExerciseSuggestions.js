@@ -28,6 +28,14 @@ function SamplePrevArrow(props) {
     );
 }
 
+const activityLevelValues = {
+    sedentary: 1.2, // Ít vận động
+    light: 1.375,   // Vận động nhẹ
+    moderate: 1.55, // Vận động trung bình
+    active: 1.725,  // Vận động cao
+    very_active: 1.9, // Vận động rất cao
+};
+
 const ExerciseSuggestions = () => {
 
     const { userInfo } = useContext(AppContext);
@@ -52,83 +60,108 @@ const ExerciseSuggestions = () => {
 
 
     const generateExerciseSuggestions = useCallback((isRandom = false) => {
+        // Kiểm tra thông tin người dùng và mức độ hoạt động
         if (!userInfo || !userInfo.ACTIVITY) {
-            enqueueSnackbar("Vui lòng cập nhật đầy đủ thông tin cá nhân và chọn mục tiêu để nhận gợi ý bài tập.", { variant: "warning" });
+            enqueueSnackbar("Vui lòng cập nhật đầy đủ thông tin cá nhân và chọn mức độ hoạt động để nhận gợi ý bài tập.", { variant: "warning" });
             setExerciseSuggestions([]);
             return;
         }
 
-        const { ACTIVITY: activityLevel } = userInfo; 
+        const userActivityLevelString = userInfo.ACTIVITY;
+        const userActivityLevelValue = activityLevelValues[userActivityLevelString];
 
-        const relevantExercises = exerciseData.filter(
-            (item) => item.activityLevel === activityLevel || item.activityLevel === "any"
-        );
+        // Kiểm tra xem mức độ hoạt động của người dùng có hợp lệ không
+        if (userActivityLevelValue === undefined) {
+            enqueueSnackbar("Mức độ hoạt động của bạn không hợp lệ. Vui lòng kiểm tra lại thông tin cá nhân.", { variant: "error" });
+            setExerciseSuggestions([]);
+            return;
+        }
+
+        // Bước 1: Lọc ra TẤT CẢ các bài tập phù hợp
+        // Bao gồm:
+        // - Các bài tập có mức độ hoạt động bằng hoặc thấp hơn mức của người dùng.
+        // - Các bài tập có activityLevel là "any".
+        let allApplicableExercises = exerciseData.filter(item => {
+            if (item.activityLevel === "any") {
+                return true;
+            }
+            const itemActivityValue = activityLevelValues[item.activityLevel];
+            // Đảm bảo itemActivityValue là một số hợp lệ trước khi so sánh
+            return itemActivityValue !== undefined && itemActivityValue <= userActivityLevelValue;
+        });
 
         let suggestionsToDisplay = [];
-        const selectedIds = new Set(); // Dùng Set để theo dõi các ID đã chọn, đảm bảo duy nhất
+        const selectedIds = new Set(); // Dùng Set để theo dõi các ID đã chọn, đảm bảo duy nhất và giới hạn 3
 
+        // Hàm tiện ích để thêm bài tập vào danh sách gợi ý (đảm bảo duy nhất và không quá 3)
         const addUniqueSuggestion = (item) => {
-            // Thêm item chỉ khi chưa có trong danh sách và tổng số gợi ý chưa đạt 3
-            if (!selectedIds.has(item.id) && suggestionsToDisplay.length < 3) {
+            if (item && !selectedIds.has(item.id) && suggestionsToDisplay.length < 3) {
                 selectedIds.add(item.id);
                 suggestionsToDisplay.push(item);
+                return true; // Đã thêm
             }
+            return false; // Không thêm
         };
 
         if (isRandom) {
-            const shuffled = [...relevantExercises].sort(() => 0.5 - Math.random());
-            for (let i = 0; i < shuffled.length && suggestionsToDisplay.length < 3; i++) {
-                addUniqueSuggestion(shuffled[i]);
+            // Nếu yêu cầu ngẫu nhiên, xáo trộn tất cả các bài tập phù hợp và chọn 3 bài đầu tiên
+            const shuffled = [...allApplicableExercises].sort(() => 0.5 - Math.random());
+            for (const item of shuffled) {
+                if (addUniqueSuggestion(item) && suggestionsToDisplay.length === 3) {
+                    break; // Dừng lại khi đã đủ 3 gợi ý
+                }
             }
             enqueueSnackbar("Đã tạo gợi ý bài tập ngẫu nhiên mới!", { variant: "info" });
         } else {
-            relevantExercises.filter(
-                (item) => item.activityLevel === activityLevel
-            ).forEach(addUniqueSuggestion);
+            // --- Ưu tiên 1: Lấy các bài tập có MỨC ĐỘ HOẠT ĐỘNG CHÍNH XÁC của người dùng ---
+            allApplicableExercises
+                .filter(item => item.activityLevel === userActivityLevelString)
+                .forEach(addUniqueSuggestion);
 
-            // Ưu tiên 2: Khớp activityLevel, mục tiêu "any"
-            if (suggestionsToDisplay.length < 3) {
-                relevantExercises.filter(
-                    (item) => item.activityLevel === activityLevel
-                ).forEach(addUniqueSuggestion);
+            // --- Ưu tiên 2: Lấy các bài tập có MỨC ĐỘ HOẠT ĐỘNG THẤP HƠN mức của người dùng ---
+            // Lấy danh sách các mức độ hoạt động thấp hơn, sắp xếp từ cao nhất (gần nhất với người dùng) đến thấp nhất
+            const lowerActivityLevelStrings = Object.keys(activityLevelValues)
+                .filter(level => activityLevelValues[level] < userActivityLevelValue)
+                .sort((a, b) => activityLevelValues[b] - activityLevelValues[a]); // Sắp xếp giảm dần theo giá trị số
+
+            for (const level of lowerActivityLevelStrings) {
+                if (suggestionsToDisplay.length === 3) break; // Dừng nếu đã đủ 3
+                allApplicableExercises
+                    .filter(item => item.activityLevel === level)
+                    .forEach(addUniqueSuggestion);
             }
 
-            // Ưu tiên 3: activityLevel "any"
+            // --- Ưu tiên 3: Lấy các bài tập có activityLevel là "any" ---
             if (suggestionsToDisplay.length < 3) {
-                relevantExercises.filter(
-                    (item) => item.activityLevel === "any" 
-                ).forEach(addUniqueSuggestion);
+                allApplicableExercises
+                    .filter(item => item.activityLevel === "any")
+                    .forEach(addUniqueSuggestion);
             }
-
-
+            
+            // --- Ưu tiên 4: Nếu vẫn chưa đủ 3 bài, bổ sung ngẫu nhiên từ các bài tập còn lại ---
             if (suggestionsToDisplay.length < 3) {
-                relevantExercises.filter(
-                    (item) => item.activityLevel === "any" 
-                ).forEach(addUniqueSuggestion);
-            }
-
-            // Đảm bảo đủ số lượng bằng cách thêm ngẫu nhiên từ phần còn lại nếu cần
-            if (suggestionsToDisplay.length < 3) {
-                const remainingExercises = relevantExercises.filter(item => !selectedIds.has(item.id));
-                const shuffledRemaining = [...remainingExercises].sort(() => 0.5 - Math.random());
-                for (let i = 0; i < shuffledRemaining.length && suggestionsToDisplay.length < 3; i++) {
-                    addUniqueSuggestion(shuffledRemaining[i]);
+                const remainingApplicableExercises = allApplicableExercises.filter(item => !selectedIds.has(item.id));
+                const shuffledRemaining = [...remainingApplicableExercises].sort(() => 0.5 - Math.random());
+                for (const item of shuffledRemaining) {
+                    if (addUniqueSuggestion(item) && suggestionsToDisplay.length === 3) {
+                        break;
+                    }
                 }
             }
 
             enqueueSnackbar("Đã tạo gợi ý bài tập cá nhân hóa!", { variant: "success" });
         }
         setExerciseSuggestions(suggestionsToDisplay);
-    }, [userInfo, enqueueSnackbar]); // Dependencies cho useCallback: chỉ dùng userInfo
+    }, [userInfo, enqueueSnackbar]); // Dependencies của useCallback
 
+    // --- useEffect để tạo gợi ý ban đầu và cập nhật khi userInfo thay đổi ---
     useEffect(() => {
-
         if (userInfo && userInfo.ACTIVITY) {
             generateExerciseSuggestions(false); // Tạo gợi ý ban đầu (không random)
         } else {
-            setExerciseSuggestions([]); // Xóa gợi ý nếu các tiêu chí không được đáp ứng
+            setExerciseSuggestions([]); // Xóa gợi ý nếu thông tin chưa đủ
         }
-    }, [userInfo, generateExerciseSuggestions]); // Dependencies cho useEffect: chỉ dùng userInfo
+    }, [userInfo, generateExerciseSuggestions]); // generateExerciseSuggestions đã là useCallback nên sẽ ổn định
 
     return (
         <Box mt={4} className="fade-in">
@@ -136,22 +169,21 @@ const ExerciseSuggestions = () => {
                 Gợi ý bài tập
             </Typography>
 
-            {/* Cập nhật phần hiển thị thông báo nếu thiếu thông tin */}
+            {/* Thông báo nếu thiếu thông tin mức độ hoạt động */}
             {(!userInfo || !userInfo.ACTIVITY) && (
                 <Alert severity="info" sx={{ mt: 2, mb: 3 }}>
-                    <Typography variant="body1" sx={{mb:1}}>
-                        Vui lòng cập nhật đầy đủ thông tin cá nhân (mức độ hoạt động) và mục tiêu bài tập của bạn để nhận gợi ý phù hợp.
+                    <Typography variant="body1" sx={{ mb: 1 }}>
+                        Vui lòng cập nhật đầy đủ thông tin cá nhân và **chọn mức độ hoạt động của bạn** để nhận gợi ý bài tập phù hợp.
                     </Typography>
-                    {/* ĐÃ BỎ: Phần FormControl chọn mục tiêu ở đây, nó sẽ được xử lý ở UserInfo.js */}
                 </Alert>
             )}
 
-            {/* Hiển thị gợi ý nếu có đủ thông tin */}
+            {/* Hiển thị gợi ý nếu có đủ thông tin và có bài tập */}
             {exerciseSuggestions.length > 0 && userInfo && userInfo.ACTIVITY ? (
                 <>
                     <Box mt={2}>
                         <Typography variant="body1">
-                            <strong>Dựa trên thông tin của bạn ({userInfo?.ACTIVITY || 'N/A'}):</strong>
+                            <strong>Dựa trên mức độ hoạt động của bạn ({userInfo?.ACTIVITY || 'N/A'}):</strong>
                         </Typography>
                     </Box>
                     <Slider {...settings}>
@@ -237,12 +269,15 @@ const ExerciseSuggestions = () => {
                     </Slider>
                 </>
             ) : (
+                // Hiển thị cảnh báo nếu có mức độ hoạt động nhưng không tìm thấy gợi ý nào
                 userInfo?.ACTIVITY && (
                     <Alert severity="warning" sx={{ mt: 2 }}>
-                        Không thể tạo gợi ý bài tập. Vui lòng chọn mục tiêu bài tập của bạn (Tăng/Giảm/Giữ cân).
+                        Không tìm thấy bài tập phù hợp với mức độ hoạt động của bạn ({userInfo.ACTIVITY}). Vui lòng thử đổi gợi ý ngẫu nhiên.
                     </Alert>
                 )
             )}
+
+            {/* Nút đổi gợi ý chỉ hiển thị khi có gợi ý đã được tạo */}
             {exerciseSuggestions.length > 0 && (
                 <Box textAlign="center" mt={3}>
                     <Button variant="contained" color="primary" onClick={() => generateExerciseSuggestions(true)}>
