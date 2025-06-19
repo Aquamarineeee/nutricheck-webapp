@@ -29,13 +29,10 @@ function SamplePrevArrow(props) {
 }
 
 const ExerciseSuggestions = () => {
-    // Chỉ lấy userInfo từ AppContext, bao gồm cả goal nếu có
+
     const { userInfo } = useContext(AppContext);
     const { enqueueSnackbar } = useSnackbar();
 
-    // ĐÃ BỎ: State cục bộ cho goal và useEffect lưu vào localStorage
-    // const [localGoal, setLocalGoal] = useState(() => { ... });
-    // useEffect(() => { ... }, [localGoal]);
 
     const [exerciseSuggestions, setExerciseSuggestions] = useState([]);
 
@@ -52,19 +49,16 @@ const ExerciseSuggestions = () => {
         prevArrow: <SamplePrevArrow />
     };
 
-    // ĐÃ BỎ: Hàm xử lý khi người dùng chọn goal (vì không còn UI chọn goal ở đây)
-    // const handleLocalGoalChange = useCallback((event) => { ... }, [enqueueSnackbar]);
+
 
     const generateExerciseSuggestions = useCallback((isRandom = false) => {
-        // Kiểm tra thông tin người dùng và userInfo.goal
-        // Bây giờ goal được kỳ vọng có trong userInfo
-        if (!userInfo || !userInfo.ACTIVITY || !userInfo.goal) {
+        if (!userInfo || !userInfo.ACTIVITY) {
             enqueueSnackbar("Vui lòng cập nhật đầy đủ thông tin cá nhân và chọn mục tiêu để nhận gợi ý bài tập.", { variant: "warning" });
             setExerciseSuggestions([]);
             return;
         }
 
-        const { ACTIVITY: activityLevel, goal: currentGoal } = userInfo; // Lấy goal từ userInfo
+        const { ACTIVITY: activityLevel } = userInfo; 
 
         const relevantExercises = exerciseData.filter(
             (item) => item.activityLevel === activityLevel || item.activityLevel === "any"
@@ -88,29 +82,28 @@ const ExerciseSuggestions = () => {
             }
             enqueueSnackbar("Đã tạo gợi ý bài tập ngẫu nhiên mới!", { variant: "info" });
         } else {
-            // Ưu tiên 1: Khớp hoàn toàn activityLevel và goal
             relevantExercises.filter(
-                (item) => item.activityLevel === activityLevel && item.goal === currentGoal
+                (item) => item.activityLevel === activityLevel
             ).forEach(addUniqueSuggestion);
 
             // Ưu tiên 2: Khớp activityLevel, mục tiêu "any"
             if (suggestionsToDisplay.length < 3) {
                 relevantExercises.filter(
-                    (item) => item.activityLevel === activityLevel && item.goal === "any"
+                    (item) => item.activityLevel === activityLevel
                 ).forEach(addUniqueSuggestion);
             }
 
-            // Ưu tiên 3: Khớp goal, activityLevel "any"
+            // Ưu tiên 3: activityLevel "any"
             if (suggestionsToDisplay.length < 3) {
                 relevantExercises.filter(
-                    (item) => item.activityLevel === "any" && item.goal === currentGoal
+                    (item) => item.activityLevel === "any" 
                 ).forEach(addUniqueSuggestion);
             }
 
-            // Ưu tiên 4: Các bài tập chung (activityLevel "any", goal "any")
+
             if (suggestionsToDisplay.length < 3) {
                 relevantExercises.filter(
-                    (item) => item.activityLevel === "any" && item.goal === "any"
+                    (item) => item.activityLevel === "any" 
                 ).forEach(addUniqueSuggestion);
             }
 
@@ -129,8 +122,8 @@ const ExerciseSuggestions = () => {
     }, [userInfo, enqueueSnackbar]); // Dependencies cho useCallback: chỉ dùng userInfo
 
     useEffect(() => {
-        // Sử dụng userInfo.goal trực tiếp
-        if (userInfo && userInfo.ACTIVITY && userInfo.goal) {
+
+        if (userInfo && userInfo.ACTIVITY) {
             generateExerciseSuggestions(false); // Tạo gợi ý ban đầu (không random)
         } else {
             setExerciseSuggestions([]); // Xóa gợi ý nếu các tiêu chí không được đáp ứng
@@ -144,7 +137,7 @@ const ExerciseSuggestions = () => {
             </Typography>
 
             {/* Cập nhật phần hiển thị thông báo nếu thiếu thông tin */}
-            {(!userInfo || !userInfo.ACTIVITY || !userInfo.goal) && (
+            {(!userInfo || !userInfo.ACTIVITY) && (
                 <Alert severity="info" sx={{ mt: 2, mb: 3 }}>
                     <Typography variant="body1" sx={{mb:1}}>
                         Vui lòng cập nhật đầy đủ thông tin cá nhân (mức độ hoạt động) và mục tiêu bài tập của bạn để nhận gợi ý phù hợp.
@@ -154,11 +147,11 @@ const ExerciseSuggestions = () => {
             )}
 
             {/* Hiển thị gợi ý nếu có đủ thông tin */}
-            {exerciseSuggestions.length > 0 && userInfo && userInfo.ACTIVITY && userInfo.goal ? (
+            {exerciseSuggestions.length > 0 && userInfo && userInfo.ACTIVITY ? (
                 <>
                     <Box mt={2}>
                         <Typography variant="body1">
-                            <strong>Dựa trên thông tin của bạn ({userInfo?.ACTIVITY || 'N/A'} và mục tiêu {userInfo.goal === "gain" ? "tăng cân" : userInfo.goal === "lose" ? "giảm cân" : "giữ cân"}):</strong>
+                            <strong>Dựa trên thông tin của bạn ({userInfo?.ACTIVITY || 'N/A'}):</strong>
                         </Typography>
                     </Box>
                     <Slider {...settings}>
@@ -244,15 +237,12 @@ const ExerciseSuggestions = () => {
                     </Slider>
                 </>
             ) : (
-                // Hiển thị cảnh báo nếu không có gợi ý và thông tin mục tiêu chưa đầy đủ
-                userInfo?.ACTIVITY && !userInfo?.goal && (
+                userInfo?.ACTIVITY && (
                     <Alert severity="warning" sx={{ mt: 2 }}>
                         Không thể tạo gợi ý bài tập. Vui lòng chọn mục tiêu bài tập của bạn (Tăng/Giảm/Giữ cân).
                     </Alert>
                 )
             )}
-
-            {/* Nút đổi gợi ý chỉ hiển thị khi có gợi ý */}
             {exerciseSuggestions.length > 0 && (
                 <Box textAlign="center" mt={3}>
                     <Button variant="contained" color="primary" onClick={() => generateExerciseSuggestions(true)}>
