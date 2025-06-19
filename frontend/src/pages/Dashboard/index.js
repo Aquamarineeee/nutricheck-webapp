@@ -19,7 +19,7 @@ import { motion } from "framer-motion";
 import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import { Html5QrcodeScanner } from 'html5-qrcode';
-import hinhnen from "../../images/hinhnenDashboard.gif";
+import hinhnen from "../../images/hinhnen.gif";
 import QRBarcodeScanner from "../../Components/QRBarcodeScanner";
 
 const tourMotion = {
