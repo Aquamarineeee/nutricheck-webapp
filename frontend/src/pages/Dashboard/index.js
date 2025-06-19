@@ -20,7 +20,7 @@ import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper 
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import { Html5QrcodeScanner } from 'html5-qrcode';
 import hinhnen from "../../images/hinhnen.gif";
-import QRBarcodeScanner from "../../Components/QRBarcodeScanner";
+import QRBarcodeScanner from "../../Dashboard/QRBarcodeScanner";
 
 const tourMotion = {
   offscreen: {
