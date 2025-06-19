@@ -55,17 +55,19 @@ const QrScannerComponent = ({ onScanResult }) => {
         setIsFileScanning(true);
         setScanResult(null);
 
+        let html5QrCode = null; // Khai báo biến cục bộ để đảm bảo nó được gán
         try {
-            // Không cần ref cho file scanner nếu chỉ dùng cục bộ trong hàm này
-            const html5QrCode = new Html5Qrcode(FILE_SCANNER_ID);
+            html5QrCode = new Html5Qrcode(FILE_SCANNER_ID); // Gán instance vào biến cục bộ
             const result = await html5QrCode.scanFile(file, true);
             onScanSuccess(result.decodedText, result);
-            // Quan trọng: clear sau khi quét file
-            html5QrCode.clear().catch(error => console.error("Failed to clear file scanner.", error));
         } catch (err) {
             onScanError(err.message || "Không tìm thấy mã QR/Barcode trong ảnh.");
         } finally {
             setIsFileScanning(false);
+            // Quan trọng: Chỉ gọi clear() nếu html5QrCode đã được khởi tạo và tồn tại
+            if (html5QrCode) {
+                html5QrCode.clear().catch(error => console.error("Failed to clear file scanner.", error));
+            }
         }
     };
 
