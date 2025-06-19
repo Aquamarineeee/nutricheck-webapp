@@ -20,7 +20,7 @@ import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper 
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import { Html5QrcodeScanner } from 'html5-qrcode';
 import hinhnen from "../../images/hinhnen.gif";
-import QRBarcodeScanner from "../../Dashboard/QRBarcodeScanner";
+import QrScannerComponent from "./QrScannerComponent";
 
 const tourMotion = {
   offscreen: {
@@ -701,7 +701,7 @@ const Dashboard = () => {
                     <Typography variant="h6" align="center" gutterBottom>
                         Quét mã QR/Barcode
                     </Typography>
-                    <QRBarcodeScanner /> 
+                    <QrScannerComponent /> 
                 </Box>
       </Container>          
     </motion.div>
