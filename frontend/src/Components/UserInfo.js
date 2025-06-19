@@ -201,8 +201,8 @@ const UserInfo = () => {
                 // Công thức Mifflin-St Jeor
                 const BMR =
                     gender === "male"
-                        ? 10 * weight + 6.25 * height - 5 * age + 5
-                        : 10 * weight + 6.25 * height - 5 * age - 161;
+                        ? (10 * weight) + (6.25 * height) - (5 * age) + 5
+                        : (10 * weight) + (6.25 * height) - (5 * age) - 161;
 
                 // Hệ số vận động
                 const activityFactor = {
@@ -213,7 +213,7 @@ const UserInfo = () => {
                     very_active: 1.9, // Vận động rất cao
                 };
 
-                const dailyCalories = BMR * (activityFactor[activity] || 1.2);
+                const dailyCalories = BMR;
                 const weeklyCalories = dailyCalories * 7;
                 const monthlyCalories = dailyCalories * 30;
 
@@ -350,7 +350,7 @@ const UserInfo = () => {
                     userInfo.GENDER,
                     userInfo.ACTIVITY,
                     calculateBMR,
-                ]);
+        ]);
 
         const getMealSuggestions = (goal) => {
             return mealData[goal] ? [...mealData[goal]].sort(() => Math.random() - 0.5).slice(0, 5) : [];
@@ -997,33 +997,33 @@ const UserInfo = () => {
                         <Box sx={{ flexGrow: 1 }}>
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={6}>
-                                    <Typography variant="body1" sx={{ mt: 2 }}> {/* Thêm sx={{ mt: 2 }} để căn chỉnh lề nếu cần */}
-                                        <strong>Tên người dùng:</strong> {userInfo.USERNAME || 'N/A'} tuổi
+                                    <Typography variant="body1" sx={{ mt: 2 }}> 
+                                        <strong>Tên người dùng:</strong> {userInfo.USERNAME || 'N/A'}
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    <Typography variant="body1" sx={{ mt: 2 }}> {/* Thêm sx={{ mt: 2 }} để căn chỉnh lề nếu cần */}
+                                    <Typography variant="body1" sx={{ mt: 2 }}> 
                                         <strong>Chiều cao:</strong> {userInfo.HEIGHT || 'N/A'} cm
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    <Typography variant="body1" sx={{ mt: 2 }}> {/* Thêm sx={{ mt: 2 }} để căn chỉnh lề nếu cần */}
+                                    <Typography variant="body1" sx={{ mt: 2 }}> 
                                         <strong>Cân nặng (kg):</strong> {userInfo.WEIGHT || 'N/A'} kg
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    <Typography variant="body1" sx={{ mt: 2 }}> {/* Thêm sx={{ mt: 2 }} để căn chỉnh lề nếu cần */}
+                                    <Typography variant="body1" sx={{ mt: 2 }}> 
                                         <strong>Tuổi:</strong> {userInfo.AGE || 'N/A'} tuổi
                                     </Typography>
                                 </Grid>
                                 < Grid item xs={12} sm={6}>
-                                    <Typography variant="body1" sx={{ mt: 2 }}> {/* Thêm sx={{ mt: 2 }} để căn chỉnh lề nếu cần */}
-                                        <strong>Giới tính:</strong> {userInfo.GENDER || 'N/A'}
+                                    <Typography variant="body1" sx={{ mt: 2 }}> 
+                                        <strong>Giới tính:</strong> {userInfo.GENDER=== "female" ?'Nữ': userInfo.GENDER === "male" ? "Nam" : 'N/A'}
                                     </Typography>
                                         
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    <Typography variant="body1" sx={{ mt: 2 }}><strong>Giới tính:</strong> {userInfo.ACTIVITY || 'N/A'}</Typography>
+                                    <Typography variant="body1" sx={{ mt: 2 }}><strong>Mức độ hoạt động:</strong> {userInfo.ACTIVITY || 'N/A'}</Typography>
                                 </Grid>
                             </Grid>
                             
@@ -1034,29 +1034,19 @@ const UserInfo = () => {
 
 
                 <Box mb={4}>
-                    <FormControlLabel
-                        control={<Switch checked={showBMI} onChange={() => setShowBMI(!showBMI)} />}
-                        label="Xem chỉ số BMI, BMR và TDEE"
-                    />
                         <Card variant="outlined" sx={{ mt: 2 }}>
                             <CardContent>
                                 <Typography variant="h6" gutterBottom>
-                                    Chỉ số BMI
+                                    Chỉ số BMI, BMR và TDEE
                                 </Typography>
                                 <Typography variant="body1">
                                     Chỉ số BMI của bạn: {calculateBMI() || 'N/A'}
                                 </Typography>
                                 <Typography variant="body1">
-                                    Tình trạng: {getBMICategory(calculateBMI())}
-                                </Typography>
-                                <Typography variant="h6" gutterBottom>
-                                    Chỉ số BMR và TDEE
-                                </Typography>
-                                <Typography variant="body1">
                                         Chỉ số BMR của bạn: {(parseFloat(calculatedDisplayBMR) || 0).toFixed(2)} Calo/ngày
                                     </Typography>
                                     <Typography variant="body1">
-                                        Chỉ số TDEE của bạn: {(parseFloat(calculatedDisplayBMR) * parseFloat(UserInfo.ACTIVITY) || 0).toFixed(2)} Calo/ngày
+                                        Chỉ số TDEE của bạn: {(parseFloat(calculatedDisplayBMR) * parseFloat(userInfo.ACTIVITY) || 0).toFixed(2)} Calo/ngày
                                     </Typography>
                                 <Typography variant="body1">
                                     Tình trạng: {getBMICategory(calculateBMI())}</Typography>
@@ -1079,7 +1069,7 @@ const UserInfo = () => {
                                 <Typography variant="h6" gutterBottom>Thống kê calo hiện tại</Typography>
 
                                 <Typography variant="body1">
-                                    <strong>Lượng calo tối thiểu mỗi ngày:</strong> {minCaloriesDay.toFixed(1)} calo
+                                    <strong>Lượng calo tối thiểu mỗi ngày:</strong> {parseFloat(calculatedDisplayBMR).toFixed(2)} calo
                                 </Typography>
                                 <Typography variant="body1">
                                     <strong>Lượng calo đã tiêu thụ hôm nay:</strong> {dailyCaloriesConsumed.toFixed(1)} calo
