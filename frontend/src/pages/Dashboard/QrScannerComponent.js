@@ -1,44 +1,56 @@
 // src/Components/QrScannerComponent.js
-import React, { useEffect, useRef, useState, useCallback } from 'react'; // Thêm useCallback
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Html5QrcodeScanner, Html5Qrcode } from 'html5-qrcode';
-import { Box, Button, Typography, IconButton, Alert } from '@mui/material'; // Thêm Alert
+import { Box, Button, Typography, IconButton, Alert } from '@mui/material'; 
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import CloseIcon from '@mui/icons-material/Close';
 import ImageSearchIcon from '@mui/icons-material/ImageSearch';
 
-const QR_CODE_SCANNER_ID = "qr-code-full-region"; // ID duy nhất cho vùng quét
-const FILE_SCANNER_ID = "file-scanner-container"; //
+const QR_CODE_SCANNER_ID = "qr-code-full-region";
+const FILE_SCANNER_ID = "file-scanner-container";
 
 const QrScannerComponent = ({ onScanResult }) => {
     const [scanResult, setScanResult] = useState(null);
-    const [isCameraScanning, setIsCameraScanning] = useState(false); // Khai báo isCameraScanning
+    const [isCameraScanning, setIsCameraScanning] = useState(false);
     const [isFileScanning, setIsFileScanning] = useState(false);
-    const scannerRef = useRef(null); // Ref để giữ instance của Html5QrcodeScanner
-    // cameraScannerRef và fileScannerRef không thực sự cần thiết nếu bạn quản lý instance qua scannerRef và biến cục bộ.
+    const scannerRef = useRef(null); 
+
 
     // Hàm xử lý khi đóng scanner
     const handleCloseScanner = useCallback(() => {
+        // Dừng camera/file scanning
+        if (scannerRef.current) {
+            scannerRef.current.clear().catch(error => {
+                console.error("Failed to clear scanner on close button. ", error);
+            });
+            scannerRef.current = null;
+        }
         setIsCameraScanning(false);
         setIsFileScanning(false);
-        setScanResult(null); // Đặt lại kết quả quét
-        // Logic dừng scanner đã có trong useEffect khi isCameraScanning/isFileScanning thay đổi
-        // hoặc được gọi trực tiếp trong onScanSuccess
+        // GIỮ KẾT QUẢ QUÉT: Không gọi setScanResult(null) ở đây nữa.
+        // setScanResult(null); // Bỏ hoặc chỉ gọi khi muốn bắt đầu một phiên quét hoàn toàn mới
     }, []);
 
     const onScanSuccess = useCallback((decodedText, decodedResult) => {
         console.log(`Scan result: ${decodedText}`, decodedResult);
-        setScanResult(decodedText);
-        setIsCameraScanning(false); // Dừng quét bằng camera sau khi thành công
-        if (onScanResult) {
-            onScanResult(decodedText);
-        }
+        setScanResult(decodedText); // Cập nhật state để hiển thị kết quả
+
+        // Dừng scanner ngay lập tức sau khi quét thành công
         if (scannerRef.current) {
-            scannerRef.current.clear().catch(error => {
+            scannerRef.current.clear().then(() => {
+                // Sau khi scanner đã dừng thành công, mới tắt cờ quét
+                setIsCameraScanning(false);
+                setIsFileScanning(false); // Dừng cả file scanning nếu có thể
+            }).catch(error => {
                 console.error("Failed to clear html5QrcodeScanner on success. ", error);
             });
-            scannerRef.current = null;
+            scannerRef.current = null; // Xóa instance khỏi ref
         }
-    }, [onScanResult]); // Thêm onScanResult vào dependencies
+
+        if (onScanResult) {
+            onScanResult(decodedText); // Truyền kết quả lên component cha
+        }
+    }, [onScanResult]);
 
     const onScanError = useCallback((errorMessage) => {
         console.warn(`Scan error: ${errorMessage}`);
