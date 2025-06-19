@@ -17,6 +17,10 @@ import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
 import Joyride, { CallBackProps, STATUS, Step } from "react-joyride";
 import { motion } from "framer-motion";
 import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
+import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
+import { Html5QrcodeScanner } from 'html5-qrcode';
+import hinhnen from "../../images/hinhnenDashboard.gif";
+import QRBarcodeScanner from "../../Components/QRBarcodeScanner";
 
 const tourMotion = {
   offscreen: {
@@ -236,7 +240,11 @@ const Dashboard = () => {
       whileInView="onscreen"
       viewport={{ once: true }}
       style={{
-        background: "var(--backgroundColor)",
+        backgroundImage: `url(${hinhnen})`, // Sử dụng hình ảnh đã import
+        backgroundSize: "cover", // Đảm bảo hình nền phủ kín phần tử
+        backgroundRepeat: "no-repeat", // Không lặp lại hình nền
+        backgroundPosition: "center center", // Canh giữa hình nền
+        minHeight: "100vh", // Đảm bảo chiều cao tối thiểu để background hiển thị
         paddingBottom: "6rem",
       }}
     >
@@ -364,7 +372,7 @@ const Dashboard = () => {
           series={[todaysCaloriesPercent]}
           height={400}
           options={{
-            labels: ["Năng lượng"],
+            labels: ["CALORIES"],
             CALORIES: CALORIES,
             plotOptions: {
               radialBar: {
@@ -688,7 +696,14 @@ const Dashboard = () => {
           </TableContainer>
         </Box>
       )}
-    </Container>
+    {/* gọi qr bar code */}
+    <Box sx={{ my: 4, p: 2, border: '1px solid #ccc', borderRadius: '8px', backgroundColor: '#fff' }}>
+                    <Typography variant="h6" align="center" gutterBottom>
+                        Quét mã QR/Barcode
+                    </Typography>
+                    <QRBarcodeScanner /> 
+                </Box>
+      </Container>          
     </motion.div>
   );
 };
