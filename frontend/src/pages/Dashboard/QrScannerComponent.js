@@ -55,18 +55,30 @@ const QrScannerComponent = ({ onScanResult }) => {
         setIsFileScanning(true);
         setScanResult(null);
 
-        let html5QrCode = null; // Khai báo biến cục bộ để đảm bảo nó được gán
+        let html5QrCodeInstance = null; // Khai báo biến cục bộ để đảm bảo nó được gán
         try {
-            html5QrCode = new Html5Qrcode(FILE_SCANNER_ID); // Gán instance vào biến cục bộ
-            const result = await html5QrCode.scanFile(file, true);
-            onScanSuccess(result.decodedText, result);
+            html5QrCodeInstance = new Html5Qrcode(FILE_SCANNER_ID); // Gán instance vào biến cục bộ
+            const result = await html5QrCodeInstance.scanFile(file, true);
+            // Cải thiện xử lý kết quả để lấy decodedText hoặc sử dụng decodedResult nếu decodedText undefined
+            const finalScanResult = result.decodedText || (typeof result.result === 'string' ? result.result : '');
+            onScanSuccess(finalScanResult, result); // Truyền kết quả đã xử lý
         } catch (err) {
             onScanError(err.message || "Không tìm thấy mã QR/Barcode trong ảnh.");
         } finally {
             setIsFileScanning(false);
-            // Quan trọng: Chỉ gọi clear() nếu html5QrCode đã được khởi tạo và tồn tại
-            if (html5QrCode) {
-                html5QrCode.clear().catch(error => console.error("Failed to clear file scanner.", error));
+            // Quan trọng: Chỉ gọi clear() nếu html5QrCodeInstance đã được khởi tạo và tồn tại
+            if (html5QrCodeInstance) {
+                // Kiểm tra xem clear có phải là một hàm và có trả về một Promise không
+                try {
+                    const clearPromise = html5QrCodeInstance.clear();
+                    if (clearPromise && typeof clearPromise.catch === 'function') {
+                        clearPromise.catch(error => console.error("Failed to clear file scanner.", error));
+                    } else {
+                        console.warn("html5QrCodeInstance.clear() did not return a Promise with .catch().");
+                    }
+                } catch (clearSyncError) {
+                    console.error("Synchronous error during html5QrCodeInstance.clear():", clearSyncError);
+                }
             }
         }
     };
