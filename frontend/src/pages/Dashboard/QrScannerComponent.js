@@ -99,8 +99,6 @@ function QrScannerComponent() {
   return (
     <div style={{ padding: '20px', maxWidth: '800px', margin: '0 auto' }}>
       <h1 style={{ textAlign: 'center' }}>QR Scanner Demo</h1>
-      
-      {/* QR Scanner Component */}
       <Box sx={{ my: 3, p: 2, border: '1px solid #ccc', borderRadius: '8px', textAlign: 'center' }}>
         <Typography variant="h6" gutterBottom>
           Quét mã QR/Barcode
@@ -185,8 +183,6 @@ function QrScannerComponent() {
           </Box>
         )}
       </Box>
-
-      {/* Display Area */}
       {scanResult && (
         <Box sx={{ mt: 3, p: 2, border: '1px solid #eee', borderRadius: '4px' }}>
           <Typography variant="h6">Kết quả quét:</Typography>
