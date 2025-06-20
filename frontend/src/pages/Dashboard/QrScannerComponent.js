@@ -261,22 +261,7 @@ const QrScannerComponent = ({ onScanResult }) => {
             )}
 
             {/* Hiển thị kết quả quét */}
-            {scanResult && (
-                <Box sx={{ mt: 2 }}>
-                    <Alert severity={scanResult.includes('Lỗi') ? "error" : "success"}>
-                        {renderScanResult()}
-                    </Alert>
-                    {/* Nút để cho phép người dùng xóa kết quả và bắt đầu lại */}
-                    <Button
-                        variant="outlined"
-                        color="secondary"
-                        onClick={handleResetScan}
-                        sx={{ mt: 2 }}
-                    >
-                        Quét lại / Xóa kết quả
-                    </Button>
-                </Box>
-            )}
+            {renderScanResult()}
         </Box>
     );
 };
