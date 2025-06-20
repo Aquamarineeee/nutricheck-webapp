@@ -14,6 +14,7 @@ const QrScannerComponent = ({ onScanResult }) => {
     const [isCameraScanning, setIsCameraScanning] = useState(false);
     const [isFileScanning, setIsFileScanning] = useState(false);
     const scannerRef = useRef(null); 
+    const scanResultRef = useRef(null);
 
     // Hàm xử lý khi đóng scanner (áp dụng cho cả camera và file)
     const handleCloseScanner = useCallback(async () => {
@@ -36,7 +37,12 @@ const QrScannerComponent = ({ onScanResult }) => {
 
     const onScanSuccess = useCallback(async (decodedText, decodedResult) => { // Thêm async ở đây
         console.log(`Scan result: ${decodedText}`, decodedResult);
-        setScanResult(decodedText); // Đây là dòng cập nhật state để hiển thị
+        scanResultRef.current = decodedText?.trim();
+        forceUpdate(x => x + 1); // ép React render lại nếu cần
+        setScanResult(prev => {
+            const cleaned = decodedText?.trim();
+            return prev === cleaned ? cleaned + " " : cleaned;
+        });
 
         // Dừng scanner ngay lập tức sau khi quét thành công
         if (scannerRef.current) {
@@ -60,12 +66,11 @@ const QrScannerComponent = ({ onScanResult }) => {
         if (onScanResult) {
             onScanResult(decodedText); // Truyền kết quả lên component cha (nếu có)
         }
+        
     }, [onScanResult]);
 
     const onScanError = useCallback((errorMessage) => {
         console.warn(`Scan error: ${errorMessage}`);
-        // Có thể setScanResult(`Lỗi: ${errorMessage}`); để hiển thị lỗi ngay
-        // setScanResult(`Lỗi quét: ${errorMessage}`); 
     }, []);
 
     const handleImageUpload = async (event) => {
@@ -84,8 +89,6 @@ const QrScannerComponent = ({ onScanResult }) => {
             html5QrCodeInstance = new Html5Qrcode(FILE_SCANNER_ID); 
             const result = await html5QrCodeInstance.scanFile(file, true);
             const finalScanResult = result.decodedText || (typeof result.result === 'string' ? result.result : '');
-            
-            // Gọi onScanSuccess với kết quả
             await onScanSuccess(finalScanResult, result); // Dùng await để đảm bảo xử lý xong trước khi kết thúc
             
         } catch (err) {
@@ -165,28 +168,30 @@ const QrScannerComponent = ({ onScanResult }) => {
     }, [isCameraScanning, onScanSuccess, onScanError]); // Dependencies cho useEffect
     
     const handleResetScan = useCallback(() => {
-        setScanResult(null);
+        scanResultRef.current = null;
         handleCloseScanner();
+        forceUpdate(x => x + 1);
     }, [handleCloseScanner]);
     const renderScanResult = useCallback(() => {
-            if (scanResult === null) return null;
+        const result = scanResultRef.current;
+        if (!result) return null;
 
             return (
                 <Box sx={{ mt: 2 }}>
-                <Alert severity={scanResult.includes("Lỗi") ? "error" : "success"}>
-                    {scanResult || "(Trống – không có nội dung trong mã QR)"}
-                </Alert>
-                <Button
-                    variant="outlined"
-                    color="secondary"
-                    onClick={handleResetScan}
-                    sx={{ mt: 2 }}
-                >
-                    Quét lại / Xóa kết quả
-                </Button>
+                    <Alert severity={result.includes("Lỗi") ? "error" : "success"}>
+                        {result || "(Trống – không có nội dung trong mã QR)"}
+                    </Alert>
+                    <Button
+                        variant="outlined"
+                        color="secondary"
+                        onClick={handleResetScan}
+                        sx={{ mt: 2 }}
+                    >
+                        Quét lại / Xóa kết quả
+                    </Button>
                 </Box>
             );
-            }, [scanResult, handleResetScan]);
+    }, [handleResetScan]);
 
 
 
