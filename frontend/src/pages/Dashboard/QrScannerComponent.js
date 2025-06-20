@@ -15,6 +15,7 @@ const QrScannerComponent = ({ onScanResult }) => {
     const [isFileScanning, setIsFileScanning] = useState(false);
     const scannerRef = useRef(null); 
     const scanResultRef = useRef(null);
+    const [, forceUpdate] = useReducer(x => x + 1, 0);
 
     // Hàm xử lý khi đóng scanner (áp dụng cho cả camera và file)
     const handleCloseScanner = useCallback(async () => {
@@ -38,7 +39,7 @@ const QrScannerComponent = ({ onScanResult }) => {
     const onScanSuccess = useCallback(async (decodedText, decodedResult) => { // Thêm async ở đây
         console.log(`Scan result: ${decodedText}`, decodedResult);
         scanResultRef.current = decodedText?.trim();
-        forceUpdate(x => x + 1); // ép React render lại nếu cần
+        forceUpdate();
         setScanResult(prev => {
             const cleaned = decodedText?.trim();
             return prev === cleaned ? cleaned + " " : cleaned;
