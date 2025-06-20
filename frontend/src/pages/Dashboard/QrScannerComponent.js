@@ -163,30 +163,32 @@ const QrScannerComponent = ({ onScanResult }) => {
             }
         };
     }, [isCameraScanning, onScanSuccess, onScanError]); // Dependencies cho useEffect
-    const renderScanResult = useCallback(() => {
-        if (scanResult === null) return null;
-
-        return (
-            <Box sx={{ mt: 2 }}>
-            <Alert severity={scanResult.includes("Lỗi") ? "error" : "success"}>
-                {scanResult || "(Trống – không có nội dung trong mã QR)"}
-            </Alert>
-            <Button
-                variant="outlined"
-                color="secondary"
-                onClick={handleResetScan}
-                sx={{ mt: 2 }}
-            >
-                Quét lại / Xóa kết quả
-            </Button>
-            </Box>
-        );
-        }, [scanResult, handleResetScan]);
-
-    const handleResetScan = useCallback(() => { // Thêm useCallback để tối ưu
-        setScanResult(null); // Xóa kết quả hiện tại
-        handleCloseScanner(); // Dừng tất cả các loại scanner
+    
+    const handleResetScan = useCallback(() => {
+        setScanResult(null);
+        handleCloseScanner();
     }, [handleCloseScanner]);
+    const renderScanResult = useCallback(() => {
+            if (scanResult === null) return null;
+
+            return (
+                <Box sx={{ mt: 2 }}>
+                <Alert severity={scanResult.includes("Lỗi") ? "error" : "success"}>
+                    {scanResult || "(Trống – không có nội dung trong mã QR)"}
+                </Alert>
+                <Button
+                    variant="outlined"
+                    color="secondary"
+                    onClick={handleResetScan}
+                    sx={{ mt: 2 }}
+                >
+                    Quét lại / Xóa kết quả
+                </Button>
+                </Box>
+            );
+            }, [scanResult, handleResetScan]);
+
+
 
 
     return (
