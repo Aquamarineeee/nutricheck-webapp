@@ -1,5 +1,5 @@
 // src/Components/QrScannerComponent.js
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useRef, useState, useCallback, useReducer } from 'react';
 import { Html5QrcodeScanner, Html5Qrcode } from 'html5-qrcode';
 import { Box, Button, Typography, IconButton, Alert } from '@mui/material'; 
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
