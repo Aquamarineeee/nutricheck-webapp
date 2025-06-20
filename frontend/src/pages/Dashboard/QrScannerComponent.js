@@ -38,6 +38,7 @@ const QrScannerComponent = ({ onScanResult }) => {
     }, []);
 
     const onScanSuccess = useCallback(async (decodedText, decodedResult) => {
+        // Dừng scanner sau khi quét thành công
         if (scannerRef.current) {
             try {
                 if (typeof scannerRef.current.clear === 'function') {
@@ -55,11 +56,17 @@ const QrScannerComponent = ({ onScanResult }) => {
             setIsFileScanning(false);
         }
 
+        // ✅ Ghi log ra console
+        console.log("✅ QR Code Scanned:", decodedText);
+
+        // ✅ Cập nhật giao diện
+        setScanResult(decodedText);
+
+        // ✅ Truyền kết quả lên component cha (nếu có)
         if (onScanResult) {
             onScanResult(decodedText);
         }
 
-        setScanResult(decodedText);
     }, [onScanResult]);
 
     const onScanError = useCallback((errorMessage) => {
