@@ -68,10 +68,16 @@ const ExerciseSuggestions = () => {
         }
 
         const userActivityLevelString = userInfo.ACTIVITY;
-        const userActivityLevelValue = activityLevelValues[userActivityLevelString];
+        let userActivityLevelValue;
 
         // Kiểm tra xem mức độ hoạt động của người dùng có hợp lệ không
-        if (userActivityLevelValue === undefined) {
+        const rawUserActivity = userInfo.ACTIVITY;
+
+        // userInfo.ACTIVITY chỉ là số hoặc chuỗi số, nên chỉ cần parseFloat
+        userActivityLevelValue = parseFloat(rawUserActivity);
+        
+        // Kiểm tra sau khi chuẩn hóa
+        if (isNaN(userActivityLevelValue) || userActivityLevelValue === undefined) { // Thêm undefined check để an toàn hơn
             enqueueSnackbar("Mức độ hoạt động của bạn không hợp lệ. Vui lòng kiểm tra lại thông tin cá nhân.", { variant: "error" });
             setExerciseSuggestions([]);
             return;
