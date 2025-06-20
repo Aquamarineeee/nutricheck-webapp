@@ -9,14 +9,11 @@ const QR_CODE_SCANNER_ID = "qr-code-full-region";
 const FILE_SCANNER_ID = "file-scanner-container";
 
 function QrScannerComponent() {
-  // State for QR Scanner Component
   const [scanResult, setScanResult] = useState(null);
   const [isCameraScanning, setIsCameraScanning] = useState(false);
   const [isFileScanning, setIsFileScanning] = useState(false);
   const [scannerInstance, setScannerInstance] = useState(null);
   const [error, setError] = useState(null);
-
-  // QR Scanner Functions
   const handleCloseScanner = useCallback(async () => {
     if (scannerInstance) {
       try {
