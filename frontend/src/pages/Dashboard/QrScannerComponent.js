@@ -19,9 +19,8 @@ const QrScannerComponent = ({ onScanResult }) => {
     const handleCloseScanner = useCallback(async () => {
         if (scannerRef.current) {
             try {
-                // Kiểm tra và clear scanner nếu nó đã được khởi tạo
                 if (typeof scannerRef.current.clear === 'function') {
-                    await scannerRef.current.clear(); // Sử dụng await nếu clear() trả về Promise
+                    await scannerRef.current.clear(); 
                 }
             } catch (error) {
                 console.error("Failed to clear scanner on close button: ", error);
@@ -31,25 +30,28 @@ const QrScannerComponent = ({ onScanResult }) => {
         }
         setIsCameraScanning(false);
         setIsFileScanning(false);
-        // Giữ lại scanResult nếu có, không reset ở đây
+        // QUAN TRỌNG: KHÔNG reset scanResult ở đây.
+        // setScanResult(null); // <- BỎ DÒNG NÀY NẾU CÓ
     }, []);
 
-    const onScanSuccess = useCallback(async (decodedText, decodedResult) => { // Thêm async ở đây
+    const onScanSuccess = useCallback(async (decodedText, decodedResult) => {
         console.log(`Scan result: ${decodedText}`, decodedResult);
-        setScanResult(decodedText); // Đây là dòng cập nhật state để hiển thị
+        // Đây là dòng cập nhật state để hiển thị kết quả
+        setScanResult(decodedText); 
 
         // Dừng scanner ngay lập tức sau khi quét thành công
         if (scannerRef.current) {
             try {
                 if (typeof scannerRef.current.clear === 'function') {
-                    await scannerRef.current.clear(); // Dùng await để đảm bảo nó hoàn tất
+                    await scannerRef.current.clear(); 
                 }
             } catch (error) {
                 console.error("Failed to clear html5QrcodeScanner on success: ", error);
             } finally {
                 scannerRef.current = null;
+                // Đảm bảo các trạng thái quét được đặt về false CHỈ SAU KHI setScanResult đã chạy
                 setIsCameraScanning(false);
-                setIsFileScanning(false); // Đặt trạng thái về false SAU KHI scanner đã được clear
+                setIsFileScanning(false); 
             }
         } else {
              // Trường hợp scannerRef.current không tồn tại (có thể đã bị clear bởi file scanner)
@@ -58,14 +60,14 @@ const QrScannerComponent = ({ onScanResult }) => {
         }
 
         if (onScanResult) {
-            onScanResult(decodedText); // Truyền kết quả lên component cha (nếu có)
+            onScanResult(decodedText); 
         }
     }, [onScanResult]);
 
     const onScanError = useCallback((errorMessage) => {
         console.warn(`Scan error: ${errorMessage}`);
-        // Có thể setScanResult(`Lỗi: ${errorMessage}`); để hiển thị lỗi ngay
-        // setScanResult(`Lỗi quét: ${errorMessage}`); 
+        // Cập nhật scanResult với thông báo lỗi để hiển thị trên UI
+        setScanResult(`Lỗi quét: ${errorMessage}`); 
     }, []);
 
     const handleImageUpload = async (event) => {
@@ -79,42 +81,35 @@ const QrScannerComponent = ({ onScanResult }) => {
 
         let html5QrCodeInstance = null;
         try {
-            // Khởi tạo instance mới cho mỗi lần quét file để tránh các vấn đề tiềm ẩn
-            // Sử dụng một div tạm thời hoặc div đã có sẵn nhưng đảm bảo nó tồn tại
             html5QrCodeInstance = new Html5Qrcode(FILE_SCANNER_ID); 
             const result = await html5QrCodeInstance.scanFile(file, true);
             const finalScanResult = result.decodedText || (typeof result.result === 'string' ? result.result : '');
             
-            // Gọi onScanSuccess với kết quả
-            await onScanSuccess(finalScanResult, result); // Dùng await để đảm bảo xử lý xong trước khi kết thúc
+            // Chờ onScanSuccess hoàn tất việc cập nhật state scanResult
+            await onScanSuccess(finalScanResult, result); 
             
         } catch (err) {
-            // Hiển thị lỗi ra giao diện
+            // Khi có lỗi, hiển thị lỗi lên giao diện thông qua setScanResult
             setScanResult(`Lỗi: ${err.message || "Không tìm thấy mã QR/Barcode trong ảnh."}`);
             onScanError(err.message || "Không tìm thấy mã QR/Barcode trong ảnh.");
         } finally {
-            // Đảm bảo clear instance sau khi hoàn tất, dù thành công hay thất bại
             if (html5QrCodeInstance) {
                 try {
-                    // Kiểm tra xem clear có phải là một hàm và có trả về một Promise không
                     if (typeof html5QrCodeInstance.clear === 'function') {
-                        // html5-qrcode's clear() for file scanner might not return a Promise reliably.
-                        // We call it directly and catch sync errors if any.
                         await html5QrCodeInstance.clear(); 
                     }
                 } catch (clearSyncError) {
                     console.error("Error during html5QrCodeInstance.clear() after file scan:", clearSyncError);
                 }
             }
-            setIsFileScanning(false); // Chỉ đặt false sau khi mọi thứ đã hoàn tất, bao gồm cả onScanSuccess
+            setIsFileScanning(false); 
         }
     };
 
     useEffect(() => {
-        let html5QrCodeScanner = null; // Khai báo cục bộ
+        let html5QrCodeScanner = null; 
 
         if (isCameraScanning) {
-            // Đảm bảo không có scanner cũ nào đang chạy
             if (scannerRef.current) {
                 scannerRef.current.clear().catch(e => console.error("Error clearing existing scanner:", e));
             }
@@ -129,12 +124,10 @@ const QrScannerComponent = ({ onScanResult }) => {
                 /* verbose= */ false
             );
 
-            // Gán scanner mới vào ref
             scannerRef.current = html5QrCodeScanner;
             html5QrCodeScanner.render(onScanSuccess, onScanError);
 
         } else {
-            // Khi không quét bằng camera, dừng scanner nếu nó đang hoạt động
             if (scannerRef.current) {
                 try {
                     if (typeof scannerRef.current.clear === 'function') {
@@ -148,7 +141,6 @@ const QrScannerComponent = ({ onScanResult }) => {
             }
         }
 
-        // Cleanup function: Dừng scanner khi component bị unmount hoặc isCameraScanning thay đổi thành false
         return () => {
             if (scannerRef.current) {
                 try {
@@ -162,11 +154,11 @@ const QrScannerComponent = ({ onScanResult }) => {
                 }
             }
         };
-    }, [isCameraScanning, onScanSuccess, onScanError]); // Dependencies cho useEffect
+    }, [isCameraScanning, onScanSuccess, onScanError]);
 
-    const handleResetScan = useCallback(() => { // Thêm useCallback để tối ưu
-        setScanResult(null); // Xóa kết quả hiện tại
-        handleCloseScanner(); // Dừng tất cả các loại scanner
+    const handleResetScan = useCallback(() => {
+        setScanResult(null); // Xóa kết quả hiện tại để hiển thị lại các nút quét
+        handleCloseScanner(); 
     }, [handleCloseScanner]);
 
 
@@ -176,17 +168,16 @@ const QrScannerComponent = ({ onScanResult }) => {
                 Quét mã QR/Barcode
             </Typography>
 
-            {/* Div ẩn mà Html5Qrcode cần để khởi tạo khi quét file */}
             <div id={FILE_SCANNER_ID} style={{ display: 'none' }}></div>
 
-            {/* Hiển thị các nút chọn chế độ quét khi không có chế độ nào đang hoạt động và không có kết quả quét */}
+            {/* Hiển thị các nút chọn chế độ quét khi không có chế độ nào đang hoạt động và KHÔNG CÓ kết quả quét */}
             {!isCameraScanning && !isFileScanning && !scanResult && (
                 <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}>
                     <Button
                         variant="contained"
                         color="primary"
                         startIcon={<QrCodeScannerIcon />}
-                        onClick={() => setIsCameraScanning(true)} // Đặt trạng thái quét camera
+                        onClick={() => setIsCameraScanning(true)} 
                         sx={{ mt: 2 }}
                     >
                         Quét bằng Camera
@@ -210,10 +201,10 @@ const QrScannerComponent = ({ onScanResult }) => {
 
             {/* UI khi đang quét bằng camera */}
             {isCameraScanning && (
-                <Box sx={{ position: 'relative', width: '100%', maxWidth: 400, mx: 'auto' }}> {/* Thêm position: relative để IconButton định vị đúng */}
+                <Box sx={{ position: 'relative', width: '100%', maxWidth: 400, mx: 'auto' }}> 
                     <IconButton
                         onClick={handleCloseScanner}
-                        sx={{ position: 'absolute', top: 8, right: 8, zIndex: 10 }} // Thêm zIndex
+                        sx={{ position: 'absolute', top: 8, right: 8, zIndex: 10 }}
                         color="error"
                     >
                         <CloseIcon />
@@ -227,14 +218,14 @@ const QrScannerComponent = ({ onScanResult }) => {
 
             {/* UI khi đang xử lý ảnh (chờ kết quả) */}
             {isFileScanning && (
-                <Box sx={{ mt: 2, position: 'relative' }}> {/* Thêm position: relative cho nút đóng */}
+                <Box sx={{ mt: 2, position: 'relative' }}> 
                     <Typography variant="body2" sx={{ color: 'gray' }}>
                         Đang xử lý ảnh...
                     </Typography>
                     <IconButton
                         onClick={handleCloseScanner}
                         color="error"
-                        sx={{ position: 'absolute', top: 0, right: 0 }} // Đặt vị trí cho nút đóng
+                        sx={{ position: 'absolute', top: 0, right: 0 }} 
                     >
                         <CloseIcon />
                     </IconButton>
@@ -247,7 +238,6 @@ const QrScannerComponent = ({ onScanResult }) => {
                     <Alert severity={scanResult.includes('Lỗi') ? "error" : "success"}>
                         {scanResult}
                     </Alert>
-                    {/* Nút để cho phép người dùng xóa kết quả và bắt đầu lại */}
                     <Button
                         variant="outlined"
                         color="secondary"
