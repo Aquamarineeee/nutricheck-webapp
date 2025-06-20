@@ -15,7 +15,6 @@ const QrScannerComponent = ({ onScanResult }) => {
     const [isFileScanning, setIsFileScanning] = useState(false);
     const scannerRef = useRef(null); 
 
-
     // Hàm xử lý khi đóng scanner
     const handleCloseScanner = useCallback(() => {
         // Dừng camera/file scanning
@@ -128,6 +127,7 @@ const QrScannerComponent = ({ onScanResult }) => {
             }
         };
     }, [isCameraScanning, onScanSuccess, onScanError]); // Dependencies cho useEffect
+
     const handleResetScan = () => {
         setScanResult(null); // Xóa kết quả hiện tại
         // Đảm bảo không có camera nào đang chạy ngầm
@@ -138,6 +138,7 @@ const QrScannerComponent = ({ onScanResult }) => {
         setIsCameraScanning(false);
         setIsFileScanning(false);
     };
+
     return (
         <Box sx={{ my: 3, p: 2, border: '1px solid #ccc', borderRadius: '8px', textAlign: 'center' }}>
             <Typography variant="h6" gutterBottom>
@@ -147,8 +148,8 @@ const QrScannerComponent = ({ onScanResult }) => {
             {/* Div ẩn mà Html5Qrcode cần để khởi tạo khi quét file */}
             <div id={FILE_SCANNER_ID} style={{ display: 'none' }}></div>
 
-            {/* Hiển thị các nút chọn chế độ quét khi không có chế độ nào đang hoạt động */}
-            {!isCameraScanning && !isFileScanning && (
+            {/* Hiển thị các nút chọn chế độ quét khi không có chế độ nào đang hoạt động và không có kết quả quét */}
+            {!isCameraScanning && !isFileScanning && !scanResult && ( // Điều kiện này là đúng
                 <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}>
                     <Button
                         variant="contained"
@@ -225,10 +226,6 @@ const QrScannerComponent = ({ onScanResult }) => {
                     </Button>
                 </Box>
             )}
-
-            {!isCameraScanning && !isFileScanning && !scanResult && ( // Thêm !scanResult vào điều kiện
-                    {/* ... các nút "Quét bằng Camera" và "Quét từ Ảnh" ... */}
-                )}
         </Box>
     );
 };
