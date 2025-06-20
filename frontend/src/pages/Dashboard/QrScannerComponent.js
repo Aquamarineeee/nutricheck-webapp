@@ -38,7 +38,6 @@ const QrScannerComponent = ({ onScanResult }) => {
     }, []);
 
     const onScanSuccess = useCallback(async (decodedText, decodedResult) => {
-        // Dừng scanner sau khi quét thành công
         if (scannerRef.current) {
             try {
                 if (typeof scannerRef.current.clear === 'function') {
@@ -51,22 +50,18 @@ const QrScannerComponent = ({ onScanResult }) => {
                 setIsCameraScanning(false);
                 setIsFileScanning(false);
             }
-        } else {
-            setIsCameraScanning(false);
-            setIsFileScanning(false);
         }
 
-        // ✅ Ghi log ra console
-        console.log("✅ QR Code Scanned:", decodedText);
+        // ✅ Ghi log đầy đủ
+        console.log("✅ QR Code Scanned:", JSON.stringify(decodedText));
 
-        // ✅ Cập nhật giao diện
-        setScanResult(decodedText);
+        // ✅ Cập nhật vào UI
+        setScanResult(decodedText); // <<< PHẢI CÓ DÒNG NÀY !!!
 
-        // ✅ Truyền kết quả lên component cha (nếu có)
+        // (Optional) Gửi về cha nếu cần
         if (onScanResult) {
             onScanResult(decodedText);
         }
-
     }, [onScanResult]);
 
     const onScanError = useCallback((errorMessage) => {
@@ -230,17 +225,22 @@ const QrScannerComponent = ({ onScanResult }) => {
 
             {scanResult && (
                 <Box sx={{ mt: 2 }}>
-                    <Alert severity={scanResult.includes('Lỗi') ? 'error' : 'success'}>
-                        {scanResult}
-                    </Alert>
-                    <Button
-                        variant="outlined"
-                        color="secondary"
-                        onClick={handleResetScan}
-                        sx={{ mt: 2 }}
-                    >
-                        Quét lại / Xóa kết quả
-                    </Button>
+                    {scanResult !== null && (
+                        <Box sx={{ mt: 2 }}>
+                            <Alert severity={scanResult.includes("Lỗi") ? "error" : "success"}>
+                            {scanResult}
+                            </Alert>
+                            <Button
+                            variant="outlined"
+                            color="secondary"
+                            onClick={handleResetScan}
+                            sx={{ mt: 2 }}
+                            >
+                            Quét lại / Xóa kết quả
+                            </Button>
+                        </Box>
+                        )}
+                    
                 </Box>
             )}
         </Box>
