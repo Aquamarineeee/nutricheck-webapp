@@ -19,9 +19,12 @@ import { motion } from "framer-motion";
 import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import { Html5QrcodeScanner } from 'html5-qrcode';
-import hinhnen from "../../images/hinhnen.gif";
+import hinhnen from "../../images/hinh.png";
 import QrScannerComponent from "./QrScannerComponent";
+import { Button } from '@mui/material'; // Thêm import Button
+import QRScannerComponent from './QrScannerComponent'; // Import component scanner
 
+import Footer from "../../Footer/Footer";
 const tourMotion = {
   offscreen: {
     x: -300,
@@ -102,6 +105,8 @@ const Dashboard = () => {
   const { nutrients, setnutrients, todayFoodItems } = useContext(AppContext);
   const [tourRun, settourRun] = useState(false);
   const { isLoading, isTourTaken, setisTourTaken } = useContext(AppContext);
+  const [scannerOpen, setScannerOpen] = useState(false);
+  
   const todaysCaloriesPercent =
     nutrients.calorie > MAX_CALORIES
       ? 100
@@ -170,6 +175,10 @@ const Dashboard = () => {
       status: "Đủ",
       message: `Bạn đã tiêu thụ đủ ${nutrient}. Hãy duy trì chế độ này.`,
     };
+  };
+  const handleScanResult = (result) => {
+    console.log('Scanned result:', result);
+    // Xử lý kết quả quét ở đây
   };
     
   const foodSuggestions = [
@@ -251,7 +260,7 @@ const Dashboard = () => {
       <FullPageLoading isLoading={false} />
       <div
         style={{
-          boxShadow: "rgba(0, 0, 0, 0.2) 0px 3px 3px 0px",
+          boxShadow: "rgb(245, 242, 242) 0px 3px 3px 0px",
           display: "flex",
           justifyContent: "center",
         }}
@@ -272,7 +281,7 @@ const Dashboard = () => {
         style={
           !isTourTaken && !isLoading
             ? {
-                backgroundColor: "#fff",
+                backgroundColor: "white",
                 padding: "0.3rem",
                 display: "inline-block",
                 border: "0px solid var(--themecolor)",
@@ -696,15 +705,27 @@ const Dashboard = () => {
           </TableContainer>
         </Box>
       )}
-    {/* gọi qr bar code */}
-    <Box sx={{ my: 4, p: 2, border: '1px solid #ccc', borderRadius: '8px', backgroundColor: '#fff' }}>
-                    <Typography variant="h6" align="center" gutterBottom>
-                        Quét mã QR/Barcode
-                    </Typography>
-                    <QrScannerComponent /> 
-                </Box>
-      </Container>          
+      <Box sx={{ my: 4, p: 2, border: '1px solid #ccc', borderRadius: '8px', backgroundColor: '#fff' }}>
+          <Button 
+            variant="contained" 
+            startIcon={<QrCodeScannerIcon />}
+            onClick={() => setScannerOpen(true)}
+            fullWidth
+            sx={{ mb: 2 }}
+          >
+            Quét mã QR/Barcode
+          </Button>
+          
+          <QRScannerComponent 
+            open={scannerOpen}
+            onClose={() => setScannerOpen(false)}
+            onScanSuccess={handleScanResult}
+          />
+        </Box>
+      </Container>
+      <Footer/>         
     </motion.div>
+    
   );
 };
 
