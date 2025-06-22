@@ -5,6 +5,8 @@ import nature from "../../images/profile.jpg";
 import { Button } from "@mui/material";
 import styles from "../../styles/blog.module.css";
 import { AppContext } from "../../Context/AppContext";
+import hinhnen from "../../images/hinh.png";
+import Footer from "../../Footer/Footer"
 
 const Profile = () => {
   const { userInfo, handleLogout } = useContext(AppContext);
@@ -12,15 +14,17 @@ const Profile = () => {
   return (
     <div
       style={{
-        minHeight: "100vh",
-        backgroundColor: "var(--backgroundColor)",
-        paddingBottom: "5rem",
+              backgroundImage: `url(${hinhnen})`, 
+              backgroundSize: "cover", 
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center center", 
+              minHeight: "100vh",
       }}
     >
       <div
         style={{
           backgroundColor: "var(--backgroundColor)",
-          boxShadow: "rgba(0, 0, 0, 0.2) 0px 3px 3px 0px",
+          boxShadow: "rgb(255, 254, 254) 0px 3px 3px 0px",
           display: "flex",
           justifyContent: "start",
         }}
@@ -139,6 +143,7 @@ const Profile = () => {
           </div>
         </Box>
       </Container>
+      <Footer/>
     </div>
   );
 };
