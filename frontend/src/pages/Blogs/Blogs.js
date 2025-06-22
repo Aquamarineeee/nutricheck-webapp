@@ -6,7 +6,7 @@ import { Button } from "@mui/material";
 import healthys from "../../images/healthy.gif";
 import wtime from "../../images/wtimes.gif";
 import fruits from "../../images/fruit.gif";
-import hinhnen from "../../images/hinhnen.png";
+import hinhnen from "../../images/hinh.png";
 import Footer from "../../Footer/Footer";
 const Blogs = () => {
   const navigate = useNavigate();
