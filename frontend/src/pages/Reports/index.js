@@ -8,8 +8,8 @@ import { API } from "../../services/apis";
 import { getChartData } from "../../utils/utils";
 import { getDaysSinceRegistration } from "../../utils/utils";
 import UserInfo from "../../Components/UserInfo";
-
-
+import hinhnen from "../../images/hinh.png";
+import Footer from "../../Footer/Footer";
 const Reports = () => {
   const { enqueueSnackbar } = useSnackbar();
 
@@ -43,9 +43,12 @@ const Reports = () => {
   return (
     <div
       style={{
-        background: "var(--backgroundColor)",
+        backgroundImage: `url(${hinhnen})`, // Sử dụng hình ảnh đã import
+        backgroundSize: "cover", // Đảm bảo hình nền phủ kín phần tử
+        backgroundRepeat: "no-repeat", // Không lặp lại hình nền
+        backgroundPosition: "center center", // Canh giữa hình nền
+        minHeight: "100vh", // Đảm bảo chiều cao tối thiểu để background hiển thị
         paddingBottom: "6rem",
-        minHeight: "100vh",
       }}
     >
       <div
@@ -126,6 +129,7 @@ const Reports = () => {
           <UserInfo /> {/* Chèn UserInfo tại đây */}
         </div>
       </Container>
+      <Footer/>
     </div>
   );
 };
