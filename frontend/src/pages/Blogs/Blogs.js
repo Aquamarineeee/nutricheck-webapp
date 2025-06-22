@@ -6,19 +6,24 @@ import { Button } from "@mui/material";
 import healthys from "../../images/healthy.gif";
 import wtime from "../../images/wtimes.gif";
 import fruits from "../../images/fruit.gif";
+import hinhnen from "../../images/hinhnen.png";
+import Footer from "../../Footer/Footer";
 const Blogs = () => {
   const navigate = useNavigate();
 
   return (
     <div
       style={{
-        backgroundColor: "var(--backgroundColor)",
+        backgroundImage: `url(${hinhnen})`, 
+        backgroundSize: "cover", 
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center center", 
         minHeight: "100vh",
       }}
     >
       <div
         style={{
-          boxShadow: "rgba(0, 0, 0, 0.2) 0px 3px 3px 0px",
+          boxShadow: "rgb(255, 253, 253) 0px 3px 3px 0px",
           display: "flex",
           justifyContent: "center",
         }}
@@ -28,6 +33,7 @@ const Blogs = () => {
             display: "inline-block",
             margin: "0 auto",
             padding: "0.8rem",
+            color: "white"
           }}
         >
           Bài viết
@@ -195,7 +201,7 @@ const Blogs = () => {
                 </div>
               </div>
             </Grid>
-
+            <Footer/>
           </Grid>
         </Box>
       </Container>
