@@ -452,7 +452,7 @@
       "continent": "Châu Á",
       "country": "Ấn Độ"
     },
-    "price": 55000
+    "price": 70000
   },
   {
     "name": "Bún Chả (1 suất tiêu chuẩn)",
@@ -779,7 +779,7 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 30000
+    "price": 50000
   },
   {
     "name": "Phở Gà Trộn (1 suất tiêu chuẩn)",
@@ -962,7 +962,7 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 30000
+    "price": 40000
   },
   {
     "name": "Sườn Xào Chua Ngọt (1 suất tiêu chuẩn ăn kèm cơm)",
@@ -1337,7 +1337,7 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 35000
+    "price": 40000
   },
   {
     "name": "Xôi Gà Xé (1 đĩa tiêu chuẩn)",
@@ -2054,7 +2054,7 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 40000
+    "price": 60000
   },
   {
     "name": "Mì Ramen Thịt Heo (Tonkotsu Ramen - 1 tô tiêu chuẩn)",
@@ -4563,7 +4563,7 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 40000
+    "price": 60000
   },
   {
     "name": "Mì Udon Xào Yaki Udon (Nhật Bản - 1 suất tiêu chuẩn)",
@@ -15629,7 +15629,7 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 40000
+    "price": 70000
   },
   {
     "name": "Bánh Mì Kẹp Thịt Nướng (1 ổ)",
@@ -15994,7 +15994,7 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 35000
+    "price": 20000
   },
   {
     "name": "Sữa Đậu Nành Nóng (1 ly lớn)",
@@ -16132,7 +16132,7 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 35000
+    "price": 30000
   },
   {
     "name": "Bánh Khọt (4-5 cái)",
@@ -16300,7 +16300,7 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 35000
+    "price": 20000
   },
   {
     "name": "Bánh Flan (1 cái)",
@@ -16344,7 +16344,7 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 35000
+    "price": 10000
   },
   {
     "name": "Sữa Chua Phô Mai Đà Lạt (1 hũ)",
@@ -16446,7 +16446,7 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 35000
+    "price": 15000
   },
   {
     "name": "Chè Khoai Môn (1 chén)",
@@ -16490,7 +16490,7 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 35000
+    "price": 30000
   },
   {
     "name": "Gỏi Cuốn (2 cuốn)",
@@ -16708,7 +16708,7 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 35000
+    "price": 25000
   },
   {
     "name": "Kem Bơ Đà Lạt (1 ly)",
@@ -16784,7 +16784,7 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 35000
+    "price": 25000
   },
   {
     "name": "Chả Giò/Nem Rán (2 cuốn)",
@@ -16990,7 +16990,7 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 40000
+    "price": 25000
   },
   {
     "name": "Bánh Chuối Nướng (1 miếng)",
@@ -17134,7 +17134,7 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 35000
+    "price": 20000
   },
   {
     "name": "Bánh Quai Vạc (5-6 cái)",
@@ -17660,6 +17660,6 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 30000
+    "price": 10000
   }
 ]
