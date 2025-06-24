@@ -13,6 +13,7 @@ import Slider from "react-slick";
 import { useSnackbar } from "notistack";
 import { AppContext } from "../Context/AppContext";
 import { useNavigate } from "react-router-dom";
+import helo from "../../src/images/helo.gif"
 import gainMealsData from "./gainMeals.json";
 import maintainMealsData from "./maintainMeals.json"; 
 import loseMealsData from "./loseMeals.json";     
@@ -952,6 +953,22 @@ const UserInfo = () => {
                                 boxShadow: '0 4px 20px rgba(0,0,0,0.2)'
                             }}
                         />
+                        <div style={{
+                            position: 'absolute',
+                            top: '10%',
+                            width: '100%',
+                            textAlign: 'center',
+                            animation: 'ribbonFall 2s ease-in-out'
+                        }}>
+                            <img
+                                src={helo}
+                                alt="Ribbon"
+                                style={{
+                                    maxWidth: '80%',
+                                    transform: 'rotate(0deg)'
+                                }}
+                            />
+                        </div>
                         <style jsx>{`
                             @keyframes ribbonFall {
                                 0% { transform: translateY(-100px); opacity: 0; }
