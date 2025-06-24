@@ -7,12 +7,33 @@ import "../../styles/auth.modules.css";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { API } from "../../services/apis";
 import { useSnackbar } from "notistack";
+import Radio from "@mui/material/Radio"; // Import Radio
+import RadioGroup from "@mui/material/RadioGroup"; // Import RadioGroup
+import FormControlLabel from "@mui/material/FormControlLabel"; // Import FormControlLabel
+import FormControl from "@mui/material/FormControl"; // Import FormControl
 import { AppContext } from "../../Context/AppContext";
 
-
 const UserSignup = () => {
-  const [selectedActivity, setSelectedActivity] = useState("1.2");
-    const activityLevels = {
+  const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
+  const { setuserInfo, setmaxCalories, fetchTodaysConsumption, fetchWeekData } =
+    useContext(AppContext);
+
+  // Trạng thái cho việc tải (loading)
+  const [isLoading, setIsLoading] = useState(false); // Đổi tên setisLoading thành setIsLoading cho nhất quán
+
+  // Trạng thái cho dữ liệu người dùng
+  const [state, setState] = useState({ // Đổi tên setstate thành setState cho nhất quán
+    age: "",
+    gender: "female", // Đã thêm lại trường gender
+    weight: "",
+    height: "",
+    activity: "1.2",
+  });
+
+  // Dữ liệu và trạng thái cho phần Mức độ hoạt động
+  const [selectedActivity, setSelectedActivity] = useState(state.activity); // Khởi tạo với giá trị từ state
+  const activityLevels = {
     "1.2": {
       name: "Ít hoặc không vận động",
       description: "Ngồi nhiều, không đi lại trong ngày",
@@ -35,7 +56,7 @@ const UserSignup = () => {
         "Bác sĩ/y tá trong bệnh viện",
         "Nhân viên phục vụ nhà hàng",
         "Nhân viên bán hàng siêu thị",
-        "Nhân viên thư viện", 
+        "Nhân viên thư viện",
         "Nhân viên lễ tân"
       ],
       color: "#FFC107" // Màu vàng
@@ -50,7 +71,7 @@ const UserSignup = () => {
         "Nhân viên làm vườn",
         "Nhân viên vệ sinh tòa nhà",
         "Công nhân dây chuyền lắp ráp nhẹ"
-  
+
       ],
       color: "#FF9800" // Màu cam
     },
@@ -79,19 +100,8 @@ const UserSignup = () => {
         "Lính biên phòng tuần tra rừng"
       ],
       color: "#9C27B0" // Màu tím
-    }};
-  const navigate = useNavigate();
-  const { enqueueSnackbar } = useSnackbar();
-  const { setuserInfo, setmaxCalories, fetchTodaysConsumption, fetchWeekData } =
-    useContext(AppContext);
-  const [isLoading, setisLoading] = useState(false);
-  const [state, setstate] = useState({
-    age: "",
-    gender: "female",
-    weight: "",
-    height: "",
-    activity: "1.2",
-  });
+    }
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -99,9 +109,12 @@ const UserSignup = () => {
     navigate("/");
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => { // Thêm 'e' vào để ngăn form submit mặc định
+    e.preventDefault(); // Ngăn hành vi mặc định của form
+
     if (
       !state.age ||
+      !state.gender || // Kiểm tra trường gender
       !state.weight ||
       !state.height ||
       !state.activity
@@ -111,7 +124,7 @@ const UserSignup = () => {
     }
 
     try {
-      setisLoading(true);
+      setIsLoading(true); // Sử dụng setIsLoading
       const res = await API.userAdditionInfo(state);
       localStorage.setItem("userInfo", JSON.stringify(res.userInfo));
       setuserInfo(res.userInfo);
@@ -120,8 +133,9 @@ const UserSignup = () => {
       fetchWeekData();
       navigate("/dashboard");
     } catch (err) {
-      setisLoading(false);
-      enqueueSnackbar("Đã có lỗi xảy ra", { variant: "error" });
+      setIsLoading(false); // Sử dụng setIsLoading
+      console.error("Lỗi khi cập nhật thông tin người dùng:", err); // Log lỗi chi tiết hơn
+      enqueueSnackbar("Đã có lỗi xảy ra. Vui lòng thử lại.", { variant: "error" }); // Thông báo lỗi chung hơn
     }
   };
 
@@ -134,84 +148,122 @@ const UserSignup = () => {
       <img className="logo" src="/static/img/logo.png" alt="Logo" />
       <Container maxWidth="sm" className="form-container">
         <Box className="form-box">
-          <h1 className="form-title"> Nhập lại thông tin</h1>
+          <h1 className="form-title"> Nhập lại thông tin</h1> {/* Tiêu đề rõ ràng hơn */}
           <div className="form-content">
-            <form>
+            <form onSubmit={handleSubmit}> {/* Thêm onSubmit handler */}
               <label className="form-label">Tuổi</label>
               <input
                 value={state.age}
-                onChange={(e) => setstate({ ...state, age: e.target.value })}
+                onChange={(e) => setState({ ...state, age: e.target.value })}
                 className="text-field"
                 placeholder="vd. 25"
                 type="number"
+                required // Đánh dấu là trường bắt buộc
               />
-              <label className="form-label">Cân nặng</label>
+
+              {/* Phần chọn Giới tính đã được thêm vào */}
+              <FormControl component="fieldset" margin="normal">
+                <label className="form-label">Giới tính</label>
+                <RadioGroup
+                  value={state.gender}
+                  onChange={(e) => setState({ ...state, gender: e.target.value })}
+                  row
+                  name="gender-radio-group"
+                >
+                  <FormControlLabel
+                    value="female"
+                    control={<Radio />}
+                    label="Nữ"
+                  />
+                  <FormControlLabel
+                    value="male"
+                    control={<Radio />}
+                    label="Nam"
+                  />
+                  <FormControlLabel
+                    value="other"
+                    control={<Radio />}
+                    label="Khác"
+                  />
+                </RadioGroup>
+              </FormControl>
+
+              <label className="form-label">Cân nặng (kg)</label> {/* Thêm đơn vị */}
               <input
                 value={state.weight}
-                onChange={(e) => setstate({ ...state, weight: e.target.value })}
+                onChange={(e) => setState({ ...state, weight: e.target.value })}
                 className="text-field"
                 placeholder="vd. 80"
                 type="number"
+                step="0.1" // Cho phép số thập phân
+                required
               />
-              <label className="form-label">Chiều cao</label>
+              <label className="form-label">Chiều cao (cm)</label> {/* Thêm đơn vị */}
               <input
                 value={state.height}
-                onChange={(e) => setstate({ ...state, height: e.target.value })}
+                onChange={(e) => setState({ ...state, height: e.target.value })}
                 className="text-field"
                 placeholder="vd. 180"
                 type="number"
+                required
               />
               <label className="form-label">Mức độ hoạt động</label>
-                <select
-                  value={state.activity}
-                  onChange={(e) => {
-                    setstate({ ...state, activity: e.target.value });
-                    setSelectedActivity(e.target.value);
-                  }}
-                  className="text-field"
-                >
-                  {Object.entries(activityLevels).map(([value, level]) => (
-                    <option key={value} value={value}>
-                      {level.name} (x{value})
-                    </option>
-                  ))}
-                </select>
+              <select
+                value={state.activity}
+                onChange={(e) => {
+                  setState({ ...state, activity: e.target.value });
+                  setSelectedActivity(e.target.value);
+                }}
+                className="text-field"
+                required
+              >
+                {Object.entries(activityLevels).map(([value, level]) => (
+                  <option key={value} value={value}>
+                    {level.name} (x{value})
+                  </option>
+                ))}
+              </select>
 
-                {selectedActivity && (
-                  <div className="activity-details" style={{ 
-                    marginTop: "10px",
-                    padding: "15px",
-                    borderRadius: "8px",
-                    backgroundColor: "#f5f5f5",
-                    borderLeft: `4px solid ${activityLevels[selectedActivity].color}`
+              {selectedActivity && (
+                <div className="activity-details" style={{
+                  marginTop: "10px",
+                  padding: "15px",
+                  borderRadius: "8px",
+                  backgroundColor: "#f5f5f5",
+                  borderLeft: `4px solid ${activityLevels[selectedActivity].color}`
+                }}>
+                  <div style={{
+                    fontWeight: "bold",
+                    color: activityLevels[selectedActivity].color,
+                    marginBottom: "5px"
                   }}>
-                    <div style={{ 
-                      fontWeight: "bold",
-                      color: activityLevels[selectedActivity].color,
-                      marginBottom: "5px"
-                    }}>
-                      {activityLevels[selectedActivity].name} (Hệ số: {selectedActivity})
-                    </div>
-                    <div style={{ marginBottom: "8px" }}>
-                      {activityLevels[selectedActivity].description}
-                    </div>
-                    <div>
-                      <strong>Ví dụ:</strong>
-                      <ul style={{ 
-                        marginTop: "5px",
-                        paddingLeft: "20px",
-                        marginBottom: "0"
-                      }}>
-                        {activityLevels[selectedActivity].examples.map((example, index) => (
-                          <li key={index}>{example}</li>
-                        ))}
-                      </ul>
-                    </div>
+                    {activityLevels[selectedActivity].name} (Hệ số: {selectedActivity})
                   </div>
-                )}
-              <button>
-                <span>Hoàn thành</span>
-                <ArrowForwardIos />
+                  <div style={{ marginBottom: "8px" }}>
+                    {activityLevels[selectedActivity].description}
+                  </div>
+                  <div>
+                    <strong>Ví dụ:</strong>
+                    <ul style={{
+                      marginTop: "5px",
+                      paddingLeft: "20px",
+                      marginBottom: "0"
+                    }}>
+                      {activityLevels[selectedActivity].examples.map((example, index) => (
+                        <li key={index}>{example}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              )}
+              <button
+                type="submit" // Đổi type thành "submit"
+                disabled={isLoading} // Vô hiệu hóa nút khi đang tải
+                className="submit-button" // Thêm class cho nút nếu cần style
+                onClick={handleSubmit}
+              >
+                <span>{isLoading ? "Đang xử lý..." : "Hoàn thành"}</span> {/* Hiển thị trạng thái tải */}
+                {!isLoading && <ArrowForwardIos />} {/* Chỉ hiển thị icon khi không tải */}
               </button>
             </form>
           </div>
