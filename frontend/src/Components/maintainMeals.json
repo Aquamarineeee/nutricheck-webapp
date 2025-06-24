@@ -3016,8 +3016,8 @@
         "source": "USDA FoodData Central, FDC ID: 169720 (Wheat flour, all-purpose, enriched, unbleached, white)."
       }
     ],
-    "image": "https://www.daringgourmet.com/wp-content/uploads/2016/09/Jagerschnitzel-3-IMG_7673.jpg",
-    "recipe_link": "https://www.daringgourmet.com/jagerschnitzel-hunters-schnitzel/",
+    "image": "https://i.redd.it/4ikep8e7itc01.jpg",
+    "recipe_link": "https://youtu.be/2q4nomJ1UC4",
     "origin": {
       "continent": "Châu Âu",
       "country": "Đức"
@@ -3073,8 +3073,8 @@
         "source": "USDA FoodData Central, FDC ID: 170400 (Dill weed, fresh)."
       }
     ],
-    "image": "https://www.swedishfood.com/images/stories/recipes/herring-salad.jpg",
-    "recipe_link": "https://www.swedishfood.com/herring-salad",
+    "image": "https://product.hstatic.net/200000753159/product/ng_108k__vinegared_herring_roe_salad__5a0a6aee6bbd4834a0d3c13f71301b20_ea6aa297fafe4de8adda9cbf95af5178_master.jpg",
+    "recipe_link": "https://gofood.vn/tin-tuc/cach-lam-salad-ca-trich-ep-trung.html?srsltid=AfmBOortlXrp148P5HVno9CI67Kx1-HlEyMEIWLcLuulf_CyUu55HiEx",
     "origin": {
       "continent": "Châu Âu",
       "country": "Thụy Điển"
@@ -3131,8 +3131,8 @@
         "source": "USDA FoodData Central, FDC ID: 170415 (Broth, vegetable, low sodium)."
       }
     ],
-    "image": "https://www.allrecipes.com/thmb/pXQv6_9B7tW_y-Z7Q0_9w-J_7gQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/25697-Best-Cabbage-Soup-ddmfs-3x2-1718-d7b3a726759247d5a57a16e504c57700.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/25697/best-cabbage-soup/",
+    "image": "https://afamilycdn.com/150157425591193600/2021/2/27/sup-bap-cai1-16144075660242066319194.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-nau-sup-bap-cai-giam-can-thom-ngon-nhanh-chong-cho-nang-07272",
     "origin": {
       "continent": "Châu Âu",
       "country": "Nga"
@@ -3140,47 +3140,7 @@
     "price": 60000
   },
   {
-    "name": "Bánh Mì Nướng Hạt Ngũ Cốc và Bơ Đậu Phộng (Phần Lan)",
-    "calories": 300,
-    "protein": 12,
-    "fat": 18,
-    "carbs": 25,
-    "weight": 150,
-    "meal_time": [
-      "breakfast",
-      "afternoon"
-    ],
-    "description": "Bánh mì đen hoặc ngũ cốc nguyên hạt nướng, phết bơ đậu phộng tự nhiên (không đường) và thêm vài lát chuối. Bữa ăn sáng/ăn nhẹ bổ dưỡng, giàu năng lượng và chất xơ.",
-    "ingredients_breakdown": [
-      {
-        "item": "Bánh mì ngũ cốc nguyên hạt (whole grain bread)",
-        "weight_g": 60,
-        "note": "2 lát.",
-        "source": "USDA FoodData Central, FDC ID: 170020 (Bread, rye, whole grain) - (Ước tính từ bánh mì ngũ cốc)."
-      },
-      {
-        "item": "Bơ đậu phộng tự nhiên (natural peanut butter)",
-        "weight_g": 20,
-        "note": "Không đường.",
-        "source": "USDA FoodData Central, FDC ID: 171124 (Peanut butter, smooth, with salt)."
-      },
-      {
-        "item": "Chuối (banana)",
-        "weight_g": 50,
-        "note": "Thái lát.",
-        "source": "USDA FoodData Central, FDC ID: 170008 (Bananas, raw)."
-      }
-    ],
-    "image": "https://cdn.loveandlemons.com/wp-content/uploads/2019/02/peanut-butter-toast-1.jpg",
-    "recipe_link": "https://www.loveandlemons.com/peanut-butter-toast/",
-    "origin": {
-      "continent": "Châu Âu",
-      "country": "Phần Lan"
-    },
-    "price": 45000
-  },
-  {
-    "name": "Thịt Gà Kho Tiêu và Nấm (Pháp)",
+    "name": "Thịt Gà Kho Tiêu và Nấm",
     "calories": 480,
     "protein": 45,
     "fat": 25,
@@ -3228,11 +3188,11 @@
         "source": "USDA FoodData Central, FDC ID: 170881 (Milk, fat free, fluid, with added vitamin A and D (skim)) - (Ước tính)."
       }
     ],
-    "image": "https://www.foodandwine.com/thmb/pXQv6_9B7tW_y-Z7Q0_9w-J_7gQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Creamy-Chicken-with-Green-Peppercorns-FT-RECIPE0723-5e92621c172449339e710ae67ae324d1.jpg",
-    "recipe_link": "https://www.foodandwine.com/recipes/creamy-chicken-with-green-peppercorns",
+    "image": "https://www.google.com/imgres?q=g%C3%A0%20kho%20ti%C3%AAu%20v%C3%A0%20n%E1%BA%A5m&imgurl=https%3A%2F%2Fwww.esheepkitchen.com%2Fwp-content%2Fuploads%2F2023%2F03%2F330295044_598921298749894_5155841010475538204_n.jpeg&imgrefurl=https%3A%2F%2Fwww.esheepkitchen.com%2Fmon-chay-rat-la-hay-cach-lam-nam-dui-ga-kho-tieu-xanh-dua-com-bi-kip-nau-mon-chay-sieu-de-chi-3-buoc%2F&docid=reApCs_xn6DVuM&tbnid=upyXT3y1aHo4HM&vet=12ahUKEwj7jtf0o9ONAxWNmq8BHcrtHL0QM3oECGYQAA..i&w=2048&h=1365&hcb=2&ved=2ahUKEwj7jtf0o9ONAxWNmq8BHcrtHL0QM3oECGYQAA",
+    "recipe_link": "https://www.bluestone.com.vn/blogs/vao-bep/ga-kho-nam-va-kho-thom?srsltid=AfmBOooNIgurtskNGLIEIkDJM5OCTQEZk266T-Hx-kghO2pS8P4Zr0_1&utm_source=chatgpt.com",
     "origin": {
-      "continent": "Châu Âu",
-      "country": "Pháp"
+      "continent": "Châu Á",
+      "country": "Việt Nam"
     },
     "price": 130000
   },
@@ -3286,8 +3246,8 @@
         "source": "USDA FoodData Central, FDC ID: 170415 (Broth, vegetable, low sodium)."
       }
     ],
-    "image": "https://www.oliviascuisine.com/wp-content/uploads/2016/09/chickpea-vegetable-soup-3.jpg",
-    "recipe_link": "https://www.oliviascuisine.com/chickpea-vegetable-soup/",
+    "image": "https://file.hstatic.net/200000700229/article/nau-canh-ga-nam-7_19a8611bb27b45148ed7dc5157923854.jpg",
+    "recipe_link": "https://www.bluestone.com.vn/blogs/vao-bep/nau-canh-ga-nam?srsltid=AfmBOoq2UK-YUCUYlv1uks7FwO0MPj50eMv5W1vHKrTKOE0gCuaJhXUZ",
     "origin": {
       "continent": "Châu Âu",
       "country": "Bồ Đào Nha"
@@ -3295,7 +3255,7 @@
     "price": 70000
   },
   {
-    "name": "Bánh Mì Kẹp Cá Hồi Hun Khói và Kem Phô Mai (Na Uy)",
+    "name": "Bánh Mì Kẹp Cá Hồi Hun Khói và Kem Phô Mai (Mỹ/Na Uy)",
     "calories": 380,
     "protein": 25,
     "fat": 20,
@@ -3332,11 +3292,11 @@
         "source": "USDA FoodData Central, FDC ID: 170400 (Dill weed, fresh)."
       }
     ],
-    "image": "https://www.eatwell101.com/wp-content/uploads/2021/04/Smoked-Salmon-Bagel-Sandwich-Recipe-1.jpg",
-    "recipe_link": "https://www.eatwell101.com/smoked-salmon-bagel-sandwich",
+    "image": "https://www.olgainthekitchen.com/wp-content/uploads/2018/12/Smoked-Salmon-Tea-Sandwich-7-1024x1536.jpg",
+    "recipe_link": "https://www.olgainthekitchen.com/smoked-salmon-cream-cheese-tea-sandwiches/?utm_source=chatgpt.com",
     "origin": {
       "continent": "Châu Âu",
-      "country": "Na Uy"
+      "country": "Mỹ/Na Uy"
     },
     "price": 110000
   },
@@ -3378,8 +3338,8 @@
         "source": "USDA FoodData Central, FDC ID: 170400 (Dill weed, fresh)."
       }
     ],
-    "image": "https://www.themediterraneandish.com/wp-content/uploads/2017/04/Cucumber-Yogurt-Salad-2.jpg",
-    "recipe_link": "https://www.themediterraneandish.com/cucumber-yogurt-salad/",
+    "image": "https://vcdn1-giadinh.vnecdn.net/2024/07/05/Anh-2-2-9526-1720170632.jpg?w=460&h=0&q=100&dpr=2&fit=crop&s=Y9b6oJU8wwFvexkRRAIp1A",
+    "recipe_link": "https://vnexpress.net/doi-song-cooking-salad-dua-chuot-sua-chua-hy-lap-4766629.html?utm_source=chatgpt.com",
     "origin": {
       "continent": "Châu Âu",
       "country": "Hy Lạp"
@@ -3387,7 +3347,7 @@
     "price": 40000
   },
   {
-    "name": "Gà Tây và Rau Củ Hầm (Scotland)",
+    "name": "Gà Tây và Rau Củ Hầm (Mỹ)",
     "calories": 400,
     "protein": 40,
     "fat": 15,
@@ -3429,16 +3389,16 @@
         "source": "USDA FoodData Central, FDC ID: 172088 (Turkey, breast, meat only, cooked, roasted) - (Ước tính từ gà tây)."
       }
     ],
-    "image": "https://www.gimmesomeoven.com/wp-content/uploads/2016/09/Healthy-Turkey-Chili-Recipe-2.jpg",
-    "recipe_link": "https://www.gimmesomeoven.com/healthy-turkey-chili-recipe/",
+    "image": "https://mindfulfamilymedicine.com/wp-content/uploads/2020/11/Screenshot-13.png",
+    "recipe_link": "https://youtu.be/-eoZQ8_3Rtc",
     "origin": {
-      "continent": "Châu Âu",
-      "country": "Scotland"
+      "continent": "Bắc Mỹ",
+      "country": "Mỹ"
     },
     "price": 110000
   },
   {
-    "name": "Bánh Pankakes Khoai Tây (Thụy Điển - Raggmunk)",
+    "name": "Bánh Pankakes Khoai Tây (Đức)",
     "calories": 320,
     "protein": 8,
     "fat": 15,
@@ -3481,16 +3441,16 @@
         "source": "USDA FoodData Central, FDC ID: 171100 (Oil, vegetable, soybean, all purpose liquid, for salad or cooking)."
       }
     ],
-    "image": "https://www.swedishfood.com/images/stories/recipes/raggmunk.jpg",
-    "recipe_link": "https://www.swedishfood.com/raggmunk-swedish-potato-pancakes",
+    "image": "https://cooktoria.com/wp-content/uploads/2022/04/Potato-Pancakes-8-1024x1536.jpg",
+    "recipe_link": "https://cooktoria.com/classic-potato-pancakes/?utm_source=chatgpt.com",
     "origin": {
       "continent": "Châu Âu",
-      "country": "Thụy Điển"
+      "country": "Đức"
     },
     "price": 75000
   },
   {
-    "name": "Gà Hầm Cà Chua và Rau Củ (Phần Lan)",
+    "name": "Gà Hầm Cà Chua và Rau Củ (Hy Lạp)",
     "calories": 420,
     "protein": 40,
     "fat": 18,
@@ -3538,59 +3498,13 @@
         "source": "USDA FoodData Central, FDC ID: 170417 (Broth, chicken, less sodium)."
       }
     ],
-    "image": "https://www.allrecipes.com/thmb/pXQv6_9B7tW_y-Z7Q0_9w-J_7gQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Chicken-and-Vegetable-Stew-by-Allrecipes-6419779-e3312c1b84f3469c9b13c7a0d4c9e782.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/244892/chicken-and-vegetable-stew/",
+    "image": "https://www.themediterraneandish.com/wp-content/uploads/2023/10/chicken-stew-recipe-2023-5.jpg",
+    "recipe_link": "https://www.themediterraneandish.com/chicken-stew-recipe/?utm_source=chatgpt.com",
     "origin": {
       "continent": "Châu Âu",
-      "country": "Phần Lan"
+      "country": "Hy Lạp"
     },
     "price": 105000
-  },
-  {
-    "name": "Salad Dưa Chuột và Sốt Sữa Chua (Đức)",
-    "calories": 200,
-    "protein": 10,
-    "fat": 10,
-    "carbs": 15,
-    "weight": 250,
-    "meal_time": [
-      "side_dish",
-      "snack"
-    ],
-    "description": "Salad dưa chuột tươi mát của Đức với sốt sữa chua và rau thì là. Món ăn phụ nhẹ nhàng, ít calo, phù hợp với các bữa ăn giữ cân.",
-    "ingredients_breakdown": [
-      {
-        "item": "Dưa chuột (cucumber)",
-        "weight_g": 180,
-        "note": "Thái lát mỏng.",
-        "source": "USDA FoodData Central, FDC ID: 170362 (Cucumber, with peel, raw)."
-      },
-      {
-        "item": "Sữa chua Hy Lạp không béo (nonfat Greek yogurt)",
-        "weight_g": 60,
-        "note": "Sữa chua nguyên chất.",
-        "source": "USDA FoodData Central, FDC ID: 170921 (Yogurt, Greek, plain, nonfat)."
-      },
-      {
-        "item": "Giấm táo (apple cider vinegar)",
-        "weight_g": 10,
-        "note": "Để tạo vị chua.",
-        "source": "USDA FoodData Central, FDC ID: 170381 (Vinegar, cider)."
-      },
-      {
-        "item": "Rau thì là (dill)",
-        "weight_g": 3,
-        "note": "Thái nhỏ.",
-        "source": "USDA FoodData Central, FDC ID: 170400 (Dill weed, fresh)."
-      }
-    ],
-    "image": "https://www.daringgourmet.com/wp-content/uploads/2014/06/German-Cucumber-Salad-Recipe-2.jpg",
-    "recipe_link": "https://www.daringgourmet.com/authentic-german-cucumber-salad-gurkensalat/",
-    "origin": {
-      "continent": "Châu Âu",
-      "country": "Đức"
-    },
-    "price": 50000
   },
   {
     "name": "Cháo Yến Mạch kiểu Bắc Âu với Quả Mọng",
@@ -3629,8 +3543,8 @@
         "source": "USDA FoodData Central, FDC ID: 170560 (Seeds, pumpkin and squash seed kernels, dried)."
       }
     ],
-    "image": "https://www.eatwell101.com/wp-content/uploads/2021/04/Oatmeal-with-Berries.jpg",
-    "recipe_link": "https://www.eatwell101.com/oatmeal-with-berries",
+    "image": "https://i.vietgiaitri.com/2018/9/30/3-cach-nau-chao-yen-mach-thom-ngon-cho-ca-gia-dinh-ab9f52.jpg",
+    "recipe_link": "https://true-north-kitchen.com/baked-nordic-oat-and-rye-porridge/?utm_source=chatgpt.com",
     "origin": {
       "continent": "Châu Âu",
       "country": "Na Uy"
@@ -3686,53 +3600,13 @@
         "source": "USDA FoodData Central, FDC ID: 170921 (Yogurt, Greek, plain, nonfat)."
       }
     ],
-    "image": "https://www.daringgourmet.com/wp-content/uploads/2016/09/Chicken-Paprikash-2-IMG_7673.jpg",
-    "recipe_link": "https://www.daringgourmet.com/authentic-chicken-paprikash-recipe/",
+    "image": "https://media.istockphoto.com/id/1199693656/vi/anh/g%C3%A0-paprikash-hungary-c%C3%B3-th%E1%BB%8Bt-g%C3%A0-om-m%E1%BB%81m-v%C3%A0-n%C6%B0%E1%BB%9Bc-s%E1%BB%91t-tangy-gia-v%E1%BB%8B-v%E1%BB%9Bi-%E1%BB%9Bt-b%E1%BB%99t-g%E1%BA%A7n-tr%C3%AAn-%C4%91%C4%A9a-d%E1%BA%A1ng.jpg?s=612x612&w=0&k=20&c=-_m8sGcOb_6VkY7rbu6UbRUghgC2tg6w1KAXdHk3WTQ=",
+    "recipe_link": "https://norecipes.com/chicken-paprikash/?utm_source=chatgpt.com",
     "origin": {
       "continent": "Châu Âu",
       "country": "Hungary"
     },
     "price": 125000
-  },
-  {
-    "name": "Bánh Mì Nướng Hạt Ngũ Cốc và Trứng Luộc (Đan Mạch)",
-    "calories": 280,
-    "protein": 15,
-    "fat": 12,
-    "carbs": 25,
-    "weight": 200,
-    "meal_time": [
-      "breakfast",
-      "lunch"
-    ],
-    "description": "Bánh mì đen hoặc ngũ cốc nguyên hạt nướng, ăn kèm trứng luộc thái lát và một chút rau mầm. Bữa sáng hoặc bữa trưa đơn giản, giàu protein và chất xơ.",
-    "ingredients_breakdown": [
-      {
-        "item": "Bánh mì đen nguyên hạt (rye bread, whole grain)",
-        "weight_g": 60,
-        "note": "2 lát.",
-        "source": "USDA FoodData Central, FDC ID: 170020 (Bread, rye, whole grain)."
-      },
-      {
-        "item": "Trứng gà luộc (hard-boiled egg)",
-        "weight_g": 100,
-        "note": "2 quả trứng lớn, thái lát.",
-        "source": "USDA FoodData Central, FDC ID: 748967 (Egg, whole, cooked, hard-boiled)."
-      },
-      {
-        "item": "Rau mầm (sprouts)",
-        "weight_g": 10,
-        "note": "Để trang trí và bổ sung dinh dưỡng.",
-        "source": "USDA FoodData Central, FDC ID: 170444 (Alfalfa sprouts, raw)."
-      }
-    ],
-    "image": "https://nordicfoodliving.com/wp-content/uploads/2020/09/Danish-Eggs-on-Rye-Bread.jpg",
-    "recipe_link": "https://nordicfoodliving.com/danish-eggs-on-rye-bread/",
-    "origin": {
-      "continent": "Châu Âu",
-      "country": "Đan Mạch"
-    },
-    "price": 60000
   },
   {
     "name": "Gà Hầm Coq au Vin (phiên bản nhẹ)",
@@ -3783,8 +3657,8 @@
         "source": "USDA FoodData Central, FDC ID: 170417 (Broth, chicken, less sodium)."
       }
     ],
-    "image": "https://www.allrecipes.com/thmb/pXQv6_9B7tW_y-Z7Q0_9w-J_7gQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/223019-Chicken-Coq-Au-Vin-ddmfs-3x2-1718-d7b3a726759247d5a57a16e504c57700.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/223019/chicken-coq-au-vin/",
+    "image": "https://lh7-rt.googleusercontent.com/docsz/AD_4nXfHftfaHbHPshBQsQrBcBPOmksS0kmeJQ8cC03a0N5b__w3Xq3_QyegF9jSXX_i02AoXiDWz0YnekpALU0auWhN71JhNV0KR7wNIlQIWXJ8CS0wbIvWZfLFsk1D7dAHCefwIEk_n_6sYt2FQpwq94uk0Us?key=xy600m5EPBuphhyvyyR1vw",
+    "recipe_link": "https://www.foodnetwork.com/recipes/ina-garten/coq-au-vin-recipe4-2011654?utm_source=chatgpt.com",
     "origin": {
       "continent": "Châu Âu",
       "country": "Pháp"
@@ -3841,8 +3715,8 @@
         "source": "USDA FoodData Central, FDC ID: 170889 (Sour cream, reduced fat)."
       }
     ],
-    "image": "https://www.themediterraneandish.com/wp-content/uploads/2018/09/Beet-Soup-Borscht-2.jpg",
-    "recipe_link": "https://www.themediterraneandish.com/beet-soup-borscht/",
+    "image": "https://www.joskitchenlarder.com/wp-content/uploads/2023/07/Botwinka-Beet-Greens-Soup1.jpg",
+    "recipe_link": "https://www.joskitchenlarder.com/botwinka-beet-greens-soup/",
     "origin": {
       "continent": "Châu Âu",
       "country": "Ba Lan"
@@ -3880,8 +3754,8 @@
         "source": "USDA FoodData Central, FDC ID: 170060 (Blueberries, raw) & FDC ID: 170446 (Strawberries, raw)."
       }
     ],
-    "image": "https://www.allrecipes.com/thmb/pXQv6_9B7tW_y-Z7Q0_9w-J_7gQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Quark-with-Berries-ddmfs-3x2-1718-d7b3a726759247d5a57a16e504c57700.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/228965/quark-with-berries/",
+    "image": "https://www.internationaldessertsblog.com/wp-content/uploads/2020/11/Crustless-Cheesecake-25.jpg",
+    "recipe_link": "https://www.internationaldessertsblog.com/easy-crustless-german-cheesecake/",
     "origin": {
       "continent": "Châu Âu",
       "country": "Đức"
@@ -3932,8 +3806,8 @@
         "source": "USDA FoodData Central, FDC ID: 171097 (Oil, olive, extra virgin)."
       }
     ],
-    "image": "https://www.simplyrecipes.com/thmb/pXQv6_9B7tW_y-Z7Q0_9w-J_7gQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Simply-Recipes-Chicken-Mushroom-Salad-LEAD-03-34e2c9ef77b74844a4e179e8a7164478.jpg",
-    "recipe_link": "https://www.simplyrecipes.com/recipes/chicken_mushroom_salad/",
+    "image": "https://img-global.cpcdn.com/recipes/7845c542195d7053/680x964f0.673913_0.5_1.0q90/salad-ga-n%E1%BA%A5m-healthy-recipe-main-photo.webp",
+    "recipe_link": "https://cookpad.com/vn/cong-thuc/16064127-salad-ga-n%E1%BA%A5m-healthy",
     "origin": {
       "continent": "Châu Âu",
       "country": "Pháp"
@@ -3983,8 +3857,8 @@
         "source": "General food databases."
       }
     ],
-    "image": "https://www.bbcgoodfood.com/recipes/roast-pork-apple",
-    "recipe_link": "https://www.bbcgoodfood.com/recipes/roast-pork-apple",
+    "image": "https://images.squarespace-cdn.com/content/v1/602bd23b04cc80278e115ed4/23c0e20a-6c8a-4832-b401-bb67d7e7010c/Screenshot+2022-12-14+at+9.57.55+AM.jpg?format=1500w",
+    "recipe_link": "https://kelvinskitchen.com/the-ultimate-roast-pork-loin-with-apples-recipe",
     "origin": {
       "continent": "Châu Âu",
       "country": "Anh"
@@ -4041,7 +3915,7 @@
         "source": "USDA FoodData Central, FDC ID: 171097 (Oil, olive, extra virgin)."
       }
     ],
-    "image": "https://www.themediterraneandish.com/wp-content/uploads/2016/09/Roasted-Vegetable-Salad.jpg",
+    "image": "https://www.themediterraneandish.com/wp-content/uploads/2023/04/TMD-Roasted-vegetable-salad-WEB-34.jpg",
     "recipe_link": "https://www.themediterraneandish.com/roasted-vegetable-salad/",
     "origin": {
       "continent": "Châu Âu",
@@ -4080,8 +3954,8 @@
         "source": "USDA FoodData Central, FDC ID: 170081 (Honey)."
       }
     ],
-    "image": "https://www.themediterraneandish.com/wp-content/uploads/2018/06/Greek-yogurt-with-honey-and-nuts.jpg",
-    "recipe_link": "https://www.themediterraneandish.com/greek-yogurt-with-honey-and-nuts/",
+    "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/filters:quality(95)/https://cms-prod.s3-sgn09.fptcloud.com/bua_sang_voi_salad_sua_chua_hy_lap_e5c3d33074.jpeg",
+    "recipe_link": "https://nhathuoclongchau.com.vn/bai-viet/6-goi-y-cho-bua-sang-nhanh-gon-lanh-manh-voi-sua-chua-hy-lap-68687.html",
     "origin": {
       "continent": "Châu Âu",
       "country": "Hy Lạp"
@@ -4125,8 +3999,8 @@
         "source": "USDA FoodData Central, FDC ID: 170881 (Milk, fat free, fluid, with added vitamin A and D (skim))."
       }
     ],
-    "image": "https://www.food.com/food/img/salmon-with-mashed-potatoes-and-peas.jpg",
-    "recipe_link": "https://www.food.com/recipe/salmon-with-mashed-potatoes-and-peas-328681",
+    "image": "https://nguyenhafood.vn/uploads/files/salad-ca-hoi-nuong-va-dau-ha-lan-dong-lanh%20%288%29.jpg",
+    "recipe_link": "https://nguyenhafood.vn/blog/cau-chuyen-am-thuc/cong-thuc-healthy-voi-salad-ca-hoi-va-dau-ha-lan-nuong-713?srsltid=AfmBOornnpKqtyfejMaFus3Yz4hOaKSse_DfPewRfeIUlktBJjGa_Yeb",
     "origin": {
       "continent": "Châu Âu",
       "country": "Na Uy"
@@ -4171,8 +4045,8 @@
         "source": "USDA FoodData Central, FDC ID: 170881 (Milk, fat free, fluid, with added vitamin A and D (skim)) - (Ước tính)."
       }
     ],
-    "image": "https://www.finnishfood.fi/wp-content/uploads/2016/10/sienikeitto.jpg",
-    "recipe_link": "https://www.finnishfood.fi/recipes/sienikeitto-creamy-mushroom-soup/",
+    "image": "https://cdn.tgdd.vn/Files/2024/05/26/1566119/hoc-cach-lam-sup-kem-nam-truyen-thong-beo-thom-doi-vi-cho-gia-dinh-202405270530208907.jpg",
+    "recipe_link": "https://www.bachhoaxanh.com/kinh-nghiem-hay/hoc-cach-lam-sup-kem-nam-truyen-thong-beo-thom-doi-vi-cho-gia-dinh-1566119?srsltid=AfmBOorQbmUY2BSKOUb__J2ibN_Dh_Df0zJjTDT9p7xSkGBfgLW0biQp",
     "origin": {
       "continent": "Châu Âu",
       "country": "Phần Lan"
@@ -4217,8 +4091,8 @@
         "source": "USDA FoodData Central, FDC ID: 171097 (Oil, olive, extra virgin)."
       }
     ],
-    "image": "https://www.themediterraneandish.com/wp-content/uploads/2017/04/Caprese-Salad-2.jpg",
-    "recipe_link": "https://www.themediterraneandish.com/caprese-salad-recipe/",
+    "image": "https://www.ottimacheese.com/images/recipes/Salad_Mozzarella__Mozzarella.jpg",
+    "recipe_link": "https://www.ottimacheese.com/cong-thuc-nau-an/salad-ca-chua-va-pho-mai-mozzarella",
     "origin": {
       "continent": "Châu Âu",
       "country": "Ý"
@@ -4269,8 +4143,8 @@
         "source": "General food databases - (Ước tính)."
       }
     ],
-    "image": "https://www.simplyrecipes.com/thmb/p2l8y_4Y6_U5x4l8b_L6Y7_Z7A=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Simply-Recipes-Fish-Chowder-LEAD-03-34e2c9ef77b74844a4e179e8a7164478.jpg",
-    "recipe_link": "https://www.simplyrecipes.com/recipes/fish_chowder/",
+    "image": "https://newengland.com/wp-content/uploads/2015/04/fish-chowder-helens-teig.jpg",
+    "recipe_link": "https://newengland.com/food/soups-stews-chowders/helens-fish-chowder/",
     "origin": {
       "continent": "Châu Âu",
       "country": "Bồ Đào Nha"
@@ -4333,8 +4207,8 @@
         "source": "USDA FoodData Central, FDC ID: 171097 (Oil, olive, extra virgin)."
       }
     ],
-    "image": "https://www.themediterraneandish.com/wp-content/uploads/2016/06/Authentic-Tabouleh-Recipe-2.jpg",
-    "recipe_link": "https://www.themediterraneandish.com/authentic-tabbouleh-recipe/",
+    "image": "https://www.seriouseats.com/thmb/zPJEDBXW0OPnPOko6HlWZDSG7_E=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2016__11__20161107-beet-salad-vicky-wasik-5-b3d1da4533754f76a4d0896f867d6255.jpg",
+    "recipe_link": "https://www.seriouseats.com/beet-wheat-berry-salad-apple-recipe",
     "origin": {
       "continent": "Châu Âu",
       "country": "Hy Lạp"
@@ -4378,8 +4252,8 @@
         "source": "General food databases."
       }
     ],
-    "image": "https://www.bbcgoodfood.com/recipes/scrambled-eggs-toast",
-    "recipe_link": "https://www.bbcgoodfood.com/recipes/scrambled-eggs-toast",
+    "image": "https://cooktoria.com/wp-content/uploads/2022/10/Best-Egg-Toast-1-683x1024.jpg",
+    "recipe_link": "https://cooktoria.com/scrambled-egg-toast/",
     "origin": {
       "continent": "Châu Âu",
       "country": "Anh"
@@ -4423,8 +4297,8 @@
         "source": "USDA FoodData Central, FDC ID: 170060 (Blueberries, raw) & FDC ID: 170446 (Strawberries, raw)."
       }
     ],
-    "image": "https://www.finnishfood.fi/wp-content/uploads/2016/10/blueberry-pancakes.jpg",
-    "recipe_link": "https://www.finnishfood.fi/recipes/blueberry-pancakes/",
+    "image": "https://mevacon.giaoduc.edu.vn/wp-content/uploads/2021/06/banh-ran-yen-mach-3-768x512.jpg",
+    "recipe_link": "https://fptshop.com.vn/tin-tuc/dien-may/banh-kep-yen-mach-170650",
     "origin": {
       "continent": "Châu Âu",
       "country": "Phần Lan"
@@ -4475,8 +4349,8 @@
         "source": "USDA FoodData Central, FDC ID: 170417 (Broth, chicken, less sodium)."
       }
     ],
-    "image": "https://www.finnishfood.fi/wp-content/uploads/2016/10/kanakeitto.jpg",
-    "recipe_link": "https://www.finnishfood.fi/recipes/kanakeitto-chicken-soup/",
+    "image": "https://cdn.tgdd.vn/2021/10/CookDish/huong-dan-chi-tiet-cach-nau-sup-ga-tai-nha-ngon-avt-1200x676.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/huong-dan-chi-tiet-cach-nau-sup-ga-tai-nha-ngon-01040",
     "origin": {
       "continent": "Châu Âu",
       "country": "Phần Lan"
@@ -4610,8 +4484,8 @@
         "source": "USDA FoodData Central, FDC ID: 171097 (Oil, olive, extra virgin)."
       }
     ],
-    "image": "https://www.allrecipes.com/thmb/pXQv6_9B7tW_y-Z7Q0_9w-J_7gQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Baked-Salmon-with-Roasted-Veggies-2000-f9a764d97f2e463aa6d40f80b91e99d3.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/228965/baked-salmon-with-roasted-veggies/",
+    "image": "https://www.eatingwell.com/thmb/8VLGPCO-dWXLEcC16VBg0JpY32o=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/3758863-b46b03c0e31b43b1b2ef63037e30efea.jpg",
+    "recipe_link": "https://www.eatingwell.com/recipe/252713/salmon-with-roasted-vegetables-quinoa/",
     "origin": {
       "continent": "Châu Âu",
       "country": "Na Uy"
@@ -4668,8 +4542,8 @@
         "source": "USDA FoodData Central, FDC ID: 170921 (Yogurt, Greek, plain, nonfat)."
       }
     ],
-    "image": "https://cdn.loveandlemons.com/wp-content/uploads/2020/09/borscht.jpg",
-    "recipe_link": "https://www.loveandlemons.com/borscht/",
+    "image": "https://abraskitchen.com/wp-content/uploads/Chilled-Beet-Soup-with-Yogurt-and-Fresh-Dill2-683x1024.jpg",
+    "recipe_link": "https://abraskitchen.com/chilled-beet-soup/",
     "origin": {
       "continent": "Châu Âu",
       "country": "Ukraine"
@@ -4701,8 +4575,8 @@
         "source": "USDA FoodData Central, FDC ID: 748967 (Egg, whole, cooked, hard-boiled)."
       }
     ],
-    "image": "https://www.swissinfo.ch/resource/image/44583162/3x2/640/426/1efb7021fc661f0616b772fc59695662/wT/swiss-breakfast.jpg",
-    "recipe_link": "https://www.swissinfo.ch/eng/culture/swiss-breakfast/44583162",
+    "image": "https://tiki.vn/blog/wp-content/uploads/2023/04/VtUBOP5Q5WbYkAY2MFCdCwbn3UiSvfkCtL0vzx65QKQwnOj3qwXniGDhGo9niy6Ynd76ZhlcwQ3EWZWUk_qfZzNsau4Hz_L3gB90hDiezC0wcUyKLWNbylI_9n9QCK-30dvi2eX6DypW67Vr2115fi0.jpg",
+    "recipe_link": "https://liverfoundation.org/vi/y-t%E1%BA%BF-v%C3%A0-ch%C4%83m-s%C3%B3c-s%E1%BB%A9c-kh%E1%BB%8Fe/l%E1%BB%91i-s%E1%BB%91ng-l%C3%A0nh-m%E1%BA%A1nh/c%C3%B4ng-th%E1%BB%A9c-n%E1%BA%A5u-%C4%83n/b%C3%A1nh-m%C3%AC-n%C6%B0%E1%BB%9Bng-ng%C5%A9-c%E1%BB%91c-nguy%C3%AAn-h%E1%BA%A1t-v%E1%BB%9Bi-tr%E1%BB%A9ng-lu%E1%BB%99c-b%C6%A1-v%C3%A0-gia-v%E1%BB%8B-tajn/",
     "origin": {
       "continent": "Châu Âu",
       "country": "Thụy Sĩ"
@@ -4753,8 +4627,8 @@
         "source": "USDA FoodData Central, FDC ID: 170881 (Milk, fat free, fluid, with added vitamin A and D (skim)) - (Ước tính)."
       }
     ],
-    "image": "https://www.polishyourkitchen.com/wp-content/uploads/2019/04/Mushroom-Soup-750x500.jpg",
-    "recipe_link": "https://www.polishyourkitchen.com/mushroom-soup/",
+    "image": "https://cdn.tgdd.vn/2020/10/CookProduct/11112-1200x676.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/2-cach-lam-sup-kem-nam-beo-ngay-thom-ngon-don-gian-04984",
     "origin": {
       "continent": "Châu Âu",
       "country": "Ba Lan"
@@ -4793,8 +4667,8 @@
         "source": "USDA FoodData Central, FDC ID: 170003 (Apples, raw, with skin)."
       }
     ],
-    "image": "https://cdn.loveandlemons.com/wp-content/uploads/2019/02/peanut-butter-toast-1.jpg",
-    "recipe_link": "https://www.loveandlemons.com/peanut-butter-toast/",
+    "image": "https://file.hstatic.net/1000175970/file/nguyen_lieu_2c6ca0be27034d5fa932d054cb79f2ee_grande.jpg",
+    "recipe_link": "https://totaste.com/recipe/peanut-butter-honey-toast-with-sliced-apples/",
     "origin": {
       "continent": "Châu Âu",
       "country": "Thụy Sĩ"
@@ -4839,8 +4713,8 @@
         "source": "USDA FoodData Central, FDC ID: 171097 (Oil, olive, extra virgin)."
       }
     ],
-    "image": "https://www.finnishfood.fi/wp-content/uploads/2016/10/kanasalaatti.jpg",
-    "recipe_link": "https://www.finnishfood.fi/recipes/kanasalaatti-chicken-salad/",
+    "image": "https://www.epochtimesviet.com/wp-content/uploads/2023/07/id5342354-FOOD-QUICKFIX-MCT-1200x800.jpg.webp.jpeg",
+    "recipe_link": "https://www.epochtimesviet.com/mon-salad-qua-mong-va-thit-ga-tay-cho-mua-he_393335.html",
     "origin": {
       "continent": "Châu Âu",
       "country": "Phần Lan"
@@ -4897,8 +4771,8 @@
         "source": "USDA FoodData Central, FDC ID: 170415 (Broth, vegetable, low sodium)."
       }
     ],
-    "image": "https://www.polishyourkitchen.com/wp-content/uploads/2019/04/Vegetable-Soup-750x500.jpg",
-    "recipe_link": "https://www.polishyourkitchen.com/vegetable-soup/",
+    "image": "https://realfood.tesco.com/media/images/1400x919-SuperLentilVegetableSoup-9f107311-7841-4b14-b34a-95b27e35285c-0-1400x919.jpg",
+    "recipe_link": "https://realfood.tesco.com/recipes/super-lentil-and-vegetable-soup.html",
     "origin": {
       "continent": "Châu Âu",
       "country": "Ba Lan"
@@ -4942,8 +4816,8 @@
         "source": "USDA FoodData Central, FDC ID: 170400 (Dill weed, fresh)."
       }
     ],
-    "image": "https://www.swedishfood.com/images/stories/recipes/gravlax-sandwiches.jpg",
-    "recipe_link": "https://www.swedishfood.com/gravlax-sandwiches",
+    "image": "https://cdn.shopify.com/s/files/1/0265/2435/2587/files/recipe-mv_pc_2x_419e17d5-db66-44bb-addd-81daf3b2b16d.jpg?v=1585774711",
+    "recipe_link": "https://us.balmuda.com/blogs/recipes/smoke-salmon-cream-bagel-sandwich?srsltid=AfmBOopI1ke-2puhM5hthtkis2ELuTVxURd8wvuSbaEnkUOmSddXPnyJ",
     "origin": {
       "continent": "Châu Âu",
       "country": "Thụy Điển"
@@ -4981,8 +4855,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Couscous_with_meat_and_vegetables.jpg/800px-Couscous_with_meat_and_vegetables.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212620/moroccan-couscous-with-meat-and-vegetables/",
+    "image": "https://cdn.tgdd.vn/Files/2021/04/03/1340386/couscous-la-gi-cach-nau-com-couscous-ngon-tai-nha-202107161653062729.jpg",
+    "recipe_link": "https://www.bachhoaxanh.com/kinh-nghiem-hay/couscous-la-gi-cach-nau-com-couscous-ngon-tai-nha-1340386?srsltid=AfmBOopiAM-_HR9jt6e89-HVf1-C6dcyGspowgsN-F65K1gnwMZaNf2Q",
     "origin": {
       "continent": "Châu Phi",
       "country": "Ma-rốc"
@@ -5025,8 +4899,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Egusi_soup_with_fufu.jpg/800px-Egusi_soup_with_fufu.jpg",
-    "recipe_link": "https://www.allnigerianrecipes.com/egusi-soup-recipe/",
+    "image": "https://www.seriouseats.com/thmb/eaBrKnFs29uTJPVA9qqwAcXNPKw=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/20220425-Egusi-Maureen-Celestine-26-hero-1-608f079ef8ae4b8b840e61e44ecb766a.JPG",
+    "recipe_link": "https://www.seriouseats.com/nigerian-egusi-soup-5271598",
     "origin": {
       "continent": "Châu Phi",
       "country": "Nigeria"
@@ -5069,8 +4943,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Jollof_Rice_%28Ghana%29.jpg/800px-Jollof_Rice_%28Ghana%29.jpg",
-    "recipe_link": "https://www.nigerianfoodchannel.com/jollof-rice-recipe/",
+    "image": "https://liftlaughchop.com/wp-content/uploads/2023/05/how-to-make-jollof-rice-and-chicken-1024x1024.jpg",
+    "recipe_link": "https://liftlaughchop.com/jollof-rice-with-chicken/",
     "origin": {
       "continent": "Châu Phi",
       "country": "Ghana"
@@ -5103,8 +4977,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Ethiopian_food.jpg/800px-Ethiopian_food.jpg",
-    "recipe_link": "https://www.myrecipes.com/recipe/ethiopian-chicken-stew-doro-wat",
+    "image": "https://images.squarespace-cdn.com/content/v1/5db48cdef991e52a49075819/1603906692263-36D4TMINZDZ6MYSDK1Q0/Injera+w+doro+wot+egg+gomen.jpg?format=1500w",
+    "recipe_link": "https://hedonism-eats.com/blog/injera",
     "origin": {
       "continent": "Châu Phi",
       "country": "Ethiopia"
@@ -5147,8 +5021,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Bobotie_with_yellow_rice.jpg/800px-Bobotie_with_yellow_rice.jpg",
-    "recipe_link": "https://www.food.com/recipe/bobotie-south-african-mince-dish-14407",
+    "image": "https://i1.wp.com/louskitchencorner.freybors.com/wp-content/uploads/2019/11/bobotie-and-napkins.png?w=1080&ssl=1",
+    "recipe_link": "https://louskitchencorner.freybors.com/2019/11/07/bobotie-a-traditional-south-african-recipe/",
     "origin": {
       "continent": "Châu Phi",
       "country": "Nam Phi"
@@ -5191,8 +5065,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Chicken_peanut_stew_%28Domoda%29.jpg/800px-Chicken_peanut_stew_%28Domoda%29.jpg",
-    "recipe_link": "https://www.tasteatlas.com/domoda",
+    "image": "https://www.anediblemosaic.com/wp-content/uploads/2023/01/peanut-stew-featured-image-500x500.jpg",
+    "recipe_link": "https://www.anediblemosaic.com/domoda-recipe-gambian-peanut-stew/",
     "origin": {
       "continent": "Châu Phi",
       "country": "Gambia"
@@ -5235,8 +5109,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Harira_Soupe_Marocaine.jpg/800px-Harira_Soupe_Marocaine.jpg",
-    "recipe_link": "https://www.tasteatlas.com/harira",
+    "image": "https://www.thespruceeats.com/thmb/C2FeJg_4lw0LeEOULLmgdAihUiw=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/classic-moroccan-harira-soup-2394920-hero-01-ffd8665c225c48c4a45c4314e96821b2.jpg",
+    "recipe_link": "https://www.thespruceeats.com/classic-moroccan-harira-soup-2394920",
     "origin": {
       "continent": "Châu Phi",
       "country": "Ma-rốc"
@@ -5284,8 +5158,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Koshary.jpg/800px-Koshary.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/228185/egyptian-koshary/",
+    "image": "https://www.chocolatesandchai.com/wp-content/uploads/2023/02/Egyptian-Koshari-7.jpg.webp",
+    "recipe_link": "https://www.chocolatesandchai.com/egyptian-koshari-koshary-recipe/",
     "origin": {
       "continent": "Châu Phi",
       "country": "Ai Cập"
@@ -5323,8 +5197,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Ugali_and_sukuma_wiki.jpg/800px-Ugali_and_sukuma_wiki.jpg",
-    "recipe_link": "https://www.africanbites.com/ugali-sukuma-wiki/",
+    "image": "https://www.seriouseats.com/thmb/slIkGEgdItQPLDCKVewJF5Kj4_M=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/20240423-SEA-SukumaWiki-AmandaSuarez-13-8e0d68cde28941c88cf6cb45b95a2e80.jpg",
+    "recipe_link": "https://www.seriouseats.com/sukuma-wiki-kenyan-sauteed-collard-greens-recipe-8637473",
     "origin": {
       "continent": "Châu Phi",
       "country": "Kenya"
@@ -5367,8 +5241,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Chicken_Tagine.jpg/800px-Chicken_Tagine.jpg",
-    "recipe_link": "https://www.moroccanfood.about.com/od/moroccanchickenrecipes/r/chicken_lemon_olives.htm",
+    "image": "https://www.thespruceeats.com/thmb/aN738FX6fAoSSGeKmBLD5CPrA5A=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/chicken-tagine-with-preserved-lemons-olives-2394715-step-07-2055a5ad5de4493c8784210054f4db4f.jpg",
+    "recipe_link": "https://www.thespruceeats.com/chicken-tagine-with-preserved-lemons-olives-2394715",
     "origin": {
       "continent": "Châu Phi",
       "country": "Ma-rốc"
@@ -5401,8 +5275,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Akara_with_pap.jpg/800px-Akara_with_pap.jpg",
-    "recipe_link": "https://www.allnigerianrecipes.com/akara-recipe/",
+    "image": "https://cheflolaskitchen.com/wp-content/uploads/2021/04/DSC0882-Akara-akaraje-683x1024.jpg.webp",
+    "recipe_link": "https://cheflolaskitchen.com/akara-acaraje/",
     "origin": {
       "continent": "Châu Phi",
       "country": "Nigeria"
@@ -5445,8 +5319,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Muamba_de_galinha.jpg/800px-Muamba_de_galinha.jpg",
-    "recipe_link": "https://www.tasteatlas.com/muamba-de-galinha",
+    "image": "https://i0.wp.com/nationalfoods.org/wp-content/uploads/2021/02/National-Dish-of-Angola-%E2%80%93-Moamba-de-Galinha.jpg?resize=1140%2C500&ssl=1",
+    "recipe_link": "https://nationalfoods.org/recipe/national-dish-of-angola-moamba-de-galinha/",
     "origin": {
       "continent": "Châu Phi",
       "country": "Angola"
@@ -5474,8 +5348,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Chapati_in_the_making.jpg/800px-Chapati_in_the_making.jpg",
-    "recipe_link": "https://www.sainsbury.co.uk/gol-content/recipes/chapati",
+    "image": "https://cheflolaskitchen.com/wp-content/uploads/2015/07/Chapati-22.jpg.webp",
+    "recipe_link": "https://cheflolaskitchen.com/east-african-chapati/",
     "origin": {
       "continent": "Châu Phi",
       "country": "Kenya"
@@ -5503,8 +5377,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Nyama_Choma.jpg/800px-Nyama_Choma.jpg",
-    "recipe_link": "https://www.tasteatlas.com/nyama-choma",
+    "image": "https://i0.wp.com/www.whats4eats.com/wp-content/uploads/2023/06/meats-nyama-choma-flickr-hktang-Xiaojun-Deng-4033034152-4x3-1.jpg?resize=750%2C563&ssl=1",
+    "recipe_link": "https://www.whats4eats.com/meats/nyama-choma-recipe",
     "origin": {
       "continent": "Châu Phi",
       "country": "Kenya"
@@ -5542,8 +5416,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Githeri.JPG/800px-Githeri.JPG",
-    "recipe_link": "https://www.tasteatlas.com/githeri",
+    "image": "https://shahzadidevje.com/wp-content/uploads/2021/10/Githeri-recipe-kenyan-beans-and-corn-recipe-5-880x1170.webp",
+    "recipe_link": "https://shahzadidevje.com/githeri-recipe-how-to-make-kenyan-beans-and-corn/",
     "origin": {
       "continent": "Châu Phi",
       "country": "Kenya"
@@ -5581,8 +5455,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Chakalaka.jpg/800px-Chakalaka.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/242279/chakalaka/",
+    "image": "https://www.thetastychilli.com/wp-content/uploads/2021/03/chakalaka-recipe-top.jpg",
+    "recipe_link": "https://www.thetastychilli.com/south-african-chakalaka-recipe/",
     "origin": {
       "continent": "Châu Phi",
       "country": "Nam Phi"
@@ -5610,8 +5484,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Biltong_sticks.jpg/800px-Biltong_sticks.jpg",
-    "recipe_link": "https://www.simplyrecipes.com/recipes/biltong-south-african-dried-meat/",
+    "image": "https://www.greedyferret.com/wp-content/uploads/2020/10/biltong-slices-on-chopping-board-perfect.jpg",
+    "recipe_link": "https://www.greedyferret.com/perfect-biltong-recipe-south-african-beef-jerky",
     "origin": {
       "continent": "Châu Phi",
       "country": "Nam Phi"
@@ -5654,8 +5528,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Maffe.JPG/800px-Maffe.JPG",
-    "recipe_link": "https://www.africancooking.com/maffe-peanut-stew/",
+    "image": "https://www.kitchenfrau.com/wp-content/uploads/2020/04/IMG_3444est-683x1024.jpg",
+    "recipe_link": "https://www.kitchenfrau.com/senegalese-mafe-beef-stew/",
     "origin": {
       "continent": "Châu Phi",
       "country": "Senegal"
@@ -5693,8 +5567,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Thieboudienne.jpg/800px-Thieboudienne.jpg",
-    "recipe_link": "https://www.daringgourmet.com/thieboudienne-senegalese-fish-and-rice/",
+    "image": "https://i0.wp.com/www.yummymedley.com/wp-content/uploads/2017/05/Thieboudienne-Senegalese-jollof-rice-and-fish.jpg?w=750&ssl=1",
+    "recipe_link": "https://www.yummymedley.com/thieboudienne-senegalese-rice-fish/",
     "origin": {
       "continent": "Châu Phi",
       "country": "Senegal"
@@ -5722,8 +5596,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Peri_Peri_Chicken.jpg/800px-Peri_Peri_Chicken.jpg",
-    "recipe_link": "https://www.simplyrecipes.com/recipes/piri-piri-chicken/",
+    "image": "https://explorers.kitchen/wp-content/uploads/2016/01/Mozambique-Piri-piri-chicken-10-of-11.jpg",
+    "recipe_link": "https://explorers.kitchen/recipes/mozambique-cuisine-piri-piri/",
     "origin": {
       "continent": "Châu Phi",
       "country": "Mozambique"
@@ -5761,8 +5635,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Ndol%C3%A8.jpg/800px-Ndol%C3%A8.jpg",
-    "recipe_link": "https://www.tasteatlas.com/ndole",
+    "image": "https://images.squarespace-cdn.com/content/v1/5e04d1c138bd0a5d714cea2b/1615411039884-HLYF8GGIP67LFLCYN21D/Ndole-cameroon+cuisine-kengs+kitchen2.jpg?format=1000w",
+    "recipe_link": "https://www.kengskitchen.com/cameroon-recipes/ndole",
     "origin": {
       "continent": "Châu Phi",
       "country": "Cameroon"
@@ -5790,8 +5664,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Brochettes.JPG/800px-Brochettes.JPG",
-    "recipe_link": "https://www.tasteatlas.com/brochettes",
+    "image": "https://www.internationalcuisine.com/wp-content/uploads/2019/03/goat-brochettes-marinade.jpeg",
+    "recipe_link": "https://translate.google.com/translate?u=https://www.internationalcuisine.com/rwandan-goat-brochettes/&hl=vi&sl=en&tl=vi&client=srp",
     "origin": {
       "continent": "Châu Phi",
       "country": "Rwanda"
@@ -5829,8 +5703,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Zigni.jpg/800px-Zigni.jpg",
-    "recipe_link": "https://www.daringgourmet.com/zigni-eritrea-and-ethiopian-stew/",
+    "image": "https://thespiceadventuress.com/wp-content/uploads/2019/05/1.jpg",
+    "recipe_link": "https://thespiceadventuress.com/2019/05/01/zigni-ethiopian-style-beef-stew/",
     "origin": {
       "continent": "Châu Phi",
       "country": "Eritrea"
@@ -5863,8 +5737,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Kachumbari.jpg/800px-Kachumbari.jpg",
-    "recipe_link": "https://www.africanbites.com/kachumbari/",
+    "image": "https://x9s2d6a3.delivery.rocketcdn.me/wp-content/uploads/2019/01/kachumbari-7-739x1024.webp",
+    "recipe_link": "https://www.mycookingjourney.com/kachumbari-kenyan-tomato-and-onion-salad/",
     "origin": {
       "continent": "Châu Phi",
       "country": "Kenya"
@@ -5897,8 +5771,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Sadza_with_Beef_and_Muboora.JPG/800px-Sadza_with_Beef_and_Muboora.JPG",
-    "recipe_link": "https://www.tasteatlas.com/sadza",
+    "image": "https://chihuz.wordpress.com/wp-content/uploads/2020/06/img_20200609_201911_3.jpg?w=1024",
+    "recipe_link": "https://chihuz.wordpress.com/2020/06/09/how-to-cook-sadza-pap-zimbabwes-staple-food/",
     "origin": {
       "continent": "Châu Phi",
       "country": "Zimbabwe"
@@ -5926,8 +5800,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Kedjenou_de_Poulet.jpg/800px-Kedjenou_de_Poulet.jpg",
-    "recipe_link": "https://www.tasteatlas.com/kedjenou",
+    "image": "https://eatthisny.com/wp-content/uploads/2023/11/361D8E17-8CF5-4473-9267-E4F6903CE79D_1_105_c-e1698892247604.jpeg",
+    "recipe_link": "https://eatthisny.com/2023/11/09/around-the-world-in-one-kitchen/video-around-the-world-in-one-kitchen-how-to-cook-kedjenou-and-attieke-from-cote-divoire-ivory-coast/",
     "origin": {
       "continent": "Châu Phi",
       "country": "Bờ Biển Ngà"
@@ -5989,8 +5863,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Tacos_al_Pastor.jpg/800px-Tacos_al_Pastor.jpg",
-    "recipe_link": "https://www.isabeleats.com/tacos-al-pastor/",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvyztrXtEPOKoV98zKvisElmvSrINTiOwI52liFb-tSdiaX2jfOLNT89M&usqp=CAE&s",
+    "recipe_link": "https://tasty.co/recipe/mexican-style-pork-tacos-tacos-al-pastor",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Mexico"
@@ -6028,8 +5902,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Chili_con_carne_with_cheese.jpg/800px-Chili_con_carne_with_cheese.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212678/best-chili/",
+    "image": "https://www.dontgobaconmyheart.co.uk/wp-content/uploads/2016/02/best-chilli-con-carne-11-744x931.jpg",
+    "recipe_link": "https://www.dontgobaconmyheart.co.uk/chilli-con-carne/",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Hoa Kỳ"
@@ -6067,8 +5941,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Feijoada_carioca.jpg/800px-Feijoada_carioca.jpg",
-    "recipe_link": "https://www.food.com/recipe/brazilian-feijoada-37652",
+    "image": "https://veganuary.com/wp-content/uploads/2021/01/Veganuary-Recipes-Nov-2020-CAShoebridge-Feijoada-Web-Res-1200x1798.jpg",
+    "recipe_link": "https://veganuary.com/recipes/feijoada-brazilian-black-bean-stew/",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Brazil"
@@ -6106,8 +5980,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Arepas_rellenas.jpg/800px-Arepas_rellenas.jpg",
-    "recipe_link": "https://www.mycolombianrecipes.com/arepas-de-maiz-corn-arepas/",
+    "image": "https://www.thespruceeats.com/thmb/RrYTLrQNbq5w-b8L5iGMATiAmsI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/homemade-arepas-venezuelan-griddle-corn-cakes-3028967-hero-02-c693c328affd483da456991e591c967b.jpg",
+    "recipe_link": "https://www.thespruceeats.com/homemade-arepas-venezuelan-griddle-corn-cakes-3028967",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Venezuela"
@@ -6140,8 +6014,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Ceviche.jpg/800px-Ceviche.jpg",
-    "recipe_link": "https://www.simplyrecipes.com/recipes/peruvian-ceviche/",
+    "image": "https://afamilycdn.com/thumb_w/650/150157425591193600/2023/6/12/ceviche-vai-thieu-1-168653951212988043623.png",
+    "recipe_link": "https://afamily.vn/cach-lam-ceviche-vai-thieu-mon-goi-hai-san-dac-biet-den-tu-peru-20230612005527216.chn",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Peru"
@@ -6174,8 +6048,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Empanadas_de_carne.jpg/800px-Empanadas_de_carne.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212879/argentinian-beef-empanadas/",
+    "image": "https://cdn-lkghh.nitrocdn.com/zvvHCDkEqBZHjvQWSMvAdjFGbFGgdntX/assets/images/optimized/rev-bd6e4ed/argentineasado.com/wp-content/uploads/2024/10/1.jpg",
+    "recipe_link": "https://argentineasado.com/empanada/",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Argentina"
@@ -6208,8 +6082,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Poutine_%28Flickr%29.jpg/800px-Poutine_%28Flickr%29.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212684/authentic-poutine/",
+    "image": "https://thucphamplaza.com/wp-content/uploads/products_img/mon-au-poutine.jpg.webp",
+    "recipe_link": "https://thucphamplaza.com/huong-dan-cach-lam-poutine-khoai-tay-chien-kieu-canada/",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Canada"
@@ -6242,8 +6116,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Lobster_Rolls_by_Jeffrey_W.jpg/800px-Lobster_Rolls_by_Jeffrey_W.jpg",
-    "recipe_link": "https://www.food.com/recipe/maine-lobster-roll-308107",
+    "image": "https://tomhum.com.vn/cdn/images/xtom-hum-cuon-thuong-hang,281,29.jpg.pagespeed.ic.KBdbVwRVAg.webp",
+    "recipe_link": "https://tomhum.com.vn/cach-lam-banh-mi-kep-tom-hum-thuong-hang.html",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Hoa Kỳ"
@@ -6271,8 +6145,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Pupusas_with_Curtido.jpg/800px-Pupusas_with_Curtido.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212628/pupusas/",
+    "image": "https://www.chilipeppermadness.com/wp-content/uploads/2023/07/Pupusas-Recipe1.jpg",
+    "recipe_link": "https://www.chilipeppermadness.com/recipes/pupusas/",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "El Salvador"
@@ -6310,8 +6184,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Arroz_con_pollo.jpg/800px-Arroz_con_pollo.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212626/arroz-con-pollo-chicken-and-rice/",
+    "image": "https://www.laylita.com/recipes/wp-content/uploads/2008/11/Arroz-con-pollo-recipe1.jpg",
+    "recipe_link": "https://www.laylita.com/recipes/arroz-con-pollo-or-chicken-rice/",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Puerto Rico"
@@ -6349,8 +6223,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Tamales_de_maiz.jpg/800px-Tamales_de_maiz.jpg",
-    "recipe_link": "https://www.rickbayless.com/recipe/classic-pork-tamales/",
+    "image": "https://thucphamplaza.com/wp-content/uploads/products_img/mon-au-tamales-1.jpg.webp",
+    "recipe_link": "https://thucphamplaza.com/huong-dan-cach-lam-tamales-mon-an-dac-biet-mua-giang-sinh/?srsltid=AfmBOor1UcXEQjNfv4CI74TgJY4xkrALm0KgWujE-H-UXBfTAO6lfDP9",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Mexico"
@@ -6398,8 +6272,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Jambalaya_with_shrimp_and_chicken.jpg/800px-Jambalaya_with_shrimp_and_chicken.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212627/jambalaya/",
+    "image": "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fit,w_730,h_913/k%2FPhoto%2FRecipes%2F2021-04-how-to-jambalaya%2F2021-04-06_ATK-50516",
+    "recipe_link": "https://www.thekitchn.com/jambalaya-recipe-23153063",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Hoa Kỳ (Louisiana)"
@@ -6442,8 +6316,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Medianoche_sandwich.jpg/800px-Medianoche_sandwich.jpg",
-    "recipe_link": "https://www.seriouseats.com/medianoche-cuban-sandwich-recipe",
+    "image": "https://www.seriouseats.com/thmb/iUcTjR57I5L4XJRnWHsmAyIXzb0=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/20231004-SEA-Medinoche-AmandaSuarez-31-058a8034349442c0b46d9b0482caacaa.jpg",
+    "recipe_link": "https://www.seriouseats.com/sandwiched-cuban-medianoche",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Cuba"
@@ -6481,8 +6355,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Pabell%C3%B3n_criollo.jpg/800px-Pabell%C3%B3n_criollo.jpg",
-    "recipe_link": "https://www.mycolombianrecipes.com/venezuelan-pabellon-criollo/",
+    "image": "https://imag.bonviveur.com/pabellon-criollo.webp",
+    "recipe_link": "https://www.bonviveur.com/recipes/pabellon-criollo",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Venezuela"
@@ -6520,8 +6394,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Lomo_Saltado.jpg/800px-Lomo_Saltado.jpg",
-    "recipe_link": "https://www.perudelights.com/peruvian-lomo-saltado-recipe/",
+    "image": "https://www.eatperu.com/wp-content/uploads/2019/06/lomo-saltado-peruvian-beef-stir-fry-recipe.jpeg",
+    "recipe_link": "https://www.eatperu.com/lomo-saltado-recipe/",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Peru"
@@ -6559,8 +6433,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Chiles_rellenos.jpg/800px-Chiles_rellenos.jpg",
-    "recipe_link": "https://www.mexicoinmykitchen.com/chiles-rellenos-recipe/",
+    "image": "https://www.seriouseats.com/thmb/trejv0fslsb3vZ7q_X5uGwywDbo=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__20160422-chiles-rellenos-27-1be34192fc8c475da5c50b45e1c5f0b4.jpg",
+    "recipe_link": "https://www.seriouseats.com/chiles-rellenos-smothered-and-traditional-recipe",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Mexico"
@@ -6593,8 +6467,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Arepa_de_Huevo.JPG/800px-Arepa_de_Huevo.JPG",
-    "recipe_link": "https://www.mycolombianrecipes.com/arepas-de-huevo-fried-arepas-with-egg/",
+    "image": "https://www.seriouseats.com/thmb/rMUojJESI31nMuKXz_GLwfSR2lk=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/20250307-ArepasdeHuevo-AmandaSuarez-28-4223103fa3574a0b8573aa6a15b16182.jpg",
+    "recipe_link": "https://www.seriouseats.com/colombian-arepas-de-huevo-recipe-11692079",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Colombia"
@@ -6652,8 +6526,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Bandeja_Paisa.jpg/800px-Bandeja_Paisa.jpg",
-    "recipe_link": "https://www.mycolombianrecipes.com/bandeja-paisa-colombian-platter/",
+    "image": "https://www.mycolombianrecipes.com/wp-content/uploads/2009/08/Bandeja-Paisa.jpg",
+    "recipe_link": "https://www.mycolombianrecipes.com/paisa-tray-bandeja-paisa/",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Colombia"
@@ -6686,8 +6560,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Churrasco_in_Brazil.jpg/800px-Churrasco_in_Brazil.jpg",
-    "recipe_link": "https://www.seriouseats.com/churrasco-brazilian-grilled-steak-recipe",
+    "image": "https://d21klxpge3tttg.cloudfront.net/wp-content/uploads/2017/08/featured-brazilian-churrasco-1024x640.jpg",
+    "recipe_link": "https://barbecuebible.com/recipe/brazilian-churrasco-molho-campanha/",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Brazil"
@@ -6730,8 +6604,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Moqueca_Capixaba.jpg/800px-Moqueca_Capixaba.jpg",
-    "recipe_link": "https://www.foodandwine.com/recipes/brazilian-fish-stew-moqueca",
+    "image": "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fill,g_auto,w_728,h_546/k%2FPhoto%2FRecipes%2F2023-09-moqueca-brazilian-fish-stew%2Fmoqueca-brazilian-fish-stew-069",
+    "recipe_link": "https://www.thekitchn.com/moqueca-recipe-23580560",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Brazil"
@@ -6764,8 +6638,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/P%C3%A3o_de_queijo_mineiro.jpg/800px-P%C3%A3o_de_queijo_mineiro.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212629/brazilian-cheese-bread-pao-de-queijo/",
+    "image": "https://img-global.cpcdn.com/recipes/5561fae9e251a026/680x964cq90/banh-mi-pho-mai-brazil-pao-de-queijo-r%E1%BA%A5t-d%E1%BB%85-lam-recipe-main-photo.webp",
+    "recipe_link": "https://cookpad.com/vn/cong-thuc/13717101-banh-mi-pho-mai-brazil-pao-de-queijo-r%E1%BA%A5t-d%E1%BB%85-lam",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Brazil"
@@ -6798,8 +6672,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Chipa.JPG/800px-Chipa.JPG",
-    "recipe_link": "https://www.tasteatlas.com/chipa",
+    "image": "https://www.glutenfreealchemist.com/wp-content/uploads/2022/02/Chipa-Paraguayan-Cheese-Bread-Pin-683x1024.jpg",
+    "recipe_link": "https://www.glutenfreealchemist.com/chipa-paraguayan-4-cheese-bread-recipe-gluten-free/",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Paraguay"
@@ -6842,8 +6716,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Locro_Argentino.jpg/800px-Locro_Argentino.jpg",
-    "recipe_link": "https://www.tasteatlas.com/locro",
+    "image": "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fill,g_auto,w_728,h_546/k%2Farchive%2F0bded8be3b594b8f5b8de9ed7ce64a02e7daeb7d",
+    "recipe_link": "https://www.thekitchn.com/recipe-andean-potato-cheese-soup-locro-recipes-from-the-kitchn-176064",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Argentina"
@@ -6891,8 +6765,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Chupe_de_camarones.jpg/800px-Chupe_de_camarones.jpg",
-    "recipe_link": "https://www.perudelights.com/chupe-de-camarones-peruvian-shrimp-chowder/",
+    "image": "https://www.eatperu.com/wp-content/uploads/2019/10/chupe-de-camarones-shrimp-chowder.jpeg",
+    "recipe_link": "https://www.eatperu.com/chupe-de-camarones-peruvian-shrimp-chowder/",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Peru"
@@ -6935,8 +6809,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Ajiaco_colombiano.jpg/800px-Ajiaco_colombiano.jpg",
-    "recipe_link": "https://www.mycolombianrecipes.com/ajiaco-bogotano-chicken-and-potato-soup/",
+    "image": "https://www.seriouseats.com/thmb/DYaKtX2LSrLGG8KWEwevCwYbTQI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/ajiaco-colombian-potato-soup-hero-24ae1887fec444b5870127bed64f6ce6.jpg",
+    "recipe_link": "https://www.seriouseats.com/ajiaco-colombian-chicken-and-potato-soup-recipe",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Colombia"
@@ -6974,8 +6848,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Ropa_Vieja_with_Yellow_Rice_and_Plantains.jpg/800px-Ropa_Vieja_with_Yellow_Rice_and_Plantains.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212625/ropa-vieja-cuban-shredded-beef/",
+    "image": "https://littlespicejar.com/wp-content/uploads/2016/06/Ropa-Vieja-Instant-Pot-Slow-Cooker-3-710x1065.jpg",
+    "recipe_link": "https://littlespicejar.com/cuban-shredded-beef-slow-cooker/",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Cuba"
@@ -7013,8 +6887,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Mofongo.jpg/800px-Mofongo.jpg",
-    "recipe_link": "https://www.mycolombianrecipes.com/mofongo-recipe-puerto-rican-mashed-plantains/",
+    "image": "https://www.thespruceeats.com/thmb/FKH0T-32vOmicSGhp09Ykp62PV4=/750x0/filters:no_upscale():max_bytes(150000):strip_icc()/traditional-mofongo-recipe-2138186-hero-01-7e8ce26a92484373b9aa4253d6dd1d0d.jpg",
+    "recipe_link": "https://www-thespruceeats-com.translate.goog/traditional-mofongo-recipe-2138186?_x_tr_sl=en&_x_tr_tl=vi&_x_tr_hl=vi&_x_tr_pto=tc",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Puerto Rico"
@@ -7047,8 +6921,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Coxinha.jpg/800px-Coxinha.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212624/brazilian-chicken-croquettes-coxinha/",
+    "image": "https://img-global.cpcdn.com/recipes/aca0f3c981b13b02/680x964cq90/coxinhas-brazilian-chicken-croquettes-recipe-main-photo.webp",
+    "recipe_link": "https://cookpad.com/vn/cong-thuc/6875605-coxinhas-brazilian-chicken-croquettes",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Brazil"
@@ -7081,8 +6955,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Meat_pie.jpg/800px-Meat_pie.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212623/aussie-meat-pies/",
+    "image": "https://media.vov.vn/sites/default/files/styles/large/public/2023-07/1_5.jpg",
+    "recipe_link": "https://vov.vn/doanh-nghiep/doanh-nghiep-24h/giat-tui-cach-lam-banh-meat-pie-chuan-vi-mua-he-uc-post1030186.vov",
     "origin": {
       "continent": "Châu Úc",
       "country": "Úc"
@@ -7115,8 +6989,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Fish_and_Chips.jpg/800px-Fish_and_Chips.jpg",
-    "recipe_link": "https://www.bbcgoodfood.com/recipes/fish-chips-0",
+    "image": "https://luhanhvietnam.com.vn/du-lich/vnt_upload/news/08_2019/mon-Fish_and_Chips_New_Zealand-2.jpg",
+    "recipe_link": "https://luhanhvietnam.com.vn/du-lich/thuong-thuc-mon-fish-and-chips-new-zealand-thom-ngon-gian-di.html",
     "origin": {
       "continent": "Châu Úc",
       "country": "New Zealand"
@@ -7149,8 +7023,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Pavlova_with_berries.jpg/800px-Pavlova_with_berries.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212622/pavlova/",
+    "image": "https://www.internationaldessertsblog.com/wp-content/uploads/2021/01/Australia-Pavlova-38.jpg",
+    "recipe_link": "https://www.internationaldessertsblog.com/easy-australian-pavlova-dessert/",
     "origin": {
       "continent": "Châu Úc",
       "country": "Úc"
@@ -7183,8 +7057,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Lamington_with_raspberry_jam_filling.jpg/800px-Lamington_with_raspberry_jam_filling.jpg",
-    "recipe_link": "https://www.taste.com.au/recipes/lamingtons/f52e551e-e2c7-4b72-8f1b-4b2a3a0c5c4e",
+    "image": "https://cdn.tgdd.vn/Files/2023/12/14/1557535/cach-lam-banh-lamington-socola-thom-ngon-chuan-vi-nuoc-uc-202312141431327945.jpg",
+    "recipe_link": "https://www.bachhoaxanh.com/kinh-nghiem-hay/cach-lam-banh-lamington-socola-thom-ngon-chuan-vi-nuoc-uc-1557535?srsltid=AfmBOoo-6W8GisD8ApKRimfTvDZzLZxf3hXmKARNxGC7nHQD0svDesk8",
     "origin": {
       "continent": "Châu Úc",
       "country": "Úc"
@@ -7227,8 +7101,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Traditional_Hangi.jpg/800px-Traditional_Hangi.jpg",
-    "recipe_link": "https://www.newzealand.com/int/feature/hangi/",
+    "image": "https://www.campervannewzealand.co.nz/assets/img/blog/472.png",
+    "recipe_link": "https://www.campervannewzealand.co.nz/blog/about-new-zealand/hangi-food",
     "origin": {
       "continent": "Châu Úc",
       "country": "New Zealand"
@@ -7251,8 +7125,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Kumara.jpg/800px-Kumara.jpg",
-    "recipe_link": "https://www.edmonds.co.nz/recipes/sides/roasted-kumara/",
+    "image": "https://www.thespruceeats.com/thmb/qKE_kqIIeTUGaRJH6ZHA10nY-io=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/SES-roasted-sweet-potato-kumara-salad-recipe-256412-292f5efc6a2242649b245bdd0bdd8479.jpg",
+    "recipe_link": "https://www.thespruceeats.com/roasted-sweet-potato-kumara-salad-recipe-256412",
     "origin": {
       "continent": "Châu Úc",
       "country": "New Zealand"
@@ -7290,8 +7164,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Anzac_Biscuits.jpg/800px-Anzac_Biscuits.jpg",
-    "recipe_link": "https://www.taste.com.au/recipes/anzac-biscuits/91410931-e407-422f-ae2f-28c0b5e43c5b",
+    "image": "https://www.thedarlingacademy.com/assets/media/854r-traditional-anzac-biscuit-cookie-recipe-1200x708.webp",
+    "recipe_link": "https://www.thedarlingacademy.com/articles/anzac-biscuits-a-world-war-one-recipe/",
     "origin": {
       "continent": "Châu Úc",
       "country": "Úc"
@@ -7314,8 +7188,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Sashimi_tuna.jpg/800px-Sashimi_tuna.jpg",
-    "recipe_link": "https://www.sushiholic.com/sashimi-recipe-how-to-make-sashimi/",
+    "image": "https://japan.recipetineats.com/wp-content/uploads/2024/04/Sashimi_0562.jpg",
+    "recipe_link": "https://japan.recipetineats.com/sashimi-sliced-raw-fish/",
     "origin": {
       "continent": "Châu Úc",
       "country": "Úc"
@@ -7348,8 +7222,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Prawn_Cocktail_%286205835619%29.jpg/800px-Prawn_Cocktail_%286205835619%29.jpg",
-    "recipe_link": "https://www.bbcgoodfood.com/recipes/prawn-cocktail",
+    "image": "https://file.hstatic.net/200000551189/file/z3903952287834_2c0f87a735a46bb90ef54adf7ee37747_9d06aca1d0444d208096585f15b33439_grande.jpg",
+    "recipe_link": "https://oceanmarketbasket.com/blogs/news/tom-cocktail-tuoi-mat-chuan-vi-uc-ngay-tai-nha-thu-ngay-nha",
     "origin": {
       "continent": "Châu Úc",
       "country": "Úc"
@@ -7392,8 +7266,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Stir-fried_Hokkien_mee_in_Ipoh.jpg/800px-Stir-fried_Hokkien_mee_in_Ipoh.jpg",
-    "recipe_link": "https://www.recipetineats.com/hokkien-noodles-stir-fry/",
+    "image": "https://www.recipetineats.com/tachyon/2024/08/Hokkien-noodles-with-chicken_2.jpg?resize=1200%2C1500&zoom=0.54",
+    "recipe_link": "https://www.recipetineats.com/hokkien-noodles/",
     "origin": {
       "continent": "Châu Úc",
       "country": "Úc"
@@ -7416,8 +7290,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Barramundi_fillet.jpg/800px-Barramundi_fillet.jpg",
-    "recipe_link": "https://www.taste.com.au/recipes/pan-fried-barramundi/5a914397-2b7e-4a6c-a9f4-0b7c768916d8",
+    "image": "https://cdn.tgdd.vn/2021/01/CookProduct/ca-chem-lam-gi-ngon-tong-hop-12-cach-che-bien-mon-ngon-tu-ca1200-1200x676.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/ca-chem-lam-gi-ngon-tong-hop-12-cach-che-bien-mon-ngon-tu-ca-06865",
     "origin": {
       "continent": "Châu Úc",
       "country": "Úc"
@@ -7445,8 +7319,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Damper_bread.jpg/800px-Damper_bread.jpg",
-    "recipe_link": "https://www.taste.com.au/recipes/damper/4d5a9d29-ff4a-4b95-a3f2-1144f77c3a07",
+    "image": "https://www.mrsfoodiemumma.com/wp-content/uploads/2020/08/IMG_3060-1536x2048.jpeg",
+    "recipe_link": "https://www.mrsfoodiemumma.com/damper/",
     "origin": {
       "continent": "Châu Úc",
       "country": "Úc"
@@ -7469,8 +7343,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Witchetty_grub.jpg/800px-Witchetty_grub.jpg",
-    "recipe_link": "https://www.sbs.com.au/food/article/2017/02/09/witchetty-grubs-australias-original-superfood",
+    "image": "https://bazantravel.com/cdn/medias/uploads/29/29676-witchetty-grubs-au-trung-buom-670x446.jpg",
+    "recipe_link": "https://travelfoodatlas.com/australian-witchetty-grub-recipe",
     "origin": {
       "continent": "Châu Úc",
       "country": "Úc"
@@ -7493,8 +7367,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Kangaroo_steak.jpg/800px-Kangaroo_steak.jpg",
-    "recipe_link": "https://www.taste.com.au/recipes/kangaroo-steaks-red-wine-blackberry-sauce/5b9c0d3a-c8c3-4f91-8f5c-e5c92c8138a0",
+    "image": "https://www.wikihow.com/images/thumb/d/d9/Cook-Kangaroo-Steak-Step-14.jpg/aid9738693-v4-728px-Cook-Kangaroo-Steak-Step-14.jpg.webp",
+    "recipe_link": "https://www.wikihow.com/Cook-Kangaroo-Steak",
     "origin": {
       "continent": "Châu Úc",
       "country": "Úc"
@@ -7517,8 +7391,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Emu_meat_steak.jpg/800px-Emu_meat_steak.jpg",
-    "recipe_link": "https://www.taste.com.au/recipes/emu-steaks-bush-tomato-relish/a9c141a0-a0a3-4b1d-b2a1-5a9e334b07d0",
+    "image": "https://www.chefspencil.com/wp-content/uploads/Noodles-with-Ostrich.jpg.webp",
+    "recipe_link": "https://www.chefspencil.com/emu-and-ostrich-meat/",
     "origin": {
       "continent": "Châu Úc",
       "country": "Úc"
@@ -7556,8 +7430,8 @@
         "source": "Ước tính chung"
       }
     ],
-     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Pumpkin_soup.jpg/800px-Pumpkin_soup.jpg",
-    "recipe_link": "https://www.taste.com.au/recipes/creamy-pumpkin-soup/7a8274a8-1753-4809-8d14-3faf02714f29",
+     "image": "https://img.bestrecipes.com.au/S1xmPwKS/w720-h480-cfill-q90/br/2018/08/favourite-pumpkin-soup-recipe-507202-1.jpg",
+    "recipe_link": "https://www.bestrecipes.com.au/recipes/favourite-pumpkin-soup-recipe/m76zt7hd?nk=4fa52a2f5240db41c2cf939d242f9243-1749134728",
     "origin": {
       "continent": "Châu Úc",
       "country": "Úc"
@@ -7595,8 +7469,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Streets_Golden_Gaytime.jpg/800px-Streets_Golden_Gaytime.jpg",
-    "recipe_link": "https://streetsicecream.com.au/products/golden-gaytime",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Golden_Gaytime.png/250px-Golden_Gaytime.png",
+    "recipe_link": "https://www.delicious.com.au/recipes/golden-gaytime-ice-cream-recipe/iwumn53e",
     "origin": {
       "continent": "Châu Úc",
       "country": "Úc"
@@ -7634,8 +7508,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Afghan_biscuit.jpg/800px-Afghan_biscuit.jpg",
-    "recipe_link": "https://www.chelsea.co.nz/browse-recipes/afghan-biscuits/",
+    "image": "https://www-thespruceeats-com.translate.goog/thmb/BTd0fPgdqXGIIB4tmsmMweqoDFY=/750x0/filters:no_upscale():max_bytes(150000):strip_icc()/afghan-biscuit-recipe-256048-hero-01-af44eb205734496985b0e3abf3e6bdb0.jpg?_x_tr_sl=en&_x_tr_tl=vi&_x_tr_hl=vi&_x_tr_pto=tc",
+    "recipe_link": "https://www-thespruceeats-com.translate.goog/afghan-biscuit-recipe-256048?_x_tr_sl=en&_x_tr_tl=vi&_x_tr_hl=vi&_x_tr_pto=tc",
     "origin": {
       "continent": "Châu Úc",
       "country": "New Zealand"
@@ -7668,8 +7542,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Whitebait_fritter.jpg/800px-Whitebait_fritter.jpg",
-    "recipe_link": "https://www.food.com/recipe/whitebait-fritters-33634",
+    "image": "https://edmondscooking.co.nz/assets/recipes/a13bdcb2c9/Whitebait-fritters__FillWzYyMCw1NjBd.jpg",
+    "recipe_link": "https://edmondscooking.co.nz/recipes/fritters/whitebait-fritters/",
     "origin": {
       "continent": "Châu Úc",
       "country": "New Zealand"
@@ -7741,8 +7615,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Pozole_blanco.jpg/800px-Pozole_blanco.jpg",
-    "recipe_link": "https://www.isabeleats.com/pozole-rojo/",
+    "image": "https://www.thespruceeats.com/thmb/0VGjz-Za3O7OWsCLI2fqy0jFCsA=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/posole-pork-and-hominy-stew-2217534-hero-01-13b7eb7c87674fe7817a51781844d5e8.jpg",
+    "recipe_link": "https://www.thespruceeats.com/posole-pork-and-hominy-stew-2217534",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Mexico"
@@ -7770,8 +7644,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Mole_Poblano_%282006%29.jpg/800px-Mole_Poblano_%282006%29.jpg",
-    "recipe_link": "https://www.rickbayless.com/recipe/chicken-in-mole-poblano/",
+    "image": "https://images.ctfassets.net/3s5io6mnxfqz/2QAC3Sf5jNpyKTmY30BYvb/cc33800e9319414b58c94c375a59b990/AdobeStock_273956677.jpeg?w=828",
+    "recipe_link": "https://www.masterclass.com/articles/how-to-make-mexican-mole-poblano",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Mexico"
@@ -7809,8 +7683,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Pupusas_Revueltas.jpg/800px-Pupusas_Revueltas.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/222384/pupusas-revueltas/",
+    "image": "https://www.thecuriouschickpea.com/wp-content/uploads/2019/04/homemade-pupusas-5.jpg.webp",
+    "recipe_link": "https://www.thecuriouschickpea.com/homemade-salvadoran-pupusas/",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "El Salvador"
@@ -7848,8 +7722,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Nachos_with_cheese%2C_guacamole%2C_salsa%2C_sour_cream%2C_and_jalape%C3%B1os.jpg/800px-Nachos_with_cheese%2C_guacamole%2C_salsa%2C_sour_cream%2C_and_jalape%C3%B1os.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212621/ultimate-nachos/",
+    "image": "https://www.simplyrecipes.com/thmb/VGCsp-GA5dDBknmtDjeDaIsIlg0=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Simpy-Recipes-Mexican-Street-Corn-Nachos-LEAD-01-edd6035f47d24b70a21639f84100638e.jpg",
+    "recipe_link": "https://www.simplyrecipes.com/recipes/mexican_street_corn_nachos/",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Hoa Kỳ"
@@ -7882,8 +7756,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Huevos_Rancheros.jpg/800px-Huevos_Rancheros.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212620/huevos-rancheros/",
+    "image": "https://www.simplyrecipes.com/thmb/UsLzXteh9nnLb3sRIX3COCOAJMc=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Simply-Recipes-Huevos-Rancheros-LEAD-28b417ed8ed44eb398895180db756a66.jpg",
+    "recipe_link": "https://www.simplyrecipes.com/recipes/huevos_rancheros/",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Mexico"
@@ -7916,8 +7790,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Gallo_pinto.jpg/800px-Gallo_pinto.jpg",
-    "recipe_link": "https://www.food.com/recipe/gallo-pinto-costa-rican-rice-and-beans-95568",
+    "image": "https://farm6.staticflickr.com/5811/21433242912_4a9e4ba6ac_z.jpg",
+    "recipe_link": "https://stripedspatula.com/gallo-pinto/",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Costa Rica"
@@ -7955,8 +7829,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Vigor%C3%B3n.JPG/800px-Vigor%C3%B3n.JPG",
-    "recipe_link": "https://www.nicaraguancuisine.com/recipes/main-dishes/vigoron/",
+    "image": "https://res.cloudinary.com/worldpackers/image/upload/c_fill,f_auto,q_auto,w_1024/v1/guides/article_cover/krigepaerqcmnuzarwqc?_a=BACADKGT",
+    "recipe_link": "https://tasty.co/recipe/nicaraguan-vigoron-and-tajadas-as-made-by-cat-alvarado",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Nicaragua"
@@ -7994,8 +7868,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Baleada_de_Honduras.jpg/800px-Baleada_de_Honduras.jpg",
-    "recipe_link": "https://www.food.com/recipe/honduran-baleadas-372985",
+    "image": "https://i0.wp.com/www.whats4eats.com/wp-content/uploads/2023/09/appetizers-baleadas-wikipedia-4x3-1.jpg?resize=750%2C563&ssl=1",
+    "recipe_link": "https://www.whats4eats.com/appetizers/baleadas-recipe",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Honduras"
@@ -8033,8 +7907,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Sopa_de_caracol_01.jpg/800px-Sopa_de_caracol_01.jpg",
-    "recipe_link": "https://www.food.com/recipe/honduran-conch-soup-sopa-de-caracol-415510",
+    "image": "https://i0.wp.com/www.whats4eats.com/wp-content/uploads/2024/04/soups-sopa-caracol-flickr-intimaralem85-2597251201-4x3-1.jpg?resize=750%2C563&ssl=1",
+    "recipe_link": "https://www.whats4eats.com/soups/sopa-de-caracol-recipe",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Honduras"
@@ -8077,8 +7951,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Fiambre_D%C3%ADa_de_Muertos_Guatemala.jpg/800px-Fiambre_D%C3%ADa_de_Muertos_Guatemala.jpg",
-    "recipe_link": "https://www.guatemala.com/noticias/cultura/el-fiambre-historia-y-receta-de-un-platillo-emblematico-de-guatemala.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhUCpdxrjLyQ61zl58pf5b3pfYlfORd5zvVO5N1nqVdRs9iDhOjSFs-DXay0RkRuBrkduhrspxydTVW82x3cSTn69_xQiG0I4jyXi77fdVKBRtTkJpWqV6xW-Pme5BzNsvbhzumiYnvYQuzamlw2y1MbwZs2B7y-_t4l0oiN8RLMc4XyuD405Ii9CrILQ/w512-h640/7ECE2695-AAC6-43DD-896D-103000A8C25C.jpeg",
+    "recipe_link": "https://www.amyscookingadventures.com/2023/05/fiambre-guatemalan-salad.html",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Guatemala"
@@ -8116,8 +7990,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Pozole_blanco.jpg/800px-Pozole_blanco.jpg",
-    "recipe_link": "https://www.isabeleats.com/pozole-rojo/",
+    "image": "https://www.thespruceeats.com/thmb/0VGjz-Za3O7OWsCLI2fqy0jFCsA=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/posole-pork-and-hominy-stew-2217534-hero-01-13b7eb7c87674fe7817a51781844d5e8.jpg",
+    "recipe_link": "https://www.thespruceeats.com/posole-pork-and-hominy-stew-2217534",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Mexico"
@@ -8145,8 +8019,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Mole_Poblano_%282006%29.jpg/800px-Mole_Poblano_%282006%29.jpg",
-    "recipe_link": "https://www.rickbayless.com/recipe/chicken-in-mole-poblano/",
+    "image": "https://images.ctfassets.net/3s5io6mnxfqz/2QAC3Sf5jNpyKTmY30BYvb/cc33800e9319414b58c94c375a59b990/AdobeStock_273956677.jpeg?w=828",
+    "recipe_link": "https://www.masterclass.com/articles/how-to-make-mexican-mole-poblano",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Mexico"
@@ -8184,8 +8058,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Pupusas_Revueltas.jpg/800px-Pupusas_Revueltas.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/222384/pupusas-revueltas/",
+    "image": "https://www.thecuriouschickpea.com/wp-content/uploads/2019/04/homemade-pupusas-5.jpg.webp",
+    "recipe_link": "https://www.thecuriouschickpea.com/homemade-salvadoran-pupusas/",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "El Salvador"
@@ -8223,8 +8097,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Nachos_with_cheese%2C_guacamole%2C_salsa%2C_sour_cream%2C_and_jalape%C3%B1os.jpg/800px-Nachos_with_cheese%2C_guacamole%2C_salsa%2C_sour_cream%2C_and_jalape%C3%B1os.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212621/ultimate-nachos/",
+    "image": "https://www.simplyrecipes.com/thmb/VGCsp-GA5dDBknmtDjeDaIsIlg0=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Simpy-Recipes-Mexican-Street-Corn-Nachos-LEAD-01-edd6035f47d24b70a21639f84100638e.jpg",
+    "recipe_link": "https://www.simplyrecipes.com/recipes/mexican_street_corn_nachos/",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Hoa Kỳ"
@@ -8257,8 +8131,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Huevos_Rancheros.jpg/800px-Huevos_Rancheros.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212620/huevos-rancheros/",
+    "image": "https://www.simplyrecipes.com/thmb/UsLzXteh9nnLb3sRIX3COCOAJMc=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Simply-Recipes-Huevos-Rancheros-LEAD-28b417ed8ed44eb398895180db756a66.jpg",
+    "recipe_link": "https://www.simplyrecipes.com/recipes/huevos_rancheros/",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Mexico"
@@ -8291,8 +8165,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Gallo_pinto.jpg/800px-Gallo_pinto.jpg",
-    "recipe_link": "https://www.food.com/recipe/gallo-pinto-costa-rican-rice-and-beans-95568",
+    "image": "https://farm6.staticflickr.com/5811/21433242912_4a9e4ba6ac_z.jpg",
+    "recipe_link": "https://stripedspatula.com/gallo-pinto/",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Costa Rica"
@@ -8330,8 +8204,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Vigor%C3%B3n.JPG/800px-Vigor%C3%B3n.JPG",
-    "recipe_link": "https://www.nicaraguancuisine.com/recipes/main-dishes/vigoron/",
+    "image": "https://res.cloudinary.com/worldpackers/image/upload/c_fill,f_auto,q_auto,w_1024/v1/guides/article_cover/krigepaerqcmnuzarwqc?_a=BACADKGT",
+    "recipe_link": "https://tasty.co/recipe/nicaraguan-vigoron-and-tajadas-as-made-by-cat-alvarado",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Nicaragua"
@@ -8369,8 +8243,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Baleada_de_Honduras.jpg/800px-Baleada_de_Honduras.jpg",
-    "recipe_link": "https://www.food.com/recipe/honduran-baleadas-372985",
+    "image": "https://i0.wp.com/www.whats4eats.com/wp-content/uploads/2023/09/appetizers-baleadas-wikipedia-4x3-1.jpg?resize=750%2C563&ssl=1",
+    "recipe_link": "https://www.whats4eats.com/appetizers/baleadas-recipe",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Honduras"
@@ -8408,8 +8282,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Sopa_de_caracol_01.jpg/800px-Sopa_de_caracol_01.jpg",
-    "recipe_link": "https://www.food.com/recipe/honduran-conch-soup-sopa-de-caracol-415510",
+    "image": "https://i0.wp.com/www.whats4eats.com/wp-content/uploads/2024/04/soups-sopa-caracol-flickr-intimaralem85-2597251201-4x3-1.jpg?resize=750%2C563&ssl=1",
+    "recipe_link": "https://www.whats4eats.com/soups/sopa-de-caracol-recipe",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Honduras"
@@ -8452,8 +8326,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Fiambre_D%C3%ADa_de_Muertos_Guatemala.jpg/800px-Fiambre_D%C3%ADa_de_Muertos_Guatemala.jpg",
-    "recipe_link": "https://www.guatemala.com/noticias/cultura/el-fiambre-historia-y-receta-de-un-platillo-emblematico-de-guatemala.html",
+    "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhUCpdxrjLyQ61zl58pf5b3pfYlfORd5zvVO5N1nqVdRs9iDhOjSFs-DXay0RkRuBrkduhrspxydTVW82x3cSTn69_xQiG0I4jyXi77fdVKBRtTkJpWqV6xW-Pme5BzNsvbhzumiYnvYQuzamlw2y1MbwZs2B7y-_t4l0oiN8RLMc4XyuD405Ii9CrILQ/w512-h640/7ECE2695-AAC6-43DD-896D-103000A8C25C.jpeg",
+    "recipe_link": "https://www.amyscookingadventures.com/2023/05/fiambre-guatemalan-salad.html",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Guatemala"
@@ -8491,8 +8365,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Ch%C3%A8_chu%E1%BB%91i.jpg/800px-Ch%C3%A8_chu%E1%BB%91i.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212612/che-chuoi-vietnamese-banana-tapioca-dessert/",
+    "image": "https://cdn.tgdd.vn/2021/04/CookRecipe/Avatar/che-chuoi-bot-bang-thumbnail-1.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/huong-dan-chi-tiet-cach-nau-che-chuoi-don-gian-ma-ngon-01038",
     "origin": {
       "continent": "Châu Á",
       "country": "Việt Nam"
@@ -8530,8 +8404,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Che_ba_mau.jpg/800px-Che_ba_mau.jpg",
-    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-che-thai-chua-ngot-voi-cach-nau-don-gian-va-sieu-nhanh-13012",
+    "image": "https://cdn.tgdd.vn/2021/11/CookDish/cach-nau-che-ba-mau-ngot-thom-thanh-mat-giai-nhiet-mua-he-avt-1200x676.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-nau-che-ba-mau-ngot-thom-thanh-mat-giai-nhiet-mua-he-15271",
     "origin": {
       "continent": "Châu Á",
       "country": "Việt Nam"
@@ -8569,8 +8443,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/B%C3%A1nh_tr%C3%A1ng_tr%E1%BB%99n.jpg/800px-B%C3%A1nh_tr%C3%A1ng_tr%E1%BB%99n.jpg",
-    "recipe_link": "https://www.nguyenkim.com/cach-lam-banh-trang-tron-thom-ngon-don-gian-tai-nha.html",
+    "image": "https://cdn.tgdd.vn/Files/2017/03/12/959979/cach-lam-banh-trang-tron-tai-nha-ngon-cung-nuoc-sot-dam-vi-202202251706317489.jpg",
+    "recipe_link": "https://www.bachhoaxanh.com/kinh-nghiem-hay/cach-lam-banh-trang-tron-sach-ngon-tai-nha-959979?srsltid=AfmBOorOzVjbNXKfxoxrusS2azR-hQ8S2exEC66y3z1op3nFIgehUbva",
     "origin": {
       "continent": "Châu Á",
       "country": "Việt Nam"
@@ -8603,8 +8477,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/B%C3%A1nh_b%C3%B2_n%C6%B0%E1%BB%9Bng.jpg/800px-B%C3%A1nh_b%C3%B2_n%C6%B0%E1%BB%9Bng.jpg",
-    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-banh-bo-nuong-la-dua-thom-ngon-mem-xop-11440",
+    "image": "https://cdn.tgdd.vn/2021/03/CookRecipe/GalleryStep/nuong-banh-27.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-banh-bo-nuong-duong-thot-not-thom-ngon-me-02751",
     "origin": {
       "continent": "Châu Á",
       "country": "Việt Nam"
@@ -8642,8 +8516,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/B%C3%A1nh_da_l%E1%BB%A3n_%28Vietnamese_steamed_layer_cake%29.jpg/800px-B%C3%A1nh_da_l%E1%BB%A3n_%28Vietnamese_steamed_layer_cake%29.jpg",
-    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-banh-da-lon-la-dua-don-gian-cuc-ngon-nhu-cua-nguoi-13012",
+    "image": "https://cdn.tgdd.vn/2021/10/CookDish/cach-lam-banh-bao-bang-bot-mi-nguyen-cam-thom-ngon-cho-nguoi-avt-1200x676.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-banh-da-lon-thom-bui-vi-dau-xanh-la-dua-cuc-ngon-01080",
     "origin": {
       "continent": "Châu Á",
       "country": "Việt Nam"
@@ -8681,8 +8555,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Banh_duc_nong.jpg/800px-Banh_duc_nong.jpg",
-    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-banh-duc-nong-thit-bam-cuc-de-an-ngon-chuan-vi-mien-bac-13012",
+    "image": "https://statics.vinpearl.com/banh-duc-nong-1_1632107427_1720076244.jpg",
+    "recipe_link": "https://vinpearl.com/vi/cach-lam-banh-duc-nong-chuan-vi-ha-thanh-ngay-tai-nha",
     "origin": {
       "continent": "Châu Á",
       "country": "Việt Nam"
@@ -8720,8 +8594,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://cdn.tgdd.vn/2021/07/CookProduct/cach-lam-suong-sao-hat-chia-thom-ngon-mat-lanh-tai-nha-thumb-1200x676.jpg",
-    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-suong-sao-hat-chia-thom-ngon-mat-lanh-tai-nha-13012",
+    "image": "https://thachan.vn/theme/wbthachan/wp-content/uploads/2023/08/Cach-lam-suong-sao-tai-nha.jpg",
+    "recipe_link": "https://thachan.vn/cach-lam-suong-sao-hat-chia-tai-nha-don-gian-thom-ngon.html?srsltid=AfmBOoqr43-pn6jijmyA50ED-UMrDJUcC7x2TNpEVuOmPTXsC1DXHFVE",
     "origin": {
       "continent": "Châu Á",
       "country": "Việt Nam"
@@ -8754,8 +8628,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/T%C3%A0o_ph%E1%BB%9B_n%C6%B0%E1%BB%9Bc_c%E1%BB%91t_d%E1%BB%ABa.jpg/800px-T%C3%A0o_ph%E1%BB%9B_n%C6%B0%E1%BB%9Bc_c%E1%BB%91t_d%E1%BB%ABa.jpg",
-    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-tao-pho-ngon-thom-mat-lanh-tai-nha-voi-cong-thuc-cuc-13012",
+    "image": "https://cdn.tgdd.vn/Files/2020/11/24/1308857/5-cach-lam-tao-pho-thom-ngon-nguyen-lieu-don-gian-tai-nha-202109201300039632.jpg",
+    "recipe_link": "https://www.bachhoaxanh.com/kinh-nghiem-hay/mach-ban-cach-lam-tao-pho-bang-yen-mach-vua-ngon-vua-chang-lo-tang-can-1308857?srsltid=AfmBOoqmKoWV1ZgFhShRAMuuxm94d27dSIN7qWQpbMXwF5wuAxKbU2qU",
     "origin": {
       "continent": "Châu Á",
       "country": "Việt Nam"
@@ -8788,8 +8662,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/B%C3%A1nh_ti%C3%AAu.jpg/800px-B%C3%A1nh_ti%C3%AAu.jpg",
-    "recipe_link": "https://www.sbs.com.au/food/recipes/hollow-doughnuts-banh-tieu",
+    "image": "https://daylambanh.edu.vn/wp-content/uploads/2020/01/cach-lam-banh-tieu.jpg",
+    "recipe_link": "https://www.bachhoaxanh.com/kinh-nghiem-hay/cach-lam-banh-tieu-sua-tai-nha-dac-ruot-thom-ngon-1416787?srsltid=AfmBOooJiK28CwdcmJiPZoS6gR2aXWW28Xiv0WBiaypILjFGdT1jZ_9m",
     "origin": {
       "continent": "Châu Á",
       "country": "Việt Nam"
@@ -8827,8 +8701,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Banh_cam.jpg/800px-Banh_cam.jpg",
-    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-banh-ran-ngon-don-gian-tai-nha-13012",
+    "image": "https://cdn.tgdd.vn/2021/11/CookDish/cach-lam-banh-cam-banh-ran-nhan-dau-xanh-beo-bui-vo-gion-ngot-avt-1200x676.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-banh-cam-banh-ran-nhan-dau-xanh-beo-bui-vo-gion-ngot-14828",
     "origin": {
       "continent": "Châu Á",
       "country": "Việt Nam"
@@ -8861,8 +8735,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Croissant_with_chocolate.jpg/800px-Croissant_with_chocolate.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/208855/classic-butter-croissants/",
+    "image": "https://cdn.tgdd.vn/Files/2020/03/23/1243894/lam-banh-sung-trau-banh-croissant-trung-muoi-ng-760x367.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-banh-sung-bo-banh-croissant-thom-beo-dung-chuan-01864",
     "origin": {
       "continent": "Châu Âu",
       "country": "Pháp"
@@ -8895,8 +8769,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Macarons_vari%C3%A9s_de_Ladur%C3%A9e.jpg/800px-Macarons_vari%C3%A9s_de_Ladur%C3%A9e.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212611/french-macarons/",
+    "image": "https://cdn.tgdd.vn/Files/2020/03/23/1243894/lam-banh-sung-trau-banh-croissant-trung-muoi-ng-760x367.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-banh-sung-bo-banh-croissant-thom-beo-dung-chuan-01864",
     "origin": {
       "continent": "Châu Âu",
       "country": "Pháp"
@@ -8929,8 +8803,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Cream_tea_scones_with_jam_and_cream_DSC_0009.JPG/800px-Cream_tea_scones_with_jam_and_cream_DSC_0009.JPG",
-    "recipe_link": "https://www.bbcgoodfood.com/recipes/classic-scones",
+    "image": "https://img.taste.com.au/LM-lSMVS/w643-h428-cfill-q90/taste/2016/11/classic-scones-with-jam-and-cream-105148-1.jpeg",
+    "recipe_link": "https://www.taste.com.au/recipes/classic-scones-jam-cream/8e15a7c3-cbc8-4a5e-8484-161b319128eb",
     "origin": {
       "continent": "Châu Âu",
       "country": "Vương quốc Anh"
@@ -8968,8 +8842,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Churros_con_Chocolate.jpg/800px-Churros_con_Chocolate.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212610/churros/",
+    "image": "https://cdn.tgdd.vn/Files/2020/03/22/1243692/cach-lam-banh-churros-banh-quay-chien-gion-sot-s-10-760x367.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-banh-churros-banh-quay-chien-gion-khong-can-lo-nuong-01858",
     "origin": {
       "continent": "Châu Âu",
       "country": "Tây Ban Nha"
@@ -9002,8 +8876,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Brussels_waffles.jpg/800px-Brussels_waffles.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212609/belgian-waffles/",
+    "image": "https://www.tasteofhome.com/wp-content/uploads/2018/01/True-Belgian-Waffles_EXPS_FT24_4869_JR_0214_3.jpg?fit=300,300&webp=1",
+    "recipe_link": "https://www.tasteofhome.com/recipes/true-belgian-waffles/",
     "origin": {
       "continent": "Châu Âu",
       "country": "Bỉ"
@@ -9036,8 +8910,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Pretzel.jpg/800px-Pretzel.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212608/soft-pretzels/",
+    "image": "https://handletheheat.com/wp-content/uploads/2021/09/soft-pretzel-recipe-SQUARE-1536x1536.jpg",
+    "recipe_link": "https://handletheheat.com/how-to-make-pretzels/",
     "origin": {
       "continent": "Châu Âu",
       "country": "Đức"
@@ -9070,8 +8944,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Cr%C3%AApes_with_berries.jpg/800px-Cr%C3%AApes_with_berries.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212607/crepes/",
+    "image": "https://cdn.tgdd.vn/Files/2019/03/13/1154490/cach-lam-banh-crepe-thom-ngon-beo-ngay-don-gian-tai-nha-202205241356173063.jpg",
+    "recipe_link": "https://www.bachhoaxanh.com/kinh-nghiem-hay/2-cach-lam-banh-crepe-tai-nha-chi-voi-chiec-chao-chong-dinh-dam-bao-thanh-cong-ngay-tu-lan-dau-1154490?srsltid=AfmBOopD3bSBEhntmDMPYx4R7juVtvDL34QP1YIeaqJxs0GI9o99dnQH",
     "origin": {
       "continent": "Châu Âu",
       "country": "Pháp"
@@ -9104,8 +8978,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Tiramisu_-_homemade.jpg/800px-Tiramisu_-_homemade.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212606/tiramisu/",
+    "image": "https://file.hstatic.net/200000079049/file/cong-thuc-lam-tiramisu_e9b100c536c5412f8c4e73257d99e38c_grande.jpg",
+    "recipe_link": "https://www.unitedvision.com.vn/blogs/cam-nang-lam-banh/cong-thuc-lam-tiramisu",
     "origin": {
       "continent": "Châu Âu",
       "country": "Ý"
@@ -9143,8 +9017,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Panna_cotta_with_berries.jpg/800px-Panna_cotta_with_berries.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212605/panna-cotta/",
+    "image": "https://ik.imagekit.io/tvlk/blog/2024/12/panna-cotta-2-1024x682.jpeg?tr=q-70,c-at_max,w-500,h-300,dpr-2",
+    "recipe_link": "https://www.traveloka.com/vi-vn/explore/culinary/panna-cotta/465249",
     "origin": {
       "continent": "Châu Âu",
       "country": "Ý"
@@ -9177,8 +9051,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Eclairs.jpg/800px-Eclairs.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212604/eclairs/",
+    "image": "https://www.seriouseats.com/thmb/HhZS93WFe_o1ny3LUqOULIztgEM=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2020__12__20201210-choux-eclairs-vicky-wasik-16-acf615b81c2f4217857bbf80d60c28c1.jpg",
+    "recipe_link": "https://www.seriouseats.com/eclairs",
     "origin": {
       "continent": "Châu Âu",
       "country": "Pháp"
@@ -9216,8 +9090,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Jollof_Rice_and_chicken.jpg/800px-Jollof_Rice_and_chicken.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/268157/jollof-rice/",
+    "image": "https://www.seriouseats.com/thmb/hkew9YVEikBdR18URBT7HeJ3eG0=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/20220908-nigerian-jollof-rice-maureen-celestine-hero-no-spoon-29f44ba966324fff8149c05d0ecca7b7.JPG",
+    "recipe_link": "https://www.seriouseats.com/nigerian-jollof-rice-recipe-6741471",
     "origin": {
       "continent": "Châu Phi",
       "country": "Nigeria"
@@ -9255,8 +9129,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Egusi_Soup.jpg/800px-Egusi_Soup.jpg",
-    "recipe_link": "https://www.allnigerianrecipes.com/soups/egusi-soup-recipe/",
+    "image": "https://www.seriouseats.com/thmb/eaBrKnFs29uTJPVA9qqwAcXNPKw=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/20220425-Egusi-Maureen-Celestine-26-hero-1-608f079ef8ae4b8b840e61e44ecb766a.JPG",
+    "recipe_link": "https://www.seriouseats.com/nigerian-egusi-soup-5271598",
     "origin": {
       "continent": "Châu Phi",
       "country": "Nigeria"
@@ -9279,8 +9153,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Fufu.jpg/800px-Fufu.jpg",
-    "recipe_link": "https://www.allnigerianrecipes.com/staples/fufu-recipe/",
+    "image": "https://www.thespruceeats.com/thmb/3BJl-Z1Ya34AKa8jazFLHUTlpvM=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/yam-fufu-2138088-hero-01-3366d155060e480abaf33cc67031dc9d.jpg",
+    "recipe_link": "https://www.thespruceeats.com/yam-fufu-2138088",
     "origin": {
       "continent": "Châu Phi",
       "country": "Ghana"
@@ -9313,8 +9187,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Bobotie_with_yellow_rice.jpg/800px-Bobotie_with_yellow_rice.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212603/bobotie/",
+    "image": "https://i0.wp.com/justcookkai.com/wp-content/uploads/2020/09/IMG_20200527_172300-scaled.jpg?resize=1024%2C752&ssl=1",
+    "recipe_link": "https://justcookkai.com/2020/05/traditional-south-african-bobotie/",
     "origin": {
       "continent": "Châu Phi",
       "country": "Nam Phi"
@@ -9342,8 +9216,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Biltong_%28meat_snack%29.jpg/800px-Biltong_%28meat_snack%29.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212602/biltong/",
+    "image": "https://www.greedyferret.com/wp-content/uploads/2020/10/biltong-slices-on-chopping-board-perfect.jpg",
+    "recipe_link": "https://www.greedyferret.com/perfect-biltong-recipe-south-african-beef-jerky",
     "origin": {
       "continent": "Châu Phi",
       "country": "Nam Phi"
@@ -9366,8 +9240,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Injera_bread_and_food.jpg/800px-Injera_bread_and_food.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212601/injera/",
+    "image": "https://images.squarespace-cdn.com/content/v1/5db48cdef991e52a49075819/1603906692263-36D4TMINZDZ6MYSDK1Q0/Injera+w+doro+wot+egg+gomen.jpg?format=1500w",
+    "recipe_link": "https://hedonism-eats.com/blog/injera",
     "origin": {
       "continent": "Châu Phi",
       "country": "Ethiopia"
@@ -9405,8 +9279,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Doro_Wat.jpg/800px-Doro_Wat.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212600/doro-wat-ethiopian-chicken-stew/",
+    "image": "https://images.squarespace-cdn.com/content/v1/5db48cdef991e52a49075819/1603906692263-36D4TMINZDZ6MYSDK1Q0/Injera+w+doro+wot+egg+gomen.jpg?format=1500w",
+    "recipe_link": "https://hedonism-eats.com/blog/injera",
     "origin": {
       "continent": "Châu Phi",
       "country": "Ethiopia"
@@ -9439,8 +9313,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Moroccan_Chicken_Tagine.jpg/800px-Moroccan_Chicken_Tagine.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212599/moroccan-chicken-tagine/",
+    "image": "https://www.thespruceeats.com/thmb/aN738FX6fAoSSGeKmBLD5CPrA5A=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/chicken-tagine-with-preserved-lemons-olives-2394715-step-07-2055a5ad5de4493c8784210054f4db4f.jpg",
+    "recipe_link": "https://www.thespruceeats.com/chicken-tagine-with-preserved-lemons-olives-2394715",
     "origin": {
       "continent": "Châu Phi",
       "country": "Ma-rốc"
@@ -9463,8 +9337,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Couscous.jpg/800px-Couscous.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212598/couscous/",
+    "image": "https://cdn.tgdd.vn/Files/2021/04/03/1340386/couscous-la-gi-cach-nau-com-couscous-ngon-tai-nha-202107161653062729.jpg",
+    "recipe_link": "https://www.bachhoaxanh.com/kinh-nghiem-hay/couscous-la-gi-cach-nau-com-couscous-ngon-tai-nha-1340386?srsltid=AfmBOopiAM-_HR9jt6e89-HVf1-C6dcyGspowgsN-F65K1gnwMZaNf2Q",
     "origin": {
       "continent": "Châu Phi",
       "country": "Ma-rốc"
@@ -9492,8 +9366,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Chapati.jpg/800px-Chapati.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212597/chapati/",
+    "image": "https://cheflolaskitchen.com/wp-content/uploads/2015/07/Chapati-22.jpg.webp",
+    "recipe_link": "https://cheflolaskitchen.com/east-african-chapati/",
     "origin": {
       "continent": "Châu Phi",
       "country": "Kenya"
@@ -9526,8 +9400,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Cannoli.jpg/800px-Cannoli.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212596/cannoli-cream/",
+    "image": "https://kenh14cdn.com/thumb_w/600/etnlNc4WVwjMehheuec957vwFdd8DT/Image/2014/03/Cannoli-sp-3-c0aba.JPG",
+    "recipe_link": "https://kenh14.vn/made-by-me/cach-lam-banh-cannoli-truyen-thong-cua-y-cuc-de-20140324093948493.chn",
     "origin": {
       "continent": "Châu Âu",
       "country": "Ý"
@@ -9560,8 +9434,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Profiteroles.jpg/800px-Profiteroles.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212595/profiteroles/",
+    "image": "https://ofbatteranddough.com/wp-content/uploads/2019/11/Pin-profiteroles-19.jpg",
+    "recipe_link": "https://ofbatteranddough.com/profiteroles/",
     "origin": {
       "continent": "Châu Âu",
       "country": "Pháp"
@@ -9594,8 +9468,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Brownies_%286706915359%29.jpg/800px-Brownies_%286706915359%29.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212594/brownies/",
+    "image": "https://cdn.tgdd.vn/Files/2020/04/06/1247144/cach-lam-banh-brownie-socola-thom-ngon-mem-min-do-7-760x367.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-banh-brownie-socola-thom-ngon-mem-min-don-gian-01961",
     "origin": {
       "continent": "Châu Âu",
       "country": "Mỹ"
@@ -9628,8 +9502,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Blueberry_Muffin.jpg/800px-Blueberry_Muffin.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212593/blueberry-muffins/",
+    "image": "https://www.chainbaker.com/wp-content/uploads/2023/02/IMG_4566.jpg",
+    "recipe_link": "https://www.chainbaker.com/cold-proofed-muffins/",
     "origin": {
       "continent": "Châu Âu",
       "country": "Vương quốc Anh"
@@ -9662,8 +9536,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/New_York_Cheesecake.jpg/800px-New_York_Cheesecake.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212592/new-york-cheesecake/",
+    "image": "https://cdn.tgdd.vn/2021/11/CookDish/cach-lam-banh-cheesecake-chanh-day-khong-can-lo-nuong-avt-1200x676.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-banh-cheesecake-chanh-day-khong-can-lo-nuong-00962",
     "origin": {
       "continent": "Châu Âu",
       "country": "Mỹ"
@@ -9696,8 +9570,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Cinnamon_rolls.jpg/800px-Cinnamon_rolls.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212591/cinnamon-rolls/",
+    "image": "http://www.savourydays.com/wp-content/uploads/2016/11/c%C3%A1ch-l%C3%A0m-b%C3%A1nh-m%C3%AC-cu%E1%BB%99n-nho-qu%E1%BA%BF-banner.jpg",
+    "recipe_link": "http://www.savourydays.com/cach-lam-banh-mi-cuon-nho-que-cinnabons-cinnamon-rolls/",
     "origin": {
       "continent": "Châu Âu",
       "country": "Thụy Điển"
@@ -9730,8 +9604,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Apple_Strudel.jpg/800px-Apple_Strudel.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212590/apple-strudel/",
+    "image": "https://www.lilvienna.com/wp-content/uploads/Original-Viennese-Applestrudel2.jpg",
+    "recipe_link": "https://www.lilvienna.com/original-viennese-apple-strudel/",
     "origin": {
       "continent": "Châu Âu",
       "country": "Áo"
@@ -9764,8 +9638,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Financiers.jpg/800px-Financiers.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212589/financiers/",
+    "image": "https://www.weekendbakery.com/wp-content/uploads/IMG_6755-720x480.jpg",
+    "recipe_link": "https://www.weekendbakery.com/posts/how-to-make-french-financiers/",
     "origin": {
       "continent": "Châu Âu",
       "country": "Pháp"
@@ -9798,8 +9672,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Biscotti.jpg/800px-Biscotti.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212588/biscotti/",
+    "image": "https://cdn.tgdd.vn/Files/2021/08/06/1373439/huong-dan-cach-lam-banh-biscotti-gion-thom-chuan-vi-y-202108061357025723.jpg",
+    "recipe_link": "https://www.bachhoaxanh.com/kinh-nghiem-hay/huong-dan-cach-lam-banh-biscotti-gion-thom-chuan-vi-y-1373439?srsltid=AfmBOoqIcnWrYL-V0H1QDLn6OaOxKpotM4i0IvKB1PldFuwSZ0iQrsqT",
     "origin": {
       "continent": "Châu Âu",
       "country": "Ý"
@@ -9832,8 +9706,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Poffertjes.jpg/800px-Poffertjes.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212587/poffertjes/",
+    "image": "https://cdn.shopify.com/s/files/1/0693/9279/3885/files/delicious-poffertjes_480x480.jpg?v=1719142168",
+    "recipe_link": "https://dutchwafflecompany.us/blogs/recipes/poffertjes",
     "origin": {
       "continent": "Châu Âu",
       "country": "Hà Lan"
@@ -9871,8 +9745,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/B%C3%A1nh_kh%E1%BB%8Dt.jpg/800px-B%C3%A1nh_kh%E1%BB%8Dt.jpg",
-    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-banh-khot-vung-tau-thom-ngon-don-gian-tai-nha-13012",
+    "image": "https://cdn.tgdd.vn/Files/2020/03/10/1241155/cach-lam-banh-khot-gion-rum-thom-ngon-nhu-ngoai-hang-760x367.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-banh-khot-gion-rum-thom-ngon-nhu-ngoai-hang-01776",
     "origin": {
       "continent": "Châu Á",
       "country": "Việt Nam"
@@ -9910,8 +9784,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Che_Khoai_Mon.jpg/800px-Che_Khoai_Mon.jpg",
-    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-che-khoai-mon-nuoc-cot-dua-thom-ngon-don-gian-tai-nha-13012",
+    "image": "https://cdn.tgdd.vn/2021/10/CookDish/cach-lam-che-khoai-mon-thom-ngon-de-lam-tai-nha-avt-1200x676.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-che-khoai-mon-thom-ngon-de-lam-tai-nha-00175",
     "origin": {
       "continent": "Châu Á",
       "country": "Việt Nam"
@@ -9949,8 +9823,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Banh_Dap.jpg/800px-Banh_Dap.jpg",
-    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-banh-dap-thom-ngon-don-gian-tai-nha-13012",
+    "image": "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/2024_1_11_638405944850046589_banh-dap_.jpg",
+    "recipe_link": "https://fptshop.com.vn/tin-tuc/dien-may/cach-lam-mon-banh-dap-172960",
     "origin": {
       "continent": "Châu Á",
       "country": "Việt Nam"
@@ -9983,8 +9857,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Xoi_Man.jpg/800px-Xoi_Man.jpg",
-    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-xoi-man-thom-ngon-don-gian-tai-nha-13012",
+    "image": "https://cdn.tgdd.vn/2021/09/CookProduct/xthum-1200x676.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-nau-xoi-man-thap-cam-don-gian-cho-bua-sang-tai-nha-cuc-13425",
     "origin": {
       "continent": "Châu Á",
       "country": "Việt Nam"
@@ -10027,8 +9901,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Bun_Mam.jpg/800px-Bun_Mam.jpg",
-    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-bun-mam-chuan-vi-mien-tay-thom-ngon-kho-cuong-13012",
+    "image": "https://cdn.tgdd.vn/2021/09/CookDish/cach-nau-bun-mam-thom-ngon-kho-cuong-khong-khac-gi-ngoai-hang-avt-1200x676.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-nau-bun-mam-thom-ngon-kho-cuong-khong-khac-gi-ngoai-hang-00988",
     "origin": {
       "continent": "Châu Á",
       "country": "Việt Nam"
@@ -10066,8 +9940,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Banh_Can.jpg/800px-Banh_Can.jpg",
-    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-banh-can-ngon-chuan-vi-mien-trung-13012",
+    "image": "https://cdn.tgdd.vn/2021/04/CookProduct/1-1200x676-87.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-banh-can-da-nang-gion-ngon-beo-ngay-chuan-vi-don-09653",
     "origin": {
       "continent": "Châu Á",
       "country": "Việt Nam"
@@ -10105,8 +9979,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Banh_Nam.jpg/800px-Banh_Nam.jpg",
-    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-banh-nam-thom-ngon-don-gian-tai-nha-13012",
+    "image": "https://www.huongnghiepaau.com/wp-content/uploads/2019/08/banh-nam-dam-da-hap-dan.jpg",
+    "recipe_link": "https://www.huongnghiepaau.com/banh-nam-hue",
     "origin": {
       "continent": "Châu Á",
       "country": "Việt Nam"
@@ -10144,8 +10018,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Che_Buoi.jpg/800px-Che_Buoi.jpg",
-    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-che-buoi-thom-ngon-gion-dai-don-gian-tai-nha-13012",
+    "image": "https://cdn.tgdd.vn/Files/2021/05/27/1355192/cach-nau-che-buoi-dau-xanh-thanh-mat-giai-nhiet-mua-he-202202241156126861.jpg",
+    "recipe_link": "https://www.bachhoaxanh.com/kinh-nghiem-hay/cach-nau-che-buoi-dau-xanh-thanh-mat-giai-nhiet-mua-he-1355192?srsltid=AfmBOopm7wC0yklXmoVdBehR6CThcioDyYKoPiFt-pRssFPjFawFN1-m",
     "origin": {
       "continent": "Châu Á",
       "country": "Việt Nam"
@@ -10178,8 +10052,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Banh_Phu_The.jpg/800px-Banh_Phu_The.jpg",
-    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-banh-phu-the-don-gian-thom-ngon-tai-nha-13012",
+    "image": "https://cdn.tgdd.vn/Files/2021/07/25/1370636/cach-lam-banh-xu-xe-su-se-phu-the-gion-ngon-deo-thom-202203031148370490.jpg",
+    "recipe_link": "https://www.bachhoaxanh.com/kinh-nghiem-hay/2-cach-lam-banh-su-se-banh-phu-the-deo-thom-thanh-ngot-don-gian-1370636?srsltid=AfmBOorNr7B8GUeIgzntqylkP859m70hnNv5C86qZyj3wr5scYTopAYD",
     "origin": {
       "continent": "Châu Á",
       "country": "Việt Nam"
@@ -10212,8 +10086,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Banh_Gai.jpg/800px-Banh_Gai.jpg",
-    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-banh-gai-thom-ngon-don-gian-tai-nha-13012",
+    "image": "https://cdn.tgdd.vn/2022/05/CookDish/cach-lam-banh-gai-mem-ngon-deo-thom-ngay-tai-nha-avt-1200x676.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-banh-gai-mem-ngon-deo-thom-ngay-tai-nha-17299",
     "origin": {
       "continent": "Châu Á",
       "country": "Việt Nam"
@@ -10246,8 +10120,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Banh_It_Tran.jpg/800px-Banh_It_Tran.jpg",
-    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-banh-it-tran-thom-ngon-don-gian-tai-nha-13012",
+    "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/filters:quality(95)/https://cms-prod.s3-sgn09.fptcloud.com/cach_lam_banh_it_tran_la_dua_ngot_thom_ngon_trong_1_67514ae70c.jpg",
+    "recipe_link": "https://nhathuoclongchau.com.vn/bai-viet/cach-lam-banh-it-tran-mem-deo-thom-ngon-tai-nha-73058.html",
     "origin": {
       "continent": "Châu Á",
       "country": "Việt Nam"
@@ -10285,8 +10159,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Che_Khuc_Bach.jpg/800px-Che_Khuc_Bach.jpg",
-    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-che-khuc-bach-thom-ngon-mat-lanh-don-gian-tai-nha-13012",
+    "image": "https://cdn.tgdd.vn/Files/2017/10/09/1031511/cach-lam-che-khuc-bach-mem-tan-mat-lanh-giai-nhiet-mua-he-202201101220264914.jpg",
+    "recipe_link": "https://www.bachhoaxanh.com/kinh-nghiem-hay/cach-lam-che-khuc-bach-sieu-ngon-giai-nhiet-1031511?srsltid=AfmBOoofmwt6C8hVdzFjoFeyrdOaeKGZ9eLmGiY7Yix9CwYDz4-CgkfA",
     "origin": {
       "continent": "Châu Á",
       "country": "Việt Nam"
@@ -10324,8 +10198,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Nom_Hoa_Chuoi.jpg/800px-Nom_Hoa_Chuoi.jpg",
-    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-nom-hoa-chuoi-tai-heo-gion-ngon-chong-ngan-don-gian-tai-nha-13012",
+    "image": "https://cdn.tgdd.vn/Files/2021/08/30/1379079/cach-lam-nom-hoa-chuoi-da-heo-gion-tan-thom-phuc-de-lam-tai-nha-202108302130523474.jpeg",
+    "recipe_link": "https://www.bachhoaxanh.com/kinh-nghiem-hay/cach-lam-nom-hoa-chuoi-da-heo-gion-tan-thom-phuc-de-lam-tai-nha-1379079?srsltid=AfmBOor-jcpWjfp6DrKoBlmVt2DmmyDZy1zKL_zWKpBp3RLB6JzHrZU8",
     "origin": {
       "continent": "Châu Á",
       "country": "Việt Nam"
@@ -10363,8 +10237,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Bun_Nuoc_Leo.jpg/800px-Bun_Nuoc_Leo.jpg",
-    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-bun-nuoc-leo-soc-trang-thom-ngon-don-gian-tai-nha-13012",
+    "image": "https://cdn.tgdd.vn/Files/2020/07/01/1266749/cach-nau-bun-nuoc-leo-soc-trang-ngon-dam-da-chuan-vi-an-mot-lan-la-nho-mai-202208301437543598.jpg",
+    "recipe_link": "https://www.bachhoaxanh.com/kinh-nghiem-hay/cach-nau-bun-nuoc-leo-soc-trang-thom-ngon-dam-da-chuan-vi-an-mot-lan-la-nho-mai-1266749?srsltid=AfmBOoqnfPejhrWtP9HxeybqL08UDv1wxkSS6RuwnwODwWYYxjXeV64J",
     "origin": {
       "continent": "Châu Á",
       "country": "Việt Nam"
@@ -10402,8 +10276,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Banh_Uot_Long_Ga.jpg/800px-Banh_Uot_Long_Ga.jpg",
-    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-banh-uot-long-ga-thom-ngon-don-gian-tai-nha-13012",
+    "image": "https://cdn2.fptshop.com.vn/unsafe/1920x0/filters:format(webp):quality(75)/2024_6_8_638534391435786743_cach-lam-banh-uot-long-ga-thumb.jpg",
+    "recipe_link": "https://ooo.com.vn/blogs/nha-o-huong-dan/banh-uot-long-ga-cach-lam-bua-sang-cuc-ki-de-tai-nha",
     "origin": {
       "continent": "Châu Á",
       "country": "Việt Nam"
@@ -10441,8 +10315,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Tacos_al_pastor.jpg/800px-Tacos_al_pastor.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212575/tacos-al-pastor/",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvyztrXtEPOKoV98zKvisElmvSrINTiOwI52liFb-tSdiaX2jfOLNT89M&usqp=CAE&s",
+    "recipe_link": "https://tasty.co/recipe/mexican-style-pork-tacos-tacos-al-pastor",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Mexico"
@@ -10475,8 +10349,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Arepa.jpg/800px-Arepa.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212574/arepas/",
+    "image": "https://www.thespruceeats.com/thmb/RrYTLrQNbq5w-b8L5iGMATiAmsI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/homemade-arepas-venezuelan-griddle-corn-cakes-3028967-hero-02-c693c328affd483da456991e591c967b.jpg",
+    "recipe_link": "https://www.thespruceeats.com/homemade-arepas-venezuelan-griddle-corn-cakes-3028967",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Colombia"
@@ -10509,8 +10383,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Poutine.jpg/800px-Poutine.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212573/poutine-canadian-fries-with-cheese-curds-and-gravy/",
+    "image": "https://thucphamplaza.com/wp-content/uploads/products_img/mon-au-poutine.jpg.webp",
+    "recipe_link": "https://thucphamplaza.com/huong-dan-cach-lam-poutine-khoai-tay-chien-kieu-canada/",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Canada"
@@ -10548,8 +10422,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Feijoada.jpg/800px-Feijoada.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212572/feijoada-brazilian-black-bean-stew/",
+    "image": "https://veganuary.com/wp-content/uploads/2021/01/Veganuary-Recipes-Nov-2020-CAShoebridge-Feijoada-Web-Res-1200x1798.jpg",
+    "recipe_link": "https://veganuary.com/recipes/feijoada-brazilian-black-bean-stew/",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Brazil"
@@ -10582,8 +10456,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Ceviche.jpg/800px-Ceviche.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212571/ceviche/",
+    "image": "https://afamilycdn.com/thumb_w/650/150157425591193600/2023/6/12/ceviche-vai-thieu-1-168653951212988043623.png",
+    "recipe_link": "https://afamily.vn/cach-lam-ceviche-vai-thieu-mon-goi-hai-san-dac-biet-den-tu-peru-20230612005527216.chn",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Peru"
@@ -10616,8 +10490,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Empanadas_de_carne.jpg/800px-Empanadas_de_carne.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212570/empanadas/",
+    "image": "https://cdn-lkghh.nitrocdn.com/zvvHCDkEqBZHjvQWSMvAdjFGbFGgdntX/assets/images/optimized/rev-bd6e4ed/argentineasado.com/wp-content/uploads/2024/10/1.jpg",
+    "recipe_link": "https://argentineasado.com/empanada/",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Argentina"
@@ -10650,8 +10524,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Chili_con_carne.jpg/800px-Chili_con_carne.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212569/chili-con-carne/",
+    "image": "https://www.dontgobaconmyheart.co.uk/wp-content/uploads/2016/02/best-chilli-con-carne-11-744x931.jpg",
+    "recipe_link": "https://www.dontgobaconmyheart.co.uk/chilli-con-carne/",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Mỹ"
@@ -10689,8 +10563,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Nachos_with_cheese.jpg/800px-Nachos_with_cheese.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212568/nachos/",
+    "image": "https://www.simplyrecipes.com/thmb/VGCsp-GA5dDBknmtDjeDaIsIlg0=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Simpy-Recipes-Mexican-Street-Corn-Nachos-LEAD-01-edd6035f47d24b70a21639f84100638e.jpg",
+    "recipe_link": "https://www.simplyrecipes.com/recipes/mexican_street_corn_nachos/",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Mỹ"
@@ -10713,8 +10587,8 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Asado.jpg/800px-Asado.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212567/argentinian-asado/",
+    "image": "https://cdn-lkghh.nitrocdn.com/zvvHCDkEqBZHjvQWSMvAdjFGbFGgdntX/assets/images/optimized/rev-bd6e4ed/argentineasado.com/wp-content/uploads/2023/05/parilla-asado-argentinean.jpeg",
+    "recipe_link": "https://argentineasado.com/how-to-grill-an-argentinean-asado/",
     "origin": {
       "continent": "Châu Mỹ",
       "country": "Argentina"
@@ -10737,12 +10611,14 @@
         "source": "Ước tính chung"
       }
     ],
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Churrasco.jpg/800px-Churrasco.jpg",
-    "recipe_link": "https://www.allrecipes.com/recipe/212566/brazilian-churrasco-picanha/",
+    "image": "https://d21klxpge3tttg.cloudfront.net/wp-content/uploads/2017/08/featured-brazilian-churrasco-1024x640.jpg",
+    "recipe_link": "https://barbecuebible-com.translate.goog/recipe/brazilian-churrasco-molho-campanha/?_x_tr_sl=en&_x_tr_tl=vi&_x_tr_hl=vi&_x_tr_pto=tc",
     "origin": {
       "continent": "Châu Mỹ",
-      "country": "Argentina"
+      "country": "Brazil"
     },
     "price": 140000
   }
+
+
 ]
