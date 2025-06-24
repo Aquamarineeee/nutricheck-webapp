@@ -13,7 +13,6 @@ import Chart from "react-apexcharts";
 import { useSnackbar } from "notistack";
 import { AppContext } from "../Context/AppContext";
 import { useNavigate } from "react-router-dom";
-import helo from "../../src/images/helo.gif"
 import gainMealsData from "./gainMeals.json";
 import maintainMealsData from "./maintainMeals.json"; 
 import loseMealsData from "./loseMeals.json";     
@@ -39,7 +38,10 @@ const activityFactor = {
     very_active: 1.9, // Vận động rất cao
 };
 
-
+const formatLiters = (ml) => {
+    const liters = ml/1000;
+    return liters === 0 ? "0" : liters.toFixed(1);
+}
 
 const UserInfo = () => {
     const navigate = useNavigate();
@@ -1037,12 +1039,16 @@ const UserInfo = () => {
                     {/* Input số giờ ngủ */}
                     <FormControl fullWidth margin = "normal">
                         <TextField 
-                        label = "Số giờ ngủ trung bình mỗi đêm"
-                        type = "number"
-                        value = {averageSleepHours}
+                            label = "Số giờ ngủ trung bình mỗi đêm"
+                            type = "number"
+                            value = {averageSleepHours}
                             onChange={(e) => setAverageSleepHours(e.target.value)}
                             inputProps={{min: "0",step : "0.1"}}
                             helperText= "Ví dụ 7.5 giờ"
+                            sx = {{
+                                "& .MuiInputBase-input" : {color: "white"},
+                                "& .MuiInputLable-root" : {color: "white"},
+                                }}
                         />
                     </FormControl>
                     {/* Lời khuyên cá nhân hóa dựa trên input */}
@@ -1194,28 +1200,6 @@ const UserInfo = () => {
                                 boxShadow: '0 4px 20px rgba(0,0,0,0.2)'
                             }}
                         />
-                        <div style={{
-                            position: 'absolute',
-                            top: '10%',
-                            width: '100%',
-                            textAlign: 'center',
-                            animation: 'ribbonFall 2s ease-in-out'
-                        }}>
-                            <img
-                                src={helo}
-                                alt="Ribbon"
-                                style={{
-                                    maxWidth: '80%',
-                                    transform: 'rotate(0deg)'
-                                }}
-                            />
-                        </div>
-                        <style jsx>{`
-                            @keyframes ribbonFall {
-                                0% { transform: translateY(-100px); opacity: 0; }
-                                100% { transform: translateY(0); opacity: 1; }
-                            }
-                        `}</style>
                     </div>
                 )}
 
@@ -1745,7 +1729,7 @@ const UserInfo = () => {
                 </Box>
 
                 <Box mt={4} className="fade-in">
-                    <Typography variant="h5" gutterBottom fontWeight="bold" textAlign="center">
+                    <Typography variant="h5" gutterBottom fontWeight="bold" textAlign="center" sx = {{color: "white"}}>
                         Gợi ý sức khỏe cá nhân hóa
                     </Typography>
 
@@ -1753,7 +1737,7 @@ const UserInfo = () => {
 
                     {/* Giấc ngủ */}
                     <Box>
-                        <Typography variant="h6" gutterBottom fontWeight="medium">
+                        <Typography variant="h6" gutterBottom fontWeight="medium" sx = {{color: "white"}}>
                         Giấc ngủ mỗi đêm
                         </Typography>
                         <FormControl fullWidth margin="normal">
@@ -1764,6 +1748,7 @@ const UserInfo = () => {
                             onChange={(e) => setAverageSleepHours(e.target.value)}
                             inputProps={{ min: "0", step: "0.1" }}
                             helperText="Ví dụ: 7.5 giờ"
+                            sx = {{"& .MuiInputBase-input": {color: "white"}}}
                         />
                         </FormControl>
 
@@ -1787,10 +1772,11 @@ const UserInfo = () => {
 
                     <Box mt = {4} className = "fade-in">
                         {/* Gọi hàm mới tại đây */}
-                        <Box mb={4}>
+                        <Box mb={4} sx = {{color: "white"}}>
                                 <FormControlLabel
                                     control={<Switch checked={showSleepAid} onChange={() => setShowSleepAid(!showSleepAid)} />}
                                     label="Gợi ý hỗ trợ giấc ngủ"
+                                    sx = {{color: "white"}}
                                 />
                                 {showSleepAid && (
                                     <Card variant="outlined" sx={{ mt: 2 }}>
@@ -1842,8 +1828,8 @@ const UserInfo = () => {
                             : "warning"
                         } sx={{ mt: 2 }}>
                             {dailyWaterIntake / 1000 >= (userInfo.WEIGHT * 30 / 1000) && dailyWaterIntake / 1000 <= (userInfo.WEIGHT * 40 / 1000)
-                                ? `Bạn đang uống đủ lượng nước khuyến nghị (${(dailyWaterIntake / 1000).toFixed(1)} lít). Rất tốt!`
-                                : `Với ${(dailyWaterIntake / 1000).toFixed(1)} lít nước mỗi ngày, bạn có thể cần điều chỉnh. Mục tiêu cho bạn là khoảng ${(userInfo.WEIGHT * 30 / 1000).toFixed(1)} - ${(userInfo.WEIGHT * 40 / 1000).toFixed(1)} lít.`
+                                ? `Bạn đang uống đủ lượng nước khuyến nghị (${formatLiters(dailyWaterIntake)} lít). Rất tốt!`
+                                : `Với ${formatLiters(dailyWaterIntake)} lít nước mỗi ngày, bạn có thể cần điều chỉnh. Mục tiêu cho bạn là khoảng ${(userInfo.WEIGHT * 30 / 1000).toFixed(1)} - ${(userInfo.WEIGHT * 40 / 1000).toFixed(1)} lít.`
                             }
                             {userInfo.ACTIVITY === "active" || userInfo.ACTIVITY === "very_active" ? " Do bạn có mức độ vận động cao, bạn cần uống thêm nước để bù đắp lượng mồ hôi mất đi." : ""}
                             {userInfo.ACTIVITY === "sedentary" ? " Ngay cả khi ít vận động, việc uống đủ nước vẫn rất quan trọng để duy trì trao đổi chất." : ""}
@@ -1853,38 +1839,7 @@ const UserInfo = () => {
                 </Card>
 
                     <Divider sx={{ my: 3 }} />
-
-                    {/* Nước uống */}
-                    <Box>
-                    <Typography variant="h6" gutterBottom fontWeight="medium">
-                        Lượng nước uống mỗi ngày
-                    </Typography>
-                    <FormControl fullWidth margin="normal">
-                        {dailyWaterIntake !== '' && dailyWaterIntake !== null && userInfo.WEIGHT ? (
-                            <Alert
-                                severity={
-                                    // Logic cho severity của Alert
-                                    dailyWaterIntake > 0 && dailyWaterIntake <= 7000 ? // Nếu giá trị hợp lệ trong khoảng 1-7000ml
-                                        (dailyWaterIntake / 1000 >= userInfo.WEIGHT * 0.03 && dailyWaterIntake / 1000 <= userInfo.WEIGHT * 0.04
-                                            ? "success" // Đủ nước
-                                            : "warning") // Thiếu/thừa nước nhưng vẫn trong khoảng hợp lý
-                                        : "error" // Giá trị không hợp lệ (<=0 hoặc >7000)
-                                }
-                                sx={{ mt: 2 }}
-                            >
-                                {/* Logic cho nội dung của Alert */}
-                                {dailyWaterIntake > 0 && dailyWaterIntake <= 7000 ? (
-                                    dailyWaterIntake / 1000 >= userInfo.WEIGHT * 0.03 &&
-                                    dailyWaterIntake / 1000 <= userInfo.WEIGHT * 0.04
-                                        ? `Bạn đang uống đủ nước (${(dailyWaterIntake / 1000).toFixed(1)} lít/ngày).`
-                                        : `Với ${(dailyWaterIntake / 1000).toFixed(1)} lít/ngày, bạn nên điều chỉnh. Mức lý tưởng là khoảng ${(userInfo.WEIGHT * 30 / 1000).toFixed(1)}–${(userInfo.WEIGHT * 40 / 1000).toFixed(1)} lít.`
-                                ) : (
-                                    'Lượng nước không hợp lệ, vui lòng nhập lại một số từ 1 đến 7000 ml.' // Thông báo lỗi rõ ràng hơn
-                                )}
-                            </Alert>
-                        ) : null /* Không hiển thị Alert nếu dailyWaterIntake là rỗng hoặc null, hoặc userInfo.WEIGHT chưa có */ }
-                    </FormControl>
-                </Box>
+                    
             </div>
         );
     };
