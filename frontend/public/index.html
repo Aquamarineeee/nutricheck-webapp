@@ -16,7 +16,7 @@
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <style>
         body {
-            background-image: url('%PUBLIC_URL%/static/img/hinh.png'); /* Hoặc .webp */
+            background-image: url('%PUBLIC_URL%/static/img/hinhnen.gif'); /* Hoặc .webp */
             background-size: cover; /* Để hình nền phủ kín toàn bộ trang */
             background-repeat: no-repeat; /* Không lặp lại hình nền */
             background-attachment: fixed; /* Giữ hình nền cố định khi cuộn trang (tùy chọn) */
@@ -283,7 +283,7 @@
     <div id="root"></div>
 
     <button id="chatbot-toggle-button">
-        <img src="https://www.canva.com/design/DAGagv-55Aw/R3DlYRuCFpoA2zlPC2lnPQ/edit?utm_content=DAGagv-55Aw&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" alt="Chatbot Icon">
+        <img src="%PUBLIC_URL%/static/img/logo.png" alt="Chatbot Icon">
     </button>
 
     <div id="my-chatbot-container">
@@ -442,7 +442,7 @@
                 const id = setTimeout(() => controller.abort(), 90000); // Client timeout 90 giây (90000 milliseconds)
 
                 try {
-                    const response = await fetch('https://backend-zeta-fawn-20.vercel.app/api/chatbot/message', {
+                    const response = await fetch('https://localhost/api/chatbot/message', {
                         method: 'POST',
                         // QUAN TRỌNG: KHÔNG ĐẶT 'Content-Type': 'application/json' KHI DÙNG FormData
                         // Trình duyệt sẽ tự động đặt 'Content-Type': 'multipart/form-data' với boundary
