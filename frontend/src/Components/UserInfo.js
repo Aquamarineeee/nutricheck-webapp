@@ -1216,6 +1216,9 @@ const UserInfo = () => {
                 </Grid>
 
                 <Divider style={{ margin: "40px 0" }} />
+                {totalDailyCalories > 0 && renderMealPlan()}
+
+                <Divider style={{ margin: "40px 0" }} />
 
                 {/* Meal Plan Section */}
                 <div className="prompt-guide-container">
