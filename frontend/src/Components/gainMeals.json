@@ -452,7 +452,7 @@
       "continent": "Châu Á",
       "country": "Ấn Độ"
     },
-    "price": 70000
+    "price": 55000
   },
   {
     "name": "Bún Chả (1 suất tiêu chuẩn)",
@@ -779,7 +779,7 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 50000
+    "price": 30000
   },
   {
     "name": "Phở Gà Trộn (1 suất tiêu chuẩn)",
@@ -962,7 +962,7 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 40000
+    "price": 30000
   },
   {
     "name": "Sườn Xào Chua Ngọt (1 suất tiêu chuẩn ăn kèm cơm)",
@@ -1337,7 +1337,7 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 40000
+    "price": 35000
   },
   {
     "name": "Xôi Gà Xé (1 đĩa tiêu chuẩn)",
@@ -2054,7 +2054,7 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 60000
+    "price": 40000
   },
   {
     "name": "Mì Ramen Thịt Heo (Tonkotsu Ramen - 1 tô tiêu chuẩn)",
@@ -4563,7 +4563,7 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 60000
+    "price": 40000
   },
   {
     "name": "Mì Udon Xào Yaki Udon (Nhật Bản - 1 suất tiêu chuẩn)",
@@ -15629,7 +15629,7 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 70000
+    "price": 40000
   },
   {
     "name": "Bánh Mì Kẹp Thịt Nướng (1 ổ)",
@@ -15994,7 +15994,7 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 20000
+    "price": 35000
   },
   {
     "name": "Sữa Đậu Nành Nóng (1 ly lớn)",
@@ -16132,7 +16132,7 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 30000
+    "price": 35000
   },
   {
     "name": "Bánh Khọt (4-5 cái)",
@@ -16300,7 +16300,7 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 20000
+    "price": 35000
   },
   {
     "name": "Bánh Flan (1 cái)",
@@ -16344,7 +16344,7 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 10000
+    "price": 35000
   },
   {
     "name": "Sữa Chua Phô Mai Đà Lạt (1 hũ)",
@@ -16446,7 +16446,7 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 15000
+    "price": 35000
   },
   {
     "name": "Chè Khoai Môn (1 chén)",
@@ -16490,7 +16490,7 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 30000
+    "price": 35000
   },
   {
     "name": "Gỏi Cuốn (2 cuốn)",
@@ -16708,7 +16708,7 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 25000
+    "price": 35000
   },
   {
     "name": "Kem Bơ Đà Lạt (1 ly)",
@@ -16784,7 +16784,7 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 25000
+    "price": 35000
   },
   {
     "name": "Chả Giò/Nem Rán (2 cuốn)",
@@ -16990,7 +16990,7 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 25000
+    "price": 40000
   },
   {
     "name": "Bánh Chuối Nướng (1 miếng)",
@@ -17134,7 +17134,7 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 20000
+    "price": 35000
   },
   {
     "name": "Bánh Quai Vạc (5-6 cái)",
@@ -17660,6 +17660,2388 @@
       "continent": "Châu Á",
       "country": "Việt Nam"
     },
-    "price": 10000
+    "price": 30000
+  },
+  {
+    "name": "Kachumbari (Salad cà chua dưa chuột Đông Phi - 1 suất ăn kèm)",
+    "calories": 200,
+    "protein": 5,
+    "fat": 10,
+    "carbs": 20,
+    "weight": 250,
+    "meal_time": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Cà chua (tomatoes, raw)",
+        "weight_g": 100,
+        "note": "Cà chua thái hạt lựu.",
+        "source": "USDA FoodData Central, FDC ID: 170457 (Tomatoes, red, ripe, raw, year round average)"
+      },
+      {
+        "item": "Dưa chuột (cucumber, raw)",
+        "weight_g": 80,
+        "note": "Dưa chuột thái hạt lựu.",
+        "source": "USDA FoodData Central, FDC ID: 170425 (Cucumber, raw, with peel)"
+      },
+      {
+        "item": "Hành tây (red onion, raw)",
+        "weight_g": 30,
+        "note": "Hành tây đỏ thái mỏng.",
+        "source": "USDA FoodData Central, FDC ID: 170440 (Onions, raw)"
+      },
+      {
+        "item": "Rau mùi (cilantro, fresh)",
+        "weight_g": 10,
+        "note": "Rau mùi thái nhỏ.",
+        "source": "USDA FoodData Central, FDC ID: 170420 (Cilantro, raw)"
+      },
+      {
+        "item": "Nước cốt chanh/chanh dây (lime/lemon juice)",
+        "weight_ml": 10,
+        "note": "Nước cốt chanh hoặc chanh dây tạo vị chua.",
+        "source": "USDA FoodData Central, FDC ID: 170430 (Lime juice, raw)"
+      },
+      {
+        "item": "Ớt tươi (chili peppers, raw - optional)",
+        "weight_g": 5,
+        "note": "Ớt tươi thái lát (tùy chọn).",
+        "source": "USDA FoodData Central, FDC ID: 170415 (Peppers, hot, raw)"
+      },
+      {
+        "item": "Dầu oliu (olive oil - optional)",
+        "weight_g": 5,
+        "note": "Một ít dầu oliu (tùy chọn).",
+        "source": "USDA FoodData Central, FDC ID: 171096 (Oil, olive, virgin)"
+      }
+    ],
+    "image": "https://www.seriouseats.com/thmb/aze5EUvDJYbkFNZY4zW_V4Qd_cY=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/20240808-SEA-KachumbariKenyanTomatoSalad-AmandaSuarez-05-44fa04a01f1943d5851ac3da2e801a7f.jpg",
+    "recipe_link": "https://www.seriouseats.com/kachumbari-tomato-salad-recipe-8692614",
+    "origin": {
+      "continent": "Châu Phi",
+      "country": "Kenya/Tanzania (Đông Phi)"
+    },
+    "price": 30000
+  },
+  {
+    "name": "Ugali (Cháo ngô đặc - Đông Phi - 1 suất)",
+    "calories": 300,
+    "protein": 8,
+    "fat": 3,
+    "carbs": 60,
+    "weight": 300,
+    "meal_time": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Bột ngô trắng (white cornmeal)",
+        "weight_g": 80,
+        "note": "Bột ngô trắng mịn, nấu thành cháo đặc. Nguồn carb chính.",
+        "source": "USDA FoodData Central, FDC ID: 169739 (Corn flour, masa, enriched, with calcium carbonate, lime, niacin, reduced iron, thiamin mononitrate, riboflavin, folic acid)"
+      },
+      {
+        "item": "Nước (water)",
+        "weight_ml": 220,
+        "note": "Nước để nấu Ugali.",
+        "source": "USDA FoodData Central, FDC ID: 173950 (Water, tap, US, municipal)"
+      }
+    ],
+    "image": "https://www.seriouseats.com/thmb/HE8wrdbpTL4tudhAP6trA6pn3Mw=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/20240806-SEA-Ugali-MaureenCelestine-14-833dce8dc17844f292c92925b827ac15.jpg",
+    "recipe_link": "https://www.seriouseats.com/ugali-cornmeal-porridge-recipe-8690802",
+    "origin": {
+      "continent": "Châu Phi",
+      "country": "Kenya/Tanzania (Đông Phi)"
+    },
+    "price": 20000
+  },
+  {
+    "name": "Chapati (Bánh mì dẹt chiên/áp chảo - Đông Phi - 1 cái)",
+    "calories": 250,
+    "protein": 5,
+    "fat": 10,
+    "carbs": 35,
+    "weight": 80,
+    "meal_time": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Bột mì (all-purpose flour)",
+        "weight_g": 50,
+        "note": "Bột mì. Nguồn carb chính.",
+        "source": "USDA FoodData Central, FDC ID: 169720 (Flour, wheat, all-purpose, enriched, unbleached)"
+      },
+      {
+        "item": "Nước (water)",
+        "weight_ml": 20,
+        "note": "Nước để nhào bột.",
+        "source": "USDA FoodData Central, FDC ID: 173950 (Water, tap, US, municipal)"
+      },
+      {
+        "item": "Dầu ăn/Ghee (vegetable oil/ghee - for cooking)",
+        "weight_g": 10,
+        "note": "Dầu ăn hoặc ghee để chiên/áp chảo. Nguồn chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 171092 (Oil, soybean, salad or cooking)"
+      }
+    ],
+    "image": "https://cheflolaskitchen.com/wp-content/uploads/2015/07/Chapati-22.jpg.webp",
+    "recipe_link": "https://cheflolaskitchen.com/east-african-chapati/",
+    "origin": {
+      "continent": "Châu Phi",
+      "country": "Kenya/Uganda (Đông Phi)"
+    },
+    "price": 15000
+  },
+  {
+    "name": "Ndole (Rau đắng hầm đậu phộng - Cameroon - 1 tô)",
+    "calories": 380,
+    "protein": 20,
+    "fat": 25,
+    "carbs": 20,
+    "weight": 400,
+    "meal_time": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Rau đắng (bitterleaf/spinach)",
+        "weight_g": 150,
+        "note": "Lá rau đắng (hoặc rau chân vịt). Nguồn chất xơ và vitamin.",
+        "source": "USDA FoodData Central, FDC ID: 170459 (Spinach, raw) - (Ước tính từ rau xanh tương tự)"
+      },
+      {
+        "item": "Đậu phộng nghiền (ground peanuts)",
+        "weight_g": 50,
+        "note": "Đậu phộng nghiền. Nguồn protein và chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 172448 (Peanuts, all types, dry-roasted, with salt) - (Ước tính từ đậu phộng nghiền)"
+      },
+      {
+        "item": "Thịt bò/tôm khô (beef/dried shrimp - optional)",
+        "weight_g": 50,
+        "note": "Thịt bò hoặc tôm khô (tùy chọn). Nguồn protein.",
+        "source": "USDA FoodData Central (Beef: 173516, Dried shrimp: 171308)"
+      },
+      {
+        "item": "Dầu cọ (palm oil)",
+        "weight_ml": 20,
+        "note": "Dầu cọ. Nguồn chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 171092 (Oil, soybean, salad or cooking) - (Ước tính từ dầu thực vật)"
+      },
+      {
+        "item": "Hành tây (onions, raw)",
+        "weight_g": 30,
+        "note": "Hành tây băm.",
+        "source": "USDA FoodData Central, FDC ID: 170440 (Onions, raw)"
+      }
+    ],
+    "image": "https://images.squarespace-cdn.com/content/v1/5e04d1c138bd0a5d714cea2b/1615411039884-HLYF8GGIP67LFLCYN21D/Ndole-cameroon+cuisine-kengs+kitchen2.jpg?format=1000w",
+    "recipe_link": "https://www.kengskitchen.com/cameroon-recipes/ndole",
+    "origin": {
+      "continent": "Châu Phi",
+      "country": "Cameroon"
+    },
+    "price": 35000
+  },
+  {
+    "name": "Thieboudienne (Cơm cá Senegal - 1 đĩa)",
+    "calories": 700,
+    "protein": 40,
+    "fat": 30,
+    "carbs": 70,
+    "weight": 600,
+    "meal_time": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Cá (fish - typically Thiof/Grouper)",
+        "weight_g": 150,
+        "note": "Cá (thường là cá mú). Nguồn protein.",
+        "source": "USDA FoodData Central, FDC ID: 171502 (Fish, cod, Atlantic, cooked, dry heat) - (Ước tính từ cá)"
+      },
+      {
+        "item": "Gạo (rice, cooked)",
+        "weight_g": 180,
+        "note": "Gạo nấu chín.",
+        "source": "USDA FoodData Central, FDC ID: 169722 (Rice, white, long-grain, regular, cooked)"
+      },
+      {
+        "item": "Rau củ (carrots, cabbage, cassava, eggplant)",
+        "weight_g": 150,
+        "note": "Cà rốt, bắp cải, khoai mì, cà tím. Bổ sung chất xơ và carb.",
+        "source": "USDA FoodData Central (Carrots: 170393, Cabbage: 170363, Cassava: 170384, Eggplant: 170415)"
+      },
+      {
+        "item": "Sốt cà chua (tomato paste)",
+        "weight_g": 50,
+        "note": "Tương cà chua. Tạo màu và vị.",
+        "source": "USDA FoodData Central, FDC ID: 170460 (Tomatoes, red, ripe, canned, crushed, with salt)"
+      },
+      {
+        "item": "Dầu cọ (palm oil)",
+        "weight_ml": 20,
+        "note": "Dầu cọ. Nguồn chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 171092 (Oil, soybean, salad or cooking) - (Ước tính từ dầu thực vật)"
+      },
+      {
+        "item": "Hành tây, tỏi (onions, garlic)",
+        "weight_g": 30,
+        "note": "Hành tây, tỏi băm.",
+        "source": "USDA FoodData Central (Onions: 170440, Garlic: 170427)"
+      }
+    ],
+    "image": "https://i0.wp.com/www.yummymedley.com/wp-content/uploads/2017/05/Thieboudienne-Senegalese-jollof-rice-and-fish.jpg?w=750&ssl=1",
+    "recipe_link": "https://www.yummymedley.com/thieboudienne-senegalese-rice-fish/",
+    "origin": {
+      "continent": "Châu Phi",
+      "country": "Senegal"
+    },
+    "price": 40000
+  },
+  {
+    "name": "Koshary (Cơm, mì ống, đậu, sốt cà chua - Ai Cập - 1 tô lớn)",
+    "calories": 650,
+    "protein": 25,
+    "fat": 20,
+    "carbs": 90,
+    "weight": 600,
+    "meal_time": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Gạo (rice, cooked)",
+        "weight_g": 100,
+        "note": "Gạo trắng nấu chín.",
+        "source": "USDA FoodData Central, FDC ID: 169722 (Rice, white, long-grain, regular, cooked)"
+      },
+      {
+        "item": "Mì ống (macaroni, cooked)",
+        "weight_g": 80,
+        "note": "Mì ống elbow macaroni hoặc các loại mì nhỏ khác.",
+        "source": "USDA FoodData Central, FDC ID: 170994 (Pasta, spaghetti, enriched, cooked, without added salt) - (Ước tính từ mì ống)"
+      },
+      {
+        "item": "Đậu lăng (lentils, cooked)",
+        "weight_g": 80,
+        "note": "Đậu lăng nâu hoặc xanh.",
+        "source": "USDA FoodData Central, FDC ID: 170043 (Lentils, cooked, boiled, with salt)"
+      },
+      {
+        "item": "Đậu gà (chickpeas, cooked)",
+        "weight_g": 80,
+        "note": "Đậu gà.",
+        "source": "USDA FoodData Central, FDC ID: 170043 (Chickpeas, cooked, boiled, with salt)"
+      },
+      {
+        "item": "Sốt cà chua (tomato sauce, spiced)",
+        "weight_g": 100,
+        "note": "Sốt cà chua với tỏi, giấm, ớt.",
+        "source": "USDA FoodData Central, FDC ID: 170460 (Tomatoes, red, ripe, canned, crushed, with salt)"
+      },
+      {
+        "item": "Hành phi giòn (crispy fried onions)",
+        "weight_g": 30,
+        "note": "Hành tây chiên giòn. Nguồn chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 170440 (Onions, raw) - (Ước tính thêm dầu chiên)"
+      },
+      {
+        "item": "Sốt tỏi giấm (garlic vinegar sauce - Dakkah)",
+        "weight_ml": 20,
+        "note": "Sốt giấm tỏi. Tạo vị chua cay.",
+        "source": "Ước tính (chủ yếu từ giấm và tỏi)"
+      },
+      {
+        "item": "Dầu ăn (vegetable oil)",
+        "weight_g": 10,
+        "note": "Dầu dùng để chiên hành và nấu sốt.",
+        "source": "USDA FoodData Central, FDC ID: 171092 (Oil, soybean, salad or cooking)"
+      }
+    ],
+    "image": "https://www.chocolatesandchai.com/wp-content/uploads/2023/02/Egyptian-Koshari-7.jpg.webp",
+    "recipe_link": "https://www.chocolatesandchai.com/egyptian-koshari-koshary-recipe/",
+    "origin": {
+      "continent": "Châu Phi",
+      "country": "Ai Cập"
+    },
+    "price": 35000
+  },
+  {
+    "name": "Harrira (Súp cà chua đậu lăng Ma-rốc - 1 tô lớn)",
+    "calories": 350,
+    "protein": 20,
+    "fat": 10,
+    "carbs": 40,
+    "weight": 500,
+    "meal_time": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Đậu lăng (lentils, cooked)",
+        "weight_g": 80,
+        "note": "Đậu lăng. Nguồn protein và chất xơ.",
+        "source": "USDA FoodData Central, FDC ID: 170043 (Lentils, cooked, boiled, with salt)"
+      },
+      {
+        "item": "Đậu gà (chickpeas, cooked)",
+        "weight_g": 50,
+        "note": "Đậu gà. Nguồn protein và chất xơ.",
+        "source": "USDA FoodData Central, FDC ID: 170043 (Chickpeas, cooked, boiled, with salt)"
+      },
+      {
+        "item": "Sốt cà chua (tomato paste/crushed tomatoes)",
+        "weight_g": 50,
+        "note": "Tương cà chua hoặc cà chua nghiền. Tạo màu và vị.",
+        "source": "USDA FoodData Central, FDC ID: 170460 (Tomatoes, red, ripe, canned, crushed, with salt)"
+      },
+      {
+        "item": "Bột mì (flour - for thickening)",
+        "weight_g": 10,
+        "note": "Một ít bột mì, làm sánh súp.",
+        "source": "USDA FoodData Central, FDC ID: 169720 (Flour, wheat, all-purpose, enriched, unbleached)"
+      },
+      {
+        "item": "Rau thơm (cilantro, parsley, celery)",
+        "weight_g": 20,
+        "note": "Rau mùi, mùi tây, cần tây. Tăng hương vị.",
+        "source": "USDA FoodData Central (Cilantro: 170420, Parsley: 170444, Celery: 170377)"
+      },
+      {
+        "item": "Dầu oliu (olive oil)",
+        "weight_g": 10,
+        "note": "Dầu oliu. Nguồn chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 171096 (Oil, olive, virgin)"
+      },
+      {
+        "item": "Gia vị (ginger, turmeric, cinnamon, black pepper)",
+        "weight_g": 5,
+        "note": "Gừng, nghệ, quế, tiêu đen. Tạo hương vị đặc trưng.",
+        "source": "USDA FoodData Central (Ginger: 170429, Turmeric: 171358, Cinnamon: 171335, Black pepper: 171321)"
+      }
+    ],
+    "image": "https://tasteofmaroc.com/wp-content/uploads/2017/05/harira-2-moroccan-soup-picturepartners-bigstock-740x493.jpg.webp",
+    "recipe_link": "https://tasteofmaroc.com/moroccan-harira-soup-recipe/",
+    "origin": {
+      "continent": "Châu Phi",
+      "country": "Ma-rốc"
+    },
+    "price": 30000
+  },
+  {
+    "name": "Biltong (Thịt khô ướp gia vị - Nam Phi - 1 suất ăn nhẹ)",
+    "calories": 250,
+    "protein": 40,
+    "fat": 8,
+    "carbs": 0,
+    "weight": 50,
+    "meal_time": [
+      "afternoon",
+      "breakfast"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Thịt bò/nai (beef/game meat)",
+        "weight_g": 50,
+        "note": "Thịt bò hoặc thịt nai (kudu, springbok) sấy khô, ướp gia vị (muối, tiêu, ngò rang, giấm). Nguồn protein rất cao.",
+        "source": "USDA FoodData Central, FDC ID: 171869 (Beef, composite of trimmed retail cuts, cooked, roasted) - (Ước tính từ thịt bò khô)."
+      },
+      {
+        "item": "Gia vị (coriander, black pepper, salt, vinegar)",
+        "weight_g": 2,
+        "note": "Ngò rang, tiêu đen, muối, giấm. (Lượng calo không đáng kể).",
+        "source": "USDA FoodData Central (Coriander: 171337, Black pepper: 171321, Salt: 171358, Vinegar: 170366)"
+      }
+    ],
+    "image": "https://www.greedyferret.com/wp-content/uploads/2020/10/biltong-slices-on-chopping-board-perfect.jpg",
+    "recipe_link": "https://www.greedyferret.com/perfect-biltong-recipe-south-african-beef-jerky",
+    "origin": {
+      "continent": "Châu Phi",
+      "country": "Nam Phi"
+    },
+    "price": 50000
+  },
+  {
+    "name": "Chakalaka (Rau củ hầm cay - Nam Phi - 1 suất ăn kèm)",
+    "calories": 200,
+    "protein": 5,
+    "fat": 10,
+    "carbs": 25,
+    "weight": 250,
+    "meal_time": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Đậu (beans - baked beans/canned beans)",
+        "weight_g": 80,
+        "note": "Đậu đóng hộp (baked beans hoặc các loại đậu khác). Nguồn carb và chất xơ.",
+        "source": "USDA FoodData Central, FDC ID: 170044 (Beans, baked, canned, plain or vegetarian)"
+      },
+      {
+        "item": "Cà rốt (carrots, shredded)",
+        "weight_g": 50,
+        "note": "Cà rốt bào sợi.",
+        "source": "USDA FoodData Central, FDC ID: 170393 (Carrots, raw)"
+      },
+      {
+        "item": "Ớt chuông (bell peppers, diced)",
+        "weight_g": 40,
+        "note": "Ớt chuông thái hạt lựu.",
+        "source": "USDA FoodData Central, FDC ID: 170417 (Peppers, sweet, red, raw)"
+      },
+      {
+        "item": "Hành tây, tỏi, gừng (onions, garlic, ginger)",
+        "weight_g": 30,
+        "note": "Hành tây, tỏi, gừng băm.",
+        "source": "USDA FoodData Central (Onions: 170440, Garlic: 170427, Ginger: 170429)"
+      },
+      {
+        "item": "Cà chua (tomatoes, diced)",
+        "weight_g": 50,
+        "note": "Cà chua thái hạt lựu.",
+        "source": "USDA FoodData Central, FDC ID: 170457 (Tomatoes, red, ripe, raw, year round average)"
+      },
+      {
+        "item": "Dầu ăn (vegetable oil)",
+        "weight_g": 10,
+        "note": "Dầu ăn.",
+        "source": "USDA FoodData Central, FDC ID: 171092 (Oil, soybean, salad or cooking)"
+      },
+      {
+        "item": "Bột cà ri (curry powder)",
+        "weight_g": 5,
+        "note": "Bột cà ri.",
+        "source": "USDA FoodData Central, FDC ID: 171350 (Spices, curry powder)"
+      }
+    ],
+    "image": "https://www.thetastychilli.com/wp-content/uploads/2021/03/chakalaka-recipe-top.jpg",
+    "recipe_link": "https://www.thetastychilli.com/south-african-chakalaka-recipe/",
+    "origin": {
+      "continent": "Châu Phi",
+      "country": "Nam Phi"
+    },
+    "price": 30000
+  },
+  {
+    "name": "Malva Pudding (Bánh pudding caramel Nam Phi - 1 miếng)",
+    "calories": 350,
+    "protein": 3,
+    "fat": 15,
+    "carbs": 50,
+    "weight": 120,
+    "meal_time": [
+      "afternoon",
+      "dinner"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Bột mì (all-purpose flour)",
+        "weight_g": 30,
+        "note": "Bột mì làm bánh. Nguồn carb.",
+        "source": "USDA FoodData Central, FDC ID: 169720 (Flour, wheat, all-purpose, enriched, unbleached)"
+      },
+      {
+        "item": "Đường (sugar)",
+        "weight_g": 40,
+        "note": "Đường. Nguồn carb.",
+        "source": "USDA FoodData Central, FDC ID: 169862 (Sugars, granulated)"
+      },
+      {
+        "item": "Trứng (eggs)",
+        "weight_g": 20,
+        "note": "Trứng. Nguồn protein và chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 748967 (Egg, whole, raw)"
+      },
+      {
+        "item": "Mứt mơ (apricot jam)",
+        "weight_g": 10,
+        "note": "Mứt mơ. Tạo vị ngọt và ẩm. (Lượng calo đáng kể).",
+        "source": "USDA FoodData Central, FDC ID: 170849 (Jams, preserves, apricot)"
+      },
+      {
+        "item": "Bơ (butter)",
+        "weight_g": 10,
+        "note": "Bơ. Nguồn chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 170196 (Butter, without salt)"
+      },
+      {
+        "item": "Sốt caramel (caramel sauce)",
+        "weight_g": 20,
+        "note": "Sốt caramel rưới lên khi bánh nóng. Nguồn đường và chất béo.",
+        "source": "Ước tính từ đường và kem."
+      }
+    ],
+    "image": "https://images.ctfassets.net/3s5io6mnxfqz/2ltf4rosJ2BF6sqlsH7Qui/bdbcd33642a0660245fe46f2de5c4e15/shutterstock_580949455.jpg?w=828",
+    "recipe_link": "https://www.masterclass.com/articles/malva-pudding-recipe",
+    "origin": {
+      "continent": "Châu Phi",
+      "country": "Nam Phi"
+    },
+    "price": 35000
+  },
+  {
+    "name": "Suya (Thịt xiên nướng cay - Tây Phi - 2 xiên)",
+    "calories": 300,
+    "protein": 25,
+    "fat": 15,
+    "carbs": 5,
+    "weight": 150,
+    "meal_time": [
+      "lunch",
+      "dinner",
+      "afternoon"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Thịt bò/gà (beef/chicken, thinly sliced)",
+        "weight_g": 100,
+        "note": "Thịt bò hoặc gà thái lát mỏng. Nguồn protein.",
+        "source": "USDA FoodData Central (Beef: 171869, Chicken: 171439)"
+      },
+      {
+        "item": "Bột đậu phộng (peanut powder/kuli-kuli)",
+        "weight_g": 20,
+        "note": "Bột đậu phộng (kuli-kuli), là thành phần chính của gia vị ướp. Nguồn protein và chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 172448 (Peanuts, all types, dry-roasted, with salt) - (Ước tính từ bột đậu phộng)"
+      },
+      {
+        "item": "Gia vị Suya (suya spice blend - ginger, garlic, chili, onion powder)",
+        "weight_g": 5,
+        "note": "Hỗn hợp gia vị cay (gừng, tỏi, ớt, bột hành tây).",
+        "source": "Ước tính từ các loại gia vị riêng lẻ"
+      },
+      {
+        "item": "Dầu ăn (vegetable oil)",
+        "weight_g": 10,
+        "note": "Dầu ăn để ướp và nướng.",
+        "source": "USDA FoodData Central, FDC ID: 171092 (Oil, soybean, salad or cooking)"
+      }
+    ],
+    "image": "https://www.seriouseats.com/thmb/wYBn7S8aLMT9nwJmVcCSpSu8Ds8=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2020__10__20201015-Suya-sho-spaeth-1-78c58be723c944068b3f85c8ff4f9d23.jpg",
+    "recipe_link": "https://www.seriouseats.com/nigerian-beef-suya",
+    "origin": {
+      "continent": "Châu Phi",
+      "country": "Nigeria/Tây Phi"
+    },
+    "price": 30000
+  },
+  {
+    "name": "Akara (Bánh đậu đen chiên - Tây Phi - 3 cái)",
+    "calories": 280,
+    "protein": 12,
+    "fat": 15,
+    "carbs": 25,
+    "weight": 150,
+    "meal_time": [
+      "breakfast",
+      "afternoon"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Đậu đen (black-eyed peas)",
+        "weight_g": 100,
+        "note": "Đậu đen đã ngâm và xay. Nguồn protein và carb.",
+        "source": "USDA FoodData Central, FDC ID: 170041 (Beans, black-eyed peas, cooked, boiled, with salt)"
+      },
+      {
+        "item": "Hành tây (onions, raw)",
+        "weight_g": 20,
+        "note": "Hành tây băm nhỏ.",
+        "source": "USDA FoodData Central, FDC ID: 170440 (Onions, raw)"
+      },
+      {
+        "item": "Ớt (chili peppers, raw)",
+        "weight_g": 5,
+        "note": "Ớt tươi (tùy chọn).",
+        "source": "USDA FoodData Central, FDC ID: 170415 (Peppers, hot, raw)"
+      },
+      {
+        "item": "Dầu ăn (vegetable oil for frying)",
+        "weight_g": 20,
+        "note": "Dầu ăn để chiên ngập dầu. Nguồn chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 171092 (Oil, soybean, salad or cooking)"
+      }
+    ],
+    "image": "https://ethnicspoon.com/wp-content/uploads/2022/03/akara-2.jpg",
+    "recipe_link": "https://www.mydiasporakitchen.com/akara-balls-black-eyed-peas-fritters/",
+    "origin": {
+      "continent": "Châu Phi",
+      "country": "Nigeria/Ghana (Tây Phi)"
+    },
+    "price": 25000
   }
+  ,
+  {
+    "name": "Pavlova Mousse (Mousse Pavlova - Úc/New Zealand - 1 ly)",
+    "calories": 250,
+    "protein": 4,
+    "fat": 15,
+    "carbs": 25,
+    "weight": 120,
+    "meal_time": [
+      "afternoon",
+      "dessert"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Kem tươi đánh bông (whipped cream)",
+        "weight_g": 50,
+        "note": "Kem tươi đánh bông. Nguồn chất béo và calo.",
+        "source": "USDA FoodData Central, FDC ID: 170197 (Cream, fluid, heavy whipping)"
+      },
+      {
+        "item": "Lòng trắng trứng (egg whites)",
+        "weight_g": 30,
+        "note": "Lòng trắng trứng đánh bông, tạo độ xốp nhẹ cho mousse.",
+        "source": "USDA FoodData Central, FDC ID: 170203 (Egg, white, raw, fresh)"
+      },
+      {
+        "item": "Đường (sugar)",
+        "weight_g": 20,
+        "note": "Đường. Nguồn carb.",
+        "source": "USDA FoodData Central, FDC ID: 170884 (Sugars, granulated)"
+      },
+      {
+        "item": "Trái cây tươi nghiền (fruit puree - e.g., passionfruit, berries)",
+        "weight_g": 20,
+        "note": "Trái cây tươi nghiền hoặc sốt trái cây. Bổ sung vitamin và hương vị.",
+        "source": "USDA FoodData Central (Passionfruit: 170451, Strawberries: 170456)"
+      },
+      {
+        "item": "Vụn meringue (crushed meringue - optional)",
+        "weight_g": 5,
+        "note": "Vụn meringue (tùy chọn), tăng thêm kết cấu giòn.",
+        "source": "Ước tính từ đường và lòng trắng trứng."
+      }
+    ],
+    "image": "https://www.thespruceeats.com/thmb/pm9IHxG-3If1bt9CimF1UCvomkY=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/GettyImages-489765636-5a8c47a38023b900379628b5.jpg",
+    "recipe_link": "https://www.thespruceeats.com/new-zealand-pavlova-dessert-recipe-1806317",
+    "origin": {
+      "continent": "Châu Úc",
+      "country": "Úc - New Zealand"
+    },
+    "price": 30000
+  },
+  {
+    "name": "Wattleseed Scone (Bánh nướng hạt keo - Úc - 1 cái)",
+    "calories": 280,
+    "protein": 6,
+    "fat": 15,
+    "carbs": 30,
+    "weight": 100,
+    "meal_time": [
+      "breakfast",
+      "afternoon"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Bột mì tự nở (self-raising flour)",
+        "weight_g": 40,
+        "note": "Bột mì tự nở. Nguồn carb.",
+        "source": "USDA FoodData Central, FDC ID: 169720 (Flour, wheat, all-purpose, enriched, unbleached) - (Ước tính từ bột mì)."
+      },
+      {
+        "item": "Bơ (butter)",
+        "weight_g": 15,
+        "note": "Bơ. Nguồn chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 170196 (Butter, without salt)"
+      },
+      {
+        "item": "Hạt keo (wattleseed, ground)",
+        "weight_g": 5,
+        "note": "Hạt keo xay, tạo hương vị giống cà phê/sô cô la. Nguồn protein và chất xơ.",
+        "source": "Ước tính (thực phẩm thổ dân, ít dữ liệu USDA trực tiếp)."
+      },
+      {
+        "item": "Sữa (milk)",
+        "weight_ml": 20,
+        "note": "Sữa tươi. Tạo độ ẩm.",
+        "source": "USDA FoodData Central, FDC ID: 170784 (Milk, whole, 3.25% milkfat, with added vitamin D)"
+      },
+      {
+        "item": "Kem tươi (cream - for serving)",
+        "weight_g": 20,
+        "note": "Kem tươi (tùy chọn) ăn kèm. Nguồn chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 170197 (Cream, fluid, heavy whipping)"
+      }
+    ],
+    "image": "https://images.immediate.co.uk/production/volatile/sites/2/2021/08/OLI_WebRecipes-VeganScones_04485-2eab44d.jpg?quality=90&webp=true&resize=975,649",
+    "recipe_link": "https://www.olivemagazine.com/recipes/entertain/wattleseed-scones/",
+    "origin": {
+      "continent": "Châu Úc",
+      "country": "Úc"
+    },
+    "price": 30000
+  },
+  {
+    "name": "Bush Tomato Relish (Nước sốt cà chua bụi - Úc - 1 suất ăn kèm)",
+    "calories": 100,
+    "protein": 2,
+    "fat": 5,
+    "carbs": 15,
+    "weight": 50,
+    "meal_time": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "Một loại sốt tương ớt/relish làm từ cà chua bụi bản địa Úc. Thường ăn kèm thịt nướng hoặc bánh mì.",
+    "ingredients_breakdown": [
+      {
+        "item": "Cà chua bụi (bush tomatoes)",
+        "weight_g": 30,
+        "note": "Cà chua bụi (một loại cà độc dược bản địa Úc), tạo hương vị đậm đà, hơi chua.",
+        "source": "Ước tính (thực phẩm thổ dân, ít dữ liệu USDA trực tiếp)."
+      },
+      {
+        "item": "Hành tây (onions, diced)",
+        "weight_g": 10,
+        "note": "Hành tây băm nhỏ.",
+        "source": "USDA FoodData Central, FDC ID: 170440 (Onions, raw)"
+      },
+      {
+        "item": "Giấm (vinegar)",
+        "weight_ml": 5,
+        "note": "Giấm. Tạo vị chua.",
+        "source": "USDA FoodData Central, FDC ID: 170366 (Vinegar, distilled)"
+      },
+      {
+        "item": "Đường (sugar)",
+        "weight_g": 5,
+        "note": "Đường. Cân bằng vị chua.",
+        "source": "USDA FoodData Central, FDC ID: 169862 (Sugars, granulated)"
+      },
+      {
+        "item": "Dầu ăn (vegetable oil)",
+        "weight_g": 5,
+        "note": "Dầu ăn. Nguồn chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 171092 (Oil, soybean, salad or cooking)"
+      }
+    ],
+    "image": "https://www.cookingwithnanaling.com/wp-content/uploads/2022/01/tomato-relish-683x1024.jpg",
+    "recipe_link": "https://www.food.com/recipe/tomato-relish-aussie-style-360286",
+    "origin": {
+      "continent": "Châu Úc",
+      "country": "Úc"
+    },
+    "price": 25000
+  },
+  {
+    "name": "Lemon Myrtle Tea (Trà chanh sim - Úc - 1 cốc)",
+    "calories": 5,
+    "protein": 0,
+    "fat": 0,
+    "carbs": 1,
+    "weight": 250,
+    "meal_time": [
+      "breakfast",
+      "afternoon"
+    ],
+    "note": "Một loại trà thảo mộc làm từ lá chanh sim, một loại cây bản địa Úc. Rất ít calo.",
+    "ingredients_breakdown": [
+      {
+        "item": "Lá chanh sim khô (dried lemon myrtle leaves)",
+        "weight_g": 1,
+        "note": "Lá chanh sim khô. (Lượng calo không đáng kể).",
+        "source": "Ước tính (thực phẩm thảo mộc)."
+      },
+      {
+        "item": "Nước nóng (hot water)",
+        "weight_ml": 250,
+        "note": "Nước nóng.",
+        "source": "USDA FoodData Central, FDC ID: 173950 (Water, tap, US, municipal)"
+      }
+    ],
+    "image": "https://cdn.shopify.com/s/files/1/0495/6468/0346/files/lemon_myrtle_hot_tea_600x600.png?v=1689655453",
+    "recipe_link": "https://mqflavor.com/lemon-myrtle-huong-chanh-xuat-phat-tu-nuoc-uc/",
+    "origin": {
+      "continent": "Châu Úc",
+      "country": "Úc"
+    },
+    "price": 20000
+  },
+  {
+    "name": "Kanga Bangers (Xúc xích Kangaroo - Úc - 1 cây)",
+    "calories": 200,
+    "protein": 30,
+    "fat": 8,
+    "carbs": 5,
+    "weight": 100,
+    "meal_time": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Thịt kangaroo (kangaroo meat)",
+        "weight_g": 80,
+        "note": "Thịt kangaroo xay. Nguồn protein nạc.",
+        "source": "USDA FoodData Central, FDC ID: 748967 (Beef, ground, 93% lean meat / 7% fat, cooked, pan-fried) - (Ước tính từ thịt đỏ nạc)."
+      },
+      {
+        "item": "Mỡ heo/dầu ăn (pork fat/vegetable oil)",
+        "weight_g": 10,
+        "note": "Một ít mỡ heo hoặc dầu ăn để tạo độ ẩm. Nguồn chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 170845 (Lard) / FDC ID: 171092 (Oil, soybean, salad or cooking)"
+      },
+      {
+        "item": "Gia vị (spices - e.g., pepper, herbs)",
+        "weight_g": 2,
+        "note": "Gia vị (tiêu, thảo mộc). (Lượng calo không đáng kể).",
+        "source": "USDA FoodData Central (Pepper: 171321)."
+      },
+      {
+        "item": "Vỏ xúc xích (sausage casing)",
+        "weight_g": 0,
+        "note": "Vỏ xúc xích (không ăn được).",
+        "source": "Không có giá trị dinh dưỡng."
+      }
+    ],
+    "image": "https://i.pinimg.com/originals/0f/e5/d7/0fe5d72b944e2ebb25327e8b6384b7bf.jpg",
+    "recipe_link": "https://k-roo.com.au/products/kanga-bangas/",
+    "origin": {
+      "continent": "Châu Úc",
+      "country": "Úc"
+    },
+    "price": 35000
+  },
+  {
+    "name": "Pavlova Eton Mess (Kem Pavlova Eton Mess - Úc/New Zealand - 1 ly)",
+    "calories": 300,
+    "protein": 4,
+    "fat": 20,
+    "carbs": 25,
+    "weight": 150,
+    "meal_time": [
+      "afternoon",
+      "dessert"
+    ],
+    "note": "Một biến thể của Eton Mess của Anh, nhưng dùng meringue của Pavlova. Là món tráng miệng dễ làm và ngon.",
+    "ingredients_breakdown": [
+      {
+        "item": "Kem tươi đánh bông (whipped cream)",
+        "weight_g": 80,
+        "note": "Kem tươi đánh bông. Nguồn chất béo và calo.",
+        "source": "USDA FoodData Central, FDC ID: 170197 (Cream, fluid, heavy whipping)"
+      },
+      {
+        "item": "Vụn meringue (crushed meringue)",
+        "weight_g": 30,
+        "note": "Vụn meringue (được coi là 'Pavlova' trong món này). Nguồn carb và đường.",
+        "source": "Ước tính từ đường và lòng trắng trứng."
+      },
+      {
+        "item": "Trái cây tươi (fresh berries - strawberries, raspberries)",
+        "weight_g": 40,
+        "note": "Trái cây tươi như dâu tây, mâm xôi. Bổ sung vitamin và chất xơ.",
+        "source": "USDA FoodData Central (Strawberries: 170456, Raspberries: 170454)"
+      }
+    ],
+    "image": "https://farm8.staticflickr.com/7097/13514146653_caaf458630_b.jpg",
+    "recipe_link": "https://www.callmecupcake.se/2014/03/pavlova-eton-mess-and-perfect-meringues.html",
+    "origin": {
+      "continent": "Châu Úc",
+      "country": "Úc - New Zealand"
+    },
+    "price": 30000
+  },
+  {
+    "name": "Barbecued Prawns (Tôm nướng BBQ - Úc - 1 suất)",
+    "calories": 250,
+    "protein": 25,
+    "fat": 15,
+    "carbs": 3,
+    "weight": 150,
+    "meal_time": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Tôm tươi (fresh prawns/shrimp, raw)",
+        "weight_g": 120,
+        "note": "Tôm tươi, bóc vỏ, bỏ chỉ.",
+        "source": "USDA FoodData Central, FDC ID: 171307 (Shrimp, raw)"
+      },
+      {
+        "item": "Dầu oliu (olive oil)",
+        "weight_g": 10,
+        "note": "Dầu oliu để ướp và nướng. Nguồn chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 171096 (Oil, olive, virgin)"
+      },
+      {
+        "item": "Tỏi (garlic, minced)",
+        "weight_g": 5,
+        "note": "Tỏi băm. Tăng hương vị.",
+        "source": "USDA FoodData Central, FDC ID: 170427 (Garlic, raw)"
+      },
+      {
+        "item": "Chanh (lemon/lime juice)",
+        "weight_ml": 5,
+        "note": "Nước cốt chanh. Tạo vị chua.",
+        "source": "USDA FoodData Central, FDC ID: 170430 (Lime juice, raw)"
+      }
+    ],
+    "image": "https://www.bigdogspices.com.au/wp-content/uploads/2023/08/big-dog-barbeque-prawns-header.jpeg",
+    "recipe_link": "https://www.bigdogspices.com.au/blog/how-to-cook-prawns-on-a-barbeque/?srsltid=AfmBOoor3HmNfKnvCJOvwSzmbhR7-Gt9MLgYzMUkFRVPFt5bW2J7DVAi",
+    "origin": {
+      "continent": "Châu Úc",
+      "country": "Úc"
+    },
+    "price": 40000
+  },
+  {
+    "name": "Pumpkin Soup (Súp bí đỏ - Úc - 1 tô nhỏ)",
+    "calories": 200,
+    "protein": 5,
+    "fat": 10,
+    "carbs": 20,
+    "weight": 300,
+    "meal_time": [
+      "lunch",
+      "dinner",
+      "breakfast"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Bí đỏ (pumpkin, cooked)",
+        "weight_g": 150,
+        "note": "Bí đỏ đã hấp/luộc và nghiền. Nguồn carb và vitamin.",
+        "source": "USDA FoodData Central, FDC ID: 170463 (Squash, winter, butternut, raw) - (Ước tính từ bí đỏ nấu chín)."
+      },
+      {
+        "item": "Nước dùng rau củ (vegetable broth)",
+        "weight_ml": 100,
+        "note": "Nước dùng rau củ. Tạo nền cho súp.",
+        "source": "USDA FoodData Central, FDC ID: 170364 (Broth, vegetable, ready to serve)"
+      },
+      {
+        "item": "Kem tươi (cream/coconut milk - optional)",
+        "weight_g": 20,
+        "note": "Kem tươi hoặc nước cốt dừa (tùy chọn), tạo độ béo và sánh.",
+        "source": "USDA FoodData Central, FDC ID: 170197 (Cream, fluid, heavy whipping)"
+      },
+      {
+        "item": "Hành tây, tỏi (onions, garlic)",
+        "weight_g": 10,
+        "note": "Hành tây, tỏi băm. Xào thơm.",
+        "source": "USDA FoodData Central (Onions: 170440, Garlic: 170427)"
+      },
+      {
+        "item": "Dầu oliu (olive oil)",
+        "weight_g": 5,
+        "note": "Dầu oliu để xào rau củ. Nguồn chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 171096 (Oil, olive, virgin)"
+      }
+    ],
+    "image": "https://img.taste.com.au/ir8lOyhk/w643-h428-cfill-q90/taste/2010/01/best-easy-pumpkin-soup-recipe-185570-1.jpg",
+    "recipe_link": "https://www.taste.com.au/recipes/pumpkin-soup/e54ab2b5-7d19-4e4b-b383-781292dc4bfb",
+    "origin": {
+      "continent": "Châu Úc",
+      "country": "Úc"
+    },
+    "price": 30000
+  },
+  {
+    "name": "Whitebait Fritter (Chả cá trắng chiên - New Zealand - 1 cái)",
+    "calories": 220,
+    "protein": 12,
+    "fat": 15,
+    "carbs": 10,
+    "weight": 90,
+    "meal_time": [
+      "lunch",
+      "afternoon"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Cá trắng (whitebait)",
+        "weight_g": 50,
+        "note": "Cá trắng (cá con nhỏ). Nguồn protein.",
+        "source": "USDA FoodData Central, FDC ID: 171502 (Fish, cod, Atlantic, cooked, dry heat) - (Ước tính từ cá nhỏ)."
+      },
+      {
+        "item": "Trứng gà (eggs)",
+        "weight_g": 20,
+        "note": "Trứng gà. Nguồn protein và chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 748967 (Egg, whole, raw)"
+      },
+      {
+        "item": "Bột mì (flour)",
+        "weight_g": 10,
+        "note": "Bột mì. Nguồn carb.",
+        "source": "USDA FoodData Central, FDC ID: 169720 (Flour, wheat, all-purpose, enriched, unbleached)"
+      },
+      {
+        "item": "Dầu ăn (vegetable oil for frying)",
+        "weight_g": 10,
+        "note": "Dầu ăn để chiên. Nguồn chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 171092 (Oil, soybean, salad or cooking)"
+      }
+    ],
+    "image": "https://www.thespruceeats.com/thmb/o3Pzvtz2z9aXnBZ-OxXJiy3lgTs=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/classic-fried-whitebait-with-aioli-1300842-hero-01-5d438ccc612f413ca7a06e26757f8378.jpg",
+    "recipe_link": "https://www.thespruceeats.com/classic-fried-whitebait-with-aioli-1300842",
+    "origin": {
+      "continent": "Châu Úc",
+      "country": "New Zealand"
+    },
+    "price": 30000
+  },
+  {
+    "name": "Milo (Đồ uống lúa mạch sô cô la - Úc/New Zealand - 1 ly)",
+    "calories": 200,
+    "protein": 6,
+    "fat": 8,
+    "carbs": 25,
+    "weight": 250,
+    "meal_time": [
+      "breakfast",
+      "afternoon"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Bột Milo (Milo powder)",
+        "weight_g": 20,
+        "note": "Bột lúa mạch và ca cao. Nguồn carb và đường.",
+        "source": "Ước tính từ thông tin dinh dưỡng trên bao bì sản phẩm (Nestlé Milo)."
+      },
+      {
+        "item": "Sữa (milk, whole)",
+        "weight_ml": 200,
+        "note": "Sữa tươi nguyên kem. Nguồn protein và chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 170784 (Milk, whole, 3.25% milkfat, with added vitamin D)"
+      },
+      {
+        "item": "Đường (sugar, optional)",
+        "weight_g": 10,
+        "note": "Đường (tùy chọn). Nguồn carb.",
+        "source": "USDA FoodData Central, FDC ID: 169862 (Sugars, granulated)"
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/Files/2019/07/04/1177275/7-cach-lam-milo-dam-mat-lanh-sieu-ngon-kho-cuong-tai-nha-202202231309560420.jpg",
+    "recipe_link": "https://www.bachhoaxanh.com/kinh-nghiem-hay/mach-ban-3-cong-thuc-lam-milo-dam-mat-lanh-ngon-kho-cuong-1177275?srsltid=AfmBOopqLH9B9QueKFfxcqikYFaZ_jBVxXZ73StzFpG4hiQVOp1WyFFZ",
+    "origin": {
+      "continent": "Châu Úc",
+      "country": "Úc - New Zealand"
+    },
+    "price": 25000
+  },
+  {
+    "name": "Gazpacho (Súp lạnh cà chua - Tây Ban Nha - 1 tô nhỏ)",
+    "calories": 250,
+    "protein": 5,
+    "fat": 15,
+    "carbs": 25,
+    "weight": 350,
+    "meal_time": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Cà chua chín (ripe tomatoes)",
+        "weight_g": 150,
+        "note": "Cà chua tươi, tạo nền chính cho súp. Nguồn vitamin và chất xơ.",
+        "source": "USDA FoodData Central, FDC ID: 170457 (Tomatoes, red, ripe, raw, year round average)"
+      },
+      {
+        "item": "Dưa chuột (cucumber, raw)",
+        "weight_g": 50,
+        "note": "Dưa chuột tươi. Bổ sung độ tươi mát.",
+        "source": "USDA FoodData Central, FDC ID: 170425 (Cucumber, raw, with peel)"
+      },
+      {
+        "item": "Ớt chuông xanh (green bell pepper, raw)",
+        "weight_g": 30,
+        "note": "Ớt chuông xanh. Tăng hương vị và vitamin.",
+        "source": "USDA FoodData Central, FDC ID: 170381 (Peppers, sweet, green, raw)"
+      },
+      {
+        "item": "Hành tây (onions, raw)",
+        "weight_g": 20,
+        "note": "Hành tây. Tăng hương vị.",
+        "source": "USDA FoodData Central, FDC ID: 170440 (Onions, raw)"
+      },
+      {
+        "item": "Tỏi (garlic, raw)",
+        "weight_g": 5,
+        "note": "Tỏi. Tăng hương vị.",
+        "source": "USDA FoodData Central, FDC ID: 170427 (Garlic, raw)"
+      },
+      {
+        "item": "Dầu oliu nguyên chất (extra virgin olive oil)",
+        "weight_g": 20,
+        "note": "Dầu oliu. Nguồn chất béo lành mạnh.",
+        "source": "USDA FoodData Central, FDC ID: 171096 (Oil, olive, virgin)"
+      },
+      {
+        "item": "Giấm rượu vang đỏ (red wine vinegar)",
+        "weight_ml": 10,
+        "note": "Giấm. Tạo vị chua.",
+        "source": "USDA FoodData Central, FDC ID: 170792 (Vinegar, red wine)"
+      },
+      {
+        "item": "Bánh mì cũ (stale bread - optional)",
+        "weight_g": 10,
+        "note": "Một ít bánh mì cũ (tùy chọn) để tạo độ sánh.",
+        "source": "USDA FoodData Central, FDC ID: 170014 (Bread, French or Viennese, toasted)"
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/Files/2023/07/22/1539382/tro-tai-lam-mon-sup-ca-chua-gazpacho-dung-chuan-tay-ban-nha-202307240730327638.jpg",
+    "recipe_link": "https://www.bachhoaxanh.com/kinh-nghiem-hay/tro-tai-lam-mon-sup-ca-chua-gazpacho-dung-chuan-tay-ban-nha-1539382?srsltid=AfmBOoq7PzVGh106h5rMaP-EJSY1cnPskn7tWZku4480Ya6rGdm7u9PR",
+    "origin": {
+      "continent": "Châu Âu",
+      "country": "Tây Ban Nha"
+    },
+    "price": 30000
+  },
+  {
+    "name": "Pastel de Nata (Bánh tart trứng Bồ Đào Nha - 1 cái)",
+    "calories": 280,
+    "protein": 5,
+    "fat": 15,
+    "carbs": 30,
+    "weight": 80,
+    "meal_time": [
+      "afternoon",
+      "breakfast"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Vỏ bánh ngàn lớp (puff pastry)",
+        "weight_g": 30,
+        "note": "Vỏ bánh làm từ bột mì và bơ. Nguồn carb và chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 184518 (Puff pastry, frozen, uncooked)"
+      },
+      {
+        "item": "Kem trứng (custard filling)",
+        "weight_g": 50,
+        "note": "Nhân kem trứng béo ngậy. Nguồn protein, chất béo và carb.",
+        "source": "USDA FoodData Central, FDC ID: 168434 (Pudding, chocolate, ready-to-eat) - (Ước tính từ kem pudding)."
+      },
+      {
+        "item": "Đường (sugar)",
+        "weight_g": 10,
+        "note": "Đường trong kem và vỏ bánh.",
+        "source": "USDA FoodData Central, FDC ID: 169862 (Sugars, granulated)"
+      }
+    ],
+    "image": "https://www.biggerbolderbaking.com/wp-content/uploads/2021/03/Portuguese-Tarts-thumbnail-scaled.jpg",
+    "recipe_link": "https://www.biggerbolderbaking.com/portuguese-custard-tarts-pastel-de-nata/",
+    "origin": {
+      "continent": "Châu Âu",
+      "country": "Bồ Đào Nha"
+    },
+    "price": 25000
+  },
+  {
+    "name": "Gravlax (Cá hồi ướp muối thì là - Na Uy/Thụy Điển - 1 suất ăn nhẹ)",
+    "calories": 300,
+    "protein": 25,
+    "fat": 20,
+    "carbs": 5,
+    "weight": 100,
+    "meal_time": [
+      "lunch",
+      "dinner",
+      "breakfast"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Cá hồi phi lê (salmon fillet, raw)",
+        "weight_g": 80,
+        "note": "Cá hồi tươi, ướp muối, đường, thì là. Nguồn protein và omega-3.",
+        "source": "USDA FoodData Central, FDC ID: 171510 (Fish, salmon, Atlantic, wild, raw)"
+      },
+      {
+        "item": "Bánh mì lúa mạch đen (rye bread - for serving)",
+        "weight_g": 20,
+        "note": "Bánh mì lúa mạch đen (tùy chọn) ăn kèm.",
+        "source": "USDA FoodData Central, FDC ID: 170018 (Bread, rye)"
+      },
+      {
+        "item": "Muối, đường (salt, sugar)",
+        "weight_g": 5,
+        "note": "Muối và đường dùng để ướp cá.",
+        "source": "USDA FoodData Central (Salt: 171358, Sugar: 169862)"
+      },
+      {
+        "item": "Thì là tươi (fresh dill)",
+        "weight_g": 5,
+        "note": "Thì là tươi. Tạo hương vị đặc trưng.",
+        "source": "USDA FoodData Central, FDC ID: 170420 (Dill weed, fresh)"
+      },
+      {
+        "item": "Sốt mù tạt thì là (dill mustard sauce - optional)",
+        "weight_g": 10,
+        "note": "Sốt mù tạt thì là (tùy chọn) ăn kèm. Nguồn chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 171099 (Mustard, prepared, yellow)"
+      }
+    ],
+    "image": "https://visitsweden.com/_next/image/?url=https%3A%2F%2Fs3-eu-north-1.amazonaws.com%3A443%2Fpy3.visitsweden.com%2Foriginal_images%2Flax_3399-IBSweb.jpg&w=1440&q=75",
+    "recipe_link": "https://visitsweden.com/what-to-do/food-drink/recipes/cured-salmon-aka-gravad-lax-recipe/",
+    "origin": {
+      "continent": "Châu Âu",
+      "country": "Na Uy - Thụy Điển"
+    },
+    "price": 45000
+  },
+  {
+    "name": "Minestrone Soup (Súp rau củ Ý - 1 tô nhỏ)",
+    "calories": 280,
+    "protein": 10,
+    "fat": 10,
+    "carbs": 40,
+    "weight": 400,
+    "meal_time": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Rau củ hỗn hợp (mixed vegetables - carrots, celery, zucchini, green beans)",
+        "weight_g": 150,
+        "note": "Cà rốt, cần tây, bí ngòi, đậu que. Nguồn vitamin và chất xơ.",
+        "source": "USDA FoodData Central (Carrots: 170393, Celery: 170377, Zucchini: 170464, Green beans: 170409)"
+      },
+      {
+        "item": "Đậu (beans - kidney/cannellini, cooked)",
+        "weight_g": 50,
+        "note": "Đậu thận hoặc đậu cannellini. Nguồn protein thực vật và carb.",
+        "source": "USDA FoodData Central, FDC ID: 170043 (Beans, kidney, cooked, boiled, with salt)"
+      },
+      {
+        "item": "Mì ống nhỏ (small pasta - ditalini/elbow)",
+        "weight_g": 30,
+        "note": "Mì ống nhỏ. Nguồn carb.",
+        "source": "USDA FoodData Central, FDC ID: 170994 (Pasta, spaghetti, enriched, cooked, without added salt) - (Ước tính từ mì ống)."
+      },
+      {
+        "item": "Sốt cà chua (tomato sauce/paste)",
+        "weight_g": 50,
+        "note": "Sốt cà chua hoặc tương cà. Tạo nền cho súp.",
+        "source": "USDA FoodData Central, FDC ID: 170460 (Tomatoes, red, ripe, canned, crushed, with salt)"
+      },
+      {
+        "item": "Nước dùng rau củ (vegetable broth)",
+        "weight_ml": 100,
+        "note": "Nước dùng rau củ. Tạo độ ẩm và hương vị.",
+        "source": "USDA FoodData Central, FDC ID: 170364 (Broth, vegetable, ready to serve)"
+      },
+      {
+        "item": "Dầu oliu (olive oil)",
+        "weight_g": 10,
+        "note": "Dầu oliu. Nguồn chất béo lành mạnh.",
+        "source": "USDA FoodData Central, FDC ID: 171096 (Oil, olive, virgin)"
+      },
+      {
+        "item": "Phô mai Parmesan (Parmesan cheese, grated - optional)",
+        "weight_g": 10,
+        "note": "Phô mai Parmesan bào (tùy chọn) rắc lên trên. Nguồn protein và chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 170617 (Cheese, Parmesan, grated)"
+      }
+    ],
+    "image": "https://file.hstatic.net/1000282430/article/minestrone_5_61e3eca5f6bb41dbba378b8a3a824ec2_5e3ea408122042e09c5ccd963dcd8211_1024x1024.png",
+    "recipe_link": "https://namanmarket.com/blogs/cong-thuc-nau-an/huong-dan-thuc-don-chay-de-lam-voi-cong-thuc-minestrone-soup-rau-cu-y-la-mieng?srsltid=AfmBOopyGUE0C6uEnzBCSNrZSxKD8BuLgSGXUTvV0G7_XoNcJ5TMQc05",
+    "origin": {
+      "continent": "Châu Âu",
+      "country": "Ý"
+    },
+    "price": 35000
+  },
+  {
+    "name": "Quiche Lorraine (Bánh tart nhân thịt xông khói phô mai - Pháp - 1 lát nhỏ)",
+    "calories": 380,
+    "protein": 15,
+    "fat": 30,
+    "carbs": 10,
+    "weight": 150,
+    "meal_time": [
+      "breakfast",
+      "lunch",
+      "afternoon"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Vỏ bánh tart (shortcrust pastry)",
+        "weight_g": 40,
+        "note": "Vỏ bánh làm từ bột mì và bơ. Nguồn carb và chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 184518 (Puff pastry, frozen, uncooked)"
+      },
+      {
+        "item": "Trứng (eggs)",
+        "weight_g": 50,
+        "note": "Trứng gà. Nguồn protein và chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 748967 (Egg, whole, raw)"
+      },
+      {
+        "item": "Kem tươi (heavy cream)",
+        "weight_g": 50,
+        "note": "Kem tươi béo ngậy. Nguồn chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 170197 (Cream, fluid, heavy whipping)"
+      },
+      {
+        "item": "Thịt xông khói (bacon/lardons, cooked)",
+        "weight_g": 30,
+        "note": "Thịt xông khói thái hạt lựu. Nguồn chất béo và protein.",
+        "source": "USDA FoodData Central, FDC ID: 170019 (Bacon, pork, cured, cooked)"
+      },
+      {
+        "item": "Phô mai Gruyère (Gruyère cheese, shredded)",
+        "weight_g": 20,
+        "note": "Phô mai Gruyère bào sợi. Nguồn protein và chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 170607 (Cheese, Gruyere)"
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/2020/07/CookProduct/avadai-1200x676-12.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-banh-tart-man-quiche-lorain-chuan-phap-thom-ngon-don-02977",
+    "origin": {
+      "continent": "Châu Âu",
+      "country": "Pháp"
+    },
+    "price": 40000
+  },
+  {
+    "name": "Apfelstrudel (Bánh táo cuộn Áo/Đức - 1 lát nhỏ)",
+    "calories": 350,
+    "protein": 4,
+    "fat": 20,
+    "carbs": 40,
+    "weight": 120,
+    "meal_time": [
+      "afternoon",
+      "dessert"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Vỏ bánh strudel (strudel pastry)",
+        "weight_g": 40,
+        "note": "Vỏ bánh mỏng làm từ bột mì. Nguồn carb và chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 184518 (Puff pastry, frozen, uncooked) - (Ước tính từ vỏ bánh)."
+      },
+      {
+        "item": "Táo (apples, sliced)",
+        "weight_g": 50,
+        "note": "Táo thái lát. Nguồn carb và chất xơ.",
+        "source": "USDA FoodData Central, FDC ID: 170090 (Apple, raw, with skin)"
+      },
+      {
+        "item": "Đường (sugar)",
+        "weight_g": 20,
+        "note": "Đường. Nguồn carb.",
+        "source": "USDA FoodData Central, FDC ID: 169862 (Sugars, granulated)"
+      },
+      {
+        "item": "Vụn bánh mì rang bơ (breadcrumbs, buttered)",
+        "weight_g": 10,
+        "note": "Vụn bánh mì rang với bơ. Tạo độ giòn và béo.",
+        "source": "USDA FoodData Central, FDC ID: 188849 (Breadcrumbs, plain) + FDC ID: 170196 (Butter, without salt)"
+      },
+      {
+        "item": "Bơ (butter, melted)",
+        "weight_g": 10,
+        "note": "Bơ tan chảy, phết lên vỏ bánh.",
+        "source": "USDA FoodData Central, FDC ID: 170196 (Butter, without salt)"
+      }
+    ],
+    "image": "https://daysofjay.com/wp-content/uploads/2022/08/Apple-Strudel-Web-21-683x1024.jpg.webp",
+    "recipe_link": "https://daysofjay.com/2022/08/24/authentic-german-apple-strudel/",
+    "origin": {
+      "continent": "Châu Âu",
+      "country": "Áo - Đức"
+    },
+    "price": 35000
+  },
+  {
+    "name": "Panna Cotta (Kem nấu - Ý - 1 suất)",
+    "calories": 280,
+    "protein": 5,
+    "fat": 20,
+    "carbs": 20,
+    "weight": 150,
+    "meal_time": [
+      "afternoon",
+      "dessert"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Kem tươi (heavy cream)",
+        "weight_g": 100,
+        "note": "Kem tươi béo ngậy. Nguồn chất béo cao.",
+        "source": "USDA FoodData Central, FDC ID: 170197 (Cream, fluid, heavy whipping)"
+      },
+      {
+        "item": "Sữa tươi (milk, whole)",
+        "weight_ml": 30,
+        "note": "Sữa tươi. Tạo độ mềm.",
+        "source": "USDA FoodData Central, FDC ID: 170784 (Milk, whole, 3.25% milkfat, with added vitamin D)"
+      },
+      {
+        "item": "Đường (sugar)",
+        "weight_g": 20,
+        "note": "Đường. Nguồn carb.",
+        "source": "USDA FoodData Central, FDC ID: 169862 (Sugars, granulated)"
+      },
+      {
+        "item": "Gelatin (gelatin powder)",
+        "weight_g": 2,
+        "note": "Gelatin. Giúp món tráng miệng đông lại. (Lượng calo không đáng kể).",
+        "source": "USDA FoodData Central, FDC ID: 171344 (Gelatin, dry powder, unsweetened)"
+      },
+      {
+        "item": "Vani (vanilla extract)",
+        "weight_ml": 1,
+        "note": "Chiết xuất vani. Tăng hương vị. (Lượng calo không đáng kể).",
+        "source": "USDA FoodData Central, FDC ID: 171360 (Vanilla extract)"
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/2021/07/CookProduct/Panna-Cotta---Original-authentic-Italian-recipe-of-this-show-stopper-of-a-dessert!-Panna-Cotta-0-24-screenshot-(1)-1200x676.jpg",
+    "recipe_link": "https://www.dienmayxanh.com/vao-bep/cach-lam-panna-cotta-co-ban-kieu-y-thom-beo-chuan-vi-ca-nha-11613",
+    "origin": {
+      "continent": "Châu Âu",
+      "country": "Ý"
+    },
+    "price": 35000
+  },
+  {
+    "name": "Salade Niçoise (Salad cá ngừ kiểu Nice - Pháp - 1 suất ăn nhẹ)",
+    "calories": 350,
+    "protein": 25,
+    "fat": 20,
+    "carbs": 15,
+    "weight": 300,
+    "meal_time": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Cá ngừ (canned tuna in olive oil, drained)",
+        "weight_g": 80,
+        "note": "Cá ngừ đóng hộp. Nguồn protein và omega-3.",
+        "source": "USDA FoodData Central, FDC ID: 171300 (Fish, tuna, light, canned in oil, drained solids)"
+      },
+      {
+        "item": "Xà lách (lettuce - e.g., romaine)",
+        "weight_g": 50,
+        "note": "Rau xà lách. Nguồn chất xơ.",
+        "source": "USDA FoodData Central, FDC ID: 170431 (Lettuce, cos or romaine, raw)"
+      },
+      {
+        "item": "Cà chua (tomatoes, raw)",
+        "weight_g": 50,
+        "note": "Cà chua. Nguồn vitamin và chất xơ.",
+        "source": "USDA FoodData Central, FDC ID: 170457 (Tomatoes, red, ripe, raw, year round average)"
+      },
+      {
+        "item": "Trứng luộc (hard-boiled egg)",
+        "weight_g": 50,
+        "note": "Trứng gà luộc. Nguồn protein và chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 168347 (Egg, whole, hard-cooked)"
+      },
+      {
+        "item": "Đậu que (green beans, cooked)",
+        "weight_g": 30,
+        "note": "Đậu que luộc. Nguồn chất xơ.",
+        "source": "USDA FoodData Central, FDC ID: 170409 (Beans, green, cooked, boiled, drained, without salt)"
+      },
+      {
+        "item": "Ô liu Niçoise (Niçoise olives)",
+        "weight_g": 10,
+        "note": "Ô liu. Tăng hương vị và chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 170716 (Olives, ripe, canned (including Spanish or Greek))"
+      },
+      {
+        "item": "Dressing giấm dầu (vinaigrette dressing)",
+        "weight_g": 20,
+        "note": "Sốt giấm dầu oliu. Nguồn chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 171096 (Oil, olive, virgin) + FDC ID: 170366 (Vinegar, distilled)"
+      }
+    ],
+    "image": "https://assets.bonappetit.com/photos/66573628bb9e3cf71a29c890/1:1/w_1600,c_limit/tuna-nicoise-salad_LEDE_052224_6151_VOG_final.jpg",
+    "recipe_link": "https://www.bonappetit.com/recipe/tuna-nicoise-salad?srsltid=AfmBOorhUzD0wNUFizHgfpu4uigtVysC4MVdbsv8HWORBi-wjAJMm28Z",
+    "origin": {
+      "continent": "Châu Âu",
+      "country": "Pháp"
+    },
+    "price": 35000
+  },
+  {
+    "name": "Pan con Tomate (Bánh mì cà chua - Tây Ban Nha - 2 lát)",
+    "calories": 280,
+    "protein": 8,
+    "fat": 15,
+    "carbs": 25,
+    "weight": 150,
+    "meal_time": [
+      "breakfast",
+      "lunch",
+      "snack"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Bánh mì (crusty bread/baguette)",
+        "weight_g": 80,
+        "note": "Bánh mì giòn. Nguồn carb.",
+        "source": "USDA FoodData Central, FDC ID: 170014 (Bread, French or Viennese, toasted)"
+      },
+      {
+        "item": "Cà chua chín (ripe tomatoes)",
+        "weight_g": 50,
+        "note": "Cà chua chà/nghiền. Nguồn vitamin và chất xơ.",
+        "source": "USDA FoodData Central, FDC ID: 170457 (Tomatoes, red, ripe, raw, year round average)"
+      },
+      {
+        "item": "Dầu oliu nguyên chất (extra virgin olive oil)",
+        "weight_g": 15,
+        "note": "Dầu oliu. Nguồn chất béo lành mạnh.",
+        "source": "USDA FoodData Central, FDC ID: 171096 (Oil, olive, virgin)"
+      },
+      {
+        "item": "Tỏi (garlic, raw - optional)",
+        "weight_g": 5,
+        "note": "Tỏi (tùy chọn), chà lên bánh mì trước khi cho cà chua.",
+        "source": "USDA FoodData Central, FDC ID: 170427 (Garlic, raw)"
+      }
+    ],
+    "image": "https://www.seriouseats.com/thmb/yGXtDQim4gFr4kVD4HZW-DR9h3c=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/pan-con-tomate-tomato-bread-spanish-recipe-12-45ce91dfa54c43c89086b788067ebb8f.jpg",
+    "recipe_link": "https://www.seriouseats.com/pan-con-tomate-tomato-bread-spanish-recipe",
+    "origin": {
+      "continent": "Châu Âu",
+      "country": "Tây Ban Nha"
+    },
+    "price": 25000
+  },
+  {
+    "name": "Pretzel (Bánh xoắn Đức - 1 cái)",
+    "calories": 300,
+    "protein": 10,
+    "fat": 5,
+    "carbs": 50,
+    "weight": 100,
+    "meal_time": [
+      "snack",
+      "afternoon"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Bột mì (wheat flour)",
+        "weight_g": 60,
+        "note": "Bột mì. Nguồn carb chính.",
+        "source": "USDA FoodData Central, FDC ID: 169720 (Flour, wheat, all-purpose, enriched, unbleached)"
+      },
+      {
+        "item": "Nước (water)",
+        "weight_ml": 30,
+        "note": "Nước.",
+        "source": "USDA FoodData Central, FDC ID: 173950 (Water, tap, US, municipal)"
+      },
+      {
+        "item": "Men (yeast)",
+        "weight_g": 1,
+        "note": "Men. Giúp bánh nở.",
+        "source": "USDA FoodData Central, FDC ID: 171343 (Yeast, baker's, active dry)"
+      },
+      {
+        "item": "Muối hạt (coarse salt)",
+        "weight_g": 2,
+        "note": "Muối hạt rắc trên bề mặt.",
+        "source": "USDA FoodData Central, FDC ID: 171358 (Salt, table)"
+      },
+      {
+        "item": "Sô đa nướng (baking soda solution)",
+        "weight_g": 5,
+        "note": "Dung dịch baking soda (không ăn được, dùng để tạo màu và vỏ giòn).",
+        "source": "USDA FoodData Central, FDC ID: 171326 (Sodium bicarbonate)"
+      }
+    ],
+    "image": "https://cdn.tgdd.vn/Files/2020/06/11/1262193/cach-lam-banh-xoan-pretzel-nong-hoi-thom-ngon-ngay-tai-nha-202006110843369624.jpg",
+    "recipe_link": "https://www.bachhoaxanh.com/kinh-nghiem-hay/cach-lam-banh-xoan-prezel-nong-hoi-thom-ngon-ngay-tai-nha-1262193?srsltid=AfmBOoqPKafisRrpARMnFVP8sWLaVpyHDjdkyxCa3eISW5TdQaX5xhTL",
+    "origin": {
+      "continent": "Châu Âu",
+      "country": "Đức"
+    },
+    "price": 30000
+  },
+  {
+    "name": "Königsberger Klopse (Thịt viên sốt kem bạch hoa Đức - 1 suất ăn kèm khoai tây, suất nhỏ)",
+    "calories": 380,
+    "protein": 25,
+    "fat": 25,
+    "carbs": 15,
+    "weight": 350,
+    "meal_time": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "Phiên bản nhỏ hơn để phù hợp với yêu cầu calo, tập trung vào thịt viên và sốt.",
+    "ingredients_breakdown": [
+      {
+        "item": "Thịt viên (meatballs - veal/pork/beef, cooked)",
+        "weight_g": 100,
+        "note": "Thịt viên làm từ thịt bê, heo hoặc bò. Nguồn protein và chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 170138 (Veal, composite of trimmed retail cuts, cooked, braised) / FDC ID: 173516 (Pork, fresh, ground, 80% lean/20% fat, cooked, pan-fried)"
+      },
+      {
+        "item": "Sốt kem bạch hoa (creamy caper sauce)",
+        "weight_ml": 100,
+        "note": "Sốt kem béo ngậy làm từ nước dùng thịt, kem tươi, bạch hoa (capers). Nguồn chất béo cao.",
+        "source": "USDA FoodData Central, FDC ID: 170197 (Cream, fluid, heavy whipping) + FDC ID: 170068 (Beef broth, canned, condensed, undiluted) + FDC ID: 171415 (Capers, canned)"
+      },
+      {
+        "item": "Khoai tây luộc/nghiền (boiled/mashed potatoes - for serving)",
+        "weight_g": 100,
+        "note": "Khoai tây luộc hoặc nghiền ăn kèm (suất nhỏ). Nguồn carb.",
+        "source": "USDA FoodData Central, FDC ID: 170878 (Potatoes, white, raw, skin eaten) / FDC ID: 170881 (Potatoes, mashed, home-prepared, with milk and butter)"
+      },
+      {
+        "item": "Hành tây (onions, diced)",
+        "weight_g": 10,
+        "note": "Hành tây băm nhỏ.",
+        "source": "USDA FoodData Central, FDC ID: 170440 (Onions, raw)"
+      }
+    ],
+    "image": "https://img.sndimg.com/food/image/upload/f_auto,c_thumb,q_55,w_860,ar_3:2/v1/img/recipes/10/62/98/picJgMCOM.jpg",
+    "recipe_link": "https://www.food.com/recipe/konigsberger-klopse-german-meatballs-in-creamy-caper-sauce-106298",
+    "origin": {
+      "continent": "Châu Âu",
+      "country": "Đức"
+    },
+    "price": 35000
+  },
+  {
+    "name": "Borscht (Súp củ dền Nga - 1 tô nhỏ, không thịt)",
+    "calories": 200,
+    "protein": 8,
+    "fat": 5,
+    "carbs": 30,
+    "weight": 400,
+    "meal_time": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "Phiên bản súp củ dền nhẹ hơn, tập trung vào rau củ và không có thịt để giảm calo.",
+    "ingredients_breakdown": [
+      {
+        "item": "Củ dền (beets, diced/shredded)",
+        "weight_g": 100,
+        "note": "Củ dền. Nguồn chất xơ.",
+        "source": "USDA FoodData Central, FDC ID: 170360 (Beets, raw)"
+      },
+      {
+        "item": "Bắp cải (cabbage, shredded)",
+        "weight_g": 80,
+        "note": "Bắp cải thái sợi. Nguồn chất xơ.",
+        "source": "USDA FoodData Central, FDC ID: 170363 (Cabbage, raw)"
+      },
+      {
+        "item": "Khoai tây (potatoes, diced)",
+        "weight_g": 50,
+        "note": "Khoai tây thái hạt lựu. Nguồn carb.",
+        "source": "USDA FoodData Central, FDC ID: 170878 (Potatoes, white, raw, skin eaten)"
+      },
+      {
+        "item": "Cà rốt (carrots, diced)",
+        "weight_g": 30,
+        "note": "Cà rốt. Bổ sung vitamin và chất xơ.",
+        "source": "USDA FoodData Central, FDC ID: 170393 (Carrots, raw)"
+      },
+      {
+        "item": "Hành tây (onions, diced)",
+        "weight_g": 20,
+        "note": "Hành tây. Xào thơm.",
+        "source": "USDA FoodData Central, FDC ID: 170440 (Onions, raw)"
+      },
+      {
+        "item": "Sốt cà chua (tomato paste/crushed tomatoes)",
+        "weight_g": 20,
+        "note": "Tương cà chua. Tạo màu và vị.",
+        "source": "USDA FoodData Central, FDC ID: 170460 (Tomatoes, red, ripe, canned, crushed, with salt)"
+      },
+      {
+        "item": "Nước dùng rau củ (vegetable broth)",
+        "weight_ml": 100,
+        "note": "Nước dùng rau củ. Nền của súp.",
+        "source": "USDA FoodData Central, FDC ID: 170364 (Broth, vegetable, ready to serve)"
+      }
+    ],
+    "image": "https://vikalinka.com/wp-content/uploads/2019/01/Borscht-10-Edit.jpg",
+    "recipe_link": "https://vikalinka.com/borscht-recipe/",
+    "origin": {
+      "continent": "Châu Âu",
+      "country": "Nga - Ukraine"
+    },
+    "price": 25000
+  },
+  {
+    "name": "Arancini (Cơm viên chiên Ý - 1 viên tiêu chuẩn)",
+    "calories": 300,
+    "protein": 10,
+    "fat": 18,
+    "carbs": 25,
+    "weight": 180,
+    "meal_time": [
+      "lunch",
+      "snack"
+    ],
+    "note": "Phiên bản 1 viên để phù hợp với yêu cầu calo.",
+    "ingredients_breakdown": [
+      {
+        "item": "Gạo Risotto (Arborio rice, cooked)",
+        "weight_g": 80,
+        "note": "Cơm risotto. Nguồn carb.",
+        "source": "USDA FoodData Central, FDC ID: 169722 (Rice, white, long-grain, regular, cooked) - (Ước tính từ gạo Arborio)."
+      },
+      {
+        "item": "Sốt Ragù (meat ragù - beef/pork)",
+        "weight_g": 40,
+        "note": "Sốt thịt băm làm nhân. Nguồn protein và chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 173516 (Beef, ground, 80% lean/20% fat, cooked, pan-fried) / FDC ID: 172960 (Pork, fresh, shoulder, whole, separable lean only, cooked, roasted)"
+      },
+      {
+        "item": "Phô mai Mozzarella (mozzarella cheese, diced)",
+        "weight_g": 15,
+        "note": "Phô mai. Nguồn protein và chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 170614 (Cheese, mozzarella, whole milk)"
+      },
+      {
+        "item": "Bột chiên xù (breadcrumbs)",
+        "weight_g": 20,
+        "note": "Bột chiên xù. Nguồn carb.",
+        "source": "USDA FoodData Central, FDC ID: 188849 (Breadcrumbs, plain)"
+      },
+      {
+        "item": "Dầu ăn (vegetable oil - for deep frying)",
+        "weight_g": 15,
+        "note": "Dầu ăn hấp thụ từ quá trình chiên. Nguồn chất béo cao.",
+        "source": "USDA FoodData Central, FDC ID: 171092 (Oil, soybean, salad or cooking)"
+      }
+    ],
+    "image": "https://farm9.staticflickr.com/8570/16035721548_0b955d0b61_b.jpg",
+    "recipe_link": "https://www.thingsimadetoday.com/2015/01/09/arancini-italian-stuffed-rice-balls/",
+    "origin": {
+      "continent": "Châu Âu",
+      "country": "Ý"
+    },
+    "price": 35000
+  },
+  {
+    "name": "Pirozhki (Bánh nhân Nga - 1 cái)",
+    "calories": 180,
+    "protein": 6,
+    "fat": 10,
+    "carbs": 15,
+    "weight": 70,
+    "meal_time": [
+      "breakfast",
+      "snack",
+      "afternoon"
+    ],
+    "note": "Phiên bản 1 cái để phù hợp với yêu cầu calo.",
+    "ingredients_breakdown": [
+      {
+        "item": "Bột mì (wheat flour)",
+        "weight_g": 25,
+        "note": "Bột mì làm vỏ bánh. Nguồn carb.",
+        "source": "USDA FoodData Central, FDC ID: 169720 (Flour, wheat, all-purpose, enriched, unbleached)"
+      },
+      {
+        "item": "Thịt xay (ground meat - beef/pork/chicken)",
+        "weight_g": 20,
+        "note": "Thịt xay làm nhân (tùy chọn: bò, heo, gà). Nguồn protein và chất béo.",
+        "source": "USDA FoodData Central (Beef: 173516, Pork: 172960, Chicken: 171439)"
+      },
+      {
+        "item": "Khoai tây/Bắp cải (potatoes/cabbage - for filling)",
+        "weight_g": 10,
+        "note": "Khoai tây hoặc bắp cải làm nhân. Nguồn carb và chất xơ.",
+        "source": "USDA FoodData Central (Potatoes: 170878, Cabbage: 170363)"
+      },
+      {
+        "item": "Dầu ăn (vegetable oil - for frying/baking)",
+        "weight_g": 5,
+        "note": "Dầu ăn để chiên hoặc nướng bánh. Nguồn chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 171092 (Oil, soybean, salad or cooking)"
+      }
+    ],
+    "image": "https://www.pantsdownapronson.com/wp-content/uploads/russian-piroshki-recipe.jpg",
+    "recipe_link": "https://www.pantsdownapronson.com/russian-pirozhki-recipe/",
+    "origin": {
+      "continent": "Châu Âu",
+      "country": "Nga - Ukraine"
+    },
+    "price": 25000
+  },
+  {
+    "name": "Guacamole with Tortilla Chips (Sốt bơ và khoai tây chiên giòn - Mexico - 1 suất ăn nhẹ)",
+    "calories": 350,
+    "protein": 5,
+    "fat": 25,
+    "carbs": 25,
+    "weight": 150,
+    "meal_time": [
+      "afternoon",
+      "snack"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Trái bơ (avocados, raw)",
+        "weight_g": 100,
+        "note": "Trái bơ nghiền. Nguồn chất béo lành mạnh.",
+        "source": "USDA FoodData Central, FDC ID: 170311 (Avocados, raw, all commercial varieties)"
+      },
+      {
+        "item": "Hành tây (onions, raw)",
+        "weight_g": 10,
+        "note": "Hành tây băm nhỏ.",
+        "source": "USDA FoodData Central, FDC ID: 170440 (Onions, raw)"
+      },
+      {
+        "item": "Rau mùi (cilantro, fresh)",
+        "weight_g": 5,
+        "note": "Rau mùi thái nhỏ.",
+        "source": "USDA FoodData Central, FDC ID: 170420 (Cilantro, raw)"
+      },
+      {
+        "item": "Nước cốt chanh (lime juice, raw)",
+        "weight_ml": 5,
+        "note": "Nước cốt chanh. Giúp giữ màu bơ và tăng vị.",
+        "source": "USDA FoodData Central, FDC ID: 170430 (Lime juice, raw)"
+      },
+      {
+        "item": "Ớt jalapeño (jalapeno peppers, raw - optional)",
+        "weight_g": 2,
+        "note": "Ớt jalapeño băm (tùy chọn). Tạo vị cay.",
+        "source": "USDA FoodData Central, FDC ID: 170415 (Peppers, hot, raw)"
+      },
+      {
+        "item": "Khoai tây chiên tortilla (tortilla chips)",
+        "weight_g": 30,
+        "note": "Khoai tây chiên tortilla giòn. Nguồn carb và chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 184518 (Snacks, tortilla chips, plain, salted, baked)"
+      }
+    ],
+    "image": "https://img.taste.com.au/EiGwxd-C/w643-h428-cfill-q90/taste/2016/11/guacamole-with-crispy-tortilla-chips-23734-1.jpeg",
+    "recipe_link": "https://www.taste.com.au/recipes/guacamole-crispy-tortilla-chips/24d0551d-392e-44b2-a12c-e26d95f09a3a",
+    "origin": {
+      "continent": "Châu Mỹ",
+      "country": "Mexico"
+    },
+    "price": 30000
+  },
+  {
+    "name": "Arepas de Huevo (Bánh ngô chiên nhân trứng - Colombia - 1 cái)",
+    "calories": 300,
+    "protein": 12,
+    "fat": 20,
+    "carbs": 15,
+    "weight": 120,
+    "meal_time": [
+      "breakfast",
+      "snack"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Bột ngô (pre-cooked corn flour - Harina P.A.N.)",
+        "weight_g": 40,
+        "note": "Bột ngô đã nấu chín sơ. Nguồn carb.",
+        "source": "USDA FoodData Central, FDC ID: 169739 (Corn flour, masa, enriched, with calcium carbonate, lime, niacin, reduced iron, thiamin mononitrate, riboflavin, folic acid)"
+      },
+      {
+        "item": "Trứng gà (chicken egg, whole)",
+        "weight_g": 50,
+        "note": "Trứng gà, làm nhân bánh. Nguồn protein và chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 748967 (Egg, whole, raw)"
+      },
+      {
+        "item": "Dầu ăn (vegetable oil for frying)",
+        "weight_g": 20,
+        "note": "Dầu ăn để chiên bánh. Nguồn chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 171092 (Oil, soybean, salad or cooking)"
+      }
+    ],
+    "image": "https://www.seriouseats.com/thmb/rMUojJESI31nMuKXz_GLwfSR2lk=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/20250307-ArepasdeHuevo-AmandaSuarez-28-4223103fa3574a0b8573aa6a15b16182.jpg",
+    "recipe_link": "https://www.seriouseats.com/colombian-arepas-de-huevo-recipe-11692079",
+    "origin": {
+      "continent": "Châu Mỹ",
+      "country": "Colombia"
+    },
+    "price": 25000
+  },
+  {
+    "name": "Coxinha (Bánh bao gà chiên giòn Brazil - 2 cái)",
+    "calories": 300,
+    "protein": 15,
+    "fat": 15,
+    "carbs": 25,
+    "weight": 150,
+    "meal_time": [
+      "snack",
+      "lunch"
+    ],
+    "note": "Phiên bản 2 cái để phù hợp với yêu cầu calo.",
+    "ingredients_breakdown": [
+      {
+        "item": "Thịt gà xé sợi (shredded chicken breast)",
+        "weight_g": 50,
+        "note": "Thịt ức gà xé sợi, làm nhân. Nguồn protein.",
+        "source": "USDA FoodData Central, FDC ID: 171439 (Chicken, broilers or fryers, meat and skin, cooked, roasted)"
+      },
+      {
+        "item": "Bột mì (all-purpose flour)",
+        "weight_g": 30,
+        "note": "Bột mì để làm vỏ bánh. Nguồn carb.",
+        "source": "USDA FoodData Central, FDC ID: 169720 (Flour, wheat, all-purpose, enriched, unbleached)"
+      },
+      {
+        "item": "Nước dùng gà (chicken broth - for dough)",
+        "weight_ml": 50,
+        "note": "Nước dùng gà, dùng để nhào bột làm vỏ bánh. Tăng hương vị.",
+        "source": "USDA FoodData Central, FDC ID: 170069 (Chicken broth, canned, condensed, undiluted)"
+      },
+      {
+        "item": "Dầu ăn (vegetable oil for deep-frying)",
+        "weight_g": 20,
+        "note": "Dầu thực vật để chiên ngập dầu. Nguồn chất béo cao.",
+        "source": "USDA FoodData Central, FDC ID: 171092 (Oil, soybean, salad or cooking)"
+      }
+    ],
+    "image": "https://www.thespruceeats.com/thmb/ciSfY0nQO_6Bs4cCZjFRdjirOwo=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/coxinha-brazilian-chicken-croquettes-3029668-Hero-5b7d5f9546e0fb00252abc5f.jpg",
+    "recipe_link": "https://www.thespruceeats.com/coxinha-brazilian-chicken-croquettes-3029668",
+    "origin": {
+      "continent": "Châu Mỹ",
+      "country": "Brazil"
+    },
+    "price": 30000
+  },
+  {
+    "name": "Empanadas de Queso (Bánh bao chiên/nướng nhân phô mai - Nam Mỹ - 1 cái)",
+    "calories": 250,
+    "protein": 10,
+    "fat": 15,
+    "carbs": 20,
+    "weight": 100,
+    "meal_time": [
+      "snack",
+      "breakfast"
+    ],
+    "note": "Phiên bản 1 cái nhân phô mai để giảm calo so với nhân thịt.",
+    "ingredients_breakdown": [
+      {
+        "item": "Vỏ bánh Empanada (empanada dough/pastry)",
+        "weight_g": 40,
+        "note": "Vỏ bánh làm từ bột mì. Nguồn carb.",
+        "source": "USDA FoodData Central, FDC ID: 184518 (Puff pastry, frozen, uncooked) - (Ước tính từ bột bánh)."
+      },
+      {
+        "item": "Phô mai (cheese - e.g., mozzarella/quesillo)",
+        "weight_g": 50,
+        "note": "Phô mai làm nhân. Nguồn protein và chất béo.",
+        "source": "USDA FoodData Central (Mozzarella: 170614, Quesillo: Ước tính)"
+      },
+      {
+        "item": "Dầu ăn (vegetable oil - for frying/baking)",
+        "weight_g": 10,
+        "note": "Dầu ăn để chiên hoặc phết bánh khi nướng. Nguồn chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 171092 (Oil, soybean, salad or cooking)"
+      }
+    ],
+    "image": "https://www.seriouseats.com/thmb/OhvhPuu4tJ5ZPhnDwye1fOL6RIs=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/20230821-SEA-SaltaEmpanadas-TwoBites-031-8a7826b9e1b54a469fc5f073bc431309.jpg",
+    "recipe_link": "https://www.seriouseats.com/argentine-cheese-empanadas-recipe-7724732",
+    "origin": {
+      "continent": "Châu Mỹ",
+      "country": "Argentina - Chile"
+    },
+    "price": 25000
+  },
+  {
+    "name": "Pan de Bono (Bánh mì phô mai - Colombia - 2 cái)",
+    "calories": 300,
+    "protein": 10,
+    "fat": 15,
+    "carbs": 30,
+    "weight": 100,
+    "meal_time": [
+      "breakfast",
+      "snack"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Bột sắn dây (cassava starch/tapioca flour)",
+        "weight_g": 40,
+        "note": "Bột sắn dây. Nguồn carb.",
+        "source": "USDA FoodData Central, FDC ID: 170944 (Flour, tapioca)"
+      },
+      {
+        "item": "Bột ngô (cornmeal)",
+        "weight_g": 20,
+        "note": "Bột ngô. Nguồn carb.",
+        "source": "USDA FoodData Central, FDC ID: 169739 (Corn flour, masa, enriched, with calcium carbonate, lime, niacin, reduced iron, thiamin mononitrate, riboflavin, folic acid)"
+      },
+      {
+        "item": "Phô mai (queso costeño/feta/mozzarella)",
+        "weight_g": 30,
+        "note": "Phô mai (thường là queso costeño). Nguồn protein và chất béo.",
+        "source": "USDA FoodData Central (Queso fresco: 170620, Mozzarella: 170614)"
+      },
+      {
+        "item": "Trứng gà (chicken egg)",
+        "weight_g": 10,
+        "note": "Trứng gà. Giúp kết dính.",
+        "source": "USDA FoodData Central, FDC ID: 748967 (Egg, whole, raw)"
+      },
+      {
+        "item": "Sữa (milk)",
+        "weight_ml": 10,
+        "note": "Sữa. Tạo độ ẩm.",
+        "source": "USDA FoodData Central, FDC ID: 170784 (Milk, whole, 3.25% milkfat, with added vitamin D)"
+      }
+    ],
+    "image": "https://idata.hiloved.com/imgs/cbc95e55e28137d8-1024x681.jpg",
+    "recipe_link": "https://www.mycolombianrecipes.com/pandebono-colombian-cheese-bread/",
+    "origin": {
+      "continent": "Châu Mỹ",
+      "country": "Colombia"
+    },
+    "price": 28000
+  },
+  {
+    "name": "Pupusas de Queso (Bánh ngô dẹt nhồi nhân phô mai - El Salvador - 1 cái)",
+    "calories": 220,
+    "protein": 10,
+    "fat": 12,
+    "carbs": 20,
+    "weight": 120,
+    "meal_time": [
+      "breakfast",
+      "lunch",
+      "snack"
+    ],
+    "note": "Phiên bản 1 cái nhân phô mai để phù hợp với yêu cầu calo.",
+    "ingredients_breakdown": [
+      {
+        "item": "Bột ngô Masa Harina (masa harina)",
+        "weight_g": 50,
+        "note": "Bột ngô Masa Harina. Nguồn carb chính.",
+        "source": "USDA FoodData Central, FDC ID: 169739 (Corn flour, masa, enriched, with calcium carbonate, lime, niacin, reduced iron, thiamin mononitrate, riboflavin, folic acid)"
+      },
+      {
+        "item": "Phô mai (cheese - mozzarella/quesillo)",
+        "weight_g": 40,
+        "note": "Phô mai (mozzarella hoặc quesillo) làm nhân. Nguồn protein và chất béo.",
+        "source": "USDA FoodData Central (Mozzarella: 170614, Quesillo: Ước tính)"
+      },
+      {
+        "item": "Dầu ăn (vegetable oil - for cooking)",
+        "weight_g": 10,
+        "note": "Dầu ăn để áp chảo bánh. Nguồn chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 171092 (Oil, soybean, salad or cooking)"
+      },
+      {
+        "item": "Curtido (coleslaw-like relish - for serving)",
+        "weight_g": 20,
+        "note": "Curtido (dưa bắp cải chua) ăn kèm. Bổ sung chất xơ và cân bằng vị. (Lượng calo không đáng kể).",
+        "source": "USDA FoodData Central, FDC ID: 170363 (Cabbage, raw)"
+      }
+    ],
+    "image": "https://www.thespruceeats.com/thmb/k6B88fXuUkLuckJ4fGn6CWY_Qvg=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/make-pupusas-stuffed-corn-tortillas-3029694-hero-01-60bc04fc6f5d4215924db80afe3e2ccd.jpg",
+    "recipe_link": "https://www.thespruceeats.com/make-pupusas-stuffed-corn-tortillas-3029694",
+    "origin": {
+      "continent": "Châu Mỹ",
+      "country": "El Salvador"
+    },
+    "price": 25000
+  },
+  {
+    "name": "Tostones (Chuối xanh chiên giòn - Caribbean/Mỹ Latinh - 1 suất nhỏ)",
+    "calories": 250,
+    "protein": 2,
+    "fat": 15,
+    "carbs": 30,
+    "weight": 100,
+    "meal_time": [
+      "snack",
+      "lunch"
+    ],
+    "note": "Phiên bản nhỏ của Patacones, dùng làm món ăn kèm hoặc ăn nhẹ. Nguồn carb và chất béo.",
+    "ingredients_breakdown": [
+      {
+        "item": "Chuối xanh (green plantains)",
+        "weight_g": 80,
+        "note": "Chuối xanh (chưa chín). Nguồn carb.",
+        "source": "USDA FoodData Central, FDC ID: 170876 (Plantains, raw)"
+      },
+      {
+        "item": "Dầu ăn (vegetable oil for frying)",
+        "weight_g": 20,
+        "note": "Dầu thực vật để chiên hai lần. Nguồn chất béo cao.",
+        "source": "USDA FoodData Central, FDC ID: 171092 (Oil, soybean, salad or cooking)"
+      }
+    ],
+    "image": "https://www.sophisticatedgourmet.com/wp-content/uploads/2021/01/tostones-dominican-style.webp",
+    "recipe_link": "https://www.sophisticatedgourmet.com/2020/07/tostones-recipe/",
+    "origin": {
+      "continent": "Châu Mỹ",
+      "country": "Caribbean - Mỹ Latinh"
+    },
+    "price": 25000
+  },
+  {
+    "name": "Chipa (Bánh mì phô mai - Paraguay/Argentina - 3 cái)",
+    "calories": 300,
+    "protein": 10,
+    "fat": 15,
+    "carbs": 30,
+    "weight": 100,
+    "meal_time": [
+      "breakfast",
+      "snack"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Bột sắn dây (tapioca starch)",
+        "weight_g": 40,
+        "note": "Bột sắn dây. Nguồn carb.",
+        "source": "USDA FoodData Central, FDC ID: 170944 (Flour, tapioca)"
+      },
+      {
+        "item": "Phô mai (cheese - e.g., queso Paraguay/semi-hard cheese)",
+        "weight_g": 30,
+        "note": "Phô mai (thường là queso Paraguay). Nguồn protein và chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 170620 (Cheese, queso fresco) - (Ước tính)."
+      },
+      {
+        "item": "Trứng gà (chicken egg)",
+        "weight_g": 10,
+        "note": "Trứng gà. Giúp kết dính.",
+        "source": "USDA FoodData Central, FDC ID: 748967 (Egg, whole, raw)"
+      },
+      {
+        "item": "Sữa (milk)",
+        "weight_ml": 10,
+        "note": "Sữa. Tạo độ ẩm.",
+        "source": "USDA FoodData Central, FDC ID: 170784 (Milk, whole, 3.25% milkfat, with added vitamin D)"
+      }
+    ],
+    "image": "https://diemthamquan.net/wp-content/uploads/2023/11/cach-lam-banh-chipa-cua-paraguay-768x432.jpg",
+    "recipe_link": "https://diemthamquan.net/cach-lam-banh-chipa-cua-paraguay-tai-nha/",
+    "origin": {
+      "continent": "Châu Mỹ",
+      "country": "Paraguay - Argentina"
+    },
+    "price": 28000
+  },
+  {
+    "name": "Hallacas (Bánh ngô hấp nhân thịt - Venezuela - 1 cái nhỏ)",
+    "calories": 380,
+    "protein": 20,
+    "fat": 20,
+    "carbs": 30,
+    "weight": 200,
+    "meal_time": [
+      "lunch",
+      "dinner"
+    ],
+    "note": "Món ăn truyền thống Giáng Sinh của Venezuela, phiên bản nhỏ để giảm calo.",
+    "ingredients_breakdown": [
+      {
+        "item": "Bột ngô Masa Harina (masa harina)",
+        "weight_g": 50,
+        "note": "Bột ngô đặc biệt. Nguồn carb.",
+        "source": "USDA FoodData Central, FDC ID: 169739 (Corn flour, masa, enriched, with calcium carbonate, lime, niacin, reduced iron, thiamin mononitrate, riboflavin, folic acid)"
+      },
+      {
+        "item": "Thịt heo/bò (pork/beef stewed, shredded)",
+        "weight_g": 80,
+        "note": "Thịt heo hoặc bò hầm mềm, xé sợi. Nguồn protein và chất béo.",
+        "source": "USDA FoodData Central (Pork: 172960, Beef: 171869)"
+      },
+      {
+        "item": "Rau củ (peppers, onions, chickpeas)",
+        "weight_g": 30,
+        "note": "Ớt chuông, hành tây, đậu gà. Nguồn chất xơ.",
+        "source": "USDA FoodData Central (Peppers: 170417, Onions: 170440, Chickpeas: 170043)"
+      },
+      {
+        "item": "Mỡ heo (lard - for dough)",
+        "weight_g": 10,
+        "note": "Mỡ heo trộn vào bột. Nguồn chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 170845 (Lard)"
+      },
+      {
+        "item": "Lá chuối (banana leaves - for wrapping)",
+        "weight_g": 0,
+        "note": "Lá chuối (không ăn được, dùng để gói bánh).",
+        "source": "Không có giá trị dinh dưỡng."
+      }
+    ],
+    "image": "https://mommyshomecooking.com/wp-content/uploads/2019/12/Venezuelan-Hallacas-33-1463x2048.jpg",
+    "recipe_link": "https://mommyshomecooking.com/traditional-venezuelan-hallacas-recipe/",
+    "origin": {
+      "continent": "Châu Mỹ",
+      "country": "Venezuela"
+    },
+    "price": 35000
+  },
+  {
+    "name": "Alfajores (Bánh quy kẹp caramel - Argentina - 1 cái)",
+    "calories": 200,
+    "protein": 3,
+    "fat": 10,
+    "carbs": 25,
+    "weight": 50,
+    "meal_time": [
+      "afternoon",
+      "dessert"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Bột mì (all-purpose flour)",
+        "weight_g": 20,
+        "note": "Bột mì làm bánh quy. Nguồn carb.",
+        "source": "USDA FoodData Central, FDC ID: 169720 (Flour, wheat, all-purpose, enriched, unbleached)"
+      },
+      {
+        "item": "Bột ngô (cornstarch)",
+        "weight_g": 10,
+        "note": "Bột ngô. Giúp bánh mềm và xốp.",
+        "source": "USDA FoodData Central, FDC ID: 169739 (Cornstarch)"
+      },
+      {
+        "item": "Bơ (butter)",
+        "weight_g": 10,
+        "note": "Bơ. Nguồn chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 170196 (Butter, without salt)"
+      },
+      {
+        "item": "Đường (sugar)",
+        "weight_g": 5,
+        "note": "Đường.",
+        "source": "USDA FoodData Central, FDC ID: 169862 (Sugars, granulated)"
+      },
+      {
+        "item": "Dulce de leche (caramelized milk)",
+        "weight_g": 10,
+        "note": "Caramel sữa. Nhân kẹp bánh. Nguồn đường và chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 168270 (Milk, condensed, sweetened, canned) - (Ước tính từ sữa đặc)."
+      },
+      {
+        "item": "Dừa nạo (shredded coconut - optional)",
+        "weight_g": 2,
+        "note": "Dừa nạo (tùy chọn) phủ ngoài. Nguồn chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 170281 (Coconut, shredded, sweetened)"
+      }
+    ],
+    "image": "https://cdn-ak.f.st-hatena.com/images/fotolife/v/vuihoclambanh/20160817/20160817175249.jpg",
+    "recipe_link": "https://vuihoclambanh.hatenablog.com/entry/cach-lam-banh-Alfajores-dac-biet-cua-Argentina",
+    "origin": {
+      "continent": "Châu Mỹ",
+      "country": "Argentina - Peru"
+    },
+    "price": 25000
+  },
+  {
+    "name": "Bolo de Rolo (Bánh cuộn mứt ổi - Brazil - 1 lát nhỏ)",
+    "calories": 250,
+    "protein": 3,
+    "fat": 10,
+    "carbs": 35,
+    "weight": 80,
+    "meal_time": [
+      "afternoon",
+      "dessert"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Bột mì (all-purpose flour)",
+        "weight_g": 30,
+        "note": "Bột mì. Nguồn carb.",
+        "source": "USDA FoodData Central, FDC ID: 169720 (Flour, wheat, all-purpose, enriched, unbleached)"
+      },
+      {
+        "item": "Trứng gà (chicken egg)",
+        "weight_g": 20,
+        "note": "Trứng gà.",
+        "source": "USDA FoodData Central, FDC ID: 748967 (Egg, whole, raw)"
+      },
+      {
+        "item": "Đường (sugar)",
+        "weight_g": 20,
+        "note": "Đường. Nguồn carb.",
+        "source": "USDA FoodData Central, FDC ID: 169862 (Sugars, granulated)"
+      },
+      {
+        "item": "Bơ (butter)",
+        "weight_g": 10,
+        "note": "Bơ. Nguồn chất béo.",
+        "source": "USDA FoodData Central, FDC ID: 170196 (Butter, without salt)"
+      },
+      {
+        "item": "Mứt ổi (guava paste/jam)",
+        "weight_g": 10,
+        "note": "Mứt ổi, làm nhân bánh. Nguồn đường.",
+        "source": "USDA FoodData Central, FDC ID: 170849 (Jams, preserves, apricot) - (Ước tính từ mứt)."
+      }
+    ],
+    "image": "https://images.food52.com/rFYR9I4fPF5u4_Q1Q5WvOYp9Y34=/660x440/filters:format(webp)/18581351-c000-43d5-86c8-df1b7c7953cb--Eighteen_Layer_Guava_Cake_Roll_Bolo_de_Rolo-by_Denise_Browning_1.JPG",
+    "recipe_link": "https://food52.com/recipes/42241-eighteen-layer-brazilian-guava-cake-roll-bolo-de-rolo?srsltid=AfmBOoqDKyouN3sANdLO9Gh7MT9T48g79jXApgRaY2EIZfCelXGIplA8",
+    "origin": {
+      "continent": "Châu Mỹ",
+      "country": "Brazil"
+    },
+    "price": 30000
+  },
+  {
+    "name": "Coconut Drops (Kẹo dừa Jamaica - 2 miếng)",
+    "calories": 200,
+    "protein": 2,
+    "fat": 12,
+    "carbs": 25,
+    "weight": 50,
+    "meal_time": [
+      "afternoon",
+      "snack"
+    ],
+    "ingredients_breakdown": [
+      {
+        "item": "Dừa tươi (fresh coconut, shredded)",
+        "weight_g": 30,
+        "note": "Dừa tươi thái sợi. Nguồn chất béo và carb.",
+        "source": "USDA FoodData Central, FDC ID: 170281 (Coconut, shredded, sweetened) - (Ước tính từ dừa tươi)."
+      },
+      {
+        "item": "Đường nâu (brown sugar)",
+        "weight_g": 15,
+        "note": "Đường nâu. Nguồn carb.",
+        "source": "USDA FoodData Central, FDC ID: 169862 (Sugars, granulated)"
+      },
+      {
+        "item": "Gừng (ginger, fresh)",
+        "weight_g": 5,
+        "note": "Gừng thái lát hoặc băm nhỏ. Tạo hương vị cay nhẹ.",
+        "source": "USDA FoodData Central, FDC ID: 170429 (Ginger root, raw)"
+      }
+    ],
+    "image": "https://jamaicanfoodsandrecipes.com/wp-content/uploads/2016/12/Untitled-design-5.jpg",
+    "recipe_link": "https://jamaicanfoodsandrecipes.com/jamaican-coconut-drops-recipe/",
+    "origin": {
+      "continent": "Châu Mỹ",
+      "country": "Jamaica"
+    },
+    "price": 25000
+  }
+
 ]
