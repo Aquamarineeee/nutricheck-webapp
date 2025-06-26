@@ -1,0 +1,1705 @@
+[
+  {
+    "name": "Thiếu máu",
+    "image": "https://medlatec.vn/media/24156/file/thieu-mau-thieu-sat-1.jpg",
+    "description": "Tình trạng giảm số lượng hồng cầu hoặc hemoglobin trong máu, dẫn đến giảm khả năng vận chuyển oxy đi khắp cơ thể.",
+    "standard_data": "Mức Hemoglobin (Hb) bình thường: Nam (13-17 g/dL), Nữ (12-15 g/dL). Thiếu máu khi Hb thấp hơn ngưỡng này.",
+    "diet_suggestions": "Nên ăn: Thực phẩm giàu sắt heme (thịt bò, gan, thịt gà, cá), sắt non-heme (đậu lăng, rau bina, cải xoăn, hạt bí ngô, ngũ cốc tăng cường sắt). Kết hợp vitamin C (cam, ổi, ớt chuông) để tăng hấp thu sắt non-heme.",
+    "recommendations": {
+      "should_eat": [
+        "Thịt đỏ (bò, cừu)",
+        "Gan động vật",
+        "Thịt gà, cá (đặc biệt cá béo)",
+        "Các loại đậu (đậu lăng, đậu đen)",
+        "Rau xanh đậm (rau bina, cải xoăn)",
+        "Trái cây giàu Vitamin C (cam, quýt, ổi, kiwi)",
+        "Ngũ cốc nguyên hạt tăng cường sắt",
+        "Trứng",
+        "Hạt và quả hạch (hạt bí, hạnh nhân)"
+      ],
+      "should_avoid": [
+        "Trà và cà phê (uống cách bữa ăn 1-2 giờ)",
+        "Thực phẩm chứa phytate (ngũ cốc nguyên hạt, đậu) nếu không được ngâm hoặc chế biến đúng cách (có thể ức chế hấp thu sắt)",
+        "Thực phẩm giàu canxi (sữa, sản phẩm từ sữa) cùng lúc với bữa ăn giàu sắt (canxi có thể cản trở hấp thu sắt)"
+      ]
+    },
+    "sources": "WHO, VDD, CDC",
+    "guidance": "Tăng cường thực phẩm giàu sắt và Vitamin C. Tránh uống trà/cà phê ngay sau bữa ăn. Tham khảo ý kiến bác sĩ để xác định nguyên nhân và điều trị phù hợp."
+  },
+  {
+    "name": "Suy dinh dưỡng",
+    "image": "http://pgdcodo.edu.vn/upload/61900/20190114/grab76434tre_suy_dinh_duong.jpg",
+    "description": "Thiếu hụt năng lượng, protein và/hoặc các vi chất dinh dưỡng cần thiết, gây ảnh hưởng đến tăng trưởng, phát triển và chức năng cơ thể.",
+    "standard_data": "Đánh giá qua BMI, cân nặng theo tuổi/chiều cao (đối với trẻ em).",
+    "diet_suggestions": "Nên ăn: Thực phẩm giàu calo và protein như sữa nguyên kem, bơ đậu phộng, phô mai, thịt, cá, trứng, các loại hạt. Chia nhỏ bữa ăn trong ngày.",
+    "recommendations": {
+      "should_eat": [
+        "Thực phẩm giàu protein (thịt, cá, trứng, sữa, đậu nành)",
+        "Thực phẩm giàu năng lượng (gạo, khoai, bắp, dầu thực vật, bơ)",
+        "Sữa và các sản phẩm từ sữa nguyên kem",
+        "Các loại hạt và bơ hạt",
+        "Trái cây và rau củ đa dạng"
+      ],
+      "should_avoid": [
+        "Thực phẩm ít calo, ít dinh dưỡng (nước ngọt, bánh kẹo rỗng)",
+        "Thực phẩm quá nhiều chất xơ gây no nhanh mà ít năng lượng",
+        "Bỏ bữa"
+      ]
+    },
+    "sources": "WHO, FAO, VDD",
+    "guidance": "Tăng cường calo và protein. Ăn nhiều bữa nhỏ. Có thể bổ sung vi chất theo hướng dẫn của chuyên gia y tế."
+  },
+  {
+    "name": "Loãng xương",
+    "image": "https://benhvienvanhanh.vn/wp-content/uploads/2024/12/image002.jpg",
+    "description": "Tình trạng xương trở nên yếu và giòn, dễ gãy. Chủ yếu do thiếu hụt canxi và vitamin D.",
+    "standard_data": "Mật độ xương (BMD) thấp hơn -2.5 độ lệch chuẩn so với người trẻ khỏe mạnh.",
+    "diet_suggestions": "Nên ăn: Thực phẩm giàu canxi (sữa, sữa chua, phô mai, cá hồi, cải bó xôi, hạnh nhân) và vitamin D (cá béo, trứng, sữa tăng cường vitamin D, tắm nắng).",
+    "recommendations": {
+      "should_eat": [
+        "Sữa và sản phẩm từ sữa (sữa, sữa chua, phô mai)",
+        "Cá béo (cá hồi, cá mòi)",
+        "Rau xanh đậm (cải bó xôi, bông cải xanh)",
+        "Hạnh nhân, hạt vừng",
+        "Nước cam tăng cường canxi và vitamin D",
+        "Trứng",
+        "Đậu phụ"
+      ],
+      "should_avoid": [
+        "Thực phẩm quá mặn (tăng thải canxi)",
+        "Đồ uống có ga",
+        "Caffeine quá mức",
+        "Rượu bia"
+      ]
+    },
+    "sources": "WHO, USDA, Hiệp hội Loãng xương Quốc tế",
+    "guidance": "Đảm bảo đủ canxi và vitamin D. Tập thể dục chịu trọng lượng (đi bộ, nhảy nhẹ). Tham khảo ý kiến bác sĩ để bổ sung nếu cần."
+  },
+  {
+    "name": "Mất ngủ",
+    "image": "https://cdn.benhvienquan11.vn/editor/1_3.jpg",
+    "description": "Khó đi vào giấc ngủ, khó duy trì giấc ngủ hoặc thức dậy quá sớm, gây mệt mỏi vào ban ngày.",
+    "standard_data": "Khó ngủ liên tục trên 3 đêm/tuần và kéo dài trên 1 tháng.",
+    "diet_suggestions": "Nên ăn: Thực phẩm giàu tryptophan (chuối, hạnh nhân, yến mạch, sữa ấm) giúp sản xuất serotonin và melatonin (hormone ngủ).",
+    "recommendations": {
+      "should_eat": [
+        "Chuối",
+        "Hạnh nhân, quả óc chó",
+        "Yến mạch",
+        "Sữa ấm",
+        "Trà thảo mộc (hoa cúc, bạc hà)",
+        "Kiwi",
+        "Cá ngừ, cá hồi"
+      ],
+      "should_avoid": [
+        "Caffeine (trước khi ngủ 6-8 tiếng)",
+        "Rượu bia",
+        "Thực phẩm nhiều đường, cay nóng trước khi ngủ",
+        "Bữa ăn quá no sát giờ ngủ"
+      ]
+    },
+    "sources": "Viện Y tế Quốc gia Hoa Kỳ (NIH), Hiệp hội Giấc ngủ Quốc gia",
+    "guidance": "Thiết lập lịch ngủ đều đặn. Tránh caffeine, rượu bia và bữa ăn nặng trước khi ngủ. Tạo môi trường ngủ thoải mái."
+  },
+  {
+    "name": "Mệt mỏi mãn tính",
+    "image": "https://www.vinmec.com/static/uploads/large_20200617_161705_328135_met_moi_14853130850_max_1800x1800_jpg_9ec202ab4c.jpg",
+    "description": "Cảm giác mệt mỏi kéo dài ít nhất 6 tháng, không giảm khi nghỉ ngơi và không do nguyên nhân y tế khác.",
+    "standard_data": "Tiêu chuẩn chẩn đoán theo CDC (Mỹ) bao gồm mệt mỏi nghiêm trọng và kéo dài, kèm theo ít nhất 4 triệu chứng khác.",
+    "diet_suggestions": "Nên ăn: Thực phẩm giàu năng lượng bền vững (ngũ cốc nguyên hạt, hạt chia, bơ), protein nạc (cá hồi, trứng, thịt gà) và rau củ đa dạng để cung cấp vitamin và khoáng chất.",
+    "recommendations": {
+      "should_eat": [
+        "Ngũ cốc nguyên hạt (yến mạch, gạo lứt)",
+        "Hạt chia, hạt lanh",
+        "Cá hồi, cá thu (giàu Omega-3)",
+        "Trứng, thịt gà",
+        "Rau xanh đậm, trái cây nhiều màu sắc",
+        "Bơ, dầu ô liu"
+      ],
+      "should_avoid": [
+        "Đường tinh luyện, thực phẩm chế biến sẵn",
+        "Caffeine và rượu bia quá mức (có thể gây mất nước và gián đoạn giấc ngủ)",
+        "Chế độ ăn kiêng quá khắt khe"
+      ]
+    },
+    "sources": "CDC, Mayo Clinic",
+    "guidance": "Chế độ ăn cân bằng, đủ chất. Uống đủ nước. Quản lý căng thẳng và ngủ đủ giấc. Tham khảo ý kiến bác sĩ."
+  },
+  {
+    "name": "Hạ đường huyết",
+    "image": "https://suckhoedoisong.qltns.mediacdn.vn/Images/duylinh/2018/12/30/ha-duong-huyet_resize.png",
+    "description": "Tình trạng nồng độ đường trong máu giảm xuống mức quá thấp (thường dưới 70 mg/dL), gây run rẩy, chóng mặt, vã mồ hôi.",
+    "standard_data": "Mức đường huyết dưới 70 mg/dL (3.9 mmol/L).",
+    "diet_suggestions": "Khi bị hạ đường huyết: Ăn ngay 15g carbohydrate tác dụng nhanh (1/2 cốc nước trái cây, 3-4 viên kẹo glucose). Để phòng ngừa: Ăn các bữa ăn nhỏ, thường xuyên, cân bằng carbohydrate phức hợp, protein và chất béo.",
+    "recommendations": {
+      "should_eat": [
+        "Carbohydrate tác dụng nhanh (kẹo, nước trái cây, mật ong) khi đường huyết thấp.",
+        "Carbohydrate phức hợp (bánh mì nguyên hạt, gạo lứt, khoai tây, yến mạch)",
+        "Protein nạc (thịt gà, cá, trứng)",
+        "Chất béo lành mạnh (quả bơ, các loại hạt)",
+        "Ăn các bữa nhỏ, thường xuyên"
+      ],
+      "should_avoid": [
+        "Bỏ bữa hoặc ăn quá lâu giữa các bữa",
+        "Thực phẩm nhiều đường đơn khi không bị hạ đường huyết (dễ gây tăng vọt rồi hạ đột ngột)",
+        "Rượu bia (đặc biệt khi đói)"
+      ]
+    },
+    "sources": "Hiệp hội Tiểu đường Hoa Kỳ (ADA)",
+    "guidance": "Luôn mang theo đồ ăn vặt chứa đường nhanh. Ăn uống điều độ, đúng giờ. Kiểm soát đường huyết thường xuyên nếu có bệnh lý nền."
+  },
+  {
+    "name": "Trầm cảm",
+    "image": "https://suckhoedoisong.qltns.mediacdn.vn/thumb_w/640/324455921873985536/2023/2/14/tram-cam-1676368350237985336007.jpg",
+    "description": "Rối loạn tâm trạng đặc trưng bởi cảm giác buồn bã kéo dài, mất hứng thú, ảnh hưởng đến suy nghĩ, cảm xúc và hành vi.",
+    "standard_data": "Chẩn đoán bởi chuyên gia y tế dựa trên tiêu chuẩn DSM-5 hoặc ICD-10.",
+    "diet_suggestions": "Nên ăn: Thực phẩm giàu Omega-3 (cá hồi, hạt óc chó), tryptophan (socola đen, chuối), vitamin nhóm B (ngũ cốc nguyên hạt, rau xanh). Hạn chế thực phẩm chế biến sẵn và đường.",
+    "recommendations": {
+      "should_eat": [
+        "Cá béo (cá hồi, cá thu) giàu Omega-3",
+        "Quả óc chó, hạt chia",
+        "Socola đen (hàm lượng cacao cao)",
+        "Chuối, quả bơ",
+        "Rau xanh đậm (cải bó xôi, cải xoăn)",
+        "Ngũ cốc nguyên hạt"
+      ],
+      "should_avoid": [
+        "Đường tinh luyện và thực phẩm chế biến sẵn",
+        "Caffeine và rượu bia quá mức (có thể làm trầm trọng thêm triệu chứng lo âu, rối loạn giấc ngủ)",
+        "Chất béo chuyển hóa (trans fat) trong đồ ăn nhanh"
+      ]
+    },
+    "sources": "Hiệp hội Tâm thần Hoa Kỳ (APA), WHO",
+    "guidance": "Chế độ ăn lành mạnh, cân bằng. Kết hợp với điều trị tâm lý và thuốc theo chỉ định của bác sĩ."
+  },
+  {
+    "name": "Hệ miễn dịch yếu",
+    "image": "https://driphydration.vn/wp-content/uploads/2024/07/tai-sao-he-mien-dich-yeu-2.jpg",
+    "description": "Khả năng phòng vệ của cơ thể chống lại nhiễm trùng và bệnh tật bị suy giảm, dẫn đến dễ mắc bệnh hơn.",
+    "standard_data": "Không có chỉ số chuẩn cụ thể, thường đánh giá qua tần suất mắc bệnh, mức độ nghiêm trọng của nhiễm trùng.",
+    "diet_suggestions": "Nên ăn: Thực phẩm giàu vitamin C (cam, ổi, ớt chuông), vitamin D (cá hồi, trứng), kẽm (hải sản, thịt bò), selen (hạt Brazil, cá), và probiotics (sữa chua, kefir).",
+    "recommendations": {
+      "should_eat": [
+        "Trái cây giàu Vitamin C (cam, quýt, ổi, dâu tây)",
+        "Rau xanh đậm (bông cải xanh, rau bina)",
+        "Tỏi, gừng, nghệ",
+        "Nấm (đặc biệt nấm hương, nấm linh chi)",
+        "Cá béo (cá hồi, cá thu)",
+        "Hải sản (hàu, tôm)",
+        "Thịt bò nạc",
+        "Sữa chua, kefir (probiotics)"
+      ],
+      "should_avoid": [
+        "Đường tinh luyện và thực phẩm chế biến sẵn",
+        "Rượu bia quá mức",
+        "Thực phẩm gây viêm (chất béo trans fat)",
+        "Chế độ ăn thiếu cân bằng"
+      ]
+    },
+    "sources": "Viện Y tế Quốc gia Hoa Kỳ (NIH), WHO",
+    "guidance": "Đảm bảo chế độ ăn đa dạng, đủ chất. Ngủ đủ giấc, giảm căng thẳng. Tiêm vắc-xin đầy đủ. Tham khảo ý kiến bác sĩ."
+  },
+  {
+    "name": "Chậm phát triển",
+    "image": "https://cdn2.softaz.vn/data/Product/A82431C4-F10E-4188-91F5-07EBF5783E93/tre-cham-phat-trien.jpg",
+    "description": "Tình trạng trẻ em không đạt được các mốc phát triển về thể chất (chiều cao, cân nặng) và/hoặc tinh thần theo độ tuổi.",
+    "standard_data": "Đánh giá qua biểu đồ tăng trưởng chuẩn của WHO hoặc CDC. Cân nặng/chiều cao dưới -2 độ lệch chuẩn so với trung vị.",
+    "diet_suggestions": "Nên ăn: Thực phẩm giàu protein (thịt, cá, trứng, sữa), năng lượng cao (dầu thực vật, bơ, khoai lang), và vi chất quan trọng cho tăng trưởng (kẽm, sắt, canxi, vitamin A, D).",
+    "recommendations": {
+      "should_eat": [
+        "Thịt gia cầm, thịt đỏ, cá (giàu protein và sắt)",
+        "Trứng, sữa và các sản phẩm từ sữa nguyên kem (protein, canxi)",
+        "Các loại đậu, hạt",
+        "Gạo, khoai, ngô (carbohydrate phức hợp)",
+        "Dầu thực vật, bơ (năng lượng cao)",
+        "Trái cây và rau củ đa dạng"
+      ],
+      "should_avoid": [
+        "Thực phẩm rỗng calo (nước ngọt, bánh kẹo)",
+        "Chế độ ăn đơn điệu, thiếu đa dạng",
+        "Ép ăn, gây tâm lý sợ ăn ở trẻ"
+      ]
+    },
+    "sources": "WHO, VDD",
+    "guidance": "Cung cấp chế độ ăn đa dạng, giàu năng lượng và dinh dưỡng. Tham khảo ý kiến bác sĩ, chuyên gia dinh dưỡng nhi khoa để được tư vấn cụ thể."
+  },
+  {
+    "name": "Dễ nhiễm trùng",
+    "image": "https://www.vinmec.com/static/uploads/small_20200421_055541_462337_benh_zona_than_kinh_max_1800x1800_jpeg_cb4894a0b7.jpg",
+    "description": "Cơ thể dễ bị nhiễm virus, vi khuẩn, nấm hoặc ký sinh trùng hơn bình thường do hệ miễn dịch suy yếu.",
+    "standard_data": "Không có chỉ số chuẩn cụ thể, thường đánh giá qua tần suất và mức độ nghiêm trọng của các đợt nhiễm trùng.",
+    "diet_suggestions": "Tập trung vào thực phẩm tăng cường miễn dịch như tỏi, nghệ, gừng, sữa chua (probiotics), cá hồi (Omega-3), trái cây và rau củ giàu vitamin và khoáng chất.",
+    "recommendations": {
+      "should_eat": [
+        "Tỏi, gừng, nghệ (chống viêm, kháng khuẩn)",
+        "Sữa chua, kefir (probiotics giúp cân bằng vi khuẩn đường ruột)",
+        "Cá hồi, cá thu (Omega-3)",
+        "Trái cây giàu Vitamin C (cam, ổi)",
+        "Rau xanh đậm (bông cải xanh, rau bina)",
+        "Các loại hạt"
+      ],
+      "should_avoid": [
+        "Thực phẩm chế biến sẵn, nhiều đường",
+        "Rượu bia, hút thuốc lá",
+        "Vệ sinh an toàn thực phẩm kém"
+      ]
+    },
+    "sources": "CDC, WHO",
+    "guidance": "Ăn uống lành mạnh, vệ sinh thực phẩm tốt. Rửa tay thường xuyên. Tham khảo ý kiến bác sĩ nếu tình trạng kéo dài."
+  },
+  {
+    "name": "Giảm cân không kiểm soát",
+    "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/giam_can_khong_ro_nguyen_nhan_canh_bao_benh_gi_1_45fa0e382d.jpg",
+    "description": "Sụt cân đáng kể không chủ ý trong một thời gian ngắn, có thể là dấu hiệu của bệnh lý tiềm ẩn hoặc thiếu hụt dinh dưỡng nghiêm trọng.",
+    "standard_data": "Giảm hơn 5% trọng lượng cơ thể trong 6-12 tháng mà không chủ ý.",
+    "diet_suggestions": "Nên tăng cường thực phẩm giàu calo và chất béo lành mạnh như bơ, chuối, khoai lang, dầu ô liu, sữa nguyên kem, hạt và quả hạch. Ăn nhiều bữa nhỏ, bổ sung dinh dưỡng cao.",
+    "recommendations": {
+      "should_eat": [
+        "Thực phẩm giàu calo và protein (thịt, cá, trứng, sữa, đậu)",
+        "Chất béo lành mạnh (quả bơ, dầu ô liu, các loại hạt)",
+        "Carbohydrate phức hợp (bánh mì nguyên hạt, gạo lứt, khoai tây, yến mạch)",
+        "Sữa nguyên kem, sữa lắc tăng cường calo",
+        "Ăn các bữa nhỏ, tăng cường bữa phụ"
+      ],
+      "should_avoid": [
+        "Thực phẩm ít calo, gây no nhanh",
+        "Đồ uống có ga, nước ép ít dinh dưỡng",
+        "Chế độ ăn kiêng không phù hợp"
+      ]
+    },
+    "sources": "Hiệp hội Dinh dưỡng Hoa Kỳ (AND), Mayo Clinic",
+    "guidance": "Tham khảo ý kiến bác sĩ để tìm nguyên nhân. Tăng cường năng lượng và dinh dưỡng trong khẩu phần ăn. Có thể cần bổ sung dinh dưỡng đặc biệt."
+  },
+  {
+    "name": "Chán ăn tâm thần",
+    "image": "https://hellodoctors.vn/img/uploads/images/chan-an-tam-than1.jpg",
+    "description": "Rối loạn ăn uống nghiêm trọng đặc trưng bởi sự hạn chế ăn uống quá mức, nỗi sợ hãi mãnh liệt về việc tăng cân và hình ảnh cơ thể bị méo mó.",
+    "standard_data": "Chẩn đoán lâm sàng bởi chuyên gia tâm thần dựa trên tiêu chuẩn DSM-5.",
+    "diet_suggestions": "Yêu cầu sự can thiệp của nhiều chuyên gia (bác sĩ, chuyên gia dinh dưỡng, tâm lý). Chế độ ăn cần được xây dựng dần dần, tăng dần calo và dinh dưỡng, tập trung vào việc bình thường hóa mối quan hệ với thực phẩm.",
+    "recommendations": {
+      "should_eat": [
+        "Chế độ ăn cân bằng, đa dạng theo hướng dẫn của chuyên gia",
+        "Thực phẩm giàu calo và dinh dưỡng (sữa, phô mai, bơ đậu phộng, chuối, ngũ cốc)",
+        "Bữa ăn nhỏ, đều đặn"
+      ],
+      "should_avoid": [
+        "Ép buộc ăn uống",
+        "Thực phẩm gây ám ảnh hoặc sợ hãi",
+        "Chế độ ăn kiêng, tập luyện quá mức"
+      ]
+    },
+    "sources": "Hiệp hội Tâm thần Hoa Kỳ (APA), Viện Sức khỏe Tâm thần Quốc gia (NIMH)",
+    "guidance": "Cần điều trị đa ngành (y tế, dinh dưỡng, tâm lý). Dinh dưỡng đóng vai trò quan trọng trong việc phục hồi sức khỏe thể chất."
+  },
+  {
+    "name": "Rối loạn tiêu hóa",
+    "image": "https://login.medlatec.vn//ImagePath/images/20200511/20200511_roi-loan-tieu-hoa-1.jpg",
+    "description": "Các vấn đề ảnh hưởng đến đường tiêu hóa, gây ra các triệu chứng như đau bụng, đầy hơi, tiêu chảy, táo bón, buồn nôn.",
+    "standard_data": "Tùy thuộc vào loại rối loạn (ví dụ: IBS, Crohn's, Colitis), có các tiêu chuẩn chẩn đoán khác nhau.",
+    "diet_suggestions": "Nên ăn: Thực phẩm dễ tiêu hóa (chuối, yến mạch, gừng), sữa chua/kefir (probiotics), rau củ nấu chín. Tránh thực phẩm gây kích ứng.",
+    "recommendations": {
+      "should_eat": [
+        "Thực phẩm giàu probiotics (sữa chua không đường, kefir, kim chi)",
+        "Thực phẩm dễ tiêu hóa (chuối, gạo trắng, bánh mì trắng, khoai tây luộc)",
+        "Gừng (giảm buồn nôn)",
+        "Yến mạch, bột yến mạch",
+        "Nước hầm xương (giúp làm dịu ruột)",
+        "Rau củ nấu chín mềm"
+      ],
+      "should_avoid": [
+        "Thực phẩm cay nóng, nhiều dầu mỡ",
+        "Đồ uống có ga, caffeine, rượu bia",
+        "Thực phẩm giàu FODMAPs (nếu bị IBS)",
+        "Thức ăn sống, chưa chế biến kỹ"
+      ]
+    },
+    "sources": "Hiệp hội Tiêu hóa Hoa Kỳ (AGA)",
+    "guidance": "Xác định và tránh các thực phẩm gây kích ứng. Uống đủ nước. Cân nhắc chế độ ăn FODMAP thấp nếu có hội chứng ruột kích thích. Tham khảo ý kiến bác sĩ."
+  },
+  {
+    "name": "Thiếu vitamin D",
+    "image": "http://www.sannhinghean.vn/Resources/Editors/Images/c%C4%91ha.png",
+    "description": "Thiếu hụt vitamin D gây ảnh hưởng đến hấp thu canxi, sức khỏe xương, răng và hệ miễn dịch.",
+    "standard_data": "Mức 25-hydroxyvitamin D (25(OH)D) trong máu dưới 20 ng/mL (50 nmol/L).",
+    "diet_suggestions": "Nên ăn: Cá hồi, cá ngừ, cá mòi, lòng đỏ trứng, sữa và ngũ cốc tăng cường vitamin D. Phơi nắng (10-30 phút/ngày vào buổi sáng sớm hoặc chiều muộn).",
+    "recommendations": {
+      "should_eat": [
+        "Cá béo (cá hồi, cá thu, cá ngừ, cá mòi)",
+        "Lòng đỏ trứng",
+        "Gan bò",
+        "Sữa và ngũ cốc tăng cường Vitamin D",
+        "Nấm (đặc biệt nấm được phơi dưới nắng)"
+      ],
+      "should_avoid": [
+        "Thực phẩm đã qua chế biến, ít dinh dưỡng",
+        "Kem chống nắng khi phơi nắng (nếu mục đích là tổng hợp vitamin D)"
+      ]
+    },
+    "sources": "Viện Y tế Quốc gia Hoa Kỳ (NIH), Hiệp hội Nội tiết Hoa Kỳ",
+    "guidance": "Phơi nắng hợp lý. Bổ sung thực phẩm giàu vitamin D. Có thể cần bổ sung vitamin D theo chỉ định của bác sĩ."
+  },
+  {
+    "name": "Thiếu vitamin B12",
+    "image": "https://bvtb.org.vn/wp-content/uploads/2022/11/VlbnN3vIe6vn3hPe66FhEZCh7qUJzxYzZ2RxsbLO_903x430.jpeg",
+    "description": "Thiếu hụt vitamin B12 gây thiếu máu hồng cầu to, tổn thương thần kinh, mệt mỏi và suy giảm trí nhớ.",
+    "standard_data": "Mức vitamin B12 trong máu dưới 200 pg/mL.",
+    "diet_suggestions": "Nên ăn: Gan bò, cá hồi, thịt gà, thịt bò, sữa, trứng, phô mai. Vitamin B12 chủ yếu có trong thực phẩm động vật.",
+    "recommendations": {
+      "should_eat": [
+        "Gan bò, gan gà",
+        "Cá hồi, cá thu",
+        "Thịt bò, thịt gà",
+        "Trứng, sữa và sản phẩm từ sữa (phô mai, sữa chua)",
+        "Ngũ cốc ăn sáng tăng cường B12 (đối với người ăn chay/thuần chay)"
+      ],
+      "should_avoid": [
+        "Bỏ qua các nguồn thực phẩm động vật (đối với người ăn chay trường cần bổ sung)",
+        "Thuốc ức chế axit dạ dày lâu dài (có thể cản trở hấp thu B12)"
+      ]
+    },
+    "sources": "Viện Y tế Quốc gia Hoa Kỳ (NIH), Hiệp hội Huyết học Hoa Kỳ",
+    "guidance": "Đảm bảo đủ thực phẩm nguồn gốc động vật. Người ăn chay/thuần chay cần bổ sung B12. Tham khảo ý kiến bác sĩ để chẩn đoán và điều trị."
+  },
+  {
+    "name": "Hạ huyết áp",
+    "image": "https://suckhoedoisong.qltns.mediacdn.vn/Images/duylinh/2017/03/01/HHATT.jpg",
+    "description": "Huyết áp giảm xuống mức thấp bất thường (thường dưới 90/60 mmHg), gây chóng mặt, ngất xỉu, mệt mỏi.",
+    "standard_data": "Huyết áp tâm thu < 90 mmHg hoặc huyết áp tâm trương < 60 mmHg.",
+    "diet_suggestions": "Nên tăng cường uống nước, ăn đủ muối (theo khuyến cáo), cà phê (nếu không có chống chỉ định), chuối, quả lựu. Chia nhỏ bữa ăn.",
+    "recommendations": {
+      "should_eat": [
+        "Tăng cường uống nước (đặc biệt nước dừa, nước điện giải)",
+        "Ăn đủ muối (không quá nhiều, nhưng không quá kiêng)",
+        "Caffeine (cà phê, trà đen) nếu được phép",
+        "Thực phẩm giàu Vitamin B9 (folate) và B12 (giúp sản xuất hồng cầu)",
+        "Chuối, quả lựu, nho khô"
+      ],
+      "should_avoid": [
+        "Bỏ bữa",
+        "Uống rượu bia quá mức (gây mất nước)",
+        "Đứng dậy quá nhanh",
+        "Chế độ ăn quá ít muối (nếu không có bệnh lý khác yêu cầu)"
+      ]
+    },
+    "sources": "Hiệp hội Tim mạch Hoa Kỳ (AHA)",
+    "guidance": "Uống đủ nước, ăn đủ muối. Tránh đứng dậy đột ngột. Tham khảo bác sĩ để xác định nguyên nhân và điều trị."
+  },
+  {
+    "name": "Suy thận",
+    "image": "https://suckhoedoisong.qltns.mediacdn.vn/thumb_w/640/324455921873985536/2023/7/20/bieu-hien-suy-than-1689862863642671770488.jpg",
+    "description": "Thận mất khả năng lọc chất thải và cân bằng dịch trong cơ thể, dẫn đến tích tụ độc tố.",
+    "standard_data": "Đánh giá qua GFR (tốc độ lọc cầu thận) và nồng độ creatinine huyết thanh.",
+    "diet_suggestions": "Chế độ ăn cần được cá nhân hóa nghiêm ngặt theo từng giai đoạn bệnh. Thường cần hạn chế protein, natri, kali và phốt pho. Nên ăn: Táo, dâu tây, ớt chuông, bắp cải, lòng trắng trứng.",
+    "recommendations": {
+      "should_eat": [
+        "Thực phẩm ít protein (theo chỉ định của bác sĩ/chuyên gia)",
+        "Thực phẩm ít natri (tránh đồ ăn chế biến sẵn)",
+        "Thực phẩm ít kali (táo, dâu tây, ớt chuông, bắp cải, súp lơ)",
+        "Thực phẩm ít phốt pho (lòng trắng trứng, gạo trắng)",
+        "Nước uống theo lượng chỉ định"
+      ],
+      "should_avoid": [
+        "Thực phẩm giàu protein (thịt đỏ, sữa, đậu quá nhiều)",
+        "Thực phẩm giàu kali (chuối, cam, cà chua, khoai tây, rau xanh đậm)",
+        "Thực phẩm giàu phốt pho (sữa, phô mai, các loại hạt, ngũ cốc nguyên hạt)",
+        "Natri cao (đồ ăn nhanh, đồ hộp, đồ muối)",
+        "Rượu bia"
+      ]
+    },
+    "sources": "Quỹ Thận Quốc gia (NKF), Hiệp hội Thận học Quốc tế",
+    "guidance": "Bắt buộc phải có sự tư vấn và theo dõi của bác sĩ và chuyên gia dinh dưỡng. Chế độ ăn rất cá nhân hóa."
+  },
+  {
+    "name": "Giảm cơ",
+    "image": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2024/6/4/mat-co-bap-171751566553073937840.jpg",
+    "description": "Tình trạng mất khối lượng và sức mạnh cơ bắp, thường do lão hóa, ít vận động, hoặc thiếu dinh dưỡng.",
+    "standard_data": "Đánh giá qua khối lượng cơ bắp (DEXA scan), sức mạnh cầm nắm, hoặc chức năng vận động.",
+    "diet_suggestions": "Nên tăng cường protein (ức gà, cá hồi, đậu lăng, sữa whey), kết hợp với tập luyện sức mạnh. Ăn đủ năng lượng để duy trì cân nặng.",
+    "recommendations": {
+      "should_eat": [
+        "Thực phẩm giàu protein (ức gà, cá hồi, thịt bò nạc, trứng, sữa whey)",
+        "Các loại đậu và hạt (đậu lăng, hạt diêm mạch)",
+        "Carbohydrate phức hợp (gạo lứt, khoai lang, yến mạch) để cung cấp năng lượng cho cơ bắp",
+        "Chất béo lành mạnh (quả bơ, dầu ô liu)"
+      ],
+      "should_avoid": [
+        "Chế độ ăn thiếu protein",
+        "Ít vận động thể chất",
+        "Thực phẩm rỗng calo (ít dinh dưỡng)"
+      ]
+    },
+    "sources": "Hiệp hội Dinh dưỡng Thể thao Quốc tế (ISSN), Hiệp hội Lão khoa Hoa Kỳ",
+    "guidance": "Tăng cường protein và tập luyện sức mạnh. Đảm bảo đủ calo. Tham khảo chuyên gia dinh dưỡng và huấn luyện viên."
+  },
+  {
+    "name": "Suy gan",
+    "image": "https://production-cdn.pharmacity.io/digital/original/plain/blog/suy-gan-giai-doan-cuoi-1.webp",
+    "description": "Gan mất khả năng thực hiện các chức năng thiết yếu như lọc độc tố, sản xuất protein và hỗ trợ tiêu hóa.",
+    "standard_data": "Đánh giá qua xét nghiệm chức năng gan (ALT, AST, bilirubin, albumin) và hình ảnh gan.",
+    "diet_suggestions": "Nên ăn: Trái cây tươi, rau xanh, cá, gừng, nghệ. Hạn chế chất béo, đường và muối. Tránh hoàn toàn rượu bia.",
+    "recommendations": {
+      "should_eat": [
+        "Trái cây tươi và rau xanh (đa dạng, giàu chất chống oxy hóa)",
+        "Cá (protein dễ tiêu hóa)",
+        "Gừng, nghệ (chống viêm)",
+        "Ngũ cốc nguyên hạt",
+        "Dầu ô liu",
+        "Nước lọc"
+      ],
+      "should_avoid": [
+        "Rượu bia (tuyệt đối tránh)",
+        "Thực phẩm nhiều chất béo bão hòa và trans fat",
+        "Thực phẩm nhiều đường và muối",
+        "Thực phẩm chế biến sẵn",
+        "Thực phẩm sống hoặc tái (nguy cơ nhiễm khuẩn)"
+      ]
+    },
+    "sources": "Hiệp hội Nghiên cứu Bệnh Gan Hoa Kỳ (AASLD)",
+    "guidance": "Tuân thủ nghiêm ngặt chế độ ăn uống theo chỉ định của bác sĩ và chuyên gia dinh dưỡng. Tránh rượu bia hoàn toàn."
+  },
+  {
+    "name": "Thiếu máu cơ tim",
+    "image": "https://careplusvn.com/files/thieu-mau-co-tim-2.jpg",
+    "description": "Tình trạng dòng máu đến tim bị giảm, thường do động mạch vành bị thu hẹp hoặc tắc nghẽn, dẫn đến thiếu oxy cho cơ tim.",
+    "standard_data": "Chẩn đoán bằng điện tâm đồ (ECG), siêu âm tim, hoặc chụp mạch vành.",
+    "diet_suggestions": "Nên ăn: Thực phẩm tốt cho tim mạch như cá béo (Omega-3), dầu ô liu, quả bơ, hạt lanh, các loại hạt, rau xanh đậm.",
+    "recommendations": {
+      "should_eat": [
+        "Cá béo (cá hồi, cá thu, cá mòi) giàu Omega-3",
+        "Dầu ô liu nguyên chất",
+        "Quả bơ",
+        "Các loại hạt (hạt lanh, hạt chia, hạnh nhân, óc chó)",
+        "Rau xanh đậm và trái cây tươi đa dạng",
+        "Ngũ cốc nguyên hạt",
+        "Thịt nạc, gia cầm bỏ da"
+      ],
+      "should_avoid": [
+        "Chất béo bão hòa và trans fat (trong thịt mỡ, đồ ăn nhanh, đồ chiên rán)",
+        "Cholesterol cao (lòng đỏ trứng quá nhiều, nội tạng)",
+        "Muối cao (đồ hộp, đồ chế biến sẵn)",
+        "Đường tinh luyện",
+        "Rượu bia quá mức"
+      ]
+    },
+    "sources": "Hiệp hội Tim mạch Hoa Kỳ (AHA), Quỹ Tim mạch Thế giới",
+    "guidance": "Chế độ ăn Địa Trung Hải. Giảm muối, đường, chất béo không lành mạnh. Tập thể dục đều đặn. Tuân thủ phác đồ điều trị của bác sĩ."
+  },
+  {
+    "name": "Thiếu sắt",
+    "image": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2024/6/11/photo-1718084559147-1718084559475585642155.png",
+    "description": "Tình trạng cơ thể không có đủ sắt để sản xuất hemoglobin, gây thiếu máu thiếu sắt.",
+    "standard_data": "Mức ferritin thấp (<30 ng/mL) và/hoặc hemoglobin thấp.",
+    "diet_suggestions": "Tăng cường thực phẩm giàu sắt heme (thịt đỏ, gan) và sắt non-heme (rau bina, đậu lăng, hạt bí), kết hợp với vitamin C để tăng hấp thu.",
+    "recommendations": {
+      "should_eat": [
+        "Thịt bò, gan, thịt gia cầm sẫm màu",
+        "Cá",
+        "Các loại đậu (đậu lăng, đậu đen, đậu nành)",
+        "Rau xanh đậm (rau bina, cải xoăn, cải xanh)",
+        "Hạt bí ngô, hạt điều",
+        "Trái cây giàu Vitamin C (cam, ổi, dâu tây, kiwi)",
+        "Ngũ cốc tăng cường sắt"
+      ],
+      "should_avoid": [
+        "Trà và cà phê cùng bữa ăn (ức chế hấp thu sắt)",
+        "Canxi cùng lúc với bữa ăn giàu sắt",
+        "Thực phẩm chứa phytate nếu không chế biến đúng cách"
+      ]
+    },
+    "sources": "WHO, CDC",
+    "guidance": "Tập trung vào nguồn sắt dễ hấp thu và kết hợp với vitamin C. Tham khảo bác sĩ để bổ sung sắt nếu cần."
+  },
+  {
+    "name": "Thiếu kẽm",
+    "image": "https://nhatnhat.com/pic/Customer/images/WEB-T4-Zinc-Gluconate-600x800(1).jpg",
+    "description": "Thiếu hụt kẽm ảnh hưởng đến chức năng miễn dịch, chữa lành vết thương, tăng trưởng và vị giác.",
+    "standard_data": "Mức kẽm trong huyết thanh dưới 70 mcg/dL.",
+    "diet_suggestions": "Nên ăn: Thịt đỏ, hàu, đậu lăng, hạt bí, hạt điều, sữa chua.",
+    "recommendations": {
+      "should_eat": [
+        "Hàu và các loại hải sản",
+        "Thịt đỏ (bò, cừu)",
+        "Thịt gia cầm",
+        "Các loại đậu (đậu lăng, đậu gà)",
+        "Các loại hạt (hạt bí, hạt điều)",
+        "Sữa và sản phẩm từ sữa (sữa chua, phô mai)",
+        "Trứng",
+        "Ngũ cốc nguyên hạt (cần lưu ý phytate có thể cản trở hấp thu)"
+      ],
+      "should_avoid": [
+        "Thực phẩm chế biến sẵn, ít dinh dưỡng",
+        "Rượu bia (giảm hấp thu kẽm)",
+        "Hấp thu quá nhiều sắt hoặc canxi cùng lúc (có thể cạnh tranh hấp thu kẽm)"
+      ]
+    },
+    "sources": "Viện Y tế Quốc gia Hoa Kỳ (NIH), WHO",
+    "guidance": "Tăng cường thực phẩm giàu kẽm. Có thể bổ sung kẽm theo chỉ định y tế."
+  },
+  {
+    "name": "Thiếu Vitamin A",
+    "image": "https://thanhnien.mediacdn.vn/Uploaded/camlt/2022_05_28/vitamin-a-foods-9612-295.jpeg",
+    "description": "Thiếu hụt vitamin A gây các vấn đề về thị lực (quáng gà), suy giảm miễn dịch và các vấn đề về da.",
+    "standard_data": "Mức retinol trong huyết thanh dưới 20 mcg/dL.",
+    "diet_suggestions": "Nên ăn: Gan, trứng, sữa, cà rốt, khoai lang, bí đỏ, rau xanh đậm (nguồn beta-carotene).",
+    "recommendations": {
+      "should_eat": [
+        "Gan động vật",
+        "Cá béo (cá hồi, cá thu)",
+        "Trứng, sữa và sản phẩm từ sữa",
+        "Rau củ quả màu vàng cam (cà rốt, khoai lang, bí đỏ, xoài, đu đủ)",
+        "Rau xanh đậm (rau bina, cải xoăn, bông cải xanh)"
+      ],
+      "should_avoid": [
+        "Chế độ ăn thiếu chất béo (Vitamin A là vitamin tan trong dầu, cần chất béo để hấp thu)",
+        "Thực phẩm chế biến sẵn, ít dinh dưỡng"
+      ]
+    },
+    "sources": "WHO, Viện Y tế Quốc gia Hoa Kỳ (NIH)",
+    "guidance": "Đa dạng hóa thực phẩm giàu Vitamin A và beta-carotene. Kết hợp với chất béo lành mạnh để hấp thu tốt hơn."
+  },
+  {
+    "name": "Thiếu Vitamin C",
+    "image": "https://codeage.vn/wp-content/uploads/2023/06/thieu-vitamin-c-bi-gi.jpg.webp",
+    "description": "Thiếu hụt vitamin C gây suy yếu hệ miễn dịch, khó lành vết thương, chảy máu chân răng và thiếu máu.",
+    "standard_data": "Mức vitamin C trong huyết tương dưới 0.2 mg/dL.",
+    "diet_suggestions": "Nên ăn: Cam, ổi, dâu tây, kiwi, ớt chuông, bông cải xanh, cà chua.",
+    "recommendations": {
+      "should_eat": [
+        "Trái cây họ cam quýt (cam, quýt, bưởi)",
+        "Ổi, dâu tây, kiwi, xoài",
+        "Ớt chuông (đỏ, vàng, xanh)",
+        "Bông cải xanh, súp lơ",
+        "Cà chua, khoai tây"
+      ],
+      "should_avoid": [
+        "Nấu chín quá kỹ rau củ quả (Vitamin C dễ bị phá hủy bởi nhiệt)",
+        "Thực phẩm chế biến sẵn, ít dinh dưỡng"
+      ]
+    },
+    "sources": "Viện Y tế Quốc gia Hoa Kỳ (NIH), WHO",
+    "guidance": "Tăng cường ăn trái cây và rau củ tươi sống hoặc chế biến nhẹ. Đảm bảo đủ liều lượng khuyến nghị hàng ngày."
+  },
+  {
+    "name": "Thiếu Folate",
+    "image": "https://medlatec.vn/media/23765/file/thieu-mau-do-thieu-folate-3.jpg",
+    "description": "Thiếu hụt folate (Vitamin B9) gây thiếu máu hồng cầu to và có thể ảnh hưởng đến sự phát triển của thai nhi.",
+    "standard_data": "Mức folate trong hồng cầu dưới 140 ng/mL.",
+    "diet_suggestions": "Nên ăn: Rau xanh đậm (rau bina, măng tây, bông cải xanh), đậu lăng, đậu đen, gan bò, ngũ cốc tăng cường folate.",
+    "recommendations": {
+      "should_eat": [
+        "Rau xanh đậm (rau bina, măng tây, bông cải xanh, cải xoăn)",
+        "Các loại đậu (đậu lăng, đậu đen, đậu gà)",
+        "Gan bò",
+        "Ngũ cốc ăn sáng tăng cường folate",
+        "Trứng",
+        "Quả bơ",
+        "Trái cây họ cam quýt"
+      ],
+      "should_avoid": [
+        "Nấu chín quá kỹ thực phẩm (folate dễ bị phá hủy bởi nhiệt)",
+        "Rượu bia (cản trở hấp thu folate)"
+      ]
+    },
+    "sources": "Viện Y tế Quốc gia Hoa Kỳ (NIH), CDC",
+    "guidance": "Tăng cường thực phẩm giàu folate, đặc biệt quan trọng với phụ nữ trong độ tuổi sinh sản. Tránh nấu quá kỹ."
+  },
+  {
+    "name": "Huyết áp thấp",
+    "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/640x0/filters:quality(90)/https://cms-prod.s3-sgn09.fptcloud.com/TIMMACH_HUYETAPTHAP_CAROUSEL_20240430_1_V1_0c92ece706.png",
+    "description": "Tình trạng huyết áp tâm thu dưới 90 mmHg hoặc tâm trương dưới 60 mmHg, gây chóng mặt, mệt mỏi.",
+    "standard_data": "Huyết áp tâm thu < 90 mmHg hoặc huyết áp tâm trương < 60 mmHg.",
+    "diet_suggestions": "Nên ăn: Uống đủ nước, tăng cường muối vừa phải (nếu không có bệnh nền), cà phê, chuối, nước dừa, tăng cường rau củ quả. Chia nhỏ bữa ăn.",
+    "recommendations": {
+      "should_eat": [
+        "Tăng cường uống nước (ít nhất 2-2.5 lít/ngày, đặc biệt khi nóng hoặc vận động)",
+        "Nước dừa, nước điện giải",
+        "Muối (thêm vừa phải vào thức ăn, trừ khi có chỉ định khác)",
+        "Caffeine (cà phê, trà) để tăng huyết áp tạm thời",
+        "Thức ăn giàu Vitamin B9 (folate) và B12",
+        "Các bữa ăn nhỏ, thường xuyên (tránh tụt huyết áp sau ăn)"
+      ],
+      "should_avoid": [
+        "Bỏ bữa ăn",
+        "Uống rượu bia quá mức (gây mất nước)",
+        "Đứng hoặc thay đổi tư thế đột ngột",
+        "Tắm nước quá nóng trong thời gian dài"
+      ]
+    },
+    "sources": "Hiệp hội Tim mạch Hoa Kỳ (AHA)",
+    "guidance": "Uống đủ nước, điều chỉnh lượng muối hợp lý. Cẩn trọng khi thay đổi tư thế. Tham khảo bác sĩ nếu huyết áp thấp gây khó chịu."
+  },
+  {
+    "name": "Rối loạn ăn uống",
+    "image": "https://cdn.hellobacsi.com/wp-content/uploads/2016/10/roi-loan-an-uong-1.1.jpg?w=750&q=100",
+    "description": "Các bệnh tâm thần đặc trưng bởi những thói quen ăn uống bất thường hoặc sự ám ảnh về cân nặng, hình dáng cơ thể, gây ảnh hưởng nghiêm trọng đến sức khỏe thể chất và tinh thần. Bao gồm chán ăn tâm thần, ăn vô độ, cuồng ăn.",
+    "standard_data": "Chẩn đoán bởi chuyên gia tâm thần dựa trên tiêu chuẩn DSM-5.",
+    "diet_suggestions": "Yêu cầu sự can thiệp và hỗ trợ đa ngành (bác sĩ, chuyên gia tâm lý, chuyên gia dinh dưỡng). Chế độ ăn cần được xây dựng cẩn thận, từng bước, hướng tới bình thường hóa hành vi ăn uống và phục hồi dinh dưỡng.",
+    "recommendations": {
+      "should_eat": [
+        "Chế độ ăn cân bằng, đa dạng theo hướng dẫn của chuyên gia dinh dưỡng chuyên về rối loạn ăn uống.",
+        "Thực phẩm cung cấp đủ năng lượng và dưỡng chất cần thiết.",
+        "Ăn uống đều đặn, đúng bữa, tránh bỏ bữa.",
+        "Học cách lắng nghe tín hiệu đói no của cơ thể."
+      ],
+      "should_avoid": [
+        "Chế độ ăn kiêng hoặc hạn chế thực phẩm không cần thiết.",
+        "Ám ảnh về calo, cân nặng, hình dáng cơ thể.",
+        "Các hành vi bù trừ (nôn ói, lạm dụng thuốc xổ, tập thể dục quá mức).",
+        "Tự ý điều trị mà không có sự giám sát của chuyên gia."
+      ]
+    },
+    "sources": "Hiệp hội Rối loạn Ăn uống Quốc gia (NEDA), APA",
+    "guidance": "Đây là tình trạng y tế nghiêm trọng cần được chẩn đoán và điều trị bởi đội ngũ chuyên gia. Dinh dưỡng đóng vai trò then chốt trong quá trình phục hồi."
+  },
+  {
+    "name": "Phục hồi chậm sau bệnh",
+    "image": "https://suckhoedoisong.qltns.mediacdn.vn/thumb_w/640/324455921873985536/2024/8/9/1-1723209458296264500715.jpg",
+    "description": "Cơ thể mất nhiều thời gian hơn bình thường để hồi phục sức khỏe và chức năng sau khi mắc bệnh, phẫu thuật hoặc chấn thương.",
+    "standard_data": "Không có chỉ số chuẩn cụ thể, đánh giá dựa trên thời gian và mức độ hồi phục so với dự kiến.",
+    "diet_suggestions": "Nên tăng cường protein (thịt, cá, trứng, sữa), năng lượng cao (ngũ cốc nguyên hạt, dầu lành mạnh), vitamin và khoáng chất (rau củ quả đa dạng) để hỗ trợ tái tạo mô và tăng cường miễn dịch.",
+    "recommendations": {
+      "should_eat": [
+        "Thực phẩm giàu protein (thịt nạc, cá, trứng, sữa, đậu)",
+        "Carbohydrate phức hợp (gạo lứt, khoai lang, yến mạch)",
+        "Chất béo lành mạnh (quả bơ, dầu ô liu, các loại hạt)",
+        "Trái cây và rau củ đa dạng để cung cấp Vitamin và Khoáng chất",
+        "Nước lọc và các loại nước ép trái cây tươi để bù điện giải"
+      ],
+      "should_avoid": [
+        "Thực phẩm chế biến sẵn, nhiều đường, ít dinh dưỡng",
+        "Bỏ bữa hoặc ăn uống không đủ chất",
+        "Rượu bia, thuốc lá"
+      ]
+    },
+    "sources": "Học viện Dinh dưỡng và Ăn kiêng (AND)",
+    "guidance": "Chế độ ăn đầy đủ dinh dưỡng, tập trung vào protein và năng lượng. Nghỉ ngơi hợp lý và vận động nhẹ nhàng theo chỉ dẫn. Tham khảo chuyên gia dinh dưỡng để xây dựng kế hoạch phục hồi."
+  },
+  {
+    "name": "Tóc khô, dễ gãy",
+    "image": "https://thelana.vn/wp-content/uploads/2024/11/toc-bi-gay.jpg",
+    "description": "Tình trạng tóc mất đi độ ẩm tự nhiên, trở nên xỉn màu, thô ráp và dễ bị hư tổn, gãy rụng.",
+    "standard_data": "Không có chỉ số chuẩn y tế, đánh giá qua quan sát lâm sàng.",
+    "diet_suggestions": "Nên ăn: Thực phẩm giàu protein (trứng, cá, thịt), biotin (lòng đỏ trứng, quả hạch), Omega-3 (cá hồi, hạt chia), vitamin A, C, E, kẽm và sắt (rau xanh, trái cây, hạt).",
+    "recommendations": {
+      "should_eat": [
+        "Thực phẩm giàu protein (trứng, cá, thịt gà, đậu)",
+        "Cá béo (cá hồi, cá thu) giàu Omega-3",
+        "Các loại hạt và quả hạch (hạt chia, hạt lanh, hạnh nhân, óc chó)",
+        "Rau xanh đậm và trái cây nhiều màu sắc (Vitamin A, C, E)",
+        "Kẽm (hàu, thịt bò, hạt bí)",
+        "Sắt (thịt đỏ, rau bina)",
+        "Vitamin H (Biotin - lòng đỏ trứng, khoai lang, hạt hạnh nhân)"
+      ],
+      "should_avoid": [
+        "Chế độ ăn thiếu protein và chất béo lành mạnh",
+        "Mất nước (không uống đủ nước)",
+        "Tiếp xúc quá nhiều với nhiệt và hóa chất (từ tạo kiểu tóc)"
+      ]
+    },
+    "sources": "Học viện Da liễu Hoa Kỳ (AAD)",
+    "guidance": "Chế độ ăn cân bằng, đủ dinh dưỡng. Uống đủ nước. Hạn chế tác động nhiệt và hóa chất lên tóc. Tham khảo bác sĩ da liễu nếu tình trạng nghiêm trọng."
+  },
+  {
+    "name": "Da xanh xao, khô",
+    "image": "https://cdn.benhvienthucuc.vn/wp-content/uploads/2023/07/mat-ngu-da-xanh-xao-nen-kham-ngay.jpg",
+    "description": "Da thiếu sức sống, nhợt nhạt và cảm giác khô ráp, bong tróc, thường do thiếu nước, thiếu máu hoặc thiếu hụt vitamin/khoáng chất.",
+    "standard_data": "Không có chỉ số chuẩn cụ thể, đánh giá qua quan sát lâm sàng.",
+    "diet_suggestions": "Nên ăn: Thực phẩm giàu sắt (thịt đỏ, rau bina), vitamin C (cam, ổi), vitamin E (hạt hướng dương, hạnh nhân), Omega-3 (cá hồi), và uống đủ nước.",
+    "recommendations": {
+      "should_eat": [
+        "Uống đủ nước (ít nhất 2-2.5 lít/ngày)",
+        "Thực phẩm giàu sắt (thịt đỏ, rau bina)",
+        "Trái cây giàu Vitamin C (cam, ổi, dâu tây)",
+        "Thực phẩm giàu Vitamin E (hạt hướng dương, hạnh nhân, dầu oliu)",
+        "Cá béo (cá hồi) giàu Omega-3",
+        "Rau xanh đậm và trái cây tươi đa dạng"
+      ],
+      "should_avoid": [
+        "Thiếu nước",
+        "Chế độ ăn thiếu chất béo lành mạnh",
+        "Caffeine và rượu bia quá mức (gây mất nước)",
+        "Tắm nước quá nóng, sử dụng xà phòng mạnh"
+      ]
+    },
+    "sources": "Học viện Da liễu Hoa Kỳ (AAD)",
+    "guidance": "Uống đủ nước, chế độ ăn cân bằng. Dưỡng ẩm da thường xuyên. Tham khảo bác sĩ nếu da khô kèm ngứa hoặc các triệu chứng bất thường khác."
+  },
+  {
+    "name": "Đau nửa đầu",
+    "image": "https://tamanhhospital.vn/wp-content/uploads/2022/08/dau-nua-dau-ben-trai.jpg",
+    "description": "Cơn đau đầu dữ dội, thường kèm theo buồn nôn, nôn mửa, nhạy cảm với ánh sáng và âm thanh. Một số thực phẩm có thể gây ra hoặc làm trầm trọng thêm cơn đau.",
+    "standard_data": "Chẩn đoán dựa trên tiêu chuẩn quốc tế về phân loại đau đầu (ICHD-3).",
+    "diet_suggestions": "Theo dõi và tránh các thực phẩm 'trigger' (gây kích hoạt). Một số người có thể cải thiện bằng cách bổ sung Magie, Riboflavin (Vitamin B2).",
+    "recommendations": {
+      "should_eat": [
+        "Thực phẩm giàu Magie (rau bina, hạnh nhân, quả bơ, socola đen)",
+        "Thực phẩm giàu Riboflavin (Vitamin B2) (gan, thịt bò, nấm, hạnh nhân)",
+        "Uống đủ nước để tránh mất nước, một yếu tố gây đau đầu",
+        "Các bữa ăn đều đặn, tránh bỏ bữa gây hạ đường huyết"
+      ],
+      "should_avoid": [
+        "Thực phẩm 'trigger' cá nhân (rượu vang đỏ, phô mai ủ lâu, thịt chế biến sẵn, socola, caffeine, chất làm ngọt nhân tạo, mì chính - MSG)",
+        "Bỏ bữa hoặc ăn uống không đều",
+        "Thực phẩm chế biến sẵn, nhiều chất bảo quản"
+      ]
+    },
+    "sources": "Hiệp hội Đau đầu Hoa Kỳ (AHS), Tổ chức Sức khỏe Thần kinh Thế giới",
+    "guidance": "Xác định và tránh các yếu tố kích hoạt. Duy trì lịch trình ngủ và ăn uống đều đặn. Tham khảo bác sĩ để được chẩn đoán và điều trị phù hợp."
+  },
+  {
+    "name": "Lạnh tay chân",
+    "image": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2024/2/28/photo-1709121843285-1709121844739484749514.jpeg",
+    "description": "Cảm giác lạnh bất thường ở tay và chân, ngay cả trong môi trường ấm áp, thường liên quan đến lưu thông máu kém, thiếu máu hoặc vấn đề tuyến giáp.",
+    "standard_data": "Không có chỉ số chuẩn cụ thể, thường là triệu chứng của bệnh lý khác.",
+    "diet_suggestions": "Nên ăn: Thực phẩm giàu sắt (thịt đỏ), vitamin B12 (gan, cá), gừng (tăng cường lưu thông máu), và duy trì đủ năng lượng.",
+    "recommendations": {
+      "should_eat": [
+        "Thực phẩm giàu sắt (thịt đỏ, gan, rau bina)",
+        "Thực phẩm giàu Vitamin B12 (gan, cá, thịt gà)",
+        "Gừng, ớt, quế (gia vị giúp làm ấm cơ thể, tăng lưu thông máu)",
+        "Thực phẩm cung cấp đủ năng lượng (đảm bảo đủ calo)",
+        "Uống đủ nước ấm"
+      ],
+      "should_avoid": [
+        "Caffeine và rượu bia quá mức (có thể gây co mạch máu)",
+        "Hút thuốc lá (làm giảm lưu thông máu)",
+        "Chế độ ăn quá ít calo"
+      ]
+    },
+    "sources": "Hiệp hội Tim mạch Hoa Kỳ (AHA), Hiệp hội Y học Gia đình Hoa Kỳ",
+    "guidance": "Đảm bảo chế độ ăn đủ chất, đặc biệt là sắt và B12. Giữ ấm cơ thể. Tham khảo bác sĩ để loại trừ các nguyên nhân bệnh lý tiềm ẩn."
+  },
+  {
+    "name": "Suy giảm trí nhớ",
+    "image": "https://tamanhhospital.vn/wp-content/uploads/2023/10/benh-suy-giam-tri-nho.jpg",
+    "description": "Giảm khả năng ghi nhớ, học hỏi thông tin mới hoặc nhớ lại thông tin cũ, có thể ảnh hưởng đến cuộc sống hàng ngày.",
+    "standard_data": "Đánh giá qua các bài kiểm tra nhận thức và tiền sử bệnh án.",
+    "diet_suggestions": "Nên ăn: Thực phẩm giàu Omega-3 (cá béo, hạt óc chó), chất chống oxy hóa (quả mọng, rau xanh đậm), vitamin nhóm B (ngũ cốc nguyên hạt, trứng).",
+    "recommendations": {
+      "should_eat": [
+        "Cá béo (cá hồi, cá thu) giàu Omega-3",
+        "Quả óc chó, hạt chia, hạt lanh",
+        "Quả mọng (việt quất, dâu tây) giàu chất chống oxy hóa",
+        "Rau xanh đậm (rau bina, cải xoăn, bông cải xanh)",
+        "Ngũ cốc nguyên hạt, trứng (Vitamin nhóm B)",
+        "Nghệ, trà xanh"
+      ],
+      "should_avoid": [
+        "Đường tinh luyện và thực phẩm chế biến sẵn",
+        "Chất béo bão hòa và trans fat quá mức",
+        "Rượu bia quá mức",
+        "Thiếu ngủ"
+      ]
+    },
+    "sources": "Hiệp hội Alzheimer Hoa Kỳ, Viện Lão hóa Quốc gia (NIA)",
+    "guidance": "Chế độ ăn Địa Trung Hải tốt cho não bộ. Tập thể dục đều đặn. Kích thích trí não bằng các hoạt động học hỏi. Tham khảo bác sĩ để chẩn đoán và điều trị."
+  },
+  {
+    "name": "Tê bì chân tay",
+    "image": "https://ykhoathaiduong.com/wp-content/uploads/2024/06/te-bi-chan-tay-1.jpg",
+    "description": "Cảm giác mất cảm giác, châm chích hoặc kim châm ở tay và chân, thường do tổn thương thần kinh hoặc lưu thông máu kém.",
+    "standard_data": "Đánh giá qua khám thần kinh và các xét nghiệm liên quan đến nguyên nhân.",
+    "diet_suggestions": "Nên ăn: Thực phẩm giàu vitamin B12 (gan, cá, trứng), vitamin B6 (chuối, thịt gà), và các thực phẩm hỗ trợ lưu thông máu (gừng, nghệ).",
+    "recommendations": {
+      "should_eat": [
+        "Thực phẩm giàu Vitamin B12 (gan, cá, thịt bò, trứng, sữa)",
+        "Thực phẩm giàu Vitamin B6 (chuối, thịt gà, khoai tây)",
+        "Gừng, nghệ (hỗ trợ lưu thông máu, giảm viêm)",
+        "Ngũ cốc nguyên hạt",
+        "Rau xanh đậm"
+      ],
+      "should_avoid": [
+        "Uống rượu bia quá mức (có thể gây tổn thương thần kinh)",
+        "Thiếu hụt dinh dưỡng (đặc biệt vitamin B)",
+        "Ít vận động"
+      ]
+    },
+    "sources": "Hiệp hội Thần kinh Hoa Kỳ (AAN)",
+    "guidance": "Đảm bảo chế độ ăn đủ vitamin nhóm B. Duy trì lối sống lành mạnh. Tham khảo bác sĩ để tìm nguyên nhân và điều trị."
+  },
+  {
+    "name": "Giảm khả năng tập trung",
+    "image": "https://images.spiderum.com/sp-images/22c204b0ce1f11eab1778f32c19d96be.jpg",
+    "description": "Khó duy trì sự chú ý, dễ bị phân tâm, ảnh hưởng đến hiệu suất công việc và học tập.",
+    "standard_data": "Không có chỉ số chuẩn cụ thể, đánh giá qua các bài kiểm tra nhận thức và báo cáo cá nhân.",
+    "diet_suggestions": "Nên ăn: Thực phẩm giàu Omega-3 (cá béo), chất chống oxy hóa (quả mọng), carbohydrate phức hợp (ngũ cốc nguyên hạt), và đủ nước.",
+    "recommendations": {
+      "should_eat": [
+        "Cá béo (cá hồi, cá thu) giàu Omega-3",
+        "Quả mọng (việt quất, dâu tây)",
+        "Các loại hạt và hạt (óc chó, hạnh nhân)",
+        "Ngũ cốc nguyên hạt (yến mạch, gạo lứt)",
+        "Rau xanh đậm",
+        "Nước lọc (uống đủ)"
+      ],
+      "should_avoid": [
+        "Đường tinh luyện và thực phẩm chế biến sẵn (gây tăng/giảm đường huyết đột ngột)",
+        "Caffeine quá mức (có thể gây bồn chồn, khó tập trung)",
+        "Bỏ bữa hoặc ăn uống không đều",
+        "Thiếu ngủ"
+      ]
+    },
+    "sources": "Hiệp hội Tâm lý Hoa Kỳ (APA)",
+    "guidance": "Chế độ ăn cân bằng, đủ dinh dưỡng. Ngủ đủ giấc. Giảm căng thẳng. Tập luyện các bài tập rèn luyện trí não. Tham khảo ý kiến chuyên gia nếu tình trạng kéo dài."
+  },
+  {
+    "name": "Tiểu đường",
+    "image": "https://baosonhospital.com/Upload/images-old/images/benh-tieu-duong-01.jpeg",
+    "description": "Bệnh lý mãn tính ảnh hưởng đến cách cơ thể chuyển hóa đường trong máu, dẫn đến lượng đường huyết cao.",
+    "standard_data": "Đường huyết lúc đói ≥ 126 mg/dL (7.0 mmol/L) hoặc HbA1c ≥ 6.5%.",
+    "diet_suggestions": "Nên ăn: Carbohydrate phức hợp (cháo yến mạch, gạo lứt), rau xanh, cá hồi, các loại hạt. Hạn chế đường đơn, thực phẩm chế biến sẵn.",
+    "recommendations": {
+      "should_eat": [
+        "Ngũ cốc nguyên hạt (gạo lứt, yến mạch, lúa mạch)",
+        "Rau xanh không tinh bột (bông cải xanh, rau bina, cà tím)",
+        "Cá béo (cá hồi, cá thu) giàu Omega-3",
+        "Các loại đậu, hạt và quả hạch (hạnh nhân, óc chó, hạt chia)",
+        "Thịt nạc, gia cầm bỏ da",
+        "Trái cây ít đường (quả mọng, táo, lê)",
+        "Dầu ô liu, quả bơ (chất béo lành mạnh)"
+      ],
+      "should_avoid": [
+        "Đường tinh luyện và đồ uống có đường",
+        "Thực phẩm chế biến sẵn, đồ ăn nhanh",
+        "Ngũ cốc tinh chế (gạo trắng, bánh mì trắng)",
+        "Thực phẩm nhiều chất béo bão hòa và trans fat",
+        "Rượu bia quá mức"
+      ]
+    },
+    "sources": "WHO, Hiệp hội Tiểu đường Hoa Kỳ (ADA)",
+    "guidance": "Kiểm soát đường huyết chặt chẽ thông qua chế độ ăn, tập luyện và thuốc (nếu có). Tham khảo chuyên gia dinh dưỡng để xây dựng kế hoạch ăn uống cá nhân."
+  },
+  {
+    "name": "Béo phì",
+    "image": "https://microlife.com.vn/wp-content/uploads/2024/07/beo-phi-7.png",
+    "description": "Tình trạng tích tụ mỡ thừa trong cơ thể đến mức có hại cho sức khỏe.",
+    "standard_data": "Chỉ số khối cơ thể (BMI) ≥ 30 kg/m².",
+    "diet_suggestions": "Nên ăn: Salad ức gà, khoai lang, các loại hạt ít calo, rau xanh. Tập trung vào thực phẩm nguyên bản, giàu chất xơ và protein để tạo cảm giác no.",
+    "recommendations": {
+      "should_eat": [
+        "Protein nạc (ức gà, cá, đậu phụ, trứng)",
+        "Rau xanh không giới hạn (tất cả các loại rau củ)",
+        "Ngũ cốc nguyên hạt (gạo lứt, yến mạch, bánh mì nguyên cám)",
+        "Trái cây tươi (đặc biệt quả mọng)",
+        "Chất béo lành mạnh với lượng vừa phải (quả bơ, dầu ô liu, các loại hạt)",
+        "Uống đủ nước lọc"
+      ],
+      "should_avoid": [
+        "Đồ uống có đường, nước ngọt, nước ép đóng hộp",
+        "Thực phẩm chế biến sẵn, đồ ăn nhanh, đồ chiên rán",
+        "Đường tinh luyện và bánh kẹo",
+        "Thịt đỏ và thịt chế biến nhiều mỡ",
+        "Phần ăn quá lớn"
+      ]
+    },
+    "sources": "WHO, CDC",
+    "guidance": "Giảm lượng calo nạp vào và tăng cường hoạt động thể chất. Cần sự kiên trì và tư vấn của chuyên gia dinh dưỡng, bác sĩ."
+  },
+  {
+    "name": "Gan nhiễm mỡ",
+    "image": "https://benhvienvanhanh.vn/wp-content/uploads/2023/03/GAN-NHIEM-MO-compressed-1-1024x577.jpg",
+    "description": "Tình trạng tích tụ quá nhiều chất béo trong tế bào gan, thường không có triệu chứng rõ ràng ở giai đoạn đầu.",
+    "standard_data": "Chẩn đoán qua siêu âm gan, xét nghiệm máu (enzym gan cao).",
+    "diet_suggestions": "Nên ăn: Rau củ, cá hồi, quả óc chó, dầu ô liu, trà xanh. Hạn chế đường, chất béo bão hòa và rượu bia.",
+    "recommendations": {
+      "should_eat": [
+        "Rau xanh đậm và trái cây tươi đa dạng",
+        "Ngũ cốc nguyên hạt",
+        "Cá béo (cá hồi, cá thu) giàu Omega-3",
+        "Dầu ô liu nguyên chất, quả bơ, các loại hạt",
+        "Trà xanh, cà phê (vừa phải, có thể có lợi cho gan)",
+        "Thịt nạc, đậu phụ"
+      ],
+      "should_avoid": [
+        "Rượu bia (tuyệt đối tránh)",
+        "Đường tinh luyện, đường fructose cao (trong nước ngọt, bánh kẹo)",
+        "Chất béo bão hòa và trans fat (trong đồ ăn nhanh, thịt mỡ)",
+        "Thực phẩm chế biến sẵn, đồ chiên rán"
+      ]
+    },
+    "sources": "Hiệp hội Nghiên cứu Bệnh Gan Hoa Kỳ (AASLD)",
+    "guidance": "Thay đổi lối sống là cốt lõi: giảm cân, ăn uống lành mạnh, tập thể dục. Tránh rượu bia. Tham khảo bác sĩ."
+  },
+  {
+    "name": "Huyết áp cao",
+    "image": "https://omron-yte.com.vn/wp-content/uploads/2020/03/benh-cao-huyet-ap.jpg",
+    "description": "Huyết áp trong động mạch tăng cao liên tục, gây áp lực lên thành mạch máu, làm tăng nguy cơ bệnh tim mạch và đột quỵ.",
+    "standard_data": "Huyết áp tâm thu ≥ 140 mmHg và/hoặc tâm trương ≥ 90 mmHg (hoặc ≥ 130/80 mmHg theo ADA).",
+    "diet_suggestions": "Nên ăn: Rau xanh, chuối, hạt lanh, cá béo, dầu ô liu. Tuân thủ chế độ ăn DASH (Dietary Approaches to Stop Hypertension).",
+    "recommendations": {
+      "should_eat": [
+        "Rau xanh và trái cây tươi (đa dạng, giàu kali)",
+        "Ngũ cốc nguyên hạt",
+        "Sữa và sản phẩm từ sữa ít béo",
+        "Thịt nạc, cá, gia cầm",
+        "Các loại hạt (hạt lanh, hạt chia, hạnh nhân)",
+        "Dầu thực vật lành mạnh (dầu ô liu, dầu hạt cải)"
+      ],
+      "should_avoid": [
+        "Muối (natri) quá mức (hạn chế đồ ăn chế biến sẵn, đồ muối, nước mắm/xì dầu)",
+        "Chất béo bão hòa và trans fat (trong thịt mỡ, đồ chiên rán, đồ ăn nhanh)",
+        "Đường tinh luyện và đồ uống có đường",
+        "Rượu bia quá mức"
+      ]
+    },
+    "sources": "Hiệp hội Tim mạch Hoa Kỳ (AHA), WHO",
+    "guidance": "Chế độ ăn DASH, giảm muối, tăng cường kali. Tập thể dục đều đặn. Giảm căng thẳng. Tuân thủ thuốc theo chỉ định."
+  },
+  {
+    "name": "Cholesterol cao",
+    "image": "https://bvndtp.org.vn/wp-content/uploads/2020/12/20190716_090636_744534_muc-cholesterol-nhu-t.max-800x800.jpg",
+    "description": "Nồng độ cholesterol xấu (LDL) hoặc tổng cholesterol trong máu cao, làm tăng nguy cơ xơ vữa động mạch và bệnh tim.",
+    "standard_data": "Tổng cholesterol > 200 mg/dL, LDL > 100 mg/dL, HDL < 40 mg/dL (tùy thuộc yếu tố nguy cơ).",
+    "diet_suggestions": "Nên ăn: Quả bơ, hạt chia, cá hồi, quả hạch, yến mạch, thực phẩm giàu chất xơ hòa tan. Hạn chế chất béo bão hòa và trans fat.",
+    "recommendations": {
+      "should_eat": [
+        "Chất xơ hòa tan (yến mạch, lúa mạch, táo, lê, các loại đậu)",
+        "Chất béo không bão hòa đơn (quả bơ, dầu ô liu, các loại hạt)",
+        "Chất béo không bão hòa đa (cá hồi, cá thu, hạt chia, hạt lanh)",
+        "Sterol/stanol thực vật (có trong một số thực phẩm tăng cường)",
+        "Rau xanh và trái cây tươi"
+      ],
+      "should_avoid": [
+        "Chất béo bão hòa (thịt đỏ nhiều mỡ, da gia cầm, bơ, phô mai đầy đủ chất béo, dầu dừa/dầu cọ)",
+        "Chất béo trans fat (trong đồ ăn nhanh, bánh quy, thực phẩm đóng gói)",
+        "Cholesterol từ thức ăn (lòng đỏ trứng, nội tạng, hải sản vỏ cứng - ăn vừa phải)",
+        "Đồ uống có đường"
+      ]
+    },
+    "sources": "Hiệp hội Tim mạch Hoa Kỳ (AHA), CDC",
+    "guidance": "Giảm chất béo bão hòa và trans fat. Tăng cường chất xơ hòa tan và chất béo không bão hòa. Tập thể dục. Kiểm tra cholesterol định kỳ."
+  },
+  {
+    "name": "Bệnh gout",
+    "image": "https://suckhoedoisong.qltns.mediacdn.vn/thumb_w/640/324455921873985536/2022/6/27/1-16563083354662076149744.jpg",
+    "description": "Dạng viêm khớp gây ra bởi sự tích tụ quá mức axit uric trong máu, tạo thành các tinh thể lắng đọng trong khớp, gây đau và sưng đột ngột.",
+    "standard_data": "Mức axit uric trong máu cao (nam > 7.0 mg/dL, nữ > 6.0 mg/dL) và/hoặc có tinh thể urat trong dịch khớp.",
+    "diet_suggestions": "Nên ăn: Cải xanh, súp lơ, cherry, sữa ít béo, nước ép dưa leo. Hạn chế thực phẩm giàu purine (thịt đỏ, hải sản, nội tạng, rượu bia).",
+    "recommendations": {
+      "should_eat": [
+        "Cherry (quả anh đào), dâu tây",
+        "Rau xanh và trái cây đa dạng",
+        "Sữa và sản phẩm từ sữa ít béo hoặc không béo",
+        "Ngũ cốc nguyên hạt",
+        "Nước lọc (uống nhiều để giúp đào thải axit uric)",
+        "Thịt gia cầm (ức gà) và cá nạc (ăn vừa phải)"
+      ],
+      "should_avoid": [
+        "Thực phẩm giàu purine cao (thịt đỏ, nội tạng, hải sản như cá mòi, cá cơm, hàu, tôm)",
+        "Rượu bia (đặc biệt bia)",
+        "Đồ uống có đường, nước ngọt, thực phẩm chứa đường fructose cao",
+        "Thực phẩm chế biến sẵn"
+      ]
+    },
+    "sources": "Quỹ Viêm khớp (Arthritis Foundation), Hiệp hội Thấp khớp Hoa Kỳ (ACR)",
+    "guidance": "Hạn chế purine, fructose và rượu bia. Uống đủ nước. Giảm cân nếu béo phì. Tuân thủ thuốc theo chỉ định."
+  },
+  {
+    "name": "Viêm khớp",
+    "image": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2023/1/4/viem-khop-nen-uong-gi2-1672836283998464548029.jpeg",
+    "description": "Viêm một hoặc nhiều khớp, gây đau, sưng, cứng khớp và giảm khả năng vận động.",
+    "standard_data": "Chẩn đoán dựa trên triệu chứng lâm sàng, xét nghiệm máu (CRP, ESR) và hình ảnh (X-quang, MRI).",
+    "diet_suggestions": "Nên ăn: Cá hồi, hạt óc chó, dầu ô liu, nghệ, gừng (các thực phẩm có đặc tính chống viêm). Tập trung vào chế độ ăn chống viêm.",
+    "recommendations": {
+      "should_eat": [
+        "Cá béo (cá hồi, cá thu) giàu Omega-3",
+        "Dầu ô liu nguyên chất",
+        "Các loại hạt và quả hạch (hạnh nhân, óc chó, hạt chia)",
+        "Rau xanh đậm (rau bina, cải xoăn, bông cải xanh)",
+        "Quả mọng (việt quất, dâu tây) và trái cây nhiều màu sắc",
+        "Nghệ, gừng (có tính chất chống viêm)",
+        "Ngũ cốc nguyên hạt"
+      ],
+      "should_avoid": [
+        "Thực phẩm chế biến sẵn, đồ ăn nhanh",
+        "Đường tinh luyện, đồ uống có đường",
+        "Chất béo bão hòa và trans fat (thịt mỡ, đồ chiên rán)",
+        "Gluten (đối với một số người nhạy cảm)",
+        "Rượu bia quá mức"
+      ]
+    },
+    "sources": "Quỹ Viêm khớp (Arthritis Foundation)",
+    "guidance": "Chế độ ăn chống viêm. Giữ cân nặng hợp lý. Tập thể dục nhẹ nhàng. Tham khảo bác sĩ để điều trị."
+  },
+  {
+    "name": "Đột quỵ",
+    "image": "https://careplusvn.com/Uploads/t/be/benh-dot-quy-la-gi_0005666_710.jpeg",
+    "description": "Xảy ra khi nguồn cung cấp máu đến một phần của não bị gián đoạn hoặc giảm đáng kể, khiến các tế bào não bị thiếu oxy và chết đi.",
+    "standard_data": "Chẩn đoán hình ảnh não (CT, MRI) và đánh giá lâm sàng.",
+    "diet_suggestions": "Nên ăn: Quả bơ, cá béo, rau xanh, hạt lanh, các loại hạt (tập trung vào thực phẩm tốt cho tim mạch và mạch máu).",
+    "recommendations": {
+      "should_eat": [
+        "Rau xanh và trái cây tươi đa dạng",
+        "Ngũ cốc nguyên hạt",
+        "Cá béo (cá hồi, cá thu) giàu Omega-3",
+        "Dầu ô liu nguyên chất, quả bơ",
+        "Các loại hạt (hạt lanh, hạt chia, óc chó)",
+        "Protein nạc (thịt gà, đậu phụ)"
+      ],
+      "should_avoid": [
+        "Natri cao (muối)",
+        "Chất béo bão hòa và trans fat",
+        "Cholesterol cao",
+        "Đồ uống có đường",
+        "Rượu bia quá mức",
+        "Thực phẩm chế biến sẵn"
+      ]
+    },
+    "sources": "Hiệp hội Đột quỵ Hoa Kỳ (ASA), AHA",
+    "guidance": "Kiểm soát các yếu tố nguy cơ (huyết áp cao, tiểu đường, cholesterol cao). Chế độ ăn lành mạnh, ít muối. Không hút thuốc. Tập thể dục. Tuân thủ điều trị."
+  },
+  {
+    "name": "Ung thư đại tràng",
+    "image": "https://benhvienk.vn/data/media/1601/images/2-1498103256892-15295570745901465220946-60-0-734-1200-crop-1529557080614304404680(1).jpg",
+    "description": "Ung thư phát triển từ ruột già (đại tràng) hoặc trực tràng, thường bắt đầu từ các khối polyp lành tính.",
+    "standard_data": "Chẩn đoán bằng nội soi đại tràng, sinh thiết. Phân giai đoạn bằng CT/MRI.",
+    "diet_suggestions": "Nên ăn: Bông cải xanh, cà chua, quả mọng, ngũ cốc nguyên hạt (tăng cường chất xơ và chất chống oxy hóa).",
+    "recommendations": {
+      "should_eat": [
+        "Rau xanh họ cải (bông cải xanh, súp lơ trắng, cải xoăn)",
+        "Trái cây và quả mọng (việt quất, dâu tây, cà chua)",
+        "Ngũ cốc nguyên hạt (gạo lứt, yến mạch, bánh mì nguyên cám) giàu chất xơ",
+        "Các loại đậu",
+        "Thịt nạc, cá"
+      ],
+      "should_avoid": [
+        "Thịt đỏ và thịt chế biến sẵn quá mức (xúc xích, thịt xông khói)",
+        "Chất béo động vật cao",
+        "Rượu bia quá mức",
+        "Đồ uống có đường"
+      ]
+    },
+    "sources": "Hiệp hội Ung thư Hoa Kỳ (ACS), WHO",
+    "guidance": "Chế độ ăn giàu chất xơ, rau quả. Hạn chế thịt đỏ và thịt chế biến sẵn. Sàng lọc định kỳ. Tham khảo bác sĩ ung bướu và chuyên gia dinh dưỡng."
+  },
+  {
+    "name": "Chứng ngưng thở khi ngủ",
+    "image": "https://www.vinmec.com/static/uploads/small_20200906_023539_326780_ngungtho_max_1800x1800_jpg_1ec9b63d36.jpg",
+    "description": "Rối loạn giấc ngủ nghiêm trọng, trong đó hơi thở của người bệnh liên tục ngừng và bắt đầu lại trong khi ngủ, thường liên quan đến béo phì.",
+    "standard_data": "Chẩn đoán bằng nghiên cứu giấc ngủ (polysomnography).",
+    "diet_suggestions": "Nên ăn: Cá hồi, dầu cá, cải bó xôi, gừng, nghệ (thực phẩm chống viêm, hỗ trợ sức khỏe tổng thể). Giảm cân nếu béo phì là nguyên nhân.",
+    "recommendations": {
+      "should_eat": [
+        "Thực phẩm giúp giảm cân (nếu béo phì là nguyên nhân): Rau xanh, protein nạc, ngũ cốc nguyên hạt",
+        "Thực phẩm chống viêm (cá hồi, dầu cá, cải bó xôi, gừng, nghệ)",
+        "Các loại hạt",
+        "Uống đủ nước"
+      ],
+      "should_avoid": [
+        "Rượu bia và thuốc an thần trước khi ngủ",
+        "Bữa ăn nặng sát giờ ngủ",
+        "Thực phẩm gây tăng cân (đường, chất béo không lành mạnh)",
+        "Caffeine trước khi ngủ"
+      ]
+    },
+    "sources": "Hiệp hội Giấc ngủ Quốc gia, Viện Tim, Phổi và Máu Quốc gia (NHLBI)",
+    "guidance": "Giảm cân nếu cần. Tránh rượu bia và thuốc an thần trước khi ngủ. Ngủ nghiêng. Tham khảo bác sĩ chuyên khoa giấc ngủ."
+  },
+  {
+    "name": "Loãng mạch máu",
+    "image": "https://cdn.24h.com.vn/upload/4-2021/images/2021-11-15/dong-mau-la-gi-1-e1624977228889-1631509511792919622415-1636965927-540-width640height426.jpg",
+    "description": "Tình trạng thành mạch máu trở nên suy yếu và giãn nở bất thường, có thể gây chảy máu hoặc các vấn đề tuần hoàn.",
+    "standard_data": "Chẩn đoán bằng hình ảnh mạch máu (angiography, CT, MRI).",
+    "diet_suggestions": "Nên ăn: Rau bina, quả mọng, cá béo, nghệ, tỏi (các thực phẩm hỗ trợ sức khỏe mạch máu và chống viêm).",
+    "recommendations": {
+      "should_eat": [
+        "Rau xanh đậm (rau bina, cải xoăn) và quả mọng (việt quất, dâu tây) giàu chất chống oxy hóa",
+        "Cá béo (cá hồi, cá thu) giàu Omega-3",
+        "Nghệ, tỏi (tốt cho tim mạch, chống viêm)",
+        "Dầu ô liu nguyên chất",
+        "Ngũ cốc nguyên hạt",
+        "Thịt nạc, đậu phụ"
+      ],
+      "should_avoid": [
+        "Chất béo bão hòa và trans fat",
+        "Muối và đường quá mức",
+        "Rượu bia và hút thuốc lá",
+        "Thực phẩm chế biến sẵn"
+      ]
+    },
+    "sources": "Hiệp hội Tim mạch Hoa Kỳ (AHA)",
+    "guidance": "Chế độ ăn lành mạnh cho tim mạch. Kiểm soát huyết áp và cholesterol. Tránh hút thuốc. Tham khảo bác sĩ để điều trị nguyên nhân."
+  },
+  {
+    "name": "Viêm tụy",
+    "image": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2024/8/27/20210222viem-tuy-cap-4-1724743124591745065789.jpg",
+    "description": "Viêm tụy cấp hoặc mãn tính, gây đau bụng dữ dội và ảnh hưởng đến khả năng tiêu hóa và sản xuất hormone.",
+    "standard_data": "Chẩn đoán qua xét nghiệm máu (amylase, lipase cao) và hình ảnh (CT, MRI).",
+    "diet_suggestions": "Nên ăn: Rau luộc, súp nhạt, ngũ cốc nguyên hạt, trà thảo mộc (thực phẩm ít béo, dễ tiêu hóa).",
+    "recommendations": {
+      "should_eat": [
+        "Thực phẩm ít chất béo (rau luộc, thịt nạc không da, cá nạc)",
+        "Carbohydrate dễ tiêu hóa (gạo, khoai tây, bánh mì trắng)",
+        "Súp nhạt, cháo",
+        "Trái cây và rau củ ít chất xơ (chuối, táo, cà rốt nấu chín)",
+        "Uống đủ nước, trà thảo mộc"
+      ],
+      "should_avoid": [
+        "Rượu bia (nguyên nhân hàng đầu)",
+        "Thực phẩm nhiều chất béo (đồ chiên rán, thịt mỡ, bơ, kem)",
+        "Thực phẩm cay nóng, nhiều gia vị",
+        "Thực phẩm chế biến sẵn"
+      ]
+    },
+    "sources": "Quỹ Viêm tụy Quốc gia (NPF), Hiệp hội Tiêu hóa Hoa Kỳ (AGA)",
+    "guidance": "Tuyệt đối kiêng rượu bia. Chế độ ăn ít béo. Chia nhỏ bữa ăn. Tham khảo bác sĩ và chuyên gia dinh dưỡng để được tư vấn cụ thể."
+  },
+  {
+    "name": "Rối loạn lipid máu",
+    "image": "https://login.medlatec.vn//ImagePath/images/20220216/20220216_roi-loan-lipid-mau-1.jpg",
+    "description": "Tình trạng nồng độ cholesterol hoặc triglyceride trong máu bất thường, làm tăng nguy cơ bệnh tim mạch.",
+    "standard_data": "Tổng cholesterol, LDL, HDL, Triglyceride ngoài ngưỡng bình thường.",
+    "diet_suggestions": "Nên ăn: Yến mạch, cá hồi, quả óc chó, rau xanh (thực phẩm giàu chất xơ hòa tan, Omega-3).",
+    "recommendations": {
+      "should_eat": [
+        "Chất xơ hòa tan (yến mạch, lúa mạch, táo, lê, các loại đậu)",
+        "Cá béo (cá hồi, cá thu) giàu Omega-3",
+        "Các loại hạt (óc chó, hạnh nhân, hạt chia, hạt lanh)",
+        "Dầu ô liu nguyên chất, quả bơ",
+        "Rau xanh và trái cây tươi đa dạng",
+        "Thịt nạc, đậu phụ"
+      ],
+      "should_avoid": [
+        "Chất béo bão hòa và trans fat (trong thịt mỡ, đồ ăn nhanh, đồ chiên rán, dầu cọ)",
+        "Cholesterol cao từ thức ăn (nội tạng, lòng đỏ trứng quá nhiều)",
+        "Đường tinh luyện, đồ uống có đường (đặc biệt là triglyceride)",
+        "Rượu bia quá mức"
+      ]
+    },
+    "sources": "Hiệp hội Tim mạch Hoa Kỳ (AHA), CDC",
+    "guidance": "Thay đổi lối sống: chế độ ăn lành mạnh, tập thể dục, giảm cân. Có thể cần dùng thuốc theo chỉ định của bác sĩ. Kiểm tra lipid máu định kỳ."
+  },
+  {
+    "name": "Bệnh tim mạch",
+    "image": "https://bvydhue.vn//uploads/News/pic/photo11545521538078673377382gifu-1665359100683381510166_649aaf2214190.jpg",
+    "description": "Các tình trạng ảnh hưởng đến tim và mạch máu, bao gồm bệnh mạch vành, suy tim, rối loạn nhịp tim.",
+    "standard_data": "Chẩn đoán đa dạng tùy loại bệnh (ECG, siêu âm tim, xét nghiệm máu, chụp mạch vành).",
+    "diet_suggestions": "Nên ăn: Cá béo, rau cải xanh, quả mọng, dầu ô liu (theo mô hình chế độ ăn Địa Trung Hải).",
+    "recommendations": {
+      "should_eat": [
+        "Cá béo (cá hồi, cá thu, cá mòi) giàu Omega-3",
+        "Dầu ô liu nguyên chất, quả bơ",
+        "Rau xanh đậm và trái cây tươi đa dạng (ít nhất 5 phần/ngày)",
+        "Ngũ cốc nguyên hạt (thay thế ngũ cốc tinh chế)",
+        "Các loại hạt và quả hạch",
+        "Protein nạc (thịt gà không da, đậu, cá)"
+      ],
+      "should_avoid": [
+        "Natri (muối) cao",
+        "Chất béo bão hòa và trans fat",
+        "Đường tinh luyện và đồ uống có đường",
+        "Cholesterol cao từ thức ăn",
+        "Rượu bia quá mức",
+        "Thực phẩm chế biến sẵn"
+      ]
+    },
+    "sources": "Hiệp hội Tim mạch Hoa Kỳ (AHA), WHO",
+    "guidance": "Chế độ ăn DASH hoặc Địa Trung Hải. Kiểm soát huyết áp, cholesterol, đường huyết. Tập thể dục thường xuyên. Không hút thuốc. Tuân thủ điều trị."
+  },
+  {
+    "name": "Hội chứng buồng trứng đa nang",
+    "image": "https://tamanhhospital.vn/wp-content/uploads/2021/09/hoi-chung-buong-trung-da-nang.jpg",
+    "description": "Rối loạn nội tiết tố phổ biến ở phụ nữ trong độ tuổi sinh sản, gây ra kinh nguyệt không đều, thừa androgen (nội tiết tố nam) và buồng trứng đa nang.",
+    "standard_data": "Chẩn đoán dựa trên tiêu chuẩn Rotterdam (2 trong 3 tiêu chí: chu kỳ kinh nguyệt không đều, dấu hiệu thừa androgen, siêu âm buồng trứng đa nang).",
+    "diet_suggestions": "Nên ăn: Cá béo, cải bó xôi, ngũ cốc nguyên hạt, dầu ô liu (thực phẩm có chỉ số đường huyết thấp, chống viêm).",
+    "recommendations": {
+      "should_eat": [
+        "Thực phẩm có chỉ số đường huyết (GI) thấp (ngũ cốc nguyên hạt, rau không tinh bột, các loại đậu)",
+        "Cá béo (cá hồi, cá thu) giàu Omega-3",
+        "Rau xanh đậm (cải bó xôi, bông cải xanh)",
+        "Chất béo lành mạnh (dầu ô liu, quả bơ, các loại hạt)",
+        "Protein nạc (thịt gà, đậu phụ)"
+      ],
+      "should_avoid": [
+        "Đường tinh luyện và carbohydrate tinh chế (bánh mì trắng, cơm trắng, nước ngọt)",
+        "Thực phẩm chế biến sẵn, đồ ăn nhanh",
+        "Sản phẩm từ sữa đầy đủ chất béo (một số người có thể nhạy cảm)",
+        "Rượu bia quá mức"
+      ]
+    },
+    "sources": "Hiệp hội Nội tiết Hoa Kỳ, Viện Y tế Quốc gia Hoa Kỳ (NIH)",
+    "guidance": "Chế độ ăn GI thấp, giảm carbohydrate tinh chế. Giảm cân nếu béo phì. Tập thể dục. Tham khảo bác sĩ nội tiết và chuyên gia dinh dưỡng."
+  },
+  {
+    "name": "Rối loạn chuyển hóa",
+    "image": "https://cdn.youmed.vn/tin-tuc/wp-content/uploads/2020/02/bieu-hien-cua-roi-loan-chuyen-hoa.png",
+    "description": "Một nhóm các tình trạng bao gồm huyết áp cao, đường huyết cao, mỡ bụng dư thừa và cholesterol bất thường, làm tăng nguy cơ bệnh tim, đột quỵ và tiểu đường type 2.",
+    "standard_data": "Chẩn đoán khi có ít nhất 3 trong 5 tiêu chí: béo phì trung tâm, triglyceride cao, HDL thấp, huyết áp cao, đường huyết lúc đói cao.",
+    "diet_suggestions": "Nên ăn: Trái cây ít đường, cá hồi, các loại hạt, bông cải xanh (thực phẩm nguyên bản, giàu chất xơ, chất béo lành mạnh).",
+    "recommendations": {
+      "should_eat": [
+        "Ngũ cốc nguyên hạt",
+        "Rau xanh không tinh bột và trái cây ít đường (quả mọng, táo)",
+        "Cá béo (cá hồi, cá thu) giàu Omega-3",
+        "Các loại hạt và quả hạch",
+        "Dầu ô liu nguyên chất, quả bơ",
+        "Protein nạc (thịt gà, đậu)"
+      ],
+      "should_avoid": [
+        "Đường tinh luyện và đồ uống có đường",
+        "Thực phẩm chế biến sẵn, đồ ăn nhanh",
+        "Chất béo bão hòa và trans fat cao",
+        "Ngũ cốc tinh chế (bánh mì trắng, cơm trắng)",
+        "Rượu bia quá mức"
+      ]
+    },
+    "sources": "Hiệp hội Tim mạch Hoa Kỳ (AHA), NIH",
+    "guidance": "Thay đổi lối sống là trọng tâm: giảm cân, chế độ ăn lành mạnh, tập thể dục thường xuyên. Tuân thủ điều trị y tế."
+  },
+  {
+    "name": "Chứng đau lưng mãn tính",
+    "image": "https://bonbone.com.vn/wp-content/uploads/2023/11/dau-lung-cap-tinh-va-man-tinh.png",
+    "description": "Đau lưng kéo dài hơn 3 tháng, có thể do nhiều nguyên nhân như thoái hóa cột sống, viêm khớp, hoặc yếu cơ.",
+    "standard_data": "Chẩn đoán dựa trên thăm khám lâm sàng, tiền sử bệnh và hình ảnh (X-quang, MRI).",
+    "diet_suggestions": "Nên ăn: Cá hồi, quả óc chó, nghệ, gừng, cải xoăn (thực phẩm chống viêm, hỗ trợ sức khỏe xương khớp).",
+    "recommendations": {
+      "should_eat": [
+        "Thực phẩm chống viêm (cá hồi, quả óc chó, dầu ô liu, nghệ, gừng)",
+        "Rau xanh đậm (cải xoăn, rau bina)",
+        "Trái cây và quả mọng",
+        "Thực phẩm giàu Vitamin D và Canxi (sữa, trứng, cá)",
+        "Protein nạc (thịt gà, đậu)"
+      ],
+      "should_avoid": [
+        "Thực phẩm chế biến sẵn, đồ ăn nhanh (gây viêm)",
+        "Đường tinh luyện và chất béo không lành mạnh",
+        "Rượu bia quá mức",
+        "Thực phẩm gây tăng cân (nếu béo phì là nguyên nhân gây đau lưng)"
+      ]
+    },
+    "sources": "Hiệp hội Cột sống Bắc Mỹ (NASS), Viện Y tế Quốc gia Hoa Kỳ (NIH)",
+    "guidance": "Giảm cân nếu cần. Chế độ ăn chống viêm. Tập thể dục tăng cường cơ lưng. Vật lý trị liệu. Tham khảo bác sĩ."
+  },
+  {
+    "name": "Hội chứng ruột kích thích",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Irritable_bowel_syndrome.jpg/500px-Irritable_bowel_syndrome.jpg",
+    "description": "Rối loạn chức năng tiêu hóa mãn tính gây ra đau bụng, đầy hơi, tiêu chảy và/hoặc táo bón.",
+    "standard_data": "Chẩn đoán dựa trên tiêu chuẩn Rome IV (đau bụng tái diễn ít nhất 1 lần/tuần trong 3 tháng, kèm theo thay đổi tần suất/hình thái phân).",
+    "diet_suggestions": "Nên ăn: Chuối, yến mạch, trà bạc hà, cá trắng, gừng (thực phẩm ít FODMAPs, dễ tiêu hóa).",
+    "recommendations": {
+      "should_eat": [
+        "Thực phẩm ít FODMAPs (nếu áp dụng chế độ ăn này dưới sự giám sát): chuối, việt quất, cam, nho, khoai tây, cà rốt, cải bó xôi, thịt, cá, trứng, yến mạch.",
+        "Probiotics (sữa chua không đường, kefir - thử nghiệm cẩn thận)",
+        "Trà thảo mộc (bạc hà, gừng, hoa cúc)",
+        "Uống đủ nước"
+      ],
+      "should_avoid": [
+        "Thực phẩm giàu FODMAPs (hành, tỏi, đậu, lúa mì, sản phẩm từ sữa lactose cao, một số trái cây)",
+        "Thực phẩm cay nóng, nhiều dầu mỡ",
+        "Caffeine, rượu bia, đồ uống có ga",
+        "Chất làm ngọt nhân tạo (sorbitol, mannitol)"
+      ]
+    },
+    "sources": "Tổ chức Ruột kích thích Quốc tế (IFFGD), Hiệp hội Tiêu hóa Hoa Kỳ (AGA)",
+    "guidance": "Xác định và tránh thực phẩm 'trigger'. Chế độ ăn FODMAP thấp (dưới sự giám sát). Quản lý căng thẳng. Tham khảo bác sĩ tiêu hóa."
+  },
+  {
+    "name": "Trào ngược dạ dày",
+    "image": "https://dakhoaquoctegoldstar.com/images/img-ckfinder/images/trao-nguoc-da-day-thuc-quan.jpg",
+    "description": "Dịch vị dạ dày hoặc thức ăn trào ngược lên thực quản, gây ợ nóng, ợ chua, nuốt khó và đau ngực.",
+    "standard_data": "Chẩn đoán dựa trên triệu chứng lâm sàng và có thể nội soi thực quản-dạ dày.",
+    "diet_suggestions": "Nên ăn: Bánh mì nguyên cám, gừng, chuối, sữa hạnh nhân. Tránh thực phẩm cay nóng, dầu mỡ, cà phê, socola.",
+    "recommendations": {
+      "should_eat": [
+        "Bánh mì nguyên cám, yến mạch, gạo lứt",
+        "Thịt nạc, cá, trứng, đậu phụ",
+        "Rau củ không gây kích ứng (bông cải xanh, cà rốt, khoai tây, rau xanh)",
+        "Chuối, táo, lê (ít axit)",
+        "Gừng (giúp làm dịu dạ dày)",
+        "Sữa hạnh nhân, sữa yến mạch (thay thế sữa bò)"
+      ],
+      "should_avoid": [
+        "Thực phẩm nhiều dầu mỡ, đồ chiên rán",
+        "Thực phẩm cay nóng, nhiều gia vị",
+        "Trái cây họ cam quýt, cà chua (và các sản phẩm từ cà chua)",
+        "Socola, bạc hà, cà phê, trà (có caffeine)",
+        "Rượu bia, đồ uống có ga",
+        "Ăn quá no, ăn sát giờ ngủ"
+      ]
+    },
+    "sources": "Hiệp hội Tiêu hóa Hoa Kỳ (AGA)",
+    "guidance": "Chia nhỏ bữa ăn. Tránh ăn sát giờ ngủ. Nâng cao đầu giường khi ngủ. Hạn chế thực phẩm kích ứng. Tham khảo bác sĩ."
+  },
+  {
+    "name": "Bệnh Parkinson",
+    "image": "https://benhvienlaokhoa.vn/media/news/2910_triuchngvnngbnhnhnparkinson.jpg",
+    "description": "Rối loạn thoái hóa thần kinh tiến triển ảnh hưởng đến vận động, gây run, cứng đờ, chậm chạp và mất thăng bằng.",
+    "standard_data": "Chẩn đoán lâm sàng dựa trên triệu chứng, không có xét nghiệm cụ thể.",
+    "diet_suggestions": "Nên ăn: Cá béo, dầu cá, các loại hạt, rau xanh, nghệ (thực phẩm chống viêm, bảo vệ thần kinh). Tránh tương tác với thuốc Levodopa (nếu có).",
+    "recommendations": {
+      "should_eat": [
+        "Cá béo (cá hồi, cá thu) và dầu cá (Omega-3)",
+        "Các loại hạt và quả hạch (óc chó, hạnh nhân)",
+        "Rau xanh đậm (cải xoăn, rau bina) và trái cây nhiều màu sắc (chất chống oxy hóa)",
+        "Ngũ cốc nguyên hạt",
+        "Nghệ (chống viêm thần kinh)",
+        "Uống đủ nước (để tránh táo bón, một triệu chứng phổ biến)"
+      ],
+      "should_avoid": [
+        "Protein cao trong một bữa ăn (có thể cản trở hấp thu Levodopa - nên chia nhỏ protein hoặc ăn cách xa giờ uống thuốc)",
+        "Thực phẩm chế biến sẵn, nhiều đường, chất béo không lành mạnh",
+        "Rượu bia quá mức"
+      ]
+    },
+    "sources": "Quỹ Parkinson, Hiệp hội Rối loạn Vận động Quốc tế",
+    "guidance": "Chế độ ăn cân bằng, hỗ trợ chức năng não bộ. Điều chỉnh protein theo hướng dẫn nếu dùng Levodopa. Tập thể dục. Tham khảo bác sĩ thần kinh và chuyên gia dinh dưỡng."
+  },
+  {
+    "name": "Tiền tiểu đường",
+    "image": "https://tamanhhospital.vn/wp-content/uploads/2022/08/tien-tieu-duong.jpg",
+    "description": "Mức đường huyết cao hơn bình thường nhưng chưa đủ cao để được chẩn đoán là tiểu đường type 2.",
+    "standard_data": "Đường huyết lúc đói 100-125 mg/dL (5.6-6.9 mmol/L) hoặc HbA1c 5.7%-6.4%.",
+    "diet_suggestions": "Nên ăn: Ngũ cốc nguyên hạt, rau không tinh bột, protein nạc. Tập trung giảm cân (nếu thừa cân) và tăng cường hoạt động thể chất để ngăn ngừa tiến triển thành tiểu đường.",
+    "recommendations": {
+      "should_eat": [
+        "Ngũ cốc nguyên hạt (gạo lứt, yến mạch, bánh mì nguyên cám)",
+        "Rau xanh không tinh bột (bông cải xanh, rau bina, cà chua)",
+        "Protein nạc (thịt gà, cá, đậu phụ)",
+        "Chất béo lành mạnh (quả bơ, dầu ô liu, các loại hạt)",
+        "Trái cây tươi ít đường (quả mọng, táo, lê)"
+      ],
+      "should_avoid": [
+        "Đường tinh luyện và đồ uống có đường",
+        "Ngũ cốc tinh chế (bánh mì trắng, gạo trắng)",
+        "Thực phẩm chế biến sẵn, đồ ăn nhanh",
+        "Chất béo bão hòa và trans fat"
+      ]
+    },
+    "sources": "Hiệp hội Tiểu đường Hoa Kỳ (ADA), CDC",
+    "guidance": "Thay đổi lối sống tích cực: giảm cân, ăn uống lành mạnh, tập thể dục ít nhất 150 phút/tuần. Giúp ngăn ngừa hoặc trì hoãn bệnh tiểu đường type 2."
+  },
+  {
+    "name": "Hội chứng chuyển hóa",
+    "image": "https://suckhoedoisong.qltns.mediacdn.vn/Images/duylinh/2018/08/14/hoi-chung-chuyen-hoa_59141_resize.png",
+    "description": "Tập hợp các yếu tố nguy cơ (tăng huyết áp, đường huyết cao, mỡ bụng dư thừa, cholesterol/triglyceride bất thường) cùng tồn tại, làm tăng đáng kể nguy cơ bệnh tim, đột quỵ và tiểu đường type 2.",
+    "standard_data": "Chẩn đoán khi có ít nhất 3 trong 5 tiêu chí: vòng eo lớn, triglyceride cao, HDL thấp, huyết áp cao, đường huyết lúc đói cao.",
+    "diet_suggestions": "Tập trung vào chế độ ăn Địa Trung Hải: nhiều rau, trái cây, ngũ cốc nguyên hạt, chất béo lành mạnh (dầu ô liu, hạt), protein nạc. Hạn chế đường, muối, chất béo bão hòa.",
+    "recommendations": {
+      "should_eat": [
+        "Rau xanh và trái cây tươi đa dạng",
+        "Ngũ cốc nguyên hạt",
+        "Cá béo, thịt nạc, đậu",
+        "Dầu ô liu nguyên chất, quả bơ, các loại hạt",
+        "Chất xơ hòa tan (yến mạch, táo, lê)"
+      ],
+      "should_avoid": [
+        "Đường tinh luyện và đồ uống có đường",
+        "Thực phẩm chế biến sẵn, đồ ăn nhanh",
+        "Chất béo bão hòa và trans fat",
+        "Muối cao",
+        "Rượu bia quá mức"
+      ]
+    },
+    "sources": "Hiệp hội Tim mạch Hoa Kỳ (AHA), NIH",
+    "guidance": "Giảm cân là mục tiêu chính. Ăn uống lành mạnh, tập thể dục đều đặn, không hút thuốc. Cần quản lý đa yếu tố nguy cơ dưới sự hướng dẫn của bác sĩ."
+  },
+  {
+    "name": "Thoái hóa khớp",
+    "image": "https://cdn.benhvienquan11.vn/editor/2023/thoai-hoa-khop.jpg",
+    "description": "Tình trạng tổn thương sụn khớp và xương dưới sụn, dẫn đến đau, cứng khớp và giảm khả năng vận động, thường gặp ở người lớn tuổi.",
+    "standard_data": "Chẩn đoán bằng X-quang khớp, triệu chứng lâm sàng.",
+    "diet_suggestions": "Nên ăn: Thực phẩm chống viêm như cá béo, dầu ô liu, nghệ, gừng, rau xanh đậm. Giảm cân nếu béo phì để giảm áp lực lên khớp.",
+    "recommendations": {
+      "should_eat": [
+        "Cá béo (cá hồi, cá thu) giàu Omega-3",
+        "Dầu ô liu nguyên chất, quả bơ",
+        "Rau xanh đậm (rau bina, cải xoăn) và trái cây nhiều màu sắc",
+        "Nghệ, gừng (có tính chống viêm)",
+        "Ngũ cốc nguyên hạt",
+        "Protein nạc"
+      ],
+      "should_avoid": [
+        "Thực phẩm chế biến sẵn, nhiều đường, chất béo không lành mạnh (gây viêm)",
+        "Đồ uống có đường",
+        "Rượu bia quá mức",
+        "Thực phẩm có thể gây dị ứng hoặc viêm cho từng cá nhân"
+      ]
+    },
+    "sources": "Quỹ Viêm khớp (Arthritis Foundation), Hiệp hội Thấp khớp Hoa Kỳ (ACR)",
+    "guidance": "Giảm cân nếu thừa cân/béo phì. Chế độ ăn chống viêm. Tập thể dục phù hợp (bơi lội, đạp xe). Tham khảo bác sĩ và chuyên gia vật lý trị liệu."
+  },
+  {
+    "name": "Sỏi mật",
+    "image": "https://suckhoedoisong.qltns.mediacdn.vn/Images/quangcao/2019/11/22/kdk11.png",
+    "description": "Sự hình thành các tinh thể cứng (sỏi) trong túi mật, gây đau bụng trên bên phải, buồn nôn, nôn mửa, đầy hơi.",
+    "standard_data": "Chẩn đoán bằng siêu âm bụng.",
+    "diet_suggestions": "Nên ăn: Thực phẩm ít chất béo, nhiều chất xơ như rau củ, trái cây, ngũ cốc nguyên hạt. Hạn chế chất béo, cholesterol.",
+    "recommendations": {
+      "should_eat": [
+        "Thực phẩm ít chất béo (thịt nạc, cá nạc, rau xanh, trái cây)",
+        "Chất xơ hòa tan (yến mạch, các loại đậu, táo, lê)",
+        "Ngũ cốc nguyên hạt",
+        "Uống đủ nước"
+      ],
+      "should_avoid": [
+        "Thực phẩm giàu chất béo (đồ chiên rán, thịt mỡ, kem, bơ, phô mai đầy đủ chất béo)",
+        "Thực phẩm chứa cholesterol cao (nội tạng, lòng đỏ trứng quá nhiều)",
+        "Thực phẩm chế biến sẵn, đồ ăn nhanh",
+        "Bỏ bữa (có thể làm trầm trọng thêm tình trạng)"
+      ]
+    },
+    "sources": "Viện Quốc gia về Bệnh tiểu đường và Tiêu hóa và Bệnh thận (NIDDK)",
+    "guidance": "Chế độ ăn ít béo, nhiều chất xơ. Duy trì cân nặng hợp lý. Tham khảo bác sĩ để điều trị sỏi mật."
+  },
+  {
+    "name": "Tăng nguy cơ ung thư (vú, thận)",
+    "image": "https://cdnphoto.dantri.com.vn/cTsroWHzrPo_uIwxoT6XAPqte9U=/thumb_w/1020/2021/06/04/ungthuthan21-crop-1622809420261.jpeg",
+    "description": "Thừa cân/béo phì và chế độ ăn không lành mạnh làm tăng nguy cơ mắc một số loại ung thư như vú (ở phụ nữ sau mãn kinh), thận, đại tràng, thực quản...",
+    "standard_data": "Đánh giá nguy cơ dựa trên BMI, tiền sử gia đình, lối sống.",
+    "diet_suggestions": "Nên ăn: Nhiều rau củ quả (đặc biệt rau họ cải), ngũ cốc nguyên hạt, các loại đậu. Hạn chế thịt đỏ, thịt chế biến sẵn, đường, chất béo không lành mạnh.",
+    "recommendations": {
+      "should_eat": [
+        "Rau xanh họ cải (bông cải xanh, súp lơ trắng, cải xoăn)",
+        "Trái cây và rau củ đa dạng, nhiều màu sắc (chất chống oxy hóa)",
+        "Ngũ cốc nguyên hạt và các loại đậu (giàu chất xơ)",
+        "Protein nạc (cá, gia cầm, đậu phụ)",
+        "Chất béo lành mạnh (dầu ô liu, quả bơ, các loại hạt)"
+      ],
+      "should_avoid": [
+        "Thịt đỏ và thịt chế biến sẵn quá mức",
+        "Đường tinh luyện và đồ uống có đường",
+        "Chất béo bão hòa và trans fat (trong đồ ăn nhanh, đồ chiên rán)",
+        "Rượu bia quá mức",
+        "Thực phẩm chế biến sẵn"
+      ]
+    },
+    "sources": "Quỹ Nghiên cứu Ung thư Thế giới (WCRF), Hiệp hội Ung thư Hoa Kỳ (ACS)",
+    "guidance": "Duy trì cân nặng hợp lý. Chế độ ăn dựa trên thực vật. Giảm rượu bia. Tăng cường hoạt động thể chất. Sàng lọc ung thư định kỳ."
+  },
+  {
+    "name": "Ngừng thở khi ngủ",
+    "image": "https://taimuihongtphcm.vn/wp-content/uploads/2019/10/2.jpg",
+    "description": "Đây là tên gọi khác của 'Chứng ngưng thở khi ngủ' - rối loạn giấc ngủ nghiêm trọng, hơi thở ngừng và bắt đầu lại liên tục.",
+    "standard_data": "Chẩn đoán bằng nghiên cứu giấc ngủ (polysomnography).",
+    "diet_suggestions": "Tập trung vào thực phẩm giúp giảm cân (nếu béo phì), các thực phẩm chống viêm như cá hồi, dầu cá, cải bó xôi, gừng, nghệ.",
+    "recommendations": {
+      "should_eat": [
+        "Thực phẩm giúp giảm cân (nếu béo phì là nguyên nhân): Rau xanh, protein nạc, ngũ cốc nguyên hạt",
+        "Thực phẩm chống viêm (cá hồi, dầu cá, cải bó xôi, gừng, nghệ)",
+        "Các loại hạt",
+        "Uống đủ nước"
+      ],
+      "should_avoid": [
+        "Rượu bia và thuốc an thần trước khi ngủ",
+        "Bữa ăn nặng sát giờ ngủ",
+        "Thực phẩm gây tăng cân (đường, chất béo không lành mạnh)",
+        "Caffeine trước khi ngủ"
+      ]
+    },
+    "sources": "Hiệp hội Giấc ngủ Quốc gia, Viện Tim, Phổi và Máu Quốc gia (NHLBI)",
+    "guidance": "Giảm cân nếu cần. Tránh rượu bia và thuốc an thần trước khi ngủ. Ngủ nghiêng. Tham khảo bác sĩ chuyên khoa giấc ngủ."
+  },
+  {
+    "name": "Hen suyễn nặng hơn",
+    "image": "https://phunuvietnam.mediacdn.vn/thumb_w/1098/179072216278405120/2022/7/21/avatar1658396576083-1658396576501688205054.jpg",
+    "description": "Bệnh hen suyễn có thể trở nên nghiêm trọng hơn do béo phì, trào ngược dạ dày, hoặc chế độ ăn uống không lành mạnh gây viêm.",
+    "standard_data": "Đánh giá mức độ hen suyễn và các yếu tố làm trầm trọng bệnh.",
+    "diet_suggestions": "Nên ăn: Thực phẩm chống viêm như cá béo, rau xanh, trái cây. Giảm cân nếu béo phì. Hạn chế thực phẩm chế biến sẵn và gây dị ứng (nếu có).",
+    "recommendations": {
+      "should_eat": [
+        "Thực phẩm chống viêm (cá béo, rau xanh đậm, trái cây, dầu ô liu, nghệ, gừng)",
+        "Vitamin D (cá hồi, trứng)",
+        "Vitamin C (cam, ổi, ớt chuông)",
+        "Magie (rau bina, hạnh nhân, hạt bí)"
+      ],
+      "should_avoid": [
+        "Thực phẩm gây dị ứng hoặc nhạy cảm cá nhân",
+        "Thực phẩm chế biến sẵn, nhiều đường, chất béo không lành mạnh",
+        "Sulfite (trong rượu vang, trái cây sấy khô) nếu nhạy cảm",
+        "Trào ngược dạ dày (nếu là yếu tố làm nặng hen)"
+      ]
+    },
+    "sources": "Hiệp hội Phổi Hoa Kỳ (ALA), Global Initiative for Asthma (GINA)",
+    "guidance": "Kiểm soát cân nặng. Tránh các yếu tố kích hoạt. Chế độ ăn chống viêm. Quản lý trào ngược dạ dày nếu có. Tuân thủ điều trị của bác sĩ."
+  },
+  {
+    "name": "Bệnh thận mãn tính",
+    "image": "https://suckhoedoisong.qltns.mediacdn.vn/324455921873985536/2024/3/13/suy-than-1k-1710289652973418363064.jpg",
+    "description": "Tình trạng chức năng thận suy giảm dần theo thời gian, dẫn đến tích tụ chất thải trong máu.",
+    "standard_data": "Đánh giá qua GFR (tốc độ lọc cầu thận) < 60 mL/phút/1.73m² kéo dài > 3 tháng.",
+    "diet_suggestions": "Chế độ ăn rất cá nhân hóa, thường hạn chế protein, natri, kali và phốt pho. Cần có sự tư vấn của chuyên gia dinh dưỡng tiết chế.",
+    "recommendations": {
+      "should_eat": [
+        "Thực phẩm ít protein (theo chỉ định nghiêm ngặt)",
+        "Thực phẩm ít natri (tránh muối, đồ chế biến sẵn)",
+        "Thực phẩm ít kali (táo, dâu tây, ớt chuông, bắp cải, súp lơ)",
+        "Thực phẩm ít phốt pho (lòng trắng trứng, gạo trắng)",
+        "Nước uống theo lượng chỉ định"
+      ],
+      "should_avoid": [
+        "Thực phẩm giàu protein (thịt đỏ, sữa, đậu quá nhiều)",
+        "Thực phẩm giàu kali (chuối, cam, cà chua, khoai tây, rau xanh đậm)",
+        "Thực phẩm giàu phốt pho (sữa, phô mai, các loại hạt, ngũ cốc nguyên hạt)",
+        "Natri cao (đồ ăn nhanh, đồ hộp, đồ muối)",
+        "Rượu bia"
+      ]
+    },
+    "sources": "Quỹ Thận Quốc gia (NKF), CDC",
+    "guidance": "Bắt buộc phải có sự tư vấn và theo dõi của bác sĩ và chuyên gia dinh dưỡng tiết chế. Chế độ ăn là một phần quan trọng của việc quản lý bệnh."
+  },
+  {
+    "name": "Viêm gan không do rượu",
+    "image": "https://suckhoedoisong.qltns.mediacdn.vn/Images/quangcao/2021/06/16/ntr111.png",
+    "description": "Viêm gan và tổn thương gan không liên quan đến việc uống rượu, thường liên quan đến béo phì, tiểu đường và rối loạn chuyển hóa.",
+    "standard_data": "Chẩn đoán bằng xét nghiệm enzym gan, siêu âm, và có thể sinh thiết gan.",
+    "diet_suggestions": "Nên ăn: Rau củ, cá hồi, quả óc chó, dầu ô liu, trà xanh (thực phẩm chống viêm, hỗ trợ chức năng gan). Giảm cân nếu béo phì.",
+    "recommendations": {
+      "should_eat": [
+        "Rau xanh đậm và trái cây tươi đa dạng",
+        "Ngũ cốc nguyên hạt",
+        "Cá béo (cá hồi, cá thu) giàu Omega-3",
+        "Dầu ô liu nguyên chất, quả bơ, các loại hạt",
+        "Trà xanh, cà phê (vừa phải, có thể có lợi cho gan)",
+        "Thịt nạc, đậu phụ"
+      ],
+      "should_avoid": [
+        "Đường tinh luyện, đường fructose cao (trong nước ngọt, bánh kẹo)",
+        "Chất béo bão hòa và trans fat (trong đồ ăn nhanh, thịt mỡ)",
+        "Thực phẩm chế biến sẵn, đồ chiên rán",
+        "Rượu bia (tuyệt đối tránh, dù không phải nguyên nhân chính)"
+      ]
+    },
+    "sources": "Hiệp hội Nghiên cứu Bệnh Gan Hoa Kỳ (AASLD)",
+    "guidance": "Giảm cân là mục tiêu chính. Chế độ ăn lành mạnh, ít đường, ít chất béo không lành mạnh. Tập thể dục. Tham khảo bác sĩ."
+  },
+  {
+    "name": "Bệnh túi mật",
+    "image": "https://production-cdn.pharmacity.io/digital/original/plain/blog/viem-tui-mat-1.jpg",
+    "description": "Các tình trạng ảnh hưởng đến túi mật, bao gồm sỏi mật (phổ biến nhất), viêm túi mật, gây đau bụng, buồn nôn, nôn mửa, đầy hơi.",
+    "standard_data": "Chẩn đoán bằng siêu âm bụng, xét nghiệm máu.",
+    "diet_suggestions": "Nên ăn: Thực phẩm ít chất béo, nhiều chất xơ như rau củ, trái cây, ngũ cốc nguyên hạt. Hạn chế chất béo, cholesterol.",
+    "recommendations": {
+      "should_eat": [
+        "Thực phẩm ít chất béo (thịt nạc, cá nạc, rau xanh, trái cây)",
+        "Chất xơ hòa tan (yến mạch, các loại đậu, táo, lê)",
+        "Ngũ cốc nguyên hạt",
+        "Uống đủ nước"
+      ],
+      "should_avoid": [
+        "Thực phẩm giàu chất béo (đồ chiên rán, thịt mỡ, kem, bơ, phô mai đầy đủ chất béo)",
+        "Thực phẩm chứa cholesterol cao (nội tạng, lòng đỏ trứng quá nhiều)",
+        "Thực phẩm chế biến sẵn, đồ ăn nhanh",
+        "Bỏ bữa (có thể làm trầm trọng thêm tình trạng)"
+      ]
+    },
+    "sources": "Viện Quốc gia về Bệnh tiểu đường và Tiêu hóa và Bệnh thận (NIDDK)",
+    "guidance": "Chế độ ăn ít béo, nhiều chất xơ. Duy trì cân nặng hợp lý. Tham khảo bác sĩ để điều trị."
+  },
+  {
+    "name": "Mỡ máu cao",
+    "image": "https://benhvienvanhanh.vn/wp-content/uploads/2022/11/6230d93bdb6cf06f050d207d_Screen-Shot-2022-03-15-at-11.21.35-AM-1024x742.jpg",
+    "description": "Đây là tên gọi khác của 'Rối loạn lipid máu' - nồng độ cholesterol hoặc triglyceride trong máu bất thường, làm tăng nguy cơ bệnh tim mạch.",
+    "standard_data": "Tổng cholesterol > 200 mg/dL, LDL > 100 mg/dL, HDL < 40 mg/dL (tùy thuộc yếu tố nguy cơ).",
+    "diet_suggestions": "Nên ăn: Yến mạch, cá hồi, quả óc chó, rau xanh (thực phẩm giàu chất xơ hòa tan, Omega-3).",
+    "recommendations": {
+      "should_eat": [
+        "Chất xơ hòa tan (yến mạch, lúa mạch, táo, lê, các loại đậu)",
+        "Chất béo không bão hòa đơn (quả bơ, dầu ô liu, các loại hạt)",
+        "Chất béo không bão hòa đa (cá hồi, cá thu, hạt chia, hạt lanh)",
+        "Sterol/stanol thực vật (có trong một số thực phẩm tăng cường)",
+        "Rau xanh và trái cây tươi"
+      ],
+      "should_avoid": [
+        "Chất béo bão hòa (thịt đỏ nhiều mỡ, da gia cầm, bơ, phô mai đầy đủ chất béo, dầu dừa/dầu cọ)",
+        "Chất béo trans fat (trong đồ ăn nhanh, bánh quy, thực phẩm đóng gói)",
+        "Cholesterol từ thức ăn (lòng đỏ trứng, nội tạng, hải sản vỏ cứng - ăn vừa phải)",
+        "Đồ uống có đường"
+      ]
+    },
+    "sources": "Hiệp hội Tim mạch Hoa Kỳ (AHA), CDC",
+    "guidance": "Giảm chất béo bão hòa và trans fat. Tăng cường chất xơ hòa tan và chất béo không bão hòa. Tập thể dục. Kiểm tra cholesterol định kỳ."
+  },
+  {
+    "name": "Khó thở",
+    "image": "https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/https://cms-prod.s3-sgn09.fptcloud.com/kho_tho_nen_lam_gi_2_3104d08937.jpg",
+    "description": "Cảm giác hụt hơi, khó thở hoặc thiếu không khí, có thể là triệu chứng của nhiều tình trạng như hen suyễn, COPD, bệnh tim, béo phì.",
+    "standard_data": "Đánh giá dựa trên nguyên nhân cơ bản, chức năng hô hấp (phế dung kế).",
+    "diet_suggestions": "Nếu do béo phì, cần giảm cân. Nếu liên quan đến các bệnh mãn tính khác (tim, phổi), cần chế độ ăn hỗ trợ bệnh nền và duy trì cân nặng khỏe mạnh.",
+    "recommendations": {
+      "should_eat": [
+        "Thực phẩm dễ tiêu hóa, tránh gây đầy hơi (tránh các loại đậu, rau họ cải nếu nhạy cảm)",
+        "Ăn các bữa nhỏ, thường xuyên (tránh áp lực lên cơ hoành)",
+        "Uống đủ nước (để làm loãng chất nhầy đường hô hấp)",
+        "Protein nạc để duy trì cơ bắp (cơ hô hấp)",
+        "Chất béo lành mạnh (cung cấp năng lượng mà ít tạo CO2 hơn carb)"
+      ],
+      "should_avoid": [
+        "Thực phẩm gây đầy hơi, khó tiêu",
+        "Bữa ăn quá no",
+        "Caffeine, rượu bia quá mức (có thể ảnh hưởng đến hô hấp và giấc ngủ)",
+        "Thực phẩm chế biến sẵn, nhiều đường"
+      ]
+    },
+    "sources": "Hiệp hội Phổi Hoa Kỳ (ALA), Hiệp hội Tim mạch Hoa Kỳ (AHA)",
+    "guidance": "Xác định nguyên nhân gây khó thở để có hướng điều trị phù hợp. Giảm cân nếu béo phì. Chế độ ăn khoa học. Tham khảo bác sĩ."
+  },
+  {
+    "name": "Đau khớp gối",
+    "image": "https://file.hstatic.net/200000106837/file/chi_muon_mua_dep_o_day_mang_thoi__90__6196e4cc3c7f4685ae57e7edd39710af_grande.jpg",
+    "description": "Đau ở vùng khớp gối, thường do thoái hóa khớp, chấn thương, hoặc viêm khớp. Béo phì làm tăng áp lực lên khớp gối.",
+    "standard_data": "Chẩn đoán bằng khám lâm sàng, X-quang, MRI.",
+    "diet_suggestions": "Nên ăn: Thực phẩm chống viêm như cá béo, dầu ô liu, nghệ, gừng, rau xanh đậm. Giảm cân nếu béo phì để giảm tải trọng lên khớp.",
+    "recommendations": {
+      "should_eat": [
+        "Thực phẩm chống viêm (cá béo, dầu ô liu, nghệ, gừng, trái cây và rau củ đa dạng)",
+        "Thực phẩm giàu Vitamin D và Canxi (để hỗ trợ xương khỏe mạnh)",
+        "Protein nạc để duy trì cơ bắp xung quanh khớp",
+        "Uống đủ nước"
+      ],
+      "should_avoid": [
+        "Thực phẩm chế biến sẵn, nhiều đường, chất béo không lành mạnh (gây viêm)",
+        "Thực phẩm gây tăng cân không kiểm soát",
+        "Rượu bia quá mức"
+      ]
+    },
+    "sources": "Quỹ Viêm khớp (Arthritis Foundation), Hiệp hội Bác sĩ Chỉnh hình Hoa Kỳ",
+    "guidance": "Giảm cân (nếu thừa cân) là rất quan trọng. Tập thể dục tăng cường cơ bắp hỗ trợ khớp. Vật lý trị liệu. Tham khảo bác sĩ để điều trị."
+  },
+  {
+    "name": "Đau khớp háng",
+    "image": "https://tamanhhospital.vn/wp-content/uploads/2021/11/viem-khop-hang-la-gi.jpg",
+    "description": "Đau ở vùng khớp háng, có thể do thoái hóa khớp, viêm bao hoạt dịch, hoặc các vấn đề khác. Tương tự khớp gối, béo phì tăng áp lực.",
+    "standard_data": "Chẩn đoán bằng khám lâm sàng, X-quang, MRI.",
+    "diet_suggestions": "Nên ăn: Thực phẩm chống viêm như cá béo, dầu ô liu, nghệ, gừng, rau xanh đậm. Giảm cân nếu béo phì để giảm tải trọng lên khớp.",
+    "recommendations": {
+      "should_eat": [
+        "Thực phẩm chống viêm (cá béo, dầu ô liu, nghệ, gừng, trái cây và rau củ đa dạng)",
+        "Thực phẩm giàu Vitamin D và Canxi (để hỗ trợ xương khỏe mạnh)",
+        "Protein nạc để duy trì cơ bắp xung quanh khớp",
+        "Uống đủ nước"
+      ],
+      "should_avoid": [
+        "Thực phẩm chế biến sẵn, nhiều đường, chất béo không lành mạnh (gây viêm)",
+        "Thực phẩm gây tăng cân không kiểm soát",
+        "Rượu bia quá mức"
+      ]
+    },
+    "sources": "Quỹ Viêm khớp (Arthritis Foundation), Hiệp hội Bác sĩ Chỉnh hình Hoa Kỳ",
+    "guidance": "Giảm cân (nếu thừa cân) là rất quan trọng. Tập thể dục tăng cường cơ bắp hỗ trợ khớp. Vật lý trị liệu. Tham khảo bác sĩ để điều trị."
+  },
+  {
+    "name": "Vấn đề về xương khớp",
+    "image": "https://nutrihome.vn/wp-content/uploads/2023/10/cac-benh-ly-ve-xuong-khop-01.jpg",
+    "description": "Thuật ngữ chung chỉ các bệnh lý hoặc tình trạng ảnh hưởng đến xương, khớp, sụn, dây chằng, như viêm khớp, thoái hóa khớp, loãng xương. Thừa cân/béo phì thường làm trầm trọng thêm các vấn đề này.",
+    "standard_data": "Đánh giá tùy thuộc vào tình trạng cụ thể (X-quang, MRI, xét nghiệm máu, khám lâm sàng).",
+    "diet_suggestions": "Nên ăn: Thực phẩm giàu canxi và vitamin D (sữa, cá béo), thực phẩm chống viêm (Omega-3, nghệ, gừng, rau xanh đậm). Giảm cân nếu béo phì.",
+    "recommendations": {
+      "should_eat": [
+        "Thực phẩm giàu Canxi (sữa, sữa chua, phô mai, rau xanh đậm, cá nhỏ nguyên xương)",
+        "Thực phẩm giàu Vitamin D (cá béo, trứng, sữa tăng cường)",
+        "Thực phẩm chống viêm (cá hồi, dầu ô liu, các loại hạt, nghệ, gừng, rau xanh, quả mọng)",
+        "Protein nạc để duy trì cơ bắp và xương",
+        "Uống đủ nước"
+      ],
+      "should_avoid": [
+        "Thực phẩm chế biến sẵn, nhiều đường, chất béo không lành mạnh (gây viêm)",
+        "Thực phẩm gây tăng cân không kiểm soát (làm tăng áp lực lên khớp)",
+        "Rượu bia quá mức",
+        "Thiếu vận động"
+      ]
+    },
+    "sources": "Quỹ Viêm khớp (Arthritis Foundation), Hiệp hội Loãng xương Quốc tế",
+    "guidance": "Duy trì cân nặng khỏe mạnh. Chế độ ăn cân bằng, chống viêm, đủ canxi và vitamin D. Tập thể dục phù hợp. Tham khảo bác sĩ để chẩn đoán và điều trị."
+  }
+
+]
