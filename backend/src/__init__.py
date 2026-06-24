@@ -26,7 +26,7 @@ def create_app():
     # Liệt kê tất cả các domain frontend của bạn ở đây
     allowed_frontend_origins = [
         "https://nutriwiseadvisor.vercel.app",  # Frontend chính của bạn
-        "https://nutricheck.io.vn"
+        "http://www.nutricheck.io.vn/"
     ]
     CORS(app, resources={r"/api/*": {"origins": allowed_frontend_origins}})
 
