@@ -7,13 +7,12 @@ from src.routes.chatbot import chatbot_bp
 
 def create_app():
 
-    app = create_app()
+    app = Flask(__name__)
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'this is a secret'
     app.config['SECRET_KEY'] = SECRET_KEY
     app.config['IMAGE_UPLOADS'] = os.path.abspath('./uploads')
     
-    app.config['CHATBOT_API_KEY'] = os.environ.get('CHATBOT_API_KEY')
-    app.config['CHATBOT_EXTERNAL_API_ENDPOINT'] = os.environ.get('CHATBOT_EXTERNAL_API_ENDPOINT')
+    app.config['GEMINI_API_KEY'] = os.environ.get('GEMINI_API_KEY')
 
     if not app.config['CHATBOT_API_KEY']:
         print("CẢNH BÁO: Biến môi trường 'CHATBOT_API_KEY' chưa được thiết lập!")
