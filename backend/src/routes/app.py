@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from src.routes.chatbot import chatbot_bp
 from sqlalchemy import func
 from config.db import session  # Gọi session từ file config đã tạo
 from config.db import ConsumedFood  # Import mô hình bảng ConsumedFood từ file đã định nghĩa
@@ -7,6 +8,7 @@ import datetime
 # Khởi tạo Flask app
 app = Flask(__name__)
 
+app.register_blueprint(chatbot_bp)
 @app.route("/food/total-nutrition", methods=["GET"])
 def get_total_nutrition():
     user_id = request.args.get("user_id", type=int)
