@@ -7,7 +7,7 @@ from src.routes.chatbot import chatbot_bp
 
 def create_app():
 
-    app = Flask(__name__)
+    app = create_app()
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'this is a secret'
     app.config['SECRET_KEY'] = SECRET_KEY
     app.config['IMAGE_UPLOADS'] = os.path.abspath('./uploads')
