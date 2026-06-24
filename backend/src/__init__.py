@@ -20,9 +20,8 @@ def create_app():
 
 
     if not app.config['CHATBOT_EXTERNAL_API_ENDPOINT']:
-        print("CẢNH BẢO: Biến môi trường 'CHATBOT_EXTERNAL_API_ENDPOINT' chưa được thiết lập!")
+        print("CẢNH BẢO: Biến môi trường 'CHATBOT_EXTERNAL_API_ENDPOINT' chưa được thiết lập hoàn toàn!")
 
-    # CẤU HÌNH CORS CHÍNH XÁC:
     # Liệt kê tất cả các domain frontend của bạn ở đây
     allowed_frontend_origins = [
         "https://nutriwiseadvisor.vercel.app",  # Frontend chính của bạn

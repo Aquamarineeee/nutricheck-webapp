@@ -16,7 +16,6 @@ def send_message_to_chatbot():
         # Khởi tạo danh sách chứa các phần tử nội dung gửi cho Gemini
         # Gemini nhận một list gồm text và dict cấu trúc ảnh (hoặc object)
         contents = []
-
         # 2. Thêm tin nhắn văn bản vào nội dung (nếu có)
         if user_message_text:
             contents.append(user_message_text)
