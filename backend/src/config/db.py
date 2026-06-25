@@ -4,6 +4,8 @@ from sqlalchemy import create_engine, DateTime, Boolean, ForeignKey, Float, Inte
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 Base = declarative_base()
+from dotenv import load_dotenv
+load_dotenv()
 engine = create_engine(
     os.environ["DB_ENDPOINT"], echo=True)
 

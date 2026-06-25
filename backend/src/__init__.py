@@ -4,6 +4,8 @@ from src.routes.auth import auth
 from src.routes.food import food
 from flask_cors import CORS
 from src.routes.chatbot import chatbot_bp
+from dotenv import load_dotenv
+load_dotenv()
 
 def create_app():
 
@@ -14,12 +16,6 @@ def create_app():
     
     app.config['GEMINI_API_KEY'] = os.environ.get('GEMINI_API_KEY')
 
-    if not app.config['CHATBOT_API_KEY']:
-        print("CẢNH BÁO: Biến môi trường 'CHATBOT_API_KEY' chưa được thiết lập!")
-
-
-    if not app.config['CHATBOT_EXTERNAL_API_ENDPOINT']:
-        print("CẢNH BẢO: Biến môi trường 'CHATBOT_EXTERNAL_API_ENDPOINT' chưa được thiết lập hoàn toàn!")
 
     # Liệt kê tất cả các domain frontend của bạn ở đây
     allowed_frontend_origins = [
