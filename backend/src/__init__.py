@@ -19,16 +19,16 @@ def create_app():
         print("WARNING: GEMINI_API_KEY missing!")
 
     # CẤU HÌNH CORS CHÍNH XÁC:
-    # Liệt kê tất cả các domain frontend của bạn ở đây
+    # domain frontend 
     allowed_frontend_origins = [
-        "https://nutriwiseadvisor.vercel.app",  # Frontend chính của bạn
+        "https://nutriwiseadvisor.vercel.app",  # Frontend chính
         "https://www.nutricheck.io.vn"
     ]
     CORS(app, resources={r"/api/*": {"origins": allowed_frontend_origins}})
 
-    # Đăng ký các Blueprint của bạn
+    # Đăng ký các Blueprint
     app.register_blueprint(auth)
     app.register_blueprint(food)
-    app.register_blueprint(chatbot_bp) # Blueprint chatbot của bạn
+    app.register_blueprint(chatbot_bp)
 
     return app
