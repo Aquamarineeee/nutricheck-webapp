@@ -12,15 +12,11 @@ def create_app():
     app.config['SECRET_KEY'] = SECRET_KEY
     app.config['IMAGE_UPLOADS'] = os.path.abspath('./uploads')
     
-    app.config['CHATBOT_API_KEY'] = os.environ.get('CHATBOT_API_KEY')
-    app.config['CHATBOT_EXTERNAL_API_ENDPOINT'] = os.environ.get('CHATBOT_EXTERNAL_API_ENDPOINT')
-
-    if not app.config['CHATBOT_API_KEY']:
-        print("CẢNH BÁO: Biến môi trường 'CHATBOT_API_KEY' chưa được thiết lập!")
 
 
-    if not app.config['CHATBOT_EXTERNAL_API_ENDPOINT']:
-        print("CẢNH BẢO: Biến môi trường 'CHATBOT_EXTERNAL_API_ENDPOINT' chưa được thiết lập!")
+    app.config['GEMINI_API_KEY'] = os.environ.get('GEMINI_API_KEY')
+    if not app.config['GEMINI_API_KEY']:
+        print("WARNING: GEMINI_API_KEY missing!")
 
     # CẤU HÌNH CORS CHÍNH XÁC:
     # Liệt kê tất cả các domain frontend của bạn ở đây
